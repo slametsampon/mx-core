@@ -13,9 +13,6 @@ const inter = Inter({ subsets: ['latin'] });
 export const metadata = {
   title: siteMetadata.title,
   description: siteMetadata.description,
-  // icons: {
-  //   icon: '/mx-core/favicon.ico', // atau gunakan `siteMetadata.siteLogo` jika sesuai
-  // },
 };
 
 interface RootLayoutProps {
