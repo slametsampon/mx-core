@@ -24,7 +24,7 @@ const nextConfig = {
   basePath: isProd ? '/mx-core' : '',
 
   // (Opsional) Jika ingin mengatur assetPrefix juga:
-  assetPrefix: isProd ? '/mx-core/' : '',
+  // assetPrefix: isProd ? '/mx-core/' : '',
 };
 
 module.exports = withContentlayer(nextConfig);
