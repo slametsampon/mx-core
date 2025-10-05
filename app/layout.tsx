@@ -22,6 +22,19 @@ interface RootLayoutProps {
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en">
+      <head>
+        {/* ⛳️ Tambahkan favicon langsung di sini */}
+        <link
+          rel="icon"
+          href="/mx-core/favicon.ico"
+          type="image/x-icon"
+          sizes="any"
+        />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta charSet="utf-8" />
+        <title>{siteMetadata.title}</title>
+        <meta name="description" content={siteMetadata.description} />
+      </head>
       <body
         className={`min-h-screen bg-white text-slate-900 antialiased dark:bg-slate-950 dark:text-slate-50 ${inter.className}`}
       >
