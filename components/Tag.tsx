@@ -1,7 +1,9 @@
-import Link from 'next/link'
-import { slug } from 'github-slugger'
+// components/Tag.tsx
+
+import Link from 'next/link';
+import { slug } from 'github-slugger';
 interface Props {
-  text: string
+  text: string;
 }
 
 const Tag = ({ text }: Props) => {
@@ -12,7 +14,7 @@ const Tag = ({ text }: Props) => {
     >
       {text.split(' ').join('-')}
     </Link>
-  )
-}
+  );
+};
 
-export default Tag
+export default Tag;
