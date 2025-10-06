@@ -1,9 +1,11 @@
+// data/siteMetadata.js
+
 /** @type {import("pliny/config").PlinyConfig } */
 const siteMetadata = {
-  title: 'Web Template',
+  title: 'Mx Core',
   author: 'Slamet-Sam',
-  headerTitle: 'WebTemplate',
-  description: 'Website Template',
+  headerTitle: 'MxCore',
+  description: 'Maintenance Extended Core',
   language: 'en-us',
   theme: 'system', // system, dark or light
   siteUrl: 'https://agro-mulya.vercel.app',
@@ -86,6 +88,6 @@ const siteMetadata = {
     //   indexName: 'docsearch',
     // },
   },
-}
+};
 
-module.exports = siteMetadata
+module.exports = siteMetadata;
