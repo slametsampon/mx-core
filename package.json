@@ -11,9 +11,8 @@
     "lint": "next lint --fix --dir pages --dir app --dir components --dir lib --dir layouts --dir scripts --dir data",
     "lintAll": "next lint --fix --dir .",
     "format": "prettier --write .",
-    "export": "next export",
     "postexport": "echo > out/.nojekyll",
-    "deploy": "npm run build && npm run export && gh-pages -d out"
+    "deploy": "npm run build && gh-pages -d out"
   },
   "dependencies": {
     "@tailwindcss/forms": "^0.5.10",
