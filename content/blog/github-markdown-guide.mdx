@@ -1,0 +1,219 @@
+---
+title: 'Panduan Markdown'
+date: '2025-10-07'
+tags: ['github', 'panduan', 'markdown', 'md', 'mdx']
+draft: false
+summary: 'Lembar contekan Markdown untuk semua kebutuhan blogging Anda – judul, daftar, gambar, tabel, dan lainnya! Panduan bergambar berdasarkan GitHub Flavored Markdown.'
+---
+
+# Pendahuluan
+
+Parsing Markdown dan Mdx didukung melalui `unified`, serta paket remark dan rehype lainnya. `next-mdx-remote` memungkinkan kita untuk mem-parsing file `.mdx` dan `.md` dengan cara yang lebih fleksibel tanpa perlu menyentuh konfigurasi webpack.
+
+Markdown versi GitHub digunakan di sini. `mdx-prism` menyediakan kemampuan penyorotan sintaksis untuk blok kode. Berikut adalah demo tampilan dari keseluruhan formatnya.
+
+Lembar contekan Markdown berikut diadaptasi dari: https://guides.github.com/features/mastering-markdown/
+
+# Apa itu Markdown?
+
+Markdown adalah cara untuk menata teks di web. Anda mengendalikan tampilan dokumen; memformat kata menjadi **tebal** atau _miring_, menambahkan gambar, dan membuat daftar hanyalah beberapa hal yang dapat kita lakukan dengan Markdown. Umumnya, Markdown hanyalah teks biasa dengan beberapa karakter non-alfabet seperti `#` atau `*`.
+
+# Panduan Sintaks
+
+Berikut adalah ringkasan sintaks Markdown yang dapat Anda gunakan di GitHub.com atau di file teks Anda sendiri.
+
+## Judul
+
+```
+
+# Ini adalah tag h1
+
+## Ini adalah tag h2
+
+#### Ini adalah tag h4
+
+```
+
+# Ini adalah tag h1
+
+## Ini adalah tag h2
+
+#### Ini adalah tag h4
+
+## Penekanan (Emphasis)
+
+```
+
+*Teks ini akan dimiringkan*
+
+**Teks ini akan ditebalkan**
+
+*Anda **bisa** menggabungkannya*
+
+```
+
+_Teks ini akan dimiringkan_
+
+**Teks ini akan ditebalkan**
+
+_Anda **bisa** menggabungkannya_
+
+## Daftar
+
+### Tidak Berurutan
+
+```
+
+* Item 1
+* Item 2
+
+  * Item 2a
+  * Item 2b
+
+```
+
+- Item 1
+- Item 2
+  - Item 2a
+  - Item 2b
+
+### Berurutan
+
+```
+
+1. Item 1
+2. Item 2
+3. Item 3
+
+   1. Item 3a
+   2. Item 3b
+
+```
+
+1. Item 1
+1. Item 2
+1. Item 3
+   1. Item 3a
+   1. Item 3b
+
+## Gambar
+
+```
+
+![Logo GitHub](https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png)
+Format: ![Teks Alt](url)
+
+```
+
+![Logo GitHub](https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png)
+
+## Tautan
+
+```
+
+[http://github.com](http://github.com) - otomatis!
+[GitHub](http://github.com)
+
+```
+
+http://github.com - otomatis!  
+[GitHub](http://github.com)
+
+## Kutipan
+
+```
+
+Seperti yang dikatakan Kanye West:
+
+> Kita sedang hidup di masa depan, jadi
+> masa kini adalah masa lalu kita.
+
+```
+
+Seperti yang dikatakan Kanye West:
+
+> Kita sedang hidup di masa depan, jadi  
+> masa kini adalah masa lalu kita.
+
+## Kode Inline
+
+```
+
+Saya rasa Anda sebaiknya menggunakan
+elemen `<addr>` di sini.
+
+```
+
+Saya rasa Anda sebaiknya menggunakan  
+elemen `<addr>` di sini.
+
+## Penyorotan Sintaks
+
+Berikut adalah contoh bagaimana Anda dapat menggunakan penyorotan sintaks dengan [GitHub Flavored Markdown](https://help.github.com/articles/basic-writing-and-formatting-syntax/):
+
+````markdown
+```js:fancyAlert.js
+function fancyAlert(arg) {
+  if (arg) {
+    $.facebox({ div: '#foo' })
+  }
+}
+```
+````
+
+````
+
+Dan berikut adalah tampilannya — berwarna dengan judul kode yang ditata!
+
+```js:fancyAlert.js
+function fancyAlert(arg) {
+  if (arg) {
+    $.facebox({ div: '#foo' })
+  }
+}
+```
+
+## Catatan Kaki
+
+```
+Berikut adalah catatan kaki sederhana[^1]. Dengan beberapa teks tambahan setelahnya.
+
+[^1]: Referensi saya.
+```
+
+Berikut adalah catatan kaki sederhana[^1]. Dengan beberapa teks tambahan setelahnya.
+
+[^1]: Referensi saya.
+
+## Daftar Tugas
+
+```
+- [x] sintaks daftar diperlukan (mendukung daftar tak berurutan atau berurutan)
+- [x] ini adalah item yang sudah selesai
+- [ ] ini adalah item yang belum selesai
+```
+
+- [x] sintaks daftar diperlukan (mendukung daftar tak berurutan atau berurutan)
+- [x] ini adalah item yang sudah selesai
+- [ ] ini adalah item yang belum selesai
+
+## Tabel
+
+Anda dapat membuat tabel dengan menyusun daftar kata dan membaginya menggunakan tanda hubung `-` (untuk baris pertama), kemudian memisahkan setiap kolom dengan tanda pipa `|`:
+
+```
+| Header Pertama              | Header Kedua                 |
+| --------------------------- | ---------------------------- |
+| Konten dari sel pertama     | Konten dari sel kedua        |
+| Konten di kolom pertama     | Konten di kolom kedua        |
+```
+
+| Header Pertama              | Header Kedua                 |
+| --------------------------- | ---------------------------- |
+| Konten dari sel pertama     | Konten dari sel kedua        |
+| Konten di kolom pertama     | Konten di kolom kedua        |
+
+## Coret
+
+Setiap kata yang dibungkus dengan dua tanda tilde (seperti `~~ini~~`) akan muncul ~~dicoret~~.
+````
