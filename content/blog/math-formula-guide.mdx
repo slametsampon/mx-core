@@ -1,0 +1,287 @@
+---
+title: Panduan Penulisan Formula Matematika dalam Block Markdown
+date: 2025-10-07
+tags: ['markdown', 'formula', 'math']
+draft: false
+summary: Pada panduan ini, kamu telah mempelajari bagaimana menulis rumus matematika dalam format **block math** menggunakan sintaks `$$...$$`.
+---
+
+# 📘 Panduan Penulisan Formula Matematika dalam Block Markdown
+
+## 📌 Prolog
+
+Markdown adalah format penulisan ringan yang banyak digunakan untuk dokumentasi, catatan teknis, dan blogging. Namun, untuk penulisan rumus matematika, Markdown standar perlu bantuan dari **MathJax** atau **KaTeX**, terutama jika ingin menulis formula secara rapi.
+
+Panduan ini dibuat khusus untuk:
+
+- 💡 Pemula yang ingin belajar menulis rumus dalam file `.md`
+- ✍️ Penulis dokumentasi teknis, akademik, atau catatan kuliah
+- 📖 Pengguna aplikasi seperti **Typora**, **Obsidian**, **Jupyter Notebook**, atau **VSCode + plugin**
+
+Kita hanya akan fokus pada **block math** (`$$...$$`), yang paling kompatibel dan konsisten dalam berbagai platform Markdown.
+
+---
+
+## 📗 Bagian 1: Rumus Sederhana
+
+### 1.1 Rumus Energi Einstein
+
+**Markdown:**
+
+```markdown
+$$
+E = mc^2
+$$
+```
+
+**Output:**
+
+$$
+E = mc^2
+$$
+
+---
+
+### 1.2 Pangkat dan Indeks
+
+**Markdown:**
+
+```markdown
+$$
+x^2 + y_1 + z_0
+$$
+```
+
+**Output:**
+
+$$
+x^2 + y_1 + z_0
+$$
+
+---
+
+### 1.3 Pecahan dan Akar
+
+**Markdown:**
+
+```markdown
+$$
+\frac{a + b}{c - d} + \sqrt{x^2 + y^2}
+$$
+```
+
+**Output:**
+
+$$
+\frac{a + b}{c - d} + \sqrt{x^2 + y^2}
+$$
+
+---
+
+## 📙 Bagian 2: Rumus Menengah
+
+### 2.1 Integral Dasar
+
+**Markdown:**
+
+```markdown
+$$
+\int x^2 \, dx = \frac{1}{3}x^3 + C
+$$
+```
+
+**Output:**
+
+$$
+\int x^2 , dx = \frac{1}{3}x^3 + C
+$$
+
+---
+
+### 2.2 Limit
+
+**Markdown:**
+
+```markdown
+$$
+\lim_{x \to 0} \frac{\sin x}{x} = 1
+$$
+```
+
+**Output:**
+
+$$
+\lim_{x \to 0} \frac{\sin x}{x} = 1
+$$
+
+---
+
+### 2.3 Sigma dan Produk
+
+**Markdown:**
+
+```markdown
+$$
+\sum_{i=1}^{n} i = \frac{n(n+1)}{2}, \quad
+\prod_{i=1}^{n} i = n!
+$$
+```
+
+**Output:**
+
+$$
+\sum_{i=1}^{n} i = \frac{n(n+1)}{2}, \quad
+\prod_{i=1}^{n} i = n!
+$$
+
+---
+
+### 2.4 Identitas Trigonometri
+
+**Markdown:**
+
+```markdown
+$$
+\sin^2 \theta + \cos^2 \theta = 1
+$$
+```
+
+**Output:**
+
+$$
+\sin^2 \theta + \cos^2 \theta = 1
+$$
+
+---
+
+## 📕 Bagian 3: Rumus Tingkat Lanjut
+
+### 3.1 Matriks 2x2
+
+**Markdown:**
+
+```markdown
+$$
+\begin{bmatrix}
+1 & 2 \\
+3 & 4
+\end{bmatrix}
+$$
+```
+
+**Output:**
+
+$$
+\begin{bmatrix}
+1 & 2 \
+3 & 4
+\end{bmatrix}
+$$
+
+---
+
+### 3.2 Sistem Persamaan (Aligned)
+
+**Markdown:**
+
+```markdown
+$$
+\begin{aligned}
+f(x) &= x^2 + 2x + 1 \\
+     &= (x + 1)^2
+\end{aligned}
+$$
+```
+
+**Output:**
+
+$$
+\begin{aligned}
+f(x) &= x^2 + 2x + 1 \
+&= (x + 1)^2
+\end{aligned}
+$$
+
+---
+
+### 3.3 Fungsi dan Domain
+
+**Markdown:**
+
+```markdown
+$$
+f: \mathbb{R} \to \mathbb{R}, \quad f(x) = x^2
+$$
+```
+
+**Output:**
+
+$$
+f: \mathbb{R} \to \mathbb{R}, \quad f(x) = x^2
+$$
+
+---
+
+### 3.4 Kuantor Universal dan Logika
+
+**Markdown:**
+
+```markdown
+$$
+\forall x \in \mathbb{R},\quad x^2 \geq 0
+$$
+```
+
+**Output:**
+
+$$
+\forall x \in \mathbb{R},\quad x^2 \geq 0
+$$
+
+---
+
+### 3.5 Penjabaran Multibaris
+
+**Markdown:**
+
+```markdown
+$$
+\begin{aligned}
+\text{Jika } a &= b + c \\
+\text{dan } b &= d - e \\
+\text{maka } a &= d - e + c
+\end{aligned}
+$$
+```
+
+**Output:**
+
+$$
+\begin{aligned}
+\text{Jika } a &= b + c \
+\text{dan } b &= d - e \
+\text{maka } a &= d - e + c
+\end{aligned}
+$$
+
+---
+
+### 3.6 Medan Vektor dan Turunan Parsial
+
+**Markdown:**
+
+```markdown
+$$
+\frac{\partial z}{\partial x} = 2x + 3y, \quad
+\nabla \cdot \vec{E} = \frac{\rho}{\varepsilon_0}
+$$
+```
+
+**Output:**
+
+$$
+\frac{\partial z}{\partial x} = 2x + 3y, \quad
+\nabla \cdot \vec{E} = \frac{\rho}{\varepsilon_0}
+$$
+
+---
