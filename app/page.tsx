@@ -24,7 +24,8 @@ export default function Home() {
             MxCore
           </h1>
           <p className="mt-6 text-xl text-gray-300 md:text-2xl">
-            Static-Site Framework untuk Industri Petrochemical & Engineering
+            Static-Site Framework untuk platform Blog modern yang ringan,
+            modular, dan mudah dikembangkan
           </p>
           <p className="text-md mt-4 text-gray-400 md:text-lg">
             Dibangun dengan Next.js + Contentlayer + Tailwind + Markdown
