@@ -23,8 +23,16 @@ const nextConfig = {
   // ✅ Penting untuk GitHub Pages: menyesuaikan basePath
   basePath: isProd ? '/mx-core' : '',
 
-  // (Opsional) Jika ingin mengatur assetPrefix juga:
-  // assetPrefix: isProd ? '/mx-core/' : '',
+  webpack(config) {
+    // 🔥 Tambahkan rule untuk SVGR
+    config.module.rules.push({
+      test: /\.svg$/i,
+      issuer: /\.[jt]sx?$/,
+      use: ['@svgr/webpack'],
+    });
+
+    return config;
+  },
 };
 
 module.exports = withContentlayer(nextConfig);
