@@ -5,10 +5,11 @@ import {
   ComputedFields,
   makeSource,
 } from 'contentlayer/source-files';
-import { writeFileSync } from 'fs';
+import { writeFileSync, existsSync } from 'fs';
 import readingTime from 'reading-time';
 import { slug } from 'github-slugger';
 import path from 'path';
+import fs from 'fs';
 
 // Remark packages
 import remarkGfm from 'remark-gfm';
@@ -158,11 +159,11 @@ export const Post = defineDocumentType(() => ({
 }));
 
 function createTagCount(allBlogs: BlogType[]) {
+  console.log('🔖 [createTagCount] Starting tag count generation...');
   const tagCount: Record<string, number> = {};
   allBlogs.forEach((file) => {
     if (file.tags && (!isProduction || file.draft !== true)) {
       file.tags.forEach((tag) => {
-        // const formattedTag = GithubSlugger.slug(tag)
         const formattedTag = slug(tag);
         if (formattedTag in tagCount) {
           tagCount[formattedTag] += 1;
@@ -172,20 +173,72 @@ function createTagCount(allBlogs: BlogType[]) {
       });
     }
   });
+  console.log('🔖 [createTagCount] Result:', tagCount);
   writeFileSync('./app/tag-data.json', JSON.stringify(tagCount));
+  console.log(
+    '✅ [createTagCount] tag-data.json created at ./app/tag-data.json'
+  );
+}
+
+function createAuthorCount(allBlogs: BlogType[]) {
+  console.log('👤 [createAuthorCount] Starting author count generation...');
+  const authorCount: Record<string, number> = {};
+  allBlogs.forEach((file) => {
+    if (file.authors && (!isProduction || file.draft !== true)) {
+      file.authors.forEach((author) => {
+        const formattedAuthor = slug(author);
+        if (formattedAuthor in authorCount) {
+          authorCount[formattedAuthor] += 1;
+        } else {
+          authorCount[formattedAuthor] = 1;
+        }
+      });
+    }
+  });
+  console.log('👤 [createAuthorCount] Result:', authorCount);
+  writeFileSync('./app/author-data.json', JSON.stringify(authorCount));
+  console.log(
+    '✅ [createAuthorCount] author-data.json created at ./app/author-data.json'
+  );
 }
 
 function createSearchIndex(allBlogs: BlogType[]) {
+  console.log('🔎 [createSearchIndex] Checking search provider...');
   if (
     siteMetadata?.search?.provider === 'kbar' &&
     siteMetadata.search.kbarConfig.searchDocumentsPath
   ) {
+    console.log('🔎 [createSearchIndex] Generating local search index...');
     writeFileSync(
       `public/${siteMetadata.search.kbarConfig.searchDocumentsPath}`,
       JSON.stringify(allCoreContent(sortPosts(allBlogs)))
     );
-    console.log('Local search index generated...');
+    console.log(
+      `✅ [createSearchIndex] Local search index generated at public/${siteMetadata.search.kbarConfig.searchDocumentsPath}`
+    );
+  } else {
+    console.log(
+      'ℹ️ [createSearchIndex] No search index generated (provider not set to kbar).'
+    );
   }
+}
+
+function readAllBlogsFromFile() {
+  const blogDir = path.join(process.cwd(), '.contentlayer/generated/Blog');
+
+  if (!fs.existsSync(blogDir)) {
+    console.warn('⚠️ [readAllBlogsFromFile] Folder Blog tidak ditemukan.');
+    return [];
+  }
+
+  const files = fs.readdirSync(blogDir).filter((f) => f.endsWith('.json'));
+
+  const blogs = files.map((file) => {
+    const content = fs.readFileSync(path.join(blogDir, file), 'utf-8');
+    return JSON.parse(content);
+  });
+
+  return blogs;
 }
 
 export default makeSource({
@@ -210,18 +263,46 @@ export default makeSource({
     ],
   },
 
-  /**
-   * Bagian ini sementara saat build di lokal di-disable dulu karena membuat error saat building pada contentlayer
-   * Count the occurrences of all tags across blog posts and write to json file
-   */
+  onSuccess: async (importData) => {
+    console.log('🚀 [onSuccess] Starting post-build process...');
 
-  onSuccess: async () => {
+    let allBlogs = [];
+
     try {
-      const { allBlogs } = await import('contentlayer/generated');
-      createTagCount(allBlogs);
-      createSearchIndex(allBlogs);
-    } catch (error) {
-      console.error('Failed during onSuccess import:', error);
+      const imported = await importData();
+
+      if (Array.isArray(imported?.allBlogs)) {
+        allBlogs = imported.allBlogs;
+        console.log(
+          `📚 [onSuccess] Found ${allBlogs.length} blogs from importData()`
+        );
+      } else {
+        console.warn(
+          '⚠️ [onSuccess] allBlogs not found from importData(), fallback to file.'
+        );
+        allBlogs = readAllBlogsFromFile();
+        console.log(`📁 [onSuccess] Loaded ${allBlogs.length} blogs from file`);
+      }
+    } catch (err) {
+      console.warn(
+        '❌ [onSuccess] importData() failed, fallback to file:',
+        err
+      );
+      allBlogs = readAllBlogsFromFile();
+      console.log(`📁 [onSuccess] Loaded ${allBlogs.length} blogs from file`);
     }
+
+    if (!allBlogs.length) {
+      console.warn(
+        '⚠️ [onSuccess] No blog data available, skipping post-build tasks.'
+      );
+      return;
+    }
+
+    createAuthorCount(allBlogs);
+    createTagCount(allBlogs);
+    createSearchIndex(allBlogs);
+
+    console.log('✅ [onSuccess] Post-build tasks completed.');
   },
 });
