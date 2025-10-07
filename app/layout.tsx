@@ -28,7 +28,6 @@ export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en">
       <head>
-        {/* ⛳️ Tambahkan favicon langsung di sini */}
         <link
           rel="icon"
           href="/mx-core/favicon.ico"
@@ -47,17 +46,19 @@ export default function RootLayout({ children }: RootLayoutProps) {
           <Analytics
             analyticsConfig={siteMetadata.analytics as AnalyticsConfig}
           />
-          <SectionContainer>
-            <div className="flex h-screen flex-col justify-between font-sans">
-              <SearchProvider
-                searchConfig={siteMetadata.search as SearchConfig}
-              >
-                <Header />
-                <main className="mb-auto">{children}</main>
-              </SearchProvider>
-              <Footer />
-            </div>
-          </SectionContainer>
+          <div className="flex min-h-screen flex-col justify-between font-sans">
+            <SearchProvider searchConfig={siteMetadata.search as SearchConfig}>
+              <Header /> {/* ✅ Header akan jadi full width */}
+              <main className="mb-auto">
+                <SectionContainer>
+                  {' '}
+                  {/* ✅ Hanya konten dibatasi */}
+                  {children}
+                </SectionContainer>
+              </main>
+            </SearchProvider>
+            <Footer /> {/* ✅ Footer juga full width */}
+          </div>
         </ThemeProvider>
       </body>
     </html>

@@ -1,11 +1,10 @@
-// tailwind.config.js
+// tailwind.config.ts
 
-// @ts-check
-const { fontFamily } = require('tailwindcss/defaultTheme');
-const colors = require('tailwindcss/colors');
+import type { Config } from 'tailwindcss';
+import { fontFamily } from 'tailwindcss/defaultTheme';
+import colors from 'tailwindcss/colors';
 
-/** @type {import('tailwindcss').Config} */
-module.exports = {
+const config: Config = {
   content: [
     './node_modules/pliny/**/*.js',
     './app/**/*.{js,ts,jsx,tsx}',
@@ -31,22 +30,36 @@ module.exports = {
         primary: colors.pink,
         gray: colors.gray,
       },
-      typography: ({ theme }) => ({
+      typography: (theme: (path: string) => string) => ({
         DEFAULT: {
           css: {
+            maxWidth: '85ch',
             a: {
               color: theme('colors.primary.500'),
               '&:hover': {
-                color: `${theme('colors.primary.600')}`,
+                color: theme('colors.primary.600'),
               },
               code: { color: theme('colors.primary.400') },
             },
             'h1,h2': {
               fontWeight: '700',
               letterSpacing: theme('letterSpacing.tight'),
+              marginTop: theme('spacing.6'),
+              marginBottom: theme('spacing.4'),
             },
             h3: {
               fontWeight: '600',
+              marginTop: theme('spacing.5'),
+              marginBottom: theme('spacing.3'),
+            },
+            p: {
+              marginTop: theme('spacing.3'),
+              marginBottom: theme('spacing.4'),
+            },
+            ul: {
+              marginTop: theme('spacing.3'),
+              marginBottom: theme('spacing.4'),
+              paddingLeft: theme('spacing.6'),
             },
             code: {
               color: theme('colors.indigo.500'),
@@ -55,15 +68,28 @@ module.exports = {
         },
         invert: {
           css: {
+            maxWidth: '85ch',
             a: {
               color: theme('colors.primary.500'),
               '&:hover': {
-                color: `${theme('colors.primary.400')}`,
+                color: theme('colors.primary.400'),
               },
               code: { color: theme('colors.primary.400') },
             },
             'h1,h2,h3,h4,h5,h6': {
               color: theme('colors.gray.100'),
+              marginTop: theme('spacing.6'),
+              marginBottom: theme('spacing.4'),
+            },
+            p: {
+              color: theme('colors.gray.300'),
+              marginTop: theme('spacing.3'),
+              marginBottom: theme('spacing.4'),
+            },
+            ul: {
+              marginTop: theme('spacing.3'),
+              marginBottom: theme('spacing.4'),
+              paddingLeft: theme('spacing.6'),
             },
           },
         },
@@ -72,3 +98,5 @@ module.exports = {
   },
   plugins: [require('@tailwindcss/forms'), require('@tailwindcss/typography')],
 };
+
+export default config;
