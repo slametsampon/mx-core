@@ -1,14 +1,17 @@
-import { AlgoliaButton } from 'pliny/search/AlgoliaButton'
-import { KBarButton } from 'pliny/search/KBarButton'
-import siteMetadata from '@/data/siteMetadata'
+// components/SearchButton.tsx
+
+import { AlgoliaButton } from 'pliny/search/AlgoliaButton';
+import { KBarButton } from 'pliny/search/KBarButton';
+import siteMetadata from '@/data/siteMetadata';
 
 const SearchButton = () => {
   if (
     siteMetadata.search &&
-    (siteMetadata.search.provider === 'algolia' || siteMetadata.search.provider === 'kbar')
+    (siteMetadata.search.provider === 'algolia' ||
+      siteMetadata.search.provider === 'kbar')
   ) {
     const SearchButtonWrapper =
-      siteMetadata.search.provider === 'algolia' ? AlgoliaButton : KBarButton
+      siteMetadata.search.provider === 'algolia' ? AlgoliaButton : KBarButton;
 
     return (
       <SearchButtonWrapper aria-label="Search">
@@ -18,7 +21,7 @@ const SearchButton = () => {
           viewBox="0 0 24 24"
           strokeWidth={1.5}
           stroke="currentColor"
-          className="text-gray-900 dark:text-gray-100 h-6 w-6"
+          className="h-6 w-6 text-gray-900 dark:text-gray-100"
         >
           <path
             strokeLinecap="round"
@@ -27,8 +30,10 @@ const SearchButton = () => {
           />
         </svg>
       </SearchButtonWrapper>
-    )
+    );
   }
-}
+  // Fallback return value:
+  return null;
+};
 
-export default SearchButton
+export default SearchButton;
