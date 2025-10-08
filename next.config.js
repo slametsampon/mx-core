@@ -23,6 +23,11 @@ const nextConfig = {
   // ✅ Penting untuk GitHub Pages: menyesuaikan basePath
   basePath: isProd ? '/mx-core' : '',
 
+  // ✅ Expose basePath agar bisa digunakan di komponen (client)
+  env: {
+    BASE_PATH: isProd ? '/mx-core' : '',
+  },
+
   webpack(config) {
     // 🔥 Tambahkan rule untuk SVGR
     config.module.rules.push({
