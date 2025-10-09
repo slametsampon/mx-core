@@ -20,11 +20,6 @@ import { Metadata } from 'next';
 import siteMetadata from '@/data/siteMetadata';
 
 const defaultLayout = 'PostLayout';
-const layouts = {
-  PostSimple,
-  PostLayout,
-  PostBanner,
-};
 
 export async function generateMetadata({
   params,

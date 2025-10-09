@@ -101,7 +101,7 @@ export default function ListLayoutWithTags({
             <div className="px-6 py-4">
               {pathname.startsWith('/blog') ? (
                 <h3 className="font-bold uppercase text-primary-500">
-                  All Blogs
+                  All Post
                 </h3>
               ) : (
                 <Link
