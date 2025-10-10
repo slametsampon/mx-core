@@ -34,6 +34,8 @@ export default function Footer() {
             aria-label="Source code on GitHub"
           >
             {siteMetadata.title}
+            <span> V-</span>
+            {siteMetadata.version}
           </Link>
           <span>•</span>
           <Link

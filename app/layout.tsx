@@ -8,7 +8,8 @@ import { Inter } from 'next/font/google';
 import { ThemeProvider } from '@/components/theme-provider';
 import { Analytics, AnalyticsConfig } from 'pliny/analytics';
 import SectionContainer from '@/components/SectionContainer';
-import { SearchConfig, SearchProvider } from 'pliny/search';
+// import { SearchConfig, SearchProvider } from 'pliny/search';
+import { CustomSearchProvider } from '@/components/CustomSearchProvider';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import siteMetadata from '../data/siteMetadata';
@@ -47,7 +48,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
             analyticsConfig={siteMetadata.analytics as AnalyticsConfig}
           />
           <div className="flex min-h-screen flex-col justify-between font-sans">
-            <SearchProvider searchConfig={siteMetadata.search as SearchConfig}>
+            <CustomSearchProvider>
               <Header /> {/* ✅ Header akan jadi full width */}
               <main className="mb-auto">
                 <SectionContainer>
@@ -56,7 +57,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
                   {children}
                 </SectionContainer>
               </main>
-            </SearchProvider>
+            </CustomSearchProvider>
             <Footer /> {/* ✅ Footer juga full width */}
           </div>
         </ThemeProvider>

@@ -3,6 +3,7 @@
 /** @type {import("pliny/config").PlinyConfig } */
 const siteMetadata = {
   title: 'Mx Core',
+  version: '0.1.1', // 🆕 Tambahkan versi di sini
   author: 'Slamet-Sam',
   headerTitle: 'MxCore',
   description: 'Maintenance Extended Core',

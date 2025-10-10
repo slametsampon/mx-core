@@ -223,6 +223,31 @@ function createSearchIndex(allBlogs: BlogType[]) {
   }
 }
 
+function createKbarSearchIndex(allBlogs: BlogType[]) {
+  console.log(
+    '🔎 [createKbarSearchIndex] Generating KBar-compatible search index...'
+  );
+
+  const basePath = process.env.BASE_PATH || '';
+  const formatted = allCoreContent(sortPosts(allBlogs)).map((post) => ({
+    id: post.slug,
+    name: post.title,
+    section: 'CONTENT',
+    href: `${basePath}/${post.path}`,
+    subtitle: new Date(post.date).toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    }),
+    keywords: post.tags,
+  }));
+
+  const outputPath = 'public/search-kbar.json';
+  writeFileSync(outputPath, JSON.stringify(formatted, null, 2));
+
+  console.log(`✅ [createKbarSearchIndex] Written to ${outputPath}`);
+}
+
 function readAllBlogsFromFile() {
   const blogDir = path.join(process.cwd(), '.contentlayer/generated/Blog');
 
@@ -302,6 +327,7 @@ export default makeSource({
     createAuthorCount(allBlogs);
     createTagCount(allBlogs);
     createSearchIndex(allBlogs);
+    createKbarSearchIndex(allBlogs); // ✅ Tambahan
 
     console.log('✅ [onSuccess] Post-build tasks completed.');
   },
