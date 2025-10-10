@@ -1,0 +1,38 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main # 🚀 Trigger saat push ke 'main'
+
+permissions:
+  contents: write # 🛡️ Perlu untuk push ke gh-pages
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: ⬇️ Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: ⚙️ Setup Node.js (v22.x)
+        uses: actions/setup-node@v3
+        with:
+          node-version: 22 # 🧠 Cocokkan dengan lokal: v22.19.0
+          check-latest: true # ⬅️ Ambil patch terbaru yang tersedia
+
+      - name: 📦 Install Dependencies
+        run: npm install
+
+      - name: 🏗️ Build & Export Static Site
+        run: |
+          npm run build
+          npm run export
+
+      - name: 🚀 Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./out # ✅ Folder hasil export Next.js
+          publish_branch: gh-pages # ✅ Branch Pages (pastikan ini aktif di Settings)
