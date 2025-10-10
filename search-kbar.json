@@ -5,6 +5,19 @@
     "subtitle": "Invalid Date"
   },
   {
+    "id": "github-custom-domain",
+    "name": "Deploy Next.js ke GitHub Pages dengan Custom Domain Gratis",
+    "section": "CONTENT",
+    "href": "/mx-core/blog/github-custom-domain",
+    "subtitle": "October 10, 2025",
+    "keywords": [
+      "GitHub-Actions",
+      "deploy",
+      "custom-domain",
+      "artikel"
+    ]
+  },
+  {
     "id": "konfigurtasi-blog",
     "name": "Konfigurasi Lengkap Next.js Blog (mx-core)",
     "section": "CONTENT",
