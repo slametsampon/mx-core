@@ -1,5 +1,10 @@
 [
   {
+    "section": "CONTENT",
+    "href": "/mx-core/undefined",
+    "subtitle": "Invalid Date"
+  },
+  {
     "id": "konfigurtasi-blog",
     "name": "Konfigurasi Lengkap Next.js Blog (mx-core)",
     "section": "CONTENT",
@@ -114,10 +119,5 @@
       "tailwind",
       "deploy"
     ]
-  },
-  {
-    "section": "CONTENT",
-    "href": "/mx-core/undefined",
-    "subtitle": "Invalid Date"
   }
 ]
