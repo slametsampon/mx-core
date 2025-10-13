@@ -3,143 +3,89 @@
 import Link from 'next/link';
 import { allBlogs } from 'contentlayer/generated';
 import { allCoreContent, sortPosts } from 'pliny/utils/contentlayer';
+import siteMetadata from '@/data/siteMetadata';
 import Tag from '@/components/Tag';
 
-const MAX_DISPLAY = 3;
+const MAX_DISPLAY = 5;
 
 export default function Home() {
-  const sortedPosts = allCoreContent(sortPosts(allBlogs));
-  const recentPosts = sortedPosts.slice(0, MAX_DISPLAY);
-
-  const uniqueTags = Array.from(
-    new Set(sortedPosts.flatMap((post) => post.tags || []))
-  );
+  const sorted = sortPosts(allBlogs);
+  const posts = allCoreContent(sorted).slice(0, MAX_DISPLAY);
 
   return (
-    <main className="min-h-screen bg-[#111827] text-white">
-      {/* ----- Hero Section ----- */}
-      <section className="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 px-6 py-24 md:px-20">
-        <div className="mx-auto max-w-4xl text-center">
-          <h1 className="text-5xl font-bold tracking-tight text-orange-500 md:text-6xl">
-            MxCore
-          </h1>
-          <p className="mt-6 text-xl text-gray-300 md:text-2xl">
-            Static-Site Framework untuk platform Blog modern yang ringan,
-            modular, dan mudah dikembangkan
-          </p>
-          <p className="text-md mt-4 text-gray-400 md:text-lg">
-            Dibangun dengan Next.js + Contentlayer + Tailwind + Markdown
-          </p>
-          <div className="mt-8">
-            <Link
-              href="/blog"
-              className="rounded-md bg-orange-500 px-6 py-3 font-semibold text-white transition hover:bg-orange-600"
-            >
-              Mulai Eksplorasi
-            </Link>
-          </div>
-        </div>
-      </section>
+    <div className="space-y-6 divide-y divide-gray-200 dark:divide-gray-700">
+      <div className="space-y-2 pb-4 pt-6 md:space-y-5">
+        <h1 className="text-4xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-5xl sm:leading-10 md:text-6xl md:leading-[1.2]">
+          {siteMetadata.title}
+        </h1>
+        <p className="text-lg leading-7 text-gray-600 dark:text-gray-300">
+          Platform dokumentasi & blog berbasis <strong>Next.js</strong> +{' '}
+          <strong>Markdown</strong>
+          untuk{' '}
+          <span className="font-semibold text-green-700 dark:text-green-300">
+            engineer, teknisi, & profesional industri
+          </span>
+          . Cocok untuk menulis{' '}
+          <i>design spec, HAZOP, S-Curve, estimation, JSA</i>, dan lainnya.
+        </p>
+        <p className="text-md italic text-gray-500 dark:text-gray-400">
+          📁 Topik mencakup: AI · Design · Maintenance · Project · Safety
+        </p>
+      </div>
 
-      {/* ----- Features Section ----- */}
-      <section className="bg-[#1f2937] px-6 py-20 md:px-20">
-        <div className="mx-auto grid max-w-5xl gap-12 md:grid-cols-3">
-          {[
-            {
-              title: 'Markdown Support',
-              desc: 'Tulis konten teknis dalam format markdown, langsung dirender dalam layout yang konsisten.',
-            },
-            {
-              title: 'SSG + Contentlayer',
-              desc: 'Bangun website statis super cepat dengan pemetaan data otomatis dari folder MDX.',
-            },
-            {
-              title: 'Tag Indexing',
-              desc: 'Tag-tag pada konten otomatis dihitung & disusun dalam JSON untuk navigasi dinamis.',
-            },
-          ].map((feature, i) => (
-            <div
-              key={i}
-              className="rounded-lg bg-gray-800 p-6 shadow transition hover:shadow-lg"
-            >
-              <h3 className="mb-2 text-lg font-bold text-orange-400">
-                {feature.title}
-              </h3>
-              <p className="text-gray-300">{feature.desc}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* ----- Tag Cloud Section ----- */}
-      <section className="border-t border-gray-700 bg-[#111827] px-6 py-16 md:px-20">
-        <div className="mx-auto max-w-4xl text-center">
-          <h2 className="mb-6 text-2xl font-semibold text-orange-400">
-            Eksplorasi Berdasarkan Tag
-          </h2>
-          <div className="flex flex-wrap justify-center gap-3">
-            {uniqueTags.map((tag) => (
-              <Tag key={tag} text={tag} />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ----- Recent Blog Posts ----- */}
-      <section className="bg-[#1f2937] px-6 py-20 md:px-20">
-        <div className="mx-auto max-w-4xl">
-          <h2 className="mb-8 text-2xl font-semibold text-orange-400">
-            Artikel Terbaru
-          </h2>
-          <ul className="space-y-10">
-            {recentPosts.map((post) => (
-              <li key={post.slug}>
-                <article>
-                  <h3 className="mb-2 text-xl font-bold text-white">
+      <ul className="divide-y divide-gray-200 dark:divide-gray-700">
+        {posts.map((post) => (
+          <li key={post.slug} className="py-6">
+            <article>
+              <div className="space-y-2">
+                <div>
+                  <dl>
+                    <dt className="sr-only">Published on</dt>
+                    <dd className="text-sm text-gray-500 dark:text-gray-400">
+                      <time dateTime={post.date}>{post.date}</time>
+                    </dd>
+                  </dl>
+                  <h2 className="text-2xl font-bold leading-8 tracking-tight">
                     <Link
                       href={`/blog/${post.slug}`}
-                      className="hover:underline"
+                      className="text-gray-900 dark:text-gray-100"
                     >
                       {post.title}
                     </Link>
-                  </h3>
-                  <p className="mb-2 text-gray-400">{post.summary}</p>
-                  <div className="text-sm text-gray-500">{post.date}</div>
-                </article>
-              </li>
-            ))}
-          </ul>
+                  </h2>
+                  <div className="mt-2 flex flex-wrap">
+                    {post.tags?.map((tag) => (
+                      <Tag key={tag} text={tag} />
+                    ))}
+                  </div>
+                </div>
+                <div className="prose max-w-none text-gray-500 dark:text-gray-400">
+                  {post.summary}
+                </div>
+                <div className="text-base font-medium leading-6">
+                  <Link
+                    href={`/blog/${post.slug}`}
+                    className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
+                  >
+                    Baca selengkapnya →
+                  </Link>
+                </div>
+              </div>
+            </article>
+          </li>
+        ))}
+      </ul>
 
-          {sortedPosts.length > MAX_DISPLAY && (
-            <div className="mt-10 text-center">
-              <Link
-                href="/blog"
-                className="font-medium text-orange-500 underline hover:text-orange-600"
-              >
-                Lihat Semua Artikel →
-              </Link>
-            </div>
-          )}
-        </div>
-      </section>
-
-      {/* ----- Footer CTA ----- */}
-      <section className="border-t border-gray-700 bg-[#111827] py-16 text-center">
-        <h2 className="text-2xl font-bold text-white">
-          Siap membangun dokumentasi teknikal Anda?
-        </h2>
-        <p className="mt-3 text-gray-400">
-          Gunakan MxCore untuk situs cepat, ringan, dan mudah dikelola.
-        </p>
-        <div className="mt-6">
+      {allBlogs.length > MAX_DISPLAY && (
+        <div className="flex justify-end text-base font-medium leading-6">
           <Link
             href="/blog"
-            className="rounded-md bg-orange-500 px-6 py-3 font-semibold text-white hover:bg-orange-600"
+            className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
           >
-            Mulai Sekarang
+            Lihat semua postingan →
           </Link>
         </div>
-      </section>
-    </main>
+      )}
+    </div>
   );
 }
