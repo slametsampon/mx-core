@@ -55,7 +55,13 @@ export default function Home() {
             >
               <article className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-900">
                 <div className="mb-2 text-sm text-gray-500 dark:text-gray-400">
-                  <time dateTime={post.date}>{post.date}</time>
+                  <time dateTime={post.date}>
+                    {new Date(post.date).toLocaleDateString('id-ID', {
+                      day: 'numeric',
+                      month: 'long',
+                      year: 'numeric',
+                    })}
+                  </time>
                 </div>
                 <h2 className="text-2xl font-semibold text-gray-800 dark:text-gray-100">
                   <Link
