@@ -5,6 +5,24 @@
     "subtitle": "Invalid Date"
   },
   {
+    "id": "Management/housekeeping-keandalan",
+    "name": "Housekeeping sebagai Cerminan Keandalan Pabrik Petrokimia",
+    "section": "CONTENT",
+    "href": "/mx-core/blog/Management/housekeeping-keandalan",
+    "subtitle": "October 13, 2025",
+    "keywords": [
+      "Pemeliharaan",
+      "housekeeping",
+      "keandalan",
+      "6M",
+      "ownership",
+      "awareness",
+      "rca",
+      "5s",
+      "tpm"
+    ]
+  },
+  {
     "id": "website/github-custom-domain",
     "name": "Deploy Next.js ke GitHub Pages dengan Custom Domain Gratis",
     "section": "CONTENT",
