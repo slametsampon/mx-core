@@ -18,6 +18,19 @@
     ]
   },
   {
+    "id": "github-custom-domain",
+    "name": "Deploy Next.js ke GitHub Pages dengan Custom Domain Gratis",
+    "section": "CONTENT",
+    "href": "/mx-core/blog/github-custom-domain",
+    "subtitle": "October 10, 2025",
+    "keywords": [
+      "GitHub-Actions",
+      "deploy",
+      "custom-domain",
+      "artikel"
+    ]
+  },
+  {
     "id": "website/github-custom-domain",
     "name": "Deploy Next.js ke GitHub Pages dengan Custom Domain Gratis",
     "section": "CONTENT",
@@ -28,6 +41,22 @@
       "deploy",
       "custom-domain",
       "artikel"
+    ]
+  },
+  {
+    "id": "konfigurtasi-blog",
+    "name": "Konfigurasi Lengkap Next.js Blog (mx-core)",
+    "section": "CONTENT",
+    "href": "/mx-core/blog/konfigurtasi-blog",
+    "subtitle": "October 8, 2025",
+    "keywords": [
+      "static-web",
+      "blog",
+      "deploy",
+      "github",
+      "contentlayer",
+      "tailwind",
+      "eslint"
     ]
   },
   {
@@ -47,10 +76,10 @@
     ]
   },
   {
-    "id": "markdown/github-markdown-guide",
+    "id": "github-markdown-guide",
     "name": "Panduan Markdown",
     "section": "CONTENT",
-    "href": "/mx-core/blog/markdown/github-markdown-guide",
+    "href": "/mx-core/blog/github-markdown-guide",
     "subtitle": "October 7, 2025",
     "keywords": [
       "github",
@@ -65,6 +94,18 @@
     "name": "Panduan Penulisan Formula Matematika dalam Block Markdown",
     "section": "CONTENT",
     "href": "/mx-core/blog/markdown/math-formula-guide",
+    "subtitle": "October 7, 2025",
+    "keywords": [
+      "markdown",
+      "formula",
+      "math"
+    ]
+  },
+  {
+    "id": "math-formula-guide",
+    "name": "Panduan Penulisan Formula Matematika dalam Block Markdown",
+    "section": "CONTENT",
+    "href": "/mx-core/blog/math-formula-guide",
     "subtitle": "October 7, 2025",
     "keywords": [
       "markdown",
@@ -321,6 +362,19 @@
     ]
   },
   {
+    "id": "patform-ai",
+    "name": "Pemanfaatan AI untuk Mendukung Pekerjaan di Industri Petrokimia",
+    "section": "CONTENT",
+    "href": "/mx-core/blog/patform-ai",
+    "subtitle": "September 20, 2024",
+    "keywords": [
+      "platform-ai",
+      "ai",
+      "gpt",
+      "petrokimia"
+    ]
+  },
+  {
     "id": "maintenance/ceramic-blanket",
     "name": "Pemeliharaan Ceramic Fiber, blanket",
     "section": "CONTENT",
@@ -429,6 +483,19 @@
     ]
   },
   {
+    "id": "artikel-ai",
+    "name": "Menulis Artikel yang Efektif dengan Prompt Engineering",
+    "section": "CONTENT",
+    "href": "/mx-core/blog/artikel-ai",
+    "subtitle": "September 8, 2024",
+    "keywords": [
+      "prompt-engineering",
+      "ai",
+      "gpt",
+      "artikel"
+    ]
+  },
+  {
     "id": "maintenance/cpm",
     "name": "CPM - Critical Path Method",
     "section": "CONTENT",
@@ -452,6 +519,18 @@
       "turn-around",
       "management",
       "cpm"
+    ]
+  },
+  {
+    "id": "prompt-engineering",
+    "name": "Prompt Engineering",
+    "section": "CONTENT",
+    "href": "/mx-core/blog/prompt-engineering",
+    "subtitle": "September 8, 2024",
+    "keywords": [
+      "prompt-engineering",
+      "ai",
+      "gpt"
     ]
   },
   {
@@ -1051,28 +1130,40 @@
     ]
   },
   {
-    "id": "website/preview-mode-headless-cms",
+    "id": "preview-mode-headless-cms",
     "name": "Preview Mode for Headless CMS",
     "section": "CONTENT",
-    "href": "/mx-core/blog/website/preview-mode-headless-cms",
+    "href": "/mx-core/blog/preview-mode-headless-cms",
     "subtitle": "April 9, 2023",
     "keywords": []
   },
   {
-    "id": "website/dynamic-routing-static-regeneration",
+    "id": "dynamic-routing-static-regeneration",
     "name": "Dynamic Routing and Static Regeneration",
     "section": "CONTENT",
-    "href": "/mx-core/blog/website/dynamic-routing-static-regeneration",
+    "href": "/mx-core/blog/dynamic-routing-static-regeneration",
     "subtitle": "March 4, 2023",
     "keywords": []
   },
   {
-    "id": "website/server-client-components",
+    "id": "server-client-components",
     "name": "Server and Client Components",
     "section": "CONTENT",
-    "href": "/mx-core/blog/website/server-client-components",
+    "href": "/mx-core/blog/server-client-components",
     "subtitle": "January 8, 2023",
     "keywords": []
+  },
+  {
+    "id": "deploying-next-apps",
+    "name": "Deploying Next.js Apps",
+    "section": "CONTENT",
+    "href": "/mx-core/blog/deploying-next-apps",
+    "subtitle": "January 2, 2023",
+    "keywords": [
+      "vercel",
+      "tailwind",
+      "deploy"
+    ]
   },
   {
     "id": "website/deploying-next-apps",
