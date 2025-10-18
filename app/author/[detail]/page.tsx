@@ -31,7 +31,7 @@ export const generateStaticParams = async () => {
   const authorCounts = authorData as Record<string, number>;
   const authorKeys = Object.keys(authorCounts);
   const paths = authorKeys.map((author) => ({
-    author: author,
+    detail: author,
   }));
   return paths;
 };
