@@ -3,7 +3,7 @@
 /** @type {import("pliny/config").PlinyConfig } */
 const siteMetadata = {
   title: 'Mx Core',
-  version: '0.4.2', // Fix author detail
+  version: '0.4.3', // Fix author detail
   author: 'Slamet-Sam',
   headerTitle: 'MxCore',
   description: 'Maintenance Extended Core',
@@ -14,7 +14,7 @@ const siteMetadata = {
   siteLogo: '/static/images/logo.png',
   socialBanner: '/static/images/twitter-card.png',
   mastodon: 'https://mastodon.social/@mastodonuser',
-  email: 'address@yoursite.com',
+  email: 'slamet@pon.co.id',
   github: 'https://github.com/slametsampon/mx-core',
   twitter: 'https://twitter.com/Twitter',
   facebook: 'https://facebook.com',
