@@ -5,11 +5,25 @@
     "subtitle": "Invalid Date"
   },
   {
+    "id": "maintenance/maintenance-kalibrasi",
+    "name": "Panduan Lengkap Kalibrasi Instrumentasi Proses untuk Industri Petrokimia - Konsep, Prosedur, Istilah, dan Praktik Terbaik",
+    "section": "CONTENT",
+    "href": "/mx-core/blog/maintenance/maintenance-kalibrasi",
+    "subtitle": "November 8, 2025",
+    "keywords": [
+      "Maintenance",
+      "kalibrtasi",
+      "API-RP-551",
+      "iso-1025",
+      "iso-10012"
+    ]
+  },
+  {
     "id": "maintenance/maintenance-rbm",
     "name": "Risk-Based Maintenance (RBM) di Industri Petrokimia - Strategi, Praktik, dan Studi Kasus PT. Petro Oxo Nusantara",
     "section": "CONTENT",
     "href": "/mx-core/blog/maintenance/maintenance-rbm",
-    "subtitle": "November 11, 2025",
+    "subtitle": "November 8, 2025",
     "keywords": [
       "Maintenance",
       "System",
