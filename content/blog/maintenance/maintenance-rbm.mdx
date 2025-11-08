@@ -1,0 +1,607 @@
+---
+title: Risk-Based Maintenance (RBM) di Industri Petrokimia - Strategi, Praktik, dan Studi Kasus PT. Petro Oxo Nusantara
+authors: ['sam']
+date: '2025-11-11'
+tags:
+  [
+    'Maintenance',
+    'System',
+    'API RP 580',
+    'Risk-Management',
+    'rbm',
+    'tbm',
+    'critical',
+  ]
+draft: false
+summary: Artikel ini membahas penerapan Risk-Based Maintenance (RBM) di industri petrokimia, dengan studi kasus komprehensif di PT. Petro Oxo Nusantara (PT PON). PT PON mengadopsi pendekatan berbasis **konsekuensi absolut** (tanpa mempertimbangkan probabilitas kegagalan), karena setiap interupsi produksi berdampak besar secara finansial dan operasional. Strategi RBM dikembangkan secara sistematis melalui grading ESC, DIP, sistem PPC-TBM, condition monitoring, serta evaluasi berjenjang. Artikel ini juga mengacu pada standar API 580/581, ISO 31000, ISO 55000, dan berbagai studi ilmiah. Hasilnya adalah model RBM yang adaptif, terstruktur, dan sangat sesuai untuk proses kontinu berisiko tinggi.
+---
+
+- [**I. PENDAHULUAN**](#i-pendahuluan)
+- [**II. KONSEP DASAR RISK-BASED MAINTENANCE (RBM)**](#ii-konsep-dasar-risk-based-maintenance-rbm)
+  - [**2.1 Definisi dan Tujuan RBM**](#21-definisi-dan-tujuan-rbm)
+- [**2.2 Standar dan Acuan Resmi**](#22-standar-dan-acuan-resmi)
+  - [**2.3 Komponen Risiko dalam RBM**](#23-komponen-risiko-dalam-rbm)
+- [**III. STRATEGI IMPLEMENTASI RBM BERDASARKAN LITERATUR**](#iii-strategi-implementasi-rbm-berdasarkan-literatur)
+  - [**3.1 Tahapan Umum Implementasi RBM**](#31-tahapan-umum-implementasi-rbm)
+  - [**3.2 Pendekatan Klasifikasi Risiko**](#32-pendekatan-klasifikasi-risiko)
+  - [**3.3 Integrasi Predictive dan CBM**](#33-integrasi-predictive-dan-cbm)
+- [**IV. STUDI KASUS: IMPLEMENTASI RBM DI PT. PETRO OXO NUSANTARA (PT PON)**](#iv-studi-kasus-implementasi-rbm-di-pt-petro-oxo-nusantara-pt-pon)
+  - [**4.1 Ruang Lingkup Unit yang Dicakup**](#41-ruang-lingkup-unit-yang-dicakup)
+  - [**4.2 Langkah-Langkah RBM di PT PON**](#42-langkah-langkah-rbm-di-pt-pon)
+  - [**4.3 Strategi Tanpa PoF: Justifikasi Kuat**](#43-strategi-tanpa-pof-justifikasi-kuat)
+  - [**4.4 Condition Monitoring dalam TBM PT PON**](#44-condition-monitoring-dalam-tbm-pt-pon)
+  - [**4.5 Evaluasi Peralatan Berdasarkan Tier**](#45-evaluasi-peralatan-berdasarkan-tier)
+- [**V. KEUNGGULAN STRATEGI RBM DI PT PON**](#v-keunggulan-strategi-rbm-di-pt-pon)
+- [**VI. KESIMPULAN DAN SARAN IMPLEMENTASI**](#vi-kesimpulan-dan-saran-implementasi)
+  - [**6.1 Kesimpulan**](#61-kesimpulan)
+  - [**6.2 Rekomendasi Umum**](#62-rekomendasi-umum)
+- [**VII. REFERENSI ILMIAH \& INDUSTRI**](#vii-referensi-ilmiah--industri)
+- [Hak cipta^1. Artikel ini berdasar ChatGpt \& penulis tidak menjamin seluruh akurasi isinya](#hak-cipta1-artikel-ini-berdasar-chatgpt--penulis-tidak-menjamin-seluruh-akurasi-isinya)
+
+---
+
+### **I. PENDAHULUAN**
+
+- **1.1 Latar Belakang**
+
+Industri petrokimia merupakan salah satu sektor strategis dengan tingkat kompleksitas dan risiko operasional yang sangat tinggi. Proses produksi umumnya bersifat kontinyu, melibatkan reaksi kimia bersuhu dan bertekanan tinggi, serta bergantung pada peralatan dan sistem yang harus bekerja tanpa interupsi. Dalam lingkungan operasi seperti ini, **keandalan peralatan** menjadi faktor penentu utama dalam menjaga stabilitas proses, menghindari downtime, serta mencegah kerugian finansial, gangguan rantai pasok, dan potensi insiden keselamatan maupun lingkungan.
+
+Kegagalan satu unit kritikal, seperti **hydrogen compressor**, **reformer**, atau sistem **distilasi**, dapat berdampak sistemik dan memerlukan waktu pemulihan yang lama. Sebagai contoh nyata di PT. Petro Oxo Nusantara (PT PON), gangguan operasi sekecil apapun dapat menyebabkan **shutdown proses selama minimal tiga hari**, dengan **potensi kerugian material senilai lebih dari USD 500.000**, di luar risiko revenue loss dan gangguan distribusi produk seperti **2-Ethyl Hexanol (2EH)**.
+
+Dalam skenario risiko tinggi seperti ini, pendekatan pemeliharaan konvensional yang **menerapkan Time-Based Maintenance (TBM) secara seragam terhadap seluruh aset tanpa mempertimbangkan kritikalitasnya** menjadi tidak efektif. Model ini mengasumsikan bahwa semua peralatan memiliki risiko dan nilai yang sama, padahal dalam kenyataannya, **setiap peralatan memiliki tingkat pengaruh yang berbeda terhadap keselamatan, lingkungan, dan kontinuitas produksi (ESC)**.
+
+**Risk-Based Maintenance (RBM)** hadir sebagai pendekatan yang mampu mengisi celah ini. RBM mengklasifikasikan aset berdasarkan konsekuensi kegagalan terhadap tiga dimensi utama: **Environmental**, **Safety**, dan **Continuous Running (ESC)**. Dengan dasar klasifikasi ini, strategi TBM tetap digunakan, namun **disesuaikan secara selektif** terhadap tingkat kritikalitas peralatan. Aset yang tergolong **kritis** akan menerima perhatian lebih besar dalam bentuk interval pemeliharaan yang lebih ketat, integrasi monitoring kondisi (vibration, thermography, oil analysis), serta evaluasi berkala, sedangkan aset non-kritis dapat diberi perlakuan yang lebih fleksibel.
+
+Dengan demikian, **RBM bukanlah pengganti TBM**, melainkan fondasi yang membedakan **mana peralatan yang perlu diintervensi lebih dini dan intensif**, dan mana yang bisa dikelola secara efisien. Pendekatan ini menciptakan keseimbangan antara **efektivitas teknis dan efisiensi biaya**, serta memastikan kepatuhan terhadap standar SHE (Safety, Health, and Environment) yang berlaku di industri.
+
+---
+
+- **1.2 Tujuan Artikel**
+
+Artikel ini disusun dengan tujuan untuk:
+
+- Memberikan **pemahaman utuh** mengenai konsep, dasar teknis, dan tahapan implementasi Risk-Based Maintenance (RBM), khususnya dalam konteks industri petrokimia dan proses kontinu;
+
+- Menyajikan **praktik langsung implementasi RBM di PT. Petro Oxo Nusantara (PT PON)**, termasuk strategi yang diadopsi, pendekatan klasifikasi peralatan, dan sistem pemeliharaan yang diterapkan;
+
+- Menjadi **referensi komprehensif (one-stop)** bagi para insinyur pemeliharaan, supervisor teknis, dan manajemen operasional yang ingin mengembangkan atau menyempurnakan program RBM di fasilitasnya masing-masing.
+
+---
+
+### **II. KONSEP DASAR RISK-BASED MAINTENANCE (RBM)**
+
+#### **2.1 Definisi dan Tujuan RBM**
+
+**Risk-Based Maintenance (RBM)** adalah pendekatan strategis dalam manajemen pemeliharaan yang mengintegrasikan prinsip **manajemen risiko** untuk menentukan **prioritas dan metode pemeliharaan** peralatan berdasarkan tingkat **risiko kegagalannya**. Risiko tersebut dihitung dari dua variabel utama, yaitu:
+
+$$
+\textbf{Risiko} = \textbf{Probabilitas of Failure (PoF)} \times \textbf{Consequences of Failure (CoF)}
+$$
+
+Konsep ini berasal dari dunia inspeksi berbasis risiko (Risk-Based Inspection - RBI) yang dikembangkan secara sistematis dalam **API RP 580** dan diperluas dengan model kuantitatif pada **API RP 581**, kemudian diadopsi untuk pengelolaan pemeliharaan sebagai RBM.
+
+Tujuan utama dari penerapan RBM adalah:
+
+- **Optimalisasi keandalan peralatan**, dengan memastikan aset yang paling kritis mendapatkan perhatian pemeliharaan yang sesuai;
+- **Peningkatan keselamatan dan perlindungan lingkungan**, dengan menargetkan peralatan yang jika gagal dapat menyebabkan kecelakaan atau pencemaran;
+- **Efisiensi biaya dan sumber daya**, dengan menghindari pemeliharaan yang berlebihan terhadap peralatan berisiko rendah dan mengarahkan sumber daya ke aset berisiko tinggi;
+- **Dukungan terhadap kepatuhan regulasi dan audit**, baik internal maupun eksternal (misalnya dari regulator seperti SKK Migas atau lembaga sertifikasi ISO).
+
+Dengan pendekatan ini, organisasi pemeliharaan dapat berpindah dari pola kerja reaktif atau berbasis waktu (TBM generik), menuju sistem yang **proaktif dan selektif berdasarkan profil risiko aktual dari masing-masing peralatan**.
+
+---
+
+### **2.2 Standar dan Acuan Resmi**
+
+Implementasi RBM yang sistematis harus mengacu pada **standar dan literatur teknis yang kredibel**, antara lain:
+
+- 🔹 **API Recommended Practice 580 – Risk-Based Inspection**
+
+Menyediakan kerangka kerja untuk melakukan evaluasi risiko terhadap peralatan proses, termasuk pendekatan semi-kuantitatif dan kualitatif dalam identifikasi kegagalan serta pengambilan keputusan inspeksi dan pemeliharaan.
+
+- 🔹 **API Recommended Practice 581 – Risk-Based Inspection Technology**
+
+Menjabarkan metode kuantitatif dalam perhitungan risiko, terutama untuk peralatan tekanan tinggi dan unit proses dengan potensi bahaya besar (major accident hazard). Sangat relevan untuk statik equipment, seperti vessel, heat exchanger, dan pipa proses.
+
+- 🔹 **ISO 31000 – Risk Management**
+
+Menyediakan prinsip-prinsip dan panduan umum dalam manajemen risiko untuk organisasi, termasuk dalam konteks teknis dan operasional.
+
+- 🔹 **ISO 55000 – Asset Management**
+
+Mengatur pendekatan berbasis siklus hidup (life-cycle approach) dalam pengelolaan aset fisik, termasuk strategi pemeliharaan berbasis nilai dan risiko.
+
+- 🔹 **Referensi Akademis dan Praktis:**
+
+* **Khan & Haddara (2004):** Menjelaskan penerapan RBM di industri proses, termasuk metodologi dasar kombinasi PoF × CoF.
+* **Hu et al. (2009):** Studi penerapan RBM dalam sistem reforming petrokimia.
+* **Jaderi et al. (2013):** Pendekatan RBM dalam penilaian kritikalitas aset di pabrik petrokimia dengan kombinasi faktor dampak.
+* **Eskandari et al. (2020):** Pengembangan pendekatan semi-kuantitatif untuk penerapan RBM di industri dengan keterbatasan data historis.
+
+---
+
+#### **2.3 Komponen Risiko dalam RBM**
+
+- 🔹 **1. Probabilitas of Failure (PoF)**
+
+PoF adalah ukuran dari **kemungkinan terjadinya kegagalan** suatu peralatan dalam periode waktu tertentu. Penentuan PoF biasanya dilakukan melalui:
+
+- Data historis kegagalan (MTBF, failure records)
+- Analisa keausan dan kondisi lingkungan
+- Model prediktif berbasis sensor (getaran, temperatur, tekanan, korosi)
+- Penilaian subjektif dari ahli teknik (jika data kuantitatif tidak tersedia)
+
+Dalam praktik, penilaian PoF bisa berbentuk:
+
+- Skala numerik (1 sampai 5)
+- Frekuensi tahunan (events/year)
+- Estimasi probabilistik berbasis distribusi statistik
+
+Namun, dalam konteks tertentu seperti di **PT PON**, komponen PoF **tidak digunakan secara eksplisit**, karena seluruh peralatan dianggap memiliki **potensi dampak kegagalan yang signifikan**, sehingga semua aset beroperasi dalam “high consequence regime” — di mana **dampak (CoF)** menjadi satu-satunya faktor penentu prioritas pemeliharaan.
+
+> "Setiap gangguan, sekecil apapun, akan menyebabkan shutdown minimal 3 hari dan kerugian > USD 500.000. Maka probabilitas kegagalan dianggap tidak relevan karena seluruh aset dinilai kritikal berdasarkan konsekuensi absolut."
+
+- 🔹 **2. Consequences of Failure (CoF)**
+
+CoF mengukur **dampak dari kegagalan** peralatan terhadap berbagai aspek, yang umumnya diklasifikasikan ke dalam:
+
+- **Safety**: potensi kecelakaan, paparan kimia, kebakaran, ledakan
+- **Environment**: pencemaran, pelepasan emisi, limbah B3
+- **Production Loss**: waktu henti produksi, kehilangan pendapatan, denda keterlambatan
+- **Cost**: biaya perbaikan, penggantian spare part, kerusakan sekunder
+
+Di PT PON, digunakan sistem grading **ESC (Environmental, Safety, Continuous Running)** sebagai bentuk konkret dari pengukuran CoF. Peralatan yang berdampak pada salah satu atau lebih kategori ESC diklasifikasikan sebagai **Kritis**, dan secara langsung masuk ke dalam prioritas tinggi pemeliharaan.
+
+---
+
+### **III. STRATEGI IMPLEMENTASI RBM BERDASARKAN LITERATUR**
+
+#### **3.1 Tahapan Umum Implementasi RBM**
+
+Implementasi Risk-Based Maintenance (RBM) yang efektif memerlukan pendekatan sistematis dan terstruktur. Berdasarkan berbagai sumber literatur industri dan akademik seperti API RP 580/581, ISO 55000, serta studi oleh Khan & Haddara dan Jaderi et al., berikut adalah tahapan umum dalam penerapan RBM:
+
+- 🔹 **1. Identifikasi Aset Kritis**
+
+Langkah pertama adalah menentukan ruang lingkup dan menyusun **Daftar Induk Peralatan (DIP)** yang mencakup seluruh peralatan utama dalam unit proses, utilitas, dan sistem pendukung lainnya. Identifikasi aset harus memperhatikan:
+
+- Fungsi operasional peralatan
+- Kontribusinya terhadap keselamatan, lingkungan, dan produksi
+- Potensi gangguan sistemik akibat kegagalannya
+
+* 🔹 **2. Pengumpulan Data Historis dan Operasional**
+
+Data ini mencakup:
+
+- Riwayat kegagalan (failure log, MTBF, MTTF)
+- Hasil inspeksi berkala dan condition monitoring
+- Spesifikasi teknis, usia peralatan, dan kondisi proses (temperatur, tekanan, korosifitas)
+- Informasi dari CMMS atau manual log sheet
+
+* 🔹 **3. Analisa Risiko (PoF × CoF)**
+
+Analisa ini menentukan tingkat risiko masing-masing peralatan berdasarkan:
+
+- **Probabilitas kegagalan (PoF)**: kemungkinannya gagal dalam periode waktu tertentu
+- **Dampak kegagalan (CoF)**: sejauh mana kegagalan tersebut mempengaruhi aspek Safety, Environment, dan Production
+
+> Di beberapa fasilitas seperti PT PON, PoF dihilangkan dan hanya CoF yang digunakan karena dampak dari setiap kegagalan dianggap sangat signifikan. Ini merupakan pendekatan konservatif yang sesuai untuk proses kontinu berisiko tinggi.
+
+- 🔹 **4. Pemetaan Prioritas Risiko**
+
+Menggunakan kombinasi nilai PoF dan CoF, atau dalam kasus tertentu hanya CoF, dilakukan klasifikasi peralatan ke dalam tingkat prioritas:
+
+- Very High, High, Medium, Low, Very Low (5 level)
+- Atau pengelompokan biner: Kritis dan Normal
+
+* 🔹 **5. Penetapan Strategi Pemeliharaan**
+
+Strategi ditentukan berdasarkan klasifikasi risiko, mencakup:
+
+- Time-Based Maintenance (TBM)
+- Condition-Based Maintenance (CBM)
+- Predictive Maintenance (PdM)
+- Redesign atau penggantian dini
+
+Peralatan dengan risiko tinggi mendapatkan pendekatan yang lebih intensif (frekuensi lebih tinggi, inspeksi mendalam), sedangkan yang berisiko rendah dapat memiliki interval yang diperpanjang atau pengurangan scope.
+
+- 🔹 **6. Integrasi ke CMMS**
+
+Hasil analisa dan klasifikasi risiko dimasukkan ke dalam sistem CMMS (Computerized Maintenance Management System) untuk:
+
+- Pengelolaan jadwal pemeliharaan
+- Penerbitan work order
+- Dokumentasi inspeksi dan tindakan korektif
+- Monitoring kinerja pemeliharaan
+
+* 🔹 **7. Evaluasi dan Penyempurnaan Berkala**
+
+Evaluasi rutin dilakukan untuk:
+
+- Menilai efektivitas strategi yang diterapkan
+- Menyesuaikan interval berdasarkan kondisi terbaru
+- Memasukkan data baru ke dalam perhitungan risiko
+- Menyempurnakan prioritas dan strategi ke depan
+
+Siklus ini membentuk **loop continuous improvement** sesuai prinsip ISO 55000 dan RBM maturity framework.
+
+---
+
+#### **3.2 Pendekatan Klasifikasi Risiko**
+
+Klasifikasi risiko menjadi elemen kunci dalam RBM. Pendekatan yang umum digunakan melibatkan **Risk Matrix** berbasis dua sumbu:
+
+|                   | **Very Low PoF** | **Low PoF** | **Medium PoF** | **High PoF** | **Very High PoF** |
+| ----------------- | ---------------- | ----------- | -------------- | ------------ | ----------------- |
+| **Very High CoF** | Medium           | High        | High           | Very High    | Very High         |
+| **High CoF**      | Medium           | Medium      | High           | High         | Very High         |
+| **Medium CoF**    | Low              | Medium      | Medium         | High         | High              |
+| **Low CoF**       | Low              | Low         | Medium         | Medium       | High              |
+| **Very Low CoF**  | Very Low         | Low         | Low            | Medium       | Medium            |
+
+> Untuk kasus seperti PT PON yang **tidak menggunakan PoF**, maka seluruh aset dengan CoF tinggi langsung masuk ke kategori **Kritis**, tanpa mempertimbangkan frekuensi kegagalannya.
+
+Klasifikasi ini digunakan untuk menentukan:
+
+- **Interval pemeliharaan**: semakin tinggi risikonya, semakin pendek intervalnya
+- **Jenis pemeliharaan**: dari TBM sederhana hingga inspeksi intensif dan redesign
+
+---
+
+#### **3.3 Integrasi Predictive dan CBM**
+
+Meskipun TBM tetap digunakan sebagai dasar waktu pelaksanaan, integrasi dengan metode berbasis kondisi dan prediktif merupakan elemen penting dalam RBM modern, khususnya pada peralatan rotating dan kritikal.
+
+- 🔹 **Condition Monitoring** (CBM)
+
+Termasuk pengukuran seperti:
+
+- **Analisa getaran (vibration analysis)** untuk pompa, kompresor, motor
+- **Thermography** untuk sistem kelistrikan dan panel
+- **Analisa oli pelumas (oil analysis)** untuk gear, bearing, dan sistem hidrolik
+- **Corrosion monitoring** untuk peralatan pada sour service
+
+* 🔹 **Predictive Maintenance (PdM)**
+
+Penggunaan model prediktif berbasis data historis dan sensor online untuk memproyeksikan sisa umur pakai atau estimasi waktu kegagalan.
+
+> Di PT PON, meskipun pendekatan utama tetap TBM, **elemen condition monitoring telah terintegrasi secara langsung ke dalam program TBM**, menjadikannya bentuk **preventive-adaptive** yang berbasis observasi lapangan dan parameter real-time.
+
+---
+
+Strategi implementasi RBM seperti diuraikan dalam bab ini merupakan pondasi utama yang akan dikembangkan lebih lanjut dalam **Bab IV**, yang menjelaskan bagaimana PT. Petro Oxo Nusantara menerapkan prinsip-prinsip ini secara konkret di lapangan, termasuk dengan pendekatan konservatif yang mengutamakan konsekuensi kegagalan absolut.
+
+---
+
+### **IV. STUDI KASUS: IMPLEMENTASI RBM DI PT. PETRO OXO NUSANTARA (PT PON)**
+
+#### **4.1 Ruang Lingkup Unit yang Dicakup**
+
+PT. Petro Oxo Nusantara (PT PON) merupakan salah satu produsen bahan kimia strategis, khususnya **2-Ethyl Hexanol (2EH)**, yang proses produksinya sangat tergantung pada **keandalan dan kontinuitas operasi**. Proses produksi bersifat **kontinu (continuous process)** dan mencakup sejumlah unit utama sebagai berikut:
+
+- 🔹 **Unit Syngas**
+
+* **Reformer:** beroperasi pada suhu tinggi hingga 1100°C; peralatan dengan risiko tinggi terhadap degradasi termal dan potensi kegagalan katastropik.
+* **Hydrogen Compressor:** rotating equipment dengan beban dinamis tinggi dan tekanan kerja signifikan.
+* **PSA (Pressure Swing Adsorption)** dan **Membrane Unit:** sistem pemurnian gas H₂ dan CO dengan kontrol presisi tinggi.
+
+- 🔹 **Unit Octanol**
+
+* **Aldol Reactor**
+* **Hidrogenasi Reactor**
+* **Distilasi Column**
+  → seluruhnya merupakan proses kritikal dengan kondisi tekanan dan suhu variatif serta potensi akumulasi reaksi kimia berbahaya.
+
+- 🔹 **Unit Utilitas**
+
+* **Boiler**, **Cooling Water System**, **Incinerator**, dan sistem **GPA/GPI** → pendukung proses utama, berpengaruh langsung pada ketersediaan energi dan stabilitas operasi.
+
+- 🔹 **Unit CO₂ Plant**
+
+* Pengolahan gas dan cairan CO₂, bagian dari sistem penyeimbang dan safety buffer.
+
+- 🔹 **Jenis Peralatan**
+
+Seluruh pendekatan RBM mencakup **peralatan static (vessel, heat exchanger, tank), rotating (pompa, kompresor), electrical (MCC, motor, panel), instrumentasi (sensor, transmitter), dan sistem kontrol (PLC, DCS).**
+
+---
+
+#### **4.2 Langkah-Langkah RBM di PT PON**
+
+Implementasi RBM di PT PON dilakukan secara bertahap dan praktis, disesuaikan dengan konteks operasional serta risiko proses.
+
+- 1. **Penyusunan Daftar Induk Peralatan (DIP)**
+
+* Semua aset diidentifikasi menggunakan **tag number** dan diklasifikasikan berdasarkan lokasi, jenis, fungsi proses, serta hubungan antar sistem.
+
+- 2. **Grading Dampak Berdasarkan ESC**
+
+* **ESC = Environmental, Safety, Continuous Running**: digunakan sebagai parameter pengukuran **Consequences of Failure (CoF)**.
+* Dampak dari setiap peralatan dievaluasi terhadap potensi bahaya lingkungan, keselamatan kerja, dan gangguan pada kelangsungan produksi.
+
+- 3. **Klasifikasi Daftar Induk Peralatan (KDIP): Kritis vs Normal**
+
+* Jika suatu aset memiliki **dampak signifikan terhadap ESC**, maka diklasifikasikan sebagai **Kritis**.
+* Aset yang tidak berdampak terhadap ESC dinyatakan sebagai **Normal**.
+* Sistem ini **tidak menggunakan probabilitas kegagalan (PoF)** karena setiap kegagalan diasumsikan berdampak besar, sebagaimana dijelaskan pada sub-bab berikutnya.
+
+- 4. **Penetapan Sistem Pemeliharaan PPC dalam Bentuk TBM**
+
+* Strategi pemeliharaan mencakup:
+
+  - **P**redictive
+  - **P**reventive
+  - **C**orrective
+
+* TBM digunakan sebagai dasar pelaksanaan, namun diferensiasi dilakukan berdasarkan klasifikasi Kritis/Normal dan analisa ESC.
+
+- 5. **Eksekusi Jadwal TBM**
+
+* Pemeliharaan dilakukan secara periodik sesuai interval yang disesuaikan dengan hasil grading.
+* Semua pekerjaan dicatat dalam sistem manual/CMMS untuk pelacakan dan review kinerja.
+
+- 6. **Evaluasi Performa Aset**
+
+* Setiap **6 bulan**, dilakukan evaluasi terhadap kinerja peralatan, termasuk:
+
+  - Rework/failure yang terjadi
+  - Ketepatan waktu pelaksanaan TBM
+  - Efektivitas tindakan korektif
+
+* Hasil evaluasi digunakan untuk **menyesuaikan strategi dan interval TBM** tahun berjalan dan mendatang.
+
+- 7. **Perencanaan Berbasis 5M**
+
+* Perencanaan pemeliharaan mencakup:
+
+  - **Man:** kualifikasi, pelatihan, jumlah personel
+  - **Machine/Tools:** alat khusus, aksesibilitas
+  - **Money/RAB:** anggaran sesuai risiko
+  - **Method:** prosedur kerja, inspeksi
+  - **Material:** spare part dan consumable
+
+---
+
+#### **4.3 Strategi Tanpa PoF: Justifikasi Kuat**
+
+Salah satu ciri khas sistem RBM di PT PON adalah **penghapusan penggunaan Probabilitas of Failure (PoF)** dalam matriks risiko. Strategi ini diambil berdasarkan **pertimbangan operasional dan bisnis yang kuat**, yaitu:
+
+- **Setiap gangguan, sekecil apapun, menyebabkan downtime proses selama minimal 3 hari.**
+- **Kerugian material akibat shutdown mencapai > USD 500.000** dalam waktu singkat.
+- Selain kerugian langsung, terdapat **dampak lanjutan berupa hilangnya revenue**, penundaan pengiriman, serta **komplain dari sisi supply chain** karena bahan baku (Propylene) bersifat impor dan produk akhir (2EH) harus dikirim tepat waktu.
+
+> Oleh karena itu, **semua aset dianggap memiliki risiko tinggi (konsekuensi absolut)** dan diperlakukan dengan level perhatian yang sama tinggi. Pendekatan ini disebut sebagai **“consequence-driven RBM”** dan sangat relevan untuk industri proses kontinu dengan high loss exposure.
+
+---
+
+#### **4.4 Condition Monitoring dalam TBM PT PON**
+
+Meskipun Time-Based Maintenance (TBM) digunakan sebagai sistem dasar, PT PON menerapkannya dengan pendekatan **preventive-adaptive**, bukan semata berdasarkan waktu tetap. Ini dicapai dengan mengintegrasikan **elemen condition monitoring**, yaitu:
+
+- **Vibration analysis**: untuk rotating equipment (pompa, kompresor)
+- **Thermography**: untuk sistem kelistrikan dan distribusi daya
+- **Oil analysis**: untuk gearbox, pompa, dan sistem hidrolik
+- **Parameter visual dan fisik**: pada static equipment seperti flange, gasket, valve body
+
+Dengan cara ini, **TBM tidak lagi bersifat clock-driven**, melainkan menjadi sistem hybrid yang **berbasis indikator teknis** dan respons terhadap gejala awal kerusakan.
+
+---
+
+#### **4.5 Evaluasi Peralatan Berdasarkan Tier**
+
+Meskipun sistem klasifikasi utama adalah biner (Kritis dan Normal), PT PON menerapkan **diferensiasi praktik evaluasi** berdasarkan **tier fungsi operasional**, yaitu:
+
+| **Tier** | **Jenis Aset**                   | **Frekuensi Evaluasi** |
+| -------- | -------------------------------- | ---------------------- |
+| Tier 1   | Reformer, Hydrogen Compressor    | Realtime / Harian      |
+| Tier 2   | PSA Unit, Cooling System, Boiler | Bulanan                |
+| Tier 3   | Sistem pendukung non-kritis      | Per 6 bulan            |
+
+Evaluasi dilakukan dengan mempertimbangkan histori gangguan, tren pengukuran, dan hasil inspeksi visual serta teknis.
+
+---
+
+Dengan sistem seperti ini, RBM di PT PON menunjukkan **penerapan pragmatis dan konservatif** yang sangat sesuai dengan realitas proses industri petrokimia. Sistem ini tidak hanya mengutamakan keandalan teknis, tetapi juga **melindungi aspek bisnis strategis**, dan mendukung **ketahanan operasional jangka panjang**.
+
+Selanjutnya, Bab V akan mengulas keunggulan dari strategi RBM PT PON ini dibandingkan pendekatan konvensional.
+
+---
+
+### **V. KEUNGGULAN STRATEGI RBM DI PT PON**
+
+Penerapan Risk-Based Maintenance (RBM) di PT. Petro Oxo Nusantara bukan hanya mengikuti teori, tetapi merupakan hasil adaptasi terhadap **realitas operasi pabrik petrokimia yang bersifat kontinu dan sangat sensitif terhadap gangguan**. Strategi ini menunjukkan sejumlah keunggulan dibandingkan pendekatan konvensional, baik dalam aspek teknis, manajerial, maupun ekonomi.
+
+Berikut adalah keunggulan utama strategi RBM yang diterapkan di PT PON:
+
+---
+
+- 🔹 **1. Fokus pada Risiko Absolut**
+
+Strategi RBM PT PON tidak menggunakan probabilitas kegagalan (PoF) sebagai parameter, melainkan sepenuhnya berfokus pada **dampak absolut (CoF)** dari kegagalan peralatan.
+
+- Setiap kegagalan dianggap berpotensi besar terhadap **kerugian finansial**, **ketidakpatuhan supply chain**, dan **potensi bahaya terhadap keselamatan dan lingkungan**.
+- Dengan fokus pada risiko absolut, perusahaan **menghindari kerugian besar meskipun probabilitasnya rendah**, suatu pendekatan yang sangat tepat dalam lingkungan proses kontinu berisiko tinggi.
+
+> "Dalam konteks di mana 1 jam downtime setara dengan ratusan juta rupiah kerugian, tidak ada ruang untuk berdebat mengenai kemungkinan. Yang relevan adalah dampak."
+
+---
+
+- 🔹 **2. Sistematis dan Terstruktur**
+
+Pendekatan RBM di PT PON dibangun dengan fondasi sistem yang jelas dan terintegrasi, mencakup:
+
+- **Daftar Induk Peralatan (DIP)** → dasar pengelolaan aset
+- **Grading ESC (Environmental, Safety, Continuous Running)** → dasar penilaian dampak
+- **PPC Maintenance (Predictive, Preventive, Corrective)** → strategi pemeliharaan fleksibel
+- **Time-Based Maintenance (TBM)** → kerangka waktu pelaksanaan
+- **5M (Man, Machine, Money, Method, Material)** → pendekatan perencanaan sumber daya
+
+Dengan struktur ini, program RBM tidak berjalan secara ad-hoc, melainkan berbasis sistem yang konsisten, terdokumentasi, dan dapat diaudit.
+
+---
+
+- 🔹 **3. Integratif terhadap Monitoring Kondisi**
+
+Walaupun sistem TBM tetap digunakan, pendekatan PT PON telah mengintegrasikan **teknik condition monitoring (CBM)** secara penuh ke dalam pelaksanaan TBM. Artinya:
+
+- Vibration analysis, thermography, dan oil analysis digunakan untuk memvalidasi kondisi aset sebelum dan sesudah intervensi.
+- Evaluasi dilakukan tidak hanya berdasarkan waktu, tetapi juga berdasarkan parameter teknis yang menunjukkan tren degradasi.
+
+Pendekatan ini mengubah TBM dari sistem pasif menjadi **sistem adaptif dan berbasis kondisi aktual**, meningkatkan efektivitas deteksi dini dan pencegahan kegagalan.
+
+---
+
+- 🔹 **4. Adaptif terhadap Karakteristik Proses Kontinu**
+
+Strategi RBM di PT PON sepenuhnya disesuaikan dengan karakteristik pabrik yang **tidak memiliki toleransi terhadap interupsi**. Hal ini tercermin dalam:
+
+- Tidak digunakannya PoF karena semua kegagalan dianggap kritis
+- Evaluasi aset dilakukan dengan **tiering evaluasi**: real-time, bulanan, 6 bulanan
+- Penyesuaian interval TBM berdasarkan hasil evaluasi performa dan histori peralatan
+- Pengalokasian sumber daya pemeliharaan secara selektif dan tepat sasaran
+
+Dengan demikian, strategi RBM PT PON bersifat **adaptif, dinamis, dan fokus pada mencegah kegagalan sebelum terjadi**, bukan sekadar merespons setelahnya.
+
+---
+
+📌 **Kesimpulan Bab V**
+
+RBM di PT PON bukan hanya pendekatan teknis, tetapi juga mencerminkan **kebijakan manajemen risiko operasional yang matang dan realistis**. Dengan fokus pada konsekuensi absolut, sistem struktur yang kokoh, integrasi pemantauan kondisi, serta fleksibilitas terhadap dinamika proses produksi, strategi ini menjadi model ideal bagi pabrik petrokimia yang menghadapi tantangan serupa.
+
+Selanjutnya, Bab VI akan merangkum poin-poin utama dari seluruh pembahasan dan memberikan rekomendasi yang aplikatif untuk pembaca dari kalangan teknis maupun manajerial.
+
+---
+
+### **VI. KESIMPULAN DAN SARAN IMPLEMENTASI**
+
+#### **6.1 Kesimpulan**
+
+Implementasi **Risk-Based Maintenance (RBM)** di PT. Petro Oxo Nusantara (PT PON) merupakan contoh penerapan strategi pemeliharaan yang disesuaikan secara realistis dengan kondisi operasional proses petrokimia yang **kontinu, kritikal, dan berisiko tinggi**. Tidak seperti pendekatan klasik RBM yang mengandalkan kombinasi probabilitas dan konsekuensi kegagalan, PT PON secara sadar **menghilangkan komponen probabilitas (PoF)** dan **mengadopsi pendekatan berbasis dampak absolut (CoF)**, dengan justifikasi operasional dan bisnis yang sangat kuat.
+
+Setiap kegagalan dianggap sebagai potensi kerugian besar, baik dari sisi finansial, keselamatan, maupun keberlangsungan rantai pasok. Oleh karena itu, RBM di PT PON dibangun dengan fokus pada konsekuensi, dan didukung oleh struktur sistemik yang mencakup:
+
+- **Daftar Induk Peralatan (DIP)**
+- **Grading ESC (Environmental, Safety, Continuous Running)**
+- **Sistem pemeliharaan PPC berbasis TBM**
+- **Perencanaan terintegrasi 5M**
+- **Evaluasi kinerja peralatan secara periodik**
+
+Pendekatan ini terbukti **logis, efektif, dan sangat relevan** untuk pabrik dengan proses produksi berkelanjutan dan exposure downtime yang tinggi. Selain itu, sistem TBM yang digunakan tidak lagi bersifat clock-driven, tetapi telah **diperkuat dengan integrasi condition monitoring**, menjadikannya sebagai **preventive-adaptive system** yang mampu merespons dinamika kondisi lapangan.
+
+---
+
+#### **6.2 Rekomendasi Umum**
+
+Untuk memperkuat dan mereplikasi keberhasilan strategi RBM seperti di PT PON, berikut adalah rekomendasi yang dapat diterapkan oleh unit pemeliharaan lain di industri serupa:
+
+- 🔹 1. **Susun SOP dan Template ESC Grading**
+
+* Kembangkan dokumen prosedur standar untuk penilaian dampak berdasarkan ESC.
+* Gunakan template sistematis untuk klasifikasi Kritis vs Normal yang dapat dikaji ulang secara berkala.
+
+- 🔹 2. **Integrasi Penuh ke dalam Sistem CMMS**
+
+* Implementasikan semua data RBM (DIP, ESC, jadwal TBM, hasil evaluasi) ke dalam CMMS untuk otomasi, pelacakan histori, dan audit trail.
+* Gunakan fitur CMMS untuk mengelola pemantauan kondisi dan work order berbasis risiko.
+
+- 🔹 3. **Benchmarking Internal Antar Unit**
+
+* Lakukan evaluasi komparatif strategi RBM antar unit atau plant (misalnya antara unit Syngas dan Octanol).
+* Identifikasi praktik terbaik (best practices) dan peluang perbaikan lintas area.
+
+- 🔹 4. **Training Berkala untuk Supervisor dan Engineer**
+
+* Tingkatkan kompetensi teknis tim melalui pelatihan berjenjang tentang:
+
+  - Risk assessment berbasis ESC
+  - Teknik condition monitoring
+  - Evaluasi efektivitas pemeliharaan berbasis KPI
+
+* Sediakan pelatihan simulasi atau studi kasus dari kegagalan nyata yang berhasil dicegah/dikelola oleh sistem RBM.
+
+---
+
+Melalui penerapan RBM yang disesuaikan dengan konteks operasi, industri petrokimia tidak hanya dapat meningkatkan keandalan aset, tetapi juga memastikan keberlanjutan produksi dan pengendalian risiko secara menyeluruh. PT PON telah menunjukkan bahwa **konsekuensi besar memerlukan tindakan proaktif, dan strategi pemeliharaan harus berlandaskan pemahaman yang tajam terhadap risiko aktual di lapangan**.
+
+---
+
+### **VII. REFERENSI ILMIAH & INDUSTRI**
+
+Penerapan RBM yang matang dan relevan harus didukung oleh acuan teknis dan akademik yang kredibel. Berikut adalah daftar referensi utama yang menjadi landasan pengembangan pendekatan RBM, baik dalam konteks teori manajemen risiko, praktik industri proses, maupun implementasi operasional.
+
+---
+
+- **1. Khan, F. I. & Haddara, M. M. (2004)**
+
+**Judul:** _Risk-Based Maintenance in the Process Industry: A Case Study Approach_
+**Sumber:** _Process Safety Progress (AIChE Journal)_
+
+Makalah ini merupakan salah satu referensi awal yang mengintegrasikan prinsip manajemen risiko ke dalam pemeliharaan peralatan industri proses. Menyajikan pendekatan berbasis PoF × CoF dan menunjukkan bagaimana RBM dapat meningkatkan efisiensi serta efektivitas strategi pemeliharaan melalui studi kasus nyata.
+
+---
+
+- **2. Hu, Y., et al. (2009)**
+
+**Judul:** _Risk-Based Maintenance Strategy and Its Applications in a Petrochemical Reforming Reaction System_
+**Sumber:** _Journal of Loss Prevention in the Process Industries_
+
+Membahas aplikasi RBM pada unit reforming dalam industri petrokimia, mengidentifikasi risiko spesifik yang melekat pada peralatan proses tekanan tinggi, dan menguraikan bagaimana pengklasifikasian risiko dapat membantu mengatur prioritas pemeliharaan dan inspeksi.
+
+---
+
+- **3. Jaderi, S., et al. (2013)**
+
+**Judul:** _Criticality Analysis Using Risk Assessment-Based Maintenance Technique in Petrochemical Industry_
+**Sumber:** _Polish Journal of Environmental Studies (PJOES)_
+
+Studi ini menjelaskan pendekatan semi-kuantitatif dalam analisa kritikalitas berbasis risiko dengan mempertimbangkan aspek Safety, Environment, dan Production. Menjadi acuan dalam penggunaan metode **gradasi konsekuensi (ESC)** seperti yang diterapkan di PT PON.
+
+---
+
+- **4. Eskandari, H., et al. (2020)**
+
+**Judul:** _A Semi-Quantitative Approach Development for Risk-Based Maintenance_
+**Sumber:** _Open Access Macedonian Journal of Medical Sciences (OAMJMS)_
+
+Mengembangkan model RBM semi-kuantitatif yang cocok untuk fasilitas yang belum memiliki data kegagalan lengkap. Artikel ini menunjukkan bagaimana estimasi risiko masih dapat dilakukan dengan pendekatan terstruktur berbasis parameter teknis dan judgement engineering.
+
+---
+
+- **5. API Recommended Practice 580 (3rd Ed., 2016) – Risk-Based Inspection**
+
+Merupakan referensi standar industri untuk pelaksanaan RBI (Risk-Based Inspection), menyediakan metodologi penilaian risiko untuk peralatan proses berbasis PoF dan CoF. Prinsip-prinsip dalam API 580 digunakan sebagai dasar dalam penyusunan struktur RBM di industri petrokimia.
+
+---
+
+- **6. API Recommended Practice 581 (3rd Ed., 2016) – Risk-Based Inspection Technology**
+
+Memberikan kerangka kerja kuantitatif untuk menghitung risiko teknis secara numerik terhadap peralatan tekanan tinggi. Dokumen ini menjadi dasar dalam penentuan level risiko dan evaluasi teknis terhadap aset berbasis data numerik.
+
+---
+
+- **7. ISO 31000 – Risk Management Guidelines (2018)**
+
+Standar internasional yang menyediakan prinsip, kerangka kerja, dan proses manajemen risiko secara umum, yang dapat diaplikasikan ke semua jenis organisasi, termasuk dalam konteks strategi pemeliharaan.
+
+---
+
+- **8. ISO 55000 – Asset Management – Overview, Principles and Terminology (2014)**
+
+Memberikan pendekatan manajemen aset berbasis siklus hidup, termasuk kebijakan perawatan berbasis nilai dan risiko. Standar ini menjadi rujukan dalam menyusun strategi pemeliharaan jangka panjang dan integrasi RBM dengan sistem manajemen aset korporat.
+
+---
+
+- **9. Reliability Academy & FTMaintenance (White Papers & Technical Articles)**
+
+Memberikan sumber pembelajaran praktis mengenai dasar-dasar RBM, strategi inspeksi prediktif, serta pengelolaan aset berbasis CMMS. Digunakan untuk menyusun pedoman praktis implementasi RBM di level teknisi dan supervisor.
+
+---
+
+- **10. MDPI & Wiley (Scientific Journals and Technical Archives)**
+
+Sebagai sumber jurnal ilmiah terbuka dan peer-reviewed yang menyediakan publikasi terkini seputar metode kuantitatif, tren teknologi prediktif, dan pengembangan sistem pemeliharaan berbasis digital. Menjadi referensi untuk analisa trend dan teknologi integratif dalam CBM dan Industry 4.0.
+
+---
+
+### Hak cipta[^1]. Artikel ini berdasar ChatGpt & penulis tidak menjamin seluruh akurasi isinya
+
+[^1]: [ChatGpt](https://chat.openai.com)

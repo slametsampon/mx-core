@@ -1,5 +1,21 @@
 [
   {
+    "id": "maintenance/maintenance-rbm",
+    "name": "Risk-Based Maintenance (RBM) di Industri Petrokimia - Strategi, Praktik, dan Studi Kasus PT. Petro Oxo Nusantara",
+    "section": "CONTENT",
+    "href": "/mx-core/blog/maintenance/maintenance-rbm",
+    "subtitle": "November 11, 2025",
+    "keywords": [
+      "Maintenance",
+      "System",
+      "API RP 580",
+      "Risk-Management",
+      "rbm",
+      "tbm",
+      "critical"
+    ]
+  },
+  {
     "id": "general/retensi-belajar",
     "name": "Teach to Master - Strategi Belajar Efektif dengan Mengajar",
     "section": "CONTENT",
@@ -56,20 +72,6 @@
       "contentlayer",
       "tailwind",
       "eslint"
-    ]
-  },
-  {
-    "id": "markdown/github-markdown-guide",
-    "name": "Panduan Markdown",
-    "section": "CONTENT",
-    "href": "/mx-core/blog/markdown/github-markdown-guide",
-    "subtitle": "October 7, 2025",
-    "keywords": [
-      "github",
-      "panduan",
-      "markdown",
-      "md",
-      "mdx"
     ]
   },
   {
@@ -1061,30 +1063,6 @@
       "API RP 580",
       "Risk-Management"
     ]
-  },
-  {
-    "id": "website/preview-mode-headless-cms",
-    "name": "Preview Mode for Headless CMS",
-    "section": "CONTENT",
-    "href": "/mx-core/blog/website/preview-mode-headless-cms",
-    "subtitle": "April 9, 2023",
-    "keywords": []
-  },
-  {
-    "id": "website/dynamic-routing-static-regeneration",
-    "name": "Dynamic Routing and Static Regeneration",
-    "section": "CONTENT",
-    "href": "/mx-core/blog/website/dynamic-routing-static-regeneration",
-    "subtitle": "March 4, 2023",
-    "keywords": []
-  },
-  {
-    "id": "website/server-client-components",
-    "name": "Server and Client Components",
-    "section": "CONTENT",
-    "href": "/mx-core/blog/website/server-client-components",
-    "subtitle": "January 8, 2023",
-    "keywords": []
   },
   {
     "id": "website/deploying-next-apps",
