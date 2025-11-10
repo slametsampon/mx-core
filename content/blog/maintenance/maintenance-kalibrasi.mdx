@@ -36,7 +36,8 @@ summary: Artikel ini ini disusun untuk memberikan pemahaman menyeluruh kepada te
   - [**7.2 Template Dokumen Kalibrasi – Pressure Gauge (PG)**](#72-template-dokumen-kalibrasi--pressure-gauge-pg)
   - [**7.3 Template Dokumen Kalibrasi – Flow Transmitter**](#73-template-dokumen-kalibrasi--flow-transmitter)
   - [**7.4 Penjelasan Accuracy Class (Kelas Akurasi)**](#74-penjelasan-accuracy-class-kelas-akurasi)
-  - [**7.5 Lampiran \& Penutup**](#75-lampiran--penutup)
+  - [📄 **7.5 Calibration Report – Gas Chromatograph (GC)**](#-75-calibration-report--gas-chromatograph-gc)
+  - [**7.6 Lampiran \& Penutup**](#76-lampiran--penutup)
 - [**Bab 8 – Kesalahan Umum dalam Kalibrasi dan Cara Menghindarinya**](#bab-8--kesalahan-umum-dalam-kalibrasi-dan-cara-menghindarinya)
   - [**8.1 Pendahuluan**](#81-pendahuluan)
   - [**8.2 Tidak Mencatat “As Found” Sebelum Adjustment**](#82-tidak-mencatat-as-found-sebelum-adjustment)
@@ -632,7 +633,88 @@ Dokumen kalibrasi harus mencakup:
 
 ---
 
-#### **7.5 Lampiran & Penutup**
+#### 📄 **7.5 Calibration Report – Gas Chromatograph (GC)**
+
+**Document No.:** GC-CAL/2025/011
+**Revision:** 0
+**Date:** 2025-11-07
+
+---
+
+- 1. **Instrument Information**
+
+| Parameter                    | Description                                       |
+| ---------------------------- | ------------------------------------------------- |
+| Equipment Type               | Gas Chromatograph                                 |
+| Manufacturer                 | [Contoh: Agilent Technologies]                    |
+| Model                        | [Contoh: 7890B]                                   |
+| Serial No.                   | GC-7890-01                                        |
+| Tag Number                   | GC-101-PG-1                                       |
+| Location                     | Analyzer Shelter – Plant A                        |
+| Calibration Performed By     | Instrumentation Department                        |
+| Calibration Frequency        | Every 6 months                                    |
+| Reference Standard           | Certified Gas Mix – CH₄, C₂H₆, C₃H₈, C₄H₁₀ in N₂  |
+| Gas Standard Certificate No. | NIST-STD-GMIX/CH4-C4-2025-02                      |
+| Calibration Method           | Comparative analysis (peak area vs concentration) |
+| Environmental Condition      | Temp: 24.3 °C, RH: 53%, Pressure: 100.8 kPa       |
+
+---
+
+- 2. **Calibration Reference Gas Standard**
+
+| Component      | Certified Concentration (mol%) | Uncertainty (± mol%) | Certificate No.    |
+| -------------- | ------------------------------ | -------------------- | ------------------ |
+| Methane (CH₄)  | 85.00                          | 0.50                 | NIST-GM-CH4-2025   |
+| Ethane (C₂H₆)  | 10.00                          | 0.20                 | NIST-GM-C2H6-2025  |
+| Propane (C₃H₈) | 3.00                           | 0.15                 | NIST-GM-C3H8-2025  |
+| Butane (C₄H₁₀) | 2.00                           | 0.10                 | NIST-GM-C4H10-2025 |
+
+---
+
+- 3. **Calibration Results**
+
+- Table A – _As Found_ (Before Adjustment)
+
+| Component | Reference (mol%) | Measured (mol%) | Error (%) | Tolerance (%) | Status |
+| --------- | ---------------- | --------------- | --------- | ------------- | ------ |
+| CH₄       | 85.00            | 83.72           | ‑1.51     | ±2.00         | PASS   |
+| C₂H₆      | 10.00            | 9.41            | ‑5.90     | ±2.00         | FAIL   |
+| C₃H₈      | 3.00             | 2.82            | ‑6.00     | ±2.50         | FAIL   |
+| C₄H₁₀     | 2.00             | 1.89            | ‑5.50     | ±2.50         | FAIL   |
+
+---
+
+- Table B – _As Left_ (After Adjustment)
+
+| Component | Reference (mol%) | Measured (mol%) | Error (%) | Tolerance (%) | Status |
+| --------- | ---------------- | --------------- | --------- | ------------- | ------ |
+| CH₄       | 85.00            | 84.88           | ‑0.14     | ±2.00         | PASS   |
+| C₂H₆      | 10.00            | 9.97            | ‑0.30     | ±2.00         | PASS   |
+| C₃H₈      | 3.00             | 2.98            | ‑0.67     | ±2.50         | PASS   |
+| C₄H₁₀     | 2.00             | 1.96            | ‑2.00     | ±2.50         | PASS   |
+
+---
+
+- 4. **Evaluation & Remarks**
+
+* GC menunjukkan deviasi signifikan pada C₂–C₄ fraksi sebelum penyetelan → disesuaikan ulang menggunakan software konfigurasi.
+* Setelah adjustment, semua parameter berada dalam batas toleransi.
+* **Rekomendasi**: Pemantauan lebih lanjut terhadap kestabilan kolom GC diperlukan, dan evaluasi ulang interval kalibrasi menjadi 3 bulan disarankan.
+
+---
+
+- 5. **Approval**
+
+| Prepared By       | Verified By             | Approved By     |
+| ----------------- | ----------------------- | --------------- |
+| (Technician Name) | (Instrument Supervisor) | (QA/QC Manager) |
+| Date: ........    | Date: ........          | Date: ........  |
+
+**Signature**: ******\_******
+
+---
+
+#### **7.6 Lampiran & Penutup**
 
 - Sertifikat kalibrasi alat referensi
 - Gambar instrumen (opsional)
