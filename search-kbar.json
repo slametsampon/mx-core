@@ -5,6 +5,22 @@
     "subtitle": "Invalid Date"
   },
   {
+    "id": "maintenance/maintenance-tier",
+    "name": "Penerapan Tier dalam Risk-Based Maintenance untuk Industri Petrokimia",
+    "section": "CONTENT",
+    "href": "/mx-core/blog/maintenance/maintenance-tier",
+    "subtitle": "November 10, 2025",
+    "keywords": [
+      "Maintenance",
+      "tier",
+      "API RP 580",
+      "Risk-Management",
+      "rbm",
+      "tbm",
+      "critical"
+    ]
+  },
+  {
     "id": "maintenance/maintenance-kalibrasi",
     "name": "Panduan Lengkap Kalibrasi Instrumentasi Proses untuk Industri Petrokimia - Konsep, Prosedur, Istilah, dan Praktik Terbaik",
     "section": "CONTENT",
