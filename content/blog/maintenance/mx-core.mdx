@@ -1,0 +1,550 @@
+---
+title: MxCore – Industrial Maintenance Digital Platform
+authors: ['sam']
+date: '2025-11-13'
+tags:
+  [
+    'Maintenance',
+    'System',
+    'mx-core',
+    'Risk-Management',
+    'rbm',
+    'modular',
+    'dinamis-plugin',
+    'cmms',
+    'iot',
+    'dashboard',
+    'Scalable',
+    'AI-Driven',
+  ]
+draft: false
+summary: MxCore adalah sebuah platform digital berbasis plugin dinamis yang dirancang untuk kebutuhan pabrik petrokimia, kimia, energi, pupuk, serta lingkungan industri lainnya.
+---
+
+🏭 **MxCore – Industrial Maintenance Digital Platform**
+
+- _Modular • Scalable • Plugin-Based • AI-Driven_
+
+---
+
+- [**1. Konsep Umum MxCore**](#1-konsep-umum-mxcore)
+- [**2. Visi \& Filosofi Desain**](#2-visi--filosofi-desain)
+- [**3. Arsitektur Tingkat Tinggi**](#3-arsitektur-tingkat-tinggi)
+  - [**3.1. MxCore Kernel (Platform Inti)**](#31-mxcore-kernel-platform-inti)
+  - [**3.2. Plugin System (Modular Architecture)**](#32-plugin-system-modular-architecture)
+- [**4. Daftar Plugin Utama pada MxCore**](#4-daftar-plugin-utama-pada-mxcore)
+  - [**4.1. MxCore AI (Industrial AI Assistant)**](#41-mxcore-ai-industrial-ai-assistant)
+  - [**4.2. MxCore CMMS**](#42-mxcore-cmms)
+  - [**4.3. MxCore IoT**](#43-mxcore-iot)
+  - [**4.4. MxCore Docs – Document Management Module**](#44-mxcore-docs--document-management-module)
+  - [**4.5. MxCore RBM – Risk-Based Maintenance Module**](#45-mxcore-rbm--risk-based-maintenance-module)
+  - [**4.6. MxCore Dashboard**](#46-mxcore-dashboard)
+- [**5. Fitur-Fitur Kunci MxCore (Cross-Platform Features)**](#5-fitur-fitur-kunci-mxcore-cross-platform-features)
+  - [🔒 **5.1. Keamanan \& Kepatuhan Industri**](#-51-keamanan--kepatuhan-industri)
+  - [🧠 **5.2. Standardized Knowledge Base**](#-52-standardized-knowledge-base)
+  - [🔌 **5.3. Integrasi Multi-Sistem**](#-53-integrasi-multi-sistem)
+- [**6. Keunggulan Arsitektur Plugin Dinamis**](#6-keunggulan-arsitektur-plugin-dinamis)
+  - [🟩 **6.1. Modular \& Fleksibel**](#-61-modular--fleksibel)
+  - [🟦 **6.2. Scalable untuk jangka panjang**](#-62-scalable-untuk-jangka-panjang)
+  - [🟨 **6.3. Maintainability sangat tinggi**](#-63-maintainability-sangat-tinggi)
+  - [🟥 **6.4. Cocok untuk Multi-Plant**](#-64-cocok-untuk-multi-plant)
+- [**7. Positioning MxCore dalam Industri**](#7-positioning-mxcore-dalam-industri)
+- [**8. Teknologi Pengembangan MxCore (NEW SECTION)**](#8-teknologi-pengembangan-mxcore-new-section)
+  - [🖥️ **8.1. Frontend Technologies**](#️-81-frontend-technologies)
+  - [⚙️ **8.2. Backend Technologies**](#️-82-backend-technologies)
+  - [🔌 **8.3. IoT \& Realtime Technologies**](#-83-iot--realtime-technologies)
+  - [🤖 **8.4. AI Technologies**](#-84-ai-technologies)
+  - [🧰 **8.5. Development Tools**](#-85-development-tools)
+  - [🛡️ **8.6. Security \& Hardening**](#️-86-security--hardening)
+- [**9. Ringkasan Konsep MxCore**](#9-ringkasan-konsep-mxcore)
+- [🎯 **Kesimpulan**](#-kesimpulan)
+
+---
+
+### **1. Konsep Umum MxCore**
+
+**MxCore** adalah sebuah **platform digital berbasis plugin dinamis** yang dirancang untuk kebutuhan pabrik petrokimia, kimia, energi, pupuk, serta lingkungan industri lainnya. MxCore bertindak sebagai:
+
+- **Platform inti (Core Platform)** yang menyediakan fondasi sistem (auth, routing, RBAC, UI-shell, logging, API gateway).
+- **Ekosistem modul (Plugins)** yang dapat dipasang/dicopot sesuai kebutuhan plant:
+
+  - AI Assistant (SOP/JSA/Equipment)
+  - CMMS System
+  - IoT Monitoring
+  - RBM Module (Risk Base Maintenance)
+  - Document Management (SOP/JSA Docs, Artikel)
+  - Dashboard Plant KPIs
+  - EPC/TA Documentation Tools
+
+Dengan arsitektur ini, MxCore mampu berkembang menjadi **"industrial super-platform"** yang dapat dipakai oleh seluruh unit plant (Syngas, Octanol, Utility, OSBL, Offsite Area, dsb) dengan fleksibilitas sangat tinggi.
+
+---
+
+### **2. Visi & Filosofi Desain**
+
+- 🎯 **Visi**
+
+> _Menjadi platform digital terpadu untuk maintenance dan operasi pabrik, dengan arsitektur modular yang dapat menampung pertumbuhan fitur tanpa batas._
+
+- 🧭 Prinsip Utama:
+
+1. **Modular & Extensible**
+   Setiap fitur = plugin yang dapat diaktifkan atau dinonaktifkan.
+
+2. **Industrial-grade Architecture**
+   Stabil, aman, dan sesuai standar SHE, NFPA 30, API 580/581.
+
+3. **AI-Powered**
+   Mampu menjawab pertanyaan teknisi secara kontekstual & cepat.
+
+4. **IoT-Ready**
+   Siap menerima data dari MQTT, Modbus, Edge Device berbasis ESP32.
+
+5. **Multi-Unit & Multi-Plant**
+   Cocok untuk plant besar yang memiliki banyak divisi/unit operasi.
+
+---
+
+### **3. Arsitektur Tingkat Tinggi**
+
+MxCore terdiri dari dua komponen utama:
+
+---
+
+#### **3.1. MxCore Kernel (Platform Inti)**
+
+Kernel ini menyediakan fitur dasar:
+
+- **a. Authentication & Authorization**
+
+* JWT-based login
+* Single Sign-On (opsional)
+* Role-Based Access Control (Admin / Engineer / Operator / Viewer)
+
+- **b. Dynamic Plugin Loader**
+
+* Memuat plugin berdasarkan **manifest file**
+* Plugin dapat diaktif/nonaktif tanpa merombak sistem
+* Menu & routing otomatis dari metadata plugin
+* Mendukung _hot reload_ modul untuk pengembangan
+
+- **c. UI Shell & Navigation Builder**
+
+* Layout standar seluruh aplikasi
+* Sidebar, header, notification system
+* Plugin inject menu secara dinamis
+
+- **d. API Gateway**
+
+* Menjadi perantara antara frontend plugin dan backend plugin
+* Routing otomatis berdasarkan modul
+
+- **e. Logging System**
+
+* Log percakapan (untuk SHE audit)
+* Log tindakan pengguna
+* Log error & health status
+
+- **f. Event Bus Internal**
+
+* Plugin dapat berkomunikasi dengan plugin lain
+* Publish–subscribe model
+
+---
+
+#### **3.2. Plugin System (Modular Architecture)**
+
+Plugin didefinisikan seperti berikut:
+
+- **File Manifest: `plugin.json`**
+
+```json
+{
+  "name": "MxCore AI",
+  "slug": "mxcore-ai",
+  "entry": "./index.tsx",
+  "routes": ["/ai", "/ai/settings"],
+  "permissions": ["read:sop", "use:assistant"],
+  "enabled": true
+}
+```
+
+- **Karakteristik Utama Plugin:**
+
+* **Isolasi** → tiap plugin berdiri sendiri
+* **Independent lifecycle** → dapat di-deploy terpisah
+* **Injectable** → UI & API dynamic loading
+* **Upgradeable** → plugin dapat di-update tanpa down-time platform
+* **Composable** → plugin dapat bekerja sama dengan plugin lain
+
+---
+
+### **4. Daftar Plugin Utama pada MxCore**
+
+Berikut daftar plugin inti yang menjadi "core ecosystem" MxCore:
+
+---
+
+#### **4.1. MxCore AI (Industrial AI Assistant)**
+
+Fungsi:
+
+- Menjawab SOP, JSA, Work Instruction
+- Troubleshooting equipment (pump, compressor, exchanger, valve)
+- Alarm guide (DCS alarm explanation)
+- Safety guidance (NFPA 30, PPE, hazard rating)
+
+Teknologi:
+
+- OpenAI API / GPT-4 / GPT-5
+- Retrieval Augmented Generation (RAG)
+- Embedding + semantic search
+- Guardrail (safety auto-response)
+
+Status:
+⚡ Plugin wajib untuk smart maintenance.
+
+---
+
+#### **4.2. MxCore CMMS**
+
+Fungsi:
+
+- Preventive Maintenance scheduling
+- Work Order management (WO/PM/CM)
+- Spare-part management
+- Equipment registry
+- KPI calculation: MTBF, MTTR, Availability
+
+Cocok untuk:
+
+- Plant tanpa SAP PM
+- Plant menengah yang ingin CMMS ringan
+
+---
+
+#### **4.3. MxCore IoT**
+
+Fungsi:
+
+- MQTT communication
+- Sensor telemetry (temp, pressure, vibration, flow)
+- IoT dashboard
+- Integration dengan ESP32, ESP-Now, LoRa
+- Alarm notification (email/WA/Telegram)
+
+---
+
+#### **4.4. MxCore Docs – Document Management Module**
+
+_(Menggantikan “Document Management hanya SOP/JSA Docs”)_
+
+Fitur:
+
+- Repository SOP (Standard Operating Procedure)
+- Repository JSA (Job Safety Analysis)
+- Repository Permit & SHE Document
+- Repository _Artikel Teknis Pabrik_ yang bisa digunakan oleh AI
+- Version control (rev1, rev2, rev3, dsb)
+- Editor Markdown terintegrasi
+- Sistem approval (SHE, Engineering, Ops)
+- Integrasi langsung dengan MxCore AI
+- Opsi locking dokumen (Check-in/Check-out)
+
+Kelebihan:
+
+- Semua dokumentasi plant terorganisir
+- AI dapat melakukan lookup ke dokumen dengan akurasi tinggi
+- Mendukung compliance SHE & audit NFPA 30
+
+---
+
+#### **4.5. MxCore RBM – Risk-Based Maintenance Module**
+
+_(Menggantikan “Reliability Module”)_
+
+Fitur:
+
+- Penilaian risiko equipment
+- Metode RBM/RCM berbasis API 580 & 581
+- Penilaian probability of failure (PoF)
+- Penilaian consequence of failure (CoF)
+- Risk matrix (warna: hijau–merah)
+- Prioritas inspeksi & interval maintenance
+- Criticality ranking untuk unit Syngas, Octanol, Utility, dsb.
+
+Kegunaan:
+
+- Menentukan fokus inspeksi dan interval PM berbasis risiko
+- Menunjang strategi maintenance jangka panjang
+- Pengambilan keputusan TA (Turn Around)
+
+Ini sangat relevan dengan industri petrokimia dan sejalan dengan tren “Risk-Based Strategy”.
+
+---
+
+#### **4.6. MxCore Dashboard**
+
+Fungsi:
+
+- KPI OEE
+- Downtime trend
+- Maintenance backlog
+- Operator Logbook
+- Custom plant KPI
+
+---
+
+### **5. Fitur-Fitur Kunci MxCore (Cross-Platform Features)**
+
+#### 🔒 **5.1. Keamanan & Kepatuhan Industri**
+
+- RBAC
+- Audit Log (SHE-ready)
+- Data on-premise (opsional)
+- HTTPS/TLS
+- Guardrail AI: mencegah jawaban berbahaya
+
+#### 🧠 **5.2. Standardized Knowledge Base**
+
+Semua dokumen plant dikonversi ke format terstruktur:
+
+```
+title:
+category:
+equipment:
+ppe:
+steps:
+hazards:
+permit:
+revision:
+```
+
+Cocok untuk:
+
+- integrasi AI
+- SHE compliance
+- cross-plant knowledge sharing
+
+#### 🔌 **5.3. Integrasi Multi-Sistem**
+
+- CMMS (SAP PM, Maximo, IFS)
+- Historian data (PI System, Timescale)
+- IoT MQTT broker
+- Internal DCS alarm DB
+- Plant intranet
+
+---
+
+### **6. Keunggulan Arsitektur Plugin Dinamis**
+
+#### 🟩 **6.1. Modular & Fleksibel**
+
+Pabrik dapat memilih plugin sesuai kebutuhan:
+
+- Hanya AI → bisa
+- AI + Docs → bisa
+- AI + CMMS + IoT → sangat ideal
+
+#### 🟦 **6.2. Scalable untuk jangka panjang**
+
+Tambah fitur baru tanpa mengubah inti platform.
+
+#### 🟨 **6.3. Maintainability sangat tinggi**
+
+Tiap plugin:
+
+- isolasi code
+- bisa versioning sendiri
+- bisa diupdate tanpa downtime
+
+#### 🟥 **6.4. Cocok untuk Multi-Plant**
+
+Setiap plant mengaktifkan plugin berbeda:
+
+- Plant A → AI + Docs
+- Plant B → AI + CMMS
+- Plant C → AI + IoT + Reliability
+
+---
+
+### **7. Positioning MxCore dalam Industri**
+
+MxCore adalah kombinasi dari:
+
+| Platform              | Kesamaan                  |
+| --------------------- | ------------------------- |
+| CMMS (SAP PM, Maximo) | Manajemen aset & PM       |
+| EHS Platform          | JSA/SOP/Permit repository |
+| Historian Dashboard   | Data proses plant         |
+| Industrial Chatbot    | AI assistant              |
+| IoT Platform          | Real-time monitoring      |
+| Engineering Tools     | RCM/FMEA                  |
+
+Sehingga MxCore menjadi **platform digital terpadu** untuk plant yang ingin:
+
+- Memodernisasi maintenance
+- Menurunkan downtime
+- Meningkatkan safety
+- Memulai digital transformation
+- Menggunakan AI secara aman
+
+---
+
+### **8. Teknologi Pengembangan MxCore (NEW SECTION)**
+
+Berikut daftar lengkap teknologi inti yang digunakan dalam development MxCore:
+
+---
+
+#### 🖥️ **8.1. Frontend Technologies**
+
+- **Next.js (v14+)**
+
+* Server Components
+* App Router
+* Dynamic Import (untuk plugin system)
+* Incremental Static Regeneration (ISR)
+* Edge runtime untuk AI request yang cepat
+
+- **TypeScript**
+
+* Strong typing
+* Clean code
+* Mengurangi bug pada plugin interaktif
+* Menjamin konsistensi antar modul
+
+- **TailwindCSS**
+
+* Utility-first styling
+* Kompatibel untuk plugin UI yang independen
+* Responsive & industrial UI
+* Konsisten untuk dashboard dan form CMMS
+
+- **CDD – Component-Driven Development**
+
+Digunakan untuk membangun:
+
+- Atom components (Button, Badge, Tooltip)
+- Molecule components (Card, Modal, Table)
+- Organisms (AI Chat Panel, WO Form, IoT Dashboard)
+- Template (Layout plugin)
+- Page (Final assembly)
+
+Fokus:
+
+- Komponen reusable antar plugin
+- Minim duplikasi
+- Mudah di-maintain
+
+---
+
+#### ⚙️ **8.2. Backend Technologies**
+
+- **Node.js + Fastify**
+
+* API modular per plugin
+* Sangat cepat & ringan untuk intranet plant
+* Plugin can register its own API route
+
+- **SoC – Separation of Concerns**
+
+Backend dibagi menjadi:
+
+- `controller` → accept request
+- `service` → business logic
+- `repository` → DB access
+- `domain` → models & interfaces
+- `plugin-api` → specific for plugin
+
+Hasil:
+
+- Reusable
+- Testable
+- Scalable
+
+* **Database – SQLite (default)**
+
+- Ringan, cepat, cocok untuk plant kecil/medium
+- Ideal untuk plugin independen
+- Bisa di-upgrade ke PostgreSQL / TimescaleDB
+
+Setiap plugin bisa:
+
+- Share DB
+- Atau punya dedicated DB (SQLite per modul)
+
+---
+
+#### 🔌 **8.3. IoT & Realtime Technologies**
+
+Jika plugin IoT diaktifkan:
+
+- **MQTT** (Mosquitto / EMQX)
+- **ESP32 / ESP-NOW device**
+- **WebSocket untuk live chart**
+- **Timeseries storage (opsional)**
+
+---
+
+#### 🤖 **8.4. AI Technologies**
+
+Untuk MxCore AI:
+
+- **OpenAI GPT-4 / GPT-5 API**
+- **RAG (Retrieval Augmented Generation)**
+- **Vector embeddings**
+- **Safety Guardrail Model**
+- **Semantic search (Cosine similarity)**
+- **Markdown & JSON knowledge base**
+
+---
+
+#### 🧰 **8.5. Development Tools**
+
+- **VS Code** (official IDE for MxCore development)
+- Prettier + ESLint
+- Git version control
+- Turborepo (opsional) untuk multi-plugin workspace
+- Postman untuk API testing
+
+---
+
+#### 🛡️ **8.6. Security & Hardening**
+
+- HTTPS + TLS
+- Token-based RBAC
+- JWT auth
+- Safety guardrail AI
+- Audit log for SHE compliance
+- Plugin permission system
+
+---
+
+### **9. Ringkasan Konsep MxCore**
+
+| Komponen                  | Deskripsi                                          |
+| ------------------------- | -------------------------------------------------- |
+| **MxCore Kernel**         | Fondasi platform, sistem routing, RBAC, logging    |
+| **MxCore Plugins**        | Modul-modul dinamis: AI, CMMS, IoT, RCM, Docs      |
+| **Dynamic Plugin System** | Plugin bisa aktif/nonaktif tanpa modifikasi kernel |
+| **Industrial-Ready**      | Aman, stabil, minimalis, sesuai SHE/APIs           |
+| **AI & IoT Combined**     | Perpaduan SOP/JSA + sensor + troubleshooting       |
+| **Future-proof**          | Bisa berkembang menjadi platform nasional          |
+
+---
+
+### 🎯 **Kesimpulan**
+
+**MxCore bukan sekadar aplikasi — tetapi sebuah _platform digital maintenance tingkat enterprise_ yang memiliki arsitektur modular, plugin dinamis, dan dapat berkembang tanpa batas.**
+
+Dengan sistem plugin, MxCore:
+
+✔ scalable
+✔ maintainable
+✔ flexible
+✔ AI-ready
+✔ IoT-ready
+✔ multi-plant compatible
+
+**MxCore adalah "core engine" untuk digitalisasi plant berbasis AI dan IoT.**
