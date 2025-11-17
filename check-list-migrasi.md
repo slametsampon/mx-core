@@ -2,9 +2,16 @@ Dalam konteks pengembangan berbasis **monorepo modular**, terutama dengan plugin
 
 ---
 
-- [🗂️ Struktur Folder Monorepo `mx-core`](#️-struktur-folder-monorepo-mx-core)
-- [📦 Rincian Isi Folder `plugins/mx-core-docs`](#-rincian-isi-folder-pluginsmx-core-docs)
+- [🗂️ Struktur Folder Monorepo `mx-core` (dengan Keterangan Lengkap)](#️-struktur-folder-monorepo-mx-core-dengan-keterangan-lengkap)
+  - [📝 Catatan Tambahan](#-catatan-tambahan)
+    - [🔹 `apps/` ≠ Tempat Fitur](#-apps--tempat-fitur)
+    - [🔹 `plugins/` = Sumber Fitur Sebenarnya](#-plugins--sumber-fitur-sebenarnya)
+    - [🔹 `packages/` = Library Internal](#-packages--library-internal)
+    - [🔹 Plugin Loader (di `packages/core`)](#-plugin-loader-di-packagescore)
+    - [🔹 Tentang `deploy-preview.yml`](#-tentang-deploy-previewyml)
+    - [🔹 Workflow CI/CD Lanjutan](#-workflow-cicd-lanjutan)
 - [🔁 **Tahap 1 — Inisialisasi Plugin Lokal (100% Isolasi)**](#-tahap-1--inisialisasi-plugin-lokal-100-isolasi)
+  - [📦 Rincian Isi Folder `plugins/mx-core-docs`](#-rincian-isi-folder-pluginsmx-core-docs)
   - [🎯 Tujuan Utama](#-tujuan-utama)
   - [📁 Struktur Folder Akhir Diharapkan](#-struktur-folder-akhir-diharapkan)
   - [🧭 Langkah-Langkah Teknis](#-langkah-langkah-teknis)
@@ -30,53 +37,129 @@ Dalam konteks pengembangan berbasis **monorepo modular**, terutama dengan plugin
 
 ---
 
-# 🗂️ Struktur Folder Monorepo `mx-core`
+# 🗂️ Struktur Folder Monorepo `mx-core` (dengan Keterangan Lengkap)
 
 ```plaintext
 /mx-core
-├── apps/                          # Aplikasi utama (Next.js frontend, Express backend)
-│   ├── frontend/
-│   │   ├── package.json
-│   │   ├── next.config.js
-│   │   └── ...
-│   └── backend/
-│       ├── package.json
-│       └── ...
+├── apps/                          # Aplikasi utama (entry-point) — tidak untuk fitur
+│   ├── frontend/                  # Next.js App utama (portal pengguna, UI shell)
+│   │   ├── package.json           # Konfigurasi lokal frontend (scripts, deps)
+│   │   ├── next.config.js         # Config Next.js, termasuk transpilePackages plugin
+│   │   └── ...                    # Routing, layout, app/page untuk host plugin UI
+│   └── backend/                   # Express/Node API utama (gateway semua plugin API)
+│       ├── package.json           # Config backend, termasuk Fastify/Express, loader plugin
+│       └── ...                    # Plugin registry, handler router, middleware
 │
-├── packages/                      # Kode bersama (shared logic, model, UI, utils)
-│   ├── core/                      # Plugin engine, auth, kernel
-│   ├── models/                    # Shared data-model (types/interfaces)
-│   ├── ui/                        # Komponen UI bersama (TSX + Tailwind)
-│   └── utils/                     # Utility/helper function
+├── packages/                      # Shared code untuk seluruh modul/plugin
+│   ├── core/                      # Engine inti: plugin loader, auth, RBAC, logger
+│   ├── models/                    # Shared data-model (TS interface: CMMS, IoT, RBM, dll)
+│   ├── ui/                        # Komponen UI bersama (reusable: Button, Modal, dsb)
+│   └── utils/                     # Helper dan fungsi umum (format date, validator, dll)
 │
-├── plugins/                       # Plugin modular
-│   └── mx-core-docs/              # Plugin dokumentasi berbasis static + Contentlayer
-│       ├── src/                   # Seluruh isi proyek dokumentasi Anda (dipindah ke sini)
-│       │   ├── app/               # App Router (Next.js 13+)
-│       │   ├── content/           # Konten .mdx (dokumen)
-│       │   ├── components/        # Komponen lokal plugin
-│       │   └── styles/            # Global styles khusus plugin
-│       ├── contentlayer.config.ts
-│       ├── next.config.js
-│       ├── plugin.json            # Metadata plugin untuk loader
-│       ├── index.ts               # Entry point plugin (export registerPlugin)
-│       ├── package.json
-│       ├── tsconfig.json
-│       └── .gitignore
+├── plugins/                       # Plugin modular yang bisa diaktifkan/dinonaktifkan
+│   └── mx-core-docs/              # Plugin dokumentasi (Next.js static, pakai Contentlayer)
+│       ├── src/                   # Seluruh isi proyek dokumentasi (struktur Next.js)
+│       │   ├── app/               # App router (Next.js 13+), entry UI lokal plugin
+│       │   ├── content/           # File konten dokumentasi (.mdx, .md)
+│       │   ├── components/        # Komponen UI lokal plugin (tidak global)
+│       │   └── styles/            # File CSS/Tailwind lokal plugin
+│       ├── contentlayer.config.ts # Config Contentlayer untuk parsing .mdx → JSON
+│       ├── next.config.js         # Konfigurasi khusus Next.js untuk plugin ini
+│       ├── plugin.json            # Metadata plugin (name, api/ui status, path)
+│       ├── index.ts               # Entry point plugin (export `registerPlugin()` ke core)
+│       ├── package.json           # Config plugin: dep, script, nama, workspace
+│       ├── tsconfig.json          # Konfigurasi TypeScript plugin
+│       └── .gitignore             # Ignore build file (.next, dist, dsb)
 │
-├── node_modules/                 # Hoisted dependencies
-├── package.json                  # Root config (workspaces, script global)
-├── tsconfig.base.json            # Base config TS untuk semua project
-├── .github/
+├── node_modules/                  # Hoisted dependencies (semua workspace share ini)
+├── package.json                   # Root config (workspaces, script global: dev/build/lint)
+├── tsconfig.base.json             # Base TypeScript config (di-extend semua modul)
+├── .github/                       # Konfigurasi GitHub Actions (CI/CD pipeline)
 │   └── workflows/
-│       ├── deploy.yml            # Workflow deploy frontend utama
-│       └── deploy-preview.yml   # Workflow deploy plugin preview
-└── README.md
+│       ├── deploy.yml             # Workflow deploy frontend utama ke GitHub Pages
+│       └── deploy-preview.yml    # Workflow deploy khusus plugin secara independen
+└── README.md                      # Dokumentasi proyek mx-core secara keseluruhan
 ```
 
 ---
 
-# 📦 Rincian Isi Folder `plugins/mx-core-docs`
+## 📝 Catatan Tambahan
+
+### 🔹 `apps/` ≠ Tempat Fitur
+
+Folder `apps/frontend` dan `apps/backend` adalah tempat integrasi, bukan implementasi fitur. Semua fitur dikembangkan dalam bentuk **plugin modular**, agar:
+
+- Scalable (mudah ditambah plugin baru)
+- Maintainable (plugin bisa dikelola, diuji, di-deploy terpisah)
+- Konsisten (data model, UI, API terpusat dan reusable)
+
+---
+
+### 🔹 `plugins/` = Sumber Fitur Sebenarnya
+
+Setiap fitur besar seperti:
+
+- `mx-core-docs` (Document Management)
+- `mx-core-cmms` (Maintenance)
+- `mx-core-iot` (Sensor, MQTT)
+- `mx-core-ai` (AI Assistant, NLP)
+
+...semua dikembangkan sebagai plugin dengan konfigurasi `plugin.json` dan **diload secara dinamis** ke `apps/backend` dan `apps/frontend`.
+
+---
+
+### 🔹 `packages/` = Library Internal
+
+Digunakan sebagai shared dependency internal:
+
+- Tidak tergantung ke plugin mana pun
+- Tidak punya logika bisnis sendiri
+- Tidak punya UI sendiri (kecuali komponen umum di `ui/`)
+
+---
+
+### 🔹 Plugin Loader (di `packages/core`)
+
+Modul `@mx-core/core` bertanggung jawab untuk:
+
+- Membaca dan men-**load plugin** secara dinamis (berdasarkan `plugin.json`)
+- Register route API ke Express
+- Register page/komponen ke UI shell
+- Menyediakan registry dan lifecycle hook untuk plugin (`onLoad()`, `onRegister()`, dsb)
+
+---
+
+### 🔹 Tentang `deploy-preview.yml`
+
+> Perlu disiapkan untuk plugin yang memiliki halaman statis seperti `mx-core-docs`, agar dapat di-deploy terpisah sebagai preview (misalnya di `https://user.github.io/mx-core-docs-preview`).
+
+---
+
+### 🔹 Workflow CI/CD Lanjutan
+
+Untuk tim besar atau multi-developer:
+
+- Tambahkan lint + test di CI
+- Tambahkan validasi `plugin.json`
+- Tambahkan preview Contentlayer (untuk plugin .mdx)
+- Setup cache NPM + build artifact agar cepat
+
+---
+
+# 🔁 **Tahap 1 — Inisialisasi Plugin Lokal (100% Isolasi)**
+
+---
+
+Berikut adalah **langkah-langkah detail dan rinci untuk Tahap 1 — Inisialisasi dan Isolasi Plugin `mx-core-docs`**, yang menjadi dasar sebelum integrasi ke monorepo secara penuh. Tahap ini bertujuan memastikan plugin dapat:
+
+- Berdiri sendiri dan dijalankan secara mandiri (`npm run dev`)
+- Diuji tanpa gangguan dari workspace lain
+- Dijadikan fondasi validasi lanjutan seperti Contentlayer dan export static
+- Dibackup dengan aman antar mesin atau via Git
+
+---
+
+## 📦 Rincian Isi Folder `plugins/mx-core-docs`
 
 | File/Folder              | Fungsi                                                           |
 | ------------------------ | ---------------------------------------------------------------- |
@@ -91,19 +174,6 @@ Dalam konteks pengembangan berbasis **monorepo modular**, terutama dengan plugin
 | `package.json`           | Konfigurasi npm untuk plugin ini                                 |
 | `tsconfig.json`          | Konfigurasi TypeScript khusus plugin                             |
 | `.gitignore`             | Abaikan `.next/`, `.contentlayer/`, `out/`, dll                  |
-
----
-
-# 🔁 **Tahap 1 — Inisialisasi Plugin Lokal (100% Isolasi)**
-
----
-
-Berikut adalah **langkah-langkah detail dan rinci untuk Tahap 1 — Inisialisasi dan Isolasi Plugin `mx-core-docs`**, yang menjadi dasar sebelum integrasi ke monorepo secara penuh. Tahap ini bertujuan memastikan plugin dapat:
-
-- Berdiri sendiri dan dijalankan secara mandiri (`npm run dev`)
-- Diuji tanpa gangguan dari workspace lain
-- Dijadikan fondasi validasi lanjutan seperti Contentlayer dan export static
-- Dibackup dengan aman antar mesin atau via Git
 
 ---
 
