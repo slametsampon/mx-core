@@ -5,6 +5,57 @@
     "subtitle": "Invalid Date"
   },
   {
+    "id": "maintenance/mx-core-monorepo",
+    "name": "MxCore – Monorepo",
+    "section": "CONTENT",
+    "href": "/mx-core/blog/maintenance/mx-core-monorepo",
+    "subtitle": "November 16, 2025",
+    "keywords": [
+      "Maintenance",
+      "System",
+      "mx-core",
+      "monorepo",
+      "modular",
+      "dinamis-plugin",
+      "Scalable"
+    ]
+  },
+  {
+    "id": "maintenance/mx-core-package-json",
+    "name": "MxCore – MonPackage.json",
+    "section": "CONTENT",
+    "href": "/mx-core/blog/maintenance/mx-core-package-json",
+    "subtitle": "November 16, 2025",
+    "keywords": [
+      "Maintenance",
+      "System",
+      "mx-core",
+      "monorepo",
+      "modular",
+      "dinamis-plugin",
+      "Scalable",
+      "package-json"
+    ]
+  },
+  {
+    "id": "maintenance/mx-core-plugin-loader",
+    "name": "MxCore – MonPackage.json",
+    "section": "CONTENT",
+    "href": "/mx-core/blog/maintenance/mx-core-plugin-loader",
+    "subtitle": "November 16, 2025",
+    "keywords": [
+      "Maintenance",
+      "System",
+      "mx-core",
+      "monorepo",
+      "modular",
+      "dinamis-plugin",
+      "Scalable",
+      "package-json",
+      "plugin-loader"
+    ]
+  },
+  {
     "id": "maintenance/mx-core",
     "name": "MxCore – Industrial Maintenance Digital Platform",
     "section": "CONTENT",
