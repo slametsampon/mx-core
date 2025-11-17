@@ -8,16 +8,17 @@ Dalam konteks pengembangan berbasis **monorepo modular**, terutama dengan plugin
   - [🎯 Tujuan Utama](#-tujuan-utama)
   - [📁 Struktur Folder Akhir Diharapkan](#-struktur-folder-akhir-diharapkan)
   - [🧭 Langkah-Langkah Teknis](#-langkah-langkah-teknis)
-    - [1. **Salin Proyek Lama**](#1-salin-proyek-lama)
-    - [2. **Buat `package.json` Minimal untuk Plugin**](#2-buat-packagejson-minimal-untuk-plugin)
-    - [3. **Buat `tsconfig.json` Plugin**](#3-buat-tsconfigjson-plugin)
-    - [4. **Buat File `.gitignore` Lokal Plugin**](#4-buat-file-gitignore-lokal-plugin)
-    - [5. **(Opsional) Buat `next.config.js` Default**](#5-opsional-buat-nextconfigjs-default)
-    - [6. **(Opsional) Update Root `package.json` untuk Workspaces**](#6-opsional-update-root-packagejson-untuk-workspaces)
-    - [7. **Jalankan Plugin Mandiri**](#7-jalankan-plugin-mandiri)
+    - [🔹 1. **Buat Branch Baru untuk Migrasi**](#-1-buat-branch-baru-untuk-migrasi)
+    - [🔹 2. **Salin Proyek Lama ke Plugin Folder**](#-2-salin-proyek-lama-ke-plugin-folder)
+    - [🔹 3. **Buat `package.json` Minimal untuk Plugin**](#-3-buat-packagejson-minimal-untuk-plugin)
+    - [🔹 4. **Buat `tsconfig.json` Plugin**](#-4-buat-tsconfigjson-plugin)
+    - [🔹 5. **Buat `.gitignore` Lokal Plugin**](#-5-buat-gitignore-lokal-plugin)
+    - [🔹 6. **(Opsional) Buat `next.config.js` Default**](#-6-opsional-buat-nextconfigjs-default)
+    - [🔹 7. **(Opsional) Tambahkan Plugin ke Workspace Root**](#-7-opsional-tambahkan-plugin-ke-workspace-root)
+    - [🔹 8. **Jalankan Plugin Secara Mandiri**](#-8-jalankan-plugin-secara-mandiri)
   - [✅ Checkpoint Verifikasi Tahap 1](#-checkpoint-verifikasi-tahap-1)
   - [🚦 Troubleshooting Umum](#-troubleshooting-umum)
-  - [🔒 Backup Aman (Saran)](#-backup-aman-saran)
+  - [🔒 Push ke GitHub untuk Backup](#-push-ke-github-untuk-backup)
 - [🔁 **Tahap 2 — Validasi Contentlayer dalam Isolasi**](#-tahap-2--validasi-contentlayer-dalam-isolasi)
 - [🔁 **Tahap 3 — Simpan di GitHub Cabang Sendiri (Sementara)**](#-tahap-3--simpan-di-github-cabang-sendiri-sementara)
 - [🔁 **Tahap 4 — Integrasi Bertahap ke Monorepo**](#-tahap-4--integrasi-bertahap-ke-monorepo)
@@ -108,6 +109,7 @@ Berikut adalah **langkah-langkah detail dan rinci untuk Tahap 1 — Inisialisasi
 
 ## 🎯 Tujuan Utama
 
+- Membuat branch khusus untuk migrasi plugin `mx-core-docs`
 - Menyalin proyek lama ke dalam struktur plugin monorepo `mx-core`
 - Menyusun ulang struktur agar sesuai standar plugin
 - Menambahkan konfigurasi minimal (TS, npm) agar plugin bisa berjalan secara mandiri
@@ -136,7 +138,26 @@ Berikut adalah **langkah-langkah detail dan rinci untuk Tahap 1 — Inisialisasi
 
 ## 🧭 Langkah-Langkah Teknis
 
-### 1. **Salin Proyek Lama**
+### 🔹 1. **Buat Branch Baru untuk Migrasi**
+
+> Pastikan Anda berada di branch `main` terlebih dahulu:
+
+```bash
+git checkout main
+git pull origin main
+```
+
+> Lalu buat dan pindah ke branch baru:
+
+```bash
+git checkout -b feat/plugin-docs-isolasi
+```
+
+✅ Sekarang Anda bekerja dalam branch terisolasi khusus migrasi plugin. Semua perubahan akan aman dan tidak mengganggu `main`.
+
+---
+
+### 🔹 2. **Salin Proyek Lama ke Plugin Folder**
 
 > Pindahkan seluruh isi proyek Next.js dokumentasi Anda ke dalam `src/`:
 
@@ -153,7 +174,7 @@ cp -r pages components public styles content plugins/mx-core-docs/src
 
 ---
 
-### 2. **Buat `package.json` Minimal untuk Plugin**
+### 🔹 3. **Buat `package.json` Minimal untuk Plugin**
 
 > Lokasi: `plugins/mx-core-docs/package.json`
 
@@ -175,11 +196,11 @@ cp -r pages components public styles content plugins/mx-core-docs/src
 }
 ```
 
-📌 Tambahkan dependensi lain seperti `contentlayer`, `tailwind`, dll di tahap berikutnya.
+📌 Tambahkan dependensi lain seperti `contentlayer`, `tailwind`, dll di Tahap 2.
 
 ---
 
-### 3. **Buat `tsconfig.json` Plugin**
+### 🔹 4. **Buat `tsconfig.json` Plugin**
 
 > Lokasi: `plugins/mx-core-docs/tsconfig.json`
 
@@ -195,11 +216,11 @@ cp -r pages components public styles content plugins/mx-core-docs/src
 }
 ```
 
-Pastikan `tsconfig.base.json` ada di root `mx-core`.
+> Pastikan `tsconfig.base.json` sudah ada di root `mx-core`.
 
 ---
 
-### 4. **Buat File `.gitignore` Lokal Plugin**
+### 🔹 5. **Buat `.gitignore` Lokal Plugin**
 
 > Lokasi: `plugins/mx-core-docs/.gitignore`
 
@@ -213,7 +234,7 @@ dist/
 
 ---
 
-### 5. **(Opsional) Buat `next.config.js` Default**
+### 🔹 6. **(Opsional) Buat `next.config.js` Default**
 
 > Lokasi: `plugins/mx-core-docs/next.config.js`
 
@@ -226,13 +247,13 @@ const nextConfig = {
 module.exports = nextConfig;
 ```
 
-> Akan ditambahkan konfigurasi Contentlayer dan basePath di Tahap 2
+> Akan ditambahkan konfigurasi Contentlayer dan `basePath` di Tahap 2.
 
 ---
 
-### 6. **(Opsional) Update Root `package.json` untuk Workspaces**
+### 🔹 7. **(Opsional) Tambahkan Plugin ke Workspace Root**
 
-Tambahkan `plugins/*` jika belum:
+> Lokasi: root `package.json`:
 
 ```json
 "workspaces": [
@@ -242,7 +263,7 @@ Tambahkan `plugins/*` jika belum:
 ]
 ```
 
-Kemudian install ulang workspace:
+Lalu install ulang:
 
 ```bash
 npm install
@@ -250,25 +271,26 @@ npm install
 
 ---
 
-### 7. **Jalankan Plugin Mandiri**
+### 🔹 8. **Jalankan Plugin Secara Mandiri**
 
 ```bash
 npm run dev -w mx-core-docs
 ```
 
-> Output berhasil: Plugin berjalan di `localhost:3000` dan menampilkan halaman awal dokumentasi Anda.
+> Jika berhasil, plugin akan berjalan di `http://localhost:3000` dan menampilkan halaman dokumentasi Anda.
 
 ---
 
 ## ✅ Checkpoint Verifikasi Tahap 1
 
-| Komponen                             | Status Target |
-| ------------------------------------ | ------------- |
-| Plugin folder `mx-core-docs/` dibuat | ✅            |
-| Isi proyek lama berada di `src/`     | ✅            |
-| `package.json` lengkap & valid       | ✅            |
-| Bisa `npm run dev -w mx-core-docs`   | ✅            |
-| Halaman `/` muncul tanpa error       | ✅            |
+| Komponen                                | Status Target |
+| --------------------------------------- | ------------- |
+| Branch `feat/plugin-docs-isolasi` aktif | ✅            |
+| Folder `mx-core-docs/` dibuat           | ✅            |
+| Isi proyek lama berada di `src/`        | ✅            |
+| `package.json` lengkap & valid          | ✅            |
+| Bisa `npm run dev -w mx-core-docs`      | ✅            |
+| Halaman `/` muncul tanpa error          | ✅            |
 
 ---
 
@@ -283,18 +305,17 @@ npm run dev -w mx-core-docs
 
 ---
 
-## 🔒 Backup Aman (Saran)
+## 🔒 Push ke GitHub untuk Backup
 
-- Buat branch baru `feat/plugin-docs-isolasi`
-- Commit hasil Tahap 1
-- Push ke GitHub sebagai baseline antar laptop/dev
+> Setelah plugin berhasil dijalankan, simpan hasil Tahap 1 ke GitHub:
 
 ```bash
-git checkout -b feat/plugin-docs-isolasi
 git add plugins/mx-core-docs
 git commit -m "init plugin mx-core-docs (isolated stage)"
 git push origin feat/plugin-docs-isolasi
 ```
+
+> Anda dapat membuat Pull Request dari branch ini jika ingin review atau kolaborasi dengan developer lain/laptop lain.
 
 ---
 
