@@ -17,7 +17,6 @@ export interface PluginMeta {
  * Hanya mendukung plugin dengan flag `ui: true`
  */
 export async function loadPlugins(
-  app: Express,
   pluginsDir = 'plugins'
 ): Promise<PluginMeta[]> {
   const pluginList: PluginMeta[] = [];

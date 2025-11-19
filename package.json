@@ -2,10 +2,12 @@
   "name": "mx-core",
   "private": true,
   "version": "0.5.0",
+  "packageManager": "npm@11.4.2",
   "scripts": {
     "dev": "npm run dev -w apps/frontend",
-    "build": "npm run build -w apps/frontend && npm run build -w apps/backend",
+    "build": "npm run build:manifest && turbo run build",
     "build:docs": "npm run build -w mx-core-docs",
+    "build:manifest": "ts-node scripts/generate-plugin-manifest.ts",
     "lint": "eslint --fix apps/**/*.{js,ts,jsx,tsx} plugins/**/*.{js,ts,jsx,tsx}",
     "format": "prettier --write .",
     "deploy:docs": "npm run export -w mx-core-docs && gh-pages -d plugins/mx-core-docs/out"
@@ -24,6 +26,7 @@
     "prettier": "2.8.8",
     "prettier-plugin-tailwindcss": "^0.4.1",
     "ts-node": "^10.9.2",
+    "turbo": "^2.6.1",
     "typescript": "5.0.4"
   }
 }

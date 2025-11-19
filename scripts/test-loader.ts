@@ -3,9 +3,8 @@
 import { loadPlugins } from '../packages/core/src/plugin-loader';
 import path from 'path';
 
-// Simulasi loader tanpa Express
 (async () => {
-  const pluginsDir = path.resolve('plugins');
-  const result = await loadPlugins(null as any, pluginsDir); // abaikan Express sementara
+  const pluginsDir = path.resolve('plugins'); // resolve absolute path
+  const result = await loadPlugins(pluginsDir); // FINAL → hanya 1 argumen
   console.log('📦 Plugins loaded:', result);
 })();

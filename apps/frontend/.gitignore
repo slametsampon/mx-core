@@ -12,3 +12,6 @@ Thumbs.db
 
 # Turborepo cache
 .turbo/
+
+# next.js
+.next/

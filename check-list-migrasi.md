@@ -30,7 +30,7 @@ Dalam konteks pengembangan berbasis **monorepo modular**, terutama dengan plugin
 - [🔁 **Tahap 3 — Simpan di GitHub Cabang Sendiri (Sementara)**](#-tahap-3--simpan-di-github-cabang-sendiri-sementara)
 - [🔁 **Tahap 4 — Integrasi Bertahap ke Monorepo**](#-tahap-4--integrasi-bertahap-ke-monorepo)
   - [🧱 **Struktur Awal Target**](#-struktur-awal-target)
-  - [� **Langkah 1 — Buat Folder \& Inisialisasi Frontend App**](#-langkah-1--buat-folder--inisialisasi-frontend-app)
+  - [🔹 **Langkah 1 — Buat Folder \& Inisialisasi Frontend App**](#-langkah-1--buat-folder--inisialisasi-frontend-app)
   - [🔹 **Langkah 2 — Tambahkan Alias di `tsconfig.base.json`**](#-langkah-2--tambahkan-alias-di-tsconfigbasejson)
   - [🔹 **Langkah 3 — Update `apps/frontend/tsconfig.json`**](#-langkah-3--update-appsfrontendtsconfigjson)
   - [🔹 **Langkah 4 — Buat Next App Minimal**](#-langkah-4--buat-next-app-minimal)
@@ -42,7 +42,19 @@ Dalam konteks pengembangan berbasis **monorepo modular**, terutama dengan plugin
   - [📌 Catatan Tambahan](#-catatan-tambahan-1)
 - [🔁 **Tahap 5 — Buat Workflow Deploy Preview Plugin**](#-tahap-5--buat-workflow-deploy-preview-plugin)
 - [🔁 **Tahap 6 — Uji Plugin Loader (Opsional)**](#-tahap-6--uji-plugin-loader-opsional)
-- [🔁 **Tahap 7 — Finalisasi \& Merge ke Main**](#-tahap-7--finalisasi--merge-ke-main)
+- [✅ **Tahap 7 — Konsumsi Metadata Plugin (di apps/frontend)**](#-tahap-7--konsumsi-metadata-plugin-di-appsfrontend)
+  - [🎯 **Target Akhir**](#-target-akhir)
+  - [🔧 LANGKAH IMPLEMENTASI](#-langkah-implementasi)
+    - [🧩 1. Pastikan Plugin Loader Sudah Ekspor Metadata](#-1-pastikan-plugin-loader-sudah-ekspor-metadata)
+    - [🗂️ 2. Buat File `plugin-manifest.json` Saat Build](#️-2-buat-file-plugin-manifestjson-saat-build)
+    - [🏗️ 3. Tambahkan ke Script Build Root](#️-3-tambahkan-ke-script-build-root)
+    - [🔍 4. Konsumsi di Frontend via HTTP Fetch](#-4-konsumsi-di-frontend-via-http-fetch)
+    - [📦 5. Pastikan File `plugin-manifest.json` Masuk Build Output](#-5-pastikan-file-plugin-manifestjson-masuk-build-output)
+    - [✅ 6. Uji Lokal](#-6-uji-lokal)
+  - [🧪 Opsional: Validasi \& Debug](#-opsional-validasi--debug)
+  - [📌 Catatan Best Practice](#-catatan-best-practice)
+  - [✅ Kesimpulan](#-kesimpulan)
+- [🔁 **Tahap 8 — Finalisasi \& Merge ke Main**](#-tahap-8--finalisasi--merge-ke-main)
 - [🔐 Manfaat Pendekatan Ini](#-manfaat-pendekatan-ini)
   - [📦 Apakah Ingin Saya Buatkan?](#-apakah-ingin-saya-buatkan)
 
@@ -696,7 +708,173 @@ Jika plugin ingin dimuat via sistem `@mx-core/core`:
 
 ---
 
-# 🔁 **Tahap 7 — Finalisasi & Merge ke Main**
+# ✅ **Tahap 7 — Konsumsi Metadata Plugin (di apps/frontend)**
+
+> Tujuan: Memanfaatkan hasil dari `plugin-loader` agar **frontend dapat menampilkan plugin** yang aktif (misal: routing dinamis, daftar modul, navigasi sidebar, dsb).
+
+---
+
+## 🎯 **Target Akhir**
+
+- `apps/frontend` dapat mengakses metadata hasil `loadPlugins()` dari `@mx-core/core`.
+- Digunakan untuk **menampilkan daftar plugin** atau mengarahkan ke `basePath` milik plugin (misal: `/docs`).
+- Cocok untuk dashboard plugin modular.
+
+---
+
+## 🔧 LANGKAH IMPLEMENTASI
+
+---
+
+### 🧩 1. Pastikan Plugin Loader Sudah Ekspor Metadata
+
+📁 `packages/core/src/index.ts`
+Tambahkan ekspor fungsi loader dan tipe `PluginMeta`:
+
+```ts
+export * from './plugin-loader';
+export * from './types'; // <– pastikan PluginMeta tersedia
+```
+
+---
+
+### 🗂️ 2. Buat File `plugin-manifest.json` Saat Build
+
+⚙️ Buat file ini dari hasil `loadPlugins()` saat build time. Contoh:
+📄 `scripts/generate-plugin-manifest.ts`
+
+```ts
+import fs from 'fs';
+import path from 'path';
+import { loadPlugins, PluginMeta } from '@mx-core/core';
+
+async function main() {
+  const plugins: PluginMeta[] = await loadPlugins('plugins');
+  const outPath = path.resolve('apps/frontend/public/plugin-manifest.json');
+
+  fs.writeFileSync(outPath, JSON.stringify(plugins, null, 2));
+  console.log(`📝 Plugin manifest generated: ${outPath}`);
+}
+
+main();
+```
+
+---
+
+### 🏗️ 3. Tambahkan ke Script Build Root
+
+📄 `package.json` (root monorepo):
+
+```json
+{
+  "scripts": {
+    "build:manifest": "ts-node scripts/generate-plugin-manifest.ts",
+    "build": "npm run build:manifest && turbo run build"
+  }
+}
+```
+
+---
+
+### 🔍 4. Konsumsi di Frontend via HTTP Fetch
+
+📁 `apps/frontend/app/page.tsx`
+
+```tsx
+'use client';
+
+import { useEffect, useState } from 'react';
+
+interface PluginMeta {
+  name: string;
+  basePath: string;
+  description: string;
+  [key: string]: any;
+}
+
+export default function HomePage() {
+  const [plugins, setPlugins] = useState<PluginMeta[]>([]);
+
+  useEffect(() => {
+    fetch('/plugin-manifest.json')
+      .then((res) => res.json())
+      .then(setPlugins);
+  }, []);
+
+  return (
+    <div className="p-6">
+      <h1 className="mb-4 text-2xl font-bold">Frontend Home</h1>
+
+      <div className="space-y-2">
+        {plugins.map((plugin) => (
+          <a
+            key={plugin.name}
+            href={plugin.basePath}
+            className="block rounded border p-4 hover:bg-gray-100"
+          >
+            <h2 className="text-xl font-semibold">{plugin.name}</h2>
+            <p className="text-sm text-gray-600">{plugin.description}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  );
+}
+```
+
+---
+
+### 📦 5. Pastikan File `plugin-manifest.json` Masuk Build Output
+
+Karena file disimpan di `public/`, maka otomatis akan tersedia di Next.js export (`out/`) — tanpa konfigurasi tambahan.
+
+---
+
+### ✅ 6. Uji Lokal
+
+```bash
+npm run build # otomatis akan jalankan build:manifest
+npx serve apps/frontend/out
+```
+
+Akses ke `http://localhost:3000` dan pastikan daftar plugin muncul sebagai link ke `/docs`, `/charts`, dst.
+
+---
+
+## 🧪 Opsional: Validasi & Debug
+
+Jika ingin validasi file `plugin-manifest.json` tanpa buka browser:
+
+```bash
+cat apps/frontend/public/plugin-manifest.json
+```
+
+Atau uji melalui unit test (jika loader di-setup testable).
+
+---
+
+## 📌 Catatan Best Practice
+
+| Tips                   | Penjelasan                                                                |
+| ---------------------- | ------------------------------------------------------------------------- |
+| 🔄 Regenerasi Otomatis | Tambahkan `build:manifest` ke proses CI atau prebuild.                    |
+| 🧩 Modular UI          | Gunakan `plugin.basePath` untuk route dinamis via `app/[plugin]/page.tsx` |
+| 🔐 Filtering           | Hanya masukkan plugin `active === true` di `plugin.json`                  |
+| 🧠 Konsisten Format    | Standarkan schema plugin: name, description, basePath, icon (opsional)    |
+
+---
+
+## ✅ Kesimpulan
+
+Dengan langkah ini, Anda:
+
+- **Mengintegrasikan hasil `plugin-loader`** ke UI frontend.
+- **Membuka peluang plugin modular tampil otomatis** berdasarkan metadata.
+- Siap mengembangkan sistem **plugin dashboard dinamis** untuk skala besar.
+
+---
+
+# 🔁 **Tahap 8 — Finalisasi & Merge ke Main**
 
 | Langkah                                    | Tujuan                        |
 | ------------------------------------------ | ----------------------------- |
