@@ -1,2 +1,12 @@
-node_modules
+# ⛔ Abaikan file & folder yang tidak perlu dilint
 .eslintrc.js
+postcss.config.js
+tailwind.config.js
+next.config.js
+*.config.ts
+out/
+dist/
+build/
+node_modules/
+.contentlayer/
+.next/

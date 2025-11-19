@@ -6,7 +6,7 @@
     "dev": "npm run dev -w apps/frontend",
     "build": "npm run build -w apps/frontend && npm run build -w apps/backend",
     "build:docs": "npm run build -w mx-core-docs",
-    "lint": "eslint --fix . --ext .ts,.tsx,.js,.jsx",
+    "lint": "eslint --fix apps/**/*.{js,ts,jsx,tsx} plugins/**/*.{js,ts,jsx,tsx}",
     "format": "prettier --write .",
     "deploy:docs": "npm run export -w mx-core-docs && gh-pages -d plugins/mx-core-docs/out"
   },
@@ -16,12 +16,14 @@
     "plugins/*"
   ],
   "devDependencies": {
+    "@types/express": "^5.0.5",
     "eslint": "^8.45.0",
     "eslint-config-next": "13.5.6",
     "eslint-config-prettier": "^8.8.0",
+    "gh-pages": "^6.3.0",
     "prettier": "2.8.8",
     "prettier-plugin-tailwindcss": "^0.4.1",
-    "gh-pages": "^6.3.0",
+    "ts-node": "^10.9.2",
     "typescript": "5.0.4"
   }
 }

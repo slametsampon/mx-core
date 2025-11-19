@@ -14,10 +14,15 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
-    "plugins": [
-      {
-        "name": "next"
-      }
-    ]
-  }
+    "baseUrl": ".",
+    "paths": {
+      "@mx-core/core": ["packages/core/src"],
+      "@mx-core/docs/*": ["plugins/mx-core-docs/src/*"]
+    },
+    "plugins": [{ "name": "next" }]
+  },
+  "references": [
+    { "path": "packages/core" },
+    { "path": "plugins/mx-core-docs" }
+  ]
 }

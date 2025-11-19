@@ -29,6 +29,17 @@ Dalam konteks pengembangan berbasis **monorepo modular**, terutama dengan plugin
 - [🔁 **Tahap 2 — Validasi Contentlayer dalam Isolasi**](#-tahap-2--validasi-contentlayer-dalam-isolasi)
 - [🔁 **Tahap 3 — Simpan di GitHub Cabang Sendiri (Sementara)**](#-tahap-3--simpan-di-github-cabang-sendiri-sementara)
 - [🔁 **Tahap 4 — Integrasi Bertahap ke Monorepo**](#-tahap-4--integrasi-bertahap-ke-monorepo)
+  - [🧱 **Struktur Awal Target**](#-struktur-awal-target)
+  - [� **Langkah 1 — Buat Folder \& Inisialisasi Frontend App**](#-langkah-1--buat-folder--inisialisasi-frontend-app)
+  - [🔹 **Langkah 2 — Tambahkan Alias di `tsconfig.base.json`**](#-langkah-2--tambahkan-alias-di-tsconfigbasejson)
+  - [🔹 **Langkah 3 — Update `apps/frontend/tsconfig.json`**](#-langkah-3--update-appsfrontendtsconfigjson)
+  - [🔹 **Langkah 4 — Buat Next App Minimal**](#-langkah-4--buat-next-app-minimal)
+  - [🔹 **Langkah 5 — Konfigurasi Tailwind di `frontend`**](#-langkah-5--konfigurasi-tailwind-di-frontend)
+  - [🔹 **Langkah 6 — Tambahkan `transpilePackages` (optional)**](#-langkah-6--tambahkan-transpilepackages-optional)
+  - [🔹 **Langkah 7 — Jalankan Dev**](#-langkah-7--jalankan-dev)
+  - [✅ Checkpoint: Setelah Langkah 7](#-checkpoint-setelah-langkah-7)
+  - [✅ Checklist Tahap 4](#-checklist-tahap-4)
+  - [📌 Catatan Tambahan](#-catatan-tambahan-1)
 - [🔁 **Tahap 5 — Buat Workflow Deploy Preview Plugin**](#-tahap-5--buat-workflow-deploy-preview-plugin)
 - [🔁 **Tahap 6 — Uji Plugin Loader (Opsional)**](#-tahap-6--uji-plugin-loader-opsional)
 - [🔁 **Tahap 7 — Finalisasi \& Merge ke Main**](#-tahap-7--finalisasi--merge-ke-main)
@@ -416,12 +427,243 @@ git push origin feat/plugin-docs-isolasi
 
 # 🔁 **Tahap 4 — Integrasi Bertahap ke Monorepo**
 
-| Langkah                                                                   | Tujuan                       |
-| ------------------------------------------------------------------------- | ---------------------------- |
-| Tambahkan `mx-core-docs` ke `workspaces`                                  | Bisa di-manage npm root      |
-| Tambahkan alias di `tsconfig.base.json`                                   | Resolusi `mx-core-docs/*`    |
-| Tambahkan `transpilePackages` di `apps/frontend/next.config.js`           | Dapat diakses dari frontend  |
-| Import 1 komponen ringan → uji di halaman frontend (bukan seluruh plugin) | Validasi kompatibilitas awal |
+Berikut ini adalah panduan **rinci dan sistematis** untuk melaksanakan **🔁 Tahap 4 — Integrasi Plugin `mx-core-docs` ke Monorepo**, termasuk pembuatan dan konfigurasi awal `apps/frontend`, serta penyesuaian lintas konfigurasi di `tsconfig`, alias module, dan setup build agar `apps/frontend` bisa mengakses plugin.
+
+---
+
+## 🧱 **Struktur Awal Target**
+
+```
+mx-core/
+├── apps/
+│   └── frontend/             ✅ ← dibuat sekarang
+├── plugins/
+│   └── mx-core-docs/         ✅ ← sudah ada
+├── packages/
+│   └── ...                   ✅ opsional / sudah ada
+├── tsconfig.base.json        ✅ ← perlu update alias
+├── package.json              ✅ ← sudah ada workspaces
+└── ...
+```
+
+---
+
+## 🔹 **Langkah 1 — Buat Folder & Inisialisasi Frontend App**
+
+**Tujuan:** Menyiapkan struktur `apps/frontend` sebagai aplikasi utama monorepo.
+
+**Langkah:**
+
+```bash
+mkdir -p apps/frontend
+cd apps/frontend
+npm init -y
+```
+
+> Atau buat manual di VSCode:
+> `apps/frontend/` dengan subfolder: `src/`, `public/`, dan file `package.json`, `next.config.js`, dll.
+
+Lalu isi `package.json` frontend sesuai dependensi root & plugin:
+
+📄 `apps/frontend/package.json`
+
+```json
+{
+  "name": "frontend",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint --fix . --ext .ts,.tsx,.js,.jsx",
+    "format": "prettier --write ."
+  },
+  "dependencies": {
+    "next": "13.4.1",
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
+  },
+  "devDependencies": {
+    "typescript": "5.0.4",
+    "tailwindcss": "3.3.2",
+    "postcss": "8.4.23",
+    "autoprefixer": "10.4.14",
+    "eslint": "^8.45.0",
+    "eslint-config-next": "13.5.6",
+    "eslint-config-prettier": "^8.8.0",
+    "prettier": "2.8.8",
+    "prettier-plugin-tailwindcss": "^0.4.1"
+  }
+}
+```
+
+---
+
+## 🔹 **Langkah 2 — Tambahkan Alias di `tsconfig.base.json`**
+
+**Tujuan:** Memungkinkan frontend mengakses `@mx-core/docs` dari plugin.
+
+📄 `tsconfig.base.json` (di root)
+
+Tambahkan:
+
+```jsonc
+{
+  "compilerOptions": {
+    // ...
+    "paths": {
+      "@mx-core/docs/*": ["plugins/mx-core-docs/src/*"]
+    }
+  }
+}
+```
+
+---
+
+## 🔹 **Langkah 3 — Update `apps/frontend/tsconfig.json`**
+
+**Isi:**
+
+```json
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "baseUrl": "src"
+  },
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "exclude": ["node_modules"]
+}
+```
+
+> Tambahkan `next-env.d.ts` di `apps/frontend/` agar typing Next.js aktif.
+
+---
+
+## 🔹 **Langkah 4 — Buat Next App Minimal**
+
+📁 Struktur awal:
+
+```
+apps/frontend/
+├── public/
+├── src/
+│   └── pages/
+│       └── index.tsx
+├── package.json
+├── next.config.js
+├── tsconfig.json
+└── tailwind.config.ts
+```
+
+📄 `src/pages/index.tsx` (contoh uji plugin):
+
+```tsx
+import { SampleComponent } from '@mx-core/docs/components/SampleComponent'; // ⬅️ Komponen ringan
+
+export default function Home() {
+  return (
+    <div className="p-4">
+      <h1>Frontend</h1>
+      <SampleComponent />
+    </div>
+  );
+}
+```
+
+> Ganti `SampleComponent` dengan komponen nyata dari plugin Anda.
+
+---
+
+## 🔹 **Langkah 5 — Konfigurasi Tailwind di `frontend`**
+
+Salin dari plugin:
+
+📄 `apps/frontend/tailwind.config.ts`
+
+```ts
+import type { Config } from 'tailwindcss';
+
+const config: Config = {
+  content: [
+    './src/**/*.{ts,tsx,js,jsx}',
+    '../../plugins/mx-core-docs/src/**/*.{ts,tsx}',
+  ],
+  theme: {
+    extend: {},
+  },
+  plugins: [require('@tailwindcss/forms'), require('@tailwindcss/typography')],
+};
+
+export default config;
+```
+
+📄 `postcss.config.js`
+
+```js
+module.exports = {
+  plugins: {
+    tailwindcss: {},
+    autoprefixer: {},
+  },
+};
+```
+
+---
+
+## 🔹 **Langkah 6 — Tambahkan `transpilePackages` (optional)**
+
+📄 `apps/frontend/next.config.js`
+
+```js
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  reactStrictMode: true,
+  transpilePackages: ['@mx-core/docs'], // ⬅️ agar dapat di-import dari plugin
+};
+
+module.exports = nextConfig;
+```
+
+---
+
+## 🔹 **Langkah 7 — Jalankan Dev**
+
+```bash
+npm run dev -w frontend
+```
+
+---
+
+## ✅ Checkpoint: Setelah Langkah 7
+
+| Target                                  | Status |
+| --------------------------------------- | ------ |
+| Struktur `apps/frontend/` lengkap       | ✅     |
+| `package.json` konsisten dengan root    | ✅     |
+| Alias `@mx-core/docs` bisa digunakan    | ✅     |
+| Komponen dari plugin berhasil di-import | ✅     |
+| Tailwind dan Next.js berjalan normal    | ✅     |
+
+---
+
+## ✅ Checklist Tahap 4
+
+| Komponen                                   | Status |
+| ------------------------------------------ | ------ |
+| `apps/frontend/` dibuat                    | ✅     |
+| `tsconfig.base.json` ditambahkan alias     | ✅     |
+| `frontend/tsconfig.json` extend base       | ✅     |
+| `next.config.js` pakai `transpilePackages` | ✅     |
+| Bisa import komponen plugin                | ✅     |
+| `npm run dev -w frontend` berhasil         | ✅     |
+
+---
+
+## 📌 Catatan Tambahan
+
+- Plugin `mx-core-docs` tetap bekerja secara **terisolasi**, namun kini dapat digunakan sebagian oleh `apps/frontend`.
+- Ini sangat berguna untuk _progressive adoption_ (adopsi bertahap) dan _modular development_.
 
 🟩 **Checkpoint: Komponen plugin dapat diakses oleh frontend**
 

@@ -1,0 +1,11 @@
+# Output build
+dist/
+
+# IDE / Editor
+.vscode/
+*.log
+*.tsbuildinfo
+
+# Sistem operasi
+.DS_Store
+Thumbs.db

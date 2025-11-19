@@ -10,7 +10,6 @@ module.exports = {
     es6: true,
   },
   parserOptions: {
-    project: './tsconfig.json',
     tsconfigRootDir: __dirname,
     sourceType: 'module',
   },
@@ -41,4 +40,22 @@ module.exports = {
     '@typescript-eslint/no-var-requires': 'off',
     '@typescript-eslint/ban-ts-comment': 'off',
   },
-}
+  ignorePatterns: ['**/*.js', '!*.eslintrc.js'],
+
+  overrides: [
+    {
+      files: ['apps/frontend/**/*.{ts,tsx,js,jsx}'],
+      parserOptions: {
+        project: './apps/frontend/tsconfig.json',
+        tsconfigRootDir: __dirname,
+      },
+    },
+    {
+      files: ['plugins/mx-core-docs/**/*.{ts,tsx,js,jsx}'],
+      parserOptions: {
+        project: './plugins/mx-core-docs/tsconfig.json',
+        tsconfigRootDir: __dirname,
+      },
+    },
+  ],
+};

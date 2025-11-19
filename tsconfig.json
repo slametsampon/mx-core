@@ -1,4 +1,16 @@
 {
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "module": "commonjs", // atau 'esnext' jika diperlukan
+    "target": "esnext", // opsional, bisa disesuaikan
+    "strict": true, // opsional
+    "skipLibCheck": true // opsional
+  },
   "files": [],
-  "references": [{ "path": "./plugins/mx-core-docs" }]
+  "references": [
+    { "path": "./plugins/mx-core-docs" },
+    { "path": "./apps/frontend" },
+    { "path": "./packages/core" }
+  ]
 }

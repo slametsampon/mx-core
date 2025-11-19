@@ -1,0 +1,45 @@
+name: Preview Plugin Docs
+
+on:
+  push:
+    paths:
+      - 'plugins/mx-core-docs/**' # 🔁 Hanya trigger jika plugin berubah
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  build-deploy-docs-preview:
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: plugins/mx-core-docs
+
+    steps:
+      - name: 📦 Checkout Repo
+        uses: actions/checkout@v3
+
+      - name: 🧰 Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: 🔧 Install Dependencies
+        run: npm install
+
+      - name: 🏗️ Build & Export Plugin Docs
+        run: |
+          npm run build
+          npm run export
+
+      - name: 🚀 Deploy to GitHub Pages (Preview)
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: plugins/mx-core-docs/out
+          destination_dir: docs-preview # ✅ Hasil deploy ke sini
+          publish_branch: gh-pages

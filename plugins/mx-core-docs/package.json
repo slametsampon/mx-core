@@ -11,6 +11,7 @@
     "analyze": "cross-env ANALYZE=true next build",
     "lint": "next lint --fix --dir src/app --dir src/components --dir src/content",
     "format": "prettier --write .",
+    "build:ts": "tsc -p tsconfig.build.json",
     "postexport": "echo > out/.nojekyll"
   },
   "dependencies": {
