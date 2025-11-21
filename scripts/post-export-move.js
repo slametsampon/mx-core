@@ -88,6 +88,19 @@ async function moveExportedFiles() {
     await fse.copy(staticSrc, staticDstForLocal);
     console.log('[✔] Static assets copied to /out/static (for local build)');
   }
+  // 🔍 Tambahkan ini
+  const kbarSrc = path.resolve(
+    __dirname,
+    '../plugins/mx-core-docs/public/search-kbar.json'
+  );
+  const kbarDst = path.join(TARGET_DIR, 'search-kbar.json');
+
+  if (fs.existsSync(kbarSrc)) {
+    await fse.copy(kbarSrc, kbarDst);
+    console.log('[✔] search-kbar.json copied to /frontend');
+  } else {
+    console.warn('[⚠️] search-kbar.json not found.');
+  }
 
   console.log('\n✅ Semua export berhasil dipindahkan ke: /frontend/');
 }
