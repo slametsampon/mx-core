@@ -3,10 +3,11 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - main # 🚀 Trigger saat push ke 'main'
+      - main
+      - feat/plugin-docs # ⬅️ Tambah baris ini
 
 permissions:
-  contents: write # 🛡️ Perlu untuk push ke gh-pages
+  contents: write
 
 jobs:
   build-and-deploy:
@@ -16,23 +17,21 @@ jobs:
       - name: ⬇️ Checkout Repository
         uses: actions/checkout@v3
 
-      - name: ⚙️ Setup Node.js (v22.x)
+      - name: ⚙️ Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 22 # 🧠 Cocokkan dengan lokal: v22.19.0
-          check-latest: true # ⬅️ Ambil patch terbaru yang tersedia
+          node-version: 22
+          cache: npm
 
       - name: 📦 Install Dependencies
         run: npm install
 
-      - name: 🏗️ Build & Export Static Site
-        run: |
-          npm run build
-          npm run export
+      - name: 🏗️ Build Monorepo
+        run: npm run build:all
 
-      - name: 🚀 Deploy to GitHub Pages
+      - name: 🚀 Deploy ke GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./out # ✅ Folder hasil export Next.js
-          publish_branch: gh-pages # ✅ Branch Pages (pastikan ini aktif di Settings)
+          publish_dir: apps/frontend/out
+          publish_branch: gh-pages
