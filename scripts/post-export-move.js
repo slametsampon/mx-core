@@ -93,7 +93,7 @@ async function moveExportedFiles() {
     __dirname,
     '../plugins/mx-core-docs/src/public/search-kbar.json'
   );
-  const kbarDst = path.join(TARGET_DIR, 'search-kbar.json');
+  const kbarDst = path.join(targetDocsDir, 'search-kbar.json');
 
   if (fs.existsSync(kbarSrc)) {
     await fse.copy(kbarSrc, kbarDst);
