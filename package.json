@@ -36,5 +36,15 @@
     "ts-node": "^10.9.2",
     "turbo": "^2.6.1",
     "typescript": "5.0.4"
+  },
+  "ts-node": {
+    "compilerOptions": {
+      "baseUrl": ".",
+      "paths": {
+        "@mx-core/core": [
+          "packages/core/src"
+        ]
+      }
+    }
   }
 }
