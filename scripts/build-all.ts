@@ -16,7 +16,27 @@ function logCommand(cmd: string, cwd?: string) {
 
 function runSync(cmd: string, cwd?: string) {
   logCommand(cmd, cwd);
-  execSync(cmd, { stdio: 'inherit', cwd });
+  execSync(cmd, {
+    stdio: 'inherit',
+    cwd,
+    shell: process.platform === 'win32' ? 'cmd.exe' : '/bin/sh',
+  });
+}
+
+function cleanDirs() {
+  const cwd = 'plugins/mx-core-docs';
+  const outPath = path.join(cwd, 'out');
+  const nextPath = path.join(cwd, '.next');
+
+  if (fs.existsSync(outPath)) {
+    fs.rmSync(outPath, { recursive: true, force: true });
+    console.log(`🧹 Folder ${outPath} dihapus`);
+  }
+
+  if (fs.existsSync(nextPath)) {
+    fs.rmSync(nextPath, { recursive: true, force: true });
+    console.log(`🧹 Folder ${nextPath} dihapus`);
+  }
 }
 
 function checkOutDirExists(): boolean {
@@ -39,12 +59,8 @@ function failAndExit(reason: string) {
 async function main() {
   // STEP 1: Clean & Build Plugin UI
   logTitle('Clean & Build Plugin UI (mx-core-docs)');
-  runSync(
-    'powershell -Command "if (Test-Path .next) { Remove-Item -Recurse -Force .next }; if (Test-Path out) { Remove-Item -Recurse -Force out }"',
-    'plugins/mx-core-docs'
-  );
-
-  runSync('npm run build', 'plugins/mx-core-docs'); // hanya build
+  cleanDirs();
+  runSync('npm run build', 'plugins/mx-core-docs'); // ⬅️ Hanya build (output: export sudah di config)
 
   if (!checkOutDirExists()) {
     failAndExit('next build tidak menghasilkan folder /out');
@@ -52,10 +68,9 @@ async function main() {
 
   // STEP 2: Tambahkan .nojekyll
   logTitle('Tambahkan .nojekyll jika out/ ada isinya');
-  runSync(
-    "powershell -Command \"if ((Test-Path 'out') -and (Get-ChildItem 'out' | Measure-Object).Count -gt 0) { New-Item -Path 'out/.nojekyll' -ItemType File -Force }\"",
-    'plugins/mx-core-docs'
-  );
+  const nojekyllPath = path.resolve('plugins/mx-core-docs/out/.nojekyll');
+  fs.writeFileSync(nojekyllPath, '');
+  console.log(`📄 File .nojekyll ditambahkan ke: ${nojekyllPath}`);
 
   // STEP 3: Generate plugin-manifest.json
   logTitle('Generate plugin-manifest.json');
