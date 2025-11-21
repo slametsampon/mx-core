@@ -3,34 +3,25 @@
 const { withContentlayer } = require('next-contentlayer');
 const path = require('path');
 
-/** @type {import('next').NextConfig} */
-const isProd = process.env.NODE_ENV === 'production';
+const isGithubPages = process.env.GITHUB_PAGES === 'true';
 
-// ⚙️ Ganti sesuai nama plugin Anda (folder di GitHub Pages)
-const pluginBasePath = isProd ? '/frontend/docs' : '';
+/** @type {import('next').NextConfig} */
+const pluginBasePath = isGithubPages ? '/mx-core/frontend/docs' : '';
 const assetPrefix = pluginBasePath;
 
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
-
-  // ✅ Penting untuk mendukung static export
   output: 'export',
-
-  // ✅ Penting untuk URL konsisten: /docs/ → /docs/index.html
   trailingSlash: true,
 
-  // ✅ Agar <Image /> tidak error di static mode
   images: {
     unoptimized: true,
   },
 
-  // ✅ Digunakan oleh router & komponen frontend
   basePath: pluginBasePath,
-
   assetPrefix: assetPrefix,
 
-  // ✅ Bisa diakses via process.env.BASE_PATH (client & server)
   env: {
     BASE_PATH: pluginBasePath,
   },
@@ -42,7 +33,6 @@ const nextConfig = {
       use: ['@svgr/webpack'],
     });
 
-    // ✅ Alias untuk konten contentlayer
     config.resolve.alias['contentlayer/generated'] = path.resolve(
       __dirname,
       'contentlayer/generated'
