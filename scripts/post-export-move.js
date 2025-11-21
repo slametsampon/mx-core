@@ -91,7 +91,7 @@ async function moveExportedFiles() {
   // 🔍 Tambahkan ini
   const kbarSrc = path.resolve(
     __dirname,
-    '../plugins/mx-core-docs/public/search-kbar.json'
+    '../plugins/mx-core-docs/src/public/search-kbar.json'
   );
   const kbarDst = path.join(TARGET_DIR, 'search-kbar.json');
 
