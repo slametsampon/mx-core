@@ -3,10 +3,11 @@
 const { withContentlayer } = require('next-contentlayer');
 const path = require('path');
 
+// ✅ Deteksi mode produksi dan GitHub Pages
 const isProd = process.env.NODE_ENV === 'production';
 const isGithubPages = process.env.GITHUB_PAGES === 'true';
 
-// 🔧 Set basePath & assetPrefix berdasarkan mode
+// ✅ Path khusus untuk GitHub Pages
 const pluginBasePath = isGithubPages
   ? '/mx-core/frontend/docs'
   : isProd
