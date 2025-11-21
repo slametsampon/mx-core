@@ -88,6 +88,7 @@ async function moveExportedFiles() {
     await fse.copy(staticSrc, staticDstForLocal);
     console.log('[✔] Static assets copied to /out/static (for local build)');
   }
+
   // 🔍 Tambahkan ini
   const kbarSrc = path.resolve(
     __dirname,

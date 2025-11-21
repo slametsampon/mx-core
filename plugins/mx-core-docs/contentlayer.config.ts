@@ -194,15 +194,15 @@ export default makeSource({
       rehypePresetMinify,
     ],
   },
-  onSuccess: async () => {
-    console.log('📦 Running post-processing after Contentlayer generation...');
+  // onSuccess: async () => {
+  //   console.log('📦 Running post-processing after Contentlayer generation...');
 
-    const mod = await import('./.contentlayer/generated/index.mjs');
-    const allBlogs = (mod.allBlogs ?? []) as BlogType[];
+  //   const mod = await import('./.contentlayer/generated/index.mjs');
+  //   const allBlogs = (mod.allBlogs ?? []) as BlogType[];
 
-    if (!allBlogs.length) return;
+  //   if (!allBlogs.length) return;
 
-    createTagAndAuthorData(allBlogs);
-    createSearchAssets(allBlogs);
-  },
+  //   createTagAndAuthorData(allBlogs);
+  //   createSearchAssets(allBlogs);
+  // },
 });
