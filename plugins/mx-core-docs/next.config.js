@@ -3,24 +3,31 @@
 const { withContentlayer } = require('next-contentlayer');
 const path = require('path');
 
+const isProd = process.env.NODE_ENV === 'production';
 const isGithubPages = process.env.GITHUB_PAGES === 'true';
 
-/** @type {import('next').NextConfig} */
-const pluginBasePath = isGithubPages ? '/mx-core/frontend/docs' : '';
+// 🔧 Set basePath & assetPrefix berdasarkan mode
+const pluginBasePath = isGithubPages
+  ? '/mx-core/frontend/docs'
+  : isProd
+  ? '/frontend/docs'
+  : '';
+
 const assetPrefix = pluginBasePath;
 
+/** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
-  output: 'export',
   trailingSlash: true,
+  output: 'export',
+
+  basePath: pluginBasePath,
+  assetPrefix: assetPrefix,
 
   images: {
     unoptimized: true,
   },
-
-  basePath: pluginBasePath,
-  assetPrefix: assetPrefix,
 
   env: {
     BASE_PATH: pluginBasePath,
