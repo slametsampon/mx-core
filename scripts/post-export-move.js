@@ -50,13 +50,13 @@ async function moveExportedFiles() {
     process.exit(1);
   }
 
-  // Setelah berhasil copy plugin UI
+  // ⬇️ Salin hasil build dari plugin UI
   if (fs.existsSync(pluginDocsOut)) {
     await fse.copy(pluginDocsOut, targetDocsDir);
     console.log('[✔] Plugin UI copied to /frontend/docs');
 
-    // Tambahkan file .nojekyll
-    const nojekyllPath = path.join(pluginDocsOut, '.nojekyll');
+    // ➕ Tambahkan .nojekyll
+    const nojekyllPath = path.join(targetDocsDir, '.nojekyll');
     fs.writeFileSync(nojekyllPath, '');
     console.log('[✔] .nojekyll ditambahkan ke plugin UI export');
   } else {
@@ -64,7 +64,21 @@ async function moveExportedFiles() {
     process.exit(1);
   }
 
-  console.log('[✅] Exported files successfully moved to /frontend/');
+  // Salin static assets dari plugin UI ke out
+  const staticSrc = path.resolve(
+    __dirname,
+    '../plugins/mx-core-docs/src/public/static'
+  );
+  const staticDst = path.join(targetDocsDir, 'static');
+
+  if (fs.existsSync(staticSrc)) {
+    await fse.copy(staticSrc, staticDst);
+    console.log('[✔] Static assets copied to /frontend/docs/static');
+  } else {
+    console.warn(`[⚠️] Static assets not found at: ${staticSrc}`);
+  }
+
+  console.log('\n✅ Semua export berhasil dipindahkan ke: /frontend/');
 }
 
 moveExportedFiles();
