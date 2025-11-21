@@ -194,10 +194,11 @@ export default makeSource({
       rehypePresetMinify,
     ],
   },
-  onSuccess: async (importData) => {
+  onSuccess: async () => {
     console.log('📦 Running post-processing after Contentlayer generation...');
-    const imported = await importData();
-    const allBlogs = imported?.allBlogs || [];
+
+    const mod = await import('./.contentlayer/generated/index.mjs');
+    const allBlogs = (mod.allBlogs ?? []) as BlogType[];
 
     if (!allBlogs.length) return;
 
