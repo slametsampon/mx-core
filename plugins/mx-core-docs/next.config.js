@@ -9,7 +9,7 @@ const isGithubPages = process.env.GITHUB_PAGES === 'true';
 
 // ✅ Path khusus untuk GitHub Pages
 const pluginBasePath = isGithubPages
-  ? '/mx-core/frontend/docs'
+  ? '/mx-core'
   : isProd
   ? '/frontend/docs'
   : '';
