@@ -12,6 +12,9 @@
 /.next/
 /out/
 
+# Next.js export output
+apps/frontend/out/
+
 # production
 /build
 

@@ -2,7 +2,6 @@
 
 import path from 'path';
 import fs from 'fs';
-import type { Express } from 'express'; // ✅ Ini penting
 
 export interface PluginMeta {
   name: string;

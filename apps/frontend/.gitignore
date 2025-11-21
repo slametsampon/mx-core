@@ -10,7 +10,7 @@ dist/
 .DS_Store
 Thumbs.db
 
-# Turborepo cache
+# Turborepo
 .turbo/
 
 # next.js

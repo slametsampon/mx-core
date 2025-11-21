@@ -5,12 +5,18 @@
   "packageManager": "npm@11.4.2",
   "scripts": {
     "dev": "npm run dev -w apps/frontend",
-    "build": "npm run build:manifest && turbo run build",
+    "build": "npm run build:manifest && npm run build:frontend && npm run export:frontend",
+    "build:frontend": "npm run --workspace=apps/frontend build",
+    "export:frontend": "npm run --workspace=apps/frontend export && node scripts/post-export-move.js",
+    "preview:frontend": "serve apps/frontend/out",
     "build:docs": "npm run build -w mx-core-docs",
+    "export:docs": "npm run export -w mx-core-docs",
     "build:manifest": "ts-node scripts/generate-plugin-manifest.ts",
+    "build:turbo": "npm run build:manifest && turbo run build",
+    "build:all": "ts-node scripts/build-all.ts",
     "lint": "eslint --fix apps/**/*.{js,ts,jsx,tsx} plugins/**/*.{js,ts,jsx,tsx}",
     "format": "prettier --write .",
-    "deploy:docs": "npm run export -w mx-core-docs && gh-pages -d plugins/mx-core-docs/out"
+    "deploy:docs": "npm run export:docs && gh-pages -d plugins/mx-core-docs/out"
   },
   "workspaces": [
     "apps/*",
@@ -19,9 +25,11 @@
   ],
   "devDependencies": {
     "@types/express": "^5.0.5",
+    "cross-env": "^10.1.0",
     "eslint": "^8.45.0",
     "eslint-config-next": "13.5.6",
     "eslint-config-prettier": "^8.8.0",
+    "fs-extra": "^11.3.2",
     "gh-pages": "^6.3.0",
     "prettier": "2.8.8",
     "prettier-plugin-tailwindcss": "^0.4.1",

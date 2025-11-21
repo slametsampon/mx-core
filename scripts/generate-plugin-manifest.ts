@@ -5,11 +5,28 @@ import path from 'path';
 import { loadPlugins, PluginMeta } from '@mx-core/core';
 
 async function main() {
-  const plugins: PluginMeta[] = await loadPlugins('plugins');
+  const pluginsDir = 'plugins';
+  console.log(`🔍 Scanning plugins from: ${pluginsDir}`);
+
+  const plugins: PluginMeta[] = await loadPlugins(pluginsDir);
+
+  if (plugins.length === 0) {
+    console.warn('⚠️  Tidak ada plugin UI yang ditemukan.');
+  } else {
+    console.log(`✅ Total plugin UI terdeteksi: ${plugins.length}`);
+    for (const plugin of plugins) {
+      console.log(`   • ${plugin.name} → basePath: ${plugin.basePath}`);
+    }
+  }
+
   const outPath = path.resolve('apps/frontend/public/plugin-manifest.json');
 
   fs.writeFileSync(outPath, JSON.stringify(plugins, null, 2));
-  console.log(`📝 Plugin manifest generated: ${outPath}`);
+
+  console.log(`📝 Plugin manifest berhasil ditulis ke: ${outPath}`);
 }
 
-main();
+main().catch((err) => {
+  console.error('❌ Gagal generate plugin-manifest:', err.message);
+  process.exit(1);
+});

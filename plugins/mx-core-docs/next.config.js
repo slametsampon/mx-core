@@ -7,7 +7,8 @@ const path = require('path');
 const isProd = process.env.NODE_ENV === 'production';
 
 // ⚙️ Ganti sesuai nama plugin Anda (folder di GitHub Pages)
-const pluginBasePath = isProd ? '/mx-core-docs' : '';
+const pluginBasePath = isProd ? '/frontend/docs' : '';
+const assetPrefix = pluginBasePath;
 
 const nextConfig = {
   reactStrictMode: true,
@@ -26,6 +27,8 @@ const nextConfig = {
 
   // ✅ Digunakan oleh router & komponen frontend
   basePath: pluginBasePath,
+
+  assetPrefix: assetPrefix,
 
   // ✅ Bisa diakses via process.env.BASE_PATH (client & server)
   env: {

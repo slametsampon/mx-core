@@ -4,8 +4,8 @@ import type { Config } from 'tailwindcss';
 
 const config: Config = {
   content: [
-    './src/**/*.{ts,tsx,js,jsx}',
-    '../../plugins/mx-core-docs/src/**/*.{ts,tsx}',
+    './app/**/*.{ts,tsx,js,jsx}', // ✅ sesuai struktur App Router
+    '../../plugins/mx-core-docs/src/**/*.{ts,tsx}', // ✅ tetap sertakan plugin
   ],
   theme: {
     extend: {},
