@@ -24,7 +24,7 @@ import rehypePrismPlus from 'rehype-prism-plus';
 import rehypePresetMinify from 'rehype-preset-minify';
 import siteMetadata from './src/data/siteMetadata';
 import { allCoreContent, sortPosts } from 'pliny/utils/contentlayer.js';
-import type { Blog as BlogType } from '.contentlayer/generated';
+import type { Blog as BlogType } from './.contentlayer/generated';
 
 const root = process.cwd(); // Akan otomatis menunjuk ke plugins/mx-core-docs
 
@@ -194,14 +194,14 @@ export default makeSource({
       rehypePresetMinify,
     ],
   },
-  // onSuccess: async (importData) => {
-  //   console.log('📦 Running post-processing after Contentlayer generation...');
-  //   const imported = await importData();
-  //   const allBlogs = imported?.allBlogs || [];
+  onSuccess: async (importData) => {
+    console.log('📦 Running post-processing after Contentlayer generation...');
+    const imported = await importData();
+    const allBlogs = imported?.allBlogs || [];
 
-  //   if (!allBlogs.length) return;
+    if (!allBlogs.length) return;
 
-  //   createTagAndAuthorData(allBlogs);
-  //   createSearchAssets(allBlogs);
-  // },
+    createTagAndAuthorData(allBlogs);
+    createSearchAssets(allBlogs);
+  },
 });
