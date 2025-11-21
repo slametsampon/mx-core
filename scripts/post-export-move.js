@@ -78,6 +78,17 @@ async function moveExportedFiles() {
     console.warn(`[⚠️] Static assets not found at: ${staticSrc}`);
   }
 
+  // ⬇️ Salin static assets ke out/static (untuk lokal serve)
+  const staticDstForLocal = path.resolve(
+    __dirname,
+    '../plugins/mx-core-docs/out/static'
+  );
+
+  if (fs.existsSync(staticSrc)) {
+    await fse.copy(staticSrc, staticDstForLocal);
+    console.log('[✔] Static assets copied to /out/static (for local build)');
+  }
+
   console.log('\n✅ Semua export berhasil dipindahkan ke: /frontend/');
 }
 
