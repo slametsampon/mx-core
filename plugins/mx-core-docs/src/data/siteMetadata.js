@@ -1,9 +1,9 @@
-// data/siteMetadata.js
+// plugins/mx-core-docs/src/data/siteMetadata.js
 
 /** @type {import("pliny/config").PlinyConfig } */
 const siteMetadata = {
   title: 'Mx Core',
-  version: '0.4.3', // Fix author detail
+  version: '0.5.0', //feat/mx-core-docs
   author: 'Slamet-Sam',
   headerTitle: 'MxCore',
   description: 'Maintenance Extended Core',
