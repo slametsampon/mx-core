@@ -17,7 +17,7 @@ export default function HomePage() {
 
   useEffect(() => {
     const rawBasePath = process.env.BASE_PATH ?? '';
-    const manifestPath = '/frontend/plugin-manifest.json';
+    const manifestPath = `${rawBasePath}/plugin-manifest.json`;
 
     console.log('📦 Loading plugin manifest...');
     console.log('🔍 BASE_PATH:', rawBasePath);

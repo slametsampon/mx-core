@@ -1,1 +1,13 @@
-[]
+[
+  {
+    "name": "mx-core-docs",
+    "type": "plugin",
+    "version": "0.1.0",
+    "description": "Dokumentasi teknis berbasis static page + Contentlayer",
+    "ui": true,
+    "api": false,
+    "active": true,
+    "module": "./dist/index.js",
+    "basePath": "/docs"
+  }
+]

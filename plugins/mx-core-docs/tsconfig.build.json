@@ -3,7 +3,13 @@
   "compilerOptions": {
     "outDir": "dist",
     "noEmit": false,
-    "emitDeclarationOnly": false
+    "emitDeclarationOnly": false,
+
+    // ✅ Tambahkan baris-baris ini:
+    "module": "CommonJS",
+    "target": "ES2020",
+    "moduleResolution": "Node",
+    "types": ["node"]
   },
   "include": ["index.ts"]
 }

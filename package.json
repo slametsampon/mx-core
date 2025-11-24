@@ -10,7 +10,6 @@
     "export:frontend": "npm run --workspace=apps/frontend export && node scripts/post-export-move.js",
     "preview:frontend": "serve apps/frontend/out",
     "build:docs": "npm run build -w mx-core-docs",
-    "export:docs": "npm run export -w mx-core-docs",
     "build:manifest": "ts-node scripts/generate-plugin-manifest.ts",
     "build:turbo": "npm run build:manifest && turbo run build",
     "build:all": "ts-node scripts/build-all.ts",
