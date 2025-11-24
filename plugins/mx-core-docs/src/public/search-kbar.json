@@ -585,18 +585,6 @@
     ]
   },
   {
-    "id": "project/kom",
-    "name": "KOM - Kick-Off Meeting",
-    "section": "CONTENT",
-    "href": "/blog/project/kom",
-    "subtitle": "September 6, 2024",
-    "keywords": [
-      "kom",
-      "kontrak",
-      "spesifikasi"
-    ]
-  },
-  {
     "id": "safety/hazops",
     "name": "HAZOPS - Hazard and Operability Study",
     "section": "CONTENT",
@@ -651,6 +639,18 @@
     ]
   },
   {
+    "id": "project/kom",
+    "name": "KOM - Kick-Off Meeting",
+    "section": "CONTENT",
+    "href": "/blog/project/kom",
+    "subtitle": "September 6, 2024",
+    "keywords": [
+      "kom",
+      "kontrak",
+      "spesifikasi"
+    ]
+  },
+  {
     "id": "maintenance/5r-gemba-kaizen",
     "name": "5R - Gemba Kaizen",
     "section": "CONTENT",
@@ -661,6 +661,35 @@
       "gemba",
       "kaizen",
       "house-keeping"
+    ]
+  },
+  {
+    "id": "safety/loss-prevention",
+    "name": "Loss Prevention dalam Industri Petrokimia",
+    "section": "CONTENT",
+    "href": "/blog/safety/loss-prevention",
+    "subtitle": "September 5, 2024",
+    "keywords": [
+      "safety",
+      "loss-prevention",
+      "she",
+      "risiko"
+    ]
+  },
+  {
+    "id": "safety/safety-distance",
+    "name": "Safety Distance - Definisi, Prinsip, dan Penerapannya dalam Industri",
+    "section": "CONTENT",
+    "href": "/blog/safety/safety-distance",
+    "subtitle": "September 5, 2024",
+    "keywords": [
+      "safety",
+      "safety-distance",
+      "layout",
+      "risiko",
+      "api",
+      "osha",
+      "nfpa"
     ]
   },
   {
@@ -715,35 +744,6 @@
       "irr",
       "investasi",
       "proyek"
-    ]
-  },
-  {
-    "id": "safety/loss-prevention",
-    "name": "Loss Prevention dalam Industri Petrokimia",
-    "section": "CONTENT",
-    "href": "/blog/safety/loss-prevention",
-    "subtitle": "September 5, 2024",
-    "keywords": [
-      "safety",
-      "loss-prevention",
-      "she",
-      "risiko"
-    ]
-  },
-  {
-    "id": "safety/safety-distance",
-    "name": "Safety Distance - Definisi, Prinsip, dan Penerapannya dalam Industri",
-    "section": "CONTENT",
-    "href": "/blog/safety/safety-distance",
-    "subtitle": "September 5, 2024",
-    "keywords": [
-      "safety",
-      "safety-distance",
-      "layout",
-      "risiko",
-      "api",
-      "osha",
-      "nfpa"
     ]
   },
   {

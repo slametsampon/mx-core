@@ -143,6 +143,20 @@ export const Post = defineDocumentType(() => ({
   },
 }));
 
+function getPublicOutputPath(): string {
+  const mode = process.env.GITHUB_PAGES === 'true' ? 'gh-pages' : 'local';
+  const outputPath =
+    mode === 'gh-pages'
+      ? path.join(process.cwd(), 'public')
+      : path.join(process.cwd(), 'src', 'public');
+
+  console.log(
+    `📂 [env:GITHUB_PAGES=${process.env.GITHUB_PAGES}] Mode: ${mode}`
+  );
+  console.log(`📦 Output path resolved to: ${outputPath}`);
+  return outputPath;
+}
+
 function createSearchAssets(allBlogs: BlogType[]) {
   const content = allCoreContent(sortPosts(allBlogs));
   const kbarData = content.map((post) => ({
@@ -158,17 +172,28 @@ function createSearchAssets(allBlogs: BlogType[]) {
     keywords: post.tags,
   }));
 
-  // ✅ Path ke /src/public
-  const outputPath = path.join(process.cwd(), 'src', 'public');
+  const outputPath = getPublicOutputPath();
   const outputFile = path.join(outputPath, 'search-kbar.json');
 
-  if (!existsSync(outputPath)) {
+  console.log('🛠️  [createSearchAssets] Menyiapkan outputPath:', outputPath);
+  console.log(
+    '🛠️  [createSearchAssets] File output yang akan ditulis:',
+    outputFile
+  );
+
+  if (!fs.existsSync(outputPath)) {
     console.warn(`📁 Folder ${outputPath} tidak ditemukan. Membuat...`);
     fs.mkdirSync(outputPath, { recursive: true });
+  } else {
+    console.log(
+      `📁 Folder ${outputPath} ditemukan. Melanjutkan penulisan file.`
+    );
   }
 
-  writeFileSync(outputFile, JSON.stringify(kbarData, null, 2));
-  console.log(`✅ search-kbar.json berhasil ditulis ke ${outputFile}`);
+  fs.writeFileSync(outputFile, JSON.stringify(kbarData, null, 2));
+  console.log(
+    `✅ [createSearchAssets] search-kbar.json berhasil ditulis ke ${outputFile}`
+  );
 }
 
 function createTagAndAuthorData(allBlogs: BlogType[]) {
@@ -187,8 +212,33 @@ function createTagAndAuthorData(allBlogs: BlogType[]) {
     });
   });
 
-  writeFileSync('src/app/tag-data.json', JSON.stringify(tagCount));
-  writeFileSync('src/app/author-data.json', JSON.stringify(authorCount));
+  const outputPath = getPublicOutputPath();
+  const tagFile = path.join(outputPath, 'tag-data.json');
+  const authorFile = path.join(outputPath, 'author-data.json');
+
+  console.log(
+    '🛠️  [createTagAndAuthorData] Menyiapkan outputPath:',
+    outputPath
+  );
+
+  if (!fs.existsSync(outputPath)) {
+    console.warn(`📁 Folder ${outputPath} tidak ditemukan. Membuat...`);
+    fs.mkdirSync(outputPath, { recursive: true });
+  } else {
+    console.log(
+      `📁 Folder ${outputPath} ditemukan. Melanjutkan penulisan file.`
+    );
+  }
+
+  fs.writeFileSync(tagFile, JSON.stringify(tagCount, null, 2));
+  console.log(
+    `✅ [createTagAndAuthorData] tag-data.json berhasil ditulis ke ${tagFile}`
+  );
+
+  fs.writeFileSync(authorFile, JSON.stringify(authorCount, null, 2));
+  console.log(
+    `✅ [createTagAndAuthorData] author-data.json berhasil ditulis ke ${authorFile}`
+  );
 }
 
 export default makeSource({
