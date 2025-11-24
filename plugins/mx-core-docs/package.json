@@ -5,7 +5,7 @@
   "main": "index.ts",
   "scripts": {
     "dev": "next dev",
-    "build": "node --experimental-json-modules node_modules/contentlayer/bin/cli.cjs build",
+    "build": "next build",
     "build:docs": "cross-env GITHUB_PAGES=true contentlayer build && next build",
     "start": "next start",
     "export": "next export",
