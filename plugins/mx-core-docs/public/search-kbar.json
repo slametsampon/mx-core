@@ -395,6 +395,19 @@
     ]
   },
   {
+    "id": "maintenance/tco",
+    "name": "TCO - Total Cost Ownership",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/tco",
+    "subtitle": "September 26, 2024",
+    "keywords": [
+      "tco",
+      "life-cycle",
+      "umur-pakai",
+      "Risk-Management"
+    ]
+  },
+  {
     "id": "rjpp",
     "name": "RJPP - Rencana Jangka Panjang Pabrik",
     "section": "CONTENT",
@@ -408,19 +421,6 @@
       "jangka-panjang",
       "gcg",
       "bumn"
-    ]
-  },
-  {
-    "id": "maintenance/tco",
-    "name": "TCO - Total Cost Ownership",
-    "section": "CONTENT",
-    "href": "/blog/maintenance/tco",
-    "subtitle": "September 26, 2024",
-    "keywords": [
-      "tco",
-      "life-cycle",
-      "umur-pakai",
-      "Risk-Management"
     ]
   },
   {
@@ -1215,5 +1215,10 @@
       "tailwind",
       "deploy"
     ]
+  },
+  {
+    "section": "CONTENT",
+    "href": "/undefined",
+    "subtitle": "Invalid Date"
   }
 ]

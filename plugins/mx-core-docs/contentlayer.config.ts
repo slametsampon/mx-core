@@ -240,6 +240,37 @@ function createTagAndAuthorData(allBlogs: BlogType[]) {
   );
 }
 
+function readAllBlogsFromFile(): BlogType[] {
+  const blogDir = path.join(process.cwd(), '.contentlayer/generated/Blog');
+  console.log('📂 [readAllBlogsFromFile] Checking folder:', blogDir);
+
+  if (!fs.existsSync(blogDir)) {
+    console.warn('⚠️ [readAllBlogsFromFile] Folder not found:', blogDir);
+    return [];
+  }
+
+  const files = fs.readdirSync(blogDir).filter((f) => f.endsWith('.json'));
+  console.log(`📄 [readAllBlogsFromFile] Found ${files.length} blog files`);
+
+  const blogs = files.map((file, index) => {
+    const filePath = path.join(blogDir, file);
+    try {
+      const content = fs.readFileSync(filePath, 'utf-8');
+      console.log(`✅ [readAllBlogsFromFile] Blog #${index + 1}: ${file}`);
+      return JSON.parse(content);
+    } catch (err) {
+      console.error(`❌ Failed reading blog file: ${file}`, err);
+      return null;
+    }
+  });
+
+  const validBlogs = blogs.filter((b): b is BlogType => b !== null);
+  console.log(
+    `📚 [readAllBlogsFromFile] Total valid blogs: ${validBlogs.length}`
+  );
+  return validBlogs;
+}
+
 export default makeSource({
   contentDirPath: 'src/content',
   documentTypes: [Blog, Authors, Page, Post],
@@ -257,76 +288,45 @@ export default makeSource({
   },
 
   onSuccess: async () => {
-    console.log('📦 Contentlayer post-processing dimulai...');
+    console.log('📦 Contentlayer post-processing started...');
+    let allBlogs: BlogType[] = [];
 
-    try {
-      const generatedPath = pathToFileURL(
-        path.resolve('.contentlayer/generated/index.mjs')
-      ).href;
-
-      console.log(`📄 Mengimpor module Contentlayer dari: ${generatedPath}`);
-
-      const mod = await import(generatedPath);
-
+    // ✅ Prioritaskan file JSON — lebih andal dan lintas environment
+    allBlogs = readAllBlogsFromFile();
+    if (allBlogs.length === 0) {
       console.log(
-        '✅ Modul berhasil diimpor. Berikut keys yang tersedia:',
-        Object.keys(mod)
+        '🔄 [Fallback] Trying dynamic import (non-Windows environments)...'
       );
 
-      if (!('allBlogs' in mod)) {
+      try {
+        const generatedPath = pathToFileURL(
+          path.resolve('.contentlayer/generated/index.mjs')
+        ).href;
+        const mod = await import(generatedPath);
+
+        if ('allBlogs' in mod && Array.isArray(mod.allBlogs)) {
+          allBlogs = mod.allBlogs;
+          console.log(
+            `✅ [import fallback] Loaded ${allBlogs.length} blogs from module`
+          );
+        } else {
+          console.warn('⚠️ [import fallback] allBlogs not found in module');
+        }
+      } catch (err) {
         console.warn(
-          '⚠️ Tidak ditemukan properti allBlogs di module. Pastikan dokumen Blog tersedia.'
+          '⚠️ [import fallback] Skipped due to ESM restrictions or unsupported path'
         );
-        return;
       }
-
-      const allBlogs = (mod.allBlogs ?? []) as BlogType[];
-
-      console.log(`📝 Jumlah Blog ditemukan: ${allBlogs.length}`);
-      console.log(
-        '📋 Preview blog (max 3):',
-        allBlogs.slice(0, 3).map((b) => ({
-          title: b.title,
-          slug: b.slug,
-          date: b.date,
-          draft: b.draft,
-        }))
-      );
-
-      createTagAndAuthorData(allBlogs);
-      console.log('✅ tag-data.json dan author-data.json selesai dibuat.');
-
-      createSearchAssets(allBlogs);
-      console.log('✅ search-kbar.json selesai dibuat.');
-
-      console.log('✅ Post-processing Contentlayer selesai tanpa error.');
-    } catch (err: unknown) {
-      console.error('❌ Terjadi error saat post-processing Contentlayer.');
-
-      // ✅ Deteksi dan abaikan error akibat "assert"
-      if (
-        err instanceof SyntaxError &&
-        typeof err.message === 'string' &&
-        err.message.includes("Unexpected identifier 'assert'")
-      ) {
-        console.warn(
-          '⚠️ GH Pages tidak mendukung syntax `assert` di .mjs dari Contentlayer. ' +
-            'Build tetap berlanjut karena ini tidak memengaruhi output JSON.'
-        );
-        return;
-      }
-
-      // 🧠 Tampilkan error normal lainnya
-      if (err instanceof Error) {
-        console.error('🧠 Nama Error:', err.name);
-        console.error('📜 Pesan Error:', err.message);
-        console.error('🧩 Stacktrace:\n', err.stack);
-      } else {
-        console.error('📦 Error tidak diketahui:', err);
-      }
-
-      // ❌ Gagal total hanya jika error bukan karena "assert"
-      process.exitCode = 1;
     }
+
+    if (!allBlogs.length) {
+      console.warn('⚠️ No blogs found. Post-processing skipped.');
+      return;
+    }
+
+    createTagAndAuthorData(allBlogs);
+    createSearchAssets(allBlogs);
+
+    console.log('✅ Contentlayer post-processing finished successfully.');
   },
 });
