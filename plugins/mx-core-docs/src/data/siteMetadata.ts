@@ -1,4 +1,4 @@
-// plugins/mx-core-docs/src/data/siteMetadata.js
+// plugins/mx-core-docs/src/data/siteMetadata.ts
 
 /** @type {import("pliny/config").PlinyConfig } */
 const siteMetadata = {
@@ -91,4 +91,4 @@ const siteMetadata = {
   },
 };
 
-module.exports = siteMetadata;
+export default siteMetadata;

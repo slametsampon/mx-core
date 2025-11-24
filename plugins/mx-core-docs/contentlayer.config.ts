@@ -9,6 +9,8 @@ import { writeFileSync, existsSync, readFileSync, readdirSync } from 'fs';
 import readingTime from 'reading-time';
 import { slug } from 'github-slugger';
 import path from 'path';
+import fs from 'fs';
+import { pathToFileURL } from 'url'; // tambahkan import ini di atas
 import remarkGfm from 'remark-gfm';
 import remarkMath from 'remark-math';
 import {
@@ -156,7 +158,17 @@ function createSearchAssets(allBlogs: BlogType[]) {
     keywords: post.tags,
   }));
 
-  writeFileSync('public/search-kbar.json', JSON.stringify(kbarData, null, 2));
+  // ✅ Path ke /src/public
+  const outputPath = path.join(process.cwd(), 'src', 'public');
+  const outputFile = path.join(outputPath, 'search-kbar.json');
+
+  if (!existsSync(outputPath)) {
+    console.warn(`📁 Folder ${outputPath} tidak ditemukan. Membuat...`);
+    fs.mkdirSync(outputPath, { recursive: true });
+  }
+
+  writeFileSync(outputFile, JSON.stringify(kbarData, null, 2));
+  console.log(`✅ search-kbar.json berhasil ditulis ke ${outputFile}`);
 }
 
 function createTagAndAuthorData(allBlogs: BlogType[]) {
@@ -194,15 +206,60 @@ export default makeSource({
       rehypePresetMinify,
     ],
   },
+
   onSuccess: async () => {
-    console.log('📦 Running post-processing after Contentlayer generation...');
+    console.log('📦 Contentlayer post-processing dimulai...');
 
-    const mod = await import('./.contentlayer/generated/index.mjs');
-    const allBlogs = (mod.allBlogs ?? []) as BlogType[];
+    try {
+      const generatedPath = pathToFileURL(
+        path.resolve('.contentlayer/generated/index.mjs')
+      ).href;
+      console.log(`📄 Mengimpor module Contentlayer dari: ${generatedPath}`);
 
-    if (!allBlogs.length) return;
+      const mod = await import(generatedPath);
 
-    createTagAndAuthorData(allBlogs);
-    createSearchAssets(allBlogs);
+      console.log(
+        '✅ Modul berhasil diimpor. Berikut keys yang tersedia:',
+        Object.keys(mod)
+      );
+
+      if (!('allBlogs' in mod)) {
+        console.warn(
+          '⚠️ Tidak ditemukan properti allBlogs di module. Pastikan dokumen Blog tersedia.'
+        );
+        return;
+      }
+
+      const allBlogs = (mod.allBlogs ?? []) as BlogType[];
+
+      console.log(`📝 Jumlah Blog ditemukan: ${allBlogs.length}`);
+      console.log(
+        '📋 Preview blog (max 3):',
+        allBlogs.slice(0, 3).map((b) => ({
+          title: b.title,
+          slug: b.slug,
+          date: b.date,
+          draft: b.draft,
+        }))
+      );
+
+      createTagAndAuthorData(allBlogs);
+      console.log('✅ tag-data.json dan author-data.json selesai dibuat.');
+
+      createSearchAssets(allBlogs);
+      console.log('✅ search-kbar.json selesai dibuat.');
+
+      console.log('✅ Post-processing Contentlayer selesai tanpa error.');
+    } catch (err: any) {
+      console.error('❌ Terjadi error saat post-processing Contentlayer.');
+
+      if (err instanceof Error) {
+        console.error('🧠 Nama Error:', err.name);
+        console.error('📜 Pesan Error:', err.message);
+        console.error('🧩 Stacktrace:\n', err.stack);
+      } else {
+        console.error('📦 Error tidak diketahui:', err);
+      }
+    }
   },
 });

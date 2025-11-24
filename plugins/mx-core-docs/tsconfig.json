@@ -5,16 +5,20 @@
     "paths": {
       "@/*": ["./*"],
       "contentlayer/generated": ["./.contentlayer/generated"]
-    }
+    },
+    "typeRoots": ["./src/types", "./node_modules/@types"],
+    "noEmit": true,
+    "allowJs": false,
+    "declaration": false
   },
   "include": [
     "src",
     ".contentlayer/generated",
     "next-env.d.ts",
     "index.ts",
-    "next.config.*",
+    "contentlayer.config.ts",
     "tailwind.config.*",
     ".next/types/**/*.ts"
   ],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", ".next"]
 }
