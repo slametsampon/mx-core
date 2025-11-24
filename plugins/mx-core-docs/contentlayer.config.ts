@@ -5,7 +5,6 @@ import {
   ComputedFields,
   makeSource,
 } from 'contentlayer/source-files';
-import { writeFileSync, existsSync, readFileSync, readdirSync } from 'fs';
 import readingTime from 'reading-time';
 import { slug } from 'github-slugger';
 import path from 'path';

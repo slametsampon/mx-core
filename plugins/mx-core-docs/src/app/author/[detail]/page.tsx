@@ -38,8 +38,8 @@ export const generateStaticParams = async () => {
 
 export default function AuthorPage({ params }: { params: { detail: string } }) {
   const detail = decodeURI(params.detail);
-  // Capitalize first letter and convert space to dash
   const title = detail[0].toUpperCase() + detail.split(' ').join('-').slice(1);
+
   const filteredPosts = allCoreContent(
     sortPosts(
       allBlogs.filter(
@@ -48,8 +48,18 @@ export default function AuthorPage({ params }: { params: { detail: string } }) {
       )
     )
   );
-  //get author
+
   const authorResult = allAuthors.find((p) => p.slug === detail);
+
+  if (!authorResult) {
+    return (
+      <div className="py-10 text-center text-red-600">
+        <h1 className="text-2xl font-bold">Author tidak ditemukan</h1>
+        <p>Pastikan slug di URL sesuai dengan yang tersedia.</p>
+      </div>
+    );
+  }
+
   return (
     <>
       <CardAuthor author={authorResult} />

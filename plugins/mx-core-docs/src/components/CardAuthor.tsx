@@ -1,8 +1,21 @@
-// components/CardAuthor.js
+// plugins/mx-core-docs/src/components/CardAuthor.tsx
 
 import Image from './Image';
 
-const CardAuthor = ({ author }) => {
+type AuthorType = {
+  name: string;
+  occupation?: string;
+  company?: string;
+  email?: string;
+  bio?: string;
+  avatar?: string;
+};
+
+interface CardAuthorProps {
+  author: AuthorType;
+}
+
+const CardAuthor = ({ author }: CardAuthorProps) => {
   const basePath = process.env.BASE_PATH || '';
   const fallbackAvatar = '/static/images/default-avatar.png';
   const avatarSrc = `${basePath}${author.avatar || fallbackAvatar}`;

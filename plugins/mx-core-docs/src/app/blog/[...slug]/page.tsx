@@ -44,11 +44,11 @@ export async function generateMetadata({
   if (post.images) {
     imageList = typeof post.images === 'string' ? [post.images] : post.images;
   }
-  const ogImages = imageList.map((img) => {
-    return {
+  const ogImages = imageList
+    .filter((img): img is string => typeof img === 'string')
+    .map((img) => ({
       url: img.includes('http') ? img : siteMetadata.siteUrl + img,
-    };
-  });
+    }));
 
   return {
     title: post.title,
@@ -69,7 +69,7 @@ export async function generateMetadata({
       card: 'summary_large_image',
       title: post.title,
       description: post.summary,
-      images: imageList,
+      images: imageList.filter((img): img is string => typeof img === 'string'),
     },
   };
 }
