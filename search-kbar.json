@@ -1,10 +1,112 @@
 [
   {
+    "id": "maintenance/mx-core-monorepo",
+    "name": "MxCore – Monorepo",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/mx-core-monorepo",
+    "subtitle": "November 16, 2025",
+    "keywords": [
+      "Maintenance",
+      "System",
+      "mx-core",
+      "monorepo",
+      "modular",
+      "dinamis-plugin",
+      "Scalable"
+    ]
+  },
+  {
+    "id": "maintenance/mx-core-package-json",
+    "name": "MxCore – MonPackage.json",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/mx-core-package-json",
+    "subtitle": "November 16, 2025",
+    "keywords": [
+      "Maintenance",
+      "System",
+      "mx-core",
+      "monorepo",
+      "modular",
+      "dinamis-plugin",
+      "Scalable",
+      "package-json"
+    ]
+  },
+  {
+    "id": "maintenance/mx-core-plugin-loader",
+    "name": "MxCore – MonPackage.json",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/mx-core-plugin-loader",
+    "subtitle": "November 16, 2025",
+    "keywords": [
+      "Maintenance",
+      "System",
+      "mx-core",
+      "monorepo",
+      "modular",
+      "dinamis-plugin",
+      "Scalable",
+      "package-json",
+      "plugin-loader"
+    ]
+  },
+  {
+    "id": "maintenance/mx-core",
+    "name": "MxCore – Industrial Maintenance Digital Platform",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/mx-core",
+    "subtitle": "November 13, 2025",
+    "keywords": [
+      "Maintenance",
+      "System",
+      "mx-core",
+      "Risk-Management",
+      "rbm",
+      "modular",
+      "dinamis-plugin",
+      "cmms",
+      "iot",
+      "dashboard",
+      "Scalable",
+      "AI-Driven"
+    ]
+  },
+  {
+    "id": "maintenance/maintenance-tier",
+    "name": "Penerapan Tier dalam Risk-Based Maintenance untuk Industri Petrokimia",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/maintenance-tier",
+    "subtitle": "November 10, 2025",
+    "keywords": [
+      "Maintenance",
+      "tier",
+      "API RP 580",
+      "Risk-Management",
+      "rbm",
+      "tbm",
+      "critical"
+    ]
+  },
+  {
+    "id": "maintenance/maintenance-kalibrasi",
+    "name": "Panduan Lengkap Kalibrasi Instrumentasi Proses untuk Industri Petrokimia - Konsep, Prosedur, Istilah, dan Praktik Terbaik",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/maintenance-kalibrasi",
+    "subtitle": "November 8, 2025",
+    "keywords": [
+      "Maintenance",
+      "kalibrtasi",
+      "API-RP-551",
+      "iso-1025",
+      "iso-10012"
+    ]
+  },
+  {
     "id": "maintenance/maintenance-rbm",
     "name": "Risk-Based Maintenance (RBM) di Industri Petrokimia - Strategi, Praktik, dan Studi Kasus PT. Petro Oxo Nusantara",
     "section": "CONTENT",
-    "href": "/mx-core/blog/maintenance/maintenance-rbm",
-    "subtitle": "November 11, 2025",
+    "href": "/blog/maintenance/maintenance-rbm",
+    "subtitle": "November 8, 2025",
     "keywords": [
       "Maintenance",
       "System",
@@ -19,7 +121,7 @@
     "id": "general/retensi-belajar",
     "name": "Teach to Master - Strategi Belajar Efektif dengan Mengajar",
     "section": "CONTENT",
-    "href": "/mx-core/blog/general/retensi-belajar",
+    "href": "/blog/general/retensi-belajar",
     "subtitle": "October 18, 2025",
     "keywords": [
       "belajar",
@@ -31,7 +133,7 @@
     "id": "Management/housekeeping-keandalan",
     "name": "Housekeeping sebagai Cerminan Keandalan Pabrik Petrokimia",
     "section": "CONTENT",
-    "href": "/mx-core/blog/Management/housekeeping-keandalan",
+    "href": "/blog/Management/housekeeping-keandalan",
     "subtitle": "October 13, 2025",
     "keywords": [
       "Pemeliharaan",
@@ -49,7 +151,7 @@
     "id": "website/github-custom-domain",
     "name": "Deploy Next.js ke GitHub Pages dengan Custom Domain Gratis",
     "section": "CONTENT",
-    "href": "/mx-core/blog/website/github-custom-domain",
+    "href": "/blog/website/github-custom-domain",
     "subtitle": "October 10, 2025",
     "keywords": [
       "GitHub-Actions",
@@ -62,7 +164,7 @@
     "id": "website/konfigurtasi-blog",
     "name": "Konfigurasi Lengkap Next.js Blog (mx-core)",
     "section": "CONTENT",
-    "href": "/mx-core/blog/website/konfigurtasi-blog",
+    "href": "/blog/website/konfigurtasi-blog",
     "subtitle": "October 8, 2025",
     "keywords": [
       "static-web",
@@ -75,10 +177,24 @@
     ]
   },
   {
+    "id": "markdown/github-markdown-guide",
+    "name": "Panduan Markdown",
+    "section": "CONTENT",
+    "href": "/blog/markdown/github-markdown-guide",
+    "subtitle": "October 7, 2025",
+    "keywords": [
+      "github",
+      "panduan",
+      "markdown",
+      "md",
+      "mdx"
+    ]
+  },
+  {
     "id": "markdown/math-formula-guide",
     "name": "Panduan Penulisan Formula Matematika dalam Block Markdown",
     "section": "CONTENT",
-    "href": "/mx-core/blog/markdown/math-formula-guide",
+    "href": "/blog/markdown/math-formula-guide",
     "subtitle": "October 7, 2025",
     "keywords": [
       "markdown",
@@ -90,7 +206,7 @@
     "id": "maintenance/wbs-level",
     "name": "Membangun WBS dan Estimasi Man-Hour Overhaul Peralatan Industri - Strategi Sukses Turn Around",
     "section": "CONTENT",
-    "href": "/mx-core/blog/maintenance/wbs-level",
+    "href": "/blog/maintenance/wbs-level",
     "subtitle": "September 30, 2025",
     "keywords": [
       "Turn Around",
@@ -104,7 +220,7 @@
     "id": "project/schedule-level",
     "name": "Memahami Tingkatan Schedule dalam Proyek EPC",
     "section": "CONTENT",
-    "href": "/mx-core/blog/project/schedule-level",
+    "href": "/blog/project/schedule-level",
     "subtitle": "September 30, 2025",
     "keywords": [
       "epc",
@@ -116,7 +232,7 @@
     "id": "project/Aanwijzing",
     "name": "Materi Aanwijzing dalam Proyek EPC Terpisah (EP dan C)",
     "section": "CONTENT",
-    "href": "/mx-core/blog/project/Aanwijzing",
+    "href": "/blog/project/Aanwijzing",
     "subtitle": "November 1, 2024",
     "keywords": [
       "epc",
@@ -128,7 +244,7 @@
     "id": "maintenance/maintenance-o-ring",
     "name": "Memilih, Merancang, dan Mencetak O-ring dalam Aplikasi Industri",
     "section": "CONTENT",
-    "href": "/mx-core/blog/maintenance/maintenance-o-ring",
+    "href": "/blog/maintenance/maintenance-o-ring",
     "subtitle": "October 18, 2024",
     "keywords": [
       "o-ring",
@@ -140,7 +256,7 @@
     "id": "maintenance/maintenance-boiler-flame-out",
     "name": "Tantangan Operasi Burner Boiler pada Beban Rendah dan Solusinya",
     "section": "CONTENT",
-    "href": "/mx-core/blog/maintenance/maintenance-boiler-flame-out",
+    "href": "/blog/maintenance/maintenance-boiler-flame-out",
     "subtitle": "October 17, 2024",
     "keywords": [
       "Maintenance",
@@ -153,7 +269,7 @@
     "id": "maintenance/maintenance-power-transformer",
     "name": "Pencegahan Kebocoran Minyak pada Power Transformer Oil-Immersed",
     "section": "CONTENT",
-    "href": "/mx-core/blog/maintenance/maintenance-power-transformer",
+    "href": "/blog/maintenance/maintenance-power-transformer",
     "subtitle": "October 17, 2024",
     "keywords": [
       "Maintenance",
@@ -167,7 +283,7 @@
     "id": "maintenance/maintenance-big-motor",
     "name": "Pemeliharaan dan Deteksi Dini Motor Induksi Tiga Fasa Daya Besar",
     "section": "CONTENT",
-    "href": "/mx-core/blog/maintenance/maintenance-big-motor",
+    "href": "/blog/maintenance/maintenance-big-motor",
     "subtitle": "October 16, 2024",
     "keywords": [
       "Maintenance",
@@ -181,7 +297,7 @@
     "id": "maintenance/Merancang-sistem-perpipaan",
     "name": "Merancang Sistem Perpipaan pada Pabrik Petrokimia",
     "section": "CONTENT",
-    "href": "/mx-core/blog/maintenance/Merancang-sistem-perpipaan",
+    "href": "/blog/maintenance/Merancang-sistem-perpipaan",
     "subtitle": "October 15, 2024",
     "keywords": [
       "standar",
@@ -195,7 +311,7 @@
     "id": "Management/maintenance-laporan",
     "name": "Panduan Pembuatan Laporan Bulanan Departemen Maintenance di Industri Petrokimia",
     "section": "CONTENT",
-    "href": "/mx-core/blog/Management/maintenance-laporan",
+    "href": "/blog/Management/maintenance-laporan",
     "subtitle": "October 14, 2024",
     "keywords": [
       "Pemeliharaan",
@@ -207,7 +323,7 @@
     "id": "project/vendor-grading",
     "name": "Strategi Evaluasi Vendor yang Efektif untuk pengadaan barang/jasa di Industri Petrokimia",
     "section": "CONTENT",
-    "href": "/mx-core/blog/project/vendor-grading",
+    "href": "/blog/project/vendor-grading",
     "subtitle": "October 12, 2024",
     "keywords": [
       "epc",
@@ -221,7 +337,7 @@
     "id": "maintenance/troubleshooting-metode",
     "name": "Panduan Troubleshooting dengan Root Cause Analysis di Pabrik Petrokimia - Metode, Implementasi, dan Studi Kasus",
     "section": "CONTENT",
-    "href": "/mx-core/blog/maintenance/troubleshooting-metode",
+    "href": "/blog/maintenance/troubleshooting-metode",
     "subtitle": "October 11, 2024",
     "keywords": [
       "fmea",
@@ -238,7 +354,7 @@
     "id": "maintenance/ftfr",
     "name": "FTFR - First-Time Fix Rate",
     "section": "CONTENT",
-    "href": "/mx-core/blog/maintenance/ftfr",
+    "href": "/blog/maintenance/ftfr",
     "subtitle": "September 27, 2024",
     "keywords": [
       "ftfr",
@@ -252,7 +368,7 @@
     "id": "Management/maintenance-manajemen",
     "name": "Efisiensi dan Keandalan dalam Manajemen Pemeliharaan",
     "section": "CONTENT",
-    "href": "/mx-core/blog/Management/maintenance-manajemen",
+    "href": "/blog/Management/maintenance-manajemen",
     "subtitle": "September 27, 2024",
     "keywords": [
       "Pemeliharaan",
@@ -266,7 +382,7 @@
     "id": "Management/maintenance-proactive",
     "name": "Transformasi dari Pemeliharaan Reaktif ke Proaktif",
     "section": "CONTENT",
-    "href": "/mx-core/blog/Management/maintenance-proactive",
+    "href": "/blog/Management/maintenance-proactive",
     "subtitle": "September 27, 2024",
     "keywords": [
       "Pemeliharaan",
@@ -279,23 +395,10 @@
     ]
   },
   {
-    "id": "maintenance/tco",
-    "name": "TCO - Total Cost Ownership",
-    "section": "CONTENT",
-    "href": "/mx-core/blog/maintenance/tco",
-    "subtitle": "September 26, 2024",
-    "keywords": [
-      "tco",
-      "life-cycle",
-      "umur-pakai",
-      "Risk-Management"
-    ]
-  },
-  {
     "id": "rjpp",
     "name": "RJPP - Rencana Jangka Panjang Pabrik",
     "section": "CONTENT",
-    "href": "/mx-core/blog/rjpp",
+    "href": "/blog/rjpp",
     "subtitle": "September 26, 2024",
     "keywords": [
       "rencana",
@@ -308,10 +411,23 @@
     ]
   },
   {
+    "id": "maintenance/tco",
+    "name": "TCO - Total Cost Ownership",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/tco",
+    "subtitle": "September 26, 2024",
+    "keywords": [
+      "tco",
+      "life-cycle",
+      "umur-pakai",
+      "Risk-Management"
+    ]
+  },
+  {
     "id": "project/cagr",
     "name": "CAGR - Compound Annual Growth Rate",
     "section": "CONTENT",
-    "href": "/mx-core/blog/project/cagr",
+    "href": "/blog/project/cagr",
     "subtitle": "September 25, 2024",
     "keywords": [
       "cagr",
@@ -325,7 +441,7 @@
     "id": "AI/patform-ai",
     "name": "Pemanfaatan AI untuk Mendukung Pekerjaan di Industri Petrokimia",
     "section": "CONTENT",
-    "href": "/mx-core/blog/AI/patform-ai",
+    "href": "/blog/AI/patform-ai",
     "subtitle": "September 20, 2024",
     "keywords": [
       "platform-ai",
@@ -338,7 +454,7 @@
     "id": "maintenance/ceramic-blanket",
     "name": "Pemeliharaan Ceramic Fiber, blanket",
     "section": "CONTENT",
-    "href": "/mx-core/blog/maintenance/ceramic-blanket",
+    "href": "/blog/maintenance/ceramic-blanket",
     "subtitle": "September 19, 2024",
     "keywords": [
       "insulasi",
@@ -353,7 +469,7 @@
     "id": "project/estimasi-epc",
     "name": "Estimasi - Biaya project (%)",
     "section": "CONTENT",
-    "href": "/mx-core/blog/project/estimasi-epc",
+    "href": "/blog/project/estimasi-epc",
     "subtitle": "September 19, 2024",
     "keywords": [
       "proyek",
@@ -366,7 +482,7 @@
     "id": "maintenance/bentuk-energi",
     "name": "Energi - Bentuk-Bentuknya",
     "section": "CONTENT",
-    "href": "/mx-core/blog/maintenance/bentuk-energi",
+    "href": "/blog/maintenance/bentuk-energi",
     "subtitle": "September 18, 2024",
     "keywords": [
       "energi",
@@ -379,7 +495,7 @@
     "id": "maintenance/SIL",
     "name": "Safety Integrity Level",
     "section": "CONTENT",
-    "href": "/mx-core/blog/maintenance/SIL",
+    "href": "/blog/maintenance/SIL",
     "subtitle": "September 10, 2024",
     "keywords": [
       "SIL",
@@ -392,7 +508,7 @@
     "id": "design/openFoam-docker",
     "name": "OpenFOAM - Open Field Operation and Manipulation",
     "section": "CONTENT",
-    "href": "/mx-core/blog/design/openFoam-docker",
+    "href": "/blog/design/openFoam-docker",
     "subtitle": "September 9, 2024",
     "keywords": [
       "OpenFOAM",
@@ -404,7 +520,7 @@
     "id": "project/FS",
     "name": "FS - Feasibility Study",
     "section": "CONTENT",
-    "href": "/mx-core/blog/project/FS",
+    "href": "/blog/project/FS",
     "subtitle": "September 9, 2024",
     "keywords": [
       "fs",
@@ -421,7 +537,7 @@
     "id": "AI/artikel-ai",
     "name": "Menulis Artikel yang Efektif dengan Prompt Engineering",
     "section": "CONTENT",
-    "href": "/mx-core/blog/AI/artikel-ai",
+    "href": "/blog/AI/artikel-ai",
     "subtitle": "September 8, 2024",
     "keywords": [
       "prompt-engineering",
@@ -434,7 +550,7 @@
     "id": "AI/prompt-engineering",
     "name": "Prompt Engineering",
     "section": "CONTENT",
-    "href": "/mx-core/blog/AI/prompt-engineering",
+    "href": "/blog/AI/prompt-engineering",
     "subtitle": "September 8, 2024",
     "keywords": [
       "prompt-engineering",
@@ -446,7 +562,7 @@
     "id": "maintenance/cpm",
     "name": "CPM - Critical Path Method",
     "section": "CONTENT",
-    "href": "/mx-core/blog/maintenance/cpm",
+    "href": "/blog/maintenance/cpm",
     "subtitle": "September 8, 2024",
     "keywords": [
       "tam",
@@ -459,7 +575,7 @@
     "id": "maintenance/TAM",
     "name": "TAM - Turn Around Management",
     "section": "CONTENT",
-    "href": "/mx-core/blog/maintenance/TAM",
+    "href": "/blog/maintenance/TAM",
     "subtitle": "September 8, 2024",
     "keywords": [
       "tam",
@@ -469,22 +585,10 @@
     ]
   },
   {
-    "id": "project/kom",
-    "name": "KOM - Kick-Off Meeting",
-    "section": "CONTENT",
-    "href": "/mx-core/blog/project/kom",
-    "subtitle": "September 6, 2024",
-    "keywords": [
-      "kom",
-      "kontrak",
-      "spesifikasi"
-    ]
-  },
-  {
     "id": "safety/hazops",
     "name": "HAZOPS - Hazard and Operability Study",
     "section": "CONTENT",
-    "href": "/mx-core/blog/safety/hazops",
+    "href": "/blog/safety/hazops",
     "subtitle": "September 6, 2024",
     "keywords": [
       "safety",
@@ -496,7 +600,7 @@
     "id": "safety/jsa",
     "name": "JSA - Job Safety Analysis",
     "section": "CONTENT",
-    "href": "/mx-core/blog/safety/jsa",
+    "href": "/blog/safety/jsa",
     "subtitle": "September 6, 2024",
     "keywords": [
       "safety",
@@ -509,7 +613,7 @@
     "id": "safety/she-api",
     "name": "Implementasi SHE (Safety, Health, and Environment) dan Standar API di Industri Petrokimia",
     "section": "CONTENT",
-    "href": "/mx-core/blog/safety/she-api",
+    "href": "/blog/safety/she-api",
     "subtitle": "September 6, 2024",
     "keywords": [
       "safety",
@@ -525,7 +629,7 @@
     "id": "safety/stbm",
     "name": "STBM - Safety Tool Box Meeting",
     "section": "CONTENT",
-    "href": "/mx-core/blog/safety/stbm",
+    "href": "/blog/safety/stbm",
     "subtitle": "September 6, 2024",
     "keywords": [
       "safety",
@@ -535,10 +639,22 @@
     ]
   },
   {
+    "id": "project/kom",
+    "name": "KOM - Kick-Off Meeting",
+    "section": "CONTENT",
+    "href": "/blog/project/kom",
+    "subtitle": "September 6, 2024",
+    "keywords": [
+      "kom",
+      "kontrak",
+      "spesifikasi"
+    ]
+  },
+  {
     "id": "maintenance/5r-gemba-kaizen",
     "name": "5R - Gemba Kaizen",
     "section": "CONTENT",
-    "href": "/mx-core/blog/maintenance/5r-gemba-kaizen",
+    "href": "/blog/maintenance/5r-gemba-kaizen",
     "subtitle": "September 5, 2024",
     "keywords": [
       "5r",
@@ -548,10 +664,39 @@
     ]
   },
   {
+    "id": "safety/loss-prevention",
+    "name": "Loss Prevention dalam Industri Petrokimia",
+    "section": "CONTENT",
+    "href": "/blog/safety/loss-prevention",
+    "subtitle": "September 5, 2024",
+    "keywords": [
+      "safety",
+      "loss-prevention",
+      "she",
+      "risiko"
+    ]
+  },
+  {
+    "id": "safety/safety-distance",
+    "name": "Safety Distance - Definisi, Prinsip, dan Penerapannya dalam Industri",
+    "section": "CONTENT",
+    "href": "/blog/safety/safety-distance",
+    "subtitle": "September 5, 2024",
+    "keywords": [
+      "safety",
+      "safety-distance",
+      "layout",
+      "risiko",
+      "api",
+      "osha",
+      "nfpa"
+    ]
+  },
+  {
     "id": "project/capex",
     "name": "CAPEX - Capital Expenditure",
     "section": "CONTENT",
-    "href": "/mx-core/blog/project/capex",
+    "href": "/blog/project/capex",
     "subtitle": "September 5, 2024",
     "keywords": [
       "capex",
@@ -565,7 +710,7 @@
     "id": "project/cogs",
     "name": "COGS - Cost of Goods Sold",
     "section": "CONTENT",
-    "href": "/mx-core/blog/project/cogs",
+    "href": "/blog/project/cogs",
     "subtitle": "September 5, 2024",
     "keywords": [
       "cogs",
@@ -578,7 +723,7 @@
     "id": "project/fid",
     "name": "FID - Final Investment Decision",
     "section": "CONTENT",
-    "href": "/mx-core/blog/project/fid",
+    "href": "/blog/project/fid",
     "subtitle": "September 5, 2024",
     "keywords": [
       "epc",
@@ -591,7 +736,7 @@
     "id": "project/irr",
     "name": "IRR - Internal Rate of Return",
     "section": "CONTENT",
-    "href": "/mx-core/blog/project/irr",
+    "href": "/blog/project/irr",
     "subtitle": "September 5, 2024",
     "keywords": [
       "epc",
@@ -602,39 +747,10 @@
     ]
   },
   {
-    "id": "safety/loss-prevention",
-    "name": "Loss Prevention dalam Industri Petrokimia",
-    "section": "CONTENT",
-    "href": "/mx-core/blog/safety/loss-prevention",
-    "subtitle": "September 5, 2024",
-    "keywords": [
-      "safety",
-      "loss-prevention",
-      "she",
-      "risiko"
-    ]
-  },
-  {
-    "id": "safety/safety-distance",
-    "name": "Safety Distance - Definisi, Prinsip, dan Penerapannya dalam Industri",
-    "section": "CONTENT",
-    "href": "/mx-core/blog/safety/safety-distance",
-    "subtitle": "September 5, 2024",
-    "keywords": [
-      "safety",
-      "safety-distance",
-      "layout",
-      "risiko",
-      "api",
-      "osha",
-      "nfpa"
-    ]
-  },
-  {
     "id": "project/epc",
     "name": "EPC - Engineering, Procurement, and Construction",
     "section": "CONTENT",
-    "href": "/mx-core/blog/project/epc",
+    "href": "/blog/project/epc",
     "subtitle": "September 4, 2024",
     "keywords": [
       "epc",
@@ -650,7 +766,7 @@
     "id": "project/proses-pengadaan-tender",
     "name": "Proses Pengadaan dan Tender dalam Proyek EPC Petrokimia",
     "section": "CONTENT",
-    "href": "/mx-core/blog/project/proses-pengadaan-tender",
+    "href": "/blog/project/proses-pengadaan-tender",
     "subtitle": "September 4, 2024",
     "keywords": [
       "epc",
@@ -666,7 +782,7 @@
     "id": "project/bed",
     "name": "BED - Basic Engineering Design",
     "section": "CONTENT",
-    "href": "/mx-core/blog/project/bed",
+    "href": "/blog/project/bed",
     "subtitle": "September 3, 2024",
     "keywords": [
       "proyek",
@@ -682,7 +798,7 @@
     "id": "project/ded",
     "name": "DED - Detail Engineering Design",
     "section": "CONTENT",
-    "href": "/mx-core/blog/project/ded",
+    "href": "/blog/project/ded",
     "subtitle": "September 3, 2024",
     "keywords": [
       "proyek",
@@ -698,7 +814,7 @@
     "id": "project/pdp-bed-ded-feed",
     "name": "PDP, FEED, BED, DED",
     "section": "CONTENT",
-    "href": "/mx-core/blog/project/pdp-bed-ded-feed",
+    "href": "/blog/project/pdp-bed-ded-feed",
     "subtitle": "September 3, 2024",
     "keywords": [
       "proyek",
@@ -714,7 +830,7 @@
     "id": "project/pdp",
     "name": "PDP - Process Design Package",
     "section": "CONTENT",
-    "href": "/mx-core/blog/project/pdp",
+    "href": "/blog/project/pdp",
     "subtitle": "September 3, 2024",
     "keywords": [
       "proyek",
@@ -730,7 +846,7 @@
     "id": "project/diskusi",
     "name": "Diskusi - Brainstorming",
     "section": "CONTENT",
-    "href": "/mx-core/blog/project/diskusi",
+    "href": "/blog/project/diskusi",
     "subtitle": "January 16, 2024",
     "keywords": [
       "diskusi",
@@ -741,7 +857,7 @@
     "id": "maintenance/maintenance-tool",
     "name": "Pengendalian Terhadap Penggunaan Tool atau Peralatan Kerja",
     "section": "CONTENT",
-    "href": "/mx-core/blog/maintenance/maintenance-tool",
+    "href": "/blog/maintenance/maintenance-tool",
     "subtitle": "December 4, 2023",
     "keywords": [
       "Maintenance",
@@ -756,7 +872,7 @@
     "id": "maintenance/artikel-api-581",
     "name": "API 581 - Inspeksi berbais resiko",
     "section": "CONTENT",
-    "href": "/mx-core/blog/maintenance/artikel-api-581",
+    "href": "/blog/maintenance/artikel-api-581",
     "subtitle": "November 22, 2023",
     "keywords": [
       "API-581",
@@ -768,7 +884,7 @@
     "id": "maintenance/Bearing-Load-Calculation-for-Pumps",
     "name": "Bearing Load Calculation for Centrifugal Pumps",
     "section": "CONTENT",
-    "href": "/mx-core/blog/maintenance/Bearing-Load-Calculation-for-Pumps",
+    "href": "/blog/maintenance/Bearing-Load-Calculation-for-Pumps",
     "subtitle": "November 10, 2023",
     "keywords": [
       "Bearing",
@@ -780,7 +896,7 @@
     "id": "maintenance/Steam-trap",
     "name": "Steam Trap",
     "section": "CONTENT",
-    "href": "/mx-core/blog/maintenance/Steam-trap",
+    "href": "/blog/maintenance/Steam-trap",
     "subtitle": "November 6, 2023",
     "keywords": [
       "Steam",
@@ -792,7 +908,7 @@
     "id": "project/TOR-Reverse-Engineer-STHE",
     "name": "TOR Reverse engineering- Panduan tentang bagaimana melakukan reverse engineering Shell and Tube Heat Exchanger",
     "section": "CONTENT",
-    "href": "/mx-core/blog/project/TOR-Reverse-Engineer-STHE",
+    "href": "/blog/project/TOR-Reverse-Engineer-STHE",
     "subtitle": "November 6, 2023",
     "keywords": [
       "TOR",
@@ -808,7 +924,7 @@
     "id": "maintenance/pabx",
     "name": "PABX Panasonic",
     "section": "CONTENT",
-    "href": "/mx-core/blog/maintenance/pabx",
+    "href": "/blog/maintenance/pabx",
     "subtitle": "November 3, 2023",
     "keywords": [
       "PABX",
@@ -820,7 +936,7 @@
     "id": "maintenance/predictif-kontrol",
     "name": "Penggunaan Predictive Control dalam Industri Petrokimia",
     "section": "CONTENT",
-    "href": "/mx-core/blog/maintenance/predictif-kontrol",
+    "href": "/blog/maintenance/predictif-kontrol",
     "subtitle": "November 3, 2023",
     "keywords": [
       "Predictif",
@@ -834,7 +950,7 @@
     "id": "project/Membuat-S-Curve",
     "name": "Membuat S-Curve Alat Visualisasi Perkembangan Proyek yang Efektif",
     "section": "CONTENT",
-    "href": "/mx-core/blog/project/Membuat-S-Curve",
+    "href": "/blog/project/Membuat-S-Curve",
     "subtitle": "November 1, 2023",
     "keywords": [
       "Project",
@@ -850,7 +966,7 @@
     "id": "maintenance/Air-Fin-Cooler-Basic-Knowledge",
     "name": "AFC - Air Fin Cooler",
     "section": "CONTENT",
-    "href": "/mx-core/blog/maintenance/Air-Fin-Cooler-Basic-Knowledge",
+    "href": "/blog/maintenance/Air-Fin-Cooler-Basic-Knowledge",
     "subtitle": "October 27, 2023",
     "keywords": [
       "AFC",
@@ -862,7 +978,7 @@
     "id": "maintenance/maintenance-fishbone-diagram",
     "name": "Optimasi Proses dalam Industri Petrokimia Menggunakan Fishbone Diagram",
     "section": "CONTENT",
-    "href": "/mx-core/blog/maintenance/maintenance-fishbone-diagram",
+    "href": "/blog/maintenance/maintenance-fishbone-diagram",
     "subtitle": "October 26, 2023",
     "keywords": [
       "Maintenance",
@@ -877,7 +993,7 @@
     "id": "maintenance/maintenance-fmea",
     "name": "Mengungkap Keunggulan FMEA dalam Meningkatkan Keandalan di Industri Petrokimia",
     "section": "CONTENT",
-    "href": "/mx-core/blog/maintenance/maintenance-fmea",
+    "href": "/blog/maintenance/maintenance-fmea",
     "subtitle": "October 26, 2023",
     "keywords": [
       "Maintenance",
@@ -893,7 +1009,7 @@
     "id": "project/Manajemen-Proyek",
     "name": "Manajemen Proyek - Panduan tentang bagaimana menjalankan manajemen suatu project",
     "section": "CONTENT",
-    "href": "/mx-core/blog/project/Manajemen-Proyek",
+    "href": "/blog/project/Manajemen-Proyek",
     "subtitle": "October 26, 2023",
     "keywords": [
       "Project",
@@ -911,7 +1027,7 @@
     "id": "maintenance/maintenance-fta",
     "name": "Mengungkap Risiko Tersembunyi - Panduan Lengkap tentang Failure Tree Analysis (FTA)",
     "section": "CONTENT",
-    "href": "/mx-core/blog/maintenance/maintenance-fta",
+    "href": "/blog/maintenance/maintenance-fta",
     "subtitle": "October 25, 2023",
     "keywords": [
       "Maintenance",
@@ -926,7 +1042,7 @@
     "id": "maintenance/maintenance-rcfa",
     "name": "Mengungkap Akar Masalah - Panduan Lengkap Analisis Akar Penyebab Kegagalan (RCFA)",
     "section": "CONTENT",
-    "href": "/mx-core/blog/maintenance/maintenance-rcfa",
+    "href": "/blog/maintenance/maintenance-rcfa",
     "subtitle": "October 25, 2023",
     "keywords": [
       "Maintenance",
@@ -941,7 +1057,7 @@
     "id": "maintenance/Control-Valve",
     "name": "Control Valve",
     "section": "CONTENT",
-    "href": "/mx-core/blog/maintenance/Control-Valve",
+    "href": "/blog/maintenance/Control-Valve",
     "subtitle": "October 24, 2023",
     "keywords": [
       "Mengenal",
@@ -953,7 +1069,7 @@
     "id": "maintenance/maintenance-engineering-link",
     "name": "Website untuk Engineering",
     "section": "CONTENT",
-    "href": "/mx-core/blog/maintenance/maintenance-engineering-link",
+    "href": "/blog/maintenance/maintenance-engineering-link",
     "subtitle": "October 24, 2023",
     "keywords": [
       "Engineering",
@@ -964,7 +1080,7 @@
     "id": "maintenance/maintenance-electrical-devices",
     "name": "Peralatan Listrik Petrokimia",
     "section": "CONTENT",
-    "href": "/mx-core/blog/maintenance/maintenance-electrical-devices",
+    "href": "/blog/maintenance/maintenance-electrical-devices",
     "subtitle": "October 21, 2023",
     "keywords": [
       "Maintenance",
@@ -978,7 +1094,7 @@
     "id": "maintenance/maintenance-heat-exchanger",
     "name": "Heat Exchanger",
     "section": "CONTENT",
-    "href": "/mx-core/blog/maintenance/maintenance-heat-exchanger",
+    "href": "/blog/maintenance/maintenance-heat-exchanger",
     "subtitle": "October 21, 2023",
     "keywords": [
       "Maintenance",
@@ -992,7 +1108,7 @@
     "id": "maintenance/maintenance-mechanical-seal",
     "name": "Mechanical seal API 682",
     "section": "CONTENT",
-    "href": "/mx-core/blog/maintenance/maintenance-mechanical-seal",
+    "href": "/blog/maintenance/maintenance-mechanical-seal",
     "subtitle": "October 21, 2023",
     "keywords": [
       "standar",
@@ -1005,7 +1121,7 @@
     "id": "maintenance/maintenance-pump",
     "name": "Pemeliharaan Pompa",
     "section": "CONTENT",
-    "href": "/mx-core/blog/maintenance/maintenance-pump",
+    "href": "/blog/maintenance/maintenance-pump",
     "subtitle": "October 21, 2023",
     "keywords": [
       "Maintenance",
@@ -1017,7 +1133,7 @@
     "id": "maintenance/maintenance-standar-code",
     "name": "Standar & Code Petrochemical Plant",
     "section": "CONTENT",
-    "href": "/mx-core/blog/maintenance/maintenance-standar-code",
+    "href": "/blog/maintenance/maintenance-standar-code",
     "subtitle": "October 21, 2023",
     "keywords": [
       "standar",
@@ -1031,7 +1147,7 @@
     "id": "maintenance/maintenance-bearing",
     "name": "Pemeliharaan Bearing",
     "section": "CONTENT",
-    "href": "/mx-core/blog/maintenance/maintenance-bearing",
+    "href": "/blog/maintenance/maintenance-bearing",
     "subtitle": "October 20, 2023",
     "keywords": [
       "Maintenance",
@@ -1043,7 +1159,7 @@
     "id": "maintenance/maintenance-gemba-kaizen",
     "name": "Gemba Kaizen",
     "section": "CONTENT",
-    "href": "/mx-core/blog/maintenance/maintenance-gemba-kaizen",
+    "href": "/blog/maintenance/maintenance-gemba-kaizen",
     "subtitle": "October 20, 2023",
     "keywords": [
       "Maintenance",
@@ -1055,7 +1171,7 @@
     "id": "maintenance/maintenance-system",
     "name": "Maintenance System",
     "section": "CONTENT",
-    "href": "/mx-core/blog/maintenance/maintenance-system",
+    "href": "/blog/maintenance/maintenance-system",
     "subtitle": "October 20, 2023",
     "keywords": [
       "Maintenance",
@@ -1065,20 +1181,39 @@
     ]
   },
   {
+    "id": "website/preview-mode-headless-cms",
+    "name": "Preview Mode for Headless CMS",
+    "section": "CONTENT",
+    "href": "/blog/website/preview-mode-headless-cms",
+    "subtitle": "April 9, 2023",
+    "keywords": []
+  },
+  {
+    "id": "website/dynamic-routing-static-regeneration",
+    "name": "Dynamic Routing and Static Regeneration",
+    "section": "CONTENT",
+    "href": "/blog/website/dynamic-routing-static-regeneration",
+    "subtitle": "March 4, 2023",
+    "keywords": []
+  },
+  {
+    "id": "website/server-client-components",
+    "name": "Server and Client Components",
+    "section": "CONTENT",
+    "href": "/blog/website/server-client-components",
+    "subtitle": "January 8, 2023",
+    "keywords": []
+  },
+  {
     "id": "website/deploying-next-apps",
     "name": "Deploying Next.js Apps",
     "section": "CONTENT",
-    "href": "/mx-core/blog/website/deploying-next-apps",
+    "href": "/blog/website/deploying-next-apps",
     "subtitle": "January 2, 2023",
     "keywords": [
       "vercel",
       "tailwind",
       "deploy"
     ]
-  },
-  {
-    "section": "CONTENT",
-    "href": "/mx-core/undefined",
-    "subtitle": "Invalid Date"
   }
 ]
