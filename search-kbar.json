@@ -351,6 +351,20 @@
     ]
   },
   {
+    "id": "maintenance/ftfr",
+    "name": "FTFR - First-Time Fix Rate",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/ftfr",
+    "subtitle": "September 27, 2024",
+    "keywords": [
+      "ftfr",
+      "kompetensi",
+      "ketrampilan",
+      "troubleshooting",
+      "Risk-Management"
+    ]
+  },
+  {
     "id": "Management/maintenance-manajemen",
     "name": "Efisiensi dan Keandalan dalam Manajemen Pemeliharaan",
     "section": "CONTENT",
@@ -381,16 +395,15 @@
     ]
   },
   {
-    "id": "maintenance/ftfr",
-    "name": "FTFR - First-Time Fix Rate",
+    "id": "maintenance/tco",
+    "name": "TCO - Total Cost Ownership",
     "section": "CONTENT",
-    "href": "/blog/maintenance/ftfr",
-    "subtitle": "September 27, 2024",
+    "href": "/blog/maintenance/tco",
+    "subtitle": "September 26, 2024",
     "keywords": [
-      "ftfr",
-      "kompetensi",
-      "ketrampilan",
-      "troubleshooting",
+      "tco",
+      "life-cycle",
+      "umur-pakai",
       "Risk-Management"
     ]
   },
@@ -408,19 +421,6 @@
       "jangka-panjang",
       "gcg",
       "bumn"
-    ]
-  },
-  {
-    "id": "maintenance/tco",
-    "name": "TCO - Total Cost Ownership",
-    "section": "CONTENT",
-    "href": "/blog/maintenance/tco",
-    "subtitle": "September 26, 2024",
-    "keywords": [
-      "tco",
-      "life-cycle",
-      "umur-pakai",
-      "Risk-Management"
     ]
   },
   {
@@ -1215,5 +1215,10 @@
       "tailwind",
       "deploy"
     ]
+  },
+  {
+    "section": "CONTENT",
+    "href": "/undefined",
+    "subtitle": "Invalid Date"
   }
 ]
