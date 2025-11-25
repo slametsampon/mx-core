@@ -3,7 +3,7 @@
 /** @type {import("pliny/config").PlinyConfig } */
 const siteMetadata = {
   title: 'Mx Core',
-  version: '0.6.0', //packages/core => RBC
+  version: '0.6.1', //packages/core => RBC & search link /mx-core
   author: 'Slamet-Sam',
   headerTitle: 'MxCore',
   description: 'Maintenance Extended Core',
