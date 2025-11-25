@@ -54,8 +54,8 @@ async function main() {
 
   // STEP 1: Build plugin
   logTitle('Build Plugin mx-core-docs');
-  //runSync('npm run build', 'plugins/mx-core-docs');
-  runSync('npm run build:gh-pages', 'plugins/mx-core-docs');
+  runSync('npm run build', 'plugins/mx-core-docs');
+  // runSync('npm run build:gh-pages', 'plugins/mx-core-docs');
 
   if (!checkOutDirExists()) {
     failAndExit('next build tidak menghasilkan folder /out');
