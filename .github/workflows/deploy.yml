@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-      - feat/plugin-docs # ✅ Aktifkan juga untuk branch feature ini
+      - feat/packages-core-rbc # ✅ Aktifkan juga untuk branch feature ini
 
 permissions:
   contents: write # ✅ Diperlukan untuk push ke gh-pages
@@ -33,7 +33,7 @@ jobs:
         run: echo "GITHUB_PAGES=true" >> $GITHUB_ENV
 
       - name: 🏗️ Build Monorepo
-        run: npm run build:all
+        run: npm run build:gh-pages
 
       - name: 🚀 Deploy ke GitHub Pages
         uses: peaceiris/actions-gh-pages@v3

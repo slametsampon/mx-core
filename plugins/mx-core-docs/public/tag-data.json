@@ -140,7 +140,11 @@
   "organisasi": 2,
   "proaktif": 1,
   "rcm": 1,
-  "markdown": 1,
+  "github": 2,
+  "panduan": 1,
+  "markdown": 2,
+  "md": 1,
+  "mdx": 1,
   "formula": 1,
   "math": 1,
   "epc": 13,
@@ -212,7 +216,6 @@
   "custom-domain": 1,
   "static-web": 1,
   "blog": 1,
-  "github": 1,
   "contentlayer": 1,
   "eslint": 1
 }

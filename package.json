@@ -5,16 +5,18 @@
   "packageManager": "npm@11.4.2",
   "scripts": {
     "dev": "npm run dev -w apps/frontend",
-    "build": "npm run build:manifest && npm run build:frontend && npm run export:frontend",
+    "build": "npm run build:manifest && npm run export:docs && npm run build:frontend && npm run export:frontend",
     "build:frontend": "npm run --workspace=apps/frontend build",
     "export:frontend": "npm run --workspace=apps/frontend export && node scripts/post-export-move.js",
     "preview:frontend": "serve apps/frontend/out",
     "build:docs": "npm run build -w mx-core-docs",
     "build:manifest": "ts-node scripts/generate-plugin-manifest.ts",
     "build:turbo": "npm run build:manifest && turbo run build",
-    "build:all": "ts-node scripts/build-all.ts",
+    "build:local": "ts-node scripts/build-local.ts",
+    "build:gh-pages": "ts-node scripts/build-gh-pages.ts",
     "lint": "eslint --fix apps/**/*.{js,ts,jsx,tsx} plugins/**/*.{js,ts,jsx,tsx}",
     "format": "prettier --write .",
+    "export:docs": "npm run --workspace=plugins/mx-core-docs export",
     "deploy:docs": "npm run export:docs && gh-pages -d plugins/mx-core-docs/out"
   },
   "workspaces": [

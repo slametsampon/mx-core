@@ -1,12 +1,12 @@
-// scripts/build-all.ts
+// scripts/build-local.ts
 
 import fs from 'fs';
 import path from 'path';
 import { execSync } from 'child_process';
 
 function logTitle(title: string) {
-  console.log(`\n🛠️  ${title.toUpperCase()}`);
-  console.log('='.repeat(title.length + 6));
+  console.log(`\n🧱 [LOCAL BUILD] ${title.toUpperCase()}`);
+  console.log('='.repeat(title.length + 20));
 }
 
 function logCommand(cmd: string, cwd?: string) {
@@ -28,19 +28,11 @@ function cleanDirs() {
   const pluginNext = path.resolve('plugins/mx-core-docs/.next');
   const frontendOut = path.resolve('apps/frontend/out');
 
-  if (fs.existsSync(pluginOut)) {
-    fs.rmSync(pluginOut, { recursive: true, force: true });
-    console.log(`🧹 Folder ${pluginOut} dihapus`);
-  }
-
-  if (fs.existsSync(pluginNext)) {
-    fs.rmSync(pluginNext, { recursive: true, force: true });
-    console.log(`🧹 Folder ${pluginNext} dihapus`);
-  }
-
-  if (fs.existsSync(frontendOut)) {
-    fs.rmSync(frontendOut, { recursive: true, force: true });
-    console.log(`🧹 Folder ${frontendOut} dihapus`);
+  for (const dir of [pluginOut, pluginNext, frontendOut]) {
+    if (fs.existsSync(dir)) {
+      fs.rmSync(dir, { recursive: true, force: true });
+      console.log(`🧹 Folder ${dir} dihapus`);
+    }
   }
 }
 
@@ -62,30 +54,42 @@ function failAndExit(reason: string) {
 }
 
 async function main() {
-  // STEP 1: Clean & Build Plugin UI
-  logTitle('Clean & Build Plugin UI (mx-core-docs)');
+  logTitle('Build Lokal Dimulai');
+
+  // STEP 1: Clean
+  logTitle('Clean Direktori Output');
   cleanDirs();
-  runSync('npm run build', 'plugins/mx-core-docs'); // ⬅️ Hanya build (output: export sudah di config)
+
+  // STEP 2: Build Plugin
+  logTitle('Build Plugin UI');
+  runSync('cross-env GITHUB_PAGES=false npm run build', 'plugins/mx-core-docs');
 
   if (!checkOutDirExists()) {
     failAndExit('next build tidak menghasilkan folder /out');
   }
 
-  // STEP 2: Tambahkan .nojekyll
-  logTitle('Tambahkan .nojekyll jika out/ ada isinya');
+  // STEP 3: .nojekyll
+  logTitle('Tambahkan .nojekyll');
   const nojekyllPath = path.resolve('plugins/mx-core-docs/out/.nojekyll');
   fs.writeFileSync(nojekyllPath, '');
   console.log(`📄 File .nojekyll ditambahkan ke: ${nojekyllPath}`);
 
-  // STEP 3: Generate plugin-manifest.json
+  // STEP 4: Generate manifest
   logTitle('Generate plugin-manifest.json');
   runSync('npx ts-node scripts/generate-plugin-manifest.ts');
 
-  // STEP 4: Pindahkan hasil export plugin
+  // STEP 5: Pindahkan hasil plugin ke frontend/out
   logTitle('Pindahkan hasil export plugin');
   runSync('node scripts/post-export-move.js');
 
-  console.log('\n✅ Build selesai. Jalankan: npx serve apps/frontend/out');
+  // STEP 6: Build & Export Frontend
+  logTitle('Build & Export Frontend');
+  runSync('npm run build:frontend');
+  runSync('npm run export:frontend');
+
+  console.log(
+    '\n✅ Build lokal selesai. Jalankan: npx serve apps/frontend/out'
+  );
 }
 
 main().catch((err) => {

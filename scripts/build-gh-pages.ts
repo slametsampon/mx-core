@@ -1,21 +1,16 @@
-// scripts/build-all.ts
+// scripts/build-gh-pages.ts
 
 import fs from 'fs';
 import path from 'path';
 import { execSync } from 'child_process';
 
 function logTitle(title: string) {
-  console.log(`\n🛠️  ${title.toUpperCase()}`);
-  console.log('='.repeat(title.length + 6));
-}
-
-function logCommand(cmd: string, cwd?: string) {
-  console.log(`> 📂 CWD : ${path.resolve(cwd ?? process.cwd())}`);
-  console.log(`> 💻 CMD : ${cmd}`);
+  console.log(`\n🌍 [GITHUB PAGES] ${title.toUpperCase()}`);
+  console.log('='.repeat(title.length + 20));
 }
 
 function runSync(cmd: string, cwd?: string) {
-  logCommand(cmd, cwd);
+  console.log(`> 💻 ${cmd}`);
   execSync(cmd, {
     stdio: 'inherit',
     cwd,
@@ -23,24 +18,15 @@ function runSync(cmd: string, cwd?: string) {
   });
 }
 
-function cleanDirs() {
+function cleanOutDir() {
   const pluginOut = path.resolve('plugins/mx-core-docs/out');
   const pluginNext = path.resolve('plugins/mx-core-docs/.next');
-  const frontendOut = path.resolve('apps/frontend/out');
 
-  if (fs.existsSync(pluginOut)) {
-    fs.rmSync(pluginOut, { recursive: true, force: true });
-    console.log(`🧹 Folder ${pluginOut} dihapus`);
-  }
-
-  if (fs.existsSync(pluginNext)) {
-    fs.rmSync(pluginNext, { recursive: true, force: true });
-    console.log(`🧹 Folder ${pluginNext} dihapus`);
-  }
-
-  if (fs.existsSync(frontendOut)) {
-    fs.rmSync(frontendOut, { recursive: true, force: true });
-    console.log(`🧹 Folder ${frontendOut} dihapus`);
+  for (const dir of [pluginOut, pluginNext]) {
+    if (fs.existsSync(dir)) {
+      fs.rmSync(dir, { recursive: true, force: true });
+      console.log(`🧹 Folder ${dir} dihapus`);
+    }
   }
 }
 
@@ -57,35 +43,38 @@ function checkOutDirExists(): boolean {
 }
 
 function failAndExit(reason: string) {
-  console.error(`\n❌ BUILD DIHENTIKAN: ${reason}`);
+  console.error(`\n❌ DEPLOY GAGAL: ${reason}`);
   process.exit(1);
 }
 
 async function main() {
-  // STEP 1: Clean & Build Plugin UI
-  logTitle('Clean & Build Plugin UI (mx-core-docs)');
-  cleanDirs();
-  runSync('npm run build', 'plugins/mx-core-docs'); // ⬅️ Hanya build (output: export sudah di config)
+  logTitle('Build untuk GitHub Pages Dimulai');
+
+  cleanOutDir();
+
+  // STEP 1: Build plugin
+  logTitle('Build Plugin mx-core-docs');
+  runSync('npm run build', 'plugins/mx-core-docs');
 
   if (!checkOutDirExists()) {
     failAndExit('next build tidak menghasilkan folder /out');
   }
 
-  // STEP 2: Tambahkan .nojekyll
-  logTitle('Tambahkan .nojekyll jika out/ ada isinya');
+  // STEP 2: .nojekyll
+  logTitle('Tambahkan .nojekyll');
   const nojekyllPath = path.resolve('plugins/mx-core-docs/out/.nojekyll');
   fs.writeFileSync(nojekyllPath, '');
-  console.log(`📄 File .nojekyll ditambahkan ke: ${nojekyllPath}`);
+  console.log(`📄 .nojekyll ditambahkan ke: ${nojekyllPath}`);
 
   // STEP 3: Generate plugin-manifest.json
   logTitle('Generate plugin-manifest.json');
   runSync('npx ts-node scripts/generate-plugin-manifest.ts');
 
-  // STEP 4: Pindahkan hasil export plugin
-  logTitle('Pindahkan hasil export plugin');
+  // STEP 4: Salin hasil ke frontend/out/frontend/docs
+  logTitle('Salin hasil plugin ke frontend');
   runSync('node scripts/post-export-move.js');
 
-  console.log('\n✅ Build selesai. Jalankan: npx serve apps/frontend/out');
+  console.log('\n✅ Build untuk GitHub Pages selesai. Siap deploy');
 }
 
 main().catch((err) => {
