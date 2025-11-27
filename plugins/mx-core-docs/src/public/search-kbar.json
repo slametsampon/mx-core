@@ -1,5 +1,36 @@
 [
   {
+    "id": "maintenance/perbaika-kebocoran-stuffing-box",
+    "name": "Panduan Teknis Penanganan Kebocoran Stuffing-Box pada Piston Rod Reciprocating Compressor",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/perbaika-kebocoran-stuffing-box",
+    "subtitle": "November 26, 2025",
+    "keywords": [
+      "Maintenance",
+      "stuffing-box",
+      "piston-rod",
+      "roughness",
+      "hardened",
+      "Concentricity",
+      "Straightness"
+    ]
+  },
+  {
+    "id": "maintenance/perbaikan-shaft-aus",
+    "name": "Perbaikan Shaft Aus pada Dudukan Bearing – Motor 110 kW (Horizontal, Ball Bearing)",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/perbaikan-shaft-aus",
+    "subtitle": "November 26, 2025",
+    "keywords": [
+      "Maintenance",
+      "bearing",
+      "shaft",
+      "metal-spray",
+      "metal-epoxy",
+      "sleeve-installation"
+    ]
+  },
+  {
     "id": "maintenance/mx-core-monorepo",
     "name": "MxCore – Monorepo",
     "section": "CONTENT",
@@ -37,6 +68,40 @@
     "name": "MxCore – MonPackage.json",
     "section": "CONTENT",
     "href": "/blog/maintenance/mx-core-plugin-loader",
+    "subtitle": "November 16, 2025",
+    "keywords": [
+      "Maintenance",
+      "System",
+      "mx-core",
+      "monorepo",
+      "modular",
+      "dinamis-plugin",
+      "Scalable",
+      "package-json",
+      "plugin-loader"
+    ]
+  },
+  {
+    "id": "website/mx-core-monorepo",
+    "name": "MxCore – Monorepo",
+    "section": "CONTENT",
+    "href": "/blog/website/mx-core-monorepo",
+    "subtitle": "November 16, 2025",
+    "keywords": [
+      "Maintenance",
+      "System",
+      "mx-core",
+      "monorepo",
+      "modular",
+      "dinamis-plugin",
+      "Scalable"
+    ]
+  },
+  {
+    "id": "website/mx-core-plugin-loader",
+    "name": "MxCore – MonPackage.json",
+    "section": "CONTENT",
+    "href": "/blog/website/mx-core-plugin-loader",
     "subtitle": "November 16, 2025",
     "keywords": [
       "Maintenance",
@@ -174,6 +239,20 @@
       "contentlayer",
       "tailwind",
       "eslint"
+    ]
+  },
+  {
+    "id": "markdown/github-markdown-guide",
+    "name": "Panduan Markdown",
+    "section": "CONTENT",
+    "href": "/blog/markdown/github-markdown-guide",
+    "subtitle": "October 7, 2025",
+    "keywords": [
+      "github",
+      "panduan",
+      "markdown",
+      "md",
+      "mdx"
     ]
   },
   {
