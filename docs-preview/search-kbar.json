@@ -1,10 +1,5 @@
 [
   {
-    "section": "CONTENT",
-    "href": "/undefined",
-    "subtitle": "Invalid Date"
-  },
-  {
     "id": "maintenance/perbaika-kebocoran-stuffing-box",
     "name": "Panduan Teknis Penanganan Kebocoran Stuffing-Box pada Piston Rod Reciprocating Compressor",
     "section": "CONTENT",
@@ -33,6 +28,57 @@
       "metal-spray",
       "metal-epoxy",
       "sleeve-installation"
+    ]
+  },
+  {
+    "id": "maintenance/mx-core-monorepo",
+    "name": "MxCore – Monorepo",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/mx-core-monorepo",
+    "subtitle": "November 16, 2025",
+    "keywords": [
+      "Maintenance",
+      "System",
+      "mx-core",
+      "monorepo",
+      "modular",
+      "dinamis-plugin",
+      "Scalable"
+    ]
+  },
+  {
+    "id": "maintenance/mx-core-package-json",
+    "name": "MxCore – MonPackage.json",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/mx-core-package-json",
+    "subtitle": "November 16, 2025",
+    "keywords": [
+      "Maintenance",
+      "System",
+      "mx-core",
+      "monorepo",
+      "modular",
+      "dinamis-plugin",
+      "Scalable",
+      "package-json"
+    ]
+  },
+  {
+    "id": "maintenance/mx-core-plugin-loader",
+    "name": "MxCore – MonPackage.json",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/mx-core-plugin-loader",
+    "subtitle": "November 16, 2025",
+    "keywords": [
+      "Maintenance",
+      "System",
+      "mx-core",
+      "monorepo",
+      "modular",
+      "dinamis-plugin",
+      "Scalable",
+      "package-json",
+      "plugin-loader"
     ]
   },
   {
@@ -370,6 +416,20 @@
     ]
   },
   {
+    "id": "maintenance/ftfr",
+    "name": "FTFR - First-Time Fix Rate",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/ftfr",
+    "subtitle": "September 27, 2024",
+    "keywords": [
+      "ftfr",
+      "kompetensi",
+      "ketrampilan",
+      "troubleshooting",
+      "Risk-Management"
+    ]
+  },
+  {
     "id": "Management/maintenance-manajemen",
     "name": "Efisiensi dan Keandalan dalam Manajemen Pemeliharaan",
     "section": "CONTENT",
@@ -397,20 +457,6 @@
       "manajemen",
       "rbm",
       "rcm"
-    ]
-  },
-  {
-    "id": "maintenance/ftfr",
-    "name": "FTFR - First-Time Fix Rate",
-    "section": "CONTENT",
-    "href": "/blog/maintenance/ftfr",
-    "subtitle": "September 27, 2024",
-    "keywords": [
-      "ftfr",
-      "kompetensi",
-      "ketrampilan",
-      "troubleshooting",
-      "Risk-Management"
     ]
   },
   {
@@ -578,10 +624,10 @@
     ]
   },
   {
-    "id": "maintenance/TAM",
-    "name": "TAM - Turn Around Management",
+    "id": "maintenance/cpm",
+    "name": "CPM - Critical Path Method",
     "section": "CONTENT",
-    "href": "/blog/maintenance/TAM",
+    "href": "/blog/maintenance/cpm",
     "subtitle": "September 8, 2024",
     "keywords": [
       "tam",
@@ -591,10 +637,10 @@
     ]
   },
   {
-    "id": "maintenance/cpm",
-    "name": "CPM - Critical Path Method",
+    "id": "maintenance/TAM",
+    "name": "TAM - Turn Around Management",
     "section": "CONTENT",
-    "href": "/blog/maintenance/cpm",
+    "href": "/blog/maintenance/TAM",
     "subtitle": "September 8, 2024",
     "keywords": [
       "tam",
@@ -1234,5 +1280,10 @@
       "tailwind",
       "deploy"
     ]
+  },
+  {
+    "section": "CONTENT",
+    "href": "/undefined",
+    "subtitle": "Invalid Date"
   }
 ]
