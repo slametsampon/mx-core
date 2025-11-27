@@ -1,8 +1,0 @@
-{
-  "projects": [
-    {
-      "name": "mxcore-frontend",
-      "rootDirectory": "apps/frontend"
-    }
-  ]
-}
