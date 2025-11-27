@@ -8,6 +8,6 @@
     "api": false,
     "active": true,
     "module": "./dist/index.js",
-    "basePath": "https://mxcore-docs.vercel.app"
+    "basePath": "https://mx-core-docs.vercel.app"
   }
 ]
