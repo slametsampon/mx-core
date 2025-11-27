@@ -1,0 +1,12 @@
+# ⛔ Folder & file yang tidak dibutuhkan untuk deployment apps/frontend
+node_modules
+apps/backend/         # backend tidak digunakan di deployment Vercel frontend
+out/                  # hasil export lokal
+dist/                 # hasil build lokal dari packages atau backend
+*.log                 # file log lokal (npm-debug.log, dsb)
+
+# ❗ Biarkan packages/ & plugins/ tetap tersedia
+# karena mungkin digunakan dalam build `apps/frontend`
+# JANGAN tambahkan:
+# packages/
+# plugins/

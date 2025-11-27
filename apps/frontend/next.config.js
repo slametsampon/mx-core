@@ -1,11 +1,13 @@
 // apps/frontend/next.config.js
 
-const isProd = process.env.NODE_ENV === 'production';
+const basePath = process.env.BASE_PATH || '';
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  transpilePackages: ['@mx-core/docs'],
+
+  // ✅ Transpile semua modul internal agar build tidak gagal
+  transpilePackages: ['@mx-core'],
 
   output: 'export',
   trailingSlash: true,
@@ -14,19 +16,14 @@ const nextConfig = {
     unoptimized: true,
   },
 
-  // ✅ basePath tetap untuk routing
-  basePath: isProd ? '/frontend' : '',
-
-  // ✅ FIX: Gunakan assetPrefix relatif
-  assetPrefix: isProd ? '.' : '',
+  // ✅ Lebih fleksibel (ENV-based)
+  basePath,
+  assetPrefix: basePath || '',
 
   env: {
-    BASE_PATH: isProd ? '/frontend' : '',
+    BASE_PATH: basePath,
   },
 };
 
-console.log('[Next Config] NODE_ENV:', process.env.NODE_ENV);
-console.log('[Next Config] basePath:', nextConfig.basePath);
-console.log('[Next Config] assetPrefix:', nextConfig.assetPrefix);
-
+console.log('[Next Config] BASE_PATH:', basePath);
 module.exports = nextConfig;

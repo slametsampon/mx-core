@@ -17,12 +17,22 @@
     "baseUrl": ".",
     "paths": {
       "@mx-core/core": ["packages/core/src"],
-      "@mx-core/docs/*": ["plugins/mx-core-docs/src/*"]
+      "@mx-core/ui": ["packages/ui/src"],
+      "@mx-core/utils": ["packages/utils/src"],
+      "@mx-core/types": ["packages/types/src"],
+      "@mx-core/docs": ["plugins/mx-core-docs/src"]
     },
     "plugins": [{ "name": "next" }]
   },
   "references": [
+    { "path": "packages/types" },
     { "path": "packages/core" },
-    { "path": "plugins/mx-core-docs" }
+    { "path": "packages/ui" },
+    { "path": "packages/utils" },
+    { "path": "plugins/mx-core-docs" },
+    { "path": "plugins/mxcore-iot" },
+    { "path": "plugins/mxcore-ai" },
+    { "path": "plugins/mxcore-cmms" },
+    { "path": "plugins/mxcore-dashboard" }
   ]
 }

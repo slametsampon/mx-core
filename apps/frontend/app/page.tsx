@@ -11,16 +11,18 @@ interface PluginMeta {
   [key: string]: any;
 }
 
+// Ambil BASE_PATH langsung dari public runtime config
+const BASE_PATH = process.env.BASE_PATH ?? '';
+
 export default function HomePage() {
   const [plugins, setPlugins] = useState<PluginMeta[]>([]);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const rawBasePath = process.env.BASE_PATH ?? '';
-    const manifestPath = `${rawBasePath}/plugin-manifest.json`;
+    const manifestPath = `${BASE_PATH}/plugin-manifest.json`;
 
     console.log('📦 Loading plugin manifest...');
-    console.log('🔍 BASE_PATH:', rawBasePath);
+    console.log('🔍 BASE_PATH:', BASE_PATH);
     console.log('🔗 Final fetch URL:', manifestPath);
 
     fetch(manifestPath)
@@ -57,7 +59,7 @@ export default function HomePage() {
         {plugins.map((plugin) => (
           <a
             key={plugin.name}
-            href={`/frontend${plugin.basePath}`}
+            href={`${BASE_PATH}${plugin.basePath}`}
             className="block rounded border p-4 hover:bg-gray-100"
           >
             <h2 className="text-xl font-semibold">{plugin.name}</h2>
