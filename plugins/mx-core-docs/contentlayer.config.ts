@@ -156,7 +156,7 @@ function getPublicOutputPath(): string {
   return outputPath;
 }
 
-function createSearchAssets(allBlogs: BlogType[]) {
+function createKbarSearchIndex(allBlogs: BlogType[]) {
   const content = allCoreContent(sortPosts(allBlogs));
   const kbarData = content.map((post) => ({
     id: post.slug,
@@ -174,9 +174,9 @@ function createSearchAssets(allBlogs: BlogType[]) {
   const outputPath = getPublicOutputPath();
   const outputFile = path.join(outputPath, 'search-kbar.json');
 
-  console.log('🛠️  [createSearchAssets] Menyiapkan outputPath:', outputPath);
+  console.log('🛠️  [createKbarSearchIndex] Menyiapkan outputPath:', outputPath);
   console.log(
-    '🛠️  [createSearchAssets] File output yang akan ditulis:',
+    '🛠️  [createKbarSearchIndex] File output yang akan ditulis:',
     outputFile
   );
 
@@ -191,8 +191,29 @@ function createSearchAssets(allBlogs: BlogType[]) {
 
   fs.writeFileSync(outputFile, JSON.stringify(kbarData, null, 2));
   console.log(
-    `✅ [createSearchAssets] search-kbar.json berhasil ditulis ke ${outputFile}`
+    `✅ [createKbarSearchIndex] search-kbar.json berhasil ditulis ke ${outputFile}`
   );
+}
+
+function createSearchIndex(allBlogs: BlogType[]) {
+  console.log('🔎 [createSearchIndex] Checking search provider...');
+  if (
+    siteMetadata?.search?.provider === 'kbar' &&
+    siteMetadata.search.kbarConfig.searchDocumentsPath
+  ) {
+    console.log('🔎 [createSearchIndex] Generating local search index...');
+    fs.writeFileSync(
+      `public/${siteMetadata.search.kbarConfig.searchDocumentsPath}`,
+      JSON.stringify(allCoreContent(sortPosts(allBlogs)))
+    );
+    console.log(
+      `✅ [createSearchIndex] Local search index generated at public/${siteMetadata.search.kbarConfig.searchDocumentsPath}`
+    );
+  } else {
+    console.log(
+      'ℹ️ [createSearchIndex] No search index generated (provider not set to kbar).'
+    );
+  }
 }
 
 function createTagAndAuthorData(allBlogs: BlogType[]) {
@@ -325,7 +346,8 @@ export default makeSource({
     }
 
     createTagAndAuthorData(allBlogs);
-    createSearchAssets(allBlogs);
+    createKbarSearchIndex(allBlogs);
+    createSearchIndex(allBlogs);
 
     console.log('✅ Contentlayer post-processing finished successfully.');
   },
