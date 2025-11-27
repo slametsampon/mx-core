@@ -17,20 +17,18 @@ summary: MxCore adalah sebuah platform digital berbasis plugin dinamis yang dira
 ---
 
 - [🧩 **1. Tujuan dan Alasan Memilih Monorepo untuk MxCore**](#-1-tujuan-dan-alasan-memilih-monorepo-untuk-mxcore)
-- [🧱 **2. Struktur Folder Monorepo MxCore (final \& recommended)**](#-2-struktur-folder-monorepo-mxcore-final--recommended)
+- [🧱 **2. Struktur Folder Monorepo MxCore (FINAL)**](#-2-struktur-folder-monorepo-mxcore-final)
 - [🧩 **3. Root package.json (Workspace Definition)**](#-3-root-packagejson-workspace-definition)
-- [🧩 **4. Node\_modules hanya satu (di root)**](#-4-node_modules-hanya-satu-di-root)
-- [🧩 **5. Plugin Architecture di Monorepo**](#-5-plugin-architecture-di-monorepo)
-- [🧩 **6. Shared Data-Model Antarmodul (CMMS, AI, IoT, RBM, Docs)**](#-6-shared-data-model-antarmodul-cmms-ai-iot-rbm-docs)
-- [🧩 **7. Masalah Import pada Shared Data-Model — Solusi Final**](#-7-masalah-import-pada-shared-data-model--solusi-final)
-  - [✔ **7.1. Tambahkan exports di `/packages/types/package.json`**](#-71-tambahkan-exports-di-packagestypespackagejson)
-  - [✔ **7.2. Compile shared types → dist**](#-72-compile-shared-types--dist)
-  - [✔ **7.3. Tambahkan path alias di root tsconfig**](#-73-tambahkan-path-alias-di-root-tsconfig)
-  - [✔ **7.4. Tambahkan `transpilePackages` di Next.js**](#-74-tambahkan-transpilepackages-di-nextjs)
-  - [✔ **7.5. Workspace harus memuat folder types**](#-75-workspace-harus-memuat-folder-types)
-- [🧩 **8. Cara Module Lain Mengimpor Data-Model**](#-8-cara-module-lain-mengimpor-data-model)
-- [🧩 **9. Integrasi Antar Modul**](#-9-integrasi-antar-modul)
-- [🧩 **10. Kesimpulan Kompletnya**](#-10-kesimpulan-kompletnya)
+- [🧩 **4. Node_modules Hanya Satu (di Root)**](#-4-node_modules-hanya-satu-di-root)
+- [🧩 **5. Plugin Architecture**](#-5-plugin-architecture)
+- [🧩 **6. Shared Data Models**](#-6-shared-data-models)
+- [🧩 **7. Konfigurasi Import Types (SOLVED)**](#-7-konfigurasi-import-types-solved)
+- [🧩 **8. Integrasi Plugin ke Frontend \& Backend**](#-8-integrasi-plugin-ke-frontend--backend)
+- [🧩 **9. Integrasi Antar Modul (AI → Docs → CMMS → IoT → RBM)**](#-9-integrasi-antar-modul-ai--docs--cmms--iot--rbm)
+- [🧩 **10. FINAL DECISION: Hosting Strategy**](#-10-final-decision-hosting-strategy)
+- [⚡ **11. VERCEL = Hosting Utama untuk MxCore**](#-11-vercel--hosting-utama-untuk-mxcore)
+- [🧩 **12. Arsitektur Deploy (FINAL)**](#-12-arsitektur-deploy-final)
+- [🧩 **13. Kesimpulan Akhir (Executive Summary)**](#-13-kesimpulan-akhir-executive-summary)
 
 ---
 
@@ -38,73 +36,56 @@ summary: MxCore adalah sebuah platform digital berbasis plugin dinamis yang dira
 
 MxCore memiliki:
 
-- frontend (Next.js)
-- backend (**Express**)
-- banyak plugin (AI, CMMS, IoT, RBM, Docs)
-- shared code (UI components, domain logic, utils, types)
-- plugin system yang dinamis
-- arsitektur service/module berbasis SoC & CDD
+- `apps/frontend` (Next.js – UI utama)
+- `apps/backend` (Express API)
+- plugin dinamis (AI, CMMS, IoT, RBM, Dashboard)
+- plugin statis (mxcore-docs)
+- shared code / domain model
+- plugin engine dinamis (SoC, modular, decoupled)
 
-Ini membuat **monorepo** menjadi pendekatan paling tepat karena:
+Karena arsitekturnya moduler & multi-package, **Monorepo dengan NPM Workspaces adalah pilihan terbaik**, karena:
 
-- ✔ Semua modul dapat berbagi kode
-
-- ✔ Shared components & type definitions tinggal di satu tempat
-
-- ✔ Plugin dapat dikembangkan independent
-
-- ✔ Build pipeline bisa diatur per modul
-
-- ✔ Versioning plugin mudah
-
-- ✔ Dependency tidak duplikatif
-
-- ✔ Konsistensi model lebih terjaga
+- ✔ Semua modul bisa _share_ code & types
+- ✔ Plugin dapat dikembangkan independen
+- ✔ Build & deploy dapat dipisahkan per modul
+- ✔ Tidak ada duplikasi dependency
+- ✔ Integration otomatis: frontend, backend, plugin, shared model
+- ✔ Mudah berkembang ke ratusan plugin
 
 ---
 
-### 🧱 **2. Struktur Folder Monorepo MxCore (final & recommended)**
+### 🧱 **2. Struktur Folder Monorepo MxCore (FINAL)**
 
 ```
 /mxcore
-  package.json                ← root workspace manager
-  tsconfig.json               ← root TS config
-  node_modules                ← hanya satu node_modules
+  package.json                 ← root workspace + scripts
+  tsconfig.json                ← base TS config
+  node_modules                 ← global, shared
+
   /apps
-    /frontend                 ← Next.js App Router
-      package.json
-      next.config.js
-    /backend                  ← Express API + SQLite
-      package.json
+    /frontend                  ← Next.js App Router (UI utama)
+    /backend                   ← Express API + SQLite
+
   /packages
-    /types                    ← shared data model (TS interfaces)
-      package.json
-    /core                     ← kernel: plugin loader, RBAC, logger
-      package.json
-    /ui                       ← shared UI components (Tailwind + TSX)
-      package.json
-    /utils                    ← helper fns & common utilities
-      package.json
+    /types                     ← shared data models
+    /core                      ← core engine (plugin loader, RBAC, logger)
+    /ui                        ← shared UI components
+    /utils                     ← helpers/utilities
+
   /plugins
-    /mxcore-ai                ← AI plugin
-      package.json
-    /mxcore-cmms              ← CMMS plugin
-      package.json
-    /mxcore-iot               ← IoT plugin (MQTT, sensors)
-      package.json
-    /mxcore-rbm               ← Risk-Based Maintenance plugin
-      package.json
-    /mxcore-docs              ← Document Management (SOP/JSA)
-      package.json
-    /mxcore-dashboard         ← KPI & analytics
-      package.json
+    /mxcore-ai                 ← AI plugin
+    /mxcore-cmms               ← CMMS plugin
+    /mxcore-iot                ← IoT plugin (MQTT)
+    /mxcore-rbm                ← RBM plugin
+    /mxcore-docs               ← Document plugin (static)
+    /mxcore-dashboard          ← analytics/KPI plugin
 ```
+
+Semua **plugin** adalah modul independen dengan UI dan API opsional.
 
 ---
 
 ### 🧩 **3. Root package.json (Workspace Definition)**
-
-Root package.json harus mendefinisikan semua workspace:
 
 ```json
 {
@@ -113,46 +94,29 @@ Root package.json harus mendefinisikan semua workspace:
   "workspaces": ["apps/*", "packages/*", "plugins/*"],
   "scripts": {
     "dev": "npm run dev -w apps/frontend",
-    "build": "npm run build -w apps/frontend && npm run build -w apps/backend"
+    "dev:backend": "npm run dev -w apps/backend",
+    "build": "npm run build -w apps/frontend && npm run build -w apps/backend",
+    "build:types": "npm run build -w packages/types"
   }
 }
 ```
 
 ---
 
-### 🧩 **4. Node_modules hanya satu (di root)**
+### 🧩 **4. Node_modules Hanya Satu (di Root)**
 
-Ini adalah **perilaku default NPM Workspaces**, yaitu:
+NPM Workspaces otomatis:
 
-- ✔ Banyak package.json ≠ banyak node_modules
-
-- ✔ Hanya 1 node_modules di root
-
-- ✔ Semua modul share dependency yang sama
-
-- ✔ Dependency duplikat otomatis di-hoist
-
-- ❗ Nested node_modules hanya muncul jika versi dependency conflict
-
-Ini membuat monorepo Anda:
-
-- ringan
-- cepat
-- efisien
-- konsisten
+- ✔ hanya 1 `node_modules`
+- ✔ dependency di-hoist
+- ✔ semua package bisa saling impor
+- ✔ lebih cepat, stabil, konsisten
 
 ---
 
-### 🧩 **5. Plugin Architecture di Monorepo**
+### 🧩 **5. Plugin Architecture**
 
 Setiap plugin:
-
-- adalah sebuah folder independen
-- memiliki package.json sendiri
-- bisa punya dependency sendiri
-- bisa diaktifkan/dinonaktifkan oleh MxCore Core Engine
-- dapat memuat UI + API + schema plugin
-- mengikuti struktur:
 
 ```
 /plugins/<plugin-name>
@@ -160,9 +124,8 @@ Setiap plugin:
   plugin.json
   src/
     index.ts
-    routes.ts
     ui/
-    services/
+    api/
     schema/
 ```
 
@@ -171,107 +134,62 @@ Contoh plugin.json:
 ```json
 {
   "name": "mxcore-ai",
-  "type": "plugin",
-  "module": "./dist/index.js",
   "ui": true,
-  "api": true
+  "api": true,
+  "module": "./dist/index.js"
 }
 ```
 
----
+Plugin dapat:
 
-### 🧩 **6. Shared Data-Model Antarmodul (CMMS, AI, IoT, RBM, Docs)**
-
-Semua **data-model yang digunakan oleh lebih dari satu module** harus disimpan di:
-
-```
-/packages/models
-```
-
-Ini memastikan:
-
-- tidak ada duplikasi model
-- konsistensi antar modul
-- integrasi antar plugin aman
-- frontend & backend share interface yang sama
-- plugin bisa berkomunikasi data tanpa error
-
-Contoh struktur models:
-
-```
-/packages/models
-  /cmms
-    equipment.model.ts
-    workorder.model.ts
-  /iot
-    sensor.model.ts
-  /rbm
-    riskmatrix.model.ts
-  /docs
-    document.model.ts
-  index.ts
-```
-
-Contoh isi sebuah model:
-
-```ts
-export interface Equipment {
-  id: string;
-  tag: string;
-  area: string;
-  type: 'pump' | 'compressor' | 'exchanger' | 'valve';
-  status: 'running' | 'standby' | 'maintenance' | 'shutdown';
-}
-```
+- menyediakan API (backend)
+- menyediakan UI (frontend)
+- menyediakan schema/model lokal
+- dipasang/dilepas oleh core engine
 
 ---
 
-### 🧩 **7. Masalah Import pada Shared Data-Model — Solusi Final**
+### 🧩 **6. Shared Data Models**
 
-Agar import tidak error di modul pengguna, wajib melakukan ini:
+Simpan semua type global di:
+
+```
+/packages/types
+```
+
+Contoh:
+
+```
+packages/types/cmms/equipment.model.ts
+packages/types/iot/sensor.model.ts
+packages/types/rbm/riskmatrix.model.ts
+packages/types/docs/document.model.ts
+```
+
+Satu sumber kebenaran untuk seluruh modul.
 
 ---
 
-#### ✔ **7.1. Tambahkan exports di `/packages/types/package.json`**
+### 🧩 **7. Konfigurasi Import Types (SOLVED)**
+
+- ✔ 7.1 Exports dalam `/packages/types/package.json`
 
 ```json
 {
   "name": "@mxcore/types",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "exports": {
-    ".": "./dist/index.js"
-  }
+  "exports": { ".": "./dist/index.js" }
 }
 ```
 
----
-
-#### ✔ **7.2. Compile shared types → dist**
-
-`tsconfig.json`:
+- ✔ 7.2 Build Types (ke `dist`)
 
 ```json
-{
-  "compilerOptions": {
-    "outDir": "dist",
-    "declaration": true,
-    "emitDeclarationOnly": false
-  }
-}
+"scripts": { "build": "tsc" }
 ```
 
-Script:
-
-```json
-"scripts": {
-  "build": "tsc"
-}
-```
-
----
-
-#### ✔ **7.3. Tambahkan path alias di root tsconfig**
+- ✔ 7.3 Root TS Config (path alias)
 
 ```json
 {
@@ -286,99 +204,140 @@ Script:
 }
 ```
 
----
-
-#### ✔ **7.4. Tambahkan `transpilePackages` di Next.js**
+- ✔ 7.4 Next.js transpilePackages
 
 ```js
-// apps/frontend/next.config.js
 module.exports = {
-  transpilePackages: ['@mxcore/types', '@mxcore/ui', '@mxcore/core'],
+  transpilePackages: ['@mxcore/types', '@mxcore/core', '@mxcore/ui'],
 };
 ```
 
-Tanpa ini, Next.js sering error:
-**“Module not found”**,
-**“Cannot use import outside module”**.
+⚡ Setelah langkah ini: **tidak ada lagi error import modul.**
 
 ---
 
-#### ✔ **7.5. Workspace harus memuat folder types**
+### 🧩 **8. Integrasi Plugin ke Frontend & Backend**
 
-Root package.json:
-
-```json
-"workspaces": [
-  "apps/*",
-  "packages/*",
-  "plugins/*"
-]
-```
-
----
-
-### 🧩 **8. Cara Module Lain Mengimpor Data-Model**
-
-- Frontend:
+Frontend:
 
 ```ts
 import { Equipment } from '@mxcore/types/cmms';
 ```
 
-- Backend:
+Backend:
 
 ```ts
-import { WorkOrder } from '@mxcore/types/cmms';
+import { Sensor } from '@mxcore/types/iot';
 ```
 
-- Plugin AI:
+Plugin:
 
 ```ts
 import { Document } from '@mxcore/types/docs';
 ```
 
-Semua aman dan konsisten.
+---
+
+### 🧩 **9. Integrasi Antar Modul (AI → Docs → CMMS → IoT → RBM)**
+
+Semua modul bisa berkomunikasi lewat:
+
+- shared types
+- shared utils
+- plugin engine
+- inter-module API calls
+
+Ini memperkuat integrasi antar domain:
+
+- IoT feed → Equipment → CMMS WO → RBM → AI Docs
+- Konsisten karena schema berasal dari satu sumber
 
 ---
 
-### 🧩 **9. Integrasi Antar Modul**
+### 🧩 **10. FINAL DECISION: Hosting Strategy**
 
-Sebagai contoh:
+- 🔥 **Kenapa GitHub Pages Tidak Cukup?**
 
-- CMMS → menyediakan Equipment
+Karena:
 
-- RBM → menghitung Risk Matrix berdasarkan Equipment
+- ❌ hanya bisa hosting static file
+- ❌ tidak bisa SSR
+- ❌ tidak bisa API Routes
+- ❌ tidak bisa backend
+- ❌ tidak bisa dynamic plugin loading runtime
 
-- AI → menganalisa dokumen dan mapping ke Equipment
+GitHub Pages **hanya cocok untuk plugin statis**, seperti:
 
-- IoT → memonitor kondisi Equipment berdasarkan TagNumber
+- ✔ `mxcore-docs`
 
-Semua interoperability ini **bergantung pada shared data-model di `/packages/types`**.
-
-Dengan pendekatan ini:
-
-- tidak ada duplikasi schema
-- tidak ada mismatch spesifikasi data
-- plugin mudah berkomunikasi
-- maintainability jauh meningkat
+→ bisa deploy via `next export` + `gh-pages`
 
 ---
 
-### 🧩 **10. Kesimpulan Kompletnya**
+### ⚡ **11. VERCEL = Hosting Utama untuk MxCore**
 
-Berikut rangkuman yang sangat ringkas namun padat:
+Vercel mendukung:
 
-| Komponen          | Pendekatan                                     | Hasil               |
-| ----------------- | ---------------------------------------------- | ------------------- |
-| Struktur Monorepo | apps, packages, plugins                        | Modular, scalable   |
-| Workspace         | NPM Workspaces                                 | dependency terpusat |
-| Node Modules      | satu di root                                   | efisien & cepat     |
-| Plugin System     | folder per plugin                              | bisa dipasang/lepas |
-| Shared Data-Model | `/packages/types`                              | dipakai antarmodul  |
-| Masalah Import    | solved via exports + paths + transpilePackages | aman 100%           |
-| Teknologi         | Next.js, TS, Tailwind, **Express**, SQLite     | fleksibel & modern  |
-| Pola Arsitektur   | SoC, CDD, modular plugin                       | enterprise-grade    |
+| Fitur          | Status        |
+| -------------- | ------------- |
+| SSR            | ✅ didukung   |
+| CSR / SPA      | ✅ didukung   |
+| SSG / ISR      | ✅ didukung   |
+| API Routes     | ✅            |
+| Edge Functions | ✅            |
+| Statis (docs)  | ✅            |
+| Domain Custom  | gratis        |
+| Bandwidth      | 100GB / bulan |
 
-Dengan pendekatan ini, **MxCore siap menjadi platform industri** yang kuat, scalable, dan maintainable untuk jangka panjang.
+**Jadi:**
+
+- 🔥 Hosting Final:
+
+* **Frontend (Next.js) → Vercel**
+* **Backend (Express) → Vercel Function / Railway / Render**
+* **Plugin Dinamis → Vercel**
+* **Plugin Static (Docs) → GitHub Pages**
+
+⚡ **Ini adalah “Hybrid Efisien”**, bukan “Hybrid Rumit”.
+Dan jauh lebih sederhana dibanding memaksa semuanya di GitHub Pages.
+
+---
+
+### 🧩 **12. Arsitektur Deploy (FINAL)**
+
+```
+mxcore/
+  frontend → Vercel (SSR/CSR)
+  backend  → Vercel Serverless / Railway / Render
+  mxcore-docs → GitHub Pages
+  plugin-manifest.json → Public, diload oleh Frontend
+```
+
+Frontend membaca manifest:
+
+```
+/plugin-manifest.json
+```
+
+lalu menampilkan plugin dinamis ataupun statis.
+
+---
+
+### 🧩 **13. Kesimpulan Akhir (Executive Summary)**
+
+| Komponen          | Solusi                                 |
+| ----------------- | -------------------------------------- |
+| Struktur Monorepo | ✔ apps + packages + plugins            |
+| Plugin System     | ✔ modular, dynamic, scalable           |
+| Shared Types      | ✔ `packages/types`                     |
+| Import Issues     | ✔ solved 100%                          |
+| Frontend          | ✔ Next.js di Vercel                    |
+| Backend           | ✔ Express di Vercel Function / Railway |
+| Plugin Statis     | ✔ GitHub Pages                         |
+| Plugin Dinamis    | ✔ Vercel (SSR/API)                     |
+| Kompleksitas      | ✔ sangat manageable                    |
+| Skalabilitas      | ✔ enterprise-ready                     |
+
+➡ **MxCore kini memiliki arsitektur final yang solid, modern, scalable, modular, dan siap produksi.**
 
 ---
