@@ -9,7 +9,7 @@ const siteMetadata = {
   description: 'Maintenance Extended Core',
   language: 'en-us',
   theme: 'system', // system, dark or light
-  siteUrl: 'https://slametsampon.github.io/mx-core/',
+  siteUrl: 'https://mx-core-docs.vercel.app/',
   siteRepo: 'https://github.com/slametsampon/mx-core',
   siteLogo: '/static/images/logo.png',
   socialBanner: '/static/images/twitter-card.png',
