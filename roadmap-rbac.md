@@ -230,6 +230,10 @@ Membuat UI untuk admin mengatur rule tanpa coding manual.
 
 ---
 
+## ✅ (Opsional) Tahap 9: Deployment dan Packaging Plugin
+
+---
+
 # 🏁 RINGKASAN STATUS ROADMAP
 
 | Tahap | Deskripsi                                 | Status                    |
