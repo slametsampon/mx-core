@@ -3,6 +3,8 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { CanAccess } from '@mx-core/ui/components/CanAccess'; // ✅ pastikan path ini benar
+import type { RBACAction, UserRole } from '@mx-core/types';
 
 interface PluginMeta {
   name: string;
@@ -11,7 +13,9 @@ interface PluginMeta {
   [key: string]: any;
 }
 
-// Ambil BASE_PATH langsung dari public runtime config
+// Simulasi peran pengguna aktif
+const currentRole: UserRole = 'Foreman'; // 🔁 Ganti dengan auth context jika ada
+
 const BASE_PATH = process.env.BASE_PATH ?? '';
 
 export default function HomePage() {
@@ -66,6 +70,18 @@ export default function HomePage() {
             <p className="text-sm text-gray-600">{plugin.description}</p>
           </a>
         ))}
+      </div>
+
+      {/* ✅ Tambahkan RBAC berbasis UI di bawah */}
+      <div className="mt-6">
+        <CanAccess role={currentRole} resource="metric" action="assign">
+          <div className="rounded bg-green-100 p-4">
+            <h3 className="text-lg font-bold">Assign KPI Metrics</h3>
+            <p className="text-sm text-gray-700">
+              Komponen ini hanya bisa diakses oleh Foreman.
+            </p>
+          </div>
+        </CanAccess>
       </div>
     </div>
   );

@@ -106,9 +106,9 @@ Agar plugin bisa secara **declarative** mendefinisikan aturan RBAC melalui `plug
 
 ```json
 "rbac": [
-  { "role": "Operator", "resource": "work-order", "action": "read" },
-  { "role": "Teknisi", "resource": "work-order", "action": "update" },
-  { "role": "Engineer", "resource": "work-order", "action": "approve" }
+  { "role": "Operator", "resource": "metric", "action": "read" },
+  { "role": "Teknisi", "resource": "metric", "action": "update" },
+  { "role": "Engineer", "resource": "metric", "action": "approve" }
 ]
 ```
 
@@ -163,7 +163,7 @@ export const CanAccess = ({ role, resource, action, children }: Props) => {
 ### 📄 Contoh penggunaan:
 
 ```tsx
-<CanAccess role="Foreman" resource="work-order" action="assign">
+<CanAccess role="Foreman" resource="metric" action="assign">
   <AssignForm />
 </CanAccess>
 ```

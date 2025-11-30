@@ -7,6 +7,10 @@
     ".": {
       "require": "./dist/index.js",
       "default": "./dist/index.js"
+    },
+    "./rbac": {
+      "import": "./dist/rbac/index.js",
+      "types": "./dist/rbac/index.d.ts"
     }
   },
   "scripts": {

@@ -16,5 +16,38 @@
       }
     ],
     "basePath": "https://mx-core-docs.vercel.app"
+  },
+  {
+    "name": "mx-core-metric",
+    "type": "plugin",
+    "version": "0.1.0",
+    "description": "Monitoring KPI dan evaluasi performa per departemen",
+    "ui": true,
+    "api": false,
+    "active": true,
+    "module": "dist/index.js",
+    "basePath": "https://mx-core-metric.vercel.app",
+    "rbac": [
+      {
+        "role": "Operator",
+        "resource": "kpi",
+        "action": "read"
+      },
+      {
+        "role": "Supervisor",
+        "resource": "kpi",
+        "action": "validate"
+      },
+      {
+        "role": "Engineer",
+        "resource": "kpi",
+        "action": "analyze"
+      },
+      {
+        "role": "Manager",
+        "resource": "kpi",
+        "action": "approve"
+      }
+    ]
   }
 ]
