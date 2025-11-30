@@ -1,16 +1,12 @@
 {
-  "compilerOptions": {
-    "esModuleInterop": true,
-    "moduleResolution": "node",
-    "module": "commonjs", // atau 'esnext' jika diperlukan
-    "target": "esnext", // opsional, bisa disesuaikan
-    "strict": true, // opsional
-    "skipLibCheck": true // opsional
-  },
+  "extends": "./tsconfig.base.json",
   "files": [],
+  "include": [],
   "references": [
-    { "path": "./plugins/mx-core-docs" },
-    { "path": "./apps/frontend" },
-    { "path": "./packages/core" }
+    { "path": "packages/types" },
+    { "path": "packages/core" },
+    { "path": "apps/frontend" },
+    { "path": "plugins/mx-core-docs" },
+    { "path": "plugins/mx-core-metric" }
   ]
 }

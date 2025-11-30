@@ -8,6 +8,13 @@
     "api": false,
     "active": true,
     "module": "dist/index.js",
+    "rbac": [
+      {
+        "role": "Engineer",
+        "resource": "user",
+        "action": "read"
+      }
+    ],
     "basePath": "https://mx-core-docs.vercel.app"
   }
 ]

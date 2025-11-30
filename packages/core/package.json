@@ -10,8 +10,8 @@
     }
   },
   "scripts": {
-    "build": "tsc -p tsconfig.json",
-    "clean": "rm -rf dist"
+    "clean": "if exist dist rd /s /q dist",
+    "build": "npm run clean && tsc --build tsconfig.json --force"
   },
   "private": true,
   "dependencies": {

@@ -1,6 +1,6 @@
 // packages/core/src/rbac/rules.ts
 
-import { RBACRule } from '@mx-core/types';
+import { RBACRule } from '@mx-core/types/src/rbac';
 
 const rules: RBACRule[] = [];
 

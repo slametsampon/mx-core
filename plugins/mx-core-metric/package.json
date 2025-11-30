@@ -1,16 +1,21 @@
 {
-  "name": "@mx-core/types",
+  "name": "@mx-core/metric",
   "version": "0.1.0",
   "private": true,
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
   "scripts": {
     "clean": "if exist dist rd /s /q dist",
     "build": "npm run clean && tsc --build tsconfig.json --force"
   },
-  "exports": {
-    ".": {
-      "import": "./dist/index.js"
-    }
+  "devDependencies": {
+    "typescript": "^5.0.4",
+    "rimraf": "^5.0.0"
   }
 }

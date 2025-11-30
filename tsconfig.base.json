@@ -10,17 +10,18 @@
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
-    "noEmit": false,
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
     "baseUrl": ".",
     "paths": {
       "@mx-core/core": ["packages/core/src"],
+      "@mx-core/core/*": ["packages/core/src/*"],
       "@mx-core/ui": ["packages/ui/src"],
       "@mx-core/utils": ["packages/utils/src"],
       "@mx-core/types": ["packages/types/src"],
-      "@mx-core/docs": ["plugins/mx-core-docs/src"]
+      "@mx-core/docs": ["plugins/mx-core-docs/src"],
+      "@mx-core/metric": ["plugins/mx-core-metric/src"]
     },
     "plugins": [{ "name": "next" }]
   },
@@ -30,9 +31,6 @@
     { "path": "packages/ui" },
     { "path": "packages/utils" },
     { "path": "plugins/mx-core-docs" },
-    { "path": "plugins/mxcore-iot" },
-    { "path": "plugins/mxcore-ai" },
-    { "path": "plugins/mxcore-cmms" },
-    { "path": "plugins/mxcore-dashboard" }
+    { "path": "plugins/mx-core-metric" }
   ]
 }

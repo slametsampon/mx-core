@@ -1,0 +1,17 @@
+# Build output
+dist/
+tsconfig.tsbuildinfo
+
+# Node modules (optional, jika tidak workspace-level)
+node_modules/
+
+# Editor folders
+.vscode/
+.idea/
+
+# Logs
+*.log
+
+# OS artifacts
+.DS_Store
+Thumbs.db

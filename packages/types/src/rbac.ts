@@ -1,4 +1,4 @@
-// packages/types/rbac.ts
+// packages/types/src/rbac.ts
 
 import { UserRole } from './roles';
 

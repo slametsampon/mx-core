@@ -1,0 +1,12 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "composite": true, // ⬅️ WAJIB
+    "declaration": true, // ⬅️ Direkomendasikan
+    "declarationMap": true,
+    "rootDir": "src", // ⬅️ Tambahkan ini
+    "outDir": "dist",
+    "baseUrl": "." // penting
+  },
+  "include": ["src"]
+}

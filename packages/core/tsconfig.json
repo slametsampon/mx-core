@@ -1,4 +1,5 @@
 {
+  "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "target": "ES2020",
     "module": "commonjs",
@@ -9,7 +10,18 @@
     "forceConsistentCasingInFileNames": true,
     "skipLibCheck": true,
     "resolveJsonModule": true,
-    "declaration": true
+    "declarationMap": true,
+    "declaration": true,
+    "composite": true,
+    // Tambahkan kembali alias ini
+    "baseUrl": ".",
+    "paths": {
+      "@mx-core/core": ["src"],
+      "@mx-core/core/*": ["src/*"],
+      "@mx-core/types": ["../types/dist"],
+      "@mx-core/types/*": ["../types/dist/*"]
+    }
   },
-  "include": ["src/**/*"]
+  "include": ["src/**/*"],
+  "references": [{ "path": "../types" }]
 }
