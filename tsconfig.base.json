@@ -15,8 +15,8 @@
     "incremental": true,
     "baseUrl": ".",
     "paths": {
-      "@mx-core/core": ["packages/core/src"],
-      "@mx-core/core/*": ["packages/core/src/*"],
+      "@mx-core/core": ["packages/core/dist"],
+      "@mx-core/core/*": ["packages/core/dist/*"],
       "@mx-core/ui": ["packages/ui/src"],
       "@mx-core/utils": ["packages/utils/src"],
       "@mx-core/types": ["packages/types/src"],
