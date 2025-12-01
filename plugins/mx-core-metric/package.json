@@ -11,7 +11,7 @@
     }
   },
   "scripts": {
-    "clean": "if exist dist rd /s /q dist",
+    "clean": "rimraf dist",
     "build": "npm run clean && tsc --build tsconfig.json --force"
   },
   "devDependencies": {

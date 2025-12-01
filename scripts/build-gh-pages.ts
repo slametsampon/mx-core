@@ -52,30 +52,30 @@ async function main() {
 
   cleanOutDir();
 
-  // STEP 1: Build plugin
+  // Step 1: Build semua dependency plugin
+  logTitle('Build Dependencies');
+  runSync('npm run build -w @mx-core/types');
+  runSync('npm run build -w @mx-core/core');
+  runSync('npm run build -w @mx-core/ui');
+  runSync('npm run build -w @mx-core/metric');
+
+  // Step 2: Build plugin target
   logTitle('Build Plugin mx-core-docs');
   runSync('npm run build', 'plugins/mx-core-docs');
-  // runSync('npm run build:gh-pages', 'plugins/mx-core-docs');
 
   if (!checkOutDirExists()) {
     failAndExit('next build tidak menghasilkan folder /out');
   }
 
-  // STEP 2: .nojekyll
+  // Step 3: Add .nojekyll
   logTitle('Tambahkan .nojekyll');
-  const nojekyllPath = path.resolve('plugins/mx-core-docs/out/.nojekyll');
-  fs.writeFileSync(nojekyllPath, '');
-  console.log(`📄 .nojekyll ditambahkan ke: ${nojekyllPath}`);
+  fs.writeFileSync(path.resolve('plugins/mx-core-docs/out/.nojekyll'), '');
 
-  // STEP 2A: Build Dependencies (core/types/ui/metric)
-  logTitle('Build Dependencies (core/types/ui/metric)');
-  runSync('npm run build:turbo');
-
-  // STEP 3: Generate plugin-manifest.json
+  // Step 4: Generate manifest
   logTitle('Generate plugin-manifest.json');
   runSync('npx tsx scripts/generate-plugin-manifest.ts');
 
-  // STEP 4: Salin hasil ke frontend/out/frontend/docs
+  // Step 5: Copy hasil ke frontend
   logTitle('Salin hasil plugin ke frontend');
   runSync('node scripts/post-export-move.js');
 

@@ -76,7 +76,7 @@ async function main() {
 
   // STEP 4: Generate manifest
   logTitle('Generate plugin-manifest.json');
-  runSync('npx ts-node scripts/generate-plugin-manifest.ts');
+  runSync('npx tsx scripts/generate-plugin-manifest.ts');
 
   // STEP 5: Pindahkan hasil plugin ke frontend/out
   logTitle('Pindahkan hasil export plugin');

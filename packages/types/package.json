@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "clean": "if exist dist rd /s /q dist",
+    "clean": "rimraf dist tsconfig.tsbuildinfo",
     "build": "npm run clean && tsc --build tsconfig.json --force"
   },
   "exports": {
