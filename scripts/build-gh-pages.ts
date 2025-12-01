@@ -69,7 +69,7 @@ async function main() {
 
   // STEP 3: Generate plugin-manifest.json
   logTitle('Generate plugin-manifest.json');
-  runSync('npx ts-node scripts/generate-plugin-manifest.ts');
+  runSync('npx tsx scripts/generate-plugin-manifest.ts');
 
   // STEP 4: Salin hasil ke frontend/out/frontend/docs
   logTitle('Salin hasil plugin ke frontend');
