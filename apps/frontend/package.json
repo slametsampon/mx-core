@@ -4,16 +4,21 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "npm run build:all",
+    "build:all": "npm run build:deps && npm run build:manifest && npm run next:build && npm run export && node ../../scripts/post-export-move.js",
+    "build:deps": "npx turbo run build --filter=frontend...",
+    "build:manifest": "npx tsx ../../scripts/generate-plugin-manifest.ts",
+    "next:build": "next build",
+    "export": "next export",
     "lint": "eslint --ext .ts,.tsx,.js,.jsx .",
     "lint:fix": "eslint --fix --ext .ts,.tsx,.js,.jsx .",
-    "format": "prettier --write .",
-    "export": "next export"
+    "format": "prettier --write ."
   },
   "dependencies": {
     "next": "13.4.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "@mx-core/ui": "*",
     "@mx-core/core": "*",
     "@mx-core/types": "*"
   },
