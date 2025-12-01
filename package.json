@@ -13,7 +13,7 @@
     "preview:frontend": "serve apps/frontend/out",
     "build:docs": "npm run build -w mx-core-docs",
     "build:local": "ts-node scripts/build-local.ts",
-    "build:gh-pages": "ts-node scripts/build-gh-pages.ts",
+    "build:gh-pages": "npm run build:turbo && tsx scripts/build-gh-pages.ts",
     "lint": "eslint --fix apps/**/*.{js,ts,jsx,tsx} plugins/**/*.{js,ts,jsx,tsx}",
     "format": "prettier --write .",
     "export:docs": "npm run --workspace=plugins/mx-core-docs export",
