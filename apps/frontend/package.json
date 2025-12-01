@@ -4,15 +4,11 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "npm run build:all",
-    "build:all": "npm run build:deps && npm run build:manifest && npm run next:build && npm run export && node ../../scripts/post-export-move.js",
-    "build:deps": "npx turbo run build --filter=frontend...",
-    "build:manifest": "npx tsx ../../scripts/generate-plugin-manifest.ts",
-    "next:build": "next build",
-    "export": "next export",
+    "build": "next build",
     "lint": "eslint --ext .ts,.tsx,.js,.jsx .",
     "lint:fix": "eslint --fix --ext .ts,.tsx,.js,.jsx .",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "export": "next export"
   },
   "dependencies": {
     "next": "13.4.1",
