@@ -67,6 +67,10 @@ async function main() {
   fs.writeFileSync(nojekyllPath, '');
   console.log(`📄 .nojekyll ditambahkan ke: ${nojekyllPath}`);
 
+  // STEP 2A: Build Dependencies (core/types/ui/metric)
+  logTitle('Build Dependencies (core/types/ui/metric)');
+  runSync('npm run build:turbo');
+
   // STEP 3: Generate plugin-manifest.json
   logTitle('Generate plugin-manifest.json');
   runSync('npx tsx scripts/generate-plugin-manifest.ts');
