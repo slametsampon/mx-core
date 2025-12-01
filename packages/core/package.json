@@ -3,25 +3,43 @@
   "version": "0.1.0",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "private": true,
   "exports": {
     ".": {
+      "import": "./dist/index.js",
       "require": "./dist/index.js",
-      "default": "./dist/index.js"
+      "types": "./dist/index.d.ts"
     },
     "./rbac": {
       "import": "./dist/rbac/index.js",
+      "require": "./dist/rbac/index.js",
       "types": "./dist/rbac/index.d.ts"
+    },
+    "./rbac/init": {
+      "import": "./dist/rbac/init.js",
+      "require": "./dist/rbac/init.js",
+      "types": "./dist/rbac/init.d.ts"
+    },
+    "./rbac/policy": {
+      "import": "./dist/rbac/policy.js",
+      "require": "./dist/rbac/policy.js",
+      "types": "./dist/rbac/policy.d.ts"
+    },
+    "./rbac/rules": {
+      "import": "./dist/rbac/rules.js",
+      "require": "./dist/rbac/rules.js",
+      "types": "./dist/rbac/rules.d.ts"
     }
   },
   "scripts": {
-    "clean": "if exist dist rd /s /q dist",
+    "clean": "rimraf dist tsconfig.tsbuildinfo",
     "build": "npm run clean && tsc --build tsconfig.json --force"
   },
-  "private": true,
   "dependencies": {
     "express": "^5.1.0"
   },
   "devDependencies": {
+    "rimraf": "^5.0.0",
     "typescript": "^5.0.4"
   }
 }

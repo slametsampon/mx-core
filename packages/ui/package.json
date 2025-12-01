@@ -6,6 +6,15 @@
   "exports": {
     ".": {
       "import": "./dist/index.js"
+    },
+    "./rbac": {
+      "import": "./dist/rbac/index.js"
+    },
+    "./rbac/init": {
+      "import": "./dist/rbac/init.js"
+    },
+    "./components/CanAccess": {
+      "import": "./dist/components/CanAccess.js"
     }
   },
   "scripts": {
@@ -13,7 +22,9 @@
     "build": "npm run clean && tsc -p tsconfig.json"
   },
   "dependencies": {
-    "react": "^18.x"
+    "react": "^18.x",
+    "@mx-core/core": "*",
+    "@mx-core/types": "*"
   },
   "devDependencies": {
     "rimraf": "^5.0.0",

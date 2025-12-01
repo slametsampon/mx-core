@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-      - feat/packages-core-rbc # ✅ Aktifkan juga untuk branch feature ini
 
 permissions:
   contents: write # ✅ Diperlukan untuk push ke gh-pages

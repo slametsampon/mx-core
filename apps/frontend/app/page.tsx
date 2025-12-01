@@ -4,7 +4,7 @@
 
 import { useEffect, useState } from 'react';
 import { CanAccess } from '@mx-core/ui/components/CanAccess'; // ✅ pastikan path ini benar
-import type { RBACAction, UserRole } from '@mx-core/types';
+import type { UserRole } from '@mx-core/types';
 
 interface PluginMeta {
   name: string;

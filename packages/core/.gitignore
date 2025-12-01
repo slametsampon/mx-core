@@ -1,6 +1,8 @@
 # Output build
 dist/
 
+node_modules/
+
 # IDE / Editor
 .vscode/
 *.log

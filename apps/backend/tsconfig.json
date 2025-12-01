@@ -13,7 +13,7 @@
     "paths": {
       "@mx-core/core": ["../../packages/core/dist"],
       "@mx-core/core/*": ["../../packages/core/dist/*"],
-      "@mx-core/types": ["../../packages/types/src"]
+      "@mx-core/types": ["../../packages/types/dist"]
     }
   },
   "include": ["src", "src/middleware"],

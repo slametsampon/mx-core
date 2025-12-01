@@ -9,10 +9,15 @@
     "baseUrl": ".",
     "paths": {
       "@mx-core/core": ["../../packages/core/dist"],
-      "@mx-core/core/*": ["../../packages/core/dist/*"]
+      "@mx-core/core/*": ["../../packages/core/dist/*"],
+      "@mx-core/types": ["../../packages/types/dist"],
+      "@mx-core/types/*": ["../../packages/types/dist/*"]
     }
   },
 
   "include": ["src"],
-  "references": [{ "path": "../../packages/core" }]
+  "references": [
+    { "path": "../../packages/core" },
+    { "path": "../../packages/types" }
+  ]
 }
