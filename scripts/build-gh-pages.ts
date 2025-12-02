@@ -53,9 +53,9 @@ async function main() {
   cleanOutDir();
 
   // Step 1: Build semua dependency plugin
-  // logTitle('Build Dependencies');
-  // runSync('npm run build -w @mx-core/types');
-  // runSync('npm run build -w @mx-core/core');
+  logTitle('Build Dependencies');
+  runSync('npm run build -w @mx-core/types');
+  runSync('npm run build -w @mx-core/core');
   // runSync('npm run build -w @mx-core/ui');
   // runSync('npm run build -w @mx-core/metric');
 
