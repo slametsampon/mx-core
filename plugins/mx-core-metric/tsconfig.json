@@ -6,16 +6,16 @@
     "declarationMap": true,
     "rootDir": "src", // ⬅️ Tambahkan ini
     "outDir": "dist",
-    "baseUrl": "src", // penting
+    "baseUrl": ".", // penting
     "paths": {
-      "@/components/*": ["components/*"],
-      "@/app/*": ["app/*"],
-      "@/models/*": ["models/*"],
-      "@/services/*": ["services/*"],
-      "@/lib/*": ["lib/*"],
-      "@/css/*": ["css/*"],
-      "@/data/*": ["data/*"],
-      "@/mocks/*": ["mocks/*"]
+      "@/components/*": ["src/components/*"],
+      "@/app/*": ["src/app/*"],
+      "@/models/*": ["src/models/*"],
+      "@/services/*": ["src/services/*"],
+      "@/lib/*": ["src/lib/*"],
+      "@/css/*": ["src/css/*"],
+      "@/data/*": ["src/data/*"],
+      "@/mocks/*": ["src/mocks/*"]
     },
     "noEmit": true
   },
