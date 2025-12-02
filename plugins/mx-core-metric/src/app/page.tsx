@@ -20,7 +20,7 @@ export default function LandingPage() {
         <p className="mx-auto max-w-3xl text-lg text-gray-600 dark:text-gray-300 sm:text-xl">
           Platform pemantauan <strong>KPI</strong> dan{' '}
           <strong>gangguan produksi</strong> (disturbance) untuk tim Maintenance
-          Plant — terintegrasi, real-time, dan efisien.
+          Plant — terintegrasi, real-time, dan efisien....
         </p>
         <div className="flex flex-wrap justify-center gap-4 pt-4">
           <CustomLink
