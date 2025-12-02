@@ -12,7 +12,8 @@
   },
   "scripts": {
     "clean": "rimraf dist",
-    "build": "npm run clean && tsc --build tsconfig.json --force"
+    "build": "next build",
+    "export": "next export"
   },
   "devDependencies": {
     "typescript": "^5.0.4",
