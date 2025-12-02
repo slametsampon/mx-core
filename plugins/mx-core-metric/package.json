@@ -1,5 +1,5 @@
 {
-  "name": "@mx-core/metric",
+  "name": "mx-core-metric",
   "version": "0.1.0",
   "private": true,
   "main": "dist/index.js",
@@ -21,6 +21,9 @@
     "format": "prettier --write ."
   },
   "dependencies": {
+    "next": "13.4.1",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
     "tailwindcss": "^3.4.1",
     "postcss": "^8.4.30",
     "autoprefixer": "^10.4.15",
