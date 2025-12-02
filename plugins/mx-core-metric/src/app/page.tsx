@@ -4,7 +4,7 @@ import CustomLink from '@/components/CustomLink';
 import { features } from '@/data/features';
 
 export const metadata = {
-  title: 'Beranda | Metricube',
+  title: 'Beranda | Metric',
   description:
     'Dashboard Maintenance Plant untuk memonitor KPI dan Disturbance secara real-time.',
 };
