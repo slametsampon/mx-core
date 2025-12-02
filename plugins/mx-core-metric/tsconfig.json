@@ -4,7 +4,7 @@
     "composite": true,
     "declaration": true, // ⬅️ Direkomendasikan
     "declarationMap": true,
-    "rootDir": "src", // ⬅️ Tambahkan ini
+    "rootDir": ".", // ⬅️ Tambahkan ini
     "outDir": "dist",
     "baseUrl": ".", // penting
     "paths": {
