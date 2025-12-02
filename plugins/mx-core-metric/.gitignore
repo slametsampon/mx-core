@@ -1,5 +1,6 @@
 # Build output
 dist/
+out/
 tsconfig.tsbuildinfo
 .turbo/
 .next/

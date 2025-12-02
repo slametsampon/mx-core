@@ -1,0 +1,13 @@
+[
+  {
+    "id": "kf-2025-01-rhm",
+    "kpi_id": "kpi-rhm",
+    "department_id": "dept-maint",
+    "unit_id": "unit-a",
+    "periode": "2025-01-01",
+    "value": 5800,
+    "method": "linear",
+    "annual_target_id": "kta-2025-rhm",
+    "created_at": "2025-02-01T00:00:00Z"
+  }
+]

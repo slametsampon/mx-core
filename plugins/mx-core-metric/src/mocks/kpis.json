@@ -1,0 +1,38 @@
+[
+  {
+    "id": "kpi-001",
+    "name": "Running Hours",
+    "description": "Tercapainya Running Hours sesuai dengan yang direncanakan (RH 8640 H)",
+    "unit": "jam",
+    "type": "numeric",
+    "is_active": true,
+    "created_at": "2025-01-01T00:00:00Z"
+  },
+  {
+    "id": "kpi-002",
+    "name": "Budget Planning",
+    "description": "Merencanakan dan mengelola anggaran sesuai kebutuhan program kerja (1.1 juta USD)",
+    "unit": "USD",
+    "type": "numeric",
+    "is_active": true,
+    "created_at": "2025-01-01T00:00:00Z"
+  },
+  {
+    "id": "kpi-003",
+    "name": "Shutdown Budget Prepared",
+    "description": "Memastikan budget untuk aktivitas shutdown sudah dibuat",
+    "unit": "",
+    "type": "boolean",
+    "is_active": true,
+    "created_at": "2025-01-01T00:00:00Z"
+  },
+  {
+    "id": "kpi-004",
+    "name": "Modifikasi Internal Column CO2",
+    "description": "Modifikasi internal column absorber and stripper di CO2 liquid",
+    "unit": "",
+    "type": "status",
+    "is_active": true,
+    "created_at": "2025-01-01T00:00:00Z"
+  }
+]

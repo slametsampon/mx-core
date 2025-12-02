@@ -4,9 +4,6 @@
 const nextConfig = {
   reactStrictMode: true,
 
-  // ⚠️ Penting jika kamu ingin static export (HTML)
-  output: 'export',
-
   // Opsional: buat URL jadi pakai slash di akhir (SEO friendly)
   trailingSlash: true,
 
