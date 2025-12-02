@@ -6,7 +6,7 @@
     "declarationMap": true,
     "rootDir": "src", // ⬅️ Tambahkan ini
     "outDir": "dist",
-    "baseUrl": "." // penting
+    "baseUrl": "src"
   },
   "include": ["src"],
   "references": [

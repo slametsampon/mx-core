@@ -1,6 +1,8 @@
 # Build output
 dist/
 tsconfig.tsbuildinfo
+.turbo/
+.next/
 
 # Node modules (optional, jika tidak workspace-level)
 node_modules/
