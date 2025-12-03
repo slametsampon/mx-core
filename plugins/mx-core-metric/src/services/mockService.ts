@@ -11,13 +11,12 @@ export function mockService<T>(model: string) {
 
   return {
     async getAll(): Promise<T[]> {
-      // 🔍 1. Ambil dari localStorage kalau ada
+      // 🔍 1. Ambil dari localStorage kalau ada dan valid
       if (isClient()) {
-        const local = localStorage.getItem(model);
-
-        if (local) {
+        const raw = localStorage.getItem(model);
+        if (raw) {
           try {
-            const parsed = JSON.parse(local);
+            const parsed = JSON.parse(raw);
             if (Array.isArray(parsed) && parsed.length > 0) {
               console.info(
                 `[mockService] 📦 Data untuk "${model}" diambil dari localStorage`
@@ -25,30 +24,40 @@ export function mockService<T>(model: string) {
               return parsed;
             } else {
               console.warn(
-                `[mockService] ⚠️ LocalStorage "${model}" kosong, fallback ke file.`
+                `[mockService] ⚠️ LocalStorage "${model}" kosong atau tidak valid, fallback ke file.`
               );
             }
           } catch (err) {
             console.warn(
-              `[mockService] ❌ Gagal parse localStorage "${model}", fallback ke file.`
+              `[mockService] ❌ Gagal parse localStorage "${model}", fallback ke file.`,
+              err
             );
           }
         }
       }
-      // 🔁 2. Kalau tidak ada, ambil dari file (hanya sekali saja)
-      const res = await fetch(file);
-      if (!res.ok) throw new Error(`Mock fetch failed for ${model}`);
-      const data = await res.json();
 
-      // 💾 Simpan ke localStorage agar next time bisa pakai
-      if (isClient()) {
-        localStorage.setItem(model, JSON.stringify(data));
-        console.info(
-          `[mockService] 🔄 Data awal untuk "${model}" disimpan ke localStorage`
+      // 🔁 2. Kalau tidak ada atau gagal, ambil dari file
+      try {
+        const res = await fetch(file);
+        if (!res.ok) throw new Error(`Mock fetch failed for ${model}`);
+        const data = await res.json();
+
+        // 💾 Simpan ke localStorage untuk penggunaan berikutnya
+        if (isClient()) {
+          localStorage.setItem(model, JSON.stringify(data));
+          console.info(
+            `[mockService] 🔄 Data awal untuk "${model}" disimpan ke localStorage`
+          );
+        }
+
+        return data;
+      } catch (err) {
+        console.error(
+          `[mockService] ❌ Gagal fetch dari file untuk "${model}"`,
+          err
         );
+        return [];
       }
-
-      return data;
     },
 
     async getById(id: string): Promise<T | null> {
