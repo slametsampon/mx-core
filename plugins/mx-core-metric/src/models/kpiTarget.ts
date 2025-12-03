@@ -17,11 +17,11 @@ export interface KpiTarget {
 
 export const kpiTargetSchema = z.object({
   id: z.string().optional(),
-  annual_target_id: z.string(),
-  kpi_id: z.string(),
-  department_id: z.string(),
+  annual_target_id: z.string().min(1, 'Annual Target wajib diisi'),
+  kpi_id: z.string().min(1, 'KPI wajib diisi'),
+  department_id: z.string().min(1, 'Department wajib diisi'),
   unit_id: z.string().optional(),
-  periode: z.string(),
+  periode: z.string().min(1, 'Periode wajib diisi'),
   granularity: z.enum(['monthly', 'weekly', 'daily']),
   value: z.number(),
   note: z.string().optional(),

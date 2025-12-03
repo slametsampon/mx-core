@@ -1,20 +1,12 @@
-Terima kasih atas update lengkap yang sangat berguna.
+## ✅ **ROADMAP: `mx-core-metric` (Versi Plugin UI-Only)**
 
-Dari informasi terbaru ini — khususnya struktur folder plugin `mx-core-metric`, konfigurasi `plugin.json`, dan pendekatan awal yang sudah sangat matang (termasuk mock JSON untuk simulasi) — saya akan:
-
----
-
-## ✅ **REVISI DAN PENAJAMAN ROADMAP: `mx-core-metric` (Versi Plugin UI-Only)**
-
-### 📌 TL;DR – Perubahan Penting:
-
-| Area                 | Update                                                  |
-| -------------------- | ------------------------------------------------------- |
-| 🔗 API               | `api: false` di `plugin.json` → plugin UI-only          |
-| 🌐 Data              | Simulasi data via file JSON di `/src/mocks/*.json`      |
-| 🧠 Role-based Access | Sudah ada RBAC per-role di `plugin.json`                |
-| 🧩 Komponen UI       | Akan dibangun dengan pendekatan _generic form & viewer_ |
-| 🗃️ Model TypeScript  | Semua schema sudah didefinisikan di `/src/models/*.ts`  |
+| Area                 | Update                                                               |
+| -------------------- | -------------------------------------------------------------------- |
+| 🔗 API               | `api: false` di `plugin.json` → plugin UI-only                       |
+| 🌐 Data              | Simulasi data via file JSON di `/mx-core-metric/public/mocks/*.json` |
+| 🧠 Role-based Access | Sudah ada RBAC per-role di `plugin.json`                             |
+| 🧩 Komponen UI       | Akan dibangun dengan pendekatan _generic form & viewer_              |
+| 🗃️ Model TypeScript  | Semua schema sudah didefinisikan di `/src/models/*.ts`               |
 
 ---
 

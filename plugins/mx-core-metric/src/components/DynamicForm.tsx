@@ -40,6 +40,7 @@ export function DynamicForm({
   const [relationalOptions, setRelationalOptions] = useState<
     Record<string, any[]>
   >({});
+  const [formErrors, setFormErrors] = useState<Record<string, string>>({});
 
   // ⬇️ Cek jika field mengacu ke model lain (relasi), lalu ambil datanya
   useEffect(() => {
@@ -132,13 +133,29 @@ export function DynamicForm({
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+
     const result = schema.safeParse(formData);
+
     if (!result.success) {
-      alert('❌ Validasi gagal. Harap lengkapi form.');
-      console.warn(result.error.format());
+      // 🔍 Ambil semua issue dari ZodError
+      const issues = result.error.issues;
+
+      // ✅ Susun error per field
+      const fieldErrors: Record<string, string> = {};
+      for (const issue of issues) {
+        const field = String(issue.path[0]);
+        if (!fieldErrors[field]) {
+          fieldErrors[field] = issue.message;
+        }
+      }
+
+      // ⛔️ Set semua pesan error ke state
+      setFormErrors(fieldErrors);
       return;
     }
 
+    // ✅ Bersihkan error jika valid
+    setFormErrors({});
     onSaved(result.data);
     setFormData({});
   }
@@ -206,6 +223,9 @@ export function DynamicForm({
                 }
                 className="rounded border px-3 py-2"
               />
+            )}
+            {formErrors[field.key] && (
+              <p className="text-sm text-red-600">{formErrors[field.key]}</p>
             )}
           </div>
         );

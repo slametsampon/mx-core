@@ -16,10 +16,10 @@ export interface KpiForecast {
 
 export const kpiForecastSchema = z.object({
   id: z.string().optional(),
-  kpi_id: z.string(),
-  department_id: z.string(),
+  kpi_id: z.string().min(1, 'KPI ID wajib diisi'),
+  department_id: z.string().min(1, 'Department wajib diisi'),
   unit_id: z.string().optional(),
-  periode: z.string(),
+  periode: z.string().min(1, 'Periode wajib diisi'),
   value: z.number(),
   method: z.enum(['manual', 'linear', 'ml_model']),
   annual_target_id: z.string().optional(),

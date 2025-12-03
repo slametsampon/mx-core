@@ -41,10 +41,10 @@ export const DISTURBANCE_CATEGORIES: {
 // 🧩 Tambahkan Zod schema
 export const disturbanceLogSchema = z.object({
   id: z.string().optional(),
-  department_id: z.string(),
-  unit_id: z.string(),
-  periode: z.string(),
-  source_id: z.string(),
+  department_id: z.string().min(1, 'Department wajib diisi'),
+  unit_id: z.string().min(1, 'Unit wajib diisi'),
+  periode: z.string().min(1, 'Periode wajib diisi'),
+  source_id: z.string().min(1, 'Source ID wajib diisi'),
   duration_minutes: z.number(),
   category: z.enum([
     'electrical',

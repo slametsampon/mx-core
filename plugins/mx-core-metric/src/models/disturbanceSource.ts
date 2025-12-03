@@ -15,7 +15,7 @@ export interface DisturbanceSource {
 
 export const disturbanceSourceSchema = z.object({
   id: z.string().optional(),
-  name: z.string(),
+  name: z.string().min(1, 'Nmae wajib diisi'),
   type: z.enum(['internal', 'external']),
   description: z.string().optional(),
   is_active: z.boolean().default(true),

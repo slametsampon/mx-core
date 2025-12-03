@@ -15,8 +15,8 @@ export interface KpiTargetAnnual {
 
 export const kpiTargetAnnualSchema = z.object({
   id: z.string().optional(),
-  kpi_id: z.string(),
-  department_id: z.string(),
+  kpi_id: z.string().min(1, 'KPI wajib diisi'),
+  department_id: z.string().min(1, 'Department wajib diisi'),
   unit_id: z.string().optional(),
   year: z.number(),
   value: z.number(),

@@ -17,9 +17,9 @@ export interface KPI {
 
 export const kpiSchema = z.object({
   id: z.string().optional(),
-  name: z.string(),
+  name: z.string().min(1, 'Name wajib diisi'),
   description: z.string().optional(),
-  unit: z.string(),
+  unit: z.string().min(1, 'Unit wajib diisi'),
   type: z.enum(['numeric', 'boolean', 'status']),
   is_active: z.boolean().default(true),
   created_at: z.string().optional(),
