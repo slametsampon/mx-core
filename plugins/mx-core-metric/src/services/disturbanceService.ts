@@ -1,7 +1,7 @@
 // plugins/mx-core-metric/src/services/disturbanceService.ts
 
 import { DisturbanceLog } from '@/models/disturbanceLog';
-import { USE_MOCK, API_BASE, logTrace } from '@/config';
+import { USE_MOCK, API_BASE, logTrace } from '@/config/config';
 
 export async function getDisturbanceLogs(): Promise<DisturbanceLog[]> {
   const label = 'DisturbanceService:getLogs';

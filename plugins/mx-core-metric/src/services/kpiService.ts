@@ -1,7 +1,7 @@
 // plugins/mx-core-metric/src/services/kpiService.ts
 
 import { KpiRecord } from '@/models/kpiRecord';
-import { USE_MOCK, API_BASE, logTrace } from '@/config';
+import { USE_MOCK, API_BASE, logTrace } from '@/config/config';
 
 export async function getKpiRecords(): Promise<KpiRecord[]> {
   const label = 'KPIService:getKpiRecords';
