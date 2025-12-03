@@ -2,11 +2,11 @@
 
 /** @type {import("pliny/config").PlinyConfig } */
 const siteMetadata = {
-  title: 'Mx Core',
+  title: 'Mx Core Docs',
   version: '0.6.1', //packages/core => RBC & search link /mx-core
   author: 'Slamet-Sam',
-  headerTitle: 'MxCore',
-  description: 'Maintenance Extended Core',
+  headerTitle: 'mx-core-docs',
+  description: 'Maintenance Extended Core Documents',
   language: 'en-us',
   theme: 'system', // system, dark or light
   siteUrl: 'https://mx-core-docs.vercel.app/',

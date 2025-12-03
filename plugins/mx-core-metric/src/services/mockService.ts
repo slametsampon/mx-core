@@ -2,6 +2,8 @@
 
 const MOCK_BASE = '/mocks';
 
+const memoryStore = new Map<string, any[]>();
+
 function isClient() {
   return typeof window !== 'undefined';
 }
@@ -11,51 +13,32 @@ export function mockService<T>(model: string) {
 
   return {
     async getAll(): Promise<T[]> {
-      // 🔍 1. Ambil dari localStorage kalau ada dan valid
-      if (isClient()) {
-        const raw = localStorage.getItem(model);
-        if (raw) {
-          try {
-            const parsed = JSON.parse(raw);
-            if (Array.isArray(parsed) && parsed.length > 0) {
-              console.info(
-                `[mockService] 📦 Data untuk "${model}" diambil dari localStorage`
-              );
-              return parsed;
-            } else {
-              console.warn(
-                `[mockService] ⚠️ LocalStorage "${model}" kosong atau tidak valid, fallback ke file.`
-              );
-            }
-          } catch (err) {
-            console.warn(
-              `[mockService] ❌ Gagal parse localStorage "${model}", fallback ke file.`,
-              err
-            );
-          }
-        }
+      // ✅ 1. Jika data sudah di-load sebelumnya, ambil dari memory
+      if (memoryStore.has(model)) {
+        console.info(`[mockService] 🧠 Data "${model}" diambil dari memory`);
+        return memoryStore.get(model)!;
       }
 
-      // 🔁 2. Kalau tidak ada atau gagal, ambil dari file
+      // 🔁 2. Kalau belum, ambil dari file mock
       try {
         const res = await fetch(file);
         if (!res.ok) throw new Error(`Mock fetch failed for ${model}`);
         const data = await res.json();
 
-        // 💾 Simpan ke localStorage untuk penggunaan berikutnya
-        if (isClient()) {
-          localStorage.setItem(model, JSON.stringify(data));
+        if (Array.isArray(data)) {
+          memoryStore.set(model, data);
           console.info(
-            `[mockService] 🔄 Data awal untuk "${model}" disimpan ke localStorage`
+            `[mockService] 📥 File mock "${model}" dimuat ke memory`
           );
+          return data;
+        } else {
+          console.warn(
+            `[mockService] ⚠️ Format file "${model}.json" tidak valid`
+          );
+          return [];
         }
-
-        return data;
       } catch (err) {
-        console.error(
-          `[mockService] ❌ Gagal fetch dari file untuk "${model}"`,
-          err
-        );
+        console.error(`[mockService] ❌ Gagal fetch file "${model}"`, err);
         return [];
       }
     },
@@ -72,42 +55,34 @@ export function mockService<T>(model: string) {
         created_at: new Date().toISOString(),
       };
 
-      console.warn(`[mockService] Simulated create for "${model}"`, item);
+      console.warn(`[mockService] ➕ Create "${model}"`, item);
 
-      // 💾 Simpan ke localStorage jika di browser
-      if (isClient()) {
-        const list = JSON.parse(localStorage.getItem(model) || '[]');
-        list.push(item);
-        localStorage.setItem(model, JSON.stringify(list));
-      }
-
+      const data = await this.getAll();
+      data.push(item);
+      memoryStore.set(model, data);
       return item;
     },
 
     async update(id: string, updated: T): Promise<T> {
       const item = { ...updated, id };
-      console.warn(`[mockService] Simulated update for "${model}"`, item);
+      console.warn(`[mockService] 📝 Update "${model}"`, item);
 
-      if (isClient()) {
-        const list = JSON.parse(localStorage.getItem(model) || '[]');
-        const idx = list.findIndex((x: any) => x.id === id);
-        if (idx !== -1) {
-          list[idx] = item;
-          localStorage.setItem(model, JSON.stringify(list));
-        }
+      const data = await this.getAll();
+      const idx = data.findIndex((x: any) => x.id === id);
+      if (idx !== -1) {
+        data[idx] = item;
+        memoryStore.set(model, data);
       }
 
       return item;
     },
 
     async delete(id: string): Promise<boolean> {
-      console.warn(`[mockService] Simulated delete for "${model}"`);
+      console.warn(`[mockService] ❌ Delete "${model}" → ${id}`);
 
-      if (isClient()) {
-        let list = JSON.parse(localStorage.getItem(model) || '[]');
-        list = list.filter((x: any) => x.id !== id);
-        localStorage.setItem(model, JSON.stringify(list));
-      }
+      const data = await this.getAll();
+      const filtered = data.filter((x: any) => x.id !== id);
+      memoryStore.set(model, filtered);
 
       return true;
     },
