@@ -20,3 +20,7 @@ _next/
 # OS artifacts
 .DS_Store
 Thumbs.db
+
+# environment
+.env
+.env*.local

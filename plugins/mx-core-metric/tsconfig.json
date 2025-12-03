@@ -8,6 +8,7 @@
     "outDir": "dist",
     "baseUrl": ".", // penting
     "paths": {
+      "@/*": ["src/*"],
       "@/components/*": ["src/components/*"],
       "@/app/*": ["src/app/*"],
       "@/models/*": ["src/models/*"],
