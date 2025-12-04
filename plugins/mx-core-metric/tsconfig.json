@@ -16,6 +16,7 @@
       "@/lib/*": ["src/lib/*"],
       "@/css/*": ["src/css/*"],
       "@/data/*": ["src/data/*"],
+      "@/utils/*": ["src/utils/*"],
       "@/mocks/*": ["src/mocks/*"]
     },
     "noEmit": true
