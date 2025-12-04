@@ -1,0 +1,32 @@
+[
+  {
+    "id": "kta-001",
+    "kpi_id": "kpi-001",
+    "department_id": "dept-maintenance",
+    "unit_id": "unit-maintenance-1",
+    "year": 2025,
+    "value": 8640,
+    "note": "Target tahunan Running Hours",
+    "created_at": "2025-01-01T00:00:00Z"
+  },
+  {
+    "id": "kta-002",
+    "kpi_id": "kpi-002",
+    "department_id": "dept-maintenance",
+    "unit_id": "unit-maintenance-1",
+    "year": 2025,
+    "value": 1100000,
+    "note": "Target anggaran tahunan 1.1 Juta USD",
+    "created_at": "2025-01-01T00:00:00Z"
+  },
+  {
+    "id": "kta-003",
+    "kpi_id": "kpi-003",
+    "department_id": "dept-maintenance",
+    "unit_id": "unit-maintenance-1",
+    "year": 2025,
+    "value": 1,
+    "note": "Budget shutdown sudah tersedia",
+    "created_at": "2025-01-01T00:00:00Z"
+  }
+]

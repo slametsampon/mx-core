@@ -16,6 +16,7 @@ import {
 
 import { modelDefinitions, ModelKey } from '@/config/modelDefinitions';
 import { getService } from '@/services/getService';
+import { logFrontendStatus } from '@/config/config';
 
 type Props = {
   model: ModelKey;
@@ -54,10 +55,16 @@ export function DynamicForm({
             const service = getService(relatedModel);
             const data = await service.getAll();
             options[field.key] = data;
+            logFrontendStatus(
+              'DynamicForm',
+              `✅ Relasi "${relatedModel}" berhasil dimuat`,
+              data
+            );
           } catch (err: any) {
-            console.warn(
-              `[DynamicForm] ⚠️ Gagal load relasi "${relatedModel}":`,
-              err.message
+            logFrontendStatus(
+              'DynamicForm',
+              `⚠️ Gagal load relasi "${relatedModel}"`,
+              err instanceof Error ? err.message : err
             );
             options[field.key] = []; // prevent crash, empty dropdown
           }
@@ -153,11 +160,17 @@ export function DynamicForm({
 
       // ⛔️ Set semua pesan error ke state
       setFormErrors(fieldErrors);
+      logFrontendStatus('DynamicForm', '❌ Validasi form gagal', issues);
       return;
     }
 
     // ✅ Bersihkan error jika valid
     setFormErrors({});
+    logFrontendStatus(
+      'DynamicForm',
+      '✅ Form berhasil divalidasi & dikirim',
+      result.data
+    );
     onSaved(result.data);
     setFormData({});
   }

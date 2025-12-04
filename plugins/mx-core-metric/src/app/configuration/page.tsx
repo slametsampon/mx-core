@@ -1,4 +1,4 @@
-// plugins/mx-core-metric/src/app/form/page.tsx
+// plugins/mx-core-metric/src/app/configuration/page.tsx
 
 'use client';
 
@@ -7,6 +7,7 @@ import { modelDefinitions, ModelKey } from '@/config/modelDefinitions';
 import { DynamicForm } from '@/components/DynamicForm';
 import { DynamicTable } from '@/components/DynamicTable';
 import { getService } from '@/services/getService';
+import { logFrontendStatus } from '@/config/config';
 
 export default function FormPage() {
   const [model, setModel] = useState<ModelKey>('kpi_record');
@@ -28,6 +29,15 @@ export default function FormPage() {
       setDataList(res);
     } catch (err) {
       console.error('❌ Failed to fetch data:', err);
+      if (err instanceof Error) {
+        logFrontendStatus('page.tsx', '❌ Gagal fetch data awal', err.message);
+      } else {
+        logFrontendStatus(
+          'page.tsx',
+          '❌ Gagal fetch data awal (non-error)',
+          err
+        );
+      }
     }
   }
 

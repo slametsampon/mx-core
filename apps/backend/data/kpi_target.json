@@ -1,0 +1,14 @@
+[
+  {
+    "id": "kt-2025-01-rhm",
+    "annual_target_id": "kta-2025-rhm",
+    "kpi_id": "kpi-rhm",
+    "department_id": "dept-maint",
+    "unit_id": "unit-a",
+    "periode": "2025-01-01",
+    "granularity": "monthly",
+    "value": 500,
+    "note": "Target Januari",
+    "created_at": "2025-01-01T00:00:00Z"
+  }
+]

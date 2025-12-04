@@ -1,0 +1,20 @@
+[
+  {
+    "id": "dept-maintenance",
+    "name": "Maintenance",
+    "description": "Department Maintenance",
+    "created_at": "2025-01-01T00:00:00Z"
+  },
+  {
+    "id": "dept-hrdga",
+    "name": "HRDGA",
+    "description": "Human Resource and General Affairs",
+    "created_at": "2025-01-01T00:00:00Z"
+  },
+  {
+    "id": "dept-production",
+    "name": "Production",
+    "description": "Production Department",
+    "created_at": "2025-01-01T00:00:00Z"
+  }
+]

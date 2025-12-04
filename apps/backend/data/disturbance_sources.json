@@ -1,0 +1,18 @@
+[
+  {
+    "id": "dist-001",
+    "name": "Power Blackout OXO1",
+    "type": "external",
+    "description": "Kerusakan cubicle incoming 20 KV pada OXO 1 (internal phase T)",
+    "is_active": true,
+    "created_at": "2025-08-08T00:00:00Z"
+  },
+  {
+    "id": "dist-002",
+    "name": "Trafo 20 KV TRM",
+    "type": "internal",
+    "description": "Temperature switch TRM kemasukan air",
+    "is_active": true,
+    "created_at": "2025-01-10T00:00:00Z"
+  }
+]
