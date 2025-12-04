@@ -54,10 +54,12 @@ export function DynamicForm({
             const service = getService(relatedModel);
             const data = await service.getAll();
             options[field.key] = data;
-          } catch (err) {
+          } catch (err: any) {
             console.warn(
-              `[DynamicForm] Gagal load data relasi untuk ${relatedModel}`
+              `[DynamicForm] ⚠️ Gagal load relasi "${relatedModel}":`,
+              err.message
             );
+            options[field.key] = []; // prevent crash, empty dropdown
           }
         }
       }
@@ -232,12 +234,12 @@ export function DynamicForm({
       })}
 
       {/* Buttons */}
-      <div className="flex justify-between pt-2">
+      <div className="flex justify-end gap-2 pt-4">
         {isEditMode && onCancel && (
           <button
             type="button"
             onClick={onCancel}
-            className="rounded border border-gray-300 bg-white px-4 py-2 text-gray-700 hover:bg-gray-100"
+            className="rounded bg-gray-100 px-4 py-2 text-gray-700 hover:bg-gray-200"
           >
             ❌ Batal
           </button>
@@ -245,7 +247,7 @@ export function DynamicForm({
 
         <button
           type="submit"
-          className="ml-auto rounded bg-blue-600 px-4 py-2 font-semibold text-white hover:bg-blue-700"
+          className="rounded bg-blue-600 px-4 py-2 font-semibold text-white hover:bg-blue-700"
         >
           {isEditMode ? '🔄 Update' : '💾 Simpan'}
         </button>
