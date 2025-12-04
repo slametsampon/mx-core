@@ -5,16 +5,15 @@ import express from 'express';
 import { requirePermission } from './middleware/requirePermission';
 import { registerDefaultRules } from '@mx-core/core/rbac/init';
 import apiRouter from './routes/apiRouter';
-import { loadMockData } from './db'; // ✅ Tambahkan ini
+import { initData } from './db';
+import dotenv from 'dotenv';
+dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 // 🔐 Register RBAC default rules (Admin, Manager, etc.)
 registerDefaultRules();
-
-// ✅ Load data dari folder /data/*.json ke memory
-loadMockData(); // ✅ Panggil sebelum listen()
 
 // ✅ Endpoint uji coba RBAC
 app.get(
@@ -32,6 +31,8 @@ app.use(express.urlencoded({ extended: true }));
 // ✅ Pasang router API
 app.use('/api', apiRouter);
 
+// ⬇️ Tambahkan ini sebelum `app.listen(...)`
+initData();
 // ✅ Log status saat server ready
 app.listen(PORT, () => {
   console.info(

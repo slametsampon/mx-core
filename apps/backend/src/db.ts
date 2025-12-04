@@ -2,15 +2,17 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import dotenv from 'dotenv';
+dotenv.config();
 
-// ✅ Perbaikan: Dapatkan __dirname secara aman di ESM
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// ⬇️ Lokasi folder data
 const DATA_FOLDER = path.join(__dirname, '../data');
 
-// 🔁 Simpan data ke memori
+// Mode dari .env (default = memory)
+const DATA_MODE = process.env.DATA_MODE || 'memory';
+
 export const db: Record<string, any[]> = {
   kpi_record: [],
   department: [],
@@ -19,14 +21,22 @@ export const db: Record<string, any[]> = {
   kpi_target_annual: [],
 };
 
-// ⬇️ Load JSON file ke db saat startup
-export function loadMockData() {
+export function initData() {
+  if (DATA_MODE === 'json') {
+    console.info('[DB] 📂 Mode: JSON FILE — loading from /data');
+    loadFromJson();
+  } else {
+    console.info('[DB] 💾 Mode: IN-MEMORY — empty at start');
+  }
+}
+
+function loadFromJson() {
   const files = fs.readdirSync(DATA_FOLDER);
 
   for (const file of files) {
     if (!file.endsWith('.json')) continue;
 
-    const modelName = path.basename(file, '.json'); // e.g. "department"
+    const modelName = path.basename(file, '.json');
     const fullPath = path.join(DATA_FOLDER, file);
 
     try {
@@ -35,10 +45,10 @@ export function loadMockData() {
 
       if (Array.isArray(data)) {
         db[modelName] = data;
-        console.info(`[DB] 🔁 Loaded mock: ${modelName} (${data.length})`);
+        console.info(`[DB] 🔁 Loaded ${modelName}: ${data.length} records`);
       }
     } catch (err) {
-      console.warn(`[DB] ❌ Gagal load file ${file}:`, err);
+      console.warn(`[DB] ❌ Gagal load ${file}:`, err);
     }
   }
 }
