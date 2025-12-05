@@ -6,9 +6,7 @@ dist/
 node_modules/
 
 # Env config (kalau ada)
-.env
 .env.local
-.env.*
 
 # Log files
 npm-debug.log*
