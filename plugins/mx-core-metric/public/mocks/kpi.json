@@ -1,0 +1,65 @@
+[
+  {
+    "id": "kpi-running-hours",
+    "name": "Running Hours",
+    "description": "Tercapainya jam operasi pabrik sesuai target tahunan",
+    "unit": "jam",
+    "type": "numeric",
+    "is_active": true,
+    "created_at": "2025-01-01T00:00:00Z"
+  },
+  {
+    "id": "kpi-oee",
+    "name": "Overall Equipment Effectiveness (OEE)",
+    "description": "Efektivitas operasi peralatan pada unit produksi",
+    "unit": "%",
+    "type": "numeric",
+    "is_active": true,
+    "created_at": "2025-01-01T00:00:00Z"
+  },
+  {
+    "id": "kpi-zero-accident",
+    "name": "Zero Accident",
+    "description": "Hari tanpa kecelakaan kerja yang menyebabkan kehilangan waktu",
+    "unit": "hari",
+    "type": "numeric",
+    "is_active": true,
+    "created_at": "2025-01-01T00:00:00Z"
+  },
+  {
+    "id": "kpi-capex",
+    "name": "CAPEX Execution",
+    "description": "Realisasi eksekusi proyek CAPEX sesuai rencana",
+    "unit": "%",
+    "type": "numeric",
+    "is_active": true,
+    "created_at": "2025-01-01T00:00:00Z"
+  },
+  {
+    "id": "kpi-moc",
+    "name": "Management of Change Completion",
+    "description": "Persentase MoC yang diselesaikan tepat waktu",
+    "unit": "%",
+    "type": "numeric",
+    "is_active": true,
+    "created_at": "2025-01-01T00:00:00Z"
+  },
+  {
+    "id": "kpi-sop-review",
+    "name": "SOP & Procedure Review",
+    "description": "Jumlah instruksi kerja dan SOP yang direview tahun berjalan",
+    "unit": "dokumen",
+    "type": "numeric",
+    "is_active": true,
+    "created_at": "2025-01-01T00:00:00Z"
+  },
+  {
+    "id": "kpi-maint-backlog",
+    "name": "Maintenance Backlog",
+    "description": "Jumlah work order pending pada area maintenance",
+    "unit": "WO",
+    "type": "numeric",
+    "is_active": true,
+    "created_at": "2025-01-01T00:00:00Z"
+  }
+]

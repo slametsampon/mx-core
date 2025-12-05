@@ -1,4 +1,6 @@
-// src/models/kpi.ts
+// plugins/mx-core-metric/src/models/kpi.ts
+
+import { z } from 'zod';
 
 export type KpiType = 'numeric' | 'boolean' | 'status';
 
@@ -10,5 +12,16 @@ export interface KPI {
   type: KpiType;
   is_active: boolean;
   created_at: string;
-  value: number | boolean | string; // ⬅️ nilai tergantung type
+  value: number | boolean | string;
 }
+
+export const kpiSchema = z.object({
+  id: z.string().optional(),
+  name: z.string().min(1, 'Name wajib diisi'),
+  description: z.string().optional(),
+  unit: z.string().min(1, 'Unit wajib diisi'),
+  type: z.enum(['numeric', 'boolean', 'status']),
+  is_active: z.boolean().default(true),
+  created_at: z.string().optional(),
+  value: z.union([z.number(), z.boolean(), z.string()]).optional(),
+});

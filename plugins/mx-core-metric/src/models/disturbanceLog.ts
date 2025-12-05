@@ -1,4 +1,6 @@
-// src/models/disturbanceLog.ts
+// plugins/mx-core-metric/src/models/disturbanceLog.ts
+
+import { z } from 'zod';
 
 export type DisturbanceCategory =
   | 'electrical'
@@ -35,3 +37,23 @@ export const DISTURBANCE_CATEGORIES: {
   { label: 'Utility', value: 'utility' },
   { label: 'Other', value: 'other' },
 ];
+
+// 🧩 Tambahkan Zod schema
+export const disturbanceLogSchema = z.object({
+  id: z.string().optional(),
+  department_id: z.string().min(1, 'Department wajib diisi'),
+  unit_id: z.string().min(1, 'Unit wajib diisi'),
+  periode: z.string().min(1, 'Periode wajib diisi'),
+  source_id: z.string().min(1, 'Source ID wajib diisi'),
+  duration_minutes: z.number(),
+  category: z.enum([
+    'electrical',
+    'mechanical',
+    'instrument',
+    'utility',
+    'other',
+  ]),
+  description: z.string(),
+  created_by: z.string().optional(),
+  created_at: z.string().optional(),
+});

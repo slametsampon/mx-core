@@ -14,6 +14,11 @@ export default function MetricLayout({ children }: LayoutProps) {
     <div className="flex min-h-screen flex-col bg-white text-gray-900 dark:bg-gray-950 dark:text-white">
       {/* Navbar */}
       <header className="w-full bg-gray-100 px-6 py-4 shadow dark:bg-gray-900">
+        {process.env.NEXT_PUBLIC_USE_MOCK === 'true' && (
+          <div className="bg-yellow-100 px-4 py-2 text-sm font-medium text-yellow-800">
+            ⚠️ MOCK MODE ACTIVE - Data loaded from /public/mocks
+          </div>
+        )}
         <div className="mx-auto flex max-w-7xl items-center justify-between">
           <h1 className="text-xl font-bold tracking-tight">📊 Metric Plugin</h1>
           <nav className="space-x-4 text-sm font-medium">

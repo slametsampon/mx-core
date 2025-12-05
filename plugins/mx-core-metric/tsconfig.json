@@ -8,6 +8,7 @@
     "outDir": "dist",
     "baseUrl": ".", // penting
     "paths": {
+      "@/*": ["src/*"],
       "@/components/*": ["src/components/*"],
       "@/app/*": ["src/app/*"],
       "@/models/*": ["src/models/*"],
@@ -15,6 +16,7 @@
       "@/lib/*": ["src/lib/*"],
       "@/css/*": ["src/css/*"],
       "@/data/*": ["src/data/*"],
+      "@/utils/*": ["src/utils/*"],
       "@/mocks/*": ["src/mocks/*"]
     },
     "noEmit": true

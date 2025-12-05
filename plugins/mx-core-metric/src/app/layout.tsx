@@ -3,10 +3,13 @@
 import type { Metadata } from 'next';
 import '@/css/tailwind.css';
 import MetricLayout from '@/components/Layout';
+import siteMetadata from '@/data/siteMetadata';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 
 export const metadata: Metadata = {
-  title: 'Plugin Metric',
-  description: 'Halaman plugin metric untuk monitoring KPI dan disturbance.',
+  title: siteMetadata.title,
+  description: siteMetadata.description,
 };
 
 export default function RootLayout({
@@ -16,8 +19,17 @@ export default function RootLayout({
 }) {
   return (
     <html lang="id" suppressHydrationWarning>
+      <head>
+        <link rel="icon" href="favicon.ico" type="image/x-icon" sizes="any" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta charSet="utf-8" />
+        <title>{siteMetadata.title}</title>
+        <meta name="description" content={siteMetadata.description} />
+      </head>
       <body className="antialiased">
-        <MetricLayout>{children}</MetricLayout>
+        <Header /> {/* ✅ Header akan jadi full width */}
+        {children}
+        <Footer /> {/* ✅ Footer juga full width */}
       </body>
     </html>
   );
