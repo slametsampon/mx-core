@@ -12,9 +12,54 @@
     "id": "unit-syngas",
     "department_id": "dept-production",
     "name": "Unit Syngas",
-    "location": "Plant",
-    "description": "Unit syntetic Gas",
+    "location": "Plant Area B",
+    "description": "Unit Synthetic Gas (SMR, HTCR, Shift Converter)",
     "is_active": true,
     "created_at": "2025-01-01T00:00:00Z"
+  },
+  {
+    "id": "unit-octanol",
+    "department_id": "dept-production",
+    "name": "Unit Octanol",
+    "location": "Plant Area C",
+    "description": "Area proses octanol dan downstream",
+    "is_active": true,
+    "created_at": "2025-01-02T00:00:00Z"
+  },
+  {
+    "id": "unit-utility",
+    "department_id": "dept-production",
+    "name": "Unit Utility",
+    "location": "Utility Complex",
+    "description": "Boiler, cooling tower, compressed air & nitrogen",
+    "is_active": true,
+    "created_at": "2025-01-02T00:00:00Z"
+  },
+  {
+    "id": "unit-electrical",
+    "department_id": "dept-maintenance",
+    "name": "Electrical Maintenance",
+    "location": "Gedung E-03",
+    "description": "Maintenance peralatan kelistrikan",
+    "is_active": true,
+    "created_at": "2025-01-03T00:00:00Z"
+  },
+  {
+    "id": "unit-instrument",
+    "department_id": "dept-maintenance",
+    "name": "Instrument Maintenance",
+    "location": "Gedung I-01",
+    "description": "Maintenance instrumentasi & kontrol",
+    "is_active": true,
+    "created_at": "2025-01-03T00:00:00Z"
+  },
+  {
+    "id": "unit-ga",
+    "department_id": "dept-hrdga",
+    "name": "General Affairs",
+    "location": "Office Support",
+    "description": "Layanan umum & administrasi pabrik",
+    "is_active": true,
+    "created_at": "2025-01-04T00:00:00Z"
   }
 ]

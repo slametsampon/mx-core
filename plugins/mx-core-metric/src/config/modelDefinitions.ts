@@ -1,14 +1,13 @@
 // plugins/mx-core-metric/src/config/modelDefinitions.ts
 
-import { kpiRecordSchema } from '@/models/kpiRecord';
 import { disturbanceLogSchema } from '@/models/disturbanceLog';
 import { departmentSchema } from '@/models/department';
 import { disturbanceSourceSchema } from '@/models/disturbanceSource';
-import { kpiSchema } from '@/models/kpi';
-import { kpiForecastSchema } from '@/models/kpiForecast';
-import { kpiTargetSchema } from '@/models/kpiTarget';
-import { kpiTargetAnnualSchema } from '@/models/kpiTargetAnnual';
 import { unitSchema } from '@/models/unit';
+import { kpiSchema } from '@/models/kpi';
+import { kpiRecordSchema } from '@/models/kpiRecord';
+import { kpiAnnualTargetSchema } from '@/models/kpiAnnualTarget';
+import { kpiPeriodicTargetSchema } from '@/models/kpiPeriodicTarget';
 
 export const modelDefinitions = {
   kpi_record: {
@@ -30,9 +29,9 @@ export const modelDefinitions = {
       { key: 'periode', label: 'Periode' },
       { key: 'unit_id', label: 'Unit' },
       { key: 'source_id', label: 'Source' },
-      { key: 'duration_minutes', label: 'Duration (min)' },
-      { key: 'category', label: 'Category' },
-      { key: 'description', label: 'Description' },
+      { key: 'duration_minutes', label: 'Durasi (menit)' },
+      { key: 'category', label: 'Kategori' },
+      { key: 'description', label: 'Deskripsi' },
     ],
   },
 
@@ -69,23 +68,22 @@ export const modelDefinitions = {
     ],
   },
 
-  kpi_forecast: {
-    label: 'KPI Forecast',
-    schema: kpiForecastSchema,
+  kpi_annual_target: {
+    label: 'KPI Annual Target',
+    schema: kpiAnnualTargetSchema,
     fields: [
       { key: 'kpi_id', label: 'KPI ID' },
       { key: 'department_id', label: 'Department ID' },
       { key: 'unit_id', label: 'Unit ID' },
-      { key: 'periode', label: 'Periode' },
-      { key: 'value', label: 'Forecasted Value' },
-      { key: 'method', label: 'Method' },
-      { key: 'annual_target_id', label: 'Annual Target ID' },
+      { key: 'year', label: 'Year' },
+      { key: 'annual_value', label: 'Annual Target' },
+      { key: 'note', label: 'Note' },
     ],
   },
 
-  kpi_target: {
-    label: 'KPI Target',
-    schema: kpiTargetSchema,
+  kpi_periodic_target: {
+    label: 'KPI Periodic Target',
+    schema: kpiPeriodicTargetSchema,
     fields: [
       { key: 'annual_target_id', label: 'Annual Target ID' },
       { key: 'kpi_id', label: 'KPI ID' },
@@ -93,21 +91,9 @@ export const modelDefinitions = {
       { key: 'unit_id', label: 'Unit ID' },
       { key: 'periode', label: 'Periode' },
       { key: 'granularity', label: 'Granularity' },
-      { key: 'value', label: 'Target Value' },
-      { key: 'note', label: 'Note' },
-    ],
-  },
-
-  kpi_target_annual: {
-    label: 'KPI Target Annual',
-    schema: kpiTargetAnnualSchema,
-    fields: [
-      { key: 'kpi_id', label: 'KPI ID' },
-      { key: 'department_id', label: 'Department ID' },
-      { key: 'unit_id', label: 'Unit ID' },
-      { key: 'year', label: 'Year' },
-      { key: 'value', label: 'Annual Target' },
-      { key: 'note', label: 'Note' },
+      { key: 'target_value', label: 'Target Value' },
+      { key: 'actual_value', label: 'Actual Value' },
+      { key: 'actual_note', label: 'Actual Note' },
     ],
   },
 

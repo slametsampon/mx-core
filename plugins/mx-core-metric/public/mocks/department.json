@@ -2,19 +2,43 @@
   {
     "id": "dept-maintenance",
     "name": "Maintenance",
-    "description": "Department Maintenance",
-    "created_at": "2025-01-01T00:00:00Z"
-  },
-  {
-    "id": "dept-hrdga",
-    "name": "HRDGA",
-    "description": "Human Resource and General Affairs",
+    "description": "Pemeliharaan mekanik, elektrik, instrument dan reliability",
     "created_at": "2025-01-01T00:00:00Z"
   },
   {
     "id": "dept-production",
     "name": "Production",
-    "description": "Production Department",
+    "description": "Operasi dan kontrol proses pabrik",
     "created_at": "2025-01-01T00:00:00Z"
+  },
+  {
+    "id": "dept-hrdga",
+    "name": "HRDGA",
+    "description": "Human Resources & General Affairs",
+    "created_at": "2025-01-01T00:00:00Z"
+  },
+  {
+    "id": "dept-she",
+    "name": "SHE",
+    "description": "Safety, Health & Environment Department",
+    "created_at": "2025-01-02T00:00:00Z"
+  },
+  {
+    "id": "dept-engineering",
+    "name": "Engineering",
+    "description": "Project, design & engineering modification",
+    "created_at": "2025-01-02T00:00:00Z"
+  },
+  {
+    "id": "dept-quality",
+    "name": "Quality Control",
+    "description": "Quality assurance & laboratory control",
+    "created_at": "2025-01-03T00:00:00Z"
+  },
+  {
+    "id": "dept-logistics",
+    "name": "Logistics & Warehouse",
+    "description": "Supporting material & chemical supply chain",
+    "created_at": "2025-01-04T00:00:00Z"
   }
 ]

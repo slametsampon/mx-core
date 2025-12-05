@@ -1,0 +1,72 @@
+[
+  {
+    "id": "annual-2025-rh",
+    "kpi_id": "kpi-running-hours",
+    "department_id": "dept-maintenance",
+    "unit_id": "unit-syngas",
+    "year": 2025,
+    "annual_value": 8640,
+    "note": "Target running hours sesuai target operasi 2025",
+    "created_at": "2025-01-01T00:00:00Z"
+  },
+  {
+    "id": "annual-2025-oee",
+    "kpi_id": "kpi-oee",
+    "department_id": "dept-production",
+    "unit_id": "unit-syngas",
+    "year": 2025,
+    "annual_value": 85,
+    "note": "Target OEE tahunan",
+    "created_at": "2025-01-01T00:00:00Z"
+  },
+  {
+    "id": "annual-2025-zero-acc",
+    "kpi_id": "kpi-zero-accident",
+    "department_id": "dept-maintenance",
+    "unit_id": null,
+    "year": 2025,
+    "annual_value": 365,
+    "note": "Komitmen zero accident perusahaan",
+    "created_at": "2025-01-01T00:00:00Z"
+  },
+  {
+    "id": "annual-2025-capex",
+    "kpi_id": "kpi-capex",
+    "department_id": "dept-maintenance",
+    "unit_id": null,
+    "year": 2025,
+    "annual_value": 100,
+    "note": "Eksekusi CAPEX tahunan",
+    "created_at": "2025-01-01T00:00:00Z"
+  },
+  {
+    "id": "annual-2025-moc",
+    "kpi_id": "kpi-moc",
+    "department_id": "dept-maintenance",
+    "unit_id": null,
+    "year": 2025,
+    "annual_value": 90,
+    "note": "MOC completion target",
+    "created_at": "2025-01-01T00:00:00Z"
+  },
+  {
+    "id": "annual-2025-sop",
+    "kpi_id": "kpi-sop-review",
+    "department_id": "dept-maintenance",
+    "unit_id": null,
+    "year": 2025,
+    "annual_value": 40,
+    "note": "Review 40 prosedur dan instruksi kerja",
+    "created_at": "2025-01-01T00:00:00Z"
+  },
+  {
+    "id": "annual-2025-backlog",
+    "kpi_id": "kpi-maint-backlog",
+    "department_id": "dept-maintenance",
+    "unit_id": null,
+    "year": 2025,
+    "annual_value": 150,
+    "note": "Menjaga backlog WO maksimal 150",
+    "created_at": "2025-01-01T00:00:00Z"
+  }
+]

@@ -1,0 +1,79 @@
+[
+  {
+    "id": "pt-rh-2025-01",
+    "annual_target_id": "annual-2025-rh",
+    "kpi_id": "kpi-running-hours",
+    "department_id": "dept-maintenance",
+    "unit_id": "unit-syngas",
+    "periode": "2025-01-01",
+    "granularity": "monthly",
+    "target_value": 720,
+    "created_at": "2025-01-01T00:00:00Z"
+  },
+  {
+    "id": "pt-rh-2025-02",
+    "annual_target_id": "annual-2025-rh",
+    "kpi_id": "kpi-running-hours",
+    "department_id": "dept-maintenance",
+    "unit_id": "unit-syngas",
+    "periode": "2025-02-01",
+    "granularity": "monthly",
+    "target_value": 672,
+    "created_at": "2025-02-01T00:00:00Z"
+  },
+  {
+    "id": "pt-oee-2025-01",
+    "annual_target_id": "annual-2025-oee",
+    "kpi_id": "kpi-oee",
+    "department_id": "dept-production",
+    "unit_id": "unit-syngas",
+    "periode": "2025-01-01",
+    "granularity": "monthly",
+    "target_value": 85,
+    "created_at": "2025-01-01T00:00:00Z"
+  },
+  {
+    "id": "pt-zero-acc-2025-01",
+    "annual_target_id": "annual-2025-zero-acc",
+    "kpi_id": "kpi-zero-accident",
+    "department_id": "dept-maintenance",
+    "unit_id": null,
+    "periode": "2025-01-01",
+    "granularity": "monthly",
+    "target_value": 31,
+    "created_at": "2025-01-01T00:00:00Z"
+  },
+  {
+    "id": "pt-capex-2025-01",
+    "annual_target_id": "annual-2025-capex",
+    "kpi_id": "kpi-capex",
+    "department_id": "dept-maintenance",
+    "unit_id": null,
+    "periode": "2025-01-01",
+    "granularity": "monthly",
+    "target_value": 8,
+    "created_at": "2025-01-02T00:00:00Z"
+  },
+  {
+    "id": "pt-moc-2025-01",
+    "annual_target_id": "annual-2025-moc",
+    "kpi_id": "kpi-moc",
+    "department_id": "dept-maintenance",
+    "unit_id": null,
+    "periode": "2025-01-01",
+    "granularity": "monthly",
+    "target_value": 10,
+    "created_at": "2025-01-02T00:00:00Z"
+  },
+  {
+    "id": "pt-sop-2025-01",
+    "annual_target_id": "annual-2025-sop",
+    "kpi_id": "kpi-sop-review",
+    "department_id": "dept-maintenance",
+    "unit_id": null,
+    "periode": "2025-01-01",
+    "granularity": "monthly",
+    "target_value": 4,
+    "created_at": "2025-01-03T00:00:00Z"
+  }
+]

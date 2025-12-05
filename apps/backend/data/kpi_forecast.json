@@ -1,13 +1,79 @@
 [
   {
-    "id": "kf-2025-01-rhm",
-    "kpi_id": "kpi-rhm",
-    "department_id": "dept-maint",
-    "unit_id": "unit-a",
+    "id": "kf-2025-rh-jan",
+    "kpi_id": "kpi-running-hours",
+    "department_id": "dept-maintenance",
+    "unit_id": "unit-syngas",
     "periode": "2025-01-01",
-    "value": 5800,
+    "value": 710,
     "method": "linear",
-    "annual_target_id": "kta-2025-rhm",
+    "annual_target_id": "annual-2025-rh",
     "created_at": "2025-02-01T00:00:00Z"
+  },
+  {
+    "id": "kf-2025-rh-feb",
+    "kpi_id": "kpi-running-hours",
+    "department_id": "dept-maintenance",
+    "unit_id": "unit-syngas",
+    "periode": "2025-02-01",
+    "value": 690,
+    "method": "linear",
+    "annual_target_id": "annual-2025-rh",
+    "created_at": "2025-03-01T00:00:00Z"
+  },
+  {
+    "id": "kf-2025-oee-jan",
+    "kpi_id": "kpi-oee",
+    "department_id": "dept-production",
+    "unit_id": "unit-syngas",
+    "periode": "2025-01-01",
+    "value": 84,
+    "method": "linear",
+    "annual_target_id": "annual-2025-oee",
+    "created_at": "2025-02-01T00:00:00Z"
+  },
+  {
+    "id": "kf-2025-oee-feb",
+    "kpi_id": "kpi-oee",
+    "department_id": "dept-production",
+    "unit_id": "unit-syngas",
+    "periode": "2025-02-01",
+    "value": 86,
+    "method": "linear",
+    "annual_target_id": "annual-2025-oee",
+    "created_at": "2025-03-01T00:00:00Z"
+  },
+  {
+    "id": "kf-2025-capex-jan",
+    "kpi_id": "kpi-capex",
+    "department_id": "dept-maintenance",
+    "unit_id": null,
+    "periode": "2025-01-01",
+    "value": 7,
+    "method": "manual",
+    "annual_target_id": "annual-2025-capex",
+    "created_at": "2025-02-02T00:00:00Z"
+  },
+  {
+    "id": "kf-2025-moc-jan",
+    "kpi_id": "kpi-moc",
+    "department_id": "dept-maintenance",
+    "unit_id": null,
+    "periode": "2025-01-01",
+    "value": 9,
+    "method": "manual",
+    "annual_target_id": "annual-2025-moc",
+    "created_at": "2025-02-02T00:00:00Z"
+  },
+  {
+    "id": "kf-2025-sop-jan",
+    "kpi_id": "kpi-sop-review",
+    "department_id": "dept-maintenance",
+    "unit_id": null,
+    "periode": "2025-01-01",
+    "value": 6,
+    "method": "linear",
+    "annual_target_id": "annual-2025-sop",
+    "created_at": "2025-02-03T00:00:00Z"
   }
 ]
