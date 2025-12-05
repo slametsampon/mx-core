@@ -1,71 +1,55 @@
 // apps/backend/src/routes/apiRouter.ts
 
 import express from 'express';
-import { db } from '../db'; // ⬅️ Impor dari file terpisah
+import { getDataStore } from '../dataStore';
 
 const router = express.Router();
+const store = getDataStore();
 
-// 👇 Log setiap request
 function logRequest(req: express.Request) {
   console.log(`[API] ${req.method} ${req.originalUrl}`);
 }
 
-// GET all
-router.get('/:model', (req, res) => {
+// GET ALL
+router.get('/:model', async (req, res) => {
   const { model } = req.params;
   logRequest(req);
-
-  const data = db[model] ?? [];
-  console.log(`[API] ↳ Total data: ${data.length}`);
+  const data = await store.findAll(model);
   res.json(data);
 });
 
-// GET by ID
-router.get('/:model/:id', (req, res) => {
+// GET BY ID
+router.get('/:model/:id', async (req, res) => {
   const { model, id } = req.params;
   logRequest(req);
-
-  const item = db[model]?.find((i) => i.id === id);
+  const item = await store.findById(model, id);
   if (!item) return res.status(404).json({ error: 'Not found' });
   res.json(item);
 });
 
-// POST new item
-router.post('/:model', (req, res) => {
+// CREATE
+router.post('/:model', async (req, res) => {
   const { model } = req.params;
   logRequest(req);
-
-  const newItem = { id: crypto.randomUUID(), ...req.body };
-  db[model] = db[model] ?? [];
-  db[model].push(newItem);
-  console.log(`[API] ↳ Data ditambahkan:`, newItem);
-  res.status(201).json(newItem);
+  const item = await store.create(model, req.body);
+  res.status(201).json(item);
 });
 
-// PUT (update)
-router.put('/:model/:id', (req, res) => {
+// UPDATE
+router.put('/:model/:id', async (req, res) => {
   const { model, id } = req.params;
   logRequest(req);
-
-  const items = db[model];
-  if (!items) return res.status(404).json({ error: 'Not found' });
-
-  const index = items.findIndex((item) => item.id === id);
-  if (index === -1) return res.status(404).json({ error: 'Not found' });
-
-  items[index] = { ...items[index], ...req.body };
-  res.json(items[index]);
+  const updated = await store.update(model, id, req.body);
+  if (!updated) return res.status(404).json({ error: 'Not found' });
+  res.json(updated);
 });
 
 // DELETE
-router.delete('/:model/:id', (req, res) => {
+router.delete('/:model/:id', async (req, res) => {
   const { model, id } = req.params;
   logRequest(req);
-
-  const items = db[model];
-  if (!items) return res.status(404).json({ error: 'Not found' });
-
-  db[model] = items.filter((item) => item.id !== id);
+  const ok = await store.delete(model, id);
+  if (!ok) return res.status(404).json({ error: 'Not found' });
   res.json({ success: true });
 });
 

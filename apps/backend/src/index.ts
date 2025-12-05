@@ -5,9 +5,19 @@ import express from 'express';
 import { requirePermission } from './middleware/requirePermission';
 import { registerDefaultRules } from '@mx-core/core/rbac/init';
 import apiRouter from './routes/apiRouter';
-import { initData } from './db';
+import { initData } from './db/dataSource';
+import { fileURLToPath } from 'url';
+import path from 'path';
 import dotenv from 'dotenv';
-dotenv.config();
+
+// Recreate __dirname for ESM
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// Load .env from apps/backend/.env
+dotenv.config({
+  path: path.resolve(__dirname, '../.env'),
+});
 
 const app = express();
 const PORT = process.env.PORT || 3000;
