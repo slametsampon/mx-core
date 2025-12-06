@@ -3,7 +3,7 @@
 import cors from 'cors';
 import express from 'express';
 import { requirePermission } from './middleware/requirePermission.js';
-import { registerDefaultRules } from '@mx-core/core/rbac/init.js';
+import { registerDefaultRules } from '@mx-core/core/rbac/init';
 import apiRouter from './routes/apiRouter.js';
 import { initData } from './db/dataSource.js';
 import { fileURLToPath } from 'url';
