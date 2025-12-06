@@ -1,5 +1,6 @@
 {
   "$schema": "https://turborepo.org/schema.json",
+  "globalEnv": ["DATA_MODE"],
   "tasks": {
     "build": {
       "dependsOn": ["^build"],

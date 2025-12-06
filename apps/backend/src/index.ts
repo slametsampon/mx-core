@@ -25,6 +25,10 @@ const PORT = process.env.PORT || 3000;
 // 🔐 Register RBAC default rules (Admin, Manager, etc.)
 registerDefaultRules();
 
+app.get('/', (req, res) => {
+  res.send('Backend API OK (Vercel)');
+});
+
 // ✅ Endpoint uji coba RBAC
 app.get(
   '/secure-data',
