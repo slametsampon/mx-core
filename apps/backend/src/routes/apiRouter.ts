@@ -1,7 +1,7 @@
 // apps/backend/src/routes/apiRouter.ts
 
 import express from 'express';
-import { getDataStore } from '../dataStore';
+import { getDataStore } from '../dataStore/index.js';
 
 const router = express.Router();
 const store = getDataStore();
