@@ -6,17 +6,17 @@
   "type": "module",
   "scripts": {
     "dev": "tsx src/index.ts",
-    "build": "tsc -p tsconfig.json"
+    "build": "tsc -p tsconfig.json && copy src\\db\\schema.sql dist\\db\\schema.sql",
+    "db:init": "node ./scripts/dbInit.js"
   },
   "dependencies": {
-    "next": "13.4.1",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
     "@mx-core/core": "*",
     "@mx-core/types": "*",
+    "@vercel/postgres": "^0.10.0",
     "cors": "^2.8.5",
     "dotenv": "^17.2.3",
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "pg": "^8.16.3"
   },
   "devDependencies": {
     "@types/cors": "^2.8.19"
