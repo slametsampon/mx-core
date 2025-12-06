@@ -1,7 +1,7 @@
 // apps/backend/src/dataStore/memoryDataStore.ts
 
 import type { DataStore } from './types';
-import { dataSource } from '../db/dataSource';
+import { dataSource } from '../db/dataSource.js';
 import crypto from 'node:crypto';
 
 export const memoryDataStore: DataStore = {
