@@ -1,7 +1,7 @@
 // apps/backend/src/db/dataSource.ts
 
-import { loadJsonData } from './loadJsonData';
-import { memoryStore } from './dataMemory';
+import { loadJsonData } from './loadJsonData.js';
+import { memoryStore } from './dataMemory.js';
 
 export function getDataMode() {
   return process.env.DATA_MODE || 'memory';

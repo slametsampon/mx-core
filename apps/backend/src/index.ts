@@ -2,10 +2,10 @@
 
 import cors from 'cors';
 import express from 'express';
-import { requirePermission } from './middleware/requirePermission';
-import { registerDefaultRules } from '@mx-core/core/rbac/init';
-import apiRouter from './routes/apiRouter';
-import { initData } from './db/dataSource';
+import { requirePermission } from './middleware/requirePermission.js';
+import { registerDefaultRules } from '@mx-core/core/rbac/init.js';
+import apiRouter from './routes/apiRouter.js';
+import { initData } from './db/dataSource.js';
 import { fileURLToPath } from 'url';
 import path from 'path';
 import dotenv from 'dotenv';
