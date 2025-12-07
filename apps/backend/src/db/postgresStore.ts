@@ -1,14 +1,15 @@
 // apps/backend/src/db/postgresStore.ts
 
 import type { DataStore } from '../dataStore/types.js';
-import pkg from 'pg';
+import { writeAudit } from '../audit/auditStore.js';
 
-const { Pool } = pkg;
+//const { Pool } = pkg;
+import { pool } from './pgPool.js';
 
-// Pool global (backend Anda jalan di Node biasa, bukan Serverless Vercel Function)
-const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
-});
+// Pool global (backend jalan di Node biasa, bukan serverless Vercel Function)
+// const pool = new Pool({
+//   connectionString: process.env.DATABASE_URL,
+// });
 
 // Mapping nama model → nama table (aman, tidak dari user langsung)
 const TABLE_MAP: Record<string, string> = {
@@ -32,21 +33,42 @@ function getTableName(model: string): string {
   return table;
 }
 
+// 🔹 helper untuk logging error DB
+function logDbError(op: string, model: string, err: unknown) {
+  console.error(
+    `\n[Postgres Error] op=${op}, model=${model}\n`,
+    err,
+    '\n----------------------------------------\n'
+  );
+}
+
 export const postgresStore: DataStore = {
   async findAll(model) {
     const table = getTableName(model);
     const query = `SELECT * FROM ${table}`;
     console.log(`[postgresStore] findAll → ${query}`);
-    const { rows } = await pool.query(query);
-    return rows;
+
+    try {
+      const { rows } = await pool.query(query);
+      return rows;
+    } catch (err) {
+      logDbError('findAll', model, err);
+      throw err;
+    }
   },
 
   async findById(model, id) {
     const table = getTableName(model);
     const query = `SELECT * FROM ${table} WHERE id = $1 LIMIT 1`;
     console.log(`[postgresStore] findById → ${query} [id=${id}]`);
-    const { rows } = await pool.query(query, [id]);
-    return rows[0] ?? null;
+
+    try {
+      const { rows } = await pool.query(query, [id]);
+      return rows[0] ?? null;
+    } catch (err) {
+      logDbError('findById', model, err);
+      throw err;
+    }
   },
 
   async create(model, data) {
@@ -67,8 +89,15 @@ export const postgresStore: DataStore = {
       RETURNING *
     `;
     console.log(`[postgresStore] create → ${query}`);
-    const { rows } = await pool.query(query, values);
-    return rows[0];
+
+    try {
+      const { rows } = await pool.query(query, values);
+      await writeAudit(model, 'create', rows[0]);
+      return rows[0];
+    } catch (err) {
+      logDbError('create', model, err);
+      throw err;
+    }
   },
 
   async update(model, id, data) {
@@ -91,15 +120,32 @@ export const postgresStore: DataStore = {
     console.log(`[postgresStore] update → ${query} [id=${id}]`);
 
     const params = [...values, id];
-    const { rows } = await pool.query(query, params);
-    return rows[0] ?? null;
+
+    try {
+      const { rows } = await pool.query(query, params);
+      await writeAudit(model, 'update', rows[0]);
+      return rows[0] ?? null;
+    } catch (err) {
+      logDbError('update', model, err);
+      throw err;
+    }
   },
 
   async delete(model, id) {
     const table = getTableName(model);
     const query = `DELETE FROM ${table} WHERE id = $1`;
     console.log(`[postgresStore] delete → ${query} [id=${id}]`);
-    const result = await pool.query(query, [id]);
-    return (result.rowCount ?? 0) > 0;
+
+    try {
+      const result = await pool.query(query, [id]);
+      if ((result.rowCount ?? 0) > 0) {
+        await writeAudit(model, 'delete', { id });
+        return true;
+      }
+      return false;
+    } catch (err) {
+      logDbError('delete', model, err);
+      throw err;
+    }
   },
 };

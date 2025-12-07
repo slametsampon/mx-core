@@ -6,6 +6,8 @@ import { requirePermission } from './middleware/requirePermission.js';
 import { registerDefaultRules } from '@mx-core/core/rbac/init';
 import apiRouter from './routes/apiRouter.js';
 import { initData } from './db/dataSource.js';
+import { requestLogger } from './middleware/requestLogger.js';
+
 import { fileURLToPath } from 'url';
 import path from 'path';
 import dotenv from 'dotenv';
@@ -41,6 +43,8 @@ app.get(
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+app.use(requestLogger); // <<< TAMBAHKAN INI
 
 // ✅ Pasang router API
 app.use('/api', apiRouter);
