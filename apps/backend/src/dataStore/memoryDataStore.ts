@@ -4,7 +4,8 @@ import type { DataStore } from './types';
 import { dataSource } from '../db/dataSource.js';
 import crypto from 'node:crypto';
 
-const store = dataSource as any; // ⬅️ FIX di sini
+// store = memoryStore (karena dataSource.ts sudah dijamin memory-mode)
+const store = dataSource as Record<string, any[]>;
 
 export const memoryDataStore: DataStore = {
   async findAll(model) {
@@ -12,7 +13,7 @@ export const memoryDataStore: DataStore = {
   },
 
   async findById(model, id) {
-    return store[model]?.find((item: any) => item.id === id) ?? null;
+    return store[model]?.find((item) => item.id === id) ?? null;
   },
 
   async create(model, data) {
@@ -26,7 +27,7 @@ export const memoryDataStore: DataStore = {
     const items = store[model];
     if (!items) return null;
 
-    const index = items.findIndex((i: any) => i.id === id);
+    const index = items.findIndex((i) => i.id === id);
     if (index === -1) return null;
 
     items[index] = { ...items[index], ...data };
@@ -38,7 +39,7 @@ export const memoryDataStore: DataStore = {
     if (!items) return false;
 
     const before = items.length;
-    store[model] = items.filter((i: any) => i.id !== id);
+    store[model] = items.filter((i) => i.id !== id);
     return store[model].length < before;
   },
 };
