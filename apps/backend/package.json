@@ -6,10 +6,11 @@
   "type": "module",
   "scripts": {
     "dev": "tsx src/index.ts",
-    "build": "tsc -p tsconfig.json && copy src\\db\\schema.sql dist\\db\\schema.sql",
+    "build": "tsc -p tsconfig.json",
     "db:init": "node ./scripts/dbInit.js",
     "db:seed": "node ./scripts/dbseed.js",
-    "db:seed:user": "node ./scripts/dbseed_user.js"
+    "db:seed:user": "node ./scripts/dbseed_user.js",
+    "copy:schema": "node ./scripts/copySchema.js"
   },
   "dependencies": {
     "@mx-core/core": "*",
