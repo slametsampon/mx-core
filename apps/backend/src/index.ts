@@ -5,6 +5,8 @@ import express from 'express';
 import { requirePermission } from './middleware/requirePermission.js';
 import { registerDefaultRules } from '@mx-core/core/rbac/init';
 import apiRouter from './routes/apiRouter.js';
+import viewRouter from './routes/viewRouter.js'; // ✅ Tambahkan ini
+
 import { initData } from './db/dataSource.js';
 import { requestLogger } from './middleware/requestLogger.js';
 
@@ -45,6 +47,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use(requestLogger); // <<< TAMBAHKAN INI
+
+// ✅ Pasang router untuk View terpisah
+app.use('/api/view', viewRouter);
 
 // ✅ Pasang router API
 app.use('/api', apiRouter);
