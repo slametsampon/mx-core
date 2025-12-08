@@ -1,18 +1,22 @@
 // plugins/mx-core-metric/src/app/dashboard/page.tsx
 
-import React from 'react';
-import KPIOverview from '@/components/KPIOverview';
-import DisturbanceInsight from '@/components/DisturbanceInsight';
+'use client'; // ⬅️ WAJIB untuk gunakan state dan effect
+
+import { useEffect, useState } from 'react';
+import { fetchView } from '@/services/viewService';
+import { DynamicViewTable } from '@/components/DynamicViewTable';
 import KPIChart from '@/components/KPIChart';
 import DisturbanceChart from '@/components/DisturbanceChart';
-//import ForecastChart from '@/components/ForecastChart';
-
-export const metadata = {
-  title: 'Dashboard | Metricube',
-  description: 'Halaman dashboard masih dalam pengembangan.',
-};
+import KPIOverview from '@/components/KPIOverview';
+import DisturbanceInsight from '@/components/DisturbanceInsight';
 
 export default function DashboardPage() {
+  const [rows, setRows] = useState([]);
+
+  useEffect(() => {
+    fetchView('v_department_kpi_target').then(setRows);
+  }, []);
+
   return (
     <main className="space-y-6 p-6">
       <h1 className="text-2xl font-bold">📊 KPI Dashboard</h1>
@@ -21,6 +25,8 @@ export default function DashboardPage() {
       <DisturbanceChart />
       <KPIOverview />
       <DisturbanceInsight />
+
+      <DynamicViewTable view="v_department_kpi_target" items={rows} />
     </main>
   );
 }
