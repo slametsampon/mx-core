@@ -106,6 +106,15 @@ const ALLOWED_FIELDS: Record<string, string[]> = {
   ],
 };
 
+// Validasi daftar view agar tidak bisa akses sembarangan
+const ALLOWED_VIEWS = [
+  'v_kpi_record_detail',
+  'v_department_kpi_target',
+  'v_kpi_periodic_target',
+  'v_kpi_forecast',
+  'v_disturbance_log_detail',
+];
+
 function logRequest(req: express.Request) {
   console.log(`[API] ${req.method} ${req.originalUrl}`);
 }
@@ -212,6 +221,33 @@ router.delete('/:model/:id', async (req, res) => {
   } catch (err) {
     console.error('[API Error] DELETE /:model/:id', err);
     res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+//Views
+router.get('/view/:name', async (req, res) => {
+  const { name } = req.params;
+  const { limit = '100', ...filters } = req.query;
+
+  console.log(`[API] GET /api/view/${name} filters:`, filters);
+
+  if (!ALLOWED_VIEWS.includes(name)) {
+    return res.status(403).json({ error: 'View not allowed' });
+  }
+
+  try {
+    const where = Object.entries(filters)
+      .map(([key, val]) => `${key} = '${val}'`)
+      .join(' AND ');
+
+    const clause = where ? `WHERE ${where}` : '';
+    const sql = `SELECT * FROM ${name} ${clause} LIMIT ${Number(limit)}`;
+
+    const { rows } = await pool.query(sql);
+    res.json(rows);
+  } catch (err) {
+    console.error('[API Error] View GET', err);
+    res.status(500).json({ error: 'Failed to load view' });
   }
 });
 
