@@ -21,10 +21,10 @@ export default function DashboardPage() {
     <main className="space-y-6 p-6">
       <h1 className="text-2xl font-bold">📊 KPI Dashboard</h1>
 
-      <KPIChart />
+      {/* <KPIChart />
       <DisturbanceChart />
       <KPIOverview />
-      <DisturbanceInsight />
+      <DisturbanceInsight /> */}
 
       <DynamicViewTable view="v_department_kpi_target" items={rows} />
     </main>
