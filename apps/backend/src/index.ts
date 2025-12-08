@@ -16,10 +16,10 @@ import dotenv from 'dotenv';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Load .env from apps/backend/.env
-dotenv.config({
-  path: path.resolve(__dirname, '../.env'),
-});
+// ✅ Hanya load dotenv saat lokal, bukan di Vercel
+if (process.env.VERCEL !== '1') {
+  dotenv.config();
+}
 
 const app = express();
 const PORT = process.env.PORT || 3000;
