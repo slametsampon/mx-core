@@ -1,14 +1,15 @@
-// plugins/mx-core-metric/tailwind.config.ts
+// plugins/mx-core-rbm/tailwind.config.ts
 
 import type { Config } from 'tailwindcss';
 import { fontFamily } from 'tailwindcss/defaultTheme';
 import colors from 'tailwindcss/colors';
 
+console.log('✅ Tailwind config RBM loaded');
 const config: Config = {
   content: [
-    '../../node_modules/pliny/**/*.js',
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
     './src/components/**/*.{js,ts,jsx,tsx}',
+    './src/data/**/*.{js,ts,jsx,tsx}',
   ],
   safelist: ['border-primary-500', 'bg-primary-500', 'text-primary-500'],
   darkMode: 'class',
@@ -76,7 +77,6 @@ const config: Config = {
         },
         invert: {
           css: {
-            maxWidth: '85ch',
             a: {
               color: theme('colors.primary.500'),
               '&:hover': {

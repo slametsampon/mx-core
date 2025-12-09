@@ -1,0 +1,26 @@
+# Build output
+dist/
+out/
+tsconfig.tsbuildinfo
+.turbo/
+.next/
+
+# Node modules (optional, jika tidak workspace-level)
+node_modules/
+
+# Editor folders
+.vscode/
+.idea/
+.next/
+_next/
+
+# Logs
+*.log
+
+# OS artifacts
+.DS_Store
+Thumbs.db
+
+# environment
+.env
+.env*.local

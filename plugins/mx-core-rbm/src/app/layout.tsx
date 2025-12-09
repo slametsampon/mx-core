@@ -1,4 +1,4 @@
-// plugins/mx-core-metric/src/app/layout.tsx
+// plugins/mx-core-rbm/src/app/layout.tsx
 
 import type { Metadata } from 'next';
 import '@/css/tailwind.css';

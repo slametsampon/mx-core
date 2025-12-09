@@ -1,0 +1,17 @@
+{
+  "name": "mx-core-rbm",
+  "type": "plugin",
+  "version": "0.1.0",
+  "description": "Plugin RBM untuk analisis risiko dan mitigasi",
+  "ui": true,
+  "api": true,
+  "active": true,
+  "module": "dist/index.js",
+  "basePath": "https://mx-core-rbm.vercel.app",
+  "rbac": [
+    { "role": "Operator", "resource": "rbm", "action": "read" },
+    { "role": "Engineer", "resource": "rbm", "action": "assess" },
+    { "role": "Supervisor", "resource": "rbm", "action": "validate" },
+    { "role": "Manager", "resource": "rbm", "action": "approve" }
+  ]
+}

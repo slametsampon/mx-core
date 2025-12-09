@@ -21,7 +21,8 @@
       "@mx-core/utils": ["packages/utils/src"],
       "@mx-core/types": ["packages/types/src"],
       "@mx-core/docs": ["plugins/mx-core-docs/src"],
-      "@mx-core/metric": ["plugins/mx-core-metric/src"]
+      "@mx-core/metric": ["plugins/mx-core-metric/src"],
+      "@mx-core/rbm": ["plugins/mx-core-rbm/src"]
     },
     "plugins": [{ "name": "next" }]
   },
@@ -31,6 +32,7 @@
     { "path": "packages/ui" },
     { "path": "packages/utils" },
     { "path": "plugins/mx-core-docs" },
-    { "path": "plugins/mx-core-metric" }
+    { "path": "plugins/mx-core-metric" },
+    { "path": "plugins/mx-core-rbm" }
   ]
 }
