@@ -1,15 +1,14 @@
 // plugins/mx-core-rbm/tailwind.config.ts
 
-import type { Config } from 'tailwindcss';
-import { fontFamily } from 'tailwindcss/defaultTheme';
-import colors from 'tailwindcss/colors';
+const { fontFamily } = require('tailwindcss/defaultTheme');
+const colors = require('tailwindcss/colors');
 
-console.log('✅ Tailwind config RBM loaded');
-const config: Config = {
+console.log('✅ tailwind.config.js loaded');
+
+module.exports = {
   content: [
-    './src/app/**/*.{js,ts,jsx,tsx}',
+    './src/app/**/*.{js,ts,jsx,tsx,mdx}',
     './src/components/**/*.{js,ts,jsx,tsx}',
-    './src/data/**/*.{js,ts,jsx,tsx}',
   ],
   safelist: ['border-primary-500', 'bg-primary-500', 'text-primary-500'],
   darkMode: 'class',
@@ -39,7 +38,7 @@ const config: Config = {
         },
         gray: colors.gray,
       },
-      typography: (theme: (path: string) => string) => ({
+      typography: (theme) => ({
         DEFAULT: {
           css: {
             maxWidth: '85ch',
@@ -77,6 +76,7 @@ const config: Config = {
         },
         invert: {
           css: {
+            maxWidth: '85ch',
             a: {
               color: theme('colors.primary.500'),
               '&:hover': {
@@ -106,5 +106,3 @@ const config: Config = {
   },
   plugins: [require('@tailwindcss/forms'), require('@tailwindcss/typography')],
 };
-
-export default config;
