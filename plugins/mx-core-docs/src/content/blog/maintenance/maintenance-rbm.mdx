@@ -13,7 +13,7 @@ tags:
     'critical',
   ]
 draft: false
-summary: Artikel ini membahas penerapan Risk-Based Maintenance (RBM) di industri petrokimia, dengan studi kasus komprehensif di PT. Petro Oxo Nusantara (PT PON). PT PON mengadopsi pendekatan berbasis **konsekuensi absolut** (tanpa mempertimbangkan probabilitas kegagalan), karena setiap interupsi produksi berdampak besar secara finansial dan operasional. Strategi RBM dikembangkan secara sistematis melalui grading ESC, DIP, sistem PPC-TBM, condition monitoring, serta evaluasi berjenjang. Artikel ini juga mengacu pada standar API 580/581, ISO 31000, ISO 55000, dan berbagai studi ilmiah. Hasilnya adalah model RBM yang adaptif, terstruktur, dan sangat sesuai untuk proses kontinu berisiko tinggi.
+summary: Artikel ini membahas penerapan Risk-Based Maintenance (RBM) di industri petrokimia, dengan studi kasus komprehensif di PT. Petro Oxo Nusantara (PT PON). PT PON mengadopsi pendekatan berbasis **konsekuensi absolut** (tanpa mempertimbangkan probabilitas kegagalan), karena setiap interupsi produksi berdampak besar secara finansial dan operasional. Strategi RBM dikembangkan secara sistematis melalui grading ESC, DIA, sistem PPC-TBM, condition monitoring, serta evaluasi berjenjang. Artikel ini juga mengacu pada standar API 580/581, ISO 31000, ISO 55000, dan berbagai studi ilmiah. Hasilnya adalah model RBM yang adaptif, terstruktur, dan sangat sesuai untuk proses kontinu berisiko tinggi.
 ---
 
 - [**I. PENDAHULUAN**](#i-pendahuluan)
@@ -162,7 +162,7 @@ Implementasi Risk-Based Maintenance (RBM) yang efektif memerlukan pendekatan sis
 
 - 🔹 **1. Identifikasi Aset Kritis**
 
-Langkah pertama adalah menentukan ruang lingkup dan menyusun **Daftar Induk Peralatan (DIP)** yang mencakup seluruh peralatan utama dalam unit proses, utilitas, dan sistem pendukung lainnya. Identifikasi aset harus memperhatikan:
+Langkah pertama adalah menentukan ruang lingkup dan menyusun **Daftar Induk Aset (DIA)** yang mencakup seluruh peralatan utama dalam unit proses, utilitas, dan sistem pendukung lainnya. Identifikasi aset harus memperhatikan:
 
 - Fungsi operasional peralatan
 - Kontribusinya terhadap keselamatan, lingkungan, dan produksi
@@ -310,7 +310,7 @@ Seluruh pendekatan RBM mencakup **peralatan static (vessel, heat exchanger, tank
 
 Implementasi RBM di PT PON dilakukan secara bertahap dan praktis, disesuaikan dengan konteks operasional serta risiko proses.
 
-- 1. **Penyusunan Daftar Induk Peralatan (DIP)**
+- 1. **Penyusunan Daftar Induk Aset (DIA)**
 
 * Semua aset diidentifikasi menggunakan **tag number** dan diklasifikasikan berdasarkan lokasi, jenis, fungsi proses, serta hubungan antar sistem.
 
@@ -319,7 +319,7 @@ Implementasi RBM di PT PON dilakukan secara bertahap dan praktis, disesuaikan de
 * **ESC = Environmental, Safety, Continuous Running**: digunakan sebagai parameter pengukuran **Consequences of Failure (CoF)**.
 * Dampak dari setiap peralatan dievaluasi terhadap potensi bahaya lingkungan, keselamatan kerja, dan gangguan pada kelangsungan produksi.
 
-- 3. **Klasifikasi Daftar Induk Peralatan (KDIP): Kritis vs Normal**
+- 3. **Klasifikasi Daftar Induk Aset (KDIA): Kritis vs Normal**
 
 * Jika suatu aset memiliki **dampak signifikan terhadap ESC**, maka diklasifikasikan sebagai **Kritis**.
 * Aset yang tidak berdampak terhadap ESC dinyatakan sebagai **Normal**.
@@ -430,7 +430,7 @@ Strategi RBM PT PON tidak menggunakan probabilitas kegagalan (PoF) sebagai param
 
 Pendekatan RBM di PT PON dibangun dengan fondasi sistem yang jelas dan terintegrasi, mencakup:
 
-- **Daftar Induk Peralatan (DIP)** → dasar pengelolaan aset
+- **Daftar Induk Aset (DIA)** → dasar pengelolaan aset
 - **Grading ESC (Environmental, Safety, Continuous Running)** → dasar penilaian dampak
 - **PPC Maintenance (Predictive, Preventive, Corrective)** → strategi pemeliharaan fleksibel
 - **Time-Based Maintenance (TBM)** → kerangka waktu pelaksanaan
@@ -480,7 +480,7 @@ Implementasi **Risk-Based Maintenance (RBM)** di PT. Petro Oxo Nusantara (PT PON
 
 Setiap kegagalan dianggap sebagai potensi kerugian besar, baik dari sisi finansial, keselamatan, maupun keberlangsungan rantai pasok. Oleh karena itu, RBM di PT PON dibangun dengan fokus pada konsekuensi, dan didukung oleh struktur sistemik yang mencakup:
 
-- **Daftar Induk Peralatan (DIP)**
+- **Daftar Induk Aset (DIA)**
 - **Grading ESC (Environmental, Safety, Continuous Running)**
 - **Sistem pemeliharaan PPC berbasis TBM**
 - **Perencanaan terintegrasi 5M**
@@ -501,7 +501,7 @@ Untuk memperkuat dan mereplikasi keberhasilan strategi RBM seperti di PT PON, be
 
 - 🔹 2. **Integrasi Penuh ke dalam Sistem CMMS**
 
-* Implementasikan semua data RBM (DIP, ESC, jadwal TBM, hasil evaluasi) ke dalam CMMS untuk otomasi, pelacakan histori, dan audit trail.
+* Implementasikan semua data RBM (DIA, ESC, jadwal TBM, hasil evaluasi) ke dalam CMMS untuk otomasi, pelacakan histori, dan audit trail.
 * Gunakan fitur CMMS untuk mengelola pemantauan kondisi dan work order berbasis risiko.
 
 - 🔹 3. **Benchmarking Internal Antar Unit**

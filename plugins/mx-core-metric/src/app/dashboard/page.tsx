@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 import { fetchView } from '@/services/viewService';
 import { DynamicViewTable } from '@/components/DynamicViewTable';
 import { ViewSelector } from '@/components/ViewSelector';
-import { FilterControls } from '@/components/FilterControls';
+import { SmartFilterControls } from '@/components/SmartFilterControls';
 import { viewDefinitions, ViewKey } from '@/config/viewDefinitions';
 
 // import KPIChart from '@/components/KPIChart';
@@ -46,7 +46,11 @@ export default function DashboardPage() {
         }}
       />
 
-      <FilterControls view={view} filters={filters} onChange={setFilters} />
+      <SmartFilterControls
+        view={view}
+        filters={filters}
+        onChange={setFilters}
+      />
       <DynamicViewTable view="v_department_kpi_target" items={rows} />
     </main>
   );
