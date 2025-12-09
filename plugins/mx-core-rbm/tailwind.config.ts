@@ -7,7 +7,7 @@ import colors from 'tailwindcss/colors';
 console.log('✅ Tailwind config RBM loaded');
 const config: Config = {
   content: [
-    './src/app/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/app/**/*.{js,ts,jsx,tsx}',
     './src/components/**/*.{js,ts,jsx,tsx}',
     './src/data/**/*.{js,ts,jsx,tsx}',
   ],
