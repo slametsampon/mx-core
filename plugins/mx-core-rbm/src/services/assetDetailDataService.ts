@@ -1,12 +1,13 @@
 // plugins/mx-core-rbm/src/services/assetDetailDataService.ts
 
+import { API_BASE } from '@/config/config';
 import { AssetDetail } from '@/models/asset-detail';
 import { logger } from '@/utils/logger';
 
 export async function fetchAssetDetailData(
   assetTypeId: string
 ): Promise<AssetDetail[]> {
-  const url = `/mocks/asset-detail.json`; // atau `/api/asset-detail?type=...`
+  const url = `${API_BASE}/asset-detail.json`;
 
   logger.info(`📥 [assetDetailDataService] Fetching detail data from: ${url}`);
 
@@ -20,8 +21,8 @@ export async function fetchAssetDetailData(
     }
 
     const allData: AssetDetail[] = await res.json();
-    const filtered = allData.filter(
-      (d) => d.tag_number.startsWith(assetTypeId.slice(0, 3).toUpperCase()) // optional filter
+    const filtered = allData.filter((d) =>
+      d.tag_number.startsWith(assetTypeId.slice(0, 3).toUpperCase())
     );
 
     logger.info(

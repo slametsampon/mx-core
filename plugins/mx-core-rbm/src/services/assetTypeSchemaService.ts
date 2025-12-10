@@ -1,24 +1,42 @@
-// plugins/mx-core-rbm/src/services/assetTypeSchemaService.tsx
+// plugins/mx-core-rbm/src/services/assetTypeSchemaService.ts
 
+import { SCHEMA_BASE } from '@/config/config';
+import { AssetTypeSchema } from '@/models/asset-type-schema';
 import { logger } from '@/utils/logger';
 
-export async function fetchAssetTypeSchema(assetTypeId: string) {
-  try {
-    const res = await fetch(`/schemas/asset-types/${assetTypeId}.json`);
+export async function fetchAssetTypeSchemaById(
+  assetTypeId: string
+): Promise<AssetTypeSchema | null> {
+  const url = `${SCHEMA_BASE}/${assetTypeId}.json`;
+  logger.info(`📥 [assetTypeSchemaService] Fetching schema from: ${url}`);
 
+  try {
+    const res = await fetch(url);
     if (!res.ok) {
       logger.error(
-        `Failed to fetch schema for [${assetTypeId}]:`,
-        res.statusText
+        `❌ [assetTypeSchemaService] Gagal fetch schema: ${res.statusText}`
       );
-      throw new Error('Schema not found');
+      return null;
     }
 
-    const schema = await res.json();
-    logger.info(`✅ Loaded schema for [${assetTypeId}]`);
-    return schema;
+    const json = await res.json();
+
+    if (!json || !Array.isArray(json.fields)) {
+      logger.warn(
+        `⚠️ [assetTypeSchemaService] Schema tidak valid atau kosong untuk ${assetTypeId}`
+      );
+      return null;
+    }
+
+    logger.info(
+      `✅ [assetTypeSchemaService] Loaded ${json.fields.length} fields for type=${assetTypeId}`
+    );
+
+    return json as AssetTypeSchema;
   } catch (err: any) {
-    logger.error(`❌ Error loading schema [${assetTypeId}]:`, err.message);
-    throw err;
+    logger.error(
+      `❌ [assetTypeSchemaService] Error load schema ${assetTypeId}: ${err.message}`
+    );
+    return null;
   }
 }
