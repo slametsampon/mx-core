@@ -24,7 +24,7 @@ export default function DynamicForm({ fields, onSubmit }: Props) {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
-      {fields.map((field) => {
+      {fields?.map((field) => {
         const fieldId = `field-${field.name}`;
 
         return (

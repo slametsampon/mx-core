@@ -1,9 +1,9 @@
 // plugins/mx-core-rbm/src/hooks/useAssetViewData.ts
 
 import { useEffect, useState } from 'react';
-import { fetchAssetTypeSchema } from '@/services/assetTypeSchemaService';
+import { fetchAssetTypeSchemaById } from '@/services/assetTypeSchemaService';
 import { fetchAssetsByType } from '@/services/assetService';
-import { fetchAssetDetails } from '@/services/assetDetailService';
+import { fetchAssetDetailData } from '@/services/assetDetailDataService';
 import { Asset } from '@/models/asset';
 import { AssetDetail } from '@/models/asset-detail';
 import { AssetTypeSchema } from '@/models/asset-type-schema';
@@ -33,9 +33,9 @@ export function useAssetViewData(assetTypeId: string): UseAssetViewDataResult {
       try {
         logger.info(`[useAssetViewData] Loading data for: ${assetTypeId}`);
         const [schema, asset, detail] = await Promise.all([
-          fetchAssetTypeSchema(assetTypeId),
+          fetchAssetTypeSchemaById(assetTypeId),
           fetchAssetsByType(assetTypeId),
-          fetchAssetDetails(assetTypeId),
+          fetchAssetDetailData(assetTypeId),
         ]);
 
         logger.info('✔️ schema:', schema);

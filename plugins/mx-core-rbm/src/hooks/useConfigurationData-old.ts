@@ -13,7 +13,7 @@ import { fetchAssetsByType } from '@/services/assetService';
 import { fetchAssetDetailData } from '@/services/assetDetailDataService';
 import { logger } from '@/utils/logger';
 
-export function useConfigurationData(defaultAssetTypeId?: string) {
+export function useConfigurationData() {
   const [assetTypes, setAssetTypes] = useState<AssetType[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<string>('');
   const [selectedAssetTypeId, setSelectedAssetTypeId] = useState<string>('');
@@ -22,20 +22,17 @@ export function useConfigurationData(defaultAssetTypeId?: string) {
   const [assetDetails, setAssetDetails] = useState<AssetDetail[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
 
-  // load asset-types once
   useEffect(() => {
     const loadTypes = async () => {
       try {
         const types = await fetchAssetTypes();
         setAssetTypes(types);
 
-        const defaultCat = types[0]?.category_id || '';
-        setSelectedCategory(defaultCat);
+        const defaultCategory = types[0]?.category_id || '';
+        setSelectedCategory(defaultCategory);
 
-        // jika ada defaultAssetTypeId (deep-link) → pakai itu
-        setSelectedAssetTypeId(
-          defaultAssetTypeId || types[0]?.asset_type_id || ''
-        );
+        const defaultAssetTypeId = types[0]?.asset_type_id || '';
+        setSelectedAssetTypeId(defaultAssetTypeId);
 
         logger.info('✅ Asset types loaded:', types.length);
       } catch (err: any) {
@@ -43,24 +40,24 @@ export function useConfigurationData(defaultAssetTypeId?: string) {
       }
     };
     loadTypes();
-  }, [defaultAssetTypeId]);
+  }, []);
 
-  // when selectedAssetTypeId changes → load schema, assets, details
   useEffect(() => {
-    if (!selectedAssetTypeId) return;
-
     const loadDetails = async () => {
+      if (!selectedAssetTypeId) return;
+
       setLoading(true);
+
       try {
-        const [s, a, d] = await Promise.all([
+        const [schema, assets, details] = await Promise.all([
           fetchAssetTypeSchemaById(selectedAssetTypeId),
           fetchAssetsByType(selectedAssetTypeId),
           fetchAssetDetailData(selectedAssetTypeId),
         ]);
 
-        setSchema(s);
-        setAssets(a);
-        setAssetDetails(d);
+        setSchema(schema);
+        setAssets(assets);
+        setAssetDetails(details);
 
         logger.info('✅ Schema + assets + details loaded');
       } catch (err: any) {

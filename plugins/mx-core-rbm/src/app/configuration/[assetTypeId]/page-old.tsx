@@ -2,6 +2,10 @@
 
 import ConfigurationPage from '@/components/configuration/ConfigurationPage';
 
-export default function ConfigurationByAssetType({ params }: any) {
+export default function ConfigurationByAssetType({
+  params,
+}: {
+  params: { assetType: string };
+}) {
   return <ConfigurationPage defaultAssetTypeId={params.assetType} />;
 }

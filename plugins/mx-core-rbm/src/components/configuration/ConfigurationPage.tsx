@@ -11,7 +11,7 @@ import SparePartsTable from './SparePartsTable';
 import AssetList from './AssetList';
 import AssetDetailView from './AssetDetailView';
 
-import { useConfigurationData } from '@/hooks/useConfigurationData';
+import { useConfigurationData } from '@/hooks/useConfigurationData-old';
 
 const tabs = [
   'Asset Type Schema',

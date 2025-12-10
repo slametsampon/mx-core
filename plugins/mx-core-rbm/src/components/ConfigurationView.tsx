@@ -5,8 +5,8 @@
 import { useEffect, useState } from 'react';
 import { DynamicForm } from './DynamicForm';
 import { DynamicTable } from './DynamicTable';
-import { fetchAssetTypeSchema } from '@/services/assetTypeSchemaService';
-import { fetchAssetDetails } from '@/services/assetDetailService';
+import { fetchAssetTypeSchemaById } from '@/services/assetTypeSchemaService';
+import { fetchAssetDetailData } from '@/services/assetDetailDataService';
 import { AssetTypeSchema } from '@/models/asset-type-schema';
 
 type Props = {
@@ -19,8 +19,8 @@ export function ConfigurationView({ assetTypeId }: Props) {
 
   useEffect(() => {
     const loadSchemaAndData = async () => {
-      const s = await fetchAssetTypeSchema(assetTypeId);
-      const d = await fetchAssetDetails(assetTypeId); // assume already filtered
+      const s = await fetchAssetTypeSchemaById(assetTypeId);
+      const d = await fetchAssetDetailData(assetTypeId); // assume already filtered
       setSchema(s);
       setData(d);
     };
