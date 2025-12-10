@@ -1,0 +1,72 @@
+{
+  "asset_type_id": "level-gauge",
+  "fields": [
+    {
+      "name": "gaugeType",
+      "label": "Tipe Level Gauge",
+      "type": "enum",
+      "required": true,
+      "options": ["Sight Glass", "Reflex", "Transparent", "Magnetic"]
+    },
+    {
+      "name": "material",
+      "label": "Material Body",
+      "type": "string",
+      "required": false
+    },
+    {
+      "name": "scaleRange",
+      "label": "Skala Pengukuran",
+      "type": "string",
+      "required": false
+    },
+    {
+      "name": "mountingType",
+      "label": "Tipe Pemasangan",
+      "type": "enum",
+      "required": false,
+      "options": ["Side", "Top", "Chamber Mount"]
+    },
+    {
+      "name": "glassType",
+      "label": "Tipe Kaca",
+      "type": "enum",
+      "required": false,
+      "options": ["Tempered", "Borosilicate", "Acrylic"]
+    }
+  ],
+  "ppc_strategy": {
+    "preventive": [
+      "Bersihkan kaca gauge secara berkala",
+      "Periksa baut dan sambungan chamber",
+      "Cek indikasi level visual sesuai standar"
+    ],
+    "predictive": [
+      "Analisa perubahan visual terhadap actual level transmitter",
+      "Evaluasi visibility di berbagai kondisi operasi",
+      "Pantau keausan kaca atau korosi housing"
+    ],
+    "corrective": [
+      "Ganti kaca gauge",
+      "Ganti gasket atau sambungan bocor",
+      "Perbaiki mounting chamber yang aus"
+    ]
+  },
+  "spare_parts": [
+    {
+      "name": "Kaca Gauge",
+      "uom": "pcs",
+      "quantity": 1
+    },
+    {
+      "name": "Packing / Gasket",
+      "uom": "set",
+      "quantity": 1
+    },
+    {
+      "name": "Bracket Mounting",
+      "uom": "set",
+      "quantity": 1
+    }
+  ]
+}

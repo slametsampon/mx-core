@@ -1,0 +1,78 @@
+{
+  "asset_type_id": "piping",
+  "fields": [
+    {
+      "name": "pipeMaterial",
+      "label": "Material Pipa",
+      "type": "string",
+      "required": true
+    },
+    {
+      "name": "nominalDiameter",
+      "label": "Diameter Nominal",
+      "type": "number",
+      "required": true,
+      "unit": "inch"
+    },
+    {
+      "name": "schedule",
+      "label": "Schedule Pipa",
+      "type": "string",
+      "required": true
+    },
+    {
+      "name": "designPressure",
+      "label": "Tekanan Rancang",
+      "type": "number",
+      "required": false,
+      "unit": "bar"
+    },
+    {
+      "name": "designTemperature",
+      "label": "Temperatur Rancang",
+      "type": "number",
+      "required": false,
+      "unit": "°C"
+    },
+    {
+      "name": "insulated",
+      "label": "Apakah Terinsulasi?",
+      "type": "boolean",
+      "required": false
+    }
+  ],
+  "ppc_strategy": {
+    "preventive": [
+      "Inspeksi visual terhadap kebocoran",
+      "Periksa kondisi cat / pelindung",
+      "Cek titik korosi luar"
+    ],
+    "predictive": [
+      "Analisa thickness piping dengan UT",
+      "Pantau area panas atau getaran tidak normal",
+      "Cek kualitas isolasi jika ada"
+    ],
+    "corrective": [
+      "Ganti segmen piping yang korosi",
+      "Perbaiki sambungan bocor",
+      "Ganti isolasi rusak"
+    ]
+  },
+  "spare_parts": [
+    {
+      "name": "Pipa Schedule 40",
+      "uom": "meter",
+      "quantity": 3
+    },
+    {
+      "name": "Flange 150#",
+      "uom": "pcs",
+      "quantity": 2
+    },
+    {
+      "name": "Gasket Spiral Wound",
+      "uom": "pcs",
+      "quantity": 2
+    }
+  ]
+}

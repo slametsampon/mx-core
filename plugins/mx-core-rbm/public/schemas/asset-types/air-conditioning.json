@@ -1,0 +1,73 @@
+{
+  "asset_type_id": "air-conditioning",
+  "fields": [
+    {
+      "name": "acType",
+      "label": "Tipe AC",
+      "type": "enum",
+      "required": true,
+      "options": ["Split", "Cassette", "Standing", "Central", "Precision"]
+    },
+    {
+      "name": "coolingCapacity",
+      "label": "Kapasitas Pendinginan",
+      "type": "number",
+      "required": true,
+      "unit": "BTU/h"
+    },
+    {
+      "name": "powerInput",
+      "label": "Daya Masuk",
+      "type": "number",
+      "required": true,
+      "unit": "W"
+    },
+    {
+      "name": "refrigerantType",
+      "label": "Jenis Refrigeran",
+      "type": "string",
+      "required": false
+    },
+    {
+      "name": "airflowRate",
+      "label": "Laju Aliran Udara",
+      "type": "number",
+      "required": false,
+      "unit": "CFM"
+    }
+  ],
+  "ppc_strategy": {
+    "preventive": [
+      "Bersihkan filter dan kisi evaporator",
+      "Cek tekanan refrigeran secara berkala",
+      "Periksa sambungan listrik dan koneksi pipa"
+    ],
+    "predictive": [
+      "Pantau suhu output vs setpoint",
+      "Analisa performa kompresor",
+      "Cek getaran fan dan blower"
+    ],
+    "corrective": [
+      "Ganti kompresor",
+      "Isi ulang refrigeran",
+      "Ganti PCB kontrol rusak"
+    ]
+  },
+  "spare_parts": [
+    {
+      "name": "Filter Udara",
+      "uom": "pcs",
+      "quantity": 1
+    },
+    {
+      "name": "PCB Kontrol",
+      "uom": "pcs",
+      "quantity": 1
+    },
+    {
+      "name": "Kompresor",
+      "uom": "pcs",
+      "quantity": 1
+    }
+  ]
+}

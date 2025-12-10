@@ -1,0 +1,79 @@
+{
+  "asset_type_id": "transformer",
+  "fields": [
+    {
+      "name": "capacity",
+      "label": "Kapasitas",
+      "type": "number",
+      "required": true,
+      "unit": "kVA"
+    },
+    {
+      "name": "primaryVoltage",
+      "label": "Tegangan Primer",
+      "type": "number",
+      "required": true,
+      "unit": "kV"
+    },
+    {
+      "name": "secondaryVoltage",
+      "label": "Tegangan Sekunder",
+      "type": "number",
+      "required": true,
+      "unit": "kV"
+    },
+    {
+      "name": "coolingType",
+      "label": "Tipe Pendinginan",
+      "type": "enum",
+      "required": true,
+      "options": ["ONAN", "ONAF", "OFAF"]
+    },
+    {
+      "name": "oilType",
+      "label": "Jenis Oli",
+      "type": "string",
+      "required": false
+    },
+    {
+      "name": "vectorGroup",
+      "label": "Vector Group",
+      "type": "string",
+      "required": false
+    }
+  ],
+  "ppc_strategy": {
+    "preventive": [
+      "Periksa level dan kondisi oli trafo",
+      "Periksa pengencangan koneksi terminal",
+      "Bersihkan radiator dan sirip pendingin"
+    ],
+    "predictive": [
+      "Pantau suhu winding dan core",
+      "Analisa kualitas oli (DGA)",
+      "Pantau arus beban dan harmonik"
+    ],
+    "corrective": [
+      "Ganti oli transformator",
+      "Perbaiki kebocoran pada tangki",
+      "Kalibrasi ulang relai proteksi"
+    ]
+  },
+  "spare_parts": [
+    {
+      "name": "Minyak Trafo",
+      "uom": "liter",
+      "quantity": 500
+    },
+    {
+      "name": "Silica Gel",
+      "uom": "pcs",
+      "quantity": 1
+    },
+    {
+      "name": "Packing Oil Valve",
+      "uom": "pcs",
+      "quantity": 2
+    }
+  ]
+}

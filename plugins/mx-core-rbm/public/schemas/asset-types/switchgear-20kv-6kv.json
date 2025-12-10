@@ -1,0 +1,73 @@
+{
+  "asset_type_id": "switchgear-20kv-6kv",
+  "fields": [
+    {
+      "name": "voltageLevel",
+      "label": "Tegangan Sistem",
+      "type": "enum",
+      "required": true,
+      "options": ["20kV", "6.3kV"]
+    },
+    {
+      "name": "breakerType",
+      "label": "Jenis Breaker",
+      "type": "enum",
+      "required": true,
+      "options": ["VCB", "SF6", "Oil"]
+    },
+    {
+      "name": "interruptingCapacity",
+      "label": "Kapasitas Pemutusan",
+      "type": "number",
+      "required": false,
+      "unit": "kA"
+    },
+    {
+      "name": "manufacturer",
+      "label": "Pabrikan / Vendor",
+      "type": "string",
+      "required": false
+    },
+    {
+      "name": "installationType",
+      "label": "Tipe Instalasi",
+      "type": "enum",
+      "required": false,
+      "options": ["Indoor", "Outdoor"]
+    }
+  ],
+  "ppc_strategy": {
+    "preventive": [
+      "Bersihkan panel dan bagian isolasi",
+      "Periksa level tekanan gas (jika SF6)",
+      "Uji fungsi trip dan relay proteksi"
+    ],
+    "predictive": [
+      "Thermal imaging pada koneksi kabel",
+      "Analisa histori gangguan (trip log)",
+      "Uji kualitas isolasi antar fasa"
+    ],
+    "corrective": [
+      "Ganti circuit breaker",
+      "Perbaiki sistem trip / proteksi relay",
+      "Kalibrasi ulang relay proteksi"
+    ]
+  },
+  "spare_parts": [
+    {
+      "name": "Modul Proteksi Relay",
+      "uom": "pcs",
+      "quantity": 1
+    },
+    {
+      "name": "Breaker Unit",
+      "uom": "pcs",
+      "quantity": 1
+    },
+    {
+      "name": "Indikator Tegangan / Arus",
+      "uom": "pcs",
+      "quantity": 2
+    }
+  ]
+}

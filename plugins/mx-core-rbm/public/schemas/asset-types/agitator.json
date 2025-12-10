@@ -1,0 +1,74 @@
+{
+  "asset_type_id": "agitator",
+  "fields": [
+    {
+      "name": "motorPower",
+      "label": "Daya Motor",
+      "type": "number",
+      "required": true,
+      "unit": "kW"
+    },
+    {
+      "name": "speed",
+      "label": "Kecepatan Putar",
+      "type": "number",
+      "required": true,
+      "unit": "RPM"
+    },
+    {
+      "name": "impellerType",
+      "label": "Tipe Impeller",
+      "type": "enum",
+      "required": false,
+      "options": ["Turbine", "Propeller", "Anchor", "Paddle", "Helical"]
+    },
+    {
+      "name": "mountingType",
+      "label": "Tipe Pemasangan",
+      "type": "enum",
+      "required": false,
+      "options": ["Top Entry", "Side Entry", "Bottom Entry"]
+    },
+    {
+      "name": "sealType",
+      "label": "Jenis Seal",
+      "type": "enum",
+      "required": false,
+      "options": ["Mechanical", "Packing", "Lip Seal"]
+    }
+  ],
+  "ppc_strategy": {
+    "preventive": [
+      "Periksa kekencangan baut-baut mounting",
+      "Cek kondisi kopling antara motor dan shaft",
+      "Lubrikasi bearing sesuai jadwal"
+    ],
+    "predictive": [
+      "Analisa getaran motor dan shaft",
+      "Pantau suhu bantalan (bearing) dan casing",
+      "Monitor konsumsi arus motor selama operasi"
+    ],
+    "corrective": [
+      "Ganti mechanical seal atau packing",
+      "Re-alignment motor dan shaft",
+      "Ganti bearing jika terjadi aus"
+    ]
+  },
+  "spare_parts": [
+    {
+      "name": "Mechanical Seal",
+      "uom": "pcs",
+      "quantity": 1
+    },
+    {
+      "name": "Bearing Set",
+      "uom": "set",
+      "quantity": 1
+    },
+    {
+      "name": "Impeller Cadangan",
+      "uom": "pcs",
+      "quantity": 1
+    }
+  ]
+}

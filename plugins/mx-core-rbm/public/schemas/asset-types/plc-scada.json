@@ -1,0 +1,71 @@
+{
+  "asset_type_id": "plc-scada",
+  "fields": [
+    {
+      "name": "systemType",
+      "label": "Jenis Sistem",
+      "type": "enum",
+      "required": true,
+      "options": ["PLC", "SCADA", "HMI", "RTU"]
+    },
+    {
+      "name": "brand",
+      "label": "Merk / Vendor",
+      "type": "string",
+      "required": true
+    },
+    {
+      "name": "cpuModel",
+      "label": "Model CPU / Processor",
+      "type": "string",
+      "required": false
+    },
+    {
+      "name": "ioCount",
+      "label": "Jumlah I/O",
+      "type": "number",
+      "required": false
+    },
+    {
+      "name": "communicationProtocol",
+      "label": "Protokol Komunikasi",
+      "type": "enum",
+      "required": false,
+      "options": ["Modbus", "Profinet", "Ethernet/IP", "OPC", "Serial RS-485"]
+    }
+  ],
+  "ppc_strategy": {
+    "preventive": [
+      "Cek log alarm dan error secara berkala",
+      "Backup program dan konfigurasi sistem",
+      "Bersihkan panel dan cek power supply"
+    ],
+    "predictive": [
+      "Analisa kecepatan respon sistem vs normal",
+      "Pantau kestabilan komunikasi antar modul",
+      "Deteksi fluktuasi beban CPU / memory"
+    ],
+    "corrective": [
+      "Replace modul CPU yang gagal boot",
+      "Perbaikan jaringan komunikasi",
+      "Restore konfigurasi dari backup"
+    ]
+  },
+  "spare_parts": [
+    {
+      "name": "Modul CPU",
+      "uom": "pcs",
+      "quantity": 1
+    },
+    {
+      "name": "Power Supply PLC",
+      "uom": "pcs",
+      "quantity": 1
+    },
+    {
+      "name": "Modul I/O Digital/Analog",
+      "uom": "pcs",
+      "quantity": 2
+    }
+  ]
+}

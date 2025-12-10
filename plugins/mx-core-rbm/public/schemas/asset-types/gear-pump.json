@@ -1,0 +1,73 @@
+{
+  "asset_type_id": "gear-pump",
+  "fields": [
+    {
+      "name": "capacity",
+      "label": "Kapasitas Aliran",
+      "type": "number",
+      "required": true,
+      "unit": "m³/h"
+    },
+    {
+      "name": "pressureRating",
+      "label": "Tekanan Maksimum",
+      "type": "number",
+      "required": false,
+      "unit": "bar"
+    },
+    {
+      "name": "material",
+      "label": "Material Housing",
+      "type": "string",
+      "required": false
+    },
+    {
+      "name": "sealType",
+      "label": "Jenis Seal",
+      "type": "enum",
+      "required": false,
+      "options": ["Mechanical", "Packing", "Lip Seal"]
+    },
+    {
+      "name": "motorPower",
+      "label": "Daya Motor",
+      "type": "number",
+      "required": false,
+      "unit": "kW"
+    }
+  ],
+  "ppc_strategy": {
+    "preventive": [
+      "Periksa kondisi seal dan kebocoran",
+      "Periksa level pelumas",
+      "Pastikan arah putaran motor benar"
+    ],
+    "predictive": [
+      "Monitor suhu pompa saat beroperasi",
+      "Pantau tekanan discharge terhadap baseline",
+      "Analisa getaran gearbox / coupling"
+    ],
+    "corrective": [
+      "Ganti seal bocor",
+      "Overhaul gear dan housing",
+      "Ganti bearing jika aus"
+    ]
+  },
+  "spare_parts": [
+    {
+      "name": "Seal Kit",
+      "uom": "set",
+      "quantity": 1
+    },
+    {
+      "name": "Gear Replacement",
+      "uom": "set",
+      "quantity": 1
+    },
+    {
+      "name": "Gasket Set",
+      "uom": "set",
+      "quantity": 1
+    }
+  ]
+}

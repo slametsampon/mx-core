@@ -1,0 +1,87 @@
+{
+  "asset_type_id": "analyzer",
+  "fields": [
+    {
+      "name": "analyzerType",
+      "label": "Tipe Analyzer",
+      "type": "enum",
+      "required": true,
+      "options": [
+        "Gas Chromatograph",
+        "Oxygen Analyzer",
+        "pH Analyzer",
+        "Conductivity Analyzer",
+        "Moisture Analyzer",
+        "IR Analyzer"
+      ]
+    },
+    {
+      "name": "measuredComponent",
+      "label": "Komponen yang Diukur",
+      "type": "string",
+      "required": true
+    },
+    {
+      "name": "rangeMin",
+      "label": "Range Minimum",
+      "type": "number",
+      "required": false,
+      "unit": "ppm"
+    },
+    {
+      "name": "rangeMax",
+      "label": "Range Maksimum",
+      "type": "number",
+      "required": false,
+      "unit": "ppm"
+    },
+    {
+      "name": "outputSignal",
+      "label": "Sinyal Keluaran",
+      "type": "enum",
+      "required": false,
+      "options": ["4-20 mA", "HART", "Modbus", "Digital"]
+    },
+    {
+      "name": "sampleSystem",
+      "label": "Sistem Sampling",
+      "type": "enum",
+      "required": false,
+      "options": ["Manual", "Otomatis", "Bypass", "Extractor"]
+    }
+  ],
+  "ppc_strategy": {
+    "preventive": [
+      "Bersihkan filter dan chamber secara berkala",
+      "Periksa sistem sampling dan flow regulator",
+      "Kalibrasi dan validasi berkala dengan standar referensi"
+    ],
+    "predictive": [
+      "Pantau deviasi hasil analisa dengan data lab",
+      "Analisa kestabilan sinyal output",
+      "Evaluasi delay respon dari sistem sampling"
+    ],
+    "corrective": [
+      "Ganti sensor analisa (misal: O₂, pH)",
+      "Perbaiki sistem pemanas / pendingin chamber",
+      "Rekalibrasi dengan standar baru"
+    ]
+  },
+  "spare_parts": [
+    {
+      "name": "Sensor Analyzer",
+      "uom": "pcs",
+      "quantity": 1
+    },
+    {
+      "name": "Filter Sample",
+      "uom": "pcs",
+      "quantity": 2
+    },
+    {
+      "name": "Tube / Fitting",
+      "uom": "set",
+      "quantity": 1
+    }
+  ]
+}

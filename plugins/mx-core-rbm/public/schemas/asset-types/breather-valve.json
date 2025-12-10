@@ -1,0 +1,72 @@
+{
+  "asset_type_id": "breather-valve",
+  "fields": [
+    {
+      "name": "valveSize",
+      "label": "Ukuran Valve",
+      "type": "number",
+      "required": true,
+      "unit": "inch"
+    },
+    {
+      "name": "setPressure",
+      "label": "Tekanan Buka (Set Pressure)",
+      "type": "number",
+      "required": true,
+      "unit": "mbar"
+    },
+    {
+      "name": "vacuumSetting",
+      "label": "Pengaturan Vakum",
+      "type": "number",
+      "required": false,
+      "unit": "mbar"
+    },
+    {
+      "name": "bodyMaterial",
+      "label": "Material Body",
+      "type": "string",
+      "required": false
+    },
+    {
+      "name": "flameArrestor",
+      "label": "Dengan Flame Arrestor?",
+      "type": "boolean",
+      "required": false
+    }
+  ],
+  "ppc_strategy": {
+    "preventive": [
+      "Bersihkan valve dan cek pergerakan disc",
+      "Periksa tekanan set point secara berkala",
+      "Periksa kebocoran di sekitar sambungan"
+    ],
+    "predictive": [
+      "Analisa tren tekanan operasi vs setting",
+      "Cek performa seal dan spring pada frekuensi tinggi",
+      "Evaluasi potensi korosi dari gas proses"
+    ],
+    "corrective": [
+      "Ganti disc atau seal yang aus",
+      "Kalibrasi ulang tekanan set point",
+      "Ganti spring atau body jika rusak"
+    ]
+  },
+  "spare_parts": [
+    {
+      "name": "Seal Valve",
+      "uom": "pcs",
+      "quantity": 2
+    },
+    {
+      "name": "Spring Set",
+      "uom": "set",
+      "quantity": 1
+    },
+    {
+      "name": "Disc Valve",
+      "uom": "pcs",
+      "quantity": 1
+    }
+  ]
+}

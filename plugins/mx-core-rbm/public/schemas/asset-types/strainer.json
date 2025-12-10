@@ -1,0 +1,73 @@
+{
+  "asset_type_id": "strainer",
+  "fields": [
+    {
+      "name": "strainerType",
+      "label": "Tipe Strainer",
+      "type": "enum",
+      "required": true,
+      "options": ["Y-Type", "T-Type", "Basket", "Duplex"]
+    },
+    {
+      "name": "connectionType",
+      "label": "Tipe Sambungan",
+      "type": "enum",
+      "required": true,
+      "options": ["Flanged", "Threaded", "Welded"]
+    },
+    {
+      "name": "meshSize",
+      "label": "Ukuran Mesh",
+      "type": "number",
+      "required": false,
+      "unit": "micron"
+    },
+    {
+      "name": "bodyMaterial",
+      "label": "Material Body",
+      "type": "string",
+      "required": false
+    },
+    {
+      "name": "designPressure",
+      "label": "Tekanan Rancang",
+      "type": "number",
+      "required": false,
+      "unit": "bar"
+    }
+  ],
+  "ppc_strategy": {
+    "preventive": [
+      "Bersihkan mesh secara berkala",
+      "Periksa kondisi sambungan dan gasket",
+      "Cek tekanan diferensial saat operasi"
+    ],
+    "predictive": [
+      "Pantau peningkatan pressure drop",
+      "Analisa fouling dan penumpukan kotoran",
+      "Lakukan uji kebocoran housing"
+    ],
+    "corrective": [
+      "Ganti mesh tersumbat",
+      "Perbaiki sambungan bocor",
+      "Ganti strainer jika housing rusak"
+    ]
+  },
+  "spare_parts": [
+    {
+      "name": "Elemen Mesh",
+      "uom": "pcs",
+      "quantity": 1
+    },
+    {
+      "name": "Gasket Housing",
+      "uom": "pcs",
+      "quantity": 1
+    },
+    {
+      "name": "Clamp / Baut",
+      "uom": "set",
+      "quantity": 1
+    }
+  ]
+}

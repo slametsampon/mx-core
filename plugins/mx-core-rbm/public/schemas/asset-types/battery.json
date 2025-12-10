@@ -1,0 +1,73 @@
+{
+  "asset_type_id": "battery",
+  "fields": [
+    {
+      "name": "batteryType",
+      "label": "Jenis Baterai",
+      "type": "enum",
+      "required": true,
+      "options": ["Lead Acid", "Ni-Cd", "Li-ion", "VRLA"]
+    },
+    {
+      "name": "capacity",
+      "label": "Kapasitas",
+      "type": "number",
+      "required": true,
+      "unit": "Ah"
+    },
+    {
+      "name": "voltage",
+      "label": "Tegangan Nominal",
+      "type": "number",
+      "required": true,
+      "unit": "V"
+    },
+    {
+      "name": "numberOfCells",
+      "label": "Jumlah Sel",
+      "type": "number",
+      "required": false
+    },
+    {
+      "name": "chargingMethod",
+      "label": "Metode Pengisian",
+      "type": "enum",
+      "required": false,
+      "options": ["Float", "Boost", "Equalize"]
+    }
+  ],
+  "ppc_strategy": {
+    "preventive": [
+      "Periksa koneksi terminal dan bersihkan korosi",
+      "Ukur tegangan masing-masing sel secara berkala",
+      "Pastikan charger berfungsi dengan baik"
+    ],
+    "predictive": [
+      "Pantau kapasitas aktual saat discharge test",
+      "Evaluasi penurunan tegangan selama beban puncak",
+      "Analisa umur pakai berdasarkan suhu lingkungan dan siklus charge"
+    ],
+    "corrective": [
+      "Ganti sel rusak",
+      "Kalibrasi charger",
+      "Reset sistem monitoring baterai"
+    ]
+  },
+  "spare_parts": [
+    {
+      "name": "Sel Baterai",
+      "uom": "pcs",
+      "quantity": 2
+    },
+    {
+      "name": "Terminal Clamp",
+      "uom": "set",
+      "quantity": 1
+    },
+    {
+      "name": "Battery Tray",
+      "uom": "pcs",
+      "quantity": 1
+    }
+  ]
+}

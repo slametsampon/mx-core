@@ -1,0 +1,72 @@
+{
+  "asset_type_id": "panel-instrument",
+  "fields": [
+    {
+      "name": "panelFunction",
+      "label": "Fungsi Panel",
+      "type": "enum",
+      "required": true,
+      "options": ["Monitoring", "Kontrol", "SCADA Interface", "Loop Panel"]
+    },
+    {
+      "name": "powerSupply",
+      "label": "Tegangan Catu Daya",
+      "type": "number",
+      "required": false,
+      "unit": "VDC"
+    },
+    {
+      "name": "numberOfLoops",
+      "label": "Jumlah Loop Instrumen",
+      "type": "number",
+      "required": false
+    },
+    {
+      "name": "mountedDevices",
+      "label": "Perangkat Terpasang",
+      "type": "string",
+      "required": false
+    },
+    {
+      "name": "communication",
+      "label": "Tipe Komunikasi",
+      "type": "enum",
+      "required": false,
+      "options": ["4-20mA", "HART", "Modbus", "Foundation Fieldbus"]
+    }
+  ],
+  "ppc_strategy": {
+    "preventive": [
+      "Periksa koneksi kabel signal dan power",
+      "Bersihkan panel dari debu secara berkala",
+      "Periksa fungsi indikator dan fuse proteksi"
+    ],
+    "predictive": [
+      "Pantau fluktuasi sinyal loop",
+      "Analisa suhu internal panel",
+      "Deteksi penurunan performa modul komunikasi"
+    ],
+    "corrective": [
+      "Ganti modul I/O rusak",
+      "Perbaiki konektor dan terminal",
+      "Rekalibrasi sinyal loop jika diperlukan"
+    ]
+  },
+  "spare_parts": [
+    {
+      "name": "Modul I/O",
+      "uom": "pcs",
+      "quantity": 1
+    },
+    {
+      "name": "Terminal Block",
+      "uom": "set",
+      "quantity": 1
+    },
+    {
+      "name": "Fuse / Breaker Mini",
+      "uom": "pcs",
+      "quantity": 2
+    }
+  ]
+}

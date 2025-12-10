@@ -1,0 +1,79 @@
+{
+  "asset_type_id": "heat-exchanger-air-fin-cooler",
+  "fields": [
+    {
+      "name": "fanType",
+      "label": "Tipe Fan",
+      "type": "enum",
+      "required": true,
+      "options": ["Axial", "Centrifugal"]
+    },
+    {
+      "name": "motorPower",
+      "label": "Daya Motor Fan",
+      "type": "number",
+      "required": true,
+      "unit": "kW"
+    },
+    {
+      "name": "tubeMaterial",
+      "label": "Material Tube",
+      "type": "string",
+      "required": false
+    },
+    {
+      "name": "finMaterial",
+      "label": "Material Fin",
+      "type": "string",
+      "required": false
+    },
+    {
+      "name": "designPressure",
+      "label": "Tekanan Rancang",
+      "type": "number",
+      "required": false,
+      "unit": "bar"
+    },
+    {
+      "name": "designTemperature",
+      "label": "Temperatur Rancang",
+      "type": "number",
+      "required": false,
+      "unit": "°C"
+    }
+  ],
+  "ppc_strategy": {
+    "preventive": [
+      "Bersihkan fin dari debu dan kotoran",
+      "Periksa pelumasan dan alignment fan",
+      "Cek koneksi listrik ke motor"
+    ],
+    "predictive": [
+      "Pantau getaran fan motor",
+      "Monitor suhu outlet dan inlet",
+      "Analisa efisiensi penurunan suhu"
+    ],
+    "corrective": [
+      "Ganti fin yang rusak",
+      "Overhaul fan dan bearing",
+      "Ganti motor jika gagal fungsi"
+    ]
+  },
+  "spare_parts": [
+    {
+      "name": "Motor Fan",
+      "uom": "pcs",
+      "quantity": 1
+    },
+    {
+      "name": "Fan Blade",
+      "uom": "pcs",
+      "quantity": 1
+    },
+    {
+      "name": "Fin Panel",
+      "uom": "set",
+      "quantity": 1
+    }
+  ]
+}

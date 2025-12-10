@@ -1,0 +1,73 @@
+{
+  "asset_type_id": "filter",
+  "fields": [
+    {
+      "name": "filterType",
+      "label": "Tipe Filter",
+      "type": "enum",
+      "required": true,
+      "options": ["Basket", "Cartridge", "Bag", "Y-Strainer"]
+    },
+    {
+      "name": "filterSize",
+      "label": "Ukuran Filter",
+      "type": "number",
+      "required": true,
+      "unit": "inch"
+    },
+    {
+      "name": "material",
+      "label": "Material Housing",
+      "type": "string",
+      "required": false
+    },
+    {
+      "name": "meshSize",
+      "label": "Ukuran Mesh",
+      "type": "number",
+      "required": false,
+      "unit": "micron"
+    },
+    {
+      "name": "designPressure",
+      "label": "Tekanan Rancang",
+      "type": "number",
+      "required": false,
+      "unit": "bar"
+    }
+  ],
+  "ppc_strategy": {
+    "preventive": [
+      "Bersihkan elemen filter secara berkala",
+      "Periksa kondisi housing dan gasket",
+      "Pastikan tekanan diferensial dalam batas aman"
+    ],
+    "predictive": [
+      "Monitor pressure drop inlet–outlet",
+      "Analisa performa filtrasi",
+      "Pantau integritas housing terhadap korosi"
+    ],
+    "corrective": [
+      "Ganti elemen filter tersumbat",
+      "Perbaiki atau ganti gasket bocor",
+      "Perbaiki housing jika deformasi"
+    ]
+  },
+  "spare_parts": [
+    {
+      "name": "Elemen Filter",
+      "uom": "pcs",
+      "quantity": 2
+    },
+    {
+      "name": "Gasket Housing",
+      "uom": "pcs",
+      "quantity": 1
+    },
+    {
+      "name": "Clamp / Bolt Set",
+      "uom": "set",
+      "quantity": 1
+    }
+  ]
+}

@@ -1,0 +1,64 @@
+{
+  "asset_type_id": "miscellaneous",
+  "fields": [
+    {
+      "name": "code",
+      "label": "Kode Peralatan",
+      "type": "string",
+      "required": true
+    },
+    {
+      "name": "description",
+      "label": "Deskripsi Fungsi",
+      "type": "string",
+      "required": true
+    },
+    {
+      "name": "manufacturer",
+      "label": "Pabrikan",
+      "type": "string",
+      "required": false
+    },
+    {
+      "name": "model",
+      "label": "Model/Seri",
+      "type": "string",
+      "required": false
+    },
+    {
+      "name": "specNote",
+      "label": "Catatan Spesifikasi Tambahan",
+      "type": "string",
+      "required": false
+    }
+  ],
+  "ppc_strategy": {
+    "preventive": [
+      "Inspeksi visual kondisi alat",
+      "Pembersihan berkala sesuai lingkungan kerja",
+      "Cek fungsi dasar atau indikator (jika ada)"
+    ],
+    "predictive": [
+      "Pantau performa berdasarkan histori alarm atau deviasi",
+      "Evaluasi kebutuhan upgrade jika obsolete",
+      "Bandingkan efisiensi dengan sistem serupa"
+    ],
+    "corrective": [
+      "Ganti alat jika tidak sesuai fungsi",
+      "Lakukan reparasi atau kirim ke vendor",
+      "Catat dan revisi data alat jika modifikasi dilakukan"
+    ]
+  },
+  "spare_parts": [
+    {
+      "name": "Unit Miscellaneous",
+      "uom": "pcs",
+      "quantity": 1
+    },
+    {
+      "name": "Kabel / Konektor",
+      "uom": "set",
+      "quantity": 1
+    }
+  ]
+}

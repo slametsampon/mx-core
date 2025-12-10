@@ -1,0 +1,80 @@
+{
+  "asset_type_id": "compressor",
+  "fields": [
+    {
+      "name": "compressorType",
+      "label": "Tipe Kompresor",
+      "type": "enum",
+      "required": true,
+      "options": ["Centrifugal", "Reciprocating", "Screw", "Scroll"]
+    },
+    {
+      "name": "capacity",
+      "label": "Kapasitas Aliran",
+      "type": "number",
+      "required": true,
+      "unit": "m³/min"
+    },
+    {
+      "name": "dischargePressure",
+      "label": "Tekanan Discharge",
+      "type": "number",
+      "required": true,
+      "unit": "bar"
+    },
+    {
+      "name": "stageCount",
+      "label": "Jumlah Tahap (Stage)",
+      "type": "number",
+      "required": false
+    },
+    {
+      "name": "motorPower",
+      "label": "Daya Motor",
+      "type": "number",
+      "required": false,
+      "unit": "kW"
+    },
+    {
+      "name": "coolingMethod",
+      "label": "Metode Pendinginan",
+      "type": "enum",
+      "required": false,
+      "options": ["Air Cooled", "Water Cooled", "Oil Cooled"]
+    }
+  ],
+  "ppc_strategy": {
+    "preventive": [
+      "Periksa level dan kondisi oli pelumas",
+      "Periksa dan bersihkan filter udara",
+      "Periksa kebocoran pada sambungan pipa"
+    ],
+    "predictive": [
+      "Pantau tekanan discharge terhadap baseline",
+      "Monitor getaran dan suhu bantalan",
+      "Analisa performa kompresi dan konsumsi daya"
+    ],
+    "corrective": [
+      "Ganti filter dan oli",
+      "Ganti seal kompresi bocor",
+      "Overhaul rotor atau piston"
+    ]
+  },
+  "spare_parts": [
+    {
+      "name": "Oil Filter",
+      "uom": "pcs",
+      "quantity": 1
+    },
+    {
+      "name": "Air Filter",
+      "uom": "pcs",
+      "quantity": 1
+    },
+    {
+      "name": "Seal Kit",
+      "uom": "set",
+      "quantity": 1
+    }
+  ]
+}

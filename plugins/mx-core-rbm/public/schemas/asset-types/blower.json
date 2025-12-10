@@ -1,0 +1,81 @@
+{
+  "asset_type_id": "blower",
+  "fields": [
+    {
+      "name": "blowerType",
+      "label": "Tipe Blower",
+      "type": "enum",
+      "required": true,
+      "options": ["Centrifugal", "Axial", "Roots", "Regenerative"]
+    },
+    {
+      "name": "capacity",
+      "label": "Kapasitas Aliran",
+      "type": "number",
+      "required": true,
+      "unit": "m³/min"
+    },
+    {
+      "name": "pressure",
+      "label": "Tekanan Discharge",
+      "type": "number",
+      "required": false,
+      "unit": "bar"
+    },
+    {
+      "name": "motorPower",
+      "label": "Daya Motor",
+      "type": "number",
+      "required": false,
+      "unit": "kW"
+    },
+    {
+      "name": "rpm",
+      "label": "Kecepatan Putar",
+      "type": "number",
+      "required": false,
+      "unit": "RPM"
+    },
+    {
+      "name": "driveType",
+      "label": "Tipe Penggerak",
+      "type": "enum",
+      "required": false,
+      "options": ["Belt Drive", "Direct Drive", "Coupling"]
+    }
+  ],
+  "ppc_strategy": {
+    "preventive": [
+      "Periksa belt atau kopling untuk keausan",
+      "Periksa kondisi bantalan dan lakukan pelumasan",
+      "Periksa casing terhadap retakan atau kebocoran"
+    ],
+    "predictive": [
+      "Analisa getaran untuk deteksi ketidakseimbangan",
+      "Pantau suhu bearing selama operasi",
+      "Monitor tekanan dan debit udara"
+    ],
+    "corrective": [
+      "Ganti bearing rusak",
+      "Overhaul impeller",
+      "Ganti belt atau kopling"
+    ]
+  },
+  "spare_parts": [
+    {
+      "name": "Bearing Blower",
+      "uom": "pcs",
+      "quantity": 2
+    },
+    {
+      "name": "Belt Drive",
+      "uom": "pcs",
+      "quantity": 1
+    },
+    {
+      "name": "Seal Kit",
+      "uom": "set",
+      "quantity": 1
+    }
+  ]
+}

@@ -1,0 +1,73 @@
+{
+  "asset_type_id": "steam-trap",
+  "fields": [
+    {
+      "name": "trapType",
+      "label": "Tipe Steam Trap",
+      "type": "enum",
+      "required": true,
+      "options": ["Float", "Thermostatic", "Thermodynamic", "Inverted Bucket"]
+    },
+    {
+      "name": "orificeSize",
+      "label": "Ukuran Orifice",
+      "type": "number",
+      "required": false,
+      "unit": "mm"
+    },
+    {
+      "name": "maxPressure",
+      "label": "Tekanan Maksimum",
+      "type": "number",
+      "required": true,
+      "unit": "bar"
+    },
+    {
+      "name": "maxTemperature",
+      "label": "Temperatur Maksimum",
+      "type": "number",
+      "required": true,
+      "unit": "°C"
+    },
+    {
+      "name": "bodyMaterial",
+      "label": "Material Body",
+      "type": "string",
+      "required": false
+    }
+  ],
+  "ppc_strategy": {
+    "preventive": [
+      "Periksa fungsionalitas trap secara berkala",
+      "Bersihkan saluran inlet dan outlet",
+      "Pastikan tidak ada kebocoran dari body"
+    ],
+    "predictive": [
+      "Pantau performa trap menggunakan ultrasonic test",
+      "Analisa suhu outlet terhadap sistem",
+      "Deteksi bypass atau steam loss abnormal"
+    ],
+    "corrective": [
+      "Ganti orifice yang aus",
+      "Overhaul mekanisme trap",
+      "Ganti unit jika terjadi kerusakan internal"
+    ]
+  },
+  "spare_parts": [
+    {
+      "name": "Orifice Kit",
+      "uom": "set",
+      "quantity": 1
+    },
+    {
+      "name": "Gasket Trap",
+      "uom": "pcs",
+      "quantity": 2
+    },
+    {
+      "name": "Internal Mechanism",
+      "uom": "set",
+      "quantity": 1
+    }
+  ]
+}

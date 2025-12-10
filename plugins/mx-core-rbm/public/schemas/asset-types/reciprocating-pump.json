@@ -1,0 +1,80 @@
+{
+  "asset_type_id": "reciprocating-pump",
+  "fields": [
+    {
+      "name": "capacity",
+      "label": "Kapasitas Pompa",
+      "type": "number",
+      "required": true,
+      "unit": "m³/h"
+    },
+    {
+      "name": "pressureRating",
+      "label": "Tekanan Maksimal",
+      "type": "number",
+      "required": true,
+      "unit": "bar"
+    },
+    {
+      "name": "strokeLength",
+      "label": "Panjang Langkah (Stroke)",
+      "type": "number",
+      "required": false,
+      "unit": "mm"
+    },
+    {
+      "name": "motorPower",
+      "label": "Daya Motor",
+      "type": "number",
+      "required": false,
+      "unit": "kW"
+    },
+    {
+      "name": "cylinderCount",
+      "label": "Jumlah Silinder",
+      "type": "number",
+      "required": false
+    },
+    {
+      "name": "sealType",
+      "label": "Jenis Seal",
+      "type": "enum",
+      "required": false,
+      "options": ["Packing", "Mechanical", "Plunger Seal"]
+    }
+  ],
+  "ppc_strategy": {
+    "preventive": [
+      "Periksa kebocoran seal dan sambungan pipa",
+      "Periksa level pelumas dan kondisi minyak",
+      "Periksa kekencangan paking dan baut"
+    ],
+    "predictive": [
+      "Monitor tekanan discharge dan getaran silinder",
+      "Pantau suhu housing dan bantalan",
+      "Analisa performa stroke dengan tren waktu"
+    ],
+    "corrective": [
+      "Ganti seal silinder",
+      "Overhaul plunger dan head pump",
+      "Ganti valve plate atau gasket"
+    ]
+  },
+  "spare_parts": [
+    {
+      "name": "Seal Plunger",
+      "uom": "pcs",
+      "quantity": 2
+    },
+    {
+      "name": "Gasket Head",
+      "uom": "pcs",
+      "quantity": 1
+    },
+    {
+      "name": "Valve Plate",
+      "uom": "set",
+      "quantity": 1
+    }
+  ]
+}

@@ -1,0 +1,76 @@
+{
+  "asset_type_id": "grounding",
+  "fields": [
+    {
+      "name": "groundingType",
+      "label": "Jenis Grounding",
+      "type": "enum",
+      "required": true,
+      "options": [
+        "Grounding System",
+        "Lightning Protection",
+        "Static Discharge"
+      ]
+    },
+    {
+      "name": "resistanceValue",
+      "label": "Nilai Resistansi Tanah",
+      "type": "number",
+      "required": false,
+      "unit": "Ohm"
+    },
+    {
+      "name": "electrodeType",
+      "label": "Jenis Elektroda",
+      "type": "string",
+      "required": false
+    },
+    {
+      "name": "connectionMethod",
+      "label": "Metode Koneksi",
+      "type": "enum",
+      "required": false,
+      "options": ["Welding", "Clamping", "Bolted"]
+    },
+    {
+      "name": "inspectionChamber",
+      "label": "Ada Chamber Inspeksi?",
+      "type": "boolean",
+      "required": false
+    }
+  ],
+  "ppc_strategy": {
+    "preventive": [
+      "Periksa visual kondisi sambungan dan koneksi grounding",
+      "Uji resistansi tanah secara berkala",
+      "Periksa chamber inspeksi untuk korosi atau kelembaban"
+    ],
+    "predictive": [
+      "Pantau perubahan resistansi dari histori pengukuran",
+      "Analisa penurunan efektivitas saat musim hujan",
+      "Evaluasi performa terhadap peralatan sensitif"
+    ],
+    "corrective": [
+      "Perbaiki sambungan grounding lepas atau korosi",
+      "Tambahkan elektroda tambahan bila resistansi tinggi",
+      "Ganti kabel atau konektor grounding rusak"
+    ]
+  },
+  "spare_parts": [
+    {
+      "name": "Kabel Grounding",
+      "uom": "meter",
+      "quantity": 10
+    },
+    {
+      "name": "Elektroda Tanah",
+      "uom": "pcs",
+      "quantity": 2
+    },
+    {
+      "name": "Connector / Clamp",
+      "uom": "pcs",
+      "quantity": 4
+    }
+  ]
+}

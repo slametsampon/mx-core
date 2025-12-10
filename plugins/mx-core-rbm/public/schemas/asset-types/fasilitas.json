@@ -1,0 +1,77 @@
+{
+  "asset_type_id": "fasilitas",
+  "fields": [
+    {
+      "name": "facilityType",
+      "label": "Jenis Fasilitas",
+      "type": "enum",
+      "required": true,
+      "options": [
+        "Snorklift",
+        "Pengusir Tikus",
+        "PABX",
+        "Toilet Portable",
+        "Lampu Taman"
+      ]
+    },
+    {
+      "name": "brand",
+      "label": "Merk / Tipe",
+      "type": "string",
+      "required": false
+    },
+    {
+      "name": "location",
+      "label": "Lokasi Penempatan",
+      "type": "string",
+      "required": true
+    },
+    {
+      "name": "capacity",
+      "label": "Kapasitas (Jika Berlaku)",
+      "type": "string",
+      "required": false
+    },
+    {
+      "name": "powerSource",
+      "label": "Sumber Daya",
+      "type": "enum",
+      "required": false,
+      "options": ["AC", "DC", "Manual", "Battery"]
+    }
+  ],
+  "ppc_strategy": {
+    "preventive": [
+      "Cek kebersihan dan kelayakan unit",
+      "Periksa fungsi operasional secara berkala",
+      "Cek supply listrik atau baterai"
+    ],
+    "predictive": [
+      "Pantau frekuensi gangguan pada perangkat (misal PABX)",
+      "Analisa histori penggunaan atau kerusakan",
+      "Deteksi usia pakai berdasarkan pemakaian aktual"
+    ],
+    "corrective": [
+      "Ganti komponen rusak atau tidak berfungsi",
+      "Pindahkan atau upgrade lokasi fasilitas",
+      "Lakukan penggantian unit total jika tidak ekonomis diperbaiki"
+    ]
+  },
+  "spare_parts": [
+    {
+      "name": "Baterai Cadangan",
+      "uom": "pcs",
+      "quantity": 2
+    },
+    {
+      "name": "Modul Kontrol",
+      "uom": "pcs",
+      "quantity": 1
+    },
+    {
+      "name": "Komponen Mekanik",
+      "uom": "set",
+      "quantity": 1
+    }
+  ]
+}

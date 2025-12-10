@@ -1,0 +1,72 @@
+{
+  "asset_type_id": "ejector",
+  "fields": [
+    {
+      "name": "ejectorType",
+      "label": "Tipe Ejector",
+      "type": "enum",
+      "required": true,
+      "options": ["Steam", "Liquid", "Gas Jet"]
+    },
+    {
+      "name": "designSuctionPressure",
+      "label": "Tekanan Suction Rancang",
+      "type": "number",
+      "required": false,
+      "unit": "bar"
+    },
+    {
+      "name": "designDischargePressure",
+      "label": "Tekanan Discharge Rancang",
+      "type": "number",
+      "required": false,
+      "unit": "bar"
+    },
+    {
+      "name": "motiveFluid",
+      "label": "Fluida Pendorong (Motive Fluid)",
+      "type": "string",
+      "required": true
+    },
+    {
+      "name": "material",
+      "label": "Material Body",
+      "type": "string",
+      "required": false
+    }
+  ],
+  "ppc_strategy": {
+    "preventive": [
+      "Cek kondisi nozzle dan diffuser",
+      "Bersihkan bagian dalam ejector dari kerak atau sumbatan",
+      "Periksa sambungan pipa terhadap kebocoran"
+    ],
+    "predictive": [
+      "Pantau performa tekanan suction dan discharge",
+      "Analisa suara abnormal saat operasi",
+      "Pantau konsumsi motive fluid"
+    ],
+    "corrective": [
+      "Ganti nozzle yang aus",
+      "Perbaiki kerusakan pada body ejector",
+      "Overhaul unit jika performa turun signifikan"
+    ]
+  },
+  "spare_parts": [
+    {
+      "name": "Nozzle Ejector",
+      "uom": "pcs",
+      "quantity": 1
+    },
+    {
+      "name": "Gasket Flange",
+      "uom": "pcs",
+      "quantity": 2
+    },
+    {
+      "name": "Diffuser Cone",
+      "uom": "pcs",
+      "quantity": 1
+    }
+  ]
+}

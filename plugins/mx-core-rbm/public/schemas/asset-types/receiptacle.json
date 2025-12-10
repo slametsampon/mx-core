@@ -1,0 +1,73 @@
+{
+  "asset_type_id": "receiptacle",
+  "fields": [
+    {
+      "name": "receptacleType",
+      "label": "Tipe Receptacle",
+      "type": "enum",
+      "required": true,
+      "options": ["Industrial", "Weatherproof", "Explosion Proof"]
+    },
+    {
+      "name": "voltageRating",
+      "label": "Tegangan",
+      "type": "number",
+      "required": true,
+      "unit": "V"
+    },
+    {
+      "name": "currentRating",
+      "label": "Arus Maksimum",
+      "type": "number",
+      "required": true,
+      "unit": "A"
+    },
+    {
+      "name": "ipRating",
+      "label": "IP Rating",
+      "type": "string",
+      "required": false
+    },
+    {
+      "name": "mountingType",
+      "label": "Jenis Mounting",
+      "type": "enum",
+      "required": false,
+      "options": ["Wall Mounted", "Flush Mounted", "Panel Mounted"]
+    }
+  ],
+  "ppc_strategy": {
+    "preventive": [
+      "Periksa kekencangan sambungan kabel",
+      "Bersihkan dari debu, oli atau material korosif",
+      "Pastikan pelindung dan cover terpasang dengan baik"
+    ],
+    "predictive": [
+      "Pantau perubahan resistansi koneksi",
+      "Deteksi panas berlebih dengan termografi",
+      "Evaluasi kelayakan berdasarkan beban puncak"
+    ],
+    "corrective": [
+      "Ganti unit yang longgar atau retak",
+      "Perbaiki mounting jika rusak",
+      "Perbaiki konektor terbakar atau meleleh"
+    ]
+  },
+  "spare_parts": [
+    {
+      "name": "Unit Receptacle",
+      "uom": "pcs",
+      "quantity": 1
+    },
+    {
+      "name": "Cover/Cap",
+      "uom": "pcs",
+      "quantity": 1
+    },
+    {
+      "name": "Mounting Screw",
+      "uom": "set",
+      "quantity": 1
+    }
+  ]
+}

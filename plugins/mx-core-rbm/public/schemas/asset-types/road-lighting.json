@@ -1,0 +1,73 @@
+{
+  "asset_type_id": "road-lighting",
+  "fields": [
+    {
+      "name": "lampType",
+      "label": "Jenis Lampu",
+      "type": "enum",
+      "required": true,
+      "options": ["LED", "Halogen", "Sodium", "Mercury"]
+    },
+    {
+      "name": "powerRating",
+      "label": "Daya Lampu",
+      "type": "number",
+      "required": false,
+      "unit": "Watt"
+    },
+    {
+      "name": "poleHeight",
+      "label": "Tinggi Tiang",
+      "type": "number",
+      "required": false,
+      "unit": "meter"
+    },
+    {
+      "name": "controlSystem",
+      "label": "Sistem Kontrol",
+      "type": "enum",
+      "required": false,
+      "options": ["Manual", "Timer", "Photocell", "Smart Control"]
+    },
+    {
+      "name": "installationYear",
+      "label": "Tahun Pemasangan",
+      "type": "number",
+      "required": false
+    }
+  ],
+  "ppc_strategy": {
+    "preventive": [
+      "Periksa kabel dan konektor terhadap kerusakan",
+      "Bersihkan reflektor dan diffuser lampu",
+      "Cek kekencangan tiang dan sambungan grounding"
+    ],
+    "predictive": [
+      "Pantau arus lampu untuk deteksi kerusakan dini",
+      "Analisa pola hidup-mati lampu (runtime)",
+      "Evaluasi efisiensi energi sistem penerangan"
+    ],
+    "corrective": [
+      "Ganti ballast atau driver",
+      "Ganti modul LED atau bohlam",
+      "Perbaiki sistem kontrol otomatis"
+    ]
+  },
+  "spare_parts": [
+    {
+      "name": "Lampu Cadangan (LED/Sodium)",
+      "uom": "pcs",
+      "quantity": 2
+    },
+    {
+      "name": "Driver / Ballast",
+      "uom": "pcs",
+      "quantity": 1
+    },
+    {
+      "name": "Fuse Panel",
+      "uom": "pcs",
+      "quantity": 2
+    }
+  ]
+}

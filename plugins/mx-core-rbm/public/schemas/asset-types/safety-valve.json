@@ -1,0 +1,78 @@
+{
+  "asset_type_id": "safety-valve",
+  "fields": [
+    {
+      "name": "valveSize",
+      "label": "Ukuran Valve",
+      "type": "number",
+      "required": true,
+      "unit": "inch"
+    },
+    {
+      "name": "setPressure",
+      "label": "Tekanan Set",
+      "type": "number",
+      "required": true,
+      "unit": "bar"
+    },
+    {
+      "name": "valveType",
+      "label": "Tipe Valve",
+      "type": "enum",
+      "required": true,
+      "options": ["Conventional", "Balanced", "Pilot Operated"]
+    },
+    {
+      "name": "orificeSize",
+      "label": "Ukuran Orifice",
+      "type": "string",
+      "required": false
+    },
+    {
+      "name": "bodyMaterial",
+      "label": "Material Body",
+      "type": "string",
+      "required": false
+    },
+    {
+      "name": "springMaterial",
+      "label": "Material Pegas",
+      "type": "string",
+      "required": false
+    }
+  ],
+  "ppc_strategy": {
+    "preventive": [
+      "Uji fungsional valve pada jadwal berkala",
+      "Periksa kebersihan area outlet",
+      "Periksa segel dan kondisi pegas"
+    ],
+    "predictive": [
+      "Pantau tekanan mendekati tekanan set",
+      "Monitor kebocoran kecil saat idle",
+      "Analisa respon buka/tutup valve"
+    ],
+    "corrective": [
+      "Kalibrasi ulang tekanan set",
+      "Ganti pegas rusak",
+      "Overhaul valve jika respons lambat atau bocor"
+    ]
+  },
+  "spare_parts": [
+    {
+      "name": "Spring Set",
+      "uom": "set",
+      "quantity": 1
+    },
+    {
+      "name": "Gasket Outlet",
+      "uom": "pcs",
+      "quantity": 1
+    },
+    {
+      "name": "Disk Seat",
+      "uom": "pcs",
+      "quantity": 1
+    }
+  ]
+}

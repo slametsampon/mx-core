@@ -1,0 +1,80 @@
+{
+  "asset_type_id": "centrifugal-pump",
+  "fields": [
+    {
+      "name": "capacity",
+      "label": "Kapasitas Aliran",
+      "type": "number",
+      "required": true,
+      "unit": "m³/h"
+    },
+    {
+      "name": "head",
+      "label": "Head Maksimal",
+      "type": "number",
+      "required": true,
+      "unit": "m"
+    },
+    {
+      "name": "rpm",
+      "label": "Kecepatan Putar",
+      "type": "number",
+      "required": false,
+      "unit": "RPM"
+    },
+    {
+      "name": "motorPower",
+      "label": "Daya Motor",
+      "type": "number",
+      "required": false,
+      "unit": "kW"
+    },
+    {
+      "name": "sealType",
+      "label": "Jenis Seal",
+      "type": "enum",
+      "required": true,
+      "options": ["Mechanical", "Packing", "Cartridge"]
+    },
+    {
+      "name": "material",
+      "label": "Material Casing",
+      "type": "string",
+      "required": false
+    }
+  ],
+  "ppc_strategy": {
+    "preventive": [
+      "Periksa alignment motor dan pompa",
+      "Periksa kondisi seal dan bearing",
+      "Lubrikasi sesuai jadwal"
+    ],
+    "predictive": [
+      "Pantau getaran dan suhu bearing",
+      "Analisa arus motor saat beban maksimum",
+      "Analisa oil quality untuk indikasi keausan"
+    ],
+    "corrective": [
+      "Ganti seal mekanik",
+      "Ganti bearing motor",
+      "Overhaul impeller dan shaft"
+    ]
+  },
+  "spare_parts": [
+    {
+      "name": "Mechanical Seal",
+      "uom": "pcs",
+      "quantity": 1
+    },
+    {
+      "name": "Bearing",
+      "uom": "pcs",
+      "quantity": 2
+    },
+    {
+      "name": "Gasket Set",
+      "uom": "set",
+      "quantity": 1
+    }
+  ]
+}

@@ -1,0 +1,86 @@
+{
+  "asset_type_id": "level-instrument",
+  "fields": [
+    {
+      "name": "instrumentType",
+      "label": "Tipe Instrumen Level",
+      "type": "enum",
+      "required": true,
+      "options": [
+        "Radar",
+        "Ultrasonic",
+        "Capacitive",
+        "Hydrostatic",
+        "Displacer"
+      ]
+    },
+    {
+      "name": "rangeMin",
+      "label": "Range Minimum",
+      "type": "number",
+      "required": true,
+      "unit": "m"
+    },
+    {
+      "name": "rangeMax",
+      "label": "Range Maksimum",
+      "type": "number",
+      "required": true,
+      "unit": "m"
+    },
+    {
+      "name": "outputSignal",
+      "label": "Sinyal Keluaran",
+      "type": "enum",
+      "required": true,
+      "options": ["4-20 mA", "HART", "Modbus"]
+    },
+    {
+      "name": "mountingType",
+      "label": "Tipe Pemasangan",
+      "type": "enum",
+      "required": false,
+      "options": ["Top Mount", "Side Mount", "External Chamber"]
+    },
+    {
+      "name": "material",
+      "label": "Material Sensor",
+      "type": "string",
+      "required": false
+    }
+  ],
+  "ppc_strategy": {
+    "preventive": [
+      "Periksa posisi pemasangan dan bersihkan permukaan sensor",
+      "Periksa koneksi kabel dan kekencangan terminal",
+      "Kalibrasi secara berkala sesuai SOP"
+    ],
+    "predictive": [
+      "Pantau kestabilan sinyal output",
+      "Analisa deviasi pembacaan terhadap histori level",
+      "Evaluasi alarm high/low level abnormal"
+    ],
+    "corrective": [
+      "Ganti sensor level",
+      "Ganti kabel sinyal jika ada gangguan",
+      "Rekalibrasi dan revalidasi transmitter"
+    ]
+  },
+  "spare_parts": [
+    {
+      "name": "Level Sensor",
+      "uom": "pcs",
+      "quantity": 1
+    },
+    {
+      "name": "Mounting Flange",
+      "uom": "pcs",
+      "quantity": 1
+    },
+    {
+      "name": "Cable Connector",
+      "uom": "pcs",
+      "quantity": 2
+    }
+  ]
+}

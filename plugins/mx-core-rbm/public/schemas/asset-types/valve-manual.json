@@ -1,0 +1,78 @@
+{
+  "asset_type_id": "valve-manual",
+  "fields": [
+    {
+      "name": "valveType",
+      "label": "Tipe Valve",
+      "type": "enum",
+      "required": true,
+      "options": ["Gate", "Globe", "Ball", "Butterfly", "Plug"]
+    },
+    {
+      "name": "valveSize",
+      "label": "Ukuran Valve",
+      "type": "number",
+      "required": true,
+      "unit": "inch"
+    },
+    {
+      "name": "pressureRating",
+      "label": "Rating Tekanan",
+      "type": "string",
+      "required": false
+    },
+    {
+      "name": "bodyMaterial",
+      "label": "Material Body",
+      "type": "string",
+      "required": false
+    },
+    {
+      "name": "seatMaterial",
+      "label": "Material Seat",
+      "type": "string",
+      "required": false
+    },
+    {
+      "name": "operation",
+      "label": "Metode Operasi",
+      "type": "enum",
+      "required": false,
+      "options": ["Handle", "Gear", "Lever"]
+    }
+  ],
+  "ppc_strategy": {
+    "preventive": [
+      "Operasikan valve secara berkala untuk mencegah sticking",
+      "Periksa kondisi handle atau gear",
+      "Periksa potensi kebocoran pada packing"
+    ],
+    "predictive": [
+      "Pantau performa pembukaan penuh",
+      "Deteksi getaran abnormal pada saat posisi tertutup",
+      "Analisa perubahan tekanan sebelum dan sesudah valve"
+    ],
+    "corrective": [
+      "Ganti packing",
+      "Perbaiki/servis gear/handle",
+      "Overhaul valve jika terjadi kerusakan signifikan"
+    ]
+  },
+  "spare_parts": [
+    {
+      "name": "Packing Valve",
+      "uom": "set",
+      "quantity": 1
+    },
+    {
+      "name": "Handle/Lever Kit",
+      "uom": "set",
+      "quantity": 1
+    },
+    {
+      "name": "Gasket Body",
+      "uom": "pcs",
+      "quantity": 1
+    }
+  ]
+}

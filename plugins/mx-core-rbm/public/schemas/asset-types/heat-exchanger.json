@@ -1,0 +1,79 @@
+{
+  "asset_type_id": "heat-exchanger",
+  "fields": [
+    {
+      "name": "exchangerType",
+      "label": "Tipe Heat Exchanger",
+      "type": "enum",
+      "required": true,
+      "options": ["Shell & Tube (STHE)", "Plate (PHE)"]
+    },
+    {
+      "name": "heatDuty",
+      "label": "Kapasitas Pemindahan Panas",
+      "type": "number",
+      "required": false,
+      "unit": "kW"
+    },
+    {
+      "name": "tubeMaterial",
+      "label": "Material Tube",
+      "type": "string",
+      "required": false
+    },
+    {
+      "name": "shellMaterial",
+      "label": "Material Shell",
+      "type": "string",
+      "required": false
+    },
+    {
+      "name": "designPressure",
+      "label": "Tekanan Rancang",
+      "type": "number",
+      "required": false,
+      "unit": "bar"
+    },
+    {
+      "name": "designTemperature",
+      "label": "Temperatur Rancang",
+      "type": "number",
+      "required": false,
+      "unit": "°C"
+    }
+  ],
+  "ppc_strategy": {
+    "preventive": [
+      "Bersihkan sisi shell dan sisi tube",
+      "Periksa kondisi gasket dan bolt",
+      "Cek kebocoran kecil dan kencangkan flange"
+    ],
+    "predictive": [
+      "Pantau penurunan efisiensi pemindahan panas",
+      "Analisa fouling factor",
+      "Uji ketebalan tube secara berkala"
+    ],
+    "corrective": [
+      "Ganti gasket bocor",
+      "Ganti tube bocor atau retak",
+      "Overhaul unit jika efisiensi sangat rendah"
+    ]
+  },
+  "spare_parts": [
+    {
+      "name": "Gasket Exchanger",
+      "uom": "set",
+      "quantity": 1
+    },
+    {
+      "name": "Tube Bundle",
+      "uom": "set",
+      "quantity": 1
+    },
+    {
+      "name": "Bolt & Nut",
+      "uom": "set",
+      "quantity": 1
+    }
+  ]
+}

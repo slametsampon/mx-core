@@ -1,0 +1,71 @@
+{
+  "asset_type_id": "package-unit",
+  "fields": [
+    {
+      "name": "packageName",
+      "label": "Nama Paket Unit",
+      "type": "string",
+      "required": true
+    },
+    {
+      "name": "componentList",
+      "label": "Daftar Komponen Utama",
+      "type": "string",
+      "required": false
+    },
+    {
+      "name": "motorPower",
+      "label": "Total Daya Motor",
+      "type": "number",
+      "required": false,
+      "unit": "kW"
+    },
+    {
+      "name": "capacity",
+      "label": "Kapasitas Output",
+      "type": "number",
+      "required": false,
+      "unit": "m³/h"
+    },
+    {
+      "name": "application",
+      "label": "Aplikasi / Penggunaan",
+      "type": "string",
+      "required": false
+    }
+  ],
+  "ppc_strategy": {
+    "preventive": [
+      "Cek kondisi semua komponen utama dalam paket",
+      "Periksa sambungan antar modul",
+      "Lakukan pelumasan sesuai manual pabrikan"
+    ],
+    "predictive": [
+      "Pantau vibrasi tiap peralatan",
+      "Analisa beban motor dan efisiensi sistem",
+      "Pantau suhu operasi tiap sub-komponen"
+    ],
+    "corrective": [
+      "Ganti komponen unit yang rusak",
+      "Kalibrasi ulang controller terintegrasi",
+      "Perbaikan layout instalasi jika ada misalignment"
+    ]
+  },
+  "spare_parts": [
+    {
+      "name": "Seal Kit Paket",
+      "uom": "set",
+      "quantity": 1
+    },
+    {
+      "name": "Filter Paket",
+      "uom": "pcs",
+      "quantity": 2
+    },
+    {
+      "name": "Bantalan Motor",
+      "uom": "pcs",
+      "quantity": 2
+    }
+  ]
+}

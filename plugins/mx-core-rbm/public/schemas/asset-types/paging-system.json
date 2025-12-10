@@ -1,0 +1,72 @@
+{
+  "asset_type_id": "paging-system",
+  "fields": [
+    {
+      "name": "systemType",
+      "label": "Jenis Sistem Paging",
+      "type": "enum",
+      "required": true,
+      "options": ["Analog", "Digital", "IP-Based"]
+    },
+    {
+      "name": "powerSource",
+      "label": "Sumber Daya",
+      "type": "enum",
+      "required": true,
+      "options": ["AC", "DC", "UPS"]
+    },
+    {
+      "name": "coverageArea",
+      "label": "Area Cakupan",
+      "type": "string",
+      "required": true
+    },
+    {
+      "name": "amplifierPower",
+      "label": "Daya Amplifier",
+      "type": "number",
+      "required": false,
+      "unit": "W"
+    },
+    {
+      "name": "speakerCount",
+      "label": "Jumlah Speaker",
+      "type": "number",
+      "required": false
+    }
+  ],
+  "ppc_strategy": {
+    "preventive": [
+      "Periksa sinyal audio dan kejelasan suara",
+      "Uji mikrofon dan amplifier secara berkala",
+      "Bersihkan speaker dan panel kontrol"
+    ],
+    "predictive": [
+      "Monitor distorsi suara selama peak time",
+      "Pantau kestabilan daya saat broadcasting",
+      "Cek delay pada sistem IP-based"
+    ],
+    "corrective": [
+      "Ganti amplifier rusak",
+      "Perbaiki atau ganti speaker mati",
+      "Reset atau konfigurasi ulang kontrol sistem"
+    ]
+  },
+  "spare_parts": [
+    {
+      "name": "Speaker Paging",
+      "uom": "pcs",
+      "quantity": 2
+    },
+    {
+      "name": "Amplifier",
+      "uom": "pcs",
+      "quantity": 1
+    },
+    {
+      "name": "Microphone Paging",
+      "uom": "pcs",
+      "quantity": 1
+    }
+  ]
+}

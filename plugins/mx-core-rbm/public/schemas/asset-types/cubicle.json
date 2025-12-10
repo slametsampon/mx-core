@@ -1,0 +1,73 @@
+{
+  "asset_type_id": "cubicle",
+  "fields": [
+    {
+      "name": "cubicleType",
+      "label": "Tipe Cubicle",
+      "type": "enum",
+      "required": true,
+      "options": ["Incoming", "Outgoing", "Bus Coupler", "Capacitor Bank"]
+    },
+    {
+      "name": "voltageLevel",
+      "label": "Tegangan Operasi",
+      "type": "number",
+      "required": true,
+      "unit": "kV"
+    },
+    {
+      "name": "currentRating",
+      "label": "Arus Maksimal",
+      "type": "number",
+      "required": false,
+      "unit": "A"
+    },
+    {
+      "name": "breakerType",
+      "label": "Jenis Breaker",
+      "type": "enum",
+      "required": false,
+      "options": ["VCB", "ACB", "SF6", "MCCB"]
+    },
+    {
+      "name": "panelManufacturer",
+      "label": "Pabrikan Panel",
+      "type": "string",
+      "required": false
+    }
+  ],
+  "ppc_strategy": {
+    "preventive": [
+      "Periksa visual koneksi kabel, terminal, dan grounding",
+      "Bersihkan ruang panel dan filter ventilasi",
+      "Tes fungsi proteksi dan indikasi alarm"
+    ],
+    "predictive": [
+      "Thermal scanning untuk deteksi hot spot",
+      "Pantau arus beban dan faktor daya",
+      "Analisa kualitas isolasi busbar dengan IR tester"
+    ],
+    "corrective": [
+      "Ganti breaker rusak atau aus",
+      "Perbaiki koneksi longgar atau terbakar",
+      "Ganti komponen panel (relay, kontaktor, dsb)"
+    ]
+  },
+  "spare_parts": [
+    {
+      "name": "Breaker Cadangan",
+      "uom": "pcs",
+      "quantity": 1
+    },
+    {
+      "name": "Fuse / MCCB",
+      "uom": "pcs",
+      "quantity": 2
+    },
+    {
+      "name": "Fan Panel",
+      "uom": "pcs",
+      "quantity": 1
+    }
+  ]
+}

@@ -1,0 +1,72 @@
+{
+  "asset_type_id": "cathodic-protection",
+  "fields": [
+    {
+      "name": "protectionType",
+      "label": "Tipe Proteksi",
+      "type": "enum",
+      "required": true,
+      "options": ["Sacrificial Anode", "Impressed Current"]
+    },
+    {
+      "name": "structureProtected",
+      "label": "Struktur yang Dilindungi",
+      "type": "string",
+      "required": true
+    },
+    {
+      "name": "anodeMaterial",
+      "label": "Material Anoda",
+      "type": "string",
+      "required": false
+    },
+    {
+      "name": "voltageOutput",
+      "label": "Tegangan Output",
+      "type": "number",
+      "required": false,
+      "unit": "V"
+    },
+    {
+      "name": "currentOutput",
+      "label": "Arus Output",
+      "type": "number",
+      "required": false,
+      "unit": "A"
+    }
+  ],
+  "ppc_strategy": {
+    "preventive": [
+      "Periksa koneksi kabel dan polaritas sistem",
+      "Ukur tegangan sistem terhadap elektroda referensi",
+      "Periksa kondisi fisik rectifier dan groundbed"
+    ],
+    "predictive": [
+      "Analisa tren tegangan proteksi dari histori logger",
+      "Evaluasi performa anoda terhadap usia pakai",
+      "Pantau perubahan resistansi tanah di area proteksi"
+    ],
+    "corrective": [
+      "Ganti anoda aus atau habis",
+      "Perbaiki rectifier rusak",
+      "Perbaiki sambungan grounding"
+    ]
+  },
+  "spare_parts": [
+    {
+      "name": "Anoda Pengganti",
+      "uom": "pcs",
+      "quantity": 2
+    },
+    {
+      "name": "Rectifier Modul",
+      "uom": "pcs",
+      "quantity": 1
+    },
+    {
+      "name": "Elektroda Referensi",
+      "uom": "pcs",
+      "quantity": 1
+    }
+  ]
+}

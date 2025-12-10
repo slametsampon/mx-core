@@ -1,0 +1,79 @@
+{
+  "asset_type_id": "reaktor",
+  "fields": [
+    {
+      "name": "reaktorType",
+      "label": "Tipe Reaktor",
+      "type": "enum",
+      "required": true,
+      "options": ["Fixed Bed", "Fluidized Bed", "CSTR", "PFR", "Batch"]
+    },
+    {
+      "name": "volume",
+      "label": "Volume Reaktor",
+      "type": "number",
+      "required": true,
+      "unit": "m³"
+    },
+    {
+      "name": "designPressure",
+      "label": "Tekanan Rancang",
+      "type": "number",
+      "required": true,
+      "unit": "bar"
+    },
+    {
+      "name": "designTemperature",
+      "label": "Temperatur Rancang",
+      "type": "number",
+      "required": false,
+      "unit": "°C"
+    },
+    {
+      "name": "material",
+      "label": "Material",
+      "type": "string",
+      "required": false
+    },
+    {
+      "name": "agitator",
+      "label": "Menggunakan Agitator?",
+      "type": "boolean",
+      "required": false
+    }
+  ],
+  "ppc_strategy": {
+    "preventive": [
+      "Inspeksi internal reaktor selama TA",
+      "Periksa lapisan pelindung dan refractory",
+      "Pastikan sistem agitator (jika ada) dalam kondisi baik"
+    ],
+    "predictive": [
+      "Pantau tekanan dan suhu operasi terhadap rancangannya",
+      "Analisa perubahan efisiensi reaksi kimia",
+      "Uji ketebalan shell dan liner secara berkala"
+    ],
+    "corrective": [
+      "Ganti refractory yang rusak atau aus",
+      "Overhaul sistem agitator",
+      "Reparasi pada lapisan internal akibat korosi atau erosi"
+    ]
+  },
+  "spare_parts": [
+    {
+      "name": "Refractory Material",
+      "uom": "kg",
+      "quantity": 200
+    },
+    {
+      "name": "Agitator Seal Kit",
+      "uom": "set",
+      "quantity": 1
+    },
+    {
+      "name": "Gasket Nozzle",
+      "uom": "pcs",
+      "quantity": 4
+    }
+  ]
+}

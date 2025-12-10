@@ -1,0 +1,81 @@
+{
+  "asset_type_id": "canned-pump",
+  "fields": [
+    {
+      "name": "ratedFlow",
+      "label": "Flow Rate Tertinggi",
+      "type": "number",
+      "required": true,
+      "unit": "m³/h"
+    },
+    {
+      "name": "head",
+      "label": "Head Maksimum",
+      "type": "number",
+      "required": true,
+      "unit": "m"
+    },
+    {
+      "name": "motorPower",
+      "label": "Daya Motor",
+      "type": "number",
+      "required": true,
+      "unit": "kW"
+    },
+    {
+      "name": "voltage",
+      "label": "Tegangan Motor",
+      "type": "number",
+      "required": false,
+      "unit": "V"
+    },
+    {
+      "name": "sealType",
+      "label": "Jenis Seal",
+      "type": "enum",
+      "required": true,
+      "options": ["Sealless", "Mechanical"]
+    },
+    {
+      "name": "coolingType",
+      "label": "Tipe Pendingin",
+      "type": "enum",
+      "required": false,
+      "options": ["Air", "Water", "Oil"]
+    }
+  ],
+  "ppc_strategy": {
+    "preventive": [
+      "Cek kebersihan jalur pendingin",
+      "Periksa level cairan pelindung motor",
+      "Periksa sambungan listrik dan grounding"
+    ],
+    "predictive": [
+      "Pantau getaran pompa dan motor",
+      "Monitor suhu casing dan motor",
+      "Analisa perubahan arus operasi"
+    ],
+    "corrective": [
+      "Ganti motor kaleng jika gagal fungsi",
+      "Bersihkan dan overhaul internal bearing",
+      "Perbaiki pendingin motor jika bocor"
+    ]
+  },
+  "spare_parts": [
+    {
+      "name": "Impeller",
+      "uom": "pcs",
+      "quantity": 1
+    },
+    {
+      "name": "Kaleng Motor",
+      "uom": "pcs",
+      "quantity": 1
+    },
+    {
+      "name": "Packing Set",
+      "uom": "set",
+      "quantity": 1
+    }
+  ]
+}

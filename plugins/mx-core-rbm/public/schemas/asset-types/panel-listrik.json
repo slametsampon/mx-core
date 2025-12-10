@@ -1,0 +1,86 @@
+{
+  "asset_type_id": "panel-listrik",
+  "fields": [
+    {
+      "name": "panelType",
+      "label": "Tipe Panel",
+      "type": "enum",
+      "required": true,
+      "options": [
+        "MCC",
+        "Sub Distribution",
+        "Main Distribution",
+        "Emergency",
+        "Capacitor Bank"
+      ]
+    },
+    {
+      "name": "voltageRating",
+      "label": "Tegangan Kerja",
+      "type": "number",
+      "required": true,
+      "unit": "V"
+    },
+    {
+      "name": "currentRating",
+      "label": "Arus Maksimum",
+      "type": "number",
+      "required": true,
+      "unit": "A"
+    },
+    {
+      "name": "breakerType",
+      "label": "Jenis Pemutus (Breaker)",
+      "type": "enum",
+      "required": false,
+      "options": ["MCB", "MCCB", "ACB", "Fuse", "Contactors"]
+    },
+    {
+      "name": "ipRating",
+      "label": "IP Rating",
+      "type": "string",
+      "required": false
+    },
+    {
+      "name": "phase",
+      "label": "Jumlah Fasa",
+      "type": "enum",
+      "required": false,
+      "options": ["1-Phase", "3-Phase"]
+    }
+  ],
+  "ppc_strategy": {
+    "preventive": [
+      "Periksa kondisi breaker dan terminal",
+      "Bersihkan debu dan uji fungsi indikator",
+      "Uji manual test MCCB / MCB sesuai SOP"
+    ],
+    "predictive": [
+      "Pantau suhu kontak menggunakan termografi",
+      "Evaluasi arus beban vs kapasitas desain",
+      "Analisa getaran panel karena loose part"
+    ],
+    "corrective": [
+      "Ganti breaker rusak",
+      "Perbaiki kabel lepas atau meleleh",
+      "Perbaiki grounding atau busbar longgar"
+    ]
+  },
+  "spare_parts": [
+    {
+      "name": "MCB/MCCB",
+      "uom": "pcs",
+      "quantity": 2
+    },
+    {
+      "name": "Terminal Lugs",
+      "uom": "set",
+      "quantity": 1
+    },
+    {
+      "name": "Indikator Lamp",
+      "uom": "pcs",
+      "quantity": 3
+    }
+  ]
+}

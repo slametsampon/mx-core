@@ -1,0 +1,79 @@
+{
+  "asset_type_id": "peralatan-laborat",
+  "fields": [
+    {
+      "name": "equipmentName",
+      "label": "Nama Peralatan",
+      "type": "string",
+      "required": true
+    },
+    {
+      "name": "brand",
+      "label": "Merek / Vendor",
+      "type": "string",
+      "required": false
+    },
+    {
+      "name": "model",
+      "label": "Model / Tipe",
+      "type": "string",
+      "required": false
+    },
+    {
+      "name": "measurementType",
+      "label": "Jenis Pengukuran",
+      "type": "enum",
+      "required": false,
+      "options": [
+        "pH",
+        "Moisture",
+        "Viscosity",
+        "Density",
+        "Spectro",
+        "Chromatograph",
+        "Other"
+      ]
+    },
+    {
+      "name": "calibrationInterval",
+      "label": "Interval Kalibrasi",
+      "type": "number",
+      "required": false,
+      "unit": "bulan"
+    }
+  ],
+  "ppc_strategy": {
+    "preventive": [
+      "Bersihkan bagian luar dan kontrol kebersihan lingkungan",
+      "Periksa koneksi listrik dan fungsi display",
+      "Periksa tanggal kalibrasi dan jadwal berikutnya"
+    ],
+    "predictive": [
+      "Analisa deviasi hasil pengukuran dibanding standar",
+      "Pantau frekuensi error dan peringatan alat",
+      "Monitor kestabilan suhu internal (jika ada)"
+    ],
+    "corrective": [
+      "Kalibrasi ulang alat",
+      "Ganti komponen sensor / modul elektronik",
+      "Reset software atau upgrade firmware"
+    ]
+  },
+  "spare_parts": [
+    {
+      "name": "Sensor Cadangan",
+      "uom": "pcs",
+      "quantity": 1
+    },
+    {
+      "name": "Fuse / Sekring",
+      "uom": "pcs",
+      "quantity": 2
+    },
+    {
+      "name": "Filter Internal",
+      "uom": "pcs",
+      "quantity": 1
+    }
+  ]
+}

@@ -1,0 +1,72 @@
+{
+  "asset_type_id": "static-mixer",
+  "fields": [
+    {
+      "name": "mixerType",
+      "label": "Tipe Static Mixer",
+      "type": "enum",
+      "required": true,
+      "options": ["Helical", "Plate", "Pipe Insert", "Custom"]
+    },
+    {
+      "name": "pipeDiameter",
+      "label": "Diameter Pipa",
+      "type": "number",
+      "required": true,
+      "unit": "inch"
+    },
+    {
+      "name": "elementMaterial",
+      "label": "Material Elemen Mixer",
+      "type": "string",
+      "required": false
+    },
+    {
+      "name": "numberOfElements",
+      "label": "Jumlah Elemen",
+      "type": "number",
+      "required": false
+    },
+    {
+      "name": "designFlowRate",
+      "label": "Flow Rate Rancang",
+      "type": "number",
+      "required": false,
+      "unit": "m³/h"
+    }
+  ],
+  "ppc_strategy": {
+    "preventive": [
+      "Periksa integritas elemen mixer",
+      "Bersihkan deposit/kotoran di pipa",
+      "Periksa kebocoran sambungan"
+    ],
+    "predictive": [
+      "Pantau tekanan inlet–outlet",
+      "Analisa performa pencampuran",
+      "Cek perubahan pola aliran"
+    ],
+    "corrective": [
+      "Ganti elemen mixer rusak",
+      "Perbaiki deformasi pipa",
+      "Overhaul seluruh unit jika kehilangan performa"
+    ]
+  },
+  "spare_parts": [
+    {
+      "name": "Elemen Mixer",
+      "uom": "pcs",
+      "quantity": 1
+    },
+    {
+      "name": "Gasket Sambungan",
+      "uom": "pcs",
+      "quantity": 2
+    },
+    {
+      "name": "Clamp Flange",
+      "uom": "set",
+      "quantity": 1
+    }
+  ]
+}

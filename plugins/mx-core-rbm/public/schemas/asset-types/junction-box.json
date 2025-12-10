@@ -1,0 +1,71 @@
+{
+  "asset_type_id": "junction-box",
+  "fields": [
+    {
+      "name": "boxMaterial",
+      "label": "Material Box",
+      "type": "enum",
+      "required": true,
+      "options": ["Stainless Steel", "Aluminium", "Plastic", "FRP"]
+    },
+    {
+      "name": "ipRating",
+      "label": "IP Rating",
+      "type": "string",
+      "required": false
+    },
+    {
+      "name": "terminalCount",
+      "label": "Jumlah Terminal",
+      "type": "number",
+      "required": true
+    },
+    {
+      "name": "mountingType",
+      "label": "Jenis Pemasangan",
+      "type": "enum",
+      "required": false,
+      "options": ["Wall Mounted", "Pole Mounted", "Tray Mounted"]
+    },
+    {
+      "name": "cableEntry",
+      "label": "Jumlah Cable Entry",
+      "type": "number",
+      "required": false
+    }
+  ],
+  "ppc_strategy": {
+    "preventive": [
+      "Periksa kekencangan terminal sambungan kabel",
+      "Bersihkan bagian dalam dari debu dan kelembaban",
+      "Periksa IP seal dan cover box"
+    ],
+    "predictive": [
+      "Pantau temperatur dalam box di lingkungan ekstrem",
+      "Cek isolasi sambungan kabel menggunakan IR tester",
+      "Analisa performa sambungan pada beban dinamis"
+    ],
+    "corrective": [
+      "Ganti terminal block rusak atau longgar",
+      "Perbaiki seal box bocor",
+      "Ganti box yang retak atau korosi"
+    ]
+  },
+  "spare_parts": [
+    {
+      "name": "Terminal Block",
+      "uom": "pcs",
+      "quantity": 5
+    },
+    {
+      "name": "Rubber Gasket",
+      "uom": "pcs",
+      "quantity": 1
+    },
+    {
+      "name": "Cable Gland",
+      "uom": "pcs",
+      "quantity": 4
+    }
+  ]
+}

@@ -1,0 +1,85 @@
+{
+  "asset_type_id": "drum",
+  "fields": [
+    {
+      "name": "drumType",
+      "label": "Tipe Drum",
+      "type": "enum",
+      "required": true,
+      "options": [
+        "Knockout Drum",
+        "Separator Drum",
+        "Accumulator",
+        "Surge Drum"
+      ]
+    },
+    {
+      "name": "capacity",
+      "label": "Kapasitas",
+      "type": "number",
+      "required": true,
+      "unit": "m³"
+    },
+    {
+      "name": "diameter",
+      "label": "Diameter",
+      "type": "number",
+      "required": false,
+      "unit": "mm"
+    },
+    {
+      "name": "length",
+      "label": "Panjang",
+      "type": "number",
+      "required": false,
+      "unit": "mm"
+    },
+    {
+      "name": "designPressure",
+      "label": "Tekanan Rancang",
+      "type": "number",
+      "required": false,
+      "unit": "bar"
+    },
+    {
+      "name": "material",
+      "label": "Material",
+      "type": "string",
+      "required": false
+    }
+  ],
+  "ppc_strategy": {
+    "preventive": [
+      "Periksa end cap dan sambungan las",
+      "Cek nozzle dan manhole terhadap korosi",
+      "Cek coating internal dan eksternal"
+    ],
+    "predictive": [
+      "Pantau perubahan ketebalan shell",
+      "Analisa tekanan operasi vs tekanan desain",
+      "Uji integritas sambungan las (NDT)"
+    ],
+    "corrective": [
+      "Perbaiki atau ganti nozzle bocor",
+      "Ganti gasket manhole",
+      "Overhaul drum jika deformasi"
+    ]
+  },
+  "spare_parts": [
+    {
+      "name": "Gasket Nozzle",
+      "uom": "pcs",
+      "quantity": 2
+    },
+    {
+      "name": "Manhole Cover Gasket",
+      "uom": "pcs",
+      "quantity": 1
+    },
+    {
+      "name": "Inspeksi Plug",
+      "uom": "pcs",
+      "quantity": 2
+    }
+  ]
+}

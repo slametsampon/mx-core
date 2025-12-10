@@ -1,0 +1,73 @@
+{
+  "asset_type_id": "cable",
+  "fields": [
+    {
+      "name": "cableType",
+      "label": "Jenis Kabel",
+      "type": "enum",
+      "required": true,
+      "options": ["Power", "Control", "Instrument", "Fiber Optic"]
+    },
+    {
+      "name": "coreCount",
+      "label": "Jumlah Core",
+      "type": "number",
+      "required": false
+    },
+    {
+      "name": "crossSectionalArea",
+      "label": "Luas Penampang",
+      "type": "number",
+      "required": false,
+      "unit": "mm²"
+    },
+    {
+      "name": "insulationType",
+      "label": "Tipe Isolasi",
+      "type": "enum",
+      "required": false,
+      "options": ["PVC", "XLPE", "EPR", "PE"]
+    },
+    {
+      "name": "voltageRating",
+      "label": "Tegangan Operasi",
+      "type": "number",
+      "required": false,
+      "unit": "Volt"
+    }
+  ],
+  "ppc_strategy": {
+    "preventive": [
+      "Periksa kondisi fisik dan kerusakan mekanis",
+      "Periksa tanda-tanda panas berlebih atau discoloration",
+      "Pastikan koneksi kabel di terminal kencang dan bersih"
+    ],
+    "predictive": [
+      "Uji resistansi isolasi secara berkala",
+      "Pantau temperatur kabel saat beban puncak",
+      "Analisa arus bocor untuk mendeteksi degradasi isolasi"
+    ],
+    "corrective": [
+      "Ganti kabel rusak atau mengalami short",
+      "Perbaiki sambungan atau terminal longgar",
+      "Lakukan isolasi ulang jika memungkinkan"
+    ]
+  },
+  "spare_parts": [
+    {
+      "name": "Kabel Pengganti",
+      "uom": "meter",
+      "quantity": 50
+    },
+    {
+      "name": "Lug / Terminal",
+      "uom": "pcs",
+      "quantity": 10
+    },
+    {
+      "name": "Isolasi Heat Shrink",
+      "uom": "meter",
+      "quantity": 5
+    }
+  ]
+}

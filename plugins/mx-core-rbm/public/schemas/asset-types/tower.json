@@ -1,0 +1,86 @@
+{
+  "asset_type_id": "tower",
+  "fields": [
+    {
+      "name": "towerType",
+      "label": "Tipe Tower",
+      "type": "enum",
+      "required": true,
+      "options": ["Distillation", "Absorber", "Stripping", "Extraction"]
+    },
+    {
+      "name": "diameter",
+      "label": "Diameter",
+      "type": "number",
+      "required": true,
+      "unit": "mm"
+    },
+    {
+      "name": "height",
+      "label": "Tinggi",
+      "type": "number",
+      "required": true,
+      "unit": "m"
+    },
+    {
+      "name": "trayType",
+      "label": "Tipe Tray / Packing",
+      "type": "enum",
+      "required": false,
+      "options": [
+        "Sieve Tray",
+        "Valve Tray",
+        "Bubble Cap",
+        "Structured Packing",
+        "Random Packing"
+      ]
+    },
+    {
+      "name": "designPressure",
+      "label": "Tekanan Rancang",
+      "type": "number",
+      "required": false,
+      "unit": "bar"
+    },
+    {
+      "name": "material",
+      "label": "Material",
+      "type": "string",
+      "required": false
+    }
+  ],
+  "ppc_strategy": {
+    "preventive": [
+      "Inspeksi internal tower saat shutdown",
+      "Cek tray/paking dan dukungan struktural",
+      "Periksa nozzle, manhole, dan aksesori lainnya"
+    ],
+    "predictive": [
+      "Monitor diferensial tekanan antar tray",
+      "Uji ketebalan shell dengan UT",
+      "Analisa kebocoran dan korosi area kritis"
+    ],
+    "corrective": [
+      "Ganti tray rusak atau terkorosi",
+      "Rewelding nozzle atau manhole bocor",
+      "Repainting area luar tower"
+    ]
+  },
+  "spare_parts": [
+    {
+      "name": "Tray Tower",
+      "uom": "pcs",
+      "quantity": 2
+    },
+    {
+      "name": "Gasket Manhole",
+      "uom": "pcs",
+      "quantity": 1
+    },
+    {
+      "name": "Nozzle Seal",
+      "uom": "pcs",
+      "quantity": 2
+    }
+  ]
+}

@@ -1,0 +1,77 @@
+{
+  "asset_type_id": "alat-ukur",
+  "fields": [
+    {
+      "name": "instrumentType",
+      "label": "Jenis Alat Ukur",
+      "type": "enum",
+      "required": true,
+      "options": [
+        "Multimeter",
+        "Clamp Meter",
+        "Oscilloscope",
+        "Sound Level Meter",
+        "Lux Meter",
+        "Lainnya"
+      ]
+    },
+    {
+      "name": "brand",
+      "label": "Merek",
+      "type": "string",
+      "required": false
+    },
+    {
+      "name": "model",
+      "label": "Model",
+      "type": "string",
+      "required": false
+    },
+    {
+      "name": "range",
+      "label": "Rentang Ukur",
+      "type": "string",
+      "required": false
+    },
+    {
+      "name": "calibrationDue",
+      "label": "Tanggal Kalibrasi Berikutnya",
+      "type": "date",
+      "required": false
+    }
+  ],
+  "ppc_strategy": {
+    "preventive": [
+      "Periksa kondisi fisik alat ukur",
+      "Simpan alat di tempat kering dan bersih",
+      "Pastikan baterai tidak bocor"
+    ],
+    "predictive": [
+      "Monitor deviasi hasil ukur dari referensi standar",
+      "Evaluasi performa berdasarkan histori kalibrasi",
+      "Pantau perubahan respon sensor dari waktu ke waktu"
+    ],
+    "corrective": [
+      "Ganti komponen internal yang rusak (probe, sensor)",
+      "Kalibrasi ulang alat ukur",
+      "Perbaikan tombol atau layar jika rusak"
+    ]
+  },
+  "spare_parts": [
+    {
+      "name": "Probe Multimeter",
+      "uom": "pcs",
+      "quantity": 2
+    },
+    {
+      "name": "Battery AA / 9V",
+      "uom": "pcs",
+      "quantity": 2
+    },
+    {
+      "name": "Fuse Internal",
+      "uom": "pcs",
+      "quantity": 1
+    }
+  ]
+}

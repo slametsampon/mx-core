@@ -1,0 +1,80 @@
+{
+  "asset_type_id": "motor",
+  "fields": [
+    {
+      "name": "motorType",
+      "label": "Tipe Motor",
+      "type": "enum",
+      "required": true,
+      "options": ["Induksi", "Sinkron", "DC", "Servo"]
+    },
+    {
+      "name": "powerRating",
+      "label": "Daya (Power)",
+      "type": "number",
+      "required": true,
+      "unit": "kW"
+    },
+    {
+      "name": "voltage",
+      "label": "Tegangan Operasi",
+      "type": "number",
+      "required": true,
+      "unit": "V"
+    },
+    {
+      "name": "rpm",
+      "label": "Kecepatan Putar",
+      "type": "number",
+      "required": true,
+      "unit": "RPM"
+    },
+    {
+      "name": "frameSize",
+      "label": "Ukuran Frame",
+      "type": "string",
+      "required": false
+    },
+    {
+      "name": "mountingType",
+      "label": "Tipe Mounting",
+      "type": "enum",
+      "required": false,
+      "options": ["Horizontal", "Vertical"]
+    }
+  ],
+  "ppc_strategy": {
+    "preventive": [
+      "Periksa kekencangan koneksi listrik",
+      "Bersihkan bagian luar motor dari debu dan oli",
+      "Periksa suhu operasional secara berkala"
+    ],
+    "predictive": [
+      "Analisa getaran motor",
+      "Pantau suhu bearing dan winding",
+      "Analisa arus listrik untuk deteksi beban abnormal"
+    ],
+    "corrective": [
+      "Ganti bearing motor",
+      "Rewinding stator",
+      "Ganti kipas pendingin"
+    ]
+  },
+  "spare_parts": [
+    {
+      "name": "Bearing Motor",
+      "uom": "pcs",
+      "quantity": 2
+    },
+    {
+      "name": "Kipas Pendingin",
+      "uom": "pcs",
+      "quantity": 1
+    },
+    {
+      "name": "Terminal Box",
+      "uom": "pcs",
+      "quantity": 1
+    }
+  ]
+}

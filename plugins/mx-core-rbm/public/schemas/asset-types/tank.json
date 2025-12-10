@@ -1,0 +1,80 @@
+{
+  "asset_type_id": "tank",
+  "fields": [
+    {
+      "name": "tankType",
+      "label": "Tipe Tangki",
+      "type": "enum",
+      "required": true,
+      "options": ["Atmospheric", "Pressurized", "Floating Roof", "Fixed Roof"]
+    },
+    {
+      "name": "capacity",
+      "label": "Kapasitas",
+      "type": "number",
+      "required": true,
+      "unit": "m³"
+    },
+    {
+      "name": "diameter",
+      "label": "Diameter Tangki",
+      "type": "number",
+      "required": false,
+      "unit": "m"
+    },
+    {
+      "name": "height",
+      "label": "Tinggi Tangki",
+      "type": "number",
+      "required": false,
+      "unit": "m"
+    },
+    {
+      "name": "material",
+      "label": "Material",
+      "type": "string",
+      "required": false
+    },
+    {
+      "name": "corrosionAllowance",
+      "label": "Allowance Korosi",
+      "type": "number",
+      "required": false,
+      "unit": "mm"
+    }
+  ],
+  "ppc_strategy": {
+    "preventive": [
+      "Periksa kondisi dinding dan dasar tangki",
+      "Cek venting system dan breather valve",
+      "Periksa coating dan cat pelindung"
+    ],
+    "predictive": [
+      "Uji ketebalan dinding (ultrasonic)",
+      "Monitor tekanan internal (jika pressurized)",
+      "Analisa kelembaban di area tangki"
+    ],
+    "corrective": [
+      "Perbaiki area korosi lokal",
+      "Ganti lapisan pelindung internal",
+      "Perbaikan nozzle atau manhole"
+    ]
+  },
+  "spare_parts": [
+    {
+      "name": "Gasket Manhole",
+      "uom": "pcs",
+      "quantity": 1
+    },
+    {
+      "name": "Breather Valve",
+      "uom": "pcs",
+      "quantity": 1
+    },
+    {
+      "name": "Coating Material",
+      "uom": "liter",
+      "quantity": 20
+    }
+  ]
+}

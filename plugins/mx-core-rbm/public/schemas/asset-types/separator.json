@@ -1,0 +1,80 @@
+{
+  "asset_type_id": "separator",
+  "fields": [
+    {
+      "name": "separatorType",
+      "label": "Tipe Separator",
+      "type": "enum",
+      "required": true,
+      "options": ["Horizontal", "Vertical", "Coalescer", "Cyclone"]
+    },
+    {
+      "name": "diameter",
+      "label": "Diameter",
+      "type": "number",
+      "required": true,
+      "unit": "inch"
+    },
+    {
+      "name": "length",
+      "label": "Panjang",
+      "type": "number",
+      "required": false,
+      "unit": "mm"
+    },
+    {
+      "name": "designPressure",
+      "label": "Tekanan Rancang",
+      "type": "number",
+      "required": true,
+      "unit": "bar"
+    },
+    {
+      "name": "designTemperature",
+      "label": "Temperatur Rancang",
+      "type": "number",
+      "required": false,
+      "unit": "°C"
+    },
+    {
+      "name": "material",
+      "label": "Material",
+      "type": "string",
+      "required": false
+    }
+  ],
+  "ppc_strategy": {
+    "preventive": [
+      "Periksa kondisi internal separator secara berkala",
+      "Bersihkan nozzle dan internal tray",
+      "Cek visual integritas shell dan end-cap"
+    ],
+    "predictive": [
+      "Pantau diferensial tekanan inlet-outlet",
+      "Monitor kualitas pemisahan (efisiensi)",
+      "Uji korosi dan ketebalan berkala"
+    ],
+    "corrective": [
+      "Perbaiki kebocoran pada nozzle",
+      "Ganti internal tray atau vane jika rusak",
+      "Overhaul separator untuk peremajaan"
+    ]
+  },
+  "spare_parts": [
+    {
+      "name": "Gasket Flange",
+      "uom": "pcs",
+      "quantity": 4
+    },
+    {
+      "name": "Nozzle Cap",
+      "uom": "pcs",
+      "quantity": 2
+    },
+    {
+      "name": "Tray Internal",
+      "uom": "set",
+      "quantity": 1
+    }
+  ]
+}
