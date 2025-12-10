@@ -1,0 +1,81 @@
+{
+  "asset_type_id": "temperature-instrument",
+  "fields": [
+    {
+      "name": "sensorType",
+      "label": "Tipe Sensor Suhu",
+      "type": "enum",
+      "required": true,
+      "options": ["RTD", "Thermocouple", "Thermistor"]
+    },
+    {
+      "name": "rangeMin",
+      "label": "Range Minimum",
+      "type": "number",
+      "required": true,
+      "unit": "°C"
+    },
+    {
+      "name": "rangeMax",
+      "label": "Range Maksimum",
+      "type": "number",
+      "required": true,
+      "unit": "°C"
+    },
+    {
+      "name": "outputSignal",
+      "label": "Sinyal Keluaran",
+      "type": "enum",
+      "required": true,
+      "options": ["4-20 mA", "HART", "Resistance", "Modbus"]
+    },
+    {
+      "name": "elementCount",
+      "label": "Jumlah Elemen",
+      "type": "enum",
+      "required": false,
+      "options": ["Single", "Dual"]
+    },
+    {
+      "name": "protectionHead",
+      "label": "Head Proteksi",
+      "type": "enum",
+      "required": false,
+      "options": ["IP65", "IP67", "IP68"]
+    }
+  ],
+  "ppc_strategy": {
+    "preventive": [
+      "Periksa koneksi terminal dan kerapatan gland",
+      "Cek kondisi fisik sensor dan kepala proteksi",
+      "Lakukan kalibrasi berkala sesuai SOP"
+    ],
+    "predictive": [
+      "Pantau kestabilan sinyal output",
+      "Bandingkan pembacaan dengan histori tren suhu",
+      "Deteksi drift sinyal melalui alarm deviasi"
+    ],
+    "corrective": [
+      "Ganti sensor RTD/Thermocouple",
+      "Ganti koneksi wiring atau terminal",
+      "Rekalibrasi dan validasi ulang"
+    ]
+  },
+  "spare_parts": [
+    {
+      "name": "Sensor RTD / Thermocouple",
+      "uom": "pcs",
+      "quantity": 1
+    },
+    {
+      "name": "Protection Head",
+      "uom": "pcs",
+      "quantity": 1
+    },
+    {
+      "name": "Terminal Block",
+      "uom": "pcs",
+      "quantity": 1
+    }
+  ]
+}

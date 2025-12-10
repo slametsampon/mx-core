@@ -1,0 +1,80 @@
+{
+  "asset_type_id": "flow-meter",
+  "fields": [
+    {
+      "name": "meterType",
+      "label": "Tipe Flow Meter",
+      "type": "enum",
+      "required": true,
+      "options": ["Orifice", "Ultrasonic", "Magnetic", "Vortex", "Turbine"]
+    },
+    {
+      "name": "size",
+      "label": "Ukuran Line",
+      "type": "number",
+      "required": true,
+      "unit": "inch"
+    },
+    {
+      "name": "rangeMin",
+      "label": "Range Minimum",
+      "type": "number",
+      "required": false,
+      "unit": "m³/h"
+    },
+    {
+      "name": "rangeMax",
+      "label": "Range Maksimum",
+      "type": "number",
+      "required": false,
+      "unit": "m³/h"
+    },
+    {
+      "name": "outputSignal",
+      "label": "Sinyal Keluaran",
+      "type": "enum",
+      "required": true,
+      "options": ["4-20 mA", "Pulse", "Modbus", "Hart"]
+    },
+    {
+      "name": "material",
+      "label": "Material Body",
+      "type": "string",
+      "required": false
+    }
+  ],
+  "ppc_strategy": {
+    "preventive": [
+      "Pemeriksaan koneksi dan kebersihan sensor",
+      "Kalibrasi berkala sesuai SOP",
+      "Periksa instalasi mekanik dan tidak ada kebocoran"
+    ],
+    "predictive": [
+      "Pantau sinyal output dan stabilitas data",
+      "Analisa trend flow terhadap histori produksi",
+      "Deteksi deviasi signal abnormal"
+    ],
+    "corrective": [
+      "Ganti sensor flow",
+      "Ganti converter elektronik",
+      "Rekalibrasi dan konfigurasi ulang output"
+    ]
+  },
+  "spare_parts": [
+    {
+      "name": "Sensor Flow",
+      "uom": "pcs",
+      "quantity": 1
+    },
+    {
+      "name": "Converter Module",
+      "uom": "pcs",
+      "quantity": 1
+    },
+    {
+      "name": "O-Ring Flow Tube",
+      "uom": "pcs",
+      "quantity": 2
+    }
+  ]
+}

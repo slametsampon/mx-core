@@ -1,0 +1,84 @@
+{
+  "asset_type_id": "pressure-instrument",
+  "fields": [
+    {
+      "name": "instrumentType",
+      "label": "Tipe Instrumen",
+      "type": "enum",
+      "required": true,
+      "options": [
+        "Pressure Transmitter",
+        "Differential Pressure",
+        "Absolute Pressure"
+      ]
+    },
+    {
+      "name": "rangeMin",
+      "label": "Range Minimum",
+      "type": "number",
+      "required": true,
+      "unit": "bar"
+    },
+    {
+      "name": "rangeMax",
+      "label": "Range Maksimum",
+      "type": "number",
+      "required": true,
+      "unit": "bar"
+    },
+    {
+      "name": "outputSignal",
+      "label": "Sinyal Keluaran",
+      "type": "enum",
+      "required": true,
+      "options": ["4-20 mA", "HART", "Modbus"]
+    },
+    {
+      "name": "mountingType",
+      "label": "Tipe Pemasangan",
+      "type": "enum",
+      "required": false,
+      "options": ["Direct Mount", "Remote Seal", "Capillary"]
+    },
+    {
+      "name": "material",
+      "label": "Material Body",
+      "type": "string",
+      "required": false
+    }
+  ],
+  "ppc_strategy": {
+    "preventive": [
+      "Periksa kondisi fisik dan koneksi kabel",
+      "Kalibrasi berkala sesuai SOP",
+      "Periksa posisi pemasangan dan kemungkinan vibrasi"
+    ],
+    "predictive": [
+      "Pantau output signal untuk deviasi abnormal",
+      "Analisa histori alarm tekanan",
+      "Monitoring performa terhadap proses"
+    ],
+    "corrective": [
+      "Ganti transmitter pressure",
+      "Perbaiki koneksi terminal",
+      "Rekalibrasi dan validasi ulang sistem"
+    ]
+  },
+  "spare_parts": [
+    {
+      "name": "Pressure Transmitter Unit",
+      "uom": "pcs",
+      "quantity": 1
+    },
+    {
+      "name": "Bracket Mounting",
+      "uom": "set",
+      "quantity": 1
+    },
+    {
+      "name": "Cable Gland",
+      "uom": "pcs",
+      "quantity": 2
+    }
+  ]
+}

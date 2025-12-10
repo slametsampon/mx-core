@@ -1,0 +1,42 @@
+[
+  {
+    "category_id": "controller",
+    "name": "Control System"
+  },
+  {
+    "category_id": "instrument",
+    "name": "Instrumentasi"
+  },
+  {
+    "category_id": "electrical",
+    "name": "Kelistrikan"
+  },
+  {
+    "category_id": "rotating",
+    "name": "Rotating Equipment"
+  },
+  {
+    "category_id": "static",
+    "name": "Static Equipment"
+  },
+  {
+    "category_id": "piping",
+    "name": "Piping & Valve"
+  },
+  {
+    "category_id": "utility",
+    "name": "Utility / Fasilitas"
+  },
+  {
+    "category_id": "infrastruktur",
+    "name": "Infrastruktur"
+  },
+  {
+    "category_id": "misc",
+    "name": "Miscellaneous"
+  },
+  {
+    "category_id": "lab",
+    "name": "Laboratory Equipment"
+  }
+]

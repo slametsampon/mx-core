@@ -1,0 +1,80 @@
+{
+  "asset_type_id": "temperature-gauge",
+  "fields": [
+    {
+      "name": "gaugeType",
+      "label": "Tipe Temperature Gauge",
+      "type": "enum",
+      "required": true,
+      "options": ["Bimetal", "Gas Actuated", "Liquid Filled", "Digital"]
+    },
+    {
+      "name": "rangeMin",
+      "label": "Range Minimum",
+      "type": "number",
+      "required": true,
+      "unit": "°C"
+    },
+    {
+      "name": "rangeMax",
+      "label": "Range Maksimum",
+      "type": "number",
+      "required": true,
+      "unit": "°C"
+    },
+    {
+      "name": "connectionType",
+      "label": "Tipe Koneksi",
+      "type": "enum",
+      "required": false,
+      "options": ["Bottom", "Back", "Remote"]
+    },
+    {
+      "name": "stemLength",
+      "label": "Panjang Batang (Stem)",
+      "type": "number",
+      "required": false,
+      "unit": "mm"
+    },
+    {
+      "name": "material",
+      "label": "Material Housing",
+      "type": "string",
+      "required": false
+    }
+  ],
+  "ppc_strategy": {
+    "preventive": [
+      "Periksa kondisi fisik housing dan stem",
+      "Pastikan gauge terpasang dengan benar",
+      "Bersihkan kaca dial dari debu dan minyak"
+    ],
+    "predictive": [
+      "Bandingkan pembacaan dengan suhu standar",
+      "Analisa tren pembacaan terhadap suhu proses",
+      "Periksa deviasi dari sensor referensi"
+    ],
+    "corrective": [
+      "Ganti temperature gauge",
+      "Ganti adapter atau koneksi jika rusak",
+      "Kalibrasi ulang di lab metrologi"
+    ]
+  },
+  "spare_parts": [
+    {
+      "name": "Temperature Gauge Unit",
+      "uom": "pcs",
+      "quantity": 1
+    },
+    {
+      "name": "Mounting Adapter",
+      "uom": "pcs",
+      "quantity": 1
+    },
+    {
+      "name": "Kaca Pelindung Dial",
+      "uom": "pcs",
+      "quantity": 1
+    }
+  ]
+}

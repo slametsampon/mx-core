@@ -1,0 +1,87 @@
+{
+  "asset_type_id": "control-valve",
+  "fields": [
+    {
+      "name": "size",
+      "label": "Ukuran Valve",
+      "type": "number",
+      "required": true,
+      "unit": "inch"
+    },
+    {
+      "name": "type",
+      "label": "Tipe Valve",
+      "type": "enum",
+      "required": true,
+      "options": ["Globe", "Ball", "Butterfly"]
+    },
+    {
+      "name": "failMode",
+      "label": "Fail Mode",
+      "type": "enum",
+      "required": true,
+      "options": ["Fail Open", "Fail Close", "Fail Last"]
+    },
+    {
+      "name": "flowMax",
+      "label": "Flow Max",
+      "type": "number",
+      "required": false,
+      "unit": "Nm³/h"
+    },
+    {
+      "name": "flowMin",
+      "label": "Flow Min",
+      "type": "number",
+      "required": false,
+      "unit": "Nm³/h"
+    },
+    {
+      "name": "characteristic",
+      "label": "Flow Characteristic",
+      "type": "enum",
+      "required": true,
+      "options": ["Linear", "Equal %", "Quick Opening"]
+    },
+    {
+      "name": "actuatorType",
+      "label": "Tipe Aktuator",
+      "type": "string",
+      "required": false
+    }
+  ],
+  "ppc_strategy": {
+    "preventive": [
+      "Periksa posisi stem dan kalibrasi travel",
+      "Periksa kebocoran body dan bonnet",
+      "Bersihkan actuator dan lubrikasi linkage"
+    ],
+    "predictive": [
+      "Pantau tekanan supply air",
+      "Pantau sinyal kontrol dan respon waktu",
+      "Analisa getaran actuator"
+    ],
+    "corrective": [
+      "Ganti diaphragm actuator",
+      "Ganti packing atau gasket valve",
+      "Kalibrasi ulang positioner"
+    ]
+  },
+  "spare_parts": [
+    {
+      "name": "Valve Packing",
+      "uom": "set",
+      "quantity": 1
+    },
+    {
+      "name": "Actuator Diaphragm",
+      "uom": "pcs",
+      "quantity": 1
+    },
+    {
+      "name": "Gasket Bonnet",
+      "uom": "pcs",
+      "quantity": 1
+    }
+  ]
+}

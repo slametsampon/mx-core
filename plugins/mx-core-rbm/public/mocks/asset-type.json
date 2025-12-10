@@ -1,0 +1,272 @@
+[
+  {
+    "asset_type_id": "control-system",
+    "label": "CONTROL SYSTEM (DCS & RACK ROOM)",
+    "category_id": "controller"
+  },
+  {
+    "asset_type_id": "control-valve",
+    "label": "CONTROL VALVE",
+    "category_id": "instrument"
+  },
+  {
+    "asset_type_id": "flow-meter",
+    "label": "FLOW METER",
+    "category_id": "instrument"
+  },
+  {
+    "asset_type_id": "pressure-instrument",
+    "label": "PRESSURE INSTRUMENT",
+    "category_id": "instrument"
+  },
+  {
+    "asset_type_id": "pressure-gauge",
+    "label": "PRESSURE GAUGE",
+    "category_id": "instrument"
+  },
+  {
+    "asset_type_id": "temperature-instrument",
+    "label": "TEMPERATURE INSTRUMENT",
+    "category_id": "instrument"
+  },
+  {
+    "asset_type_id": "temperature-gauge",
+    "label": "TEMPERATURE GAUGE",
+    "category_id": "instrument"
+  },
+  {
+    "asset_type_id": "level-instrument",
+    "label": "LEVEL INSTRUMENT",
+    "category_id": "instrument"
+  },
+  {
+    "asset_type_id": "level-gauge",
+    "label": "LEVEL GAUGE",
+    "category_id": "instrument"
+  },
+  {
+    "asset_type_id": "analyzer",
+    "label": "ANALYZER",
+    "category_id": "instrument"
+  },
+  {
+    "asset_type_id": "miscellaneous",
+    "label": "MISCELLENOUS (GD,VS,HY,HC,PY,TY, RD)",
+    "category_id": "misc"
+  },
+  {
+    "asset_type_id": "motor",
+    "label": "MOTOR",
+    "category_id": "electrical"
+  },
+  {
+    "asset_type_id": "transformer",
+    "label": "TRANSFORMER",
+    "category_id": "electrical"
+  },
+  {
+    "asset_type_id": "battery",
+    "label": "BATTERY",
+    "category_id": "electrical"
+  },
+  {
+    "asset_type_id": "electrical-panel",
+    "label": "PANEL LISTRIK",
+    "category_id": "electrical"
+  },
+  {
+    "asset_type_id": "instrument-panel",
+    "label": "PANEL INSTRUMENT",
+    "category_id": "instrument"
+  },
+  {
+    "asset_type_id": "receptacle",
+    "label": "RECEIPTACLE",
+    "category_id": "electrical"
+  },
+  {
+    "asset_type_id": "paging-system",
+    "label": "PAGING SYSTEM",
+    "category_id": "infrastruktur"
+  },
+  {
+    "asset_type_id": "air-conditioning",
+    "label": "AIR CONDITIONING",
+    "category_id": "utility"
+  },
+  {
+    "asset_type_id": "facility",
+    "label": "FASILITAS (SNORKLIFT, PENGUSIR TIKUS, PABX)",
+    "category_id": "utility"
+  },
+  {
+    "asset_type_id": "cathodic-protection",
+    "label": "CATHODIC PROTECTION",
+    "category_id": "electrical"
+  },
+  {
+    "asset_type_id": "grounding",
+    "label": "GROUNDING",
+    "category_id": "electrical"
+  },
+  {
+    "asset_type_id": "junction-box",
+    "label": "JUNCTION BOX",
+    "category_id": "electrical"
+  },
+  {
+    "asset_type_id": "cubicle",
+    "label": "CUBICLE",
+    "category_id": "electrical"
+  },
+  {
+    "asset_type_id": "plc-scada",
+    "label": "PLC & SCADA",
+    "category_id": "controller"
+  },
+  {
+    "asset_type_id": "breather-valve",
+    "label": "BREATHER VALVE",
+    "category_id": "piping"
+  },
+  {
+    "asset_type_id": "switchgear",
+    "label": "SWITCHGEAR 20KV & 6.3 KV",
+    "category_id": "electrical"
+  },
+  {
+    "asset_type_id": "lab-equipment",
+    "label": "PERALATAN LABORAT",
+    "category_id": "lab"
+  },
+  {
+    "asset_type_id": "road-lighting",
+    "label": "ROAD LIGHTING",
+    "category_id": "infrastruktur"
+  },
+  {
+    "asset_type_id": "measuring-device",
+    "label": "ALAT UKUR",
+    "category_id": "instrument"
+  },
+  {
+    "asset_type_id": "cable",
+    "label": "CABLE",
+    "category_id": "electrical"
+  },
+  {
+    "asset_type_id": "agitator",
+    "label": "AGITATOR",
+    "category_id": "rotating"
+  },
+  {
+    "asset_type_id": "gear-pump",
+    "label": "GEAR PUMP",
+    "category_id": "rotating"
+  },
+  {
+    "asset_type_id": "reciprocating-pump",
+    "label": "RECIPROCATING PUMP",
+    "category_id": "rotating"
+  },
+  {
+    "asset_type_id": "centrifugal-pump",
+    "label": "CENTRIFUGAL PUMP",
+    "category_id": "rotating"
+  },
+  {
+    "asset_type_id": "blower",
+    "label": "BLOWER",
+    "category_id": "rotating"
+  },
+  {
+    "asset_type_id": "compressor",
+    "label": "COMPRESSOR",
+    "category_id": "rotating"
+  },
+  {
+    "asset_type_id": "package-unit",
+    "label": "Package Unit",
+    "category_id": "static"
+  },
+  {
+    "asset_type_id": "separator",
+    "label": "SEPARATOR",
+    "category_id": "static"
+  },
+  {
+    "asset_type_id": "tank",
+    "label": "TANK",
+    "category_id": "static"
+  },
+  {
+    "asset_type_id": "drum",
+    "label": "DRUM",
+    "category_id": "static"
+  },
+  {
+    "asset_type_id": "tower",
+    "label": "TOWER",
+    "category_id": "static"
+  },
+  {
+    "asset_type_id": "reactor",
+    "label": "REAKTOR",
+    "category_id": "static"
+  },
+  {
+    "asset_type_id": "heat-exchanger-sthe-phe",
+    "label": "HEAT EXCHANGER (STHE, PHE)",
+    "category_id": "static"
+  },
+  {
+    "asset_type_id": "filter",
+    "label": "FILTER",
+    "category_id": "static"
+  },
+  {
+    "asset_type_id": "canned-pump",
+    "label": "CANNED PUMP",
+    "category_id": "rotating"
+  },
+  {
+    "asset_type_id": "ejector",
+    "label": "EJECTOR",
+    "category_id": "static"
+  },
+  {
+    "asset_type_id": "safety-valve",
+    "label": "SAFETY VALVE",
+    "category_id": "piping"
+  },
+  {
+    "asset_type_id": "steam-trap",
+    "label": "STEAM TRAP",
+    "category_id": "piping"
+  },
+  {
+    "asset_type_id": "strainer",
+    "label": "STRAINER",
+    "category_id": "piping"
+  },
+  {
+    "asset_type_id": "static-mixer",
+    "label": "STATIC MIXER",
+    "category_id": "static"
+  },
+  {
+    "asset_type_id": "heat-exchanger-air-fin",
+    "label": "HEAT EXCHANGER (AIR FIN COOLER)",
+    "category_id": "static"
+  },
+  {
+    "asset_type_id": "piping",
+    "label": "PIPING",
+    "category_id": "piping"
+  },
+  {
+    "asset_type_id": "valve-manual",
+    "label": "VALVE MANUAL",
+    "category_id": "piping"
+  }
+]

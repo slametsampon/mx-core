@@ -1,0 +1,78 @@
+{
+  "asset_type_id": "pressure-gauge",
+  "fields": [
+    {
+      "name": "gaugeType",
+      "label": "Tipe Pressure Gauge",
+      "type": "enum",
+      "required": true,
+      "options": ["Bourdon Tube", "Capsule", "Diaphragm", "Digital"]
+    },
+    {
+      "name": "rangeMin",
+      "label": "Range Minimum",
+      "type": "number",
+      "required": true,
+      "unit": "bar"
+    },
+    {
+      "name": "rangeMax",
+      "label": "Range Maksimum",
+      "type": "number",
+      "required": true,
+      "unit": "bar"
+    },
+    {
+      "name": "connectionSize",
+      "label": "Ukuran Koneksi",
+      "type": "string",
+      "required": false
+    },
+    {
+      "name": "mountingType",
+      "label": "Tipe Pemasangan",
+      "type": "enum",
+      "required": false,
+      "options": ["Bottom", "Back", "Panel Mount", "Surface Mount"]
+    },
+    {
+      "name": "material",
+      "label": "Material Housing",
+      "type": "string",
+      "required": false
+    }
+  ],
+  "ppc_strategy": {
+    "preventive": [
+      "Bersihkan dial dan housing secara berkala",
+      "Periksa posisi pemasangan sesuai SOP",
+      "Periksa koneksi ulir dan pastikan tidak bocor"
+    ],
+    "predictive": [
+      "Bandingkan hasil pengukuran dengan transmitter",
+      "Analisa penyimpangan pembacaan (deviation trend)"
+    ],
+    "corrective": [
+      "Ganti pressure gauge",
+      "Kalibrasi ulang di lab metrologi",
+      "Perbaiki koneksi atau adapter jika aus"
+    ]
+  },
+  "spare_parts": [
+    {
+      "name": "Pressure Gauge Unit",
+      "uom": "pcs",
+      "quantity": 1
+    },
+    {
+      "name": "Mounting Bracket",
+      "uom": "set",
+      "quantity": 1
+    },
+    {
+      "name": "Adapter Connector",
+      "uom": "pcs",
+      "quantity": 1
+    }
+  ]
+}

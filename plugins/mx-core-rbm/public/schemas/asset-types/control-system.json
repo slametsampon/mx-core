@@ -1,0 +1,85 @@
+{
+  "asset_type_id": "control-system",
+  "fields": [
+    {
+      "name": "systemType",
+      "label": "Tipe Sistem",
+      "type": "enum",
+      "required": true,
+      "options": ["DCS", "PLC", "Hybrid"]
+    },
+    {
+      "name": "vendor",
+      "label": "Vendor / Merek",
+      "type": "string",
+      "required": true
+    },
+    {
+      "name": "model",
+      "label": "Model / Seri",
+      "type": "string",
+      "required": false
+    },
+    {
+      "name": "rackCount",
+      "label": "Jumlah Rak",
+      "type": "number",
+      "required": false,
+      "unit": "rak"
+    },
+    {
+      "name": "processorCount",
+      "label": "Jumlah CPU/Processor",
+      "type": "number",
+      "required": false,
+      "unit": "unit"
+    },
+    {
+      "name": "iosCount",
+      "label": "Jumlah IO Modul",
+      "type": "number",
+      "required": false,
+      "unit": "modul"
+    }
+  ],
+  "ppc_strategy": {
+    "preventive": [
+      "Periksa sistem pendingin rack room",
+      "Bersihkan filter fan dan rack",
+      "Cek log alarm dan health status"
+    ],
+    "predictive": [
+      "Monitoring suhu ruang kontrol",
+      "Analisis log error & self-diagnostics",
+      "Pantau beban CPU & IO response"
+    ],
+    "corrective": [
+      "Ganti modul IO bermasalah",
+      "Rekonfigurasi modul komunikasi",
+      "Reset atau update firmware CPU"
+    ]
+  },
+  "spare_parts": [
+    {
+      "name": "Modul IO Digital",
+      "uom": "pcs",
+      "quantity": 1,
+      "remarks": "Spare untuk sinyal digital"
+    },
+    {
+      "name": "Modul IO Analog",
+      "uom": "pcs",
+      "quantity": 1
+    },
+    {
+      "name": "Power Supply Module",
+      "uom": "pcs",
+      "quantity": 1
+    },
+    {
+      "name": "Fan Rack Pendingin",
+      "uom": "pcs",
+      "quantity": 2
+    }
+  ]
+}
