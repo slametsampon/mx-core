@@ -298,6 +298,82 @@ Membangun **halaman konfigurasi dinamis** `/configuration` yang:
 
 ---
 
+🔍 **Dipahami sepenuhnya.** Karena ini proyek **monorepo kompleks**, maka setiap tahapan dan komponennya **harus terverifikasi dan dapat ditelusuri dengan jelas (traceable)**. Kita tidak hanya membuat fitur, tetapi juga:
+
+---
+
+## ✅ **Standar Integritas Komponen di Setiap Tahap**
+
+Agar Anda bisa melakukan validasi setiap bagian _sebelum_ lanjut ke tahap berikutnya:
+
+---
+
+### 1. ✅ **Logging & Trace-back**
+
+Setiap komponen dan hook akan:
+
+- 🔹 Menggunakan `logger.info`, `logger.warn`, `logger.error` dari `@/utils/logger`
+- 🔹 Memberi log saat:
+
+  - Inisialisasi komponen
+  - Fetch data
+  - Submit form
+  - Tab berubah
+  - Dropdown berubah
+
+- 🔹 Format log:
+
+```ts
+logger.info('[ComponentName] description', additionalData);
+```
+
+---
+
+### 2. ✅ **Verifikasi (Proven)**
+
+Setiap tahap akan menyertakan:
+
+- ✅ Screenshot (jika visual)
+- ✅ Output `console.log` atau `logger.info`
+- ✅ Validasi data (misalnya jumlah record, id yang dipilih)
+- ✅ Korelasi antar input–output
+- ✅ Simulasi aksi pengguna jika perlu
+
+---
+
+### 3. ✅ **Struktur Modular & Aman di Monorepo**
+
+- 📁 File baru akan diletakkan di lokasi **yang tidak menimpa struktur lain**
+- 📎 Tidak akan merusak file `useConfigurationData.ts` atau halaman `/configuration/[assetType]`
+- 📤 Menggunakan mocking service di `/public/mocks/` (tidak sentuh backend)
+
+---
+
+## ⚠️ Akibat Jika Ini Tidak Diterapkan
+
+Tanpa logging dan verifikasi:
+
+- 🔥 Bug akan sulit ditelusuri karena banyak model
+- ❌ Komponen tampak bekerja tapi data salah (silent fail)
+- ❓ Asset-type salah, schema tidak sinkron, data tidak nyambung
+
+---
+
+## 🧭 Konfirmasi
+
+Sebelum lanjut ke **Tahap 1**, saya ingin pastikan sekali lagi:
+
+### 🔐 Apakah Anda menyetujui bahwa:
+
+1. Semua komponen **WAJIB logging** secara jelas
+2. Setiap tahap **WAJIB ada bukti terverifikasi**
+3. Tidak ada **refactor besar** tanpa izin eksplisit
+
+> Jika disetujui, silakan jawab:
+> ✅ **Saya setuju, lanjut ke Tahap 1**
+
+Jika ada yang perlu ditambahkan dalam _standar audit trail_ ini, saya siap revisi sebelum eksekusi.
+
 ## 📌 PENUTUP
 
 Roadmap ini sudah dirancang untuk:
