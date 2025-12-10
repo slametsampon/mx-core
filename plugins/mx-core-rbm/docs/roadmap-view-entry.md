@@ -1,341 +1,308 @@
-Dengan senang hati. Berikut ini adalah **langkah-langkah rinci, sistematis, dan berurutan** untuk membangun **halaman Configuration yang komprehensif** berdasarkan data, model, dan arsitektur yang telah Anda sediakan.
+Dari gambar di atas, menunjukkan anda masih melenceng dari tujuan awal.
+
+Berikut saya uraikan lebih rinci:
+
+1. Laman configuration/ terdapat dropdown utama yaitu untuk memilih data-model yang akan dikonfigurasi.
+2. Selanjutnya tepat di bawahnya terdapat dynamic-form dan dynamic-tabel yang tersusun secara vertikal atas bawah
+3. Dynamic-form menampilkan seluruh field terkait dengan data model yang dipilih oleh dropdown, untuk new-entry dan edit
+4. Dynamic-table menampilkan seluruh daftar-data yang terkait dengan data-model yang dipilih oleh dropdown dan tiap baris terdapat action edit dan delete berupa emoji
+5. Saat dropdown dipilih asset-type-schema, maka Dynamic-form akan membentuk 3 tab yang terdiri dari (fieldDefinitionSchema, ppcStrategySchema, SparePartTemplate), sedangkan Dynamic-tabel berisi daftar asset-type saja tanpa detail yang lainnya.
+6. Saat dropdown dipilih asset, maka Dynamic-form akan membentuk 4 tab yang terdiri dari (assetSchema (general), fieldDefinitionSchema, ppcStrategySchema, SparePartTemplate), sedangkan Dynamic-tabel berisi daftar asset (general) saja tanpa detail yang lainnya. Di dalam tab-assetSchema, terdapat dropdown asset-category dan asset-type. Dropdown asset-type ini akan menentukan informasi pada 3 tab yang lain sesuai pilihan asset-type.
+
+Apakah informasi bisnis view ini cukup untuk anda melakukan analisis yang mendalam, terstruktur dan rinci untuk re-design ?
+
+Ya, informasi bisnis yang Anda berikan **sudah sangat jelas, lengkap, dan konkret** — tidak hanya dari sisi _data model_, tetapi juga dari sisi **interaksi antar entitas** dan **cara pengguna bekerja di antarmuka**.
 
 ---
 
-## ✅ TUJUAN UTAMA
+## ✅ RINGKASAN TUJUAN BISNIS
 
-Membuat halaman `Configuration` yang mendukung:
+Dari penjelasan dan gambar, berikut **inti desain konfigurasi** yang harus kita capai:
 
-- Entry dan view untuk 5 entitas utama (`Asset Category`, `Asset Type`, `Asset Type Schema`, `Asset`, `Asset Detail`)
-- **Dinamis berbasis schema**
-- **Switchable antara `mock` dan `live` backend** menggunakan `.env`
-- Modular dan reusable
+### 1. 🔽 **Dropdown Utama**
 
----
+- Berfungsi untuk memilih jenis **data model** yang akan dikonfigurasi:
 
-## 🧭 LANGKAH RINCI DAN BERURUTAN
+  - `asset-category`
+  - `asset-type`
+  - `asset-type-schema`
+  - `asset`
+  - `asset-detail`
+  - `model-rbm` (jika ada)
 
-### I. 🔧 **Konfigurasi Environment (MODE_DATA)**
+### 2. 📄 **Dynamic Form & Table**
 
-1. Tambahkan ke `.env.local`:
+- **Form** di atas untuk `create / update`
+- **Table** di bawah untuk melihat seluruh data + aksi `✏️` dan `🗑️`
 
-   ```env
-   MODE_DATA=mock
-   ```
+### 3. 🔁 **Kecerdasan Form Dinamis**
 
-2. Buat file `src/config.ts`:
+Bergantung pada data-model yang dipilih:
 
-   ```ts
-   export const MODE_DATA = process.env.MODE_DATA || 'mock';
-   export const isMock = MODE_DATA === 'mock';
-
-   export const API_BASE = isMock ? '/mocks' : 'https://api.yourdomain.com';
-   export const SCHEMA_BASE = isMock
-     ? '/schemas/asset-types'
-     : 'https://api.yourdomain.com/schema';
-   ```
-
----
-
-### II. ♻️ **Refactor Service Layer agar switchable**
-
-> Gunakan `API_BASE`, `SCHEMA_BASE` dari `config.ts` pada semua service.
-
-Contoh refactor: `assetService.ts`
-
-```ts
-import { API_BASE } from '@/config';
-import { Asset } from '@/models/asset';
-import { logger } from '@/utils/logger';
-
-export async function fetchAssetsByType(assetTypeId: string): Promise<Asset[]> {
-  const url = `${API_BASE}/assets/${assetTypeId}.json`;
-  logger.info(`📥 Fetching asset list from: ${url}`);
-  // ... (rest of the logic)
-}
-```
-
-🔁 Lakukan hal serupa untuk:
-
-- `assetDetailDataService.ts`
-- `assetTypeService.ts`
-- `assetTypeSchemaService.ts`
+| Data Model          | Form Tab                                     | Table (data source)         |
+| ------------------- | -------------------------------------------- | --------------------------- |
+| `asset-type-schema` | 🔹 `fields`, `ppc_strategy`, `spare_parts`   | daftar asset-type           |
+| `asset`             | 🔹 `general`, `fields`, `ppc`, `spare_parts` | daftar asset (tanpa detail) |
+| `asset-category`    | tidak ada tab, hanya form sederhana          | daftar kategori aset        |
+| `asset-type`        | tidak ada tab, hanya form sederhana          | daftar jenis aset           |
+| `asset-detail`      | bisa read-only atau per-asset view           | daftar detail asset?        |
+| `model-rbm`         | TBD – tergantung bentuk datanya              | TBD                         |
 
 ---
 
-### III. 🧱 **Struktur Halaman `ConfigurationPage.tsx`**
+## 🧠 ANALISIS FUNGSIONAL
 
-> Komponen utama berisi dropdown, tab navigasi, form dan tabel.
+### ✅ **Interaksi Antar Data Model**
 
-#### Struktur UI:
+- `asset-type` ➜ menentukan schema
+- `asset-category` ➜ menentukan grup asset-type
+- `asset` ➜ tergantung pada asset-type → memuat schema
+- `asset-type-schema` ➜ dikelola secara modular:
 
-```
+  - `fields`
+  - `ppc_strategy`
+  - `spare_parts`
+
+### ✅ **Dynamic Behavior yang Dibutuhkan**
+
+1. **Dropdown "data model"** mengatur seluruh view
+2. Setiap model memiliki schema JSON yang terletak di `/public/mocks/`
+3. Schema ini digunakan untuk membangun:
+
+   - Field pada form (`DynamicForm`)
+   - Struktur tabel (`DynamicTable`)
+
+4. Beberapa model kompleks seperti `asset` atau `asset-type-schema` punya **multi-tab** berdasarkan sub-bagian
+
+---
+
+## 🧩 RANCANGAN STRUKTUR UI FINAL
+
+```tsx
 <ConfigurationPage>
-  ├── <SelectCategory />
-  ├── <SelectAssetType />
-  └── <Tabs>
-       ├── Tab "Asset Type Schema"
-       ├── Tab "PPC Strategy"
-       ├── Tab "Spare Parts"
-       ├── Tab "Asset"
-       └── Tab "Asset Detail"
+  <SelectDataModel /> ← dropdown utama: asset / asset-type / ...
+  <hr />
+  <DynamicForm model={selectedModel} schema={activeSchema} />
+  <DynamicTable model={selectedModel} data={fetchedData} />
+</ConfigurationPage>
 ```
 
-#### 1. Pilih Kategori Aset
+Jika model memerlukan **multi-tab** (misalnya `asset-type-schema`), maka:
 
 ```tsx
-<SelectCategory value={selectedCategory} onChange={setSelectedCategory} />
-```
-
-- Ambil dari `asset-type.json`, filter by `category_id`.
-
-#### 2. Pilih Asset Type (terkait dengan category)
-
-```tsx
-<SelectAssetType
-  category={selectedCategory}
-  value={selectedAssetTypeId}
-  onChange={setSelectedAssetTypeId}
-/>
+<TabForm>
+  <Tab name="Fields" />
+  <Tab name="PPC Strategy" />
+  <Tab name="Spare Parts" />
+</TabForm>
 ```
 
 ---
 
-### IV. 🧩 **Komponen-Konponen Fungsional**
+## 🛠️ APA YANG HARUS DILAKUKAN SELANJUTNYA?
 
-#### 1. `DynamicForm`
+### 1. **Buat file konfigurasi metadata** (static) untuk masing-masing model
 
-Untuk input `asset-detail.data` berdasarkan schema.
-
-#### 2. `DynamicTable`
-
-Menampilkan data `asset-detail.data` dalam tabel dinamis.
-
-#### 3. `SchemaPreview`
-
-Menampilkan schema (read-only) dari file `*.json`.
-
-#### 4. `PPCStrategyPanel`
-
-Form untuk input 3 jenis strategi:
-
-- Preventive
-- Predictive
-- Corrective
-
-#### 5. `SparePartsTable`
-
-Form tabular untuk input:
-
-- Part Name
-- Part Number
-- UoM
-- Quantity
-- Remarks
-
-#### 6. `AssetList`
-
-Menampilkan daftar aset (dari `asset.json`), berdasarkan `asset_type_id`.
-
-#### 7. `AssetDetailView`
-
-Render per `tag_number` berdasarkan struktur `schema.fields`.
-
----
-
-### V. 📦 **Data Management & Hook**
-
-Buat satu hook terpadu untuk load semua data:
+Misalnya:
 
 ```ts
-// useConfigurationData.ts
-export function useConfigurationData(assetTypeId: string) {
-  return {
-    assetTypes: fetchAssetTypes(),
-    assetTypeSchema: fetchAssetTypeSchema(assetTypeId),
-    assets: fetchAssetsByType(assetTypeId),
-    assetDetails: fetchAssetDetailData(assetTypeId),
-  };
-}
+// /src/config/modelConfig.ts
+export const modelConfig = {
+  'asset-category': {
+    label: 'Asset Category',
+    schema: '/mocks/asset-category.json',
+    tabs: [],
+  },
+  'asset-type': {
+    label: 'Asset Type',
+    schema: '/mocks/asset-type.json',
+    tabs: [],
+  },
+  'asset-type-schema': {
+    label: 'Asset Type Schema',
+    schema: '/schemas/asset-types/', // per asset-type
+    tabs: ['Fields', 'PPC Strategy', 'Spare Parts'],
+  },
+  asset: {
+    label: 'Asset',
+    schema: '/mocks/asset.json',
+    tabs: ['General', 'Fields', 'PPC', 'Spare Parts'],
+  },
+};
 ```
 
----
+### 2. **Perbaiki Dropdown dan State**
 
-### VI. 🧪 Validasi & Entry
+Dropdown utama harus mengontrol:
 
-1. Gunakan `zod` untuk validasi form `asset-type-schema` dan `asset-detail`.
+- Model yang dipilih
+- Skema & data yang di-fetch
+- Tab dinamis berdasarkan `modelConfig[model].tabs`
 
-2. Validasi sebelum simpan:
+### 3. **Refactor Form & Table**
 
-```ts
-try {
-  const valid = assetTypeSchemaSchema.parse(formData);
-  // Lanjutkan simpan
-} catch (err) {
-  // Tampilkan error
-}
-```
+- Jangan hardcode `asset-type-schema` atau `schema.fields`
+- Gunakan `selectedModel`, lalu ambil schema + data via API/mock
 
 ---
 
-### VII. 🔐 Tambahkan Simpan ke LocalStorage (opsional)
-
-Untuk prototipe:
-
-```ts
-localStorage.setItem(`schema-${assetTypeId}`, JSON.stringify(schemaData));
-```
+Terima kasih. Saya akan menganalisis struktur proyek Anda **secara cermat dan menyeluruh** sebelum mulai implementasi. Tujuannya adalah membentuk **roadmap kerja yang sistematis**, modular, dan **_tanpa merusak struktur eksisting_**. Semua tetap merujuk pada struktur folder yang Anda tampilkan.
 
 ---
 
-### VIII. 🛠 Fitur Tambahan yang Direkomendasikan
+## ✅ Tujuan Utama
 
-| Fitur              | Deskripsi                                |
-| ------------------ | ---------------------------------------- |
-| 🔍 Pencarian aset  | Filter aset berdasarkan nama, area, unit |
-| 📤 Ekspor          | Ekspor `asset + detail` ke CSV/Excel     |
-| 💾 Simpan semua    | Tombol simpan global untuk semua tab     |
-| 🧠 Live Validation | Validasi dinamis saat isi form           |
+Membangun **halaman konfigurasi dinamis** `/configuration` yang:
 
----
-
-### IX. 🧪 Uji & Debug
-
-1. Aktifkan `logger` di semua service
-2. Periksa apakah semua data:
-
-   - Tampil dengan benar
-   - Dapat diisi ulang (form dinamis)
-   - Validasi berfungsi
-
-3. Ganti `MODE_DATA=live` dan pastikan endpoint backend bisa merespon dengan format yang sama seperti `mocks`.
+1. Memungkinkan memilih **jenis data-model** via dropdown
+2. Menampilkan `DynamicForm` dan `DynamicTable` **berdasarkan data model** terpilih
+3. Mendukung data-model kompleks seperti `asset` dan `asset-type-schema` melalui tab
+4. Menggunakan data dari folder `public/mocks` dan `public/schemas`
+5. **Tidak bentrok** dengan halaman lain (seperti `/configuration/[assetType]`)
 
 ---
 
-### X. 📂 Struktur Folder Direkomendasikan
+## 📂 ANALISIS STRUKTUR PROYEK (berdasarkan gambar)
 
-## 🗂️ Struktur Folder + page.tsx
+### 📁 `src/app/configuration/`
 
-```bash
-src/
-├── app/
-│   ├── configuration/               <-- ✅ Root page untuk konfigurasi
-│   │   └── page.tsx                 <-- 1. Halaman utama konfigurasi
-│   │
-│   ├── configuration/[assetType]/  <-- ✅ Halaman per assetType (opsional untuk deep-linking)
-│   │   └── page.tsx                 <-- 2. View detail + entry berdasarkan assetType
-│   │
-│   ├── assets/                      <-- ✅ Halaman lihat daftar aset (tanpa konfigurasi)
-│   │   └── page.tsx                 <-- 3. Viewer/list untuk aset & asset-detail
-│   │
-│   ├── dashboard/                   <-- Halaman utama dashboard (jika ada)
-│   │   └── page.tsx
-│   │
-│   └── page.tsx                     <-- (opsional) halaman landing / redirect
-/components
-  └── Configuration/
-        ├── ConfigurationPage.tsx
-        ├── SelectCategory.tsx
-        ├── SelectAssetType.tsx
-        ├── DynamicForm.tsx
-        ├── DynamicTable.tsx
-        ├── PPCStrategyPanel.tsx
-        ├── SparePartsTable.tsx
-        ├── SchemaPreview.tsx
-        ├── AssetList.tsx
-        └── AssetDetailView.tsx
-
-/hooks
-  └── useConfigurationData.ts
-
-/services
-  └── assetService.ts
-  └── assetDetailDataService.ts
-  └── assetTypeService.ts
-  └── assetTypeSchemaService.ts
-
-/models
-  └── *.ts
-
-/public
-  └── mocks/
-  └── schemas/
-```
+- `page.tsx`: entry utama halaman konfigurasi
+- `layout.tsx`: layout khusus untuk halaman ini
+- **→ Ini tempat kita akan merombak UI utama** berdasarkan dropdown data-model
 
 ---
 
-## 🧩 CONTOH ALUR USER
+### 📁 `src/components/configuration/`
 
-1. Pilih kategori "controller"
-2. Pilih asset-type: `control-system`
-3. Tab 1 → lihat/edit field schema
-4. Tab 2 → isi PPC strategy
-5. Tab 3 → spare parts
-6. Tab 4 → lihat daftar aset: `DCS-01`, `PLC-102`, dll.
-7. Tab 5 → lihat detail teknis tiap aset, isi tambahan jika kosong
+- Sudah ada banyak komponen seperti:
 
----
+  - `DynamicForm.tsx`, `DynamicTable.tsx`
+  - `SelectAssetType`, `SelectCategory`, dll
+  - `AssetList`, `AssetDetailView`, `PPCStrategyPanel`, dll
 
-## 🧭 Penjelasan per `page.tsx`
+- **Catatan:**
 
-### 1. `/configuration/page.tsx`
-
-- **Tujuan**: Halaman pusat konfigurasi semua aset
-- **Isi**:
-
-  - Dropdown `Asset Category`
-  - Dropdown `Asset Type`
-  - Tabs: Schema, Spareparts, PPC Strategy, Asset, Asset Detail
-
-- **Komponen**: `ConfigurationPage`, `ConfigurationView`, dll.
-
-➡️ **Inilah halaman utama untuk pengelolaan dan entry**
+  - Beberapa komponen masih statik dan belum dikendalikan via props penuh
+  - Perlu modifikasi agar semua jadi reusable & controlled berdasarkan `selectedModel`
 
 ---
 
-### 2. `/configuration/[assetType]/page.tsx`
+### 📁 `src/components/`
 
-- **Tujuan**: Deep-link ke satu `assetType` (misal: `control-valve`)
-- **Contoh URL**: `/configuration/control-valve`
-- **Isi**:
+- Ada juga `DynamicForm.tsx` & `DynamicTable.tsx` **di luar folder `configuration/`**
 
-  - Otomatis memuat data untuk `assetType` tsb
-  - Skip dropdown
-  - Tetap tampilkan tabs konfigurasi
+  - Kemungkinan ini duplikat, perlu disatukan agar tidak bingung
 
-➡️ **Bermanfaat untuk bookmark atau navigasi langsung dari dashboard**
+- `AssetForm.tsx` dan `ConfigurationView.tsx` kemungkinan kode sebelumnya (tidak dipakai lagi)
 
 ---
 
-### 3. `/assets/page.tsx`
+### 📁 `src/hooks/`
 
-- **Tujuan**: Halaman untuk melihat seluruh aset dari semua kategori
-- **Isi**:
+- `useConfigurationData.ts`: logika hook lama untuk tab konfigurasi berdasarkan asset-type
+- `useAssetViewData.ts`: kemungkinan dipakai di halaman detail asset
+- ✅ **Perlu membuat hook baru** → misalnya: `useModelConfigurationData.ts`
+  → bertanggung jawab ambil:
 
-  - Tabel dengan semua `asset` dari `asset.json`
-  - Filter berdasarkan kategori, tipe, status, unit, area
-  - Integrasi dengan `asset-detail` untuk preview teknis
-
-➡️ **Fokus untuk operasi dan overview, bukan entry data**
-
----
-
-## 💡 Opsional Lain (Jika Dibutuhkan)
-
-| Halaman                 | Deskripsi                                                             |
-| ----------------------- | --------------------------------------------------------------------- |
-| `/configuration/schema` | Admin-only page untuk buat/ubah `asset-type-schema` (raw JSON editor) |
-| `/admin/asset-category` | CRUD halaman kategori aset                                            |
-| `/admin/asset-type`     | CRUD asset-type dan relasinya                                         |
+  - schema
+  - data
+  - tab (jika ada)
 
 ---
 
-## 📌 Kesimpulan Integrasi `page.tsx`
+### 📁 `src/services/`
 
-| Path                         | page.tsx | Fungsi                                 |
-| ---------------------------- | -------- | -------------------------------------- |
-| `/configuration`             | Ya       | Entry & konfigurasi aset               |
-| `/configuration/[assetType]` | Ya       | Fokus pada satu `assetType`            |
-| `/assets`                    | Ya       | Viewer / pemantauan aset dan detailnya |
+- Berisi service call seperti:
+
+  - `fetchAssetTypes`, `fetchAssetDetailData`, dll
+
+- ✅ Semua logika pengambilan data akan memanfaatkan ini
 
 ---
+
+### 📁 `public/mocks/` dan `/schemas/asset-types/`
+
+- Sudah tersedia data untuk:
+
+  - `asset-category.json`
+  - `asset-type.json`
+  - `asset-detail.json`, dll
+
+- ✅ Ini akan digunakan dalam tahap awal (mock mode)
+
+---
+
+## 🛣️ ROADMAP IMPLEMENTASI
+
+### 📌 Tahap 1 — 🔧 Struktur Dasar
+
+- [x] Buat file `src/config/modelConfig.ts`
+
+  - Berisi konfigurasi data-model yang didukung
+
+- [x] Siapkan data dummy (dari folder `/mocks`)
+- [x] Buat `useModelConfigurationData.ts` → untuk handle: schema, data, tabs
+
+---
+
+### 📌 Tahap 2 — 🧱 Refactor Halaman `/configuration`
+
+- [x] Ubah `configuration/page.tsx`:
+
+  - Tambahkan **dropdown data model**
+  - Render `DynamicForm` dan `DynamicTable` berdasarkan model terpilih
+
+- [x] Tambahkan tombol Simpan, dengan handler khusus per model
+
+---
+
+### 📌 Tahap 3 — 🧩 Perkuat DynamicForm & DynamicTable
+
+- [x] Pastikan `DynamicForm` bisa:
+
+  - Bekerja dengan berbagai model schema (flexible props)
+  - Men-support tab jika model mendukung (misalnya `asset`)
+
+- [x] Pastikan `DynamicTable` bisa:
+
+  - Tampilkan kolom sesuai schema
+  - Tambah aksi ✏️ dan 🗑️ per baris
+
+---
+
+### 📌 Tahap 4 — ✨ Support Model Kompleks
+
+- [x] Tambahkan fitur multi-tab di form untuk:
+
+  - `asset-type-schema`: tab `fields`, `ppc`, `spare_parts`
+  - `asset`: tab `general`, `fields`, `ppc`, `spare_parts`
+
+- [x] Pastikan tab mengontrol isi form
+
+---
+
+### 📌 Tahap 5 — 🧪 Finalisasi dan Validasi
+
+- [ ] Uji semua data-model (6+ model)
+- [ ] Pastikan mode "add / edit / delete" berjalan
+- [ ] Lakukan error-handling (schema kosong, data gagal fetch, dll)
+- [ ] Validasi skema dari folder `/mocks/` & `/schemas/asset-types/`
+
+---
+
+## 🧠 BONUS (Tambahan jika diperlukan)
+
+- [ ] Simpan hasil entry ke localStorage atau file (karena belum ada backend)
+- [ ] Tampilkan notifikasi saat simpan sukses / gagal
+- [ ] Gunakan dropdown **nested** untuk `asset → asset-type → schema`
+
+---
+
+## 📌 PENUTUP
+
+Roadmap ini sudah dirancang untuk:
+
+✅ Menghindari bentrok kode lama
+✅ Konsisten dengan struktur folder Anda
+✅ Modul per model (bukan hardcode)
+✅ Support skema JSON di `public/mocks/`
