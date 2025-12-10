@@ -1,0 +1,144 @@
+[
+  {
+    "tag_number": "CV-101A",
+    "description": "Control Valve Feed Gas to Reformer",
+    "asset_type_id": "control-valve",
+    "unit": "Syngas",
+    "area": "R-101",
+    "status": "Active",
+    "criticality": "Kritis",
+    "tier": "Tier1",
+    "installation_date": "2019-03-12"
+  },
+  {
+    "tag_number": "DCS-01",
+    "description": "Main Process DCS for Syngas",
+    "asset_type_id": "control-system",
+    "unit": "Syngas",
+    "area": "CCR",
+    "status": "Active",
+    "criticality": "Kritis",
+    "tier": "Tier1",
+    "installation_date": "2017-02-01"
+  },
+  {
+    "tag_number": "PLC-102",
+    "description": "PLC for tank farm automation",
+    "asset_type_id": "control-system",
+    "unit": "Utility",
+    "area": "Tank Area",
+    "status": "Active",
+    "criticality": "Normal",
+    "tier": "Tier2",
+    "installation_date": "2020-05-18"
+  },
+  {
+    "tag_number": "SCADA-003",
+    "description": "SCADA Monitoring Panel Octanol",
+    "asset_type_id": "control-system",
+    "unit": "Octanol",
+    "area": "Control Room",
+    "status": "Active",
+    "tier": "Tier3"
+  },
+  {
+    "tag_number": "PLC-ALT-04",
+    "description": "PLC Backup for Burner",
+    "asset_type_id": "control-system",
+    "unit": "Syngas",
+    "area": "Burner Room",
+    "status": "Spare",
+    "tier": "Tier3"
+  },
+  {
+    "tag_number": "DCS-RB2",
+    "description": "Redundant DCS Unit 2",
+    "asset_type_id": "control-system",
+    "unit": "Octanol",
+    "area": "CCR-2",
+    "status": "Active",
+    "criticality": "Kritis"
+  },
+  {
+    "tag_number": "CP-001",
+    "description": "Main Air Compressor",
+    "asset_type_id": "compressor",
+    "unit": "Utility",
+    "area": "Compressor Room",
+    "status": "Active"
+  },
+  {
+    "tag_number": "CP-RC-02",
+    "description": "Recycle Gas Compressor",
+    "asset_type_id": "compressor",
+    "unit": "Syngas",
+    "area": "R-202",
+    "status": "Active",
+    "criticality": "Kritis"
+  },
+  {
+    "tag_number": "CP-BLOW-01",
+    "description": "Blower Compressor",
+    "asset_type_id": "compressor",
+    "unit": "Octanol",
+    "area": "U-301",
+    "status": "Spare"
+  },
+  {
+    "tag_number": "CP-UTIL-04",
+    "description": "Backup Utility Air Compressor",
+    "asset_type_id": "compressor",
+    "unit": "Utility",
+    "area": "U-104",
+    "status": "Spare",
+    "tier": "Tier3"
+  },
+  {
+    "tag_number": "CP-EM-01",
+    "description": "Emergency Compressor",
+    "asset_type_id": "compressor",
+    "unit": "Octanol",
+    "area": "U-303",
+    "status": "Active"
+  },
+  {
+    "tag_number": "P-101A",
+    "description": "Feed Pump A - Reformer",
+    "asset_type_id": "centrifugal-pump",
+    "unit": "Syngas",
+    "area": "U-101",
+    "status": "Active"
+  },
+  {
+    "tag_number": "P-101B",
+    "description": "Feed Pump B - Reformer (Standby)",
+    "asset_type_id": "centrifugal-pump",
+    "unit": "Syngas",
+    "area": "U-101",
+    "status": "Spare"
+  },
+  {
+    "tag_number": "P-202",
+    "description": "Circulation Pump Reactor",
+    "asset_type_id": "centrifugal-pump",
+    "unit": "Octanol",
+    "area": "U-204",
+    "status": "Active"
+  },
+  {
+    "tag_number": "P-303",
+    "description": "Product Transfer Pump",
+    "asset_type_id": "centrifugal-pump",
+    "unit": "Octanol",
+    "area": "U-301",
+    "status": "Active"
+  },
+  {
+    "tag_number": "P-401",
+    "description": "Transfer Pump Waste Stream",
+    "asset_type_id": "centrifugal-pump",
+    "unit": "Utility",
+    "area": "Waste Area",
+    "status": "Active"
+  }
+]

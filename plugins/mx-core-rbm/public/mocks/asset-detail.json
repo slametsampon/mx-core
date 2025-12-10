@@ -1,0 +1,167 @@
+[
+  {
+    "tag_number": "CV-101A",
+    "data": {
+      "size": 4,
+      "type": "Globe",
+      "failMode": "Fail Close",
+      "flowMax": 1800,
+      "flowMin": 200,
+      "characteristic": "Equal %",
+      "actuatorType": "Pneumatic"
+    }
+  },
+  {
+    "tag_number": "DCS-01",
+    "data": {
+      "systemType": "DCS",
+      "vendor": "Yokogawa",
+      "cpuCount": 2,
+      "redundant": true,
+      "protocol": "Modbus"
+    }
+  },
+  {
+    "tag_number": "PLC-102",
+    "data": {
+      "systemType": "PLC",
+      "vendor": "Siemens",
+      "cpuCount": 1,
+      "redundant": false,
+      "protocol": "Profinet"
+    }
+  },
+  {
+    "tag_number": "SCADA-003",
+    "data": {
+      "systemType": "SCADA",
+      "vendor": "Schneider",
+      "redundant": false,
+      "protocol": "Ethernet/IP"
+    }
+  },
+  {
+    "tag_number": "PLC-ALT-04",
+    "data": {
+      "systemType": "PLC",
+      "vendor": "ABB",
+      "cpuCount": 1,
+      "redundant": true,
+      "protocol": "Profibus"
+    }
+  },
+  {
+    "tag_number": "DCS-RB2",
+    "data": {
+      "systemType": "DCS",
+      "vendor": "Honeywell",
+      "cpuCount": 2,
+      "redundant": true,
+      "protocol": "Modbus"
+    }
+  },
+  {
+    "tag_number": "CP-001",
+    "data": {
+      "compressorType": "Centrifugal",
+      "power": 500,
+      "capacity": 9000,
+      "stages": 3,
+      "lubricated": true
+    }
+  },
+  {
+    "tag_number": "CP-RC-02",
+    "data": {
+      "compressorType": "Reciprocating",
+      "power": 350,
+      "capacity": 7000,
+      "stages": 2,
+      "lubricated": true
+    }
+  },
+  {
+    "tag_number": "CP-BLOW-01",
+    "data": {
+      "compressorType": "Screw",
+      "power": 120,
+      "capacity": 2400,
+      "lubricated": false
+    }
+  },
+  {
+    "tag_number": "CP-UTIL-04",
+    "data": {
+      "compressorType": "Centrifugal",
+      "power": 450,
+      "capacity": 8600,
+      "stages": 2,
+      "lubricated": true
+    }
+  },
+  {
+    "tag_number": "CP-EM-01",
+    "data": {
+      "compressorType": "Reciprocating",
+      "power": 180,
+      "capacity": 3800,
+      "stages": 1,
+      "lubricated": false
+    }
+  },
+  {
+    "tag_number": "P-101A",
+    "data": {
+      "powerRating": 37,
+      "rpm": 1450,
+      "capacity": 50,
+      "head": 35,
+      "sealType": "Mechanical",
+      "material": "SS316"
+    }
+  },
+  {
+    "tag_number": "P-101B",
+    "data": {
+      "powerRating": 37,
+      "rpm": 1450,
+      "capacity": 50,
+      "head": 35,
+      "sealType": "Mechanical",
+      "material": "SS316"
+    }
+  },
+  {
+    "tag_number": "P-202",
+    "data": {
+      "powerRating": 22,
+      "rpm": 1480,
+      "capacity": 40,
+      "head": 28,
+      "sealType": "Cartridge",
+      "material": "CS"
+    }
+  },
+  {
+    "tag_number": "P-303",
+    "data": {
+      "powerRating": 15,
+      "rpm": 1450,
+      "capacity": 25,
+      "head": 18,
+      "sealType": "Packing",
+      "material": "SS304"
+    }
+  },
+  {
+    "tag_number": "P-401",
+    "data": {
+      "powerRating": 11,
+      "rpm": 1450,
+      "capacity": 15,
+      "head": 20,
+      "sealType": "Packing",
+      "material": "PVC"
+    }
+  }
+]
