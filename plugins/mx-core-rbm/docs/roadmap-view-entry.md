@@ -7,7 +7,7 @@ Berikut saya uraikan lebih rinci:
 3. Dynamic-form menampilkan seluruh field terkait dengan data model yang dipilih oleh dropdown, untuk new-entry dan edit
 4. Dynamic-table menampilkan seluruh daftar-data yang terkait dengan data-model yang dipilih oleh dropdown dan tiap baris terdapat action edit dan delete berupa emoji
 5. Saat dropdown dipilih asset-type-schema, maka Dynamic-form akan membentuk 3 tab yang terdiri dari (fieldDefinitionSchema, ppcStrategySchema, SparePartTemplate), sedangkan Dynamic-tabel berisi daftar asset-type saja tanpa detail yang lainnya.
-6. Saat dropdown dipilih asset, maka Dynamic-form akan membentuk 4 tab yang terdiri dari (assetSchema (general), fieldDefinitionSchema, ppcStrategySchema, SparePartTemplate), sedangkan Dynamic-tabel berisi daftar asset (general) saja tanpa detail yang lainnya. Di dalam tab-assetSchema, terdapat dropdown asset-category dan asset-type. Dropdown asset-type ini akan menentukan informasi pada 3 tab yang lain sesuai pilihan asset-type.
+6. Saat dropdown dipilih asset, maka Dynamic-form akan membentuk 4 tab yang terdiri dari (assetSchema (general), fieldDefinitionSchema, ppcStrategySchema, SparePartTemplate), sedangkan Dynamic-tabel berisi daftar asset (general) saja tanpa detail yang lainnya. Di dalam tab-assetSchema, terdapat dropdown asset-category dan asset-type, asset-type ini akan menentukan informasi pada 3 tab yang lain sesuai pilihan asset-type.
 
 Apakah informasi bisnis view ini cukup untuk anda melakukan analisis yang mendalam, terstruktur dan rinci untuk re-design ?
 
