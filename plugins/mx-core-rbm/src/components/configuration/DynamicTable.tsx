@@ -8,9 +8,16 @@ import { FieldDefinition } from '@/models/asset-type-schema';
 type Props = {
   fields: FieldDefinition[];
   data: Record<string, any>[];
+  onEdit?: (item: Record<string, any>) => void;
+  onDelete?: (index: number) => void;
 };
 
-export default function DynamicTable({ fields, data }: Props) {
+export default function DynamicTable({
+  fields,
+  data,
+  onEdit,
+  onDelete,
+}: Props) {
   if (!data || data.length === 0) {
     return <p className="text-sm text-gray-500">Belum ada data.</p>;
   }
@@ -25,6 +32,9 @@ export default function DynamicTable({ fields, data }: Props) {
                 {field.label}
               </th>
             ))}
+            {(onEdit || onDelete) && (
+              <th className="border-b px-4 py-2 font-medium">Aksi</th>
+            )}
           </tr>
         </thead>
         <tbody>
@@ -35,6 +45,26 @@ export default function DynamicTable({ fields, data }: Props) {
                   {String(row[field.name] ?? '')}
                 </td>
               ))}
+              {(onEdit || onDelete) && (
+                <td className="space-x-2 border-b px-4 py-2">
+                  {onEdit && (
+                    <button
+                      className="text-blue-600 hover:underline"
+                      onClick={() => onEdit(row)}
+                    >
+                      ✏️
+                    </button>
+                  )}
+                  {onDelete && (
+                    <button
+                      className="text-red-600 hover:underline"
+                      onClick={() => onDelete(i)}
+                    >
+                      🗑️
+                    </button>
+                  )}
+                </td>
+              )}
             </tr>
           ))}
         </tbody>
