@@ -1,18 +1,23 @@
 // plugins/mx-core-rbm/src/services/assetService.ts
 
-import { API_BASE } from '@/config/config';
+import { API_BASE, USE_MOCK } from '@/config/config';
 import { Asset } from '@/models/asset';
 import { logger } from '@/utils/logger';
 
 export async function fetchAssetsByType(assetTypeId: string): Promise<Asset[]> {
-  const url = `${API_BASE}/assets/${assetTypeId}.json`;
-  logger.info(`📥 Fetching asset list from: ${url}`);
+  const url = USE_MOCK
+    ? `${API_BASE}/assets/${assetTypeId}.json` // 📁 mock file per asset type
+    : `${API_BASE}/api/rbm/assets/by-type/${assetTypeId}`; // 🌐 live API endpoint
+
+  logger.info(
+    `📥 [${USE_MOCK ? 'MOCK' : 'LIVE'}] Fetching assets from: ${url}`
+  );
 
   try {
     const res = await fetch(url);
     if (!res.ok) {
       logger.error(
-        `❌ Failed to fetch asset list for [${assetTypeId}] status=${res.status}`
+        `❌ fetchAssetsByType [${assetTypeId}] status=${res.status}`
       );
       return [];
     }

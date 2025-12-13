@@ -6,12 +6,12 @@ export const USE_MOCK = process.env.NEXT_PUBLIC_USE_MOCK === 'true';
 // 🌍 Base URL API: mock atau live
 export const API_BASE = USE_MOCK
   ? '/mocks' // 👉 data lokal JSON
-  : process.env.NEXT_PUBLIC_API_BASE_URL || '';
+  : process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:4000'; // fallback dev
 
 // 📦 Base path schema JSON
 export const SCHEMA_BASE = USE_MOCK
   ? '/schemas/asset-types'
-  : `${API_BASE}/schema`;
+  : `${API_BASE}/api/rbm/asset-types`; // RESTful endpoint untuk schema
 
 // 🛠️ Logging awal konfigurasi
 console.info(
