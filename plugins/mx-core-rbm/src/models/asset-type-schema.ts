@@ -61,14 +61,19 @@ export const sparePartTemplateSchema = z.object({
 // FINAL: ASSET TYPE SCHEMA
 //
 export interface AssetTypeSchema {
-  asset_type_id: string; // sesuai daftar master asset-type
-  fields: FieldDefinition[]; // field teknis per aset
-  ppc_strategy: PpcStrategyDefinition; // treatment PPC default
-  spare_parts: SparePartTemplate[]; // parts umum
+  asset_type_id: string;
+  label: string; // ✅ tambahkan ini
+  category_id: string; // ✅ dan ini
+
+  fields: FieldDefinition[];
+  ppc_strategy: PpcStrategyDefinition;
+  spare_parts: SparePartTemplate[];
 }
 
 export const assetTypeSchemaSchema = z.object({
   asset_type_id: z.string().min(1),
+  label: z.string().min(1), // ✅ optional if needed for validation
+  category_id: z.string().min(1), // ✅ optional
   fields: z.array(fieldDefinitionSchema),
   ppc_strategy: ppcStrategySchema,
   spare_parts: z.array(sparePartTemplateSchema),

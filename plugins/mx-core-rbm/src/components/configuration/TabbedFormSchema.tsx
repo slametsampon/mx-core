@@ -2,28 +2,68 @@
 
 'use client';
 
-import { useState } from 'react';
-import { AssetTypeSchema } from '@/models/asset-type-schema';
+import { useState, useEffect } from 'react';
+import { AssetTypeSchema, FieldDefinition } from '@/models/asset-type-schema';
 import SchemaPreviewView from './SchemaPreviewView';
 import PPCStrategyPanel from './PPCStrategyPanel';
 import SparePartsTable from './SparePartsTable';
+import FieldEditor from './FieldEditor';
+import AssetTypeForm from './AssetTypeForm';
+import { logger } from '@/utils/logger';
 
 interface Props {
   schema: AssetTypeSchema;
-  onSave?: (formData: Record<string, any>) => void;
+  onSave?: (updated: AssetTypeSchema) => void;
 }
 
-const TabbedFormSchema = ({ schema }: Props) => {
-  const [tab, setTab] = useState<'fields' | 'ppc' | 'spare'>('fields');
+const TabbedFormSchema = ({ schema, onSave }: Props) => {
+  const [tab, setTab] = useState<
+    'info' | 'fields' | 'editor' | 'ppc' | 'spare'
+  >('fields');
+  const [editableSchema, setEditableSchema] = useState<AssetTypeSchema>(schema);
+  const [editableFields, setEditableFields] = useState<FieldDefinition[]>(
+    schema.fields
+  );
+
+  useEffect(() => {
+    logger.info('[TabbedFormSchema] 🔄 Sinkronisasi schema dari props');
+    setEditableSchema(schema);
+    setEditableFields(schema.fields ?? []);
+  }, [schema]);
+
+  const handleSave = () => {
+    const updatedSchema: AssetTypeSchema = {
+      ...editableSchema,
+      fields: editableFields,
+    };
+
+    logger.info('[TabbedFormSchema] 💾 Simpan seluruh schema perubahan');
+    logger.debug('[TabbedFormSchema] Final Schema:', updatedSchema);
+
+    onSave?.(updatedSchema);
+  };
 
   return (
     <div className="rounded border p-4">
+      {/* Tabs */}
       <div className="mb-4 space-x-4 border-b pb-2">
+        <button
+          className={tab === 'info' ? 'font-bold text-blue-600' : ''}
+          onClick={() => setTab('info')}
+        >
+          🧾 Asset Type
+        </button>
         <button
           className={tab === 'fields' ? 'font-bold text-blue-600' : ''}
           onClick={() => setTab('fields')}
         >
           🧩 Field Definition
+        </button>
+        <button
+          className={tab === 'editor' ? 'font-bold text-blue-600' : ''}
+          onClick={() => setTab('editor')}
+        >
+          ✏️ Field Editor
         </button>
         <button
           className={tab === 'ppc' ? 'font-bold text-blue-600' : ''}
@@ -39,13 +79,44 @@ const TabbedFormSchema = ({ schema }: Props) => {
         </button>
       </div>
 
+      {/* Tab Contents */}
+      {tab === 'info' && (
+        <AssetTypeForm value={editableSchema} onChange={setEditableSchema} />
+      )}
+
       {tab === 'fields' && <SchemaPreviewView fields={schema.fields} />}
+
+      {tab === 'editor' && (
+        <FieldEditor value={editableFields} onChange={setEditableFields} />
+      )}
+
       {tab === 'ppc' && (
-        <PPCStrategyPanel value={schema.ppc_strategy} readOnly />
+        <PPCStrategyPanel
+          value={editableSchema.ppc_strategy}
+          onChange={(v) =>
+            setEditableSchema((prev) => ({ ...prev, ppc_strategy: v }))
+          }
+        />
       )}
+
       {tab === 'spare' && (
-        <SparePartsTable value={schema.spare_parts} readOnly />
+        <SparePartsTable
+          value={editableSchema.spare_parts}
+          onChange={(v) =>
+            setEditableSchema((prev) => ({ ...prev, spare_parts: v }))
+          }
+        />
       )}
+
+      {/* Save Button */}
+      <div className="mt-6">
+        <button
+          className="rounded bg-blue-600 px-4 py-2 text-white hover:bg-blue-700"
+          onClick={handleSave}
+        >
+          💾 Simpan Semua Perubahan
+        </button>
+      </div>
     </div>
   );
 };

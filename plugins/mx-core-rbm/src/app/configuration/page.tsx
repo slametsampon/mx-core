@@ -15,6 +15,7 @@ import { assetCategorySchema } from '@/models/asset-category';
 import { assetTypeSchema } from '@/models/asset-type';
 import { AssetTypeSchema } from '@/models/asset-type-schema';
 import { zodToFieldDefs } from '@/utils/zodToFieldDefs';
+import TabbedFormSchema from '@/components/configuration/TabbedFormSchema';
 
 const modelOptions = [
   { id: 'asset-category', label: 'Asset Category' },
@@ -29,6 +30,7 @@ export default function ConfigurationRootPage() {
   const [loading, setLoading] = useState(false);
   const [isReady, setIsReady] = useState(false);
   const [editIndex, setEditIndex] = useState<number | null>(null);
+  const [tableFields, setTableFields] = useState<any[]>([]);
 
   useEffect(() => {
     const loadData = async () => {
@@ -54,10 +56,13 @@ export default function ConfigurationRootPage() {
         switch (selectedModel) {
           case 'asset-category': {
             const fields = zodToFieldDefs(assetCategorySchema);
+            setTableFields(fields); // ✅ INI DITAMBAHKAN
             logger.debug('✅ [asset-category] fields:', fields);
 
             setSchema({
               asset_type_id: 'asset-category',
+              label: 'Asset Category', // ✅ tambahkan ini
+              category_id: 'default', // ✅ atau sesuaikan
               fields,
               ppc_strategy: {
                 preventive: [],
@@ -73,8 +78,11 @@ export default function ConfigurationRootPage() {
             const fields = zodToFieldDefs(assetTypeSchema);
             logger.debug('✅ [asset-type] fields:', fields);
 
+            setTableFields(fields); // ✅ Tambah ini
             setSchema({
               asset_type_id: 'asset-type',
+              label: 'Asset Type', // ✅ tambahkan ini
+              category_id: 'default', // ✅ atau sesuaikan
               fields,
               ppc_strategy: {
                 preventive: [],
@@ -102,8 +110,12 @@ export default function ConfigurationRootPage() {
                 logger.warn(
                   `⚠️ [asset] Gagal fetch schema JSON, fallback ke default`
                 );
+                const fields = zodToFieldDefs(assetSchema);
+                setTableFields(fields); // ✅ INI DITAMBAHKAN
                 setSchema({
                   asset_type_id: 'asset',
+                  label: 'Asset', // ✅ tambahkan ini
+                  category_id: 'default', // ✅ atau sesuaikan
                   fields: zodToFieldDefs(assetSchema),
                   ppc_strategy: {
                     preventive: [],
@@ -117,6 +129,8 @@ export default function ConfigurationRootPage() {
               logger.warn('⚠️ [asset] Data kosong, gunakan default schema');
               setSchema({
                 asset_type_id: 'asset',
+                label: 'Asset', // ✅ tambahkan
+                category_id: 'default', // ✅ tambahkan
                 fields: zodToFieldDefs(assetSchema),
                 ppc_strategy: {
                   preventive: [],
@@ -171,10 +185,48 @@ export default function ConfigurationRootPage() {
     }
   };
 
-  const handleEdit = (item: Record<string, any>) => {
+  const handleEdit = async (item: Record<string, any>) => {
+    setLoading(true);
     const index = data.findIndex((row) => row === item);
     setEditIndex(index);
     logger.info(`✏️ Edit data index ${index}`, item);
+
+    if (selectedModel === 'asset-type') {
+      try {
+        const res = await fetch(
+          `/schemas/asset-types/${item.asset_type_id}.json`
+        );
+        const json = await res.json();
+
+        const fullSchema: AssetTypeSchema = {
+          ...json,
+          asset_type_id: item.asset_type_id,
+          label: item.label,
+          category_id: item.category_id,
+        };
+
+        setSchema(fullSchema); // ✅ hanya update schema
+        // ❌ jangan ubah data[]
+      } catch (err: any) {
+        logger.warn(
+          `[Edit] ⚠️ Gagal load schema file untuk ${item.asset_type_id}`
+        );
+        setSchema({
+          asset_type_id: item.asset_type_id,
+          label: item.label ?? '',
+          category_id: item.category_id ?? '',
+          fields: [],
+          ppc_strategy: {
+            preventive: [],
+            predictive: [],
+            corrective: [],
+          },
+          spare_parts: [],
+        });
+      }
+    }
+
+    setLoading(false);
   };
 
   const handleDelete = async (index: number) => {
@@ -201,10 +253,40 @@ export default function ConfigurationRootPage() {
 
       if (!asset) return <p>⚠️ Data asset tidak valid.</p>;
 
-      return <TabbedFormAsset asset={asset} onSave={handleSave} />;
+      return (
+        <TabbedFormAsset
+          key={asset.tag_number ?? editIndex} // 🔑 inilah pemicu re-render
+          asset={asset}
+          onSave={handleSave}
+        />
+      );
     }
 
-    if (schema.fields?.length) {
+    const initialSchema = schema;
+    if (selectedModel === 'asset-type') {
+      return (
+        <TabbedFormSchema
+          schema={initialSchema}
+          onSave={(updated) => {
+            const updatedData = [...data];
+            if (editIndex !== null) {
+              updatedData[editIndex] = updated;
+              setData(updatedData);
+              setEditIndex(null);
+            } else {
+              updatedData.push(updated);
+              setData(updatedData);
+            }
+
+            setSchema(updated);
+            saveMockData('asset-type', updatedData);
+            logger.info('✅ [page] Schema asset-type diperbarui dan disimpan');
+          }}
+        />
+      );
+    }
+
+    if (selectedModel === 'asset-category') {
       const initialData = editIndex !== null ? data[editIndex] : undefined;
 
       return (
@@ -216,7 +298,7 @@ export default function ConfigurationRootPage() {
       );
     }
 
-    return <p>⚠️ Schema tidak memiliki field valid.</p>;
+    return <p>⚠️ Tidak ada form yang cocok untuk model ini.</p>;
   };
 
   return (
@@ -266,7 +348,7 @@ export default function ConfigurationRootPage() {
             fields={
               selectedModel === 'asset'
                 ? zodToFieldDefs(assetSchema)
-                : schema?.fields ?? []
+                : tableFields
             }
             onEdit={handleEdit}
             onDelete={handleDelete}
