@@ -8,7 +8,7 @@ tags:
     'compressor',
     'aluminium-7050',
     'anodizing',
-    'rbm',
+    'hrc',
     'pqr',
     'wps',
   ]
@@ -242,10 +242,10 @@ Pengelasan dilakukan menggunakan proses **GTAW (Gas Tungsten Arc Welding / TIG)*
   - Polaritas: **AC** dengan balance wave, untuk pembersihan oksida dan penetrasi stabil
 
 - **Preheat**:
-  Seluruh area groove dipanaskan hingga **120–150 °C** menggunakan oven atau hot air gun. Hal ini penting untuk mencegah perbedaan temperatur mendadak dan mengurangi risiko hot cracking.
+  Seluruh area groove dipanaskan hingga **120–150 °C** menggunakan oven atau hot air gun. Hal ini penting untuk mencegah perbedaan temperatur mendadak dan mengurangi risiko hot cracking.
 
 - **Kontrol interpass temperature**:
-  Suhu antar-lapisan las tidak boleh melebihi **160 °C**, diukur menggunakan pyrometer atau temperature stick. Pendinginan antar pass dilakukan secara natural.
+  Suhu antar-lapisan las tidak boleh melebihi **160 °C**, diukur menggunakan pyrometer atau temperature stick. Pendinginan antar pass dilakukan secara natural.
 
 - **Teknik las**:
 
@@ -265,7 +265,7 @@ Setelah proses pengelasan selesai, dilakukan **tahapan pasca-las** untuk memasti
 **Langkah pasca-las:**
 
 - **Soak pasca-weld**:
-  Piston yang telah dilas dipanaskan pada suhu **100 °C selama ±2 jam**, kemudian didinginkan secara perlahan di udara terbuka. Tujuannya adalah untuk menghilangkan tegangan sisa dan mencegah distorsi saat machining.
+  Piston yang telah dilas dipanaskan pada suhu **100 °C selama ±2 jam**, kemudian didinginkan secara perlahan di udara terbuka. Tujuannya adalah untuk menghilangkan tegangan sisa dan mencegah distorsi saat machining.
 
 - **CNC Machining groove**:
   Setelah pendinginan total (setidaknya 12 jam), dilakukan proses **machining presisi** menggunakan mesin CNC untuk membentuk ulang groove piston-ring dan rider-ring sesuai dimensi desain.
@@ -331,7 +331,7 @@ Proses anodizing terdiri dari beberapa tahapan yang harus dikontrol dengan ketat
 2. **Proses Elektrolitik**
 
    - Elektroda: Piston sebagai anoda, dengan katoda aluminium/stainless
-   - Larutan elektrolit: Asam sulfat (15–20%) pada suhu 0–5 °C
+   - Larutan elektrolit: Asam sulfat (15–20%) pada suhu 0–5 °C
    - Tegangan: 40–80 V
    - Arus: 18–24 A/dm²
    - Waktu proses: ± 60–90 menit
@@ -340,7 +340,7 @@ Proses anodizing terdiri dari beberapa tahapan yang harus dikontrol dengan ketat
 3. **Sealing**
 
    - Nickel acetate sealing atau hot DI water seal
-   - Suhu 85–95 °C selama 15–30 menit
+   - Suhu 85–95 °C selama 15–30 menit
    - Menutup pori-pori untuk mengurangi serapan kelembaban
 
 ---
@@ -407,9 +407,9 @@ Agar perbaikan groove piston Aluminium 7050 dapat berhasil dan memenuhi standar 
 
 **3. Thermal Control (Pengendalian Suhu)**
 
-- **Preheat**: minimum 120–150 °C sebelum pengelasan
-- **Interpass Temperature**: maksimal 160 °C, dijaga dengan alat ukur suhu seperti pyrometer atau stik suhu
-- **Post-Weld Soak**: 100 °C selama 2 jam untuk mengurangi tegangan sisa
+- **Preheat**: minimum 120–150 °C sebelum pengelasan
+- **Interpass Temperature**: maksimal 160 °C, dijaga dengan alat ukur suhu seperti pyrometer atau stik suhu
+- **Post-Weld Soak**: 100 °C selama 2 jam untuk mengurangi tegangan sisa
 
 ---
 
@@ -448,7 +448,7 @@ Agar perbaikan groove piston Aluminium 7050 dapat berhasil dan memenuhi standar 
 **8. Post-Weld Aging / Heat Treatment**
 
 - Idealnya dilakukan **artificial aging** untuk mengembalikan sebagian kekuatan material
-- Bila oven tidak tersedia, dilakukan metode **controlled soak** seperti soak 100 °C + natural aging ≥12 jam
+- Bila oven tidak tersedia, dilakukan metode **controlled soak** seperti soak 100 °C + natural aging ≥12 jam
 - Prosedur ini membantu menstabilkan struktur mikro dan mengurangi potensi overaging
 
 ---
@@ -486,9 +486,9 @@ Dokumen WPS mendefinisikan parameter dan metode pengelasan yang akan digunakan d
 - **Filler metal**: ER2319 (Al-Cu), Ø 2.4 mm
 - **Arus & polaritas**: AC, 120–150 A
 - **Gas pelindung**: 100% Argon, 20–25 LPM
-- **Preheat**: 120–150 °C
-- **Interpass Temp**: Maksimal 160 °C
-- **Post-Weld Soak**: 100 °C selama 2 jam
+- **Preheat**: 120–150 °C
+- **Interpass Temp**: Maksimal 160 °C
+- **Post-Weld Soak**: 100 °C selama 2 jam
 - **Joint Type**: Groove build-up (open root, multi-pass)
 - **Position**: Flat (1G)
 
@@ -629,7 +629,7 @@ Dengan keterlibatan aktif QA/QC Owner, pekerjaan repair dapat diselesaikan **den
 
 ### 📘 **Standar Welding Aluminium**
 
-**AWS D1.2 – _Structural Welding Code – Aluminum_**
+**AWS D1.2 – _Structural Welding Code – Aluminum_**
 
 - Standar ini mengatur persyaratan teknis untuk pengelasan aluminium, termasuk kualifikasi prosedur (_WPS/PQR_) dan welder, serta inspeksi las. Kode ini menjadi acuan utama dalam proses pengelasan struktural aluminium. ([megmeet-welding.com][1])
 
@@ -637,9 +637,9 @@ Dengan keterlibatan aktif QA/QC Owner, pekerjaan repair dapat diselesaikan **den
 
 ### 📘 **Anodizing Aluminium (Surface Treatment)**
 
-**MIL‑A‑8625F / MIL‑PRF‑8625F – _Anodic Coatings for Aluminum and Aluminum Alloys_**
+**MIL‑A‑8625F / MIL‑PRF‑8625F – _Anodic Coatings for Aluminum and Aluminum Alloys_**
 
-- Spesifikasi militer ini menjelaskan jenis dan kelas anodizing (termasuk **Type III / hard anodize**) untuk aluminium dan paduannya, persyaratan proses, kontrol kualitas, ketebalan lapisan, serta sealing. ([Valence Surface Technologies][2])
+- Spesifikasi militer ini menjelaskan jenis dan kelas anodizing (termasuk **Type III / hard anodize**) untuk aluminium dan paduannya, persyaratan proses, kontrol kualitas, ketebalan lapisan, serta sealing. ([Valence Surface Technologies][2])
 - Anodizing tipe III memberikan **ketahanan korosi, ketahanan aus, dan peningkatan sifat permukaan lainnya** yang relevan untuk komponen bekerja berat seperti piston. ([Wikipedia][3])
 
 ---
@@ -657,7 +657,7 @@ Dengan keterlibatan aktif QA/QC Owner, pekerjaan repair dapat diselesaikan **den
 
 **Anodizing (Wikipedia & Technical Sources)**
 
-- Ringkasan tentang anodizing dan karakteristiknya, termasuk perbedaan antara Type II dan Type III, efek ketebalan lapisan terhadap ketahanan korosi dan aus, serta dampaknya terhadap permukaan. ([Wikipedia][3])
+- Ringkasan tentang anodizing dan karakteristiknya, termasuk perbedaan antara Type II dan Type III, efek ketebalan lapisan terhadap ketahanan korosi dan aus, serta dampaknya terhadap permukaan. ([Wikipedia][3])
 
 ---
 
