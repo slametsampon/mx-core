@@ -1,0 +1,688 @@
+---
+title: Repair Prosedur Piston Compressor C-150 Berbahan Aluminium 7050
+authors: ['sam']
+date: '2025-12-13'
+tags:
+  [
+    'Maintenance',
+    'compressor',
+    'aluminium-7050',
+    'anodizing',
+    'rbm',
+    'pqr',
+    'wps',
+  ]
+draft: false
+summary: Artikel ini menyajikan referensi teknis menyeluruh mengenai prosedur perbaikan piston Compressor C-150 berbahan Aluminium 7050 yang mengalami kerusakan pada area groove piston-ring dan rider-ring. Kerusakan disebabkan oleh penggunaan ring dengan material lebih keras dari piston, sehingga terjadi keausan dan pelebaran groove. Material Aluminium 7050 memiliki kekuatan tinggi namun weldability rendah, menjadikan proses repair sangat menantang. Oleh karena itu, dibutuhkan kontrol ketat dalam pemilihan filler (seperti ER2319), proses welding (dengan preheat dan interpass suhu terkontrol), serta pasca perlakuan seperti machining presisi dan anodizing tipe hard coat. Peran QA/QC Owner sangat penting dalam memverifikasi WPS, PQR, dan seluruh tahapan proses. Artikel ini dirancang sebagai panduan teknis terpadu bagi engineer dan praktisi pemeliharaan dalam menangani repair piston berbahan paduan aluminium dengan pendekatan yang andal, sesuai standar industri seperti AWS D1.2 dan ASME Sec IX.
+---
+
+**Repair Prosedur Piston Compressor C-150 Berbahan Aluminium 7050**
+
+---
+
+- [**1. Pendahuluan**](#1-pendahuluan)
+- [**2. Identifikasi Material dan Karakteristik Aluminium 7050**](#2-identifikasi-material-dan-karakteristik-aluminium-7050)
+  - [**2.1 Komposisi Kimia**](#21-komposisi-kimia)
+  - [**2.2 Sifat Mekanik Khas**](#22-sifat-mekanik-khas)
+  - [**2.3 Kelebihan dan Batasan Material**](#23-kelebihan-dan-batasan-material)
+  - [**2.4 Implikasi terhadap Proses Perbaikan**](#24-implikasi-terhadap-proses-perbaikan)
+- [**3. Permasalahan pada Komponen**](#3-permasalahan-pada-komponen)
+  - [**3.1 Kerusakan Groove Piston-Ring dan Rider-Ring**](#31-kerusakan-groove-piston-ring-dan-rider-ring)
+  - [**3.2 Jenis Kerusakan Umum**](#32-jenis-kerusakan-umum)
+  - [**3.3 Teknik Inspeksi Awal**](#33-teknik-inspeksi-awal)
+- [**4. Strategi dan Prosedur Perbaikan**](#4-strategi-dan-prosedur-perbaikan)
+  - [**4.1 Persiapan Permukaan**](#41-persiapan-permukaan)
+  - [**4.2 Prosedur Pengelasan**](#42-prosedur-pengelasan)
+  - [**4.3 Post-Weld Treatment**](#43-post-weld-treatment)
+- [**5. Anodizing untuk Perlindungan Permukaan**](#5-anodizing-untuk-perlindungan-permukaan)
+  - [**5.1 Fungsi Anodize pada Piston Kompresor**](#51-fungsi-anodize-pada-piston-kompresor)
+  - [**5.2 Jenis Anodize yang Digunakan: Hard Anodize (Type III)**](#52-jenis-anodize-yang-digunakan-hard-anodize-type-iii)
+  - [**5.3 Proses Anodizing – Tahapan Utama**](#53-proses-anodizing--tahapan-utama)
+  - [**5.4 Kontrol Dimensi dan Inspeksi Pasca-Anodize**](#54-kontrol-dimensi-dan-inspeksi-pasca-anodize)
+- [**6. Pengendalian Kualitas dan Risiko Welding Aluminium 7050**](#6-pengendalian-kualitas-dan-risiko-welding-aluminium-7050)
+  - [**6.1 Risiko Utama dalam Proses Pengelasan**](#61-risiko-utama-dalam-proses-pengelasan)
+  - [**6.2 Sembilan Kontrol Teknis Utama untuk Keberhasilan Repair**](#62-sembilan-kontrol-teknis-utama-untuk-keberhasilan-repair)
+- [**7. Dokumen Teknis Pendukung**](#7-dokumen-teknis-pendukung)
+  - [**7.1 Welding Procedure Specification (WPS) – ER2319**](#71-welding-procedure-specification-wps--er2319)
+  - [**7.2 Preliminary PQR – Repair Groove Piston**](#72-preliminary-pqr--repair-groove-piston)
+  - [**7.3 Anodizing Specification Sheet**](#73-anodizing-specification-sheet)
+  - [**7.4 Inspection Test Plan (ITP) – Repair Piston C-150**](#74-inspection-test-plan-itp--repair-piston-c-150)
+- [**8. Penutup dan Rekomendasi**](#8-penutup-dan-rekomendasi)
+  - [**Best Practice Perbaikan Piston Aluminium**](#best-practice-perbaikan-piston-aluminium)
+  - [**Kapan Repair Layak, Kapan Penggantian Lebih Baik**](#kapan-repair-layak-kapan-penggantian-lebih-baik)
+  - [**9. Pentingnya Peran QA/QC Owner dalam Pengawasan Vendor**](#9-pentingnya-peran-qaqc-owner-dalam-pengawasan-vendor)
+- [📘 **Standar Welding Aluminium**](#-standar-welding-aluminium)
+- [📘 **Anodizing Aluminium (Surface Treatment)**](#-anodizing-aluminium-surface-treatment)
+- [📗 **Panduan Teknik Pengelasan Aluminium (umum)**](#-panduan-teknik-pengelasan-aluminium-umum)
+- [📚 **Referensi Umum Additif**](#-referensi-umum-additif)
+- [📌 Rekomendasi Tambahan (Standar yang Perlu Dimiliki secara Resmi)](#-rekomendasi-tambahan-standar-yang-perlu-dimiliki-secara-resmi)
+- [Hak cipta^1. Artikel ini berdasar ChatGpt \& penulis tidak menjamin seluruh akurasi isinya](#hak-cipta1-artikel-ini-berdasar-chatgpt--penulis-tidak-menjamin-seluruh-akurasi-isinya)
+
+---
+
+### **1. Pendahuluan**
+
+Piston merupakan komponen kritikal dalam sistem **reciprocating compressor**, bertanggung jawab untuk mengompresi gas melalui gerakan bolak-balik (reciprocating motion) yang terhubung langsung dengan connecting rod dan crankshaft. Dalam proses ini, **piston-ring (P/R)** dan **rider-ring (R/R)** memiliki peranan penting sebagai **seal dan guide**, menjaga efisiensi kompresi serta kestabilan gerak piston di dalam silinder.
+
+Pada unit **Compressor C-150**, ditemukan kerusakan signifikan pada area groove piston-ring dan rider-ring berupa **pelebaran, deformasi lokal, dan indikasi awal keretakan mikro**, yang berpotensi menyebabkan kebocoran kompresi dan ketidaksejajaran piston. Berdasarkan hasil evaluasi teknis, penyebab utama dari kerusakan ini adalah penggunaan material **P/R dan R/R dengan kekerasan melebihi material piston**, sehingga terjadi mekanisme **wear dominan pada piston body** dibanding pada ring-nya. Hal ini melanggar prinsip dasar desain tribologis, di mana seharusnya komponen dengan kekerasan lebih rendah (sacrificial) berada pada bagian ring, bukan piston.
+
+Material piston yang digunakan adalah **Aluminium Alloy 7050**, sebuah paduan dari seri 7xxx yang dikenal memiliki kekuatan tinggi (high-strength heat treatable alloy) dan digunakan luas pada aplikasi struktural berat di industri dirgantara maupun petrokimia. Namun, paduan ini memiliki **karakteristik las yang sangat rendah (low weldability)** karena kandungan tembaga (Cu) dan seng (Zn) yang tinggi, yang menjadikannya sangat rentan terhadap **hot cracking, porositas**, serta **penurunan kekuatan akibat overaging** jika proses reparasi tidak dikendalikan dengan tepat.
+
+Perbaikan groove piston-ring dan rider-ring pada material Aluminium 7050 bukanlah proses konvensional dan memerlukan **prosedur teknik yang terstandarisasi**, termasuk pemilihan filler yang tepat, kontrol suhu ketat, validasi WPS & PQR, serta pasca-proses seperti machining presisi dan anodizing. Selain itu, peran **pengawasan Owner (QA/QC)** dalam memastikan kepatuhan vendor terhadap prosedur menjadi sangat penting untuk menjamin integritas hasil akhir dari perbaikan tersebut.
+
+Dokumen ini disusun sebagai referensi teknis menyeluruh (one-stop reference) yang mendokumentasikan seluruh proses perbaikan piston C-150, mulai dari identifikasi material, kerusakan, prosedur welding, hingga inspeksi dan pelapisan akhir, untuk menjamin keberhasilan reparasi yang aman, andal, dan sesuai standar industri.
+
+---
+
+### **2. Identifikasi Material dan Karakteristik Aluminium 7050**
+
+Material **Aluminium 7050** merupakan paduan aluminium dari seri 7xxx yang tergolong **heat-treatable high-strength alloy**, banyak digunakan dalam aplikasi struktural berat yang membutuhkan **kekuatan tarik tinggi, ketangguhan** dan **ketahanan korosi tegangan (SCC – Stress Corrosion Cracking)** yang baik. Paduan ini dirancang khusus untuk mempertahankan kekuatannya pada bagian-bagian yang tebal, serta memberikan ketahanan terhadap retakan akibat beban dinamis.
+
+---
+
+#### **2.1 Komposisi Kimia**
+
+Aluminium 7050 memiliki komposisi kimia utama sebagai berikut (berdasarkan UNS A97050):
+
+| Elemen                     | Kandungan (% berat) |
+| -------------------------- | ------------------- |
+| Zinc (Zn)                  | 5.7 – 6.7           |
+| Magnesium (Mg)             | 1.9 – 2.6           |
+| Copper (Cu)                | 2.0 – 2.6           |
+| Zirconium (Zr)             | 0.08 – 0.15         |
+| Aluminium (Al)             | Sisa (balance)      |
+| Lain-lain (Fe, Si, Mn, Ti) | Maks. 0.15 (total)  |
+
+Kandungan tembaga (Cu), seng (Zn), dan magnesium (Mg) yang tinggi memberikan kekuatan unggul setelah perlakuan panas, tetapi juga menjadikan material ini **lebih sensitif terhadap proses termal seperti pengelasan**.
+
+---
+
+#### **2.2 Sifat Mekanik Khas**
+
+Sifat mekanik Aluminium 7050 sangat bergantung pada **temper-nya** (kondisi perlakuan panas). Untuk aplikasi seperti piston kompresor, umumnya digunakan temper **T7451** atau **T6511**, yang menawarkan kombinasi kekuatan dan ketahanan korosi. Nilai tipikal:
+
+| Parameter                       | Nilai Tipikal                |
+| ------------------------------- | ---------------------------- |
+| Ultimate Tensile Strength (UTS) | 500 – 570 MPa                |
+| Yield Strength (0.2% offset)    | 430 – 490 MPa                |
+| Elongasi                        | 7 – 12 %                     |
+| Kekerasan (typical)             | ~150 – 180 HV / ~80 – 90 HRB |
+| Modulus Elastisitas             | ~70 – 80 GPa                 |
+| Densitas                        | ~2.83 g/cm³                  |
+
+Kombinasi kekuatan dan bobot ringan ini menjadikan 7050 ideal untuk komponen bergerak seperti piston, selama tidak dikompromikan oleh proses perbaikan yang merusak struktur mikro.
+
+---
+
+#### **2.3 Kelebihan dan Batasan Material**
+
+**Kelebihan:**
+
+- Kekuatan tarik tinggi, setara atau melebihi beberapa baja karbon
+- Ketahanan korosi tegangan lebih baik dibanding 7075
+- Stabil secara dimensi pada bagian tebal
+- Respons baik terhadap aging dan treatment over-aged (T7x temper)
+
+**Batasan:**
+
+- **Sangat rendah weldability** karena kandungan Cu dan Zn tinggi
+- **Rentan terhadap hot cracking dan porositas** saat pengelasan
+- Tidak cocok untuk pengelasan struktural tanpa perlakuan pasca-las
+- Re-welding dapat menurunkan kekuatan akibat **overaging atau softening**
+
+---
+
+#### **2.4 Implikasi terhadap Proses Perbaikan**
+
+Penggunaan Aluminium 7050 dalam piston memberikan keunggulan performa mekanis, namun menjadi **tantangan serius ketika dilakukan repair**. Beberapa implikasi yang harus diperhatikan dalam proses perbaikan adalah:
+
+- **Pemilihan filler metal yang tepat**, seperti ER2319 (Al-Cu), untuk kompatibilitas mikrostruktural dan mengurangi risiko cracking.
+- **Kontrol termal wajib diterapkan**, meliputi preheat, pengendalian suhu antar-pengelasan (interpass), dan pasca-pemanasan (post-weld soak) untuk mencegah distorsi dan mengontrol tegangan sisa.
+- **Diperlukan post-weld heat treatment (PWHT)** untuk mengembalikan kekuatan mekanik dan mengurangi efek degradasi akibat las.
+- **Tidak semua prosedur las konvensional bisa diterapkan**, dan personel las harus memiliki kualifikasi khusus dalam pengelasan aluminium heat-treatable alloy.
+
+Dengan memahami sifat dasar material ini, perencanaan repair harus dilakukan secara menyeluruh dengan **prosedur yang terdokumentasi, dilaksanakan oleh tenaga ahli terlatih, serta di bawah pengawasan teknis ketat**, agar hasil akhir dapat memenuhi persyaratan performa dan keselamatan operasi.
+
+---
+
+### **3. Permasalahan pada Komponen**
+
+Pada sistem **reciprocating compressor**, komponen piston bekerja dalam siklus tekanan tinggi dan gesekan intensif akibat gerak bolak-balik terhadap dinding silinder. Oleh karena itu, **area groove piston-ring dan rider-ring** menjadi titik kritis dalam mempertahankan performa seal, pusat tumpu piston, dan pergerakan terkontrol. Gangguan pada groove ini akan langsung memengaruhi efisiensi kompresor dan dapat menyebabkan **kerusakan sekunder** pada silinder, packing, dan komponen sealing lainnya.
+
+---
+
+#### **3.1 Kerusakan Groove Piston-Ring dan Rider-Ring**
+
+Dalam kasus piston C-150, ditemukan adanya **kerusakan mekanis signifikan** pada area groove ring yang ditandai dengan:
+
+- **Pelebaran groove** akibat penetrasi material ring yang lebih keras ke dalam permukaan piston
+- **Deformasi lokal** berbentuk tak simetris yang menyebabkan ring tidak duduk presisi
+- **Pelecehan sudut groove (loss of land / collapse of groove shoulder)** sehingga kehilangan fungsi seal
+- **Indikasi retak mikro atau permukaan kasar**, yang berpotensi berkembang menjadi retak fatik saat operasi
+
+Kerusakan ini terjadi karena **perbedaan hardness antara material ring dan piston**, di mana ring menggunakan material lebih keras (misalnya resin reinforced, bronze alloy, atau thermoplastic composite), sedangkan piston berbahan Aluminium 7050 yang relatif lebih lunak. Hal ini melanggar prinsip kesesuaian tribologis, di mana seharusnya **komponen yang bersifat replaceable (ring)** yang lebih mudah aus, bukan sebaliknya.
+
+---
+
+#### **3.2 Jenis Kerusakan Umum**
+
+Berdasarkan pengalaman lapangan dan kajian material, berikut adalah **jenis kerusakan umum** yang terjadi pada groove piston-ring dan rider-ring:
+
+| Jenis Kerusakan         | Deskripsi                                                                     |
+| ----------------------- | ----------------------------------------------------------------------------- |
+| **Abrasi (wear)**       | Pengikisan material groove karena gesekan dengan ring yang lebih keras        |
+| **Plastic deformation** | Pembentukan groove menjadi oval atau tidak sejajar akibat tekanan berlebih    |
+| **Groove widening**     | Pelebaran groove menyebabkan ring bergoyang atau tidak presisi                |
+| **Land breakage**       | Patah atau runtuhnya sudut groove yang menahan ring                           |
+| **Surface tearing**     | Permukaan kasar, robek, atau terbakar akibat gesekan tanpa pelumas yang cukup |
+| **Microcrack**          | Retakan halus pada groove base yang sulit terlihat tanpa NDT                  |
+
+---
+
+#### **3.3 Teknik Inspeksi Awal**
+
+Untuk memastikan kelayakan perbaikan dan mengevaluasi tingkat kerusakan, dilakukan serangkaian **inspeksi awal** sebagai berikut:
+
+| Metode                           | Tujuan                                                                   | Alat                                           |
+| -------------------------------- | ------------------------------------------------------------------------ | ---------------------------------------------- |
+| **Visual Inspection (VT)**       | Mengidentifikasi kerusakan makro, kehilangan bentuk, dan keausan ekstrem | Senter, kaca pembesar                          |
+| **Dye Penetrant Test (PT)**      | Mengidentifikasi retak mikro yang tidak tampak secara visual             | PT kit standar (penetrant, remover, developer) |
+| **Dimensional Check**            | Mengukur lebar groove, kedalaman, sudut, dan profil land                 | Caliper presisi, groove gauge, dial indicator  |
+| **Profilometer (jika tersedia)** | Mengukur kekasaran permukaan groove                                      | Profilometer kontak atau optik                 |
+| **Hardness Test (opsional)**     | Menilai degradasi kekerasan material akibat panas/keausan                | Portable hardness tester (HRB/HV scale)        |
+
+---
+
+Inspeksi awal ini menjadi dasar dalam **penentuan kelayakan repair vs. replacement**, serta penyesuaian dimensi pasca-machining untuk memastikan **piston ring dan rider ring tetap dapat berfungsi sesuai spesifikasi**. Proses ini harus terdokumentasi dengan baik dan disetujui oleh pihak teknis pemilik (Owner) sebelum pekerjaan perbaikan dilanjutkan.
+
+---
+
+### **4. Strategi dan Prosedur Perbaikan**
+
+Perbaikan groove piston-ring dan rider-ring pada piston berbahan **Aluminium 7050** memerlukan pendekatan teknis yang sistematis dan terkontrol. Karena sifat material yang **sulit dilas (low weldability)**, maka setiap tahapan – mulai dari persiapan, pengelasan, hingga pasca-las – harus dilaksanakan dengan **disiplin tinggi**, mengacu pada standar seperti **AWS D1.2** dan **ASME Sec IX**. Tujuan utama adalah mengembalikan bentuk dan fungsi groove piston sesuai spesifikasi awal, tanpa menimbulkan kerusakan baru atau penurunan sifat mekanik material dasar.
+
+---
+
+#### **4.1 Persiapan Permukaan**
+
+Sebelum proses pengelasan dilakukan, area groove yang akan diperbaiki harus dipersiapkan dengan benar untuk memastikan kebersihan, penetrasi las yang baik, dan meminimalkan risiko porositas atau inklusi.
+
+**Langkah-langkah persiapan:**
+
+- **Pembersihan kimia dan mekanis**:
+  Area groove dibersihkan dari oli, grease, dan residu karbon menggunakan degreaser berbasis pelarut non-klor (misalnya MEK atau acetone). Dilanjutkan dengan wire brushing (sikat kawat stainless) untuk menghilangkan oksida permukaan.
+
+- **Etching permukaan**:
+  Jika diperlukan, dilakukan etching ringan dengan larutan sodium hydroxide (NaOH) untuk membuka permukaan material aluminium dan meningkatkan adhesi las.
+
+- **Chamfer groove**:
+  Groove yang rusak dibentuk ulang (reshaping) menjadi profil bevel atau chamfer menggunakan rotary file atau carbide burr khusus aluminium. Sudut groove disesuaikan agar penetrasi filler optimal dan tidak membentuk undercut.
+
+- **Kontrol kebersihan akhir**:
+  Sebelum pengelasan, permukaan dibersihkan ulang dengan kain bebas serat dan solvent untuk menghilangkan partikel asing dan uap air.
+
+---
+
+#### **4.2 Prosedur Pengelasan**
+
+Pengelasan dilakukan menggunakan proses **GTAW (Gas Tungsten Arc Welding / TIG)**, yang memungkinkan kontrol busur yang presisi dan penetrasi halus pada material non-ferrous seperti aluminium. Karena Aluminium 7050 sangat sensitif terhadap cracking, parameter pengelasan harus disesuaikan secara ketat.
+
+**Spesifikasi dan parameter utama:**
+
+- **Filler metal**:
+  **ER2319 (Al-Cu)** dipilih sebagai filler karena kompatibel dengan aluminium seri 7xxx, memiliki ketahanan terhadap cracking, dan mampu mempertahankan kekuatan pasca-las. Diameter filler umumnya 2.4 mm.
+
+- **Shielding gas**:
+  100% Argon, purity minimal 99.99%, dengan aliran 20–25 liter per menit.
+
+- **Arus dan polaritas**:
+
+  - Arus: 120–150 A (tergantung luas area)
+  - Tegangan busur: 10–14 V
+  - Polaritas: **AC** dengan balance wave, untuk pembersihan oksida dan penetrasi stabil
+
+- **Preheat**:
+  Seluruh area groove dipanaskan hingga **120–150 °C** menggunakan oven atau hot air gun. Hal ini penting untuk mencegah perbedaan temperatur mendadak dan mengurangi risiko hot cracking.
+
+- **Kontrol interpass temperature**:
+  Suhu antar-lapisan las tidak boleh melebihi **160 °C**, diukur menggunakan pyrometer atau temperature stick. Pendinginan antar pass dilakukan secara natural.
+
+- **Teknik las**:
+
+  - Menggunakan **stringer bead** pendek (bukan weaving)
+  - Menghindari overheating di area las
+  - Apabila diperlukan, lakukan peening ringan antar pass untuk mengurangi tegangan sisa
+
+- **Distorsi dan penempatan bead**:
+  Tack weld dilakukan di beberapa titik untuk menjaga posisi dan mencegah perubahan bentuk akibat panas. Fixture atau jig dapat digunakan untuk menahan deformasi.
+
+---
+
+#### **4.3 Post-Weld Treatment**
+
+Setelah proses pengelasan selesai, dilakukan **tahapan pasca-las** untuk memastikan stabilitas dimensi, mengurangi tegangan sisa, dan mempersiapkan komponen untuk proses akhir.
+
+**Langkah pasca-las:**
+
+- **Soak pasca-weld**:
+  Piston yang telah dilas dipanaskan pada suhu **100 °C selama ±2 jam**, kemudian didinginkan secara perlahan di udara terbuka. Tujuannya adalah untuk menghilangkan tegangan sisa dan mencegah distorsi saat machining.
+
+- **CNC Machining groove**:
+  Setelah pendinginan total (setidaknya 12 jam), dilakukan proses **machining presisi** menggunakan mesin CNC untuk membentuk ulang groove piston-ring dan rider-ring sesuai dimensi desain.
+
+  **Parameter machining:**
+
+  - Toleransi groove: mengikuti standar OEM atau API 618 jika berlaku
+  - Permukaan groove: Ra ≤ 0.8 µm
+  - Sudut groove dan posisi sumbu harus dikontrol secara presisi
+
+- **Pemeriksaan dimensi pasca-machining**:
+  Groove diperiksa menggunakan caliper presisi, groove gauge, dan visual untuk memastikan **kesesuaian terhadap spesifikasi ring** yang akan digunakan.
+
+Prosedur ini menjadi dasar dalam menjamin hasil perbaikan yang andal sebelum dilakukan pelapisan akhir seperti **anodizing**, yang akan dibahas pada bab berikutnya.
+
+---
+
+### **5. Anodizing untuk Perlindungan Permukaan**
+
+Setelah proses pengelasan dan machining groove selesai, tahap akhir dalam rangkaian perbaikan piston C-150 adalah penerapan **anodizing**. Proses ini sangat krusial karena memberikan perlindungan jangka panjang terhadap korosi, keausan, dan memastikan performa tribologis yang optimal dalam lingkungan kerja kompresor yang bersuhu tinggi dan kaya pelumas. Untuk piston berbahan **Aluminium 7050**, digunakan **anodizing tipe keras (Hard Anodizing / Type III)** dengan parameter teknis terkontrol.
+
+---
+
+#### **5.1 Fungsi Anodize pada Piston Kompresor**
+
+Anodizing merupakan proses elektrokimia yang membentuk lapisan oksida aluminium yang keras dan terikat secara permanen pada permukaan. Fungsi utamanya dalam konteks perbaikan piston adalah sebagai berikut:
+
+| Fungsi                  | Penjelasan                                                                                                         |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| **Perlindungan Korosi** | Lapisan oksida mencegah reaksi elektrokimia dengan gas proses dan pelumas                                          |
+| **Ketahanan Aus**       | Anodize hard coat memiliki kekerasan tinggi (hingga 60 HRC setara), menjaga ketahanan groove terhadap gesekan ring |
+| **Penerimaan Pelumas**  | Struktur pori-pori anodize memudahkan penyerapan pelumas solid atau minyak, mendukung kerja piston-ring            |
+| **Stabilitas Dimensi**  | Lapisan menyatu dengan substrat, tidak mudah mengelupas atau retak seperti coating konvensional                    |
+| **Ketahanan Kimia**     | Tahan terhadap bahan kimia pendingin, oli sintetik, dan gas proses agresif                                         |
+
+---
+
+#### **5.2 Jenis Anodize yang Digunakan: Hard Anodize (Type III)**
+
+Untuk aplikasi teknis seperti piston, digunakan **anodizing Type III** sesuai **MIL-A-8625F**, yaitu proses **hard anodizing berbasis asam sulfat** yang dilakukan pada suhu rendah untuk membentuk lapisan oksida yang tebal dan keras.
+
+| Parameter             | Spesifikasi                                      |
+| --------------------- | ------------------------------------------------ |
+| **Jenis**             | Hard Anodize (Type III)                          |
+| **Ketebalan lapisan** | 40 – 60 µm                                       |
+| **Warna alami**       | Abu-abu gelap kehitaman (tanpa pewarna)          |
+| **Kekerasan lapisan** | 350 – 550 HV                                     |
+| **Standar acuan**     | MIL-A-8625F, ISO 10074                           |
+| **Konduktivitas**     | Non-konduktif (tidak cocok untuk grounding area) |
+
+---
+
+#### **5.3 Proses Anodizing – Tahapan Utama**
+
+Proses anodizing terdiri dari beberapa tahapan yang harus dikontrol dengan ketat untuk mencapai lapisan berkualitas tinggi:
+
+1. **Pre-treatment**
+
+   - Pembersihan: degreasing dengan larutan alkaline
+   - Etching: penghilangan lapisan oksida dan kontaminan dengan NaOH
+   - Desmutting: menggunakan asam nitrat untuk membersihkan sisa etch
+
+2. **Proses Elektrolitik**
+
+   - Elektroda: Piston sebagai anoda, dengan katoda aluminium/stainless
+   - Larutan elektrolit: Asam sulfat (15–20%) pada suhu 0–5 °C
+   - Tegangan: 40–80 V
+   - Arus: 18–24 A/dm²
+   - Waktu proses: ± 60–90 menit
+   - Agitasi larutan konstan untuk menjaga kestabilan
+
+3. **Sealing**
+
+   - Nickel acetate sealing atau hot DI water seal
+   - Suhu 85–95 °C selama 15–30 menit
+   - Menutup pori-pori untuk mengurangi serapan kelembaban
+
+---
+
+#### **5.4 Kontrol Dimensi dan Inspeksi Pasca-Anodize**
+
+Karena proses anodizing menambah ketebalan permukaan secara **simetris (±50% ke dalam dan ±50% ke luar)**, maka kontrol dimensi harus dilakukan dengan hati-hati untuk memastikan groove masih dalam batas toleransi setelah proses.
+
+| Aspek                        | Pengendalian                                                   |
+| ---------------------------- | -------------------------------------------------------------- |
+| **Tebal anodize**            | Diukur secara non-destruktif (eddy current gauge)              |
+| **Dimensi groove akhir**     | Diperiksa kembali dengan caliper atau groove gauge             |
+| **Visual**                   | Harus bebas blister, discoloration, atau area tidak terlapisi  |
+| **Kekasaran permukaan (Ra)** | Harus tetap ≤ 0.8 µm pada groove sealing surface               |
+| **Adhesi**                   | Jika diperlukan, uji tape test ASTM D3359                      |
+| **Dokumentasi vendor**       | Wajib menyediakan COA anodizing dengan detail parameter proses |
+
+---
+
+Proses anodizing ini menjadi **lapisan pertahanan terakhir** dari groove piston hasil perbaikan, dan harus memenuhi standar kualitas untuk memastikan **integritas operasional piston jangka panjang**. Setelah anodizing, piston siap untuk dipasang ulang ke dalam sistem kompresor, dengan jaminan performa optimal sesuai fungsi awalnya.
+
+---
+
+### **6. Pengendalian Kualitas dan Risiko Welding Aluminium 7050**
+
+Paduan **Aluminium 7050** memiliki kekuatan mekanik tinggi karena proses **heat treatment** (solution heat-treated dan aging), namun di sisi lain, material ini juga tergolong **sangat sensitif terhadap proses pengelasan**. Hal ini disebabkan oleh kandungan tinggi tembaga (Cu), seng (Zn), dan magnesium (Mg), yang membuatnya sangat rentan terhadap berbagai bentuk degradasi jika prosedur pengelasan tidak dikendalikan secara ketat.
+
+---
+
+#### **6.1 Risiko Utama dalam Proses Pengelasan**
+
+| Risiko                         | Penjelasan                                                                                                                                      |
+| ------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Retak Panas (Hot Cracking)** | Terjadi akibat tegangan termal saat pendinginan cepat, diperparah oleh pemilihan filler yang tidak sesuai dan kontrol suhu yang buruk           |
+| **Overaging**                  | Suhu tinggi dari proses pengelasan dapat memicu pertumbuhan presipitat berlebih yang menurunkan kekuatan (loss of precipitation hardening)      |
+| **Porositas**                  | Terjadi karena hidrogen yang terperangkap saat pengelasan akibat kelembaban, kontaminasi permukaan, atau aliran gas pelindung yang tidak bersih |
+| **Distorsi Dimensi**           | Perbedaan pemuaian lokal akibat input panas tidak merata dapat menyebabkan ovalitas groove atau kehilangan konsentrisitas piston                |
+
+Risiko-risiko ini dapat menyebabkan **kegagalan fungsional piston** saat pengoperasian, bahkan setelah repair dilakukan. Oleh karena itu, **pengendalian kualitas** menjadi faktor utama keberhasilan.
+
+---
+
+#### **6.2 Sembilan Kontrol Teknis Utama untuk Keberhasilan Repair**
+
+Agar perbaikan groove piston Aluminium 7050 dapat berhasil dan memenuhi standar operasional, berikut adalah **sembilan (9) kontrol teknis utama** yang wajib diterapkan:
+
+---
+
+**1. Verifikasi Filler Metal**
+
+- **Filler harus sesuai dengan spesifikasi** yang kompatibel dengan 7xxx series: **ER2319 (Al-Cu)**
+- Tidak diperbolehkan menggunakan filler umum seperti ER4043 atau ER5356 tanpa justifikasi teknis
+- Vendor wajib menyerahkan **sertifikat batch dan spesifikasi teknis filler**
+
+---
+
+**2. Validasi WPS dan PQR**
+
+- Vendor wajib menyediakan **Welding Procedure Specification (WPS)** dan **Procedure Qualification Record (PQR)**
+- WPS harus menyebutkan parameter detail: arus, voltase, preheat, interpass, polaritas, jenis gas
+- PQR harus mencantumkan hasil uji pengelasan: visual, PT, dan hasil metallografi (macroetch, jika diminta)
+
+---
+
+**3. Thermal Control (Pengendalian Suhu)**
+
+- **Preheat**: minimum 120–150 °C sebelum pengelasan
+- **Interpass Temperature**: maksimal 160 °C, dijaga dengan alat ukur suhu seperti pyrometer atau stik suhu
+- **Post-Weld Soak**: 100 °C selama 2 jam untuk mengurangi tegangan sisa
+
+---
+
+**4. Welder Qualification**
+
+- Tukang las (welder) yang melakukan pekerjaan harus memiliki **sertifikasi GTAW Aluminium** (sesuai ASME IX atau AWS D1.2)
+- Welder harus berpengalaman dengan paduan aluminium heat-treatable dan memiliki keterampilan kontrol busur tinggi
+
+---
+
+**5. Surface Preparation**
+
+- Permukaan harus **bebas dari oli, oksida, dan kontaminan**
+- Gunakan **sikat kawat stainless dan degreaser non-klorin**
+- Chamfer groove dilakukan menggunakan rotary file khusus aluminium
+
+---
+
+**6. Welding Execution (Pelaksanaan Las)**
+
+- Posisi las harus **datar (1G)** untuk stabilitas
+- Gunakan **stringer bead**, bukan weaving
+- Shielding gas: **100% Argon** dengan flow rate 20–25 LPM
+- Tack weld dilakukan untuk menghindari distorsi
+
+---
+
+**7. NDT Pasca-Las**
+
+- **Dye Penetrant Test (PT)** harus dilakukan setelah pengelasan dan sebelum machining
+- Fokus pada area groove base dan sudut groove yang kritis terhadap retak mikro
+- PT dilakukan sesuai standar ASTM E1417 atau ISO 3452
+
+---
+
+**8. Post-Weld Aging / Heat Treatment**
+
+- Idealnya dilakukan **artificial aging** untuk mengembalikan sebagian kekuatan material
+- Bila oven tidak tersedia, dilakukan metode **controlled soak** seperti soak 100 °C + natural aging ≥12 jam
+- Prosedur ini membantu menstabilkan struktur mikro dan mengurangi potensi overaging
+
+---
+
+**9. Dokumentasi Vendor**
+Vendor wajib menyediakan dokumen pendukung untuk setiap tahapan pekerjaan, antara lain:
+
+- WPS & PQR yang sah dan ditandatangani
+- Welder certificate untuk GTAW-Aluminium
+- Sertifikat filler (ER2319)
+- Welding log: arus, suhu, jenis gas, waktu
+- PT report & hasil inspeksi visual
+- Sertifikat anodizing (COA)
+- Foto progres (opsional) sebagai pelengkap BAST
+
+---
+
+Penerapan seluruh kontrol di atas tidak hanya berfungsi untuk **menjamin keberhasilan repair secara teknis**, namun juga memastikan **keamanan, keandalan, dan umur layanan komponen** pasca perbaikan. Pengawasan aktif dari pihak **Owner QA/QC** sangat penting untuk memastikan setiap langkah dilaksanakan sesuai prosedur.
+
+---
+
+### **7. Dokumen Teknis Pendukung**
+
+Untuk menjamin bahwa proses perbaikan piston Aluminium 7050 pada unit Compressor C-150 dilaksanakan sesuai standar teknis dan memenuhi persyaratan kualitas, diperlukan **dokumen teknis pendukung** yang disiapkan oleh vendor dan diverifikasi oleh pihak Owner (QA/QC). Dokumen ini berfungsi sebagai acuan kerja, validasi proses, serta bukti kesesuaian terhadap standar pengelasan, perlakuan permukaan, dan inspeksi.
+
+---
+
+#### **7.1 Welding Procedure Specification (WPS) – ER2319**
+
+Dokumen WPS mendefinisikan parameter dan metode pengelasan yang akan digunakan dalam repair groove piston. WPS untuk repair ini menggunakan **filler metal ER2319**, yang merupakan paduan Al–Cu dan kompatibel dengan material dasar Aluminium 7050.
+
+**Elemen utama WPS:**
+
+- **Proses**: GTAW (Gas Tungsten Arc Welding)
+- **Filler metal**: ER2319 (Al-Cu), Ø 2.4 mm
+- **Arus & polaritas**: AC, 120–150 A
+- **Gas pelindung**: 100% Argon, 20–25 LPM
+- **Preheat**: 120–150 °C
+- **Interpass Temp**: Maksimal 160 °C
+- **Post-Weld Soak**: 100 °C selama 2 jam
+- **Joint Type**: Groove build-up (open root, multi-pass)
+- **Position**: Flat (1G)
+
+Dokumen ini harus ditandatangani oleh welding engineer vendor dan direview oleh Owner sebelum pekerjaan dimulai.
+
+---
+
+#### **7.2 Preliminary PQR – Repair Groove Piston**
+
+**Procedure Qualification Record (PQR)** merupakan bukti bahwa prosedur pada WPS telah diuji dan menghasilkan sambungan las yang memenuhi kriteria teknik. Untuk repair piston ini, digunakan PQR bersifat **preliminary** berdasarkan mock-up piston serupa atau area scrap.
+
+**Elemen utama PQR:**
+
+- **Base material**: Aluminium 7050
+- **Filler**: ER2319
+- **Hasil pengujian**:
+
+  - Visual: Tidak ada cacat terbuka
+  - Dye Penetrant Test (PT): Tidak ditemukan indikasi linear
+  - Dimensi bead: Sesuai desain groove
+  - Macroetch (opsional): Fusi sempurna, tidak ada lack of fusion
+  - Kekerasan (opsional): Sesuai batasan pasca-las
+
+PQR ini menjadi rujukan untuk validasi prosedur dan memastikan hasil repair dapat diterima secara teknis.
+
+---
+
+#### **7.3 Anodizing Specification Sheet**
+
+Dokumen ini menjelaskan spesifikasi teknis anodizing yang diterapkan pasca-machining untuk melindungi groove hasil repair. Jenis anodizing yang digunakan adalah **Hard Anodize (Type III)**.
+
+**Isi utama dokumen:**
+
+- **Jenis anodize**: Type III (hard coat, sulfuric acid)
+- **Ketebalan target**: 40–60 µm
+- **Warna alami**: Abu-abu gelap kehitaman
+- **Sealing**: Nickel acetate / Hot DI water
+- **Proses**:
+
+  - Pre-treatment: Etching + desmutting
+  - Electrolytic: 0–5 °C, 18–24 A/dm², 60–90 menit
+  - Sealing: 85–95 °C selama 15–30 menit
+
+- **Inspeksi pasca-proses**:
+
+  - Visual
+  - Ketebalan lapisan (eddy current)
+  - Dimensi groove setelah anodize
+
+Dokumen ini dilengkapi dengan **Certificate of Anodizing (COA)** dari vendor.
+
+---
+
+#### **7.4 Inspection Test Plan (ITP) – Repair Piston C-150**
+
+Dokumen **ITP** menjadi panduan QA/QC untuk inspeksi pada setiap tahap proses perbaikan, dengan penetapan **Hold Point (H), Witness Point (WIT), Surveillance (S), dan Review (R)**.
+
+**Ringkasan ITP:**
+
+- **Tahapan Inspeksi**:
+
+  - Verifikasi material piston
+  - Inspeksi visual awal & pengukuran groove
+  - Persiapan permukaan
+  - Preheat & welding execution
+  - NDT pasca-las (PT)
+  - Machining groove
+  - Final dimensional check
+  - Proses anodizing
+  - Inspeksi akhir dan dokumentasi
+
+**Dokumen pelengkap ITP:**
+
+- Sertifikat filler (CoC)
+- Welder qualification record
+- PT report
+- Dimensional record
+- Anodize COA
+- Foto visual progres (jika disyaratkan)
+
+Semua dokumen harus disusun dalam satu paket laporan perbaikan, disahkan oleh vendor, dan diverifikasi oleh QA/QC Owner sebelum piston dikembalikan untuk operasional.
+
+---
+
+Dokumen-dokumen teknis ini merupakan **jaminan integritas proses repair** dan menjadi referensi utama dalam evaluasi hasil pekerjaan. Dokumentasi yang lengkap juga penting untuk **audit kualitas, pengulangan perbaikan, dan pelacakan rekam jejak peralatan (equipment history record)**.
+
+---
+
+### **8. Penutup dan Rekomendasi**
+
+Perbaikan piston berbahan **Aluminium 7050** pada unit Compressor C-150 merupakan pekerjaan dengan tingkat kompleksitas tinggi yang membutuhkan **pengendalian teknis ketat**, pemahaman mendalam terhadap karakteristik material, serta pengalaman dalam prosedur pengelasan dan perlakuan permukaan untuk aluminium paduan tinggi. Setiap tahap dalam proses—mulai dari identifikasi kerusakan, welding, machining, hingga anodizing—harus dijalankan sesuai dengan prosedur baku yang terdokumentasi dan divalidasi.
+
+---
+
+#### **Best Practice Perbaikan Piston Aluminium**
+
+Berikut adalah prinsip-prinsip praktik terbaik (best practice) yang dapat dijadikan pedoman dalam pekerjaan serupa:
+
+- **Selalu gunakan filler metal yang kompatibel** dengan material dasar, seperti ER2319 untuk Aluminium 7050.
+- Terapkan **prosedur pengelasan yang tervalidasi** (WPS/PQR), dengan pengelasan dilakukan oleh **welder bersertifikat khusus aluminium**.
+- Lakukan **preheat dan kontrol suhu antar pass** secara konsisten untuk mencegah retak dan overaging.
+- Pastikan groove diperbaiki **dengan presisi machining**, sesuai dengan spesifikasi ring piston OEM.
+- Terapkan **anodizing hard coat** pasca-repair untuk mengembalikan ketahanan aus dan korosi groove piston.
+- Dokumentasikan setiap tahapan dengan baik, termasuk hasil inspeksi dan parameter proses.
+
+---
+
+#### **Kapan Repair Layak, Kapan Penggantian Lebih Baik**
+
+Tidak semua kerusakan piston layak untuk diperbaiki. Berikut pertimbangan teknis dalam menentukan kelayakan:
+
+| Parameter                    | Repair Layak                    | Disarankan Diganti                                                 |
+| ---------------------------- | ------------------------------- | ------------------------------------------------------------------ |
+| **Kedalaman kerusakan**      | Dangkal, terbatas pada groove   | Retak menyeluruh atau deformasi struktural                         |
+| **Material dasar**           | Masih dalam kondisi utuh        | Sudah overaging atau terjadi degradasi mikrostruktur               |
+| **Fungsi kritis**            | Non-pressure bearing            | Piston digunakan pada aplikasi tekanan tinggi dengan risiko tinggi |
+| **Ketersediaan replacement** | Lead time lama / tidak tersedia | Tersedia dan ekonomis dibanding repair                             |
+
+Evaluasi harus mempertimbangkan **risiko operasional, biaya, dan waktu henti sistem**, dan harus melibatkan tim reliability dan maintenance engineering.
+
+---
+
+#### **9. Pentingnya Peran QA/QC Owner dalam Pengawasan Vendor**
+
+Pengawasan oleh tim QA/QC dari pihak Owner merupakan faktor penentu keberhasilan perbaikan. Tanpa pengawasan teknis yang ketat, potensi terjadinya deviasi prosedur sangat tinggi, terutama dalam proses yang tidak dapat diperbaiki ulang seperti pengelasan aluminium dan anodizing.
+
+Peran QA/QC Owner meliputi:
+
+- Verifikasi kelengkapan dan kesesuaian **WPS, PQR, welder certificate**
+- Pengawasan **pelaksanaan proses welding dan machining** sesuai prosedur
+- Witness **NDT, dimensional check**, dan inspeksi akhir
+- Review **dokumen pendukung dan pelaporan vendor**
+- Menjadi **otoritas hold point** pada setiap tahapan kritikal
+
+Dengan keterlibatan aktif QA/QC Owner, pekerjaan repair dapat diselesaikan **dengan aman, efisien, dan sesuai standar**, serta menghasilkan piston yang layak beroperasi kembali tanpa menimbulkan risiko kerusakan berulang.
+
+---
+
+### 📘 **Standar Welding Aluminium**
+
+**AWS D1.2 – _Structural Welding Code – Aluminum_**
+
+- Standar ini mengatur persyaratan teknis untuk pengelasan aluminium, termasuk kualifikasi prosedur (_WPS/PQR_) dan welder, serta inspeksi las. Kode ini menjadi acuan utama dalam proses pengelasan struktural aluminium. ([megmeet-welding.com][1])
+
+---
+
+### 📘 **Anodizing Aluminium (Surface Treatment)**
+
+**MIL‑A‑8625F / MIL‑PRF‑8625F – _Anodic Coatings for Aluminum and Aluminum Alloys_**
+
+- Spesifikasi militer ini menjelaskan jenis dan kelas anodizing (termasuk **Type III / hard anodize**) untuk aluminium dan paduannya, persyaratan proses, kontrol kualitas, ketebalan lapisan, serta sealing. ([Valence Surface Technologies][2])
+- Anodizing tipe III memberikan **ketahanan korosi, ketahanan aus, dan peningkatan sifat permukaan lainnya** yang relevan untuk komponen bekerja berat seperti piston. ([Wikipedia][3])
+
+---
+
+### 📗 **Panduan Teknik Pengelasan Aluminium (umum)**
+
+**Aluminum Welding Guides (Technical Manuals)**
+
+- Banyak panduan teknis (mis. dari Hobart, ESAB, dan organisasi welding lainnya) yang menjelaskan _best practices_ pengelasan aluminium: pentingnya **pembersihan permukaan**, penyimpanan material bebas kelembapan, bahaya _porosity_ dan _lack of fusion_, serta pengendalian panas selama las. ([Hobart Brothers][4])
+- Walaupun tidak spesifik untuk 7050, prinsip‑prinsip tersebut menjadi landasan umum yang diakui dalam pengelasan aluminium, dan relevan untuk menghindari cacat las.
+
+---
+
+### 📚 **Referensi Umum Additif**
+
+**Anodizing (Wikipedia & Technical Sources)**
+
+- Ringkasan tentang anodizing dan karakteristiknya, termasuk perbedaan antara Type II dan Type III, efek ketebalan lapisan terhadap ketahanan korosi dan aus, serta dampaknya terhadap permukaan. ([Wikipedia][3])
+
+---
+
+### 📌 Rekomendasi Tambahan (Standar yang Perlu Dimiliki secara Resmi)
+
+Untuk aplikasi industri/engineering profesional, sebaiknya merujuk langsung pada dokumen asli:
+
+| Kode Standar                          | Organisasi               | Keterangan                                                 |
+| ------------------------------------- | ------------------------ | ---------------------------------------------------------- |
+| **AWS D1.2**                          | American Welding Society | Pengelasan aluminium (kualifikasi prosedur & welder)       |
+| **ASME Section IX**                   | ASME                     | Kualifikasi las & welder untuk tekanan/struktur            |
+| **MIL‑PRF‑8625F**                     | U.S. DoD                 | Spesifikasi pewarnaan anodik aluminium (termasuk hardcoat) |
+| **ASTM B580 / B588 / AMS 2468, 2469** | ASTM / AMS               | Standar anodizing aluminium (kelas industri/dirgantara)    |
+
+> Catatan: Standar‑standar ini biasanya berlisensi dan harus dibeli dari lembaga penerbit resmi (AWS, ASME, ASTM, SAE/AMS).
+
+---
+
+[1]: https://www.megmeet-welding.com/en/news/aluminum-structure-welding-standard?utm_source=chatgpt.com 'AWS D1.2: Aluminum Structural Welding Standard Guide'
+[2]: https://www.coastlinemetalfinishing.com/uploads/Mil-A-8625%20Specification.pdf?utm_source=chatgpt.com 'MIL-A-8625F Anodic Coatings, for Aluminum and Aluminum ...'
+[3]: https://en.wikipedia.org/wiki/Anodizing?utm_source=chatgpt.com 'Anodizing'
+[4]: https://www.hobartbrothers.com/wp-content/uploads/2020/09/Aluminum_Welding_Guide.pdf?utm_source=chatgpt.com 'Guide for Aluminum Welding'
+
+---
+
+### Hak cipta[^1]. Artikel ini berdasar ChatGpt & penulis tidak menjamin seluruh akurasi isinya
+
+[^1]: [ChatGpt](https://chat.openai.com)
