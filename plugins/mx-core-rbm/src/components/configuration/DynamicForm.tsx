@@ -2,16 +2,28 @@
 
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FieldDefinition } from '@/models/asset-type-schema';
 
 type Props = {
   fields: FieldDefinition[];
   onSubmit: (data: Record<string, any>) => void;
+  initialData?: Record<string, any>; // 🆕 tambahkan initialData
 };
 
-export default function DynamicForm({ fields, onSubmit }: Props) {
+export default function DynamicForm({ fields, onSubmit, initialData }: Props) {
   const [formData, setFormData] = useState<Record<string, any>>({});
+
+  useEffect(() => {
+    // Isi data awal jika tersedia (mode edit)
+    if (initialData) {
+      setFormData(initialData);
+      console.log('🛠️ [DynamicForm] Initial data set:', initialData);
+    } else {
+      setFormData({});
+      console.log('🆕 [DynamicForm] Form initialized in empty state');
+    }
+  }, [initialData]);
 
   const handleChange = (name: string, value: any) => {
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -19,6 +31,7 @@ export default function DynamicForm({ fields, onSubmit }: Props) {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    console.log('📤 [DynamicForm] Submitting formData:', formData);
     onSubmit(formData);
   };
 
@@ -26,6 +39,7 @@ export default function DynamicForm({ fields, onSubmit }: Props) {
     <form onSubmit={handleSubmit} className="space-y-4">
       {fields?.map((field) => {
         const fieldId = `field-${field.name}`;
+        const value = formData[field.name] ?? '';
 
         return (
           <div key={field.name} className="flex flex-col">
@@ -45,7 +59,7 @@ export default function DynamicForm({ fields, onSubmit }: Props) {
               <select
                 id={fieldId}
                 required={field.required}
-                value={formData[field.name] || ''}
+                value={value}
                 onChange={(e) => handleChange(field.name, e.target.value)}
                 className="rounded border border-gray-300 px-3 py-2 text-sm"
               >
@@ -67,7 +81,7 @@ export default function DynamicForm({ fields, onSubmit }: Props) {
                     : 'text'
                 }
                 required={field.required}
-                value={formData[field.name] || ''}
+                value={value}
                 onChange={(e) => handleChange(field.name, e.target.value)}
                 className="rounded border border-gray-300 px-3 py-2 text-sm"
               />

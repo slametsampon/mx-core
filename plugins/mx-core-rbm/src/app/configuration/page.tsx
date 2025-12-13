@@ -198,18 +198,22 @@ export default function ConfigurationRootPage() {
     if (selectedModel === 'asset') {
       const asset =
         editIndex !== null ? (data[editIndex] as Asset) : (data[0] as Asset);
-      const schemaObj = schema as AssetTypeSchema;
 
-      if (!asset || !schemaObj?.fields)
-        return <p>⚠️ Data atau schema asset tidak valid.</p>;
+      if (!asset) return <p>⚠️ Data asset tidak valid.</p>;
 
-      return (
-        <TabbedFormAsset asset={asset} schema={schemaObj} onSave={handleSave} />
-      );
+      return <TabbedFormAsset asset={asset} onSave={handleSave} />;
     }
 
     if (schema.fields?.length) {
-      return <DynamicForm fields={schema.fields} onSubmit={handleSave} />;
+      const initialData = editIndex !== null ? data[editIndex] : undefined;
+
+      return (
+        <DynamicForm
+          fields={schema.fields}
+          onSubmit={handleSave}
+          initialData={initialData}
+        />
+      );
     }
 
     return <p>⚠️ Schema tidak memiliki field valid.</p>;

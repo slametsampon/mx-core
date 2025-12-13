@@ -2,89 +2,54 @@
 
 'use client';
 
+import { useEffect, useState } from 'react';
 import { Asset } from '@/models/asset';
 
 interface Props {
   asset: Asset;
+  onChange: (updated: Asset) => void;
 }
 
-export default function AssetForm({ asset }: Props) {
+export default function AssetForm({ asset, onChange }: Props) {
+  const [formData, setFormData] = useState<Asset>(asset);
+
+  useEffect(() => {
+    setFormData(asset);
+  }, [asset]);
+
+  const handleChange = (field: keyof Asset, value: any) => {
+    const updated = { ...formData, [field]: value };
+    setFormData(updated);
+    onChange(updated);
+  };
+
   return (
     <form className="space-y-4">
-      <div>
-        <label htmlFor="tag_number" className="block text-sm font-medium">
-          Tag Number
-        </label>
-        <input
-          id="tag_number"
-          type="text"
-          value={asset.tag_number}
-          readOnly
-          className="w-full rounded border bg-gray-100 px-3 py-2"
-        />
-      </div>
+      {(
+        [
+          ['tag_number', 'Tag Number'],
+          ['description', 'Description'],
+          ['asset_type_id', 'Asset Type ID'],
+          ['unit', 'Unit'],
+          ['area', 'Area'],
+          ['status', 'Status'],
+        ] as [keyof Asset, string][]
+      ).map(([key, label]) => (
+        <div key={key}>
+          <label htmlFor={key} className="block text-sm font-medium">
+            {label}
+          </label>
+          <input
+            id={key}
+            type="text"
+            value={formData[key] || ''}
+            onChange={(e) => handleChange(key, e.target.value)}
+            className="w-full rounded border px-3 py-2"
+          />
+        </div>
+      ))}
 
-      <div>
-        <label htmlFor="description" className="block text-sm font-medium">
-          Description
-        </label>
-        <input
-          id="description"
-          type="text"
-          value={asset.description}
-          className="w-full rounded border px-3 py-2"
-        />
-      </div>
-
-      <div>
-        <label htmlFor="asset_type_id" className="block text-sm font-medium">
-          Asset Type ID
-        </label>
-        <input
-          id="asset_type_id"
-          type="text"
-          value={asset.asset_type_id}
-          className="w-full rounded border px-3 py-2"
-        />
-      </div>
-
-      <div>
-        <label htmlFor="unit" className="block text-sm font-medium">
-          Unit
-        </label>
-        <input
-          id="unit"
-          type="text"
-          value={asset.unit}
-          className="w-full rounded border px-3 py-2"
-        />
-      </div>
-
-      <div>
-        <label htmlFor="area" className="block text-sm font-medium">
-          Area
-        </label>
-        <input
-          id="area"
-          type="text"
-          value={asset.area}
-          className="w-full rounded border px-3 py-2"
-        />
-      </div>
-
-      <div>
-        <label htmlFor="status" className="block text-sm font-medium">
-          Status
-        </label>
-        <input
-          id="status"
-          type="text"
-          value={asset.status}
-          className="w-full rounded border px-3 py-2"
-        />
-      </div>
-
-      {asset.installation_date && (
+      {formData.installation_date && (
         <div>
           <label
             htmlFor="installation_date"
@@ -95,7 +60,8 @@ export default function AssetForm({ asset }: Props) {
           <input
             id="installation_date"
             type="date"
-            value={asset.installation_date}
+            value={formData.installation_date}
+            onChange={(e) => handleChange('installation_date', e.target.value)}
             className="w-full rounded border px-3 py-2"
           />
         </div>
