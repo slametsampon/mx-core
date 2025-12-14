@@ -7,7 +7,7 @@ import { useConfigurationManager } from '@/hooks/useConfigurationManager';
 import ModelFormRenderer from '@/components/configuration/ModelFormRenderer';
 import DynamicTable from '@/components/configuration/DynamicTable';
 import { zodToFieldDefs } from '@/utils/zodToFieldDefs';
-import { assetSchema } from '@/models/asset';
+import { assetSchema } from '@/models/asset/asset';
 
 const modelOptions = [
   { id: 'asset-category', label: 'Asset Category' },

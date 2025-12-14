@@ -3,7 +3,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { PpcStrategyDefinition } from '@/models/asset-type-schema';
+import { PpcStrategyDefinition } from '@/models/asset/asset-type-schema';
 
 type Props = {
   value: PpcStrategyDefinition;

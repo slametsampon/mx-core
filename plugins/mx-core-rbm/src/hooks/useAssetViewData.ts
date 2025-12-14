@@ -4,9 +4,9 @@ import { useEffect, useState } from 'react';
 import { fetchAssetTypeSchemaById } from '@/services/assetTypeSchemaService';
 import { fetchAssetsByType } from '@/services/assetService';
 import { fetchAssetDetailData } from '@/services/assetDetailDataService';
-import { Asset } from '@/models/asset';
-import { AssetDetail } from '@/models/asset-detail';
-import { AssetTypeSchema } from '@/models/asset-type-schema';
+import { Asset } from '@/models/asset/asset';
+import { AssetDetail } from '@/models/asset/asset-detail';
+import { AssetTypeSchema } from '@/models/asset/asset-type-schema';
 import { logger } from '@/utils/logger';
 
 interface UseAssetViewDataResult {

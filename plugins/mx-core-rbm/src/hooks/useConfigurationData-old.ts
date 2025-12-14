@@ -3,10 +3,10 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { AssetType } from '@/models/asset-type';
-import { Asset } from '@/models/asset';
-import { AssetDetail } from '@/models/asset-detail';
-import { AssetTypeSchema } from '@/models/asset-type-schema';
+import { AssetType } from '@/models/asset/asset-type';
+import { Asset } from '@/models/asset/asset';
+import { AssetDetail } from '@/models/asset/asset-detail';
+import { AssetTypeSchema } from '@/models/asset/asset-type-schema';
 import { fetchAssetTypes } from '@/services/assetTypeService';
 import { fetchAssetTypeSchemaById } from '@/services/assetTypeSchemaService';
 import { fetchAssetsByType } from '@/services/assetService';

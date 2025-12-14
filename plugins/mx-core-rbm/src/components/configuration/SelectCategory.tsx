@@ -3,7 +3,7 @@
 'use client';
 
 import React from 'react';
-import { AssetCategory } from '@/models/asset-category';
+import { AssetCategory } from '@/models/asset/asset-category';
 
 type Props = {
   categories: AssetCategory[];

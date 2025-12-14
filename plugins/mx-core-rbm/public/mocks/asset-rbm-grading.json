@@ -1,0 +1,136 @@
+[
+  {
+    "tag_number": "CV-101A",
+    "safety": 4,
+    "environment": 3,
+    "production": 5,
+    "graded_by": "inspector_1",
+    "graded_at": "2025-12-01T09:15:00Z",
+    "note": "High production impact due to flow control role."
+  },
+  {
+    "tag_number": "DCS-01",
+    "safety": 5,
+    "environment": 2,
+    "production": 5,
+    "graded_by": "engineer_2",
+    "graded_at": "2025-12-02T10:00:00Z",
+    "note": "Critical for system monitoring."
+  },
+  {
+    "tag_number": "PLC-102",
+    "safety": 3,
+    "environment": 2,
+    "production": 4,
+    "graded_by": "engineer_3",
+    "graded_at": "2025-12-02T13:30:00Z"
+  },
+  {
+    "tag_number": "SCADA-003",
+    "safety": 2,
+    "environment": 2,
+    "production": 3,
+    "graded_by": "inspector_1",
+    "graded_at": "2025-12-03T08:45:00Z"
+  },
+  {
+    "tag_number": "PLC-ALT-04",
+    "safety": 2,
+    "environment": 1,
+    "production": 2,
+    "graded_by": "engineer_2",
+    "graded_at": "2025-12-04T14:20:00Z",
+    "note": "Backup unit."
+  },
+  {
+    "tag_number": "DCS-RB2",
+    "safety": 5,
+    "environment": 3,
+    "production": 5,
+    "graded_by": "inspector_2",
+    "graded_at": "2025-12-05T09:00:00Z"
+  },
+  {
+    "tag_number": "CP-001",
+    "safety": 3,
+    "environment": 2,
+    "production": 4,
+    "graded_by": "engineer_3",
+    "graded_at": "2025-12-06T11:10:00Z"
+  },
+  {
+    "tag_number": "CP-RC-02",
+    "safety": 4,
+    "environment": 3,
+    "production": 5,
+    "graded_by": "engineer_2",
+    "graded_at": "2025-12-07T15:30:00Z"
+  },
+  {
+    "tag_number": "CP-BLOW-01",
+    "safety": 2,
+    "environment": 2,
+    "production": 2,
+    "graded_by": "inspector_1",
+    "graded_at": "2025-12-08T09:45:00Z"
+  },
+  {
+    "tag_number": "CP-UTIL-04",
+    "safety": 2,
+    "environment": 1,
+    "production": 2,
+    "graded_by": "engineer_3",
+    "graded_at": "2025-12-08T14:10:00Z",
+    "note": "Backup compressor."
+  },
+  {
+    "tag_number": "CP-EM-01",
+    "safety": 5,
+    "environment": 4,
+    "production": 4,
+    "graded_by": "engineer_2",
+    "graded_at": "2025-12-09T10:05:00Z"
+  },
+  {
+    "tag_number": "P-101A",
+    "safety": 3,
+    "environment": 2,
+    "production": 4,
+    "graded_by": "inspector_2",
+    "graded_at": "2025-12-10T08:50:00Z"
+  },
+  {
+    "tag_number": "P-101B",
+    "safety": 2,
+    "environment": 2,
+    "production": 2,
+    "graded_by": "engineer_1",
+    "graded_at": "2025-12-10T09:00:00Z",
+    "note": "Standby pump."
+  },
+  {
+    "tag_number": "P-202",
+    "safety": 3,
+    "environment": 3,
+    "production": 4,
+    "graded_by": "engineer_2",
+    "graded_at": "2025-12-11T11:15:00Z"
+  },
+  {
+    "tag_number": "P-303",
+    "safety": 3,
+    "environment": 3,
+    "production": 5,
+    "graded_by": "inspector_1",
+    "graded_at": "2025-12-12T10:20:00Z"
+  },
+  {
+    "tag_number": "P-401",
+    "safety": 4,
+    "environment": 5,
+    "production": 3,
+    "graded_by": "engineer_3",
+    "graded_at": "2025-12-13T13:40:00Z",
+    "note": "Handles waste stream transfer."
+  }
+]

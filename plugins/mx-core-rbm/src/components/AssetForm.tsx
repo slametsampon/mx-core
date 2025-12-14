@@ -1,6 +1,6 @@
 // plugins/mx-core-rbm/src/components/AssetForm.tsx
 
-import { AssetTypeSchema } from '@/models/asset-type-schema';
+import { AssetTypeSchema } from '@/models/asset/asset-type-schema';
 import { useState } from 'react';
 
 interface Props {

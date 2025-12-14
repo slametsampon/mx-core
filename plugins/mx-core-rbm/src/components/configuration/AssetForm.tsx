@@ -3,7 +3,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { Asset } from '@/models/asset';
+import { Asset } from '@/models/asset/asset';
 
 interface Props {
   asset: Asset;

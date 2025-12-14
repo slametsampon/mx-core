@@ -3,12 +3,12 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { Asset } from '@/models/asset';
+import { Asset } from '@/models/asset/asset';
 import {
   AssetTypeSchema,
   PpcStrategyDefinition,
   SparePartTemplate,
-} from '@/models/asset-type-schema';
+} from '@/models/asset/asset-type-schema';
 import AssetForm from './AssetForm';
 import SchemaPreviewView from './SchemaPreviewView';
 import PPCStrategyPanel from './PPCStrategyPanel';

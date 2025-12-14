@@ -2,7 +2,7 @@
 
 'use client';
 
-import { Asset } from '@/models/asset';
+import { Asset } from '@/models/asset/asset';
 
 type Props = {
   data: Asset[];

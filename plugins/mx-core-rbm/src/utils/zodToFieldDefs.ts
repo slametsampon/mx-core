@@ -14,7 +14,7 @@ import {
   ZodDate,
 } from 'zod';
 
-import { FieldDefinition } from '@/models/asset-type-schema';
+import { FieldDefinition } from '@/models/asset/asset-type-schema';
 
 function isFieldOptional(zodType: ZodTypeAny): boolean {
   const optional =

@@ -3,7 +3,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { SparePartTemplate } from '@/models/asset-type-schema';
+import { SparePartTemplate } from '@/models/asset/asset-type-schema';
 
 type Props = {
   value: SparePartTemplate[];

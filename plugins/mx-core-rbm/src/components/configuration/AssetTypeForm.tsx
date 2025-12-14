@@ -2,7 +2,7 @@
 
 'use client';
 
-import { AssetTypeSchema } from '@/models/asset-type-schema';
+import { AssetTypeSchema } from '@/models/asset/asset-type-schema';
 
 type Props = {
   value: AssetTypeSchema;

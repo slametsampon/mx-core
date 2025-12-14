@@ -1,7 +1,7 @@
 // plugins/mx-core-rbm/src/services/assetTypeSchemaService.ts
 
 import { SCHEMA_BASE } from '@/config/config';
-import { AssetTypeSchema } from '@/models/asset-type-schema';
+import { AssetTypeSchema } from '@/models/asset/asset-type-schema';
 import { logger } from '@/utils/logger';
 
 export async function fetchAssetTypeSchemaById(

@@ -2,7 +2,7 @@
 
 'use client';
 
-import { FieldDefinition } from '@/models/asset-type-schema';
+import { FieldDefinition } from '@/models/asset/asset-type-schema';
 
 type Props = {
   data: Record<string, any>[];

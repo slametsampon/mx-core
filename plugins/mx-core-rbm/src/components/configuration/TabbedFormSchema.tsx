@@ -3,7 +3,10 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { AssetTypeSchema, FieldDefinition } from '@/models/asset-type-schema';
+import {
+  AssetTypeSchema,
+  FieldDefinition,
+} from '@/models/asset/asset-type-schema';
 import SchemaPreviewView from './SchemaPreviewView';
 import PPCStrategyPanel from './PPCStrategyPanel';
 import SparePartsTable from './SparePartsTable';

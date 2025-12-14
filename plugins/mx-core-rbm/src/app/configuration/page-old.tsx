@@ -10,10 +10,10 @@ import DynamicForm from '@/components/configuration/DynamicForm';
 import DynamicTable from '@/components/configuration/DynamicTable';
 import TabbedFormAsset from '@/components/configuration/TabbedFormAsset';
 
-import { Asset, assetSchema } from '@/models/asset';
-import { assetCategorySchema } from '@/models/asset-category';
-import { assetTypeSchema } from '@/models/asset-type';
-import { AssetTypeSchema } from '@/models/asset-type-schema';
+import { Asset, assetSchema } from '@/models/asset/asset';
+import { assetCategorySchema } from '@/models/asset/asset-category';
+import { assetTypeSchema } from '@/models/asset/asset-type';
+import { AssetTypeSchema } from '@/models/asset/asset-type-schema';
 import { zodToFieldDefs } from '@/utils/zodToFieldDefs';
 import TabbedFormSchema from '@/components/configuration/TabbedFormSchema';
 

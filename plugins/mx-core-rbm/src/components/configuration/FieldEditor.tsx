@@ -6,7 +6,7 @@ import { useState, useEffect } from 'react';
 import {
   FieldDefinition,
   fieldDefinitionSchema,
-} from '@/models/asset-type-schema';
+} from '@/models/asset/asset-type-schema';
 import { z } from 'zod';
 import { logger } from '@/utils/logger';
 

@@ -2,7 +2,7 @@
 
 import { API_BASE, USE_MOCK } from '@/config/config';
 import { logger } from '@/utils/logger';
-import { AssetType } from '@/models/asset-type'; // pastikan tipe ini tersedia
+import { AssetType } from '@/models/asset/asset-type'; // pastikan tipe ini tersedia
 
 export async function fetchAssetTypes(): Promise<AssetType[]> {
   try {

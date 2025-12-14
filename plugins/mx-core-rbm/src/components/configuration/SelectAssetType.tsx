@@ -3,7 +3,7 @@
 'use client';
 
 import React from 'react';
-import { AssetType } from '@/models/asset-type';
+import { AssetType } from '@/models/asset/asset-type';
 
 type Props = {
   assetTypes: AssetType[];

@@ -1,27 +1,152 @@
-# 🧩 Business Plan Implementasi Modul `mxcore-rbm` (Untuk Monorepo MxCore)
-
 ## 📌 Tujuan Utama
 
-Membangun dan mengintegrasikan **modul Risk-Based Maintenance (RBM)** ke dalam sistem monorepo `mxcore` sebagai **plugin modular** yang mendukung strategi pemeliharaan berbasis dampak kegagalan, dengan pendekatan spesifik seperti yang diterapkan di PT PON.
+> 🧠 **Membangun dan mengintegrasikan modul Risk-Based Maintenance (RBM) ke dalam sistem monorepo mx-core sebagai plugin modular yang mendukung strategi pemeliharaan berbasis dampak kegagalan, dengan pendekatan spesifik seperti yang diterapkan di PT PON.**
+
+Tujuan ini menempatkan RBM **bukan sekadar fitur**, melainkan sebagai **lapisan pengambilan keputusan strategis** di atas data aset yang telah terstruktur.
+
+---
+
+## 🎯 Visi Sistem
+
+Membangun sistem modular dalam kerangka `mx-core` yang mampu:
+
+- Mengelola aset industri secara **struktural dan teknis**
+- Melakukan evaluasi risiko berbasis **dampak kegagalan**
+- Menghasilkan strategi pemeliharaan yang **adaptif dan berbasis data**
+- Mengadopsi praktik nyata **Risk-Based Maintenance ala PT PON**
+- Siap terintegrasi dengan CMMS, dashboard, dan sistem operasional lain
+
+---
+
+## 🧱 Strategi Arsitektur: Dua Sub-Domain dalam Satu Modul
+
+Untuk mencapai visi tersebut, modul `mx-core-rbm` dirancang sebagai **satu plugin utuh**, namun secara konseptual dipisahkan menjadi dua sub-domain:
+
+1. **Asset Sub-Domain** → fondasi data dan struktur aset
+2. **RBM Sub-Domain** → lapisan evaluasi, klasifikasi, dan strategi
+
+Pemisahan ini bersifat **konseptual dan struktural**, bukan modular deployment.
+
+---
+
+## 🏗️ Sub-Domain Asset — Fondasi Sistem
+
+### 🎯 Peran
+
+Sub-domain Asset berfungsi sebagai **representasi formal dan stabil** dari seluruh aset fisik yang terdaftar dalam sistem.
+
+Asset adalah **obyek yang dievaluasi**, bukan pengambil keputusan.
+
+### 🔧 Fungsionalitas Utama
+
+- Identitas unik aset (`tagNumber`)
+- Deskripsi teknis dan lokasi (`unit`, `area`, `status`)
+- Klasifikasi melalui `AssetType` dan `AssetCategory`
+- Definisi struktur teknis melalui `AssetTypeSchema`
+- Penyimpanan data aktual melalui `AssetDetail`
+
+### 🧩 Karakteristik
+
+- Bersifat **statis, deskriptif, dan struktural**
+- Tidak mengandung logika evaluasi risiko
+- Menjadi fondasi bagi RBM, CMMS, IoT, dan modul lain
+
+### 📌 Entitas Utama
+
+- `Asset`
+- `AssetType`
+- `AssetCategory`
+- `AssetTypeSchema`
+- `AssetDetail`
+
+---
+
+## ⚙️ Sub-Domain RBM — Lapisan Evaluasi & Strategi
+
+### 🎯 Peran
+
+RBM adalah **lapisan intelektual sistem**, yang membaca data aset dan menghasilkan keputusan pemeliharaan berdasarkan **dampak kegagalan**.
+
+RBM tidak mendefinisikan aset, tetapi **menilai dan merespons risiko aset**.
+
+### 🔧 Fungsionalitas Utama
+
+- Penilaian dampak kegagalan melalui **ESC Grading**
+- Penentuan **Asset Criticality**
+- Penyimpanan histori evaluasi
+- Penyusunan **Maintenance Plan**
+- Penurunan strategi TBM bila relevan
+
+### 🧩 Karakteristik
+
+- Bersifat **dinamis dan time-based**
+- Menyimpan data evaluasi aktual
+- Mendukung histori, audit trail, dan re-evaluasi
+- Terintegrasi ke Asset melalui `tagNumber`
+
+### 📌 Entitas Utama
+
+- `ESCGrading`
+- `AssetCriticality`
+- `EvaluationRecord`
+- `MaintenancePlan`
+- `TBMSchedule`
+
+---
+
+## 🔗 Hubungan Asset dan RBM
+
+RBM **dibangun di atas Asset**, bukan berdampingan secara setara.
+
+| Asset (Fondasi)   | RBM (Evaluasi & Strategi)         |
+| ----------------- | --------------------------------- |
+| `tagNumber`       | FK logis di seluruh model RBM     |
+| `AssetTypeSchema` | Referensi UI dan konteks evaluasi |
+| `AssetDetail`     | Konteks teknis saat grading       |
+
+### 🔄 Alur Operasional
+
+1. Asset didefinisikan dalam Asset Sub-Domain
+2. ESC Grading dilakukan oleh engineer
+3. Criticality ditentukan
+4. Semua dicatat dalam Evaluation Record
+5. Maintenance Plan disusun
+6. Jika TBM → jadwal TBM dibuat
+
+---
+
+## 🧭 Strategi Sistem Berbasis Praktik PT PON
+
+### 🎯 Tujuan
+
+Berpindah dari pemeliharaan berbasis waktu menuju **pemeliharaan berbasis dampak kegagalan**.
+
+### 💡 Konsekuensi Desain
+
+- Evaluasi berbasis ESC (Environment, Safety, Continuity)
+- Criticality sebagai prioritas utama
+- Maintenance Plan bersifat adaptif
+- TBM hanya diterapkan bila hasil RBM mengarah ke sana
+- Seluruh sistem modular dalam `mx-core-rbm`
 
 ---
 
 ## 📋 Ringkasan Fungsi Modul
 
-| Fungsi                                  | Tujuan Bisnis                                                                |
-| --------------------------------------- | ---------------------------------------------------------------------------- |
-| 📌 **Grading ESC**                      | Menentukan dampak kegagalan berdasarkan Environment, Safety, dan Continuity  |
-| 🧾 **Asset Criticality Classification** | Mengelompokkan peralatan ke dalam kategori Kritis vs Normal                  |
-| 🛠️ **Maintenance Strategy Matrix**      | Menetapkan strategi PPC (Preventive, Predictive, Corrective) secara selektif |
-| 🗂️ **DIA & KDIA Management**            | Manajemen data master aset dan hasil klasifikasi berbasis ESC                |
-| 📆 **TBM Hybrid Schedule Engine**       | Penjadwalan pemeliharaan berbasis klasifikasi dan evaluasi                   |
-| 🔍 **Evaluation Engine**                | Sistem monitoring hasil performa dan gangguan secara berkala                 |
-| 📤 **Export CMMS / Work Order**         | Output data work order untuk diintegrasi ke CMMS                             |
-| 📊 **Reporting & Dashboard**            | Laporan dan dashboard visual berbasis data risiko & histori evaluasi         |
+| Fungsi            | Tujuan                                    |
+| ----------------- | ----------------------------------------- |
+| ESC Grading       | Menilai dampak kegagalan                  |
+| Asset Criticality | Klasifikasi prioritas                     |
+| PPC Matrix        | Strategi Preventive/Predictive/Corrective |
+| DIA Management    | Data master aset                          |
+| TBM Schedule      | Jadwal berbasis hasil RBM                 |
+| Evaluation Engine | Histori dan monitoring                    |
+| CMMS Export       | Integrasi eksternal                       |
+| Dashboard         | Visualisasi risiko                        |
 
 ---
 
-## 🧭 Rencana Implementasi Modular (Tahapan)
+## 🧭 Roadmap Implementasi
 
 | Tahap | Modul / Sub-Produk                     | Target Output                                      | Stakeholder         |
 | ----- | -------------------------------------- | -------------------------------------------------- | ------------------- |
@@ -35,12 +160,13 @@ Membangun dan mengintegrasikan **modul Risk-Based Maintenance (RBM)** ke dalam s
 
 ---
 
-## 📁 Struktur Implementasi Modular
+## 📁 Struktur Monorepo Plugin
 
 Berbasis `monorepo`, plugin ini akan berada di:
 
 ```bash
-mx-core-rbm
+plugins/
+mx-core-rbm/
 ├── .next/                        # build output (auto-generated)
 ├── .turbo/                      # turbo cache (auto-generated)
 ├── dist/                        # optional for compiled output
@@ -62,7 +188,23 @@ mx-core-rbm
 │   ├── css/                     # tailwind / custom css
 │   ├── data/                    # mock data aset, grading, dsb
 │   ├── hooks/                   # custom React hooks
+│   ├── models/
+│   │   ├── asset/
+│   │   │   ├── Asset.ts
+│   │   │   ├── AssetType.ts
+│   │   │   ├── AssetTypeSchema.ts
+│   │   │   └── AssetDetail.ts
+│   │   │   └── ...
+│   │   └── rbm/
+│   │       ├── ESCGrading.ts
+│   │       ├── AssetCriticality.ts
+│   │       ├── EvaluationRecord.ts
+│   │       ├── MaintenancePlan.ts
+│   │       ├── TBMSchedule.ts
+│   │       └── ...
 │   ├── models/                  # definisi data model (ESC, Aset, dsb)
+│   │   ├── asset/               # models asset
+│   │   ├── rbm/                 # models rbm
 │   ├── services/                # logika bisnis (grading, jadwal, dsb)
 │   └── utils/                   # helper functions
 ├── .env                         # konfigurasi env
@@ -72,7 +214,7 @@ mx-core-rbm
 ├── next-env.d.ts
 ├── next.config.js
 ├── package.json
-├── plugin.json                  # metadata plugin (bisa pakai schema standar mxcore)
+├── plugin.json                  # metadata plugin (bisa pakai schema standar mx-core)
 ├── postcss.config.js
 ├── tailwind.config.ts
 ├── tsconfig.json
@@ -84,245 +226,23 @@ mx-core-rbm
 
 ---
 
-## 📦 Penjelasan per Folder
+## 🧩 Model Mental Sistem
 
-### ✅ `src/app/`
-
-Struktur berbasis **Next.js App Router**, halaman terbagi berdasarkan fitur utama RBM:
-
-| Folder        | Tujuan                                                               |
-| ------------- | -------------------------------------------------------------------- |
-| `assets/`     | Daftar Induk Aset (DIA), input & tampilan asset                      |
-| `grading/`    | ESC grading page, klasifikasi kritikalitas aset                      |
-| `schedule/`   | Visualisasi jadwal TBM (berdasarkan tiering)                         |
-| `evaluation/` | Entry histori evaluasi peralatan                                     |
-| `export/`     | Halaman ekspor work order / CMMS                                     |
-| `dashboard/`  | Dashboard ringkasan: ESC status, tier, TBM plan, grafik kritikalitas |
-| `about/`      | Halaman penjelasan RBM (opsional untuk edukasi user)                 |
-
----
-
-### ✅ `src/models/`
-
-Berisi semua definisi data model, konsisten dengan diskusi sebelumnya:
-
-- `Asset.ts`
-- `ESCGrading.ts`
-- `AssetCriticality.ts`
-- `TBMSchedule.ts`
-- `EvaluationRecord.ts`
-- `MaintenancePlan.ts`
-
----
-
-### ✅ `src/services/`
-
-Berisi logic bisnis dan engine utama:
-
-- `gradingService.ts`
-- `criticalityService.ts`
-- `scheduleService.ts`
-- `evaluationService.ts`
-- `exportService.ts`
-
----
-
-### ✅ `src/data/`
-
-Berisi data mockup atau referensi:
-
-- `assets.json`
-- `grading.json`
-- `tbmSchedule.json`
-- `evaluation.json`
-
-> Saat belum terkoneksi DB atau API, file ini bisa digunakan untuk testing dan demo.
-
----
-
-### ✅ `plugin.json`
-
-Berisi metadata plugin, misalnya:
-
-```json
-{
-  "name": "mx-core-rbm",
-  "type": "plugin",
-  "version": "0.1.0",
-  "description": "Risk-Based Maintenance plugin untuk manajemen aset berbasis ESC grading dan strategi TBM adaptif",
-  "ui": true,
-  "api": true,
-  "active": true,
-  "module": "dist/index.js",
-  "basePath": "https://mx-core-rbm.vercel.app",
-  "rbac": [
-    { "role": "Operator", "resource": "rbm", "action": "view" },
-    { "role": "Inspector", "resource": "rbm", "action": "evaluate" },
-    { "role": "Engineer", "resource": "rbm", "action": "grade" },
-    { "role": "Planner", "resource": "rbm", "action": "schedule" },
-    { "role": "Supervisor", "resource": "rbm", "action": "approve" },
-    { "role": "Manager", "resource": "rbm", "action": "export" }
-  ]
-}
+```
+┌─────────────┐         ┌────────────────────┐
+│  Asset Data │◄───────►│ RBM Evaluations    │
+│ (static)    │         │ (dynamic, strategy)│
+└─────────────┘         └────────────────────┘
+        ▲                        ▲
+        │                        │
+        │                        └── EvaluationRecord, ESCGrading
+        │
+        └── AssetTypeSchema ───→ Digunakan UI untuk form grading, detail input
 ```
 
 ---
 
-### ✅ `scripts/`
-
-Berisi script utilitas:
-
-- Import/export data
-- Konversi file `.csv` ke JSON
-- Migrasi struktur DIA lama ke model baru
-
----
-
-### ✅ `check-list-migrasi.md`
-
-Dokumen untuk tracking progress migrasi dari spreadsheet/manual ke sistem ini:
-
-Contoh isi:
-
-```md
-# Checklist Migrasi RBM PT PON
-
-✅ Daftar Induk Aset (DIA) ter-input ke /data/assets.json  
-✅ ESC grading minimal 80% lengkap  
-✅ Mapping tier evaluasi selesai  
-🟡 TBM Schedule masih 50% manual  
-❌ Belum integrasi CMMS
-```
-
----
-
-## 🔚 Kesimpulan
-
-Struktur folder ini:
-
-- Konsisten dengan plugin `mx-core-metric`
-- Terstruktur rapi: **data | model | logic | UI | dokumentasi**
-- Siap mendukung Next.js App Router + integrasi ke sistem lain
-- Modular: bisa di-scale ke fitur tambahan seperti predictive analysis atau CBM
-
----
-
-# ✅ Revisi Data Model (Menggunakan `tagNumber` sebagai Primary ID)
-
-Semua relasi antar-entitas akan menggunakan `tagNumber: string` sebagai foreign key.
-
----
-
-## 📦 `Asset.ts`
-
-```ts
-export interface Asset {
-  tagNumber: string; // PRIMARY ID
-  name: string;
-  unit: string; // Syngas, Octanol, Utility, dst
-  category:
-    | 'Rotating'
-    | 'Static'
-    | 'Electrical'
-    | 'Instrumentation'
-    | 'Control';
-  location: string; // optional, e.g., area code
-}
-```
-
----
-
-## 📦 `ESCGrading.ts`
-
-```ts
-export type ESCGrade = 'Low' | 'Medium' | 'High';
-
-export interface ESCGrading {
-  tagNumber: string; // FK ke Asset
-  environment: ESCGrade;
-  safety: ESCGrade;
-  continuousRunning: ESCGrade;
-  gradedBy: string;
-  gradedAt: Date;
-}
-```
-
----
-
-## 📦 `Criticality.ts`
-
-```ts
-export type Criticality = 'Kritis' | 'Normal';
-
-export interface AssetCriticality {
-  tagNumber: string; // FK ke Asset
-  criticality: Criticality;
-  determinedBy: string;
-  determinedAt: Date;
-}
-```
-
----
-
-## 📦 `Tier.ts`
-
-```ts
-export type EvaluationTier = 'Tier1' | 'Tier2' | 'Tier3';
-
-export interface AssetTier {
-  tagNumber: string;
-  tier: EvaluationTier;
-  notes?: string;
-}
-```
-
----
-
-## 📦 `TBMSchedule.ts`
-
-```ts
-export interface TBMSchedule {
-  tagNumber: string;
-  maintenanceType: 'Preventive' | 'Predictive' | 'Corrective';
-  interval: 'Daily' | 'Monthly' | '6Months';
-  lastExecuted: Date;
-  nextDue: Date;
-}
-```
-
----
-
-## 📦 `EvaluationRecord.ts`
-
-```ts
-export interface EvaluationRecord {
-  id: string; // ID unik evaluasi (UUID atau incremental)
-  tagNumber: string;
-  evaluatedAt: Date;
-  evaluator: string;
-  result: 'OK' | 'Warning' | 'Failure';
-  notes?: string;
-}
-```
-
----
-
-## 📦 `MaintenancePlan.ts`
-
-```ts
-export interface MaintenancePlan {
-  tagNumber: string;
-  strategy: 'P' | 'P+C' | 'P+P+C';
-  updatedAt: Date;
-  updatedBy: string;
-}
-```
-
----
-
-# 🔗 Revisi ERD (Entity Relationship Diagram)
-
-Sekarang semua entitas menggunakan **`tagNumber` sebagai kunci utama dan relasional**:
+## 🔗 ERD Terpadu
 
 ```
      ┌─────────────┐
@@ -372,10 +292,157 @@ Sekarang semua entitas menggunakan **`tagNumber` sebagai kunci utama dan relasio
 └──────────────────────┘
 ```
 
+```sql
+// Title: ERD mx-core-rbm - Asset & RBM Domain
+// Description: Entity Relationship Diagram untuk plugin RBM dalam monorepo mx-core
+
+// ---------------------------
+// 🔹 DOMAIN: ASSET
+// ---------------------------
+
+Table asset {
+  tag_number varchar [pk]
+  name varchar
+  unit varchar
+  asset_type_id varchar [ref: > asset_type.asset_type_id]
+  location varchar
+}
+
+Table asset_type {
+  asset_type_id varchar [pk]
+  label varchar
+  category_id varchar [ref: > asset_category.category_id]
+}
+
+Table asset_category {
+  category_id varchar [pk]
+  name varchar
+  category enum('Rotating', 'Static', 'Electrical', 'Instrumentation', 'Control')
+}
+
+Table asset_detail {
+  tag_number varchar [pk, ref: > asset.tag_number]
+  data jsonb
+  created_at timestamp
+}
+
+// ---------------------------
+// 🔸 DOMAIN: ASSET TYPE SCHEMA (Extended)
+// ---------------------------
+
+Table asset_type_schema {
+  id uuid [pk]
+  asset_type_id varchar [ref: > asset_type.asset_type_id]
+  label varchar
+  category_id varchar
+  version varchar [null]
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table asset_type_schema_field {
+  id uuid [pk]
+  schema_id uuid [ref: > asset_type_schema.id]
+  name varchar
+  label varchar
+  type enum('string', 'number', 'enum', 'boolean', 'date')
+  required boolean
+  unit varchar [null]
+}
+
+Table asset_type_schema_field_option {
+  id uuid [pk]
+  field_id uuid [ref: > asset_type_schema_field.id]
+  value varchar
+}
+
+Table asset_type_schema_spare_part {
+  id uuid [pk]
+  schema_id uuid [ref: > asset_type_schema.id]
+  name varchar
+  part_number varchar [null]
+  uom varchar
+  quantity int
+  remarks text [null]
+}
+
+Table asset_type_schema_ppc {
+  id uuid [pk]
+  schema_id uuid [ref: > asset_type_schema.id]
+  strategy_type enum('Preventive', 'Predictive', 'Corrective')
+  description varchar
+}
+
+// ---------------------------
+// 🔸 DOMAIN: RBM
+// ---------------------------
+
+Table esc_grading {
+  tag_number varchar [pk, ref: > asset.tag_number]
+  environment enum('Low', 'Medium', 'High')
+  safety enum('Low', 'Medium', 'High')
+  continuous_running enum('Low', 'Medium', 'High')
+  graded_by varchar
+  graded_at timestamp
+}
+
+Table asset_criticality {
+  tag_number varchar [pk, ref: > asset.tag_number]
+  criticality enum('Kritis', 'Normal')
+  determined_by varchar
+  determined_at timestamp
+}
+
+Table asset_tier {
+  tag_number varchar [pk, ref: > asset.tag_number]
+  tier enum('Tier1', 'Tier2', 'Tier3')
+  notes text [null]
+}
+
+Table maintenance_plan {
+  tag_number varchar [pk, ref: > asset.tag_number]
+  strategy enum('P', 'P+C', 'P+P+C') // Preventive, Predictive, Corrective
+  updated_by varchar
+  updated_at timestamp
+}
+
+Table tbm_schedule {
+  tag_number varchar [pk, ref: > asset.tag_number]
+  maintenance_type enum('Preventive', 'Predictive', 'Corrective')
+  interval enum('Daily', 'Monthly', '6Months')
+  last_executed timestamp
+  next_due timestamp
+}
+
+Table evaluation_record {
+  id uuid [pk]
+  tag_number varchar [ref: > asset.tag_number]
+  evaluated_at timestamp
+  evaluator varchar
+  result enum('OK', 'Warning', 'Failure')
+  notes text [null]
+}
+```
+
 ---
 
 ## 🔒 Catatan Teknis
 
-- `tagNumber` harus dijaga konsistensinya **tanpa spasi** atau **case-sensitive**.
-- Jika ada struktur tag (misal: `U1-HC-001` → Unit1, Hydrogen Compressor), bisa diparsing untuk grouping.
-- Gunakan `tagNumber.toUpperCase()` jika ingin menghindari case mismatch dalam validasi.
+- `tagNumber` sebagai single business key
+- Konsistensi penulisan wajib
+- Parsing struktur tag dimungkinkan
+
+---
+
+## 🔚 Kesimpulan
+
+`mx-core-rbm` adalah modul strategis yang:
+
+- Menjaga **Asset tetap bersih dan stabil**
+- Menjadikan **RBM sebagai decision layer**
+- Mewujudkan praktik RBM PT PON dalam sistem modular
+- Siap dikembangkan ke CBM, Predictive, dan Advanced Analytics
+
+```
+
+```

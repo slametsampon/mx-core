@@ -3,7 +3,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { FieldDefinition } from '@/models/asset-type-schema';
+import { FieldDefinition } from '@/models/asset/asset-type-schema';
 
 type Props = {
   fields: FieldDefinition[];

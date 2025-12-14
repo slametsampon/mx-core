@@ -1,7 +1,7 @@
 // plugins/mx-core-rbm/src/services/assetService.ts
 
 import { API_BASE, USE_MOCK } from '@/config/config';
-import { Asset } from '@/models/asset';
+import { Asset } from '@/models/asset/asset';
 import { logger } from '@/utils/logger';
 
 export async function fetchAssetsByType(assetTypeId: string): Promise<Asset[]> {

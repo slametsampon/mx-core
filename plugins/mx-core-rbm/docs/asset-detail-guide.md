@@ -225,12 +225,12 @@ Contoh `/data/asset-details/CV-101-A.detail.json`:
 
 ---
 
-## 7. 📊 `RbmConsequenceValue` – Grading ESC
+## 7. 📊 `RbmgradingValue` – Grading ESC
 
 Struktur penilaian aspek konsekuensi berdasarkan Safety, Environment, dan Production.
 
 ```ts
-type RbmConsequenceValue = {
+type RbmgradingValue = {
   tagNumber: string; // FK ke Asset.tagNumber
   safety: number; // 1–5
   environment: number; // 1–5
@@ -260,7 +260,7 @@ type RbmConsequenceValue = {
 ```mermaid
 graph TD
   Asset -->|1:1| AssetDetail
-  Asset -->|1:1| RbmConsequenceValue
+  Asset -->|1:1| RbmgradingValue
   Asset -->|N:1| AssetType
   AssetType -->|1:1| AssetTypeSchema
   AssetType -->|N:1| AssetCategory
@@ -295,14 +295,14 @@ graph TD
 
 ## 10. ✅ Ringkasan
 
-| Entitas               | Keterangan                                                  |
-| --------------------- | ----------------------------------------------------------- |
-| `Asset`               | Informasi umum aset (tag, unit, status, tier)               |
-| `AssetType`           | Jenis peralatan, contoh: `control-valve`                    |
-| `AssetTypeSchema`     | Template data teknis + PPC + Spare Part per jenis aset      |
-| `AssetDetail`         | Data aktual sesuai skema untuk tiap `tagNumber`             |
-| `RbmConsequenceValue` | Data penilaian konsekuensi: Safety, Environment, Production |
-| `AssetCategory`       | Kategori besar (electrical, static, rotating, dll.)         |
+| Entitas           | Keterangan                                                  |
+| ----------------- | ----------------------------------------------------------- |
+| `Asset`           | Informasi umum aset (tag, unit, status, tier)               |
+| `AssetType`       | Jenis peralatan, contoh: `control-valve`                    |
+| `AssetTypeSchema` | Template data teknis + PPC + Spare Part per jenis aset      |
+| `AssetDetail`     | Data aktual sesuai skema untuk tiap `tagNumber`             |
+| `RbmgradingValue` | Data penilaian konsekuensi: Safety, Environment, Production |
+| `AssetCategory`   | Kategori besar (electrical, static, rotating, dll.)         |
 
 ---
 
@@ -845,7 +845,7 @@ entity asset_detail {
   data : JSONB
 }
 
-entity rbm_consequence_value {
+entity rbm_grading_value {
   * id : SERIAL <<PK>>
   --
   tag_number : TEXT <<FK>>
@@ -861,7 +861,7 @@ asset_category ||--o{ asset_type : "has"
 asset_type ||--o{ asset_general : "defines"
 asset_type ||--|| asset_type_schema : "has"
 asset_general ||--|| asset_detail : "has"
-asset_general ||--o{ rbm_consequence_value : "graded"
+asset_general ||--o{ rbm_grading_value : "graded"
 
 @enduml
 ```
@@ -904,7 +904,7 @@ Table asset_detail {
   data JSONB
 }
 
-Table rbm_consequence_value {
+Table rbm_grading_value {
   id SERIAL [pk]
   tag_number TEXT [ref: > asset_general.tag_number]
   safety INT
@@ -930,7 +930,7 @@ plugins/
             ├── asset-general.ts
             ├── asset-type-schema.ts
             ├── asset-detail.ts
-            ├── rbm-consequence-value.ts
+            ├── rbm-grading-value.ts
 ```
 
 ---
@@ -1097,13 +1097,12 @@ export const assetDetailSchema = z.object({
 
 ---
 
-### 6. `rbm-consequence-value.ts`
+### 6. `rbm-grading-value.ts`
 
 ```ts
 import { z } from 'zod';
 
-export interface RbmConsequenceValue {
-  id?: number;
+export interface RbmgradingValue {
   tag_number: string;
   safety: number;
   environment: number;
@@ -1113,8 +1112,7 @@ export interface RbmConsequenceValue {
   note?: string;
 }
 
-export const rbmConsequenceValueSchema = z.object({
-  id: z.number().optional(),
+export const rbmgradingValueSchema = z.object({
   tag_number: z.string().min(1, 'Tag number is required'),
   safety: z.number().min(1).max(5),
   environment: z.number().min(1).max(5),

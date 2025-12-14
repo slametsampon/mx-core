@@ -3,7 +3,7 @@
 // plugins/mx-core-rbm/src/services/assetDetailDataService.ts
 
 import { API_BASE, USE_MOCK } from '@/config/config';
-import { AssetDetail } from '@/models/asset-detail';
+import { AssetDetail } from '@/models/asset/asset-detail';
 import { logger } from '@/utils/logger';
 
 export async function fetchAssetDetailData(

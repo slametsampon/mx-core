@@ -8,10 +8,10 @@ import { loadMockData, saveMockData } from '@/services/mockDataService';
 
 import { zodToFieldDefs } from '@/utils/zodToFieldDefs';
 
-import { Asset, assetSchema } from '@/models/asset';
-import { assetCategorySchema } from '@/models/asset-category';
-import { assetTypeSchema } from '@/models/asset-type';
-import { AssetTypeSchema } from '@/models/asset-type-schema';
+import { Asset, assetSchema } from '@/models/asset/asset';
+import { assetCategorySchema } from '@/models/asset/asset-category';
+import { assetTypeSchema } from '@/models/asset/asset-type';
+import { AssetTypeSchema } from '@/models/asset/asset-type-schema';
 import { fetchAssetTypeSchemaById } from '@/services/assetTypeSchemaService';
 
 export function useConfigurationManager(selectedModel: string) {

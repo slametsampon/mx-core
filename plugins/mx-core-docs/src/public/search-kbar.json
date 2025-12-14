@@ -1,5 +1,50 @@
 [
   {
+    "id": "maintenance/maintenance-material-rider-ring",
+    "name": "Pemilihan Material Rider Ring (R/R) dan Piston Ring (P/R) dalam Sistem Kompresor - Kesesuaian dengan Material Piston dan Liner",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/maintenance-material-rider-ring",
+    "subtitle": "December 14, 2025",
+    "keywords": [
+      "Rider-Ring",
+      "Piston-Ring",
+      "Reciprocating-Compressor",
+      "Tribology",
+      "Wear-Pair Compatibility",
+      "Material-Selection",
+      "Piston-Liner",
+      "Aluminium-7050",
+      "Hardness-HRB-HRC",
+      "Hard-Anodizing",
+      "Surface-Treatment",
+      "Dry-Gas-Compressor",
+      "Oil-Lubricated-Compressor",
+      "Coefficient-of-Friction",
+      "Wear-Rate",
+      "Maintenance-Engineering",
+      "Reliability-Engineering",
+      "API-618",
+      "Compressor-Design",
+      "Failure-Analysis"
+    ]
+  },
+  {
+    "id": "maintenance/maintenance-repair-piston",
+    "name": "Repair Prosedur Piston Compressor C-150 Berbahan Aluminium 7050",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/maintenance-repair-piston",
+    "subtitle": "December 13, 2025",
+    "keywords": [
+      "Maintenance",
+      "compressor",
+      "aluminium-7050",
+      "anodizing",
+      "hrc",
+      "pqr",
+      "wps"
+    ]
+  },
+  {
     "id": "maintenance/perbaika-kebocoran-stuffing-box",
     "name": "Panduan Teknis Penanganan Kebocoran Stuffing-Box pada Piston Rod Reciprocating Compressor",
     "section": "CONTENT",
@@ -239,20 +284,6 @@
       "contentlayer",
       "tailwind",
       "eslint"
-    ]
-  },
-  {
-    "id": "markdown/github-markdown-guide",
-    "name": "Panduan Markdown",
-    "section": "CONTENT",
-    "href": "/blog/markdown/github-markdown-guide",
-    "subtitle": "October 7, 2025",
-    "keywords": [
-      "github",
-      "panduan",
-      "markdown",
-      "md",
-      "mdx"
     ]
   },
   {

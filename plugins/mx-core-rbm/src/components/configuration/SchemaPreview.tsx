@@ -3,7 +3,10 @@
 'use client';
 
 import React from 'react';
-import { AssetTypeSchema, FieldDefinition } from '@/models/asset-type-schema';
+import {
+  AssetTypeSchema,
+  FieldDefinition,
+} from '@/models/asset/asset-type-schema';
 
 type Props = {
   schema: AssetTypeSchema;
