@@ -4,7 +4,7 @@
 
 import { useState, useEffect } from 'react';
 import { logger } from '@/utils/logger';
-import { loadMockData, saveMockData } from '@/services/mockDataService';
+import { loadMockData, saveData } from '@/services/mockDataService';
 
 import { zodToFieldDefs } from '@/utils/zodToFieldDefs';
 
@@ -170,7 +170,7 @@ export function useConfigurationManager(selectedModel: string) {
       }
 
       setData(updated);
-      await saveMockData(selectedModel, updated);
+      await saveData(selectedModel, updated);
       logger.info(`✅ Data ${selectedModel} berhasil disimpan`);
     } catch (err: any) {
       logger.error(`❌ Gagal simpan ${selectedModel}:`, err.message);
@@ -231,12 +231,16 @@ export function useConfigurationManager(selectedModel: string) {
   };
 
   const handleDelete = async (index: number) => {
-    logger.warn(`🗑️ Hapus item index ${index}`);
+    const confirmDelete = window.confirm(
+      `Yakin ingin menghapus data baris ke : ${index + 1} ini?`
+    );
+    if (!confirmDelete) return;
+
     try {
       const updated = [...data];
       updated.splice(index, 1);
       setData(updated);
-      await saveMockData(selectedModel, updated);
+      await saveData(selectedModel, updated);
       logger.info(`✅ Item dihapus dari model ${selectedModel}`);
     } catch (err: any) {
       logger.error(`❌ Gagal hapus item:`, err.message);

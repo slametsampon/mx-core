@@ -95,7 +95,7 @@ apiService<T>(model: string)
 
 ### ✅ 3.3 Update semua fungsi `handleSave`, `handleEdit`, `handleDelete`
 
-- Gunakan `USE_MOCK ? saveMockData() : apiService().create()` dst.
+- Gunakan `USE_MOCK ? saveData() : apiService().create()` dst.
 
 ---
 

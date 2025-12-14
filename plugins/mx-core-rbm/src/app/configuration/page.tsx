@@ -8,15 +8,18 @@ import ModelFormRenderer from '@/components/configuration/ModelFormRenderer';
 import DynamicTable from '@/components/configuration/DynamicTable';
 import { zodToFieldDefs } from '@/utils/zodToFieldDefs';
 import { assetSchema } from '@/models/asset/asset';
+import { modelOptions, ModelName } from '@/config/modelDefinitions';
 
-const modelOptions = [
-  { id: 'asset-category', label: 'Asset Category' },
-  { id: 'asset-type', label: 'Asset Type' },
-  { id: 'asset', label: 'Asset' },
-];
+// const modelOptions = [
+//   { id: 'asset-category', label: 'Asset Category' },
+//   { id: 'asset-type', label: 'Asset Type' },
+//   { id: 'asset', label: 'Asset' },
+// ];
 
 export default function ConfigurationRootPage() {
-  const [selectedModel, setSelectedModel] = useState(modelOptions[0].id);
+  const [selectedModel, setSelectedModel] = useState<ModelName>(
+    modelOptions[0].id
+  );
   const {
     data,
     schema,
@@ -48,7 +51,7 @@ export default function ConfigurationRootPage() {
           id="modelSelect"
           value={selectedModel}
           onChange={(e) => {
-            setSelectedModel(e.target.value);
+            setSelectedModel(e.target.value as ModelName);
             setEditIndex(null);
           }}
           className="w-full rounded border px-3 py-2 shadow-sm"

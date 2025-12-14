@@ -5,7 +5,7 @@ import TabbedFormSchema from './TabbedFormSchema';
 import DynamicForm from './DynamicForm';
 import { Asset } from '@/models/asset/asset';
 import { AssetTypeSchema } from '@/models/asset/asset-type-schema';
-import { saveMockData } from '@/services/mockDataService';
+import { saveData } from '@/services/mockDataService';
 
 type Props = {
   selectedModel: string;
@@ -59,7 +59,7 @@ export default function ModelFormRenderer({
             setData(updatedData);
           }
           setSchema(updated);
-          saveMockData('asset-type', updatedData);
+          saveData('asset-type', updatedData);
         }}
       />
     );
