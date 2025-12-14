@@ -3,8 +3,7 @@
   "globalEnv": ["DATA_MODE"],
   "tasks": {
     "build": {
-      "dependsOn": ["^build"],
-      "outputs": ["dist/**", "out/**"]
+      "dependsOn": ["^build"]
     },
     "dev": {
       "cache": false
