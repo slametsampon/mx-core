@@ -3,18 +3,12 @@
 'use client';
 
 import { useState } from 'react';
-import { useConfigurationManager } from '@/hooks/useConfigurationManager';
 import ModelFormRenderer from '@/components/configuration/ModelFormRenderer';
 import DynamicTable from '@/components/configuration/DynamicTable';
 import { zodToFieldDefs } from '@/utils/zodToFieldDefs';
 import { assetSchema } from '@/models/asset/asset';
 import { modelOptions, ModelName } from '@/config/modelDefinitions';
-
-// const modelOptions = [
-//   { id: 'asset-category', label: 'Asset Category' },
-//   { id: 'asset-type', label: 'Asset Type' },
-//   { id: 'asset', label: 'Asset' },
-// ];
+import { useModelManager } from '@/hooks/useModelManager';
 
 export default function ConfigurationRootPage() {
   const [selectedModel, setSelectedModel] = useState<ModelName>(
@@ -32,7 +26,7 @@ export default function ConfigurationRootPage() {
     handleSave,
     handleEdit,
     handleDelete,
-  } = useConfigurationManager(selectedModel);
+  } = useModelManager(selectedModel);
 
   return (
     <div className="space-y-6 p-6">
