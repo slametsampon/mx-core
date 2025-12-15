@@ -5,7 +5,7 @@
 import { useEffect, useState } from 'react';
 import { modelDefinitions, ModelKey } from '@/config/modelDefinitions';
 import { DynamicForm } from '@/components/DynamicForm';
-import { DynamicTable } from '@/components/DynamicTable';
+import { DynamicTable } from '@/components/dynamic-table/DynamicTable';
 import { getService } from '@/services/getService';
 import { logFrontendStatus } from '@/config/config';
 
