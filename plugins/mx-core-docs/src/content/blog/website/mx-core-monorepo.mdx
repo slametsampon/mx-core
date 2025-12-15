@@ -1,5 +1,5 @@
 ---
-title: MxCore – Monorepo
+title: Mx-Core – Monorepo
 authors: ['sam']
 date: '2025-11-16'
 tags:
@@ -13,11 +13,11 @@ tags:
     'Scalable',
   ]
 draft: false
-summary: MxCore adalah sebuah platform digital berbasis plugin dinamis yang dirancang untuk kebutuhan pabrik petrokimia, kimia, energi, pupuk, serta lingkungan industri lainnya.
+summary: Mx-Core adalah sebuah platform digital berbasis plugin dinamis yang dirancang untuk kebutuhan pabrik petrokimia, kimia, energi, pupuk, serta lingkungan industri lainnya.
 ---
 
-- [🧩 **1. Tujuan dan Alasan Memilih Monorepo untuk MxCore**](#-1-tujuan-dan-alasan-memilih-monorepo-untuk-mxcore)
-- [🧱 **2. Struktur Folder Monorepo MxCore (FINAL)**](#-2-struktur-folder-monorepo-mxcore-final)
+- [🧩 **1. Tujuan dan Alasan Memilih Monorepo untuk Mx-Core**](#-1-tujuan-dan-alasan-memilih-monorepo-untuk-mx-core)
+- [🧱 **2. Struktur Folder Monorepo Mx-Core (FINAL)**](#-2-struktur-folder-monorepo-mx-core-final)
 - [🧩 **3. Root package.json (Workspace Definition)**](#-3-root-packagejson-workspace-definition)
 - [🧩 **4. Node_modules Hanya Satu (di Root)**](#-4-node_modules-hanya-satu-di-root)
 - [🧩 **5. Plugin Architecture**](#-5-plugin-architecture)
@@ -26,20 +26,20 @@ summary: MxCore adalah sebuah platform digital berbasis plugin dinamis yang dira
 - [🧩 **8. Integrasi Plugin ke Frontend \& Backend**](#-8-integrasi-plugin-ke-frontend--backend)
 - [🧩 **9. Integrasi Antar Modul (AI → Docs → CMMS → IoT → RBM)**](#-9-integrasi-antar-modul-ai--docs--cmms--iot--rbm)
 - [🧩 **10. FINAL DECISION: Hosting Strategy**](#-10-final-decision-hosting-strategy)
-- [⚡ **11. VERCEL = Hosting Utama untuk MxCore**](#-11-vercel--hosting-utama-untuk-mxcore)
+- [⚡ **11. VERCEL = Hosting Utama untuk Mx-Core**](#-11-vercel--hosting-utama-untuk-mx-core)
 - [🧩 **12. Arsitektur Deploy (FINAL)**](#-12-arsitektur-deploy-final)
 - [🧩 **13. Kesimpulan Akhir (Executive Summary)**](#-13-kesimpulan-akhir-executive-summary)
 
 ---
 
-### 🧩 **1. Tujuan dan Alasan Memilih Monorepo untuk MxCore**
+### 🧩 **1. Tujuan dan Alasan Memilih Monorepo untuk Mx-Core**
 
-MxCore memiliki:
+Mx-Core memiliki:
 
 - `apps/frontend` (Next.js – UI utama)
 - `apps/backend` (Express API)
 - plugin dinamis (AI, CMMS, IoT, RBM, Dashboard)
-- plugin statis (mxcore-docs)
+- plugin statis (mx-core-docs)
 - shared code / domain model
 - plugin engine dinamis (SoC, modular, decoupled)
 
@@ -54,10 +54,10 @@ Karena arsitekturnya moduler & multi-package, **Monorepo dengan NPM Workspaces a
 
 ---
 
-### 🧱 **2. Struktur Folder Monorepo MxCore (FINAL)**
+### 🧱 **2. Struktur Folder Monorepo Mx-Core (FINAL)**
 
 ```
-/mxcore
+/mx-core
   package.json                 ← root workspace + scripts
   tsconfig.json                ← base TS config
   node_modules                 ← global, shared
@@ -73,12 +73,12 @@ Karena arsitekturnya moduler & multi-package, **Monorepo dengan NPM Workspaces a
     /utils                     ← helpers/utilities
 
   /plugins
-    /mxcore-ai                 ← AI plugin
-    /mxcore-cmms               ← CMMS plugin
-    /mxcore-metric             ← KPI setup & monitoring
-    /mxcore-rbm                ← RBM plugin
-    /mxcore-docs               ← Document plugin (static)
-    /mxcore-dashboard          ← analytics/KPI plugin
+    /mx-core-ai                 ← AI plugin
+    /mx-core-cmms               ← CMMS plugin
+    /mx-core-metric             ← KPI setup & monitoring
+    /mx-core-rbm                ← RBM plugin
+    /mx-core-docs               ← Document plugin (static)
+    /mx-core-dashboard          ← analytics/KPI plugin
 ```
 
 Semua **plugin** adalah modul independen dengan UI dan API opsional.
@@ -89,7 +89,7 @@ Semua **plugin** adalah modul independen dengan UI dan API opsional.
 
 ```json
 {
-  "name": "mxcore",
+  "name": "mx-core",
   "private": true,
   "workspaces": ["apps/*", "packages/*", "plugins/*"],
   "scripts": {
@@ -133,7 +133,7 @@ Contoh plugin.json:
 
 ```json
 {
-  "name": "mxcore-ai",
+  "name": "mx-core-ai",
   "ui": true,
   "api": true,
   "module": "./dist/index.js"
@@ -176,7 +176,7 @@ Satu sumber kebenaran untuk seluruh modul.
 
 ```json
 {
-  "name": "@mxcore/types",
+  "name": "@mx-core/types",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "exports": { ".": "./dist/index.js" }
@@ -195,10 +195,10 @@ Satu sumber kebenaran untuk seluruh modul.
 {
   "compilerOptions": {
     "paths": {
-      "@mxcore/types": ["packages/types/dist"],
-      "@mxcore/core": ["packages/core/dist"],
-      "@mxcore/ui": ["packages/ui"],
-      "@mxcore/utils": ["packages/utils"]
+      "@mx-core/types": ["packages/types/dist"],
+      "@mx-core/core": ["packages/core/dist"],
+      "@mx-core/ui": ["packages/ui"],
+      "@mx-core/utils": ["packages/utils"]
     }
   }
 }
@@ -208,7 +208,7 @@ Satu sumber kebenaran untuk seluruh modul.
 
 ```js
 module.exports = {
-  transpilePackages: ['@mxcore/types', '@mxcore/core', '@mxcore/ui'],
+  transpilePackages: ['@mx-core/types', '@mx-core/core', '@mx-core/ui'],
 };
 ```
 
@@ -221,19 +221,19 @@ module.exports = {
 Frontend:
 
 ```ts
-import { Equipment } from '@mxcore/types/cmms';
+import { Equipment } from '@mx-core/types/cmms';
 ```
 
 Backend:
 
 ```ts
-import { Sensor } from '@mxcore/types/iot';
+import { Sensor } from '@mx-core/types/iot';
 ```
 
 Plugin:
 
 ```ts
-import { Document } from '@mxcore/types/docs';
+import { Document } from '@mx-core/types/docs';
 ```
 
 ---
@@ -268,13 +268,13 @@ Karena:
 
 GitHub Pages **hanya cocok untuk plugin statis**, seperti:
 
-- ✔ `mxcore-docs`
+- ✔ `mx-core-docs`
 
 → bisa deploy via `next export` + `gh-pages`
 
 ---
 
-### ⚡ **11. VERCEL = Hosting Utama untuk MxCore**
+### ⚡ **11. VERCEL = Hosting Utama untuk Mx-Core**
 
 Vercel mendukung:
 
@@ -306,10 +306,10 @@ Dan jauh lebih sederhana dibanding memaksa semuanya di GitHub Pages.
 ### 🧩 **12. Arsitektur Deploy (FINAL)**
 
 ```
-mxcore/
+mx-core/
   frontend → Vercel (SSR/CSR)
   backend  → Vercel Serverless / Railway / Render
-  mxcore-docs → GitHub Pages
+  mx-core-docs → GitHub Pages
   plugin-manifest.json → Public, diload oleh Frontend
 ```
 
@@ -338,6 +338,6 @@ lalu menampilkan plugin dinamis ataupun statis.
 | Kompleksitas      | ✔ sangat manageable                    |
 | Skalabilitas      | ✔ enterprise-ready                     |
 
-➡ **MxCore kini memiliki arsitektur final yang solid, modern, scalable, modular, dan siap produksi.**
+➡ **Mx-Core kini memiliki arsitektur final yang solid, modern, scalable, modular, dan siap produksi.**
 
 ---
