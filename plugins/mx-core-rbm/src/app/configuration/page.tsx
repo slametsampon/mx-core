@@ -16,6 +16,7 @@ export default function ConfigurationRootPage() {
   );
   const {
     data,
+    setData,
     schema,
     loading,
     isReady,
@@ -81,6 +82,7 @@ export default function ConfigurationRootPage() {
         ) : (
           <DynamicTable
             data={data}
+            setData={setData}
             fields={
               selectedModel === 'asset'
                 ? zodToFieldDefs(assetSchema)

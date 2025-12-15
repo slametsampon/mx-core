@@ -2,12 +2,15 @@
 
 'use client';
 
-import { useMemo, useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { FieldDefinition } from '@/models/asset/asset-type-schema';
 import { ChevronUpIcon, ChevronDownIcon } from '@heroicons/react/20/solid';
+import Papa from 'papaparse';
+import { saveAs } from 'file-saver';
 
 type Props = {
   data: Record<string, any>[];
+  setData: React.Dispatch<React.SetStateAction<Record<string, any>[]>>;
   fields: FieldDefinition[];
   onEdit?: (item: Record<string, any>) => void;
   onDelete?: (index: number) => void;
@@ -15,6 +18,7 @@ type Props = {
 
 export default function DynamicTable({
   data,
+  setData,
   fields,
   onEdit,
   onDelete,
@@ -22,6 +26,8 @@ export default function DynamicTable({
   const [sortField, setSortField] = useState<string | null>(null);
   const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('asc');
   const [searchQuery, setSearchQuery] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
 
   const handleSort = (fieldName: string) => {
     if (sortField === fieldName) {
@@ -30,6 +36,42 @@ export default function DynamicTable({
       setSortField(fieldName);
       setSortDirection('asc');
     }
+  };
+
+  const handleExportCSV = () => {
+    const csv = Papa.unparse(sortedData);
+    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+    saveAs(blob, 'export.csv');
+  };
+
+  const handleImportCSV = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    Papa.parse(file, {
+      header: true,
+      skipEmptyLines: true,
+      complete: function (results) {
+        const importedData = results.data as Record<string, any>[];
+
+        // Validasi kolom
+        const validColumns = fields.map((f) => f.name);
+        const isValid = importedData.every((item) =>
+          validColumns.every((col) => col in item)
+        );
+
+        if (!isValid) {
+          alert('❌ CSV tidak valid. Pastikan semua kolom sesuai format.');
+          return;
+        }
+
+        setData((prev) => [...prev, ...importedData]);
+        e.target.value = '';
+      },
+      error: function (err) {
+        alert(`❌ Gagal import CSV: ${err.message}`);
+      },
+    });
   };
 
   const filteredData = useMemo(() => {
@@ -57,7 +99,6 @@ export default function DynamicTable({
           : valB.localeCompare(valA);
       }
 
-      // fallback untuk angka atau undefined
       if (valA === undefined) return 1;
       if (valB === undefined) return -1;
       if (valA === valB) return 0;
@@ -65,21 +106,51 @@ export default function DynamicTable({
     });
   }, [filteredData, sortField, sortDirection]);
 
+  const totalPages = Math.ceil(sortedData.length / rowsPerPage);
+
+  const paginatedData = useMemo(() => {
+    const start = (currentPage - 1) * rowsPerPage;
+    const end = start + rowsPerPage;
+    return sortedData.slice(start, end);
+  }, [sortedData, currentPage, rowsPerPage]);
+
   if (!fields || fields.length === 0) {
     return <p>⚠️ Kolom belum tersedia.</p>;
   }
 
   return (
     <div className="space-y-4">
-      {/* 🔍 Input Pencarian */}
-      <div className="w-full">
+      {/* 🔍 Pencarian & Import/Export */}
+      <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
         <input
           type="text"
           placeholder="🔍 Cari data..."
-          className="w-full rounded border border-gray-300 px-3 py-2 text-sm shadow-sm focus:border-blue-500 focus:outline-none"
+          className="w-full rounded border border-gray-300 px-3 py-2 text-sm shadow-sm focus:border-blue-500 focus:outline-none md:w-1/3"
           value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
+          onChange={(e) => {
+            setSearchQuery(e.target.value);
+            setCurrentPage(1);
+          }}
         />
+
+        <div className="flex gap-4 text-sm">
+          <label className="cursor-pointer text-blue-600 hover:underline">
+            Import CSV
+            <input
+              type="file"
+              accept=".csv"
+              onChange={handleImportCSV}
+              className="hidden"
+            />
+          </label>
+
+          <button
+            onClick={handleExportCSV}
+            className="text-green-600 hover:underline"
+          >
+            Export CSV
+          </button>
+        </div>
       </div>
 
       {/* 📋 Tabel */}
@@ -117,10 +188,12 @@ export default function DynamicTable({
             </tr>
           </thead>
           <tbody>
-            {sortedData.length > 0 ? (
-              sortedData.map((item, idx) => (
+            {paginatedData.length > 0 ? (
+              paginatedData.map((item, idx) => (
                 <tr key={idx} className="hover:bg-gray-50">
-                  <td className="px-4 py-2">{idx + 1}</td>
+                  <td className="px-4 py-2">
+                    {(currentPage - 1) * rowsPerPage + idx + 1}
+                  </td>
                   {fields.map((f) => (
                     <td key={f.name} className="px-4 py-2">
                       {item[f.name] ?? '-'}
@@ -138,7 +211,9 @@ export default function DynamicTable({
                       )}
                       {onDelete && (
                         <button
-                          onClick={() => onDelete(idx)}
+                          onClick={() =>
+                            onDelete((currentPage - 1) * rowsPerPage + idx)
+                          }
                           className="text-red-600 hover:underline"
                         >
                           🗑️
@@ -160,6 +235,48 @@ export default function DynamicTable({
             )}
           </tbody>
         </table>
+      </div>
+
+      {/* 🔢 Pagination */}
+      <div className="flex items-center justify-between py-2 text-sm">
+        <div className="text-gray-600">
+          Halaman {currentPage} dari {totalPages}
+        </div>
+
+        <div className="flex items-center gap-2">
+          <button
+            disabled={currentPage === 1}
+            onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+            className="rounded border px-2 py-1 disabled:opacity-50"
+          >
+            ← Prev
+          </button>
+
+          <button
+            disabled={currentPage === totalPages}
+            onClick={() =>
+              setCurrentPage((prev) => Math.min(prev + 1, totalPages))
+            }
+            className="rounded border px-2 py-1 disabled:opacity-50"
+          >
+            Next →
+          </button>
+
+          <select
+            value={rowsPerPage}
+            onChange={(e) => {
+              setRowsPerPage(Number(e.target.value));
+              setCurrentPage(1);
+            }}
+            className="border px-2 py-1"
+          >
+            {[5, 10, 20, 50].map((num) => (
+              <option key={num} value={num}>
+                {num} / halaman
+              </option>
+            ))}
+          </select>
+        </div>
       </div>
     </div>
   );

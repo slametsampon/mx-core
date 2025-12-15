@@ -1,5 +1,27 @@
 [
   {
+    "id": "AI/artikel-teknis-dengan-ai",
+    "name": "Meningkatkan Kualitas Dokumentasi Teknik melalui Penulisan Artikel yang Sistematis",
+    "section": "CONTENT",
+    "href": "/blog/AI/artikel-teknis-dengan-ai",
+    "subtitle": "December 15, 2025",
+    "keywords": [
+      "tulisan-teknis",
+      "engineering-writing",
+      "artikel-teknik",
+      "template-artikel-teknik",
+      "prompt-engineering",
+      "API-ASME-ISO",
+      "petrokimia-EPC",
+      "dokumentasi-teknik",
+      "TQ-NCR-RFI",
+      "standar-rekayasa",
+      "struktur-artikel-teknik",
+      "maintenance-engineering",
+      "laporan-teknis"
+    ]
+  },
+  {
     "id": "maintenance/maintenance-material-rider-ring",
     "name": "Pemilihan Material Rider Ring (R/R) dan Piston Ring (P/R) dalam Sistem Kompresor - Kesesuaian dengan Material Piston dan Liner",
     "section": "CONTENT",
@@ -284,6 +306,20 @@
       "contentlayer",
       "tailwind",
       "eslint"
+    ]
+  },
+  {
+    "id": "markdown/github-markdown-guide",
+    "name": "Panduan Markdown",
+    "section": "CONTENT",
+    "href": "/blog/markdown/github-markdown-guide",
+    "subtitle": "October 7, 2025",
+    "keywords": [
+      "github",
+      "panduan",
+      "markdown",
+      "md",
+      "mdx"
     ]
   },
   {
