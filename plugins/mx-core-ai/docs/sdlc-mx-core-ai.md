@@ -61,6 +61,8 @@ summary: Artikel ini menyajikan panduan lengkap pengembangan perangkat lunak ind
   - [📡 **Komunikasi Antar Plugin (Modular Integration)**](#-komunikasi-antar-plugin-modular-integration)
   - [🧭 **Diagram Arsitektur Mx-Core-AI (HLD)**](#-diagram-arsitektur-mx-core-ai-hld)
 - [🔶 B. **Low-Level Design (LLD)**](#-b-low-level-design-lld)
+  - [� **Mapping FR ke Implementasi Teknis**](#-mapping-fr-ke-implementasi-teknis)
+  - [📌 Kesimpulan \& Benefit](#-kesimpulan--benefit)
   - [📌 **Struktur Data – ERD dan Tabel DB (Simplifikasi)**](#-struktur-data--erd-dan-tabel-db-simplifikasi)
   - [📌 **Deskripsi Algoritma AI**](#-deskripsi-algoritma-ai)
   - [📌 **Contoh API Schema**](#-contoh-api-schema)
@@ -552,6 +554,90 @@ System Design adalah tahap penerjemahan kebutuhan (BRS & SRS) ke dalam **struktu
 ---
 
 ## 🔶 B. **Low-Level Design (LLD)**
+
+Dokumen ini sekaligus menjadi **jembatan dari SRS ➝ LLD**, serta memperlihatkan hubungan dengan tools, API, DB, dan komponen sistem `mxcore-ai`.
+
+---
+
+### 📋 **Mapping FR ke Implementasi Teknis**
+
+| FR ID     | Komponen Teknis                      | Deskripsi Teknis                                                                                                                                                                                           |
+| --------- | ------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **FR-01** | 🔹 **RUL Model – Gradient Boosting** | Model regresi (`GradientBoostingRegressor`, sklearn) memproses fitur: `RMS vibrasi`, `temp avg`, `current delta`. Output berupa RUL (hari). Model disimpan sebagai `.joblib`, dipanggil via API inference. |
+|           | ⚙️ **Tech Stack**                    | Python 3.10, `scikit-learn`, `pandas`, `MLflow`, `joblib`, `Docker`                                                                                                                                        |
+|           | 📡 **API Endpoint**                  | `POST /api/v1/predict-rul` – Input: `equipment_id`, Output: `{rul, confidence}`                                                                                                                            |
+|           | 🗃️ **Database**                      | PostgreSQL – menyimpan histori prediksi dan response                                                                                                                                                       |
+
+---
+
+| FR ID     | Komponen Teknis                     | Deskripsi Teknis                                                                              |
+| --------- | ----------------------------------- | --------------------------------------------------------------------------------------------- |
+| **FR-02** | 🔹 **Confidence Score Calculation** | Output model dilengkapi confidence berdasarkan interval prediktif / standard deviation residu |
+|           | 📊 **Visualisasi**                  | Ditampilkan sebagai progress bar / badge di dashboard                                         |
+|           | 💡 **Framework Tambahan**           | NumPy, SciPy (untuk deviasi), Chakra UI badge                                                 |
+
+---
+
+| FR ID     | Komponen Teknis                             | Deskripsi Teknis                                                                                                        |
+| --------- | ------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| **FR-03** | 🔹 **Anomaly Detection – Isolation Forest** | Model unsupervised `IsolationForest` mengevaluasi window data sensor. Jika anomaly score > threshold, ditandai anomali. |
+|           | ⚙️ **Tech Stack**                           | Python 3.10, `scikit-learn`, `joblib`, `dask` / scheduler                                                               |
+|           | 📡 **API Endpoint**                         | `POST /api/v1/anomaly-check` – Output: `{is_anomaly: true/false}`                                                       |
+|           | 🗃️ **DB & Storage**                         | MongoDB (log anomali), Redis (caching output scoring)                                                                   |
+
+---
+
+| FR ID     | Komponen Teknis            | Deskripsi Teknis                                                                 |
+| --------- | -------------------------- | -------------------------------------------------------------------------------- |
+| **FR-04** | 🔔 **Anomaly Alerting**    | Sistem membaca hasil scoring dan memunculkan notifikasi jika `is_anomaly = true` |
+|           | 🛠️ **Notification Engine** | Express.js service + WebSocket + plugin `mxcore-dashboard`                       |
+|           | 🖥️ **UI Element**          | Snackbar alert dengan severity info/warning/critical                             |
+
+---
+
+| FR ID     | Komponen Teknis                 | Deskripsi Teknis                                                                              |
+| --------- | ------------------------------- | --------------------------------------------------------------------------------------------- |
+| **FR-05** | 📥 **WO Recommendation Engine** | Rule-based engine atau logistic regression menghasilkan saran aksi (Inspection / Replacement) |
+|           | 🔗 **Integrasi**                | Terhubung ke `mxcore-cmms` API untuk input WO otomatis                                        |
+|           | 🧠 **Opsional**                 | Future enhancement menggunakan `embedding + semantic retrieval`                               |
+
+---
+
+| FR ID     | Komponen Teknis             | Deskripsi Teknis                                                                           |
+| --------- | --------------------------- | ------------------------------------------------------------------------------------------ |
+| **FR-06** | 📡 **CMMS API Integration** | REST call ke endpoint `mxcore-cmms` (`POST /cmms-api/auto-wo`) membawa payload rekomendasi |
+|           | 🛡️ **Security**             | Token authentication antar-plugin (`JWT` atau `API key`)                                   |
+|           | 🔍 **Traceability**         | Audit log disimpan di PostgreSQL                                                           |
+
+---
+
+| FR ID     | Komponen Teknis                         | Deskripsi Teknis                                              |
+| --------- | --------------------------------------- | ------------------------------------------------------------- |
+| **FR-07** | 🧠 **Root Cause Analysis (RCA) Engine** | Menggunakan pattern matching dari histori kegagalan. (Future) |
+|           | 🔍 **Model**                            | Cosine similarity antar vektor histori dengan kejadian baru   |
+|           | 🛠️ **Framework Opsional**               | `langchain`, `sentence-transformers`, `neo4j`                 |
+
+---
+
+| FR ID     | Komponen Teknis                          | Deskripsi Teknis                                                                                          |
+| --------- | ---------------------------------------- | --------------------------------------------------------------------------------------------------------- |
+| **FR-08** | 💬 **NLP Interface & Insight Generator** | Sistem dapat memahami query seperti: _“Pompa mana yang paling berisiko?”_ dan merespons berbasis prediksi |
+|           | 🧠 **Framework**                         | `LangChain`, `OpenAI function calling`, `nlp.js`, `natural`, atau `spaCy`                                 |
+|           | 🛡️ **Input Control**                     | Prompt filtered & normalized sebelum dijalankan                                                           |
+|           | 📡 **API Endpoint**                      | `POST /api/v1/nlp-query`                                                                                  |
+
+---
+
+### 📌 Kesimpulan & Benefit
+
+- Semua **FR dari SRS telah diturunkan menjadi implementasi teknikal (LLD)** lengkap dengan tools, model, API, DB, dan UI flow
+- Dokumen ini dapat menjadi:
+
+  - Acuan **tim development**
+  - Basis review **arsitektur**
+  - Referensi **traceability** dari requirement → desain → implementasi
+
+---
 
 ### 📌 **Struktur Data – ERD dan Tabel DB (Simplifikasi)**
 
