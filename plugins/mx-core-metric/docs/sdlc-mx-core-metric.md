@@ -1,5 +1,5 @@
 ---
-title: Blueprint Pengembangan Software Industri - SDLC + Studi Kasus Mx-Core-metric
+title: Blueprint Pengembangan mx-core-metric – KPI Planning, Recording & Forecasting Platform
 authors: ['sam']
 date: '2025-12-16'
 tags:
@@ -29,1156 +29,940 @@ draft: false
 summary: Artikel ini menyajikan panduan lengkap pengembangan perangkat lunak industri berbasis Software Development Life Cycle (SDLC), mulai dari tahap Business Requirement Specification (BRS) hingga Maintenance. Disusun secara sistematis dengan studi kasus nyata mx-core-docs, plugin AI untuk prediktif maintenance di lingkungan petrokimia. Setiap fase—BRS, SRS, HLD, LLD, implementasi, testing, deployment, hingga dukungan pasca-produksi—dibahas dengan contoh dokumen, alur kerja, dan praktik terbaik. Artikel ini menjadi referensi menyeluruh untuk tim engineer, arsitek sistem, dan manajemen proyek dalam membangun sistem cerdas berbasis data industri.
 ---
 
-**Blueprint Pengembangan Software Industri: SDLC + Studi Kasus Mx-Core-metric**
+**Blueprint Pengembangan mx-core-metric – KPI Planning, Recording & Forecasting Platform**
 
 ---
 
-- [**I. Pendahuluan**](#i-pendahuluan)
-  - [Apa itu SDLC?](#apa-itu-sdlc)
-  - [Mengapa SDLC Penting untuk Proyek Berskala Industri?](#mengapa-sdlc-penting-untuk-proyek-berskala-industri)
-  - [Peran SDLC dalam Sistem Cerdas seperti `mx-core-metric`](#peran-sdlc-dalam-sistem-cerdas-seperti-mx-core-metric)
-- [**II. Ringkasan SDLC dan Alur Tahapan**](#ii-ringkasan-sdlc-dan-alur-tahapan)
-  - [Diagram Alur Waterfall (dengan Iteratif Opsional)](#diagram-alur-waterfall-dengan-iteratif-opsional)
-  - [Hubungan Hirarkis Antar Dokumen](#hubungan-hirarkis-antar-dokumen)
-  - [Traceability antar Artefak](#traceability-antar-artefak)
-- [**III. BRS – Business Requirement Specification**](#iii-brs--business-requirement-specification)
-  - [Fungsi BRS](#fungsi-brs)
-  - [Komponen Dokumen BRS](#komponen-dokumen-brs)
-  - [Studi Kasus: Mx-Core-metric](#studi-kasus-mx-core-metric)
-    - [Kebutuhan Bisnis](#kebutuhan-bisnis)
-    - [Stakeholder dan Objektif](#stakeholder-dan-objektif)
-  - [Contoh Format Tabel BRS](#contoh-format-tabel-brs)
-- [**IV. SRS – Software Requirement Specification**](#iv-srs--software-requirement-specification)
-  - [Perbedaan SRS dengan BRS](#perbedaan-srs-dengan-brs)
-  - [Fungsi dan Isi SRS](#fungsi-dan-isi-srs)
-    - [Isi Umum Dokumen SRS:](#isi-umum-dokumen-srs)
-  - [Integrasi Use-Case](#integrasi-use-case)
-    - [Format Use-Case (Narratif)](#format-use-case-narratif)
-    - [(Opsional) Diagram Use-Case UML](#opsional-diagram-use-case-uml)
-  - [Use-Case Studi Kasus: “Prediksi Kegagalan Pompa Kritikal”](#use-case-studi-kasus-prediksi-kegagalan-pompa-kritikal)
-    - [Narasi Use-Case:](#narasi-use-case)
-    - [Kebutuhan Turunan dari Use-Case:](#kebutuhan-turunan-dari-use-case)
-  - [Traceability dari BRS ke SRS](#traceability-dari-brs-ke-srs)
-- [**V. System Design**](#v-system-design)
-  - [🔷 A. High-Level Design (HLD)](#-a-high-level-design-hld)
-    - [Modul Utama dan Komunikasi Antar Plugin](#modul-utama-dan-komunikasi-antar-plugin)
-    - [Diagram Arsitektur Mx-Core-metric](#diagram-arsitektur-mx-core-metric)
-    - [Integrasi dengan Sistem Eksternal](#integrasi-dengan-sistem-eksternal)
-  - [🔷 B. Low-Level Design (LLD)](#-b-low-level-design-lld)
-    - [Struktur Data – ERD dan Tabel DB](#struktur-data--erd-dan-tabel-db)
-    - [Algoritma AI – Deskripsi \& Parameter](#algoritma-ai--deskripsi--parameter)
-    - [API Schema – Contoh Endpoint Prediksi RUL](#api-schema--contoh-endpoint-prediksi-rul)
-    - [Versi Model dan Retraining Schedule](#versi-model-dan-retraining-schedule)
-- [**VI. Implementation**](#vi-implementation)
-  - [Struktur Kode Plugin Mx-Core-metric](#struktur-kode-plugin-mx-core-metric)
-  - [Teknologi yang Digunakan](#teknologi-yang-digunakan)
-  - [CI/CD Pipeline Ringkas](#cicd-pipeline-ringkas)
-  - [Kode vs Dokumentasi (LLD Linkage)](#kode-vs-dokumentasi-lld-linkage)
-- [**VII. Testing**](#vii-testing)
-  - [Test Plan dan Test Case](#test-plan-dan-test-case)
-    - [Test Plan](#test-plan)
-    - [Test Case](#test-case)
-  - [Keterkaitan dengan Use-Case](#keterkaitan-dengan-use-case)
-  - [UAT untuk Sistem Prediksi](#uat-untuk-sistem-prediksi)
-  - [Tools yang Digunakan](#tools-yang-digunakan)
-- [**VIII. Deployment**](#viii-deployment)
-  - [Deployment Pipeline](#deployment-pipeline)
-    - [Contoh Alur CI/CD Pipeline:](#contoh-alur-cicd-pipeline)
-    - [Sample: Konfigurasi GitHub Actions](#sample-konfigurasi-github-actions)
-  - [Environment Setup (Dev, QA, Prod)](#environment-setup-dev-qa-prod)
-    - [Konfigurasi Umum per Environment:](#konfigurasi-umum-per-environment)
-  - [Rollback \& Release Notes](#rollback--release-notes)
-    - [Rollback](#rollback)
-    - [Release Notes](#release-notes)
-  - [Integrasi ke Ekosistem Mx-Core](#integrasi-ke-ekosistem-mx-core)
-    - [Bentuk Integrasi:](#bentuk-integrasi)
-- [**IX. Maintenance**](#ix-maintenance)
-  - [1. Post-deployment Monitoring](#1-post-deployment-monitoring)
-    - [Komponen Monitoring:](#komponen-monitoring)
-    - [Contoh Alert Otomatis:](#contoh-alert-otomatis)
-  - [2. SLA dan Respon Insiden](#2-sla-dan-respon-insiden)
-  - [3. Model Retraining dan Model Drift Handling](#3-model-retraining-dan-model-drift-handling)
-    - [Jadwal dan Strategi Retraining:](#jadwal-dan-strategi-retraining)
-    - [Handling Model Drift](#handling-model-drift)
-  - [4. Change Request Management](#4-change-request-management)
-    - [Siklus Change Request:](#siklus-change-request)
-    - [Contoh CR:](#contoh-cr)
-- [**X. Dokumentasi \& Deliverable**](#x-dokumentasi--deliverable)
-  - [1. Tabel Daftar Dokumen Tiap Fase SDLC](#1-tabel-daftar-dokumen-tiap-fase-sdlc)
-  - [2. Template / Contoh File Dokumentasi](#2-template--contoh-file-dokumentasi)
-    - [📄 BRS Template (`.docx`)](#-brs-template-docx)
-    - [📊 Test Case Format (`.xlsx`)](#-test-case-format-xlsx)
-    - [🧾 API Schema (`.json`)](#-api-schema-json)
-    - [📘 Release Notes Format (`.md`)](#-release-notes-format-md)
-  - [3. Best Practices dalam Penyusunan \& Pengelolaan Dokumen](#3-best-practices-dalam-penyusunan--pengelolaan-dokumen)
-    - [✅ Prinsip Utama](#-prinsip-utama)
-    - [📦 Tools Pendukung](#-tools-pendukung)
-- [**XI. Penutup**](#xi-penutup)
-  - [🔁 Ringkasan: Pentingnya Keterpaduan BRS ➝ SRS ➝ Desain ➝ Implementasi](#-ringkasan-pentingnya-keterpaduan-brs--srs--desain--implementasi)
-  - [🛠️ Rekomendasi: Gunakan SDLC sebagai Standar Proyek Digital Maintenance](#️-rekomendasi-gunakan-sdlc-sebagai-standar-proyek-digital-maintenance)
-  - [✅ Checklist: Sukses Implementasi SDLC di Proyek Industrial / AI](#-checklist-sukses-implementasi-sdlc-di-proyek-industrial--ai)
+## 📌 **Latar Belakang Masalah**
+
+Dalam operasional industri berskala besar, pemantauan performa lintas departemen secara real-time menjadi tantangan besar. Selama ini:
+
+- Perencanaan KPI dilakukan secara manual dan tersebar di berbagai format (Excel, form offline).
+- Tidak ada sistem terpadu yang mengaitkan target KPI dengan aktual capaian serta dampak gangguan operasional.
+- Sulit melakukan **monitoring berkala** (mingguan/bulanan), apalagi memprediksi capaian akhir tahun.
+- Forecasting dilakukan secara manual atau tidak akurat, mengandalkan penilaian subjektif.
+- Belum ada integrasi dengan data sensor/IoT untuk otomatisasi pencatatan aktual.
 
 ---
 
-## **I. Pendahuluan**
+## 🎯 **Visi dan Tujuan Bisnis**
 
-### Apa itu SDLC?
+**Visi:**
+Membangun sistem KPI terpadu yang mampu mencatat, mengelola, dan memprediksi performa operasional lintas departemen secara otomatis, fleksibel, dan dapat diintegrasikan dengan sistem sensor/IoT.
 
-**SDLC** (Software Development Life Cycle) adalah sebuah kerangka kerja sistematis yang menggambarkan tahapan-tahapan yang harus dilalui dalam pengembangan perangkat lunak, mulai dari perencanaan awal hingga pemeliharaan setelah deployment. SDLC berfungsi sebagai panduan agar proses pengembangan software menjadi lebih terstruktur, terdokumentasi, dan dapat direplikasi dengan baik.
+**Tujuan:**
 
-### Mengapa SDLC Penting untuk Proyek Berskala Industri?
-
-Dalam konteks proyek berskala industri, pengembangan software memiliki kompleksitas tinggi karena harus melibatkan banyak stakeholder, kepatuhan terhadap standar industri, serta ekspektasi performa dan keandalan yang tinggi. Oleh karena itu, pendekatan SDLC menjadi sangat krusial karena:
-
-- **Menjamin kualitas** melalui validasi di setiap fase.
-- **Mengurangi risiko** dengan perencanaan dan dokumentasi yang matang.
-- **Mempermudah kolaborasi lintas tim**, terutama ketika tim terdiri dari berbagai disiplin (developer, QA, AI engineer, devops, dan engineer lapangan).
-- **Memastikan traceability** dari kebutuhan bisnis ke fitur teknis.
-
-### Peran SDLC dalam Sistem Cerdas seperti `mx-core-metric`
-
-`mx-core-metric` adalah sistem pemantauan KPI maintenance berbasis data real-time, yang digunakan untuk memprediksi dan menangani potensi gangguan mesin industri secara dini. Sistem ini termasuk dalam kategori **intelligent maintenance system**, karena menggabungkan pengumpulan data sensor, analitik berbasis AI/ML, serta integrasi ke dashboard pemantauan.
-
-Dalam konteks ini, SDLC:
-
-- Membantu memastikan bahwa **kebutuhan bisnis seperti menurunkan MTTR dan meningkatkan uptime** dapat diturunkan menjadi fitur teknis yang terukur.
-- Menyediakan kerangka kerja untuk **mengintegrasikan berbagai komponen**, mulai dari perangkat IoT (ESP32, MQTT), sistem backend, hingga dashboard berbasis Next.js.
-- Memastikan bahwa siklus pembaruan model AI dan feedback dari lapangan dapat ditangani melalui proses **iteratif dan terdokumentasi**.
+- Menyediakan platform digital untuk perencanaan dan pemantauan KPI numerik/non-numerik secara multi-level (tahunan → harian).
+- Menghubungkan aktual capaian dengan gangguan operasional yang terjadi.
+- Menyediakan fitur prediksi capaian akhir tahun menggunakan metode manual dan otomatis.
+- Menyajikan dashboard interaktif yang membantu manajemen mengambil keputusan berbasis data real-time.
+- Mempersiapkan sistem untuk integrasi IoT & otomatisasi data (sensor → MQTT → API).
 
 ---
 
-## **II. Ringkasan SDLC dan Alur Tahapan**
+## 👥 **Stakeholders dan Peran**
 
-### Diagram Alur Waterfall (dengan Iteratif Opsional)
-
-SDLC secara umum dapat diimplementasikan dalam berbagai model proses — yang paling klasik adalah model **waterfall**. Namun, dalam praktik industri modern, pendekatan waterfall sering dikombinasikan dengan iterasi (semi-agile), terutama pada tahap desain dan implementasi.
-
-Berikut adalah alur fase utama SDLC yang akan dibahas dalam studi kasus `mx-core-metric`:
-
-```
-[BRS] → [SRS + Use-Case] → [HLD → LLD] → [Implementation] → [Testing] → [Deployment] → [Maintenance]
-```
-
-**Keterangan Singkat Tiap Tahap:**
-
-1. **BRS (Business Requirement Specification)**
-   Menyusun kebutuhan bisnis dari sisi stakeholder (misal: mengurangi downtime mesin industri).
-
-2. **SRS (Software Requirement Specification) + Use-Case**
-   Menjabarkan kebutuhan bisnis menjadi kebutuhan teknis, termasuk skenario penggunaan (use-case).
-
-3. **HLD (High-Level Design) → LLD (Low-Level Design)**
-   Mendesain arsitektur sistem (HLD), lalu merinci struktur data, API, dan algoritma (LLD).
-
-4. **Implementation**
-   Tahap pengembangan perangkat lunak sesuai desain teknis, termasuk integrasi sistem IoT, backend, dan frontend.
-
-5. **Testing**
-   Pengujian unit, integrasi, hingga user acceptance untuk memastikan sistem bekerja sesuai kebutuhan awal.
-
-6. **Deployment**
-   Proses rilis ke lingkungan produksi, termasuk setup pipeline CI/CD dan environment.
-
-7. **Maintenance**
-   Perawatan sistem pasca-deploy, termasuk monitoring, retraining model AI, dan penanganan change request.
+| Peran                   | Deskripsi                                                           |
+| ----------------------- | ------------------------------------------------------------------- |
+| **Manajemen Pusat**     | Pengguna utama dashboard untuk melihat performa & membuat keputusan |
+| **Kepala Departemen**   | Penanggung jawab KPI tahunan dan pemantauan capaian tiap unit       |
+| **Operator Lapangan**   | Mencatat capaian aktual & gangguan operasional                      |
+| **IT & Developer Team** | Membangun dan memelihara sistem mx-core-metric                      |
+| **Tim IoT & Integrasi** | Menghubungkan sistem dengan data dari sensor                        |
+| **QA dan Support**      | Menguji sistem, memastikan kualitas dan mendukung user              |
 
 ---
 
-### Hubungan Hirarkis Antar Dokumen
+## 🧭 **Kebutuhan Bisnis Tingkat Tinggi**
 
-Dokumen dalam SDLC memiliki **struktur hierarkis**, dari level kebutuhan bisnis ke level teknis, hingga artefak implementasi. Hirarki ini penting agar setiap keputusan teknis bisa ditelusuri balik ke kebutuhan bisnisnya.
-
-Contoh hierarki dokumen:
-
-- **BRS**
-  ↳ menjadi acuan utama bagi seluruh proyek (apa yang dibutuhkan stakeholder)
-
-- **SRS**
-  ↳ turunan langsung dari BRS dalam bentuk kebutuhan software yang terukur
-  ↳ berisi use-case, spesifikasi input/output, dan kebutuhan sistem lainnya
-
-- **HLD/LLD**
-  ↳ merupakan realisasi teknis dari SRS
-  ↳ menjabarkan modul, komponen, arsitektur data, skema API, hingga algoritma
-
-- **Test Plan & Test Case**
-  ↳ disusun berdasarkan SRS dan use-case
-  ↳ menguji apakah sistem memenuhi requirement
+1. Sistem mampu mengelola target KPI tahunan dan breakdown periodik (bulanan/mingguan/harian).
+2. Sistem mendukung input aktual capaian KPI dan gangguan (disturbance) secara manual maupun otomatis.
+3. Sistem menyediakan fitur prediksi (forecast) capaian akhir tahun berdasarkan data historis.
+4. Sistem menyediakan dashboard untuk memantau KPI, deviasi, dan dampak gangguan.
+5. Sistem memungkinkan integrasi dengan sensor eksternal (via MQTT) untuk pencatatan otomatis.
 
 ---
 
-### Traceability antar Artefak
+## 🏁 **Kriteria Keberhasilan Proyek**
 
-**Traceability** adalah kemampuan untuk melacak asal-usul dan keterkaitan antar artefak dalam SDLC. Hal ini sangat penting dalam proyek industri, terutama untuk:
-
-- Audit & compliance
-- Analisis dampak perubahan (change impact analysis)
-- Validasi fungsionalitas sistem
-
-Dalam `mx-core-metric`, traceability membantu memastikan bahwa:
-
-- Setiap **metrik yang ditampilkan di dashboard** bisa ditelusuri kembali ke requirement di SRS.
-- Setiap **model AI** yang digunakan bisa dihubungkan ke use-case spesifik di BRS.
-- Setiap **test case** bisa memverifikasi satu atau lebih kebutuhan dari SRS.
-
-Contoh traceability sederhana:
-
-| Artefak Sumber                       | Artefak Turunan                                       | Keterangan                         |
-| ------------------------------------ | ----------------------------------------------------- | ---------------------------------- |
-| BRS-01: Sistem harus mengurangi MTTR | SRS-05: Sistem harus mendeteksi anomali dalam 5 menit | Diubah menjadi requirement teknis  |
-| SRS-05                               | UC-02: Anomali Deteksi Real-Time                      | Dijabarkan dalam use-case          |
-| UC-02                                | TC-10: Simulasi kerusakan dan respons sistem          | Dijadikan test case untuk validasi |
+| Kriteria                   | Indikator                                                                                |
+| -------------------------- | ---------------------------------------------------------------------------------------- |
+| 🎯 **Fungsionalitas**      | Semua proses KPI (rencana → catat → pantau → prediksi) dapat dilakukan dalam satu sistem |
+| 📈 **Akurasi Forecasting** | Prediksi sistem mendekati hasil aktual (deviasi ≤10%) untuk KPI numerik                  |
+| ⚙️ **Stabilitas Sistem**   | Uptime sistem ≥ 99.5% selama jam operasional                                             |
+| 🔌 **Keterhubungan**       | Sistem dapat menerima data otomatis dari sensor MQTT dengan latency < 3 detik            |
+| 🧠 **Adopsi User**         | >80% departemen menggunakan sistem secara aktif dalam 3 bulan setelah peluncuran         |
 
 ---
 
-## **III. BRS – Business Requirement Specification**
+## 🧱 **Batasan dan Asumsi**
 
-### Fungsi BRS
-
-**BRS (Business Requirement Specification)** adalah dokumen yang menggambarkan kebutuhan dan tujuan bisnis dari sistem yang akan dikembangkan. Fokus utama BRS bukan pada aspek teknis, melainkan pada **apa yang dibutuhkan oleh bisnis** agar solusi digital yang dibangun benar-benar memberikan nilai tambah.
-
-Dalam konteks pengembangan sistem industri seperti `mx-core-metric`, BRS berperan penting untuk:
-
-- Menyelaraskan ekspektasi stakeholder dengan ruang lingkup sistem.
-- Menjadi dasar turunan untuk dokumen teknis seperti SRS dan desain sistem.
-- Menghindari misinterpretasi di antara tim pengembang, QA, dan manajemen.
+| Batasan                                             | Asumsi                                                                    |
+| --------------------------------------------------- | ------------------------------------------------------------------------- |
+| Tidak semua KPI bisa diukur secara numerik          | KPI bertipe boolean/status tetap didukung                                 |
+| Tidak semua gangguan berdampak langsung pada KPI    | Sistem akan menyediakan fitur "link manual" antara disturbance dan KPI    |
+| Prediksi tidak menggunakan ML canggih di tahap awal | Forecast awal menggunakan metode manual & linear, ML ditambahkan kemudian |
+| Integrasi sensor hanya untuk unit tertentu          | Pilot dilakukan di unit yang sudah memiliki sensor & gateway MQTT         |
 
 ---
 
-### Komponen Dokumen BRS
+## 📚 **Referensi Pendukung**
 
-Sebuah dokumen BRS yang baik umumnya mencakup:
-
-| Komponen             | Deskripsi                                                               |
-| -------------------- | ----------------------------------------------------------------------- |
-| **Latar Belakang**   | Penjelasan umum tentang permasalahan atau tantangan bisnis saat ini     |
-| **Tujuan Sistem**    | Gambaran besar tentang apa yang ingin dicapai oleh sistem               |
-| **Ruang Lingkup**    | Batasan sistem, termasuk yang tidak termasuk ke dalam sistem            |
-| **Stakeholder**      | Pihak-pihak yang terkait langsung, seperti engineer, manajer, tim IT    |
-| **Kebutuhan Bisnis** | Pernyataan kebutuhan dalam bahasa bisnis, belum teknis                  |
-| **KPI atau Target**  | Indikator keberhasilan sistem, seperti pengurangan downtime >20%        |
-| **Keterbatasan**     | Batasan sistem, seperti integrasi dengan sistem lama, atau SLA jaringan |
+- Dokumen ERD & Struktur Data `mx-core-metric`
+- Studi kasus penggunaan KPI di Maintenance, Produksi, dan K3
+- Rencana strategis korporat terkait digitalisasi performa dan dashboardisasi
+- Standar ISO 22400 (Key Performance Indicators for Manufacturing Operations)
 
 ---
 
-### Studi Kasus: Mx-Core-metric
+## ✅ **Output BRS**
 
-#### Kebutuhan Bisnis
-
-Sistem `mx-core-metric` dirancang sebagai solusi pemantauan dan prediksi performa maintenance di sektor industri. Kebutuhan bisnis utamanya mencakup:
-
-- **Mengurangi downtime tidak terencana**, dengan mendeteksi anomali dan prediksi kegagalan lebih awal.
-- **Meningkatkan efektivitas tim teknis**, melalui sistem notifikasi dan dashboard yang memberikan informasi kontekstual.
-- **Mendukung pengambilan keputusan manajerial**, melalui visualisasi tren KPI (seperti MTTR, MTBF, utilization rate).
-- **Integrasi dengan sistem yang sudah ada** seperti CMMS dan sensor berbasis MQTT.
-
-#### Stakeholder dan Objektif
-
-| Stakeholder              | Peran dalam Sistem                    | Tujuan/Objektif                                    |
-| ------------------------ | ------------------------------------- | -------------------------------------------------- |
-| **Manajer Operasional**  | Melihat laporan KPI dan tren per site | Meningkatkan uptime operasional                    |
-| **Teknisi Lapangan**     | Menerima notifikasi peringatan dini   | Tindakan preventif sebelum terjadi kerusakan besar |
-| **Data Engineer**        | Integrasi data sensor dan CMMS        | Menjaga kualitas dan kontinuitas data              |
-| **Tim IT Infrastruktur** | Deploy dan maintenance aplikasi       | Menyediakan sistem yang scalable dan reliable      |
+✅ Dokumen BRS ini menjadi dasar pengembangan kebutuhan teknis di tahap berikutnya (**SRS**).
+Semua stakeholder bisnis dapat meninjau dan menyetujui visi, peran, dan kebutuhan yang dijabarkan.
 
 ---
 
-### Contoh Format Tabel BRS
-
-| ID     | Kebutuhan Bisnis                                                                | Prioritas | Stakeholder Terkait          | Catatan                                      |
-| ------ | ------------------------------------------------------------------------------- | --------- | ---------------------------- | -------------------------------------------- |
-| BRS-01 | Sistem harus mampu mendeteksi potensi kerusakan mesin sebelum terjadi kegagalan | Tinggi    | Teknisi, Manajer Operasional | Berbasis data sensor real-time               |
-| BRS-02 | Menyediakan dashboard tren KPI (MTTR, MTBF, dll)                                | Sedang    | Manajer Operasional          | Akses via browser desktop dan mobile         |
-| BRS-03 | Sistem harus memberikan notifikasi via WA/email jika terjadi anomali            | Tinggi    | Teknisi                      | Dikirim < 1 menit setelah anomali terdeteksi |
-| BRS-04 | Integrasi dengan sistem CMMS internal                                           | Sedang    | Tim IT, Data Engineer        | Melalui API REST/GraphQL                     |
-| BRS-05 | Sistem dapat menangani 100+ perangkat aktif secara bersamaan                    | Tinggi    | Tim Infrastruktur            | Menggunakan WebSocket atau MQTT              |
+## 📘 **SRS – Software Requirement Specification (Part 1: General + Functional Requirements)**
 
 ---
 
-## **IV. SRS – Software Requirement Specification**
+### 📌 **1. Tujuan Dokumen**
 
-### Perbedaan SRS dengan BRS
-
-| Aspek              | BRS (Business Requirement Specification)     | SRS (Software Requirement Specification)                   |
-| ------------------ | -------------------------------------------- | ---------------------------------------------------------- |
-| Fokus              | Tujuan dan kebutuhan dari sisi bisnis        | Spesifikasi teknis dari fitur dan fungsi sistem            |
-| Bahasa             | Non-teknis (bahasa bisnis)                   | Semi-teknis hingga teknis                                  |
-| Siapa yang membuat | Business analyst, product owner, stakeholder | System analyst, software architect, developer              |
-| Siapa yang membaca | Semua stakeholder                            | Tim teknis, QA, developer                                  |
-| Tujuan             | Menjelaskan "apa yang dibutuhkan"            | Menjelaskan "bagaimana sistem memenuhi kebutuhan tersebut" |
+Dokumen ini menjabarkan kebutuhan teknis sistem `mx-core-metric` yang akan dikembangkan. Dokumen ini menjadi rujukan utama bagi tim teknis (developer, QA, devops) dalam proses desain, implementasi, dan pengujian.
 
 ---
 
-### Fungsi dan Isi SRS
+### 📦 **2. Ruang Lingkup Sistem**
 
-**SRS** adalah dokumen yang menjabarkan semua kebutuhan software secara **jelas, terukur, dan dapat diuji**. SRS berfungsi sebagai kontrak antara tim teknis dan bisnis, serta menjadi dasar untuk desain, implementasi, dan pengujian sistem.
+`mx-core-metric` adalah plugin dalam monorepo `mx-core` yang berfungsi sebagai platform pengelolaan Key Performance Indicator (KPI) lintas departemen dan unit operasional. Fitur utama sistem ini mencakup:
 
-#### Isi Umum Dokumen SRS:
-
-| Bagian                          | Penjelasan                                                             |
-| ------------------------------- | ---------------------------------------------------------------------- |
-| **Tujuan Sistem**               | Merujuk pada kebutuhan bisnis dari BRS                                 |
-| **Deskripsi Umum Sistem**       | Menjelaskan alur utama sistem secara ringkas                           |
-| **Fungsi Sistem**               | Daftar fitur utama: notifikasi, grafik tren, manajemen user            |
-| **Non-Functional Requirements** | Performa, skalabilitas, keamanan, uptime                               |
-| **Use-Case dan Skenario**       | Menjelaskan interaksi user dengan sistem                               |
-| **Batasan Sistem**              | Misal: tidak mendukung perangkat analog lawas, tergantung konektivitas |
+- Perencanaan KPI tahunan dan breakdown ke target periodik
+- Input dan pencatatan capaian aktual KPI
+- Pencatatan gangguan operasional (disturbance)
+- Forecasting capaian KPI akhir tahun
+- Dashboard performa & insight gangguan
+- Dukungan integrasi sensor melalui MQTT
 
 ---
 
-### Integrasi Use-Case
+### 📚 **3. Definisi dan Akronim**
 
-Setiap **use-case** mendeskripsikan interaksi spesifik antara aktor (user/system) dan sistem, biasanya diturunkan langsung dari kebutuhan bisnis.
+| Istilah/Akronim | Definisi                                                                      |
+| --------------- | ----------------------------------------------------------------------------- |
+| KPI             | Key Performance Indicator – indikator kinerja yang terukur                    |
+| Forecast        | Prediksi capaian akhir berdasarkan data historis                              |
+| MQTT            | Message Queue Telemetry Transport – protokol komunikasi lightweight untuk IoT |
+| IoT             | Internet of Things – integrasi perangkat fisik dan sistem digital             |
+| Disturbance     | Gangguan operasional yang dapat memengaruhi KPI                               |
+| Unit            | Sub-divisi atau lokasi fisik dalam departemen                                 |
+| Granular Target | Target KPI dengan resolusi waktu lebih kecil (bulanan, mingguan, harian)      |
 
-#### Format Use-Case (Narratif)
+---
 
-| Elemen             | Isi                                                                                                     |
-| ------------------ | ------------------------------------------------------------------------------------------------------- |
-| **Use-Case ID**    | UC-001                                                                                                  |
-| **Nama Use-Case**  | Prediksi kegagalan pompa kritikal                                                                       |
-| **Aktor**          | Sistem + Teknisi                                                                                        |
-| **Deskripsi**      | Sistem memproses data sensor untuk mendeteksi potensi kegagalan, lalu memberi notifikasi kepada teknisi |
-| **Pre-condition**  | Sensor dan koneksi MQTT aktif                                                                           |
-| **Post-condition** | Teknisi menerima notifikasi dan dapat melihat detail prediksi                                           |
-| **Alur Utama**     | 1. Data dikirim → 2. Anomali terdeteksi → 3. Prediksi dijalankan → 4. Notifikasi dikirim                |
-| **Exception**      | Model gagal memuat, koneksi terputus                                                                    |
+### 📈 **4. Deskripsi Umum Sistem**
 
-#### (Opsional) Diagram Use-Case UML
+- 🧭 Alur Sistem:
+
+1. **Perencanaan KPI**: Ditentukan setahun sekali, terdiri dari target tahunan per departemen/unit.
+2. **Breakdown Target**: Target tahunan dipecah ke periode lebih kecil (bulan, minggu, hari).
+3. **Input Capaian Aktual**: User atau sistem mencatat capaian aktual pada periode berjalan.
+4. **Gangguan Operasional**: Dicatat sebagai disturbance, bisa dihubungkan ke KPI tertentu.
+5. **Forecast Otomatis**: Sistem menghitung estimasi capaian akhir tahun secara otomatis.
+6. **Dashboard Monitoring**: Menyediakan visualisasi KPI, forecast, deviasi, dan insight gangguan.
+
+---
+
+### ⚙️ **5. Fungsi Sistem (Functional Requirements Overview)**
+
+Berikut daftar kebutuhan fungsional sistem `mx-core-metric`:
+
+| ID    | Nama Fitur                        | Deskripsi Singkat                                                              |
+| ----- | --------------------------------- | ------------------------------------------------------------------------------ |
+| FR-01 | Manajemen KPI Master              | CRUD master KPI (nama, jenis, satuan, aktif/tidak)                             |
+| FR-02 | Penetapan Target KPI Tahunan      | User menetapkan target tahunan tiap KPI                                        |
+| FR-03 | Breakdown Target Periodik         | Target tahunan dibagi ke target bulanan/mingguan/harian (otomatis/manual)      |
+| FR-04 | Input Capaian Aktual KPI          | Input nilai aktual KPI per periode (manual/sensor/import)                      |
+| FR-05 | Pencatatan Gangguan (Disturbance) | Input gangguan berdasarkan sumber, kategori, durasi                            |
+| FR-06 | Link Gangguan ke KPI              | Hubungkan disturbance dengan KPI tertentu untuk analisis dampak                |
+| FR-07 | Forecast Capaian Otomatis         | Prediksi capaian akhir tahun berdasarkan trend data aktual                     |
+| FR-08 | Visualisasi Dashboard             | Tampilan KPI vs target, forecast, deviasi, dan gangguan per unit/departemen    |
+| FR-09 | Role Management & Akses           | Role-based access: admin, department head, operator                            |
+| FR-10 | Integrasi Sensor IoT via MQTT     | Sistem menerima data aktual dari perangkat IoT dan mencatat ke `kpi_record`    |
+| FR-11 | Logging & Audit Trail             | Mencatat semua perubahan data penting (created_by, updated_by, timestamp, dll) |
+| FR-12 | Export & Laporan                  | Ekspor data KPI, forecast, dan gangguan ke format Excel/CSV/PDF                |
+
+---
+
+### 🔐 **6. Non-Functional Requirements (NFR)**
+
+| ID     | Kebutuhan                     | Detail                                                                |
+| ------ | ----------------------------- | --------------------------------------------------------------------- |
+| NFR-01 | **Availability**              | Sistem tersedia 24/7 dengan uptime ≥ 99.5%                            |
+| NFR-02 | **Scalability**               | Dapat menangani pertumbuhan KPI & unit tanpa degradasi performa       |
+| NFR-03 | **Security & Access Control** | Role-based access, autentikasi token/jwt, audit trail semua aktivitas |
+| NFR-04 | **Performance**               | Dashboard harus memuat dalam <2 detik untuk 100 KPI aktif             |
+| NFR-05 | **Data Integrity**            | Validasi ketat pada input dan keterkaitan antar entitas (foreign key) |
+| NFR-06 | **Latency Integrasi IoT**     | Data dari MQTT → record masuk ke DB dalam waktu ≤ 3 detik             |
+| NFR-07 | **Backup & Recovery**         | Backup harian, kemampuan rollback data hingga 7 hari kebelakang       |
+
+---
+
+### ⛔ **7. Batasan Sistem**
+
+| Kode  | Batasan                                                             |
+| ----- | ------------------------------------------------------------------- |
+| BL-01 | Sistem belum mendukung visualisasi geografis atau peta unit         |
+| BL-02 | Tidak semua gangguan otomatis berdampak pada KPI, perlu link manual |
+| BL-03 | Prediksi masih berbasis linear/manual, belum pakai ML kompleks      |
+| BL-04 | Belum mendukung offline input (harus via online/web UI/API)         |
+| BL-05 | Input sensor hanya mendukung format MQTT JSON tertentu (predefined) |
+
+---
+
+- ✅ **Ringkasan Output Tahap Ini**
+
+* [x] Tujuan dan ruang lingkup sistem terdefinisi
+* [x] Kebutuhan fungsional (FR-01 s.d FR-12) terdokumentasi
+* [x] Kebutuhan non-fungsional (availability, security, performance, dll)
+* [x] Batasan sistem dijelaskan agar ekspektasi terukur
+
+---
+
+Baik! Kita akan lanjutkan ke bagian **[2/7-B] Software Requirement Specification (SRS Part 2)** untuk sub-project `mx-core-metric`.
+
+Fokus bagian ini adalah:
+
+1. 📌 Use-Case List & Detail
+2. 🔼 Prioritas Pengembangan (MoSCoW)
+3. 🔁 Traceability Matrix (opsional)
+
+Semua **Functional Requirements (FR)**, **Non-Functional Requirements (NFR)**, dan **Batasan (BL)** akan **dipetakan dan diwakili dalam Use-Case yang relevan**, sehingga tidak ada requirement yang tercecer.
+
+---
+
+# 📘 **[2/7-B] SRS – Use-Case, Prioritas, dan Traceability**
+
+---
+
+## 📌 1. **Use-Case List**
+
+| Use-Case ID | Nama Use-Case                | Aktor                     | FR/NFR/BL Terkait    |
+| ----------- | ---------------------------- | ------------------------- | -------------------- |
+| UC-001      | Manajemen Master KPI         | Admin                     | FR-01, NFR-03        |
+| UC-002      | Penetapan Target KPI Tahunan | Dept Head/Admin           | FR-02, NFR-03        |
+| UC-003      | Breakdown Target Periodik    | Dept Head/Admin           | FR-03, NFR-05, BL-03 |
+| UC-004      | Input Capaian Aktual KPI     | Operator/System (sensor)  | FR-04, FR-10, NFR-06 |
+| UC-005      | Input Gangguan Operasional   | Operator                  | FR-05, NFR-05        |
+| UC-006      | Hubungkan Gangguan ke KPI    | Dept Head/Analyst         | FR-06, BL-02         |
+| UC-007      | Proses Forecast Otomatis     | System                    | FR-07, NFR-04, BL-03 |
+| UC-008      | Visualisasi Dashboard KPI    | Semua user (viewer/admin) | FR-08, NFR-04        |
+| UC-009      | Manajemen Role & Hak Akses   | Admin                     | FR-09, NFR-03        |
+| UC-010      | Terima Data Sensor via MQTT  | System (MQTT broker)      | FR-10, NFR-06, BL-05 |
+| UC-011      | Audit Trail Perubahan Data   | System                    | FR-11, NFR-03        |
+| UC-012      | Ekspor Data & Laporan        | User/Manajemen            | FR-12, NFR-04        |
+
+---
+
+## 📑 2. **Use-Case Detail (Narratif)**
+
+Berikut beberapa use-case utama yang mewakili seluruh FR dan NFR:
+
+---
+
+### 🟦 UC-001 — **Manajemen Master KPI**
+
+| Elemen         | Deskripsi                                                      |
+| -------------- | -------------------------------------------------------------- |
+| Use-Case ID    | UC-001                                                         |
+| Aktor          | Admin                                                          |
+| Deskripsi      | Admin membuat, mengubah, dan menonaktifkan master data KPI     |
+| Pre-condition  | User memiliki hak akses Admin                                  |
+| Post-condition | Data KPI aktif siap digunakan pada target dan record           |
+| Alur Utama     | 1. Admin login → 2. Akses modul KPI → 3. Tambah/edit/hapus KPI |
+| Exception      | Data duplikat, referensi digunakan di target/record            |
+| Relasi FR/NFR  | FR-01, NFR-03                                                  |
+
+---
+
+### 🟨 UC-003 — **Breakdown Target Periodik**
+
+| Elemen         | Deskripsi                                                            |
+| -------------- | -------------------------------------------------------------------- |
+| Use-Case ID    | UC-003                                                               |
+| Aktor          | Admin / Dept Head                                                    |
+| Deskripsi      | User membagi target tahunan menjadi target periodik                  |
+| Pre-condition  | Target tahunan sudah tersedia                                        |
+| Post-condition | Target periodik tersimpan dan ditautkan ke target tahunan            |
+| Alur Utama     | 1. Pilih KPI tahunan → 2. Pilih metode (otomatis/manual) → 3. Simpan |
+| Exception      | Periode tumpang tindih, nilai tidak proporsional                     |
+| Relasi         | FR-03, NFR-05, BL-03                                                 |
+
+---
+
+### 🟩 UC-004 — **Input Capaian Aktual KPI (Manual & Sensor)**
+
+| Elemen         | Deskripsi                                                     |
+| -------------- | ------------------------------------------------------------- |
+| Use-Case ID    | UC-004                                                        |
+| Aktor          | Operator / System (IoT Gateway)                               |
+| Deskripsi      | Sistem atau user menginput nilai aktual capaian KPI           |
+| Pre-condition  | KPI & target periodik sudah terdaftar                         |
+| Post-condition | Capaian aktual tercatat dan siap digunakan untuk forecasting  |
+| Alur Utama     | 1. Input manual → atau MQTT publish → 2. Validasi → 3. Simpan |
+| Exception      | Format data tidak valid, referensi KPI tidak ditemukan        |
+| Relasi         | FR-04, FR-10, NFR-06, BL-05                                   |
+
+---
+
+### 🟥 UC-007 — **Forecast Capaian Otomatis**
+
+| Elemen         | Deskripsi                                                               |
+| -------------- | ----------------------------------------------------------------------- |
+| Use-Case ID    | UC-007                                                                  |
+| Aktor          | Sistem                                                                  |
+| Deskripsi      | Sistem menghitung estimasi akhir tahun dari data capaian historis       |
+| Pre-condition  | Minimal 2 data historis tersedia                                        |
+| Post-condition | Data forecast tersedia di dashboard dan `kpi_forecast`                  |
+| Alur Utama     | 1. Cron jalan → 2. Ambil data historis → 3. Hitung → 4. Simpan forecast |
+| Exception      | Tidak ada data historis, metode belum tersedia                          |
+| Relasi         | FR-07, NFR-04, BL-03                                                    |
+
+---
+
+### 🟪 UC-008 — **Visualisasi Dashboard KPI & Gangguan**
+
+| Elemen         | Deskripsi                                                             |
+| -------------- | --------------------------------------------------------------------- |
+| Use-Case ID    | UC-008                                                                |
+| Aktor          | Semua pengguna                                                        |
+| Deskripsi      | User mengakses tampilan performa KPI, deviasi, gangguan, dan forecast |
+| Pre-condition  | Data KPI, disturbance, dan forecast tersedia                          |
+| Post-condition | Insight ditampilkan dalam format grafik & tabel                       |
+| Alur Utama     | 1. User login → 2. Pilih dashboard → 3. Lihat summary dan detail      |
+| Exception      | Data kosong, gagal fetch API backend                                  |
+| Relasi         | FR-08, NFR-04                                                         |
+
+---
+
+### 🟨 UC-009 — **Manajemen Role & Hak Akses**
+
+| Elemen         | Deskripsi                                                                   |
+| -------------- | --------------------------------------------------------------------------- |
+| Use-Case ID    | UC-009                                                                      |
+| Aktor          | Admin                                                                       |
+| Deskripsi      | Admin mengelola peran pengguna dan hak akses berdasarkan peran (role-based) |
+| Pre-condition  | User sudah terdaftar sebagai user aktif                                     |
+| Post-condition | Role pengguna ditentukan, membatasi akses fitur tertentu                    |
+| Alur Utama     | 1. Admin login → 2. Akses modul user → 3. Atur role (viewer/operator/admin) |
+| Exception      | Akses tanpa role, konflik hak akses                                         |
+| Relasi FR/NFR  | FR-09, NFR-03                                                               |
+
+---
+
+### 🟩 UC-010 — **Terima Data Sensor via MQTT**
+
+| Elemen         | Deskripsi                                                                               |
+| -------------- | --------------------------------------------------------------------------------------- |
+| Use-Case ID    | UC-010                                                                                  |
+| Aktor          | System (MQTT broker / IoT Gateway)                                                      |
+| Deskripsi      | Sistem menerima payload JSON dari perangkat sensor via protokol MQTT                    |
+| Pre-condition  | Sensor aktif, format payload sesuai skema                                               |
+| Post-condition | Nilai otomatis disimpan ke `kpi_record` dengan `source: "sensor"`                       |
+| Alur Utama     | 1. Sensor publish → 2. MQTT Gateway menerima → 3. Format diverifikasi → 4. Insert ke DB |
+| Exception      | Payload invalid, timeout koneksi MQTT                                                   |
+| Relasi         | FR-10, NFR-06, BL-05                                                                    |
+
+---
+
+### 🟥 UC-011 — **Audit Trail Perubahan Data**
+
+| Elemen         | Deskripsi                                                                                       |
+| -------------- | ----------------------------------------------------------------------------------------------- |
+| Use-Case ID    | UC-011                                                                                          |
+| Aktor          | Sistem (otomatis)                                                                               |
+| Deskripsi      | Sistem mencatat setiap perubahan data penting untuk keperluan audit                             |
+| Pre-condition  | Operasi data dilakukan oleh user/sensor                                                         |
+| Post-condition | Data tersimpan dalam bentuk log/audit trail dengan identitas user                               |
+| Alur Utama     | 1. User/sensor melakukan perubahan → 2. Sistem simpan log `created_by`, `updated_by`, timestamp |
+| Exception      | Akses tanpa otorisasi, data tidak lengkap                                                       |
+| Relasi         | FR-11, NFR-03                                                                                   |
+
+---
+
+### 🟦 UC-012 — **Ekspor Data & Laporan**
+
+| Elemen         | Deskripsi                                                                    |
+| -------------- | ---------------------------------------------------------------------------- |
+| Use-Case ID    | UC-012                                                                       |
+| Aktor          | User (Admin / Dept Head / Viewer)                                            |
+| Deskripsi      | User mengekspor data KPI, forecast, dan gangguan dalam format CSV/PDF/Excel  |
+| Pre-condition  | Data sudah tersedia dan terfilter sesuai kriteria user                       |
+| Post-condition | File unduhan berhasil dihasilkan dan tersedia                                |
+| Alur Utama     | 1. User pilih tipe data → 2. Filter periode/departemen/unit → 3. Klik ekspor |
+| Exception      | Data kosong, gagal generate file                                             |
+| Relasi         | FR-12, NFR-04                                                                |
+
+---
+
+### 📌 Traceability Matrix
+
+| FR / NFR / BL | Use-Case ID | Keterangan Singkat                 |
+| ------------- | ----------- | ---------------------------------- |
+| FR-01         | UC-001      | Master KPI                         |
+| FR-02         | UC-002      | Target tahunan                     |
+| FR-03         | UC-003      | Breakdown periodik                 |
+| FR-04         | UC-004      | Input capaian manual               |
+| FR-05         | UC-005      | Input gangguan                     |
+| FR-06         | UC-006      | Link disturbance ke KPI            |
+| FR-07         | UC-007      | Forecast sistem                    |
+| FR-08         | UC-008      | Dashboard                          |
+| FR-09         | UC-009      | Role-based access                  |
+| FR-10         | UC-010      | MQTT sensor input                  |
+| FR-11         | UC-011      | Audit trail                        |
+| FR-12         | UC-012      | Export laporan                     |
+| NFR-01–07     | UC-001–012  | Diterapkan lintas use-case         |
+| BL-01         | -           | Belum dukung visualisasi geografis |
+| BL-02         | UC-006      | Gangguan → KPI butuh link manual   |
+| BL-03         | UC-003,007  | Forecast masih linear/manual       |
+| BL-04         | -           | Tidak mendukung input offline      |
+| BL-05         | UC-010      | Format sensor MQTT terbatas        |
+
+---
+
+### ✅ **🔼 Prioritas Pengembangan (MoSCoW)**
+
+Berikut adalah versi **terbaru dan lengkap**:
+
+| Prioritas  | Modul/Fungsi                                          | FR / UC Terkait               | Keterangan                                                     |
+| ---------- | ----------------------------------------------------- | ----------------------------- | -------------------------------------------------------------- |
+| **Must**   | Manajemen Master KPI                                  | FR-01 / UC-001                | Fitur dasar sebagai fondasi semua target & record KPI          |
+| **Must**   | Penetapan Target KPI Tahunan                          | FR-02 / UC-002                | Fondasi perencanaan tahunan KPI                                |
+| **Must**   | Breakdown Target Periodik                             | FR-03 / UC-003                | Membagi target tahunan ke bulanan/mingguan/harian              |
+| **Must**   | Input capaian aktual KPI (manual + sensor/IoT)        | FR-04, FR-10 / UC-004, UC-010 | Inti dari sistem pengukuran performa KPI                       |
+| **Must**   | Forecast capaian akhir tahun                          | FR-07 / UC-007                | Menyediakan prediksi real-time berbasis data historis          |
+| **Must**   | Visualisasi dashboard performa dan deviasi KPI        | FR-08 / UC-008                | Wadah utama manajemen melihat insight capaian                  |
+| **Should** | Pencatatan gangguan operasional (disturbance)         | FR-05 / UC-005                | Menyediakan konteks penyebab deviasi performa                  |
+| **Should** | Link gangguan ke KPI tertentu                         | FR-06 / UC-006                | Memberi analisis dampak terhadap KPI                           |
+| **Should** | Ekspor laporan dan data KPI                           | FR-12 / UC-012                | Mempermudah pelaporan offline / backup                         |
+| **Could**  | Role management & akses kontrol                       | FR-09 / UC-009                | Berguna untuk skala besar, tapi bisa default 1 level dulu      |
+| **Could**  | Audit trail aktivitas data                            | FR-11 / UC-011                | Penting untuk traceability, bisa menyusul jika fase awal kecil |
+| **Won’t**  | Integrasi AI/ML forecasting lanjutan (di luar linear) | - / (BL-03)                   | Disimpan untuk fase pengembangan selanjutnya                   |
+
+---
+
+## 🎯 **3. System Design**
+
+Tahap **System Design** bertujuan untuk **menerjemahkan semua kebutuhan sistem (FR, NFR, UC, BL)** menjadi bentuk **arsitektur teknis** yang siap diimplementasikan. System Design memastikan bahwa:
+
+- Semua kebutuhan telah **dipetakan ke komponen dan modul sistem**
+- Arsitektur sistem dibuat agar **modular, scalable, maintainable**
+- Desain teknis disusun hingga ke level **implementasi database, API, dan logika bisnis**
+
+---
+
+- 🔧 **Substruktur System Design**
+
+System Design dibagi menjadi **dua level utama:**
+
+| Bagian | Nama                        | Tujuan Utama                                                              |
+| ------ | --------------------------- | ------------------------------------------------------------------------- |
+| 🔷     | **High-Level Design (HLD)** | Mendeskripsikan sistem secara global dan modular                          |
+| 🔶     | **Low-Level Design (LLD)**  | Mendeskripsikan detail teknis seperti database, algoritma, dan API schema |
+
+---
+
+- 🗂️ **Konten High-Level Design (HLD)**
+
+| Bagian                    | Penjelasan                                        |
+| ------------------------- | ------------------------------------------------- |
+| Arsitektur Modular        | Modul utama sistem dan tanggung jawabnya          |
+| Diagram Arsitektur Sistem | Ilustrasi visual atau teks arsitektur             |
+| Alur Komunikasi           | Interaksi antar modul, protokol, arah data        |
+| Flow Autentikasi & Role   | Model otorisasi dan peran pengguna                |
+| Integrasi Eksternal       | Sistem eksternal seperti MQTT, IoT device, SSO    |
+| Pemetaan ke SRS           | Menunjukkan bahwa semua FR/NFR/UC/BL terakomodasi |
+
+---
+
+- 📂 **Konten Low-Level Design (LLD)**
+
+| Bagian                            | Penjelasan                                                 |
+| --------------------------------- | ---------------------------------------------------------- |
+| Entity Relationship Diagram (ERD) | Struktur data dan relasi antar tabel dari sistem KPI       |
+| Data Dictionary                   | Deskripsi tiap kolom/tabel, tipe data, constraint, dsb     |
+| Skema API (REST / GraphQL)        | Endpoint, payload, dan response yang digunakan             |
+| Algoritma Forecasting             | Formula dan metode logika perhitungan prediksi capaian KPI |
+| Konfigurasi MQTT & Format Payload | Format pesan sensor IoT, topik MQTT, dan validasi payload  |
+
+---
+
+- 🧠 **Validasi System Design terhadap SRS**
+
+System Design (baik HLD maupun LLD nanti) harus memenuhi semua elemen berikut:
+
+| Tipe                     | Divalidasi dalam                 | Status                        |
+| ------------------------ | -------------------------------- | ----------------------------- |
+| Functional Req (FR)      | Modul dan API                    | ✅ Sudah ditetapkan di HLD    |
+| Non-Functional Req (NFR) | Security, performance, integrasi | ✅ Dicakup                    |
+| Use-Case (UC)            | Modul & Alur UI-Backend          | ✅ Telah dipetakan            |
+| Batasan (BL)             | Dikenali dan disikapi            | ✅ Diantisipasi di arsitektur |
+
+---
+
+### 🔷 **3.1. High-Level Design (HLD)** → kita bahas sekarang
+
+Tujuan dari **High-Level Design (HLD)** adalah memberikan **gambaran arsitektur sistem secara modular**, hubungan antar komponen, serta alur komunikasi dan integrasi — **berdasarkan kebutuhan yang telah ditentukan di SRS (FR, NFR, BL, UC).**
+
+---
+
+- 🔷 1. **Tujuan High-Level Design**
+
+* Mendeskripsikan **arsitektur sistem mx-core-metric** secara modular
+* Menjelaskan **komponen utama**, relasi, dan **alur data**
+* Mendasari pengambilan keputusan desain teknis di LLD nanti
+
+---
+
+- 🧩 2. **Komponen Utama Sistem**
+
+Sistem `mx-core-metric` memiliki beberapa **sub-komponen modul** yang saling terhubung, dengan tanggung jawab sebagai berikut:
+
+| Modul                     | Deskripsi Singkat                                                     |
+| ------------------------- | --------------------------------------------------------------------- |
+| **KPI Management**        | Manajemen master KPI, jenis, satuan, dan status aktif                 |
+| **Target Planner**        | Menangani input target tahunan dan breakdown ke target periodik       |
+| **KPI Recorder**          | Mencatat capaian aktual KPI dari user/manual, import, atau sensor IoT |
+| **Disturbance Manager**   | Pencatatan gangguan dan link ke KPI tertentu                          |
+| **Forecast Engine**       | Proses perhitungan estimasi capaian akhir tahun                       |
+| **Dashboard & Analytics** | Menyediakan tampilan visual KPI, deviasi, gangguan, forecast          |
+| **User & Role Manager**   | Manajemen user, autentikasi, dan hak akses                            |
+| **MQTT Data Ingestor**    | Penerimaan dan parsing data dari sensor via MQTT                      |
+| **Audit Logger**          | Logging otomatis untuk semua transaksi kritikal                       |
+| **Reporting Module**      | Ekspor data dan laporan ke Excel/CSV/PDF                              |
+
+---
+
+- 🏗️ 3. **Diagram Arsitektur Modular**
 
 ```plaintext
-       +---------+        +----------------------------+
-       | Teknisi | -----> | Prediksi Kegagalan Pompa   |
-       +---------+        +----------------------------+
-                               ^         ^
-                               |         |
-                          +----+     +---------------+
-                          | Sensor    | Sistem AI    |
-                          +-----------+---------------+
+                                +-----------------------------+
+                                |         User Interface      |
+                                |     (Web Dashboard UI)      |
+                                +-------------+---------------+
+                                              |
+              +-------------------------------+-----------------------------+
+              |                                                             |
++---------------------------+                           +------------------+------------------+
+|       REST API Gateway    |                           |        MQTT Broker (IoT)            |
+|   (Next.js API Routes)    |                           |   [mosquitto / cloud-based MQTT]    |
++-------------+-------------+                           +----------+---------------------------+
+              |                                                    |
+   +----------+----------+                               +---------v----------+
+   |     Application     |                               |    MQTT Ingestor   |
+   |       Layer         |                               |  (Data Parser +    |
+   |  (Nest.js service*) |                               |   Validator)       |
+   +---+--------+--------+                               +---------+----------+
+       |        |                                                  |
+       |        |                                +-----------------+-----------------+
+       |        |                                |                                   |
++------v+    +--v------+             +------------v------------+      +---------------v---------------+
+|  KPI  |    | Target  |             |   KPI Recorder          |      |   Disturbance Manager        |
+| Mgmt  |    | Planner |             | (Manual + Sensor Input) |      | (Logs, Source, Link to KPI)  |
++-------+    +---------+             +------------+------------+      +---------------+---------------+
+                                                  |                                       |
+                                                  |                                       |
+                                     +------------v------------+             +------------v------------+
+                                     |     Forecast Engine     |             |      Audit Logger        |
+                                     | (Linear, Manual, Future |             | (Perubahan data penting) |
+                                     |  ML-ready)              |             +---------------------------+
+                                     +------------+------------+
+                                                  |
+                                      +-----------v-----------+
+                                      |   Dashboard & Report  |
+                                      +-----------------------+
 ```
 
----
-
-### Use-Case Studi Kasus: “Prediksi Kegagalan Pompa Kritikal”
-
-#### Narasi Use-Case:
-
-- Sistem menerima data sensor (vibrasi, tekanan, suhu) dari pompa kritikal melalui MQTT.
-- Data ini diproses secara batch dan real-time menggunakan algoritma prediksi RUL (Remaining Useful Life).
-- Jika hasil prediksi menunjukkan risiko kegagalan dalam < 48 jam, sistem akan:
-
-  - Mengirim notifikasi ke teknisi via WhatsApp/email.
-  - Menandai mesin sebagai “kritis” di dashboard.
-  - Menyimpan hasil prediksi ke histori untuk pelatihan ulang model.
-
-#### Kebutuhan Turunan dari Use-Case:
-
-| ID     | Requirement Teknis                                                 | Terkait Use-Case |
-| ------ | ------------------------------------------------------------------ | ---------------- |
-| SRS-01 | Sistem harus memproses data sensor dalam waktu < 2 detik           | UC-001           |
-| SRS-02 | Sistem harus mengirim notifikasi anomali < 1 menit setelah deteksi | UC-001           |
-| SRS-03 | Dashboard harus menampilkan status prediksi terkini                | UC-001           |
+> Catatan:
+>
+> - Backend dapat menggunakan monolith Next.js API routes atau dipisah microservice (Nest.js)
+> - MQTT listener bisa dijalankan sebagai service terpisah dengan worker/job scheduler
 
 ---
 
-### Traceability dari BRS ke SRS
+- 🔗 4. **Alur Komunikasi Sistem**
 
-Traceability memastikan bahwa setiap kebutuhan bisnis diterjemahkan ke kebutuhan teknis, dan selanjutnya bisa diuji.
-
-Contoh tabel traceability:
-
-| ID BRS | Deskripsi Kebutuhan Bisnis                 | ID SRS | Deskripsi Kebutuhan Teknis                                   |
-| ------ | ------------------------------------------ | ------ | ------------------------------------------------------------ |
-| BRS-01 | Mendeteksi kerusakan mesin sebelum terjadi | SRS-01 | Sistem memproses data dalam < 2 detik                        |
-|        |                                            | SRS-02 | Notifikasi dikirim dalam < 1 menit                           |
-| BRS-02 | Tampilkan tren KPI ke manajer              | SRS-04 | Dashboard menyajikan grafik line/bar chart KPI mingguan      |
-| BRS-03 | Mendukung >100 perangkat aktif             | SRS-06 | Sistem scalable dengan WebSocket atau MQTT concurrency > 100 |
-
----
-
-## **V. System Design**
-
-Desain sistem adalah tahap kritikal dalam SDLC karena berfungsi sebagai blueprint teknis yang akan diimplementasikan oleh tim pengembang. Pada sistem seperti `mx-core-metric`, desain harus mampu mengakomodasi **skala industri**, **real-time processing**, serta integrasi dengan berbagai komponen seperti perangkat IoT, CMMS, dashboard, dan sistem AI.
+| Komunikasi             | Protokol/Metode          | Keterangan                                                     |
+| ---------------------- | ------------------------ | -------------------------------------------------------------- |
+| UI ↔ Backend API       | HTTPS REST API           | Form input KPI, target, disturbance, dll                       |
+| Sensor ↔ MQTT Broker   | MQTT                     | Sensor publish ke topic, misal `kpi/update/unit-a`             |
+| MQTT Broker ↔ Ingestor | MQTT subscription        | Ingestor subscribe dan parsing payload JSON                    |
+| Ingestor ↔ Database    | ORM / SQL                | Menyimpan nilai ke `kpi_record`, dengan source = "sensor"      |
+| Forecast Engine ↔ DB   | Cronjob/Worker + SQL/ORM | Ambil data `kpi_record`, hitung, lalu simpan ke `kpi_forecast` |
+| Dashboard ↔ API        | REST/GraphQL             | Menampilkan semua performa KPI, gangguan, forecast             |
+| Auth System ↔ Frontend | Token-based (JWT/OAuth2) | Autentikasi user & role-based access                           |
 
 ---
 
-### 🔷 A. High-Level Design (HLD)
+- 🔒 5. **Security & Auth Flow**
 
-#### Modul Utama dan Komunikasi Antar Plugin
-
-Sistem `mx-core-metric` memiliki sejumlah modul utama yang berjalan sebagai microservices atau plugin terintegrasi, dengan komunikasi berbasis HTTP API, MQTT, dan WebSocket.
-
-| Modul/Komponen          | Fungsi Utama                                                 |
-| ----------------------- | ------------------------------------------------------------ |
-| **Data Ingest**         | Menerima data sensor via MQTT                                |
-| **Anomaly Detection**   | Menjalankan model AI untuk mendeteksi anomali                |
-| **RUL Prediction**      | Mengestimasi Remaining Useful Life (RUL)                     |
-| **Notification Engine** | Mengirim peringatan ke user (email, WhatsApp, webhook, dll.) |
-| **Dashboard Web App**   | Visualisasi metrik dan status perangkat                      |
-| **CMMS Connector**      | Sinkronisasi status mesin & log ke sistem CMMS perusahaan    |
-| **Admin & Role System** | Manajemen user dan otorisasi akses                           |
-
-#### Diagram Arsitektur Mx-Core-metric
-
-```plaintext
-               +-----------------------+
-               |    Web Dashboard      |
-               | (Next.js + Tailwind)  |
-               +-----------+-----------+
-                           |
-                 HTTPS / WebSocket
-                           |
-               +-----------v-----------+
-               |      API Gateway      |
-               |  (Next.js API Routes) |
-               +---+----+----+----+----+
-                   |    |    |    |
-                   |    |    |    |
-         +---------v+ +--v-----+ +-v------------+
-         | RUL Pred. | | Notif  | | CMMS Bridge |
-         | (Python)  | | Engine | | Sync API     |
-         +-----------+ +--------+ +--------------+
-                   ^
-                   |
-       +-----------v------------+
-       |   Anomaly Detection    |
-       |   (TensorFlow Model)   |
-       +-----------+------------+
-                   |
-               gRPC / REST
-                   |
-       +-----------v------------+
-       |  MQTT Broker (EMQX)    |
-       +-----------+------------+
-                   |
-           +-------v--------+
-           |   ESP32 Device  |
-           +-----------------+
-```
-
-#### Integrasi dengan Sistem Eksternal
-
-- **CMMS**: Untuk sinkronisasi status dan histori perawatan.
-- **Dashboard**: Menyajikan hasil prediksi/anomali secara visual.
-- **Device (IoT)**: Menggunakan protokol MQTT untuk komunikasi low-latency.
-- **Notification Platform**: WhatsApp API, Email, SMS gateway.
+| Elemen            | Implementasi                                                 |
+| ----------------- | ------------------------------------------------------------ |
+| **Auth**          | Token-based auth (JWT) atau OAuth2 flow                      |
+| **Role Access**   | Role disimpan dalam session/token (admin/operator/viewer)    |
+| **Audit Trail**   | Modul logger menyimpan `created_by`, `updated_by`, timestamp |
+| **MQTT Auth**     | Username/password auth di broker MQTT (opsional ACL)         |
+| **Rate Limiting** | Untuk API dan MQTT listener agar tidak overload              |
 
 ---
 
-### 🔷 B. Low-Level Design (LLD)
+- 🌐 6. **External Interface**
 
-Jika HLD menjelaskan arsitektur makro, maka **LLD** memecahnya menjadi desain teknis rinci seperti struktur data, skema API, logika algoritma, dan flow tiap komponen.
-
-#### Struktur Data – ERD dan Tabel DB
-
-Menggunakan Supabase (PostgreSQL) sebagai backend database, berikut contoh struktur entitas utama:
-
-**Entity Relationship Diagram (ERD) Ringkas:**
-
-```plaintext
-[Device] ---< [SensorData] >--- [Anomaly]
-                     |
-                 [Prediction]
-                     |
-                [NotificationLog]
-```
-
-| Tabel             | Kolom Kunci                                     |
-| ----------------- | ----------------------------------------------- |
-| `Device`          | `id`, `name`, `location`, `last_seen`           |
-| `SensorData`      | `id`, `device_id`, `timestamp`, `temp`, `vib`   |
-| `Anomaly`         | `id`, `sensor_data_id`, `score`, `is_critical`  |
-| `Prediction`      | `id`, `sensor_data_id`, `rul_hours`, `model_id` |
-| `NotificationLog` | `id`, `prediction_id`, `channel`, `sent_at`     |
-
-#### Algoritma AI – Deskripsi & Parameter
-
-Model AI utama yang digunakan terdiri dari dua jenis:
-
-1. **Anomaly Detection**
-
-   - Model: Autoencoder LSTM
-   - Input: Sliding window dari sensor (vibrasi, suhu, tekanan)
-   - Output: Reconstruction error score
-   - Threshold: Ditentukan berdasarkan data historis per mesin
-
-2. **Remaining Useful Life (RUL) Prediction**
-
-   - Model: GRU-based regression
-   - Input: Time-series sensor data
-   - Output: Estimasi waktu (dalam jam) sebelum kegagalan
-   - Output diklasifikasikan ke: Aman / Waspada / Kritis
-
-#### API Schema – Contoh Endpoint Prediksi RUL
-
-```http
-POST /api/predict/rul
-
-Request Body:
-{
-  "deviceId": "ESP32-001",
-  "windowSize": 30,
-  "sensorData": [
-    { "timestamp": "...", "temp": 58.1, "vib": 0.41 },
-    ...
-  ]
-}
-
-Response:
-{
-  "rulHours": 46,
-  "status": "critical",
-  "modelVersion": "v1.2.3"
-}
-```
-
-#### Versi Model dan Retraining Schedule
-
-Untuk menjaga akurasi model, sistem mendukung **versioning** dan retraining terjadwal:
-
-| Model           | Versi Aktif | Terakhir Retrain | Jadwal Berikutnya | Metode Deploy         |
-| --------------- | ----------- | ---------------- | ----------------- | --------------------- |
-| AnomalyDetector | v1.0.4      | 01-Des-2025      | 01-Jan-2026       | Dockerized API        |
-| RULPredictor    | v1.2.3      | 05-Des-2025      | 05-Jan-2026       | TensorFlow SavedModel |
-
-Sistem akan menyimpan seluruh hasil prediksi dan skor error sebagai bagian dari dataset untuk pelatihan ulang berikutnya.
+| Sistem Eksternal    | Jenis Integrasi   | Keterangan                                      |
+| ------------------- | ----------------- | ----------------------------------------------- |
+| MQTT Broker         | MQTT v3.1 / v5    | Ingest data dari sensor IoT                     |
+| IoT Sensor          | MQTT Publisher    | Perangkat publikasi payload JSON                |
+| Dashboard Frontend  | Web App (Next.js) | UI interaktif, menggunakan API internal         |
+| Export PDF/Excel    | Library eksternal | File generator (contoh: jsPDF, ExcelJS)         |
+| SSO / Auth Provider | OAuth2 (opsional) | Untuk user manajemen terpusat (jika enterprise) |
 
 ---
 
-## **VI. Implementation**
+- 🧠 7. **Pemetaan ke SRS**
 
-Tahap implementasi adalah fase di mana seluruh desain sistem—baik HLD maupun LLD—ditransformasikan menjadi **kode program yang berjalan**. Dalam proyek seperti `mx-core-metric`, pendekatan modular dan multi-teknologi sangat umum karena kebutuhan sistem yang beragam: dari komunikasi IoT, pengolahan data, AI, hingga antarmuka pengguna.
+Semua bagian HLD ini sudah **terpenuhi dan sesuai** dengan SRS (FR/NFR/UC/BL):
 
----
-
-### Struktur Kode Plugin Mx-Core-metric
-
-Arsitektur `mx-core-metric` mengadopsi pendekatan **plugin/microservice-based**, yang artinya tiap fungsi inti dipisahkan sebagai module independen dengan komunikasi melalui API atau event.
-
-Contoh struktur repositori:
-
-```
-mx-core-metric/
-├── apps/
-│   ├── dashboard/              # Frontend web (Next.js)
-│   ├── api-gateway/            # API entry point (Next.js API Routes)
-│   ├── cmms-connector/         # Integrasi dengan CMMS
-├── services/
-│   ├── anomaly-detector/       # Deteksi anomali (Python, TensorFlow)
-│   ├── rul-predictor/          # Prediksi umur mesin (RUL)
-│   ├── notifier/               # Pengiriman notifikasi WA/email
-├── libs/
-│   ├── shared-types/           # TypeScript types untuk integrasi antar modul
-│   ├── db-utils/               # ORM + koneksi database (Supabase / Prisma)
-├── .github/
-│   ├── workflows/              # CI/CD pipeline config
-├── docker-compose.yml         # Orkestrasi lokal antar container
-└── README.md
-```
-
-Struktur ini memudahkan:
-
-- Isolasi logika tiap fungsi (misalnya retrain model tanpa mengubah dashboard).
-- Deployment terpisah (notifikasi bisa di-scale sendiri).
-- Sinkronisasi dokumentasi antar modul (dengan shared types dan LLD references).
+| Kategori | Referensi         | Penjelasan                                                              |
+| -------- | ----------------- | ----------------------------------------------------------------------- |
+| FR       | FR-01 s/d FR-12   | Semua fitur memiliki modul dan komunikasi terpetakan                    |
+| NFR      | NFR-01 s/d NFR-07 | Dibahas melalui uptime, scalability, latency, auth, dan audit           |
+| UC       | UC-001 s/d UC-012 | Semua use-case tercermin dalam modul utama HLD                          |
+| BL       | BL-01 s/d BL-05   | Batasan visualisasi, AI, format MQTT, dan offline telah dipertimbangkan |
 
 ---
 
-### Teknologi yang Digunakan
+- ✅ Ringkasan HLD
 
-| Layer                 | Teknologi                           | Alasan Pemilihan                                        |
-| --------------------- | ----------------------------------- | ------------------------------------------------------- |
-| **Frontend**          | Next.js + Tailwind CSS + TypeScript | SSR + SPA untuk performa dashboard dan maintainability  |
-| **API Gateway**       | Next.js API Routes / Express.js     | Unified entry point dan integrasi auth/user management  |
-| **Backend AI**        | Python (FastAPI) + TensorFlow       | AI/ML fleksibel dan production-ready API dengan Python  |
-| **Database**          | PostgreSQL (via Supabase)           | Relasional, scalable, dan mendukung trigger/webhook     |
-| **IoT Communication** | MQTT (EMQX)                         | Low-latency protocol ideal untuk komunikasi device      |
-| **Notifikasi**        | Node.js + WhatsApp API              | Responsif dan mudah dikembangkan dengan ekosistem JS    |
-| **Containerisasi**    | Docker, Docker Compose              | Standar industri, mempermudah CI/CD dan dev environment |
+* ✅ Arsitektur sistem modular sudah ditentukan
+* ✅ Komunikasi antar modul dan protokol eksternal jelas
+* ✅ Desain terbuka untuk integrasi dan bersifat scalable
+* ✅ Selaras dengan semua kebutuhan di SRS
 
 ---
 
-### CI/CD Pipeline Ringkas
+- 🎯 **3.2 Low-Level Design (LLD)**
 
-CI/CD disusun untuk mendukung proses otomatisasi dalam:
+Low-Level Design bertujuan untuk:
 
-- Build & Test
-- Deploy
-- Notifikasi perubahan
-
-Contoh ringkasan pipeline (GitHub Actions):
-
-```yaml
-name: Mx-Core CI/CD
-
-on:
-  push:
-    branches: ['main']
-
-jobs:
-  build-and-test:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: Setup Node.js + Python
-        uses: actions/setup-node@v3
-        with:
-          node-version: '18'
-      - run: npm install --prefix apps/dashboard
-      - run: npm run build --prefix apps/dashboard
-      - run: pytest services/anomaly-detector/tests/
-  deploy:
-    needs: build-and-test
-    runs-on: ubuntu-latest
-    steps:
-      - name: Deploy via SSH
-        run: |
-          ssh user@server "docker-compose pull && docker-compose up -d"
-```
-
-Pipeline ini dapat diperluas untuk:
-
-- Deploy berbeda ke **Dev**, **QA**, dan **Prod**
-- **Retrain trigger otomatis** saat data baru masuk
-- **Slack/email notifikasi** untuk tim
+- Menjabarkan **detail teknis tiap modul** berdasarkan HLD
+- Menyediakan **spesifikasi implementasi** untuk database, API, algoritma, dan integrasi
+- Memastikan **semua kebutuhan fungsional (FR), non-fungsional (NFR), dan batasan (BL)** dari **SRS** dapat diimplementasikan secara **terukur dan konsisten**
 
 ---
 
-### Kode vs Dokumentasi (LLD Linkage)
+- 🧱 1. **Entity Relationship Diagram (ERD)**
 
-Untuk memastikan konsistensi antara **kode** dan **desain teknis (LLD)**, praktik berikut digunakan:
+LLD ini mengacu penuh pada ERD yang telah Anda lampirkan sebelumnya (format `dbdiagram.io`). Berikut adalah ringkasannya dalam bentuk modul:
 
-| Strategi                            | Penjelasan                                                                   |
-| ----------------------------------- | ---------------------------------------------------------------------------- |
-| **Inline Docstring / JSDoc**        | Menjelaskan API, input/output sesuai dengan spesifikasi di LLD               |
-| **Auto-generated Docs**             | Menggunakan tools seperti Swagger (FastAPI) dan `tRPC` untuk dokumentasi API |
-| **Shared Types / JSON Schema**      | Skema data disimpan sebagai referensi tunggal (`libs/shared-types/`)         |
-| **Kode Repositori + Link LLD**      | Header file/module mengacu ke bagian dokumen LLD                             |
-| **Testing mengacu ke LLD Use-case** | Unit/integration test disusun berdasarkan skenario dari LLD                  |
+📂 **Tabel Utama: KPI & Target**
 
-Contoh dokumentasi endpoint (FastAPI):
+| Tabel               | Modul HLD Terkait | Deskripsi Fungsi                     |
+| ------------------- | ----------------- | ------------------------------------ |
+| `kpi`               | KPI Management    | Master data KPI                      |
+| `kpi_target_annual` | Target Planner    | Target tahunan KPI                   |
+| `kpi_target`        | Target Planner    | Breakdown ke periodik (monthly, dll) |
+| `kpi_record`        | KPI Recorder      | Input capaian aktual                 |
+| `kpi_forecast`      | Forecast Engine   | Hasil prediksi capaian akhir tahun   |
 
-```python
-@app.post("/predict/rul", response_model=PredictionResponse)
-def predict_rul(input: SensorDataBatch):
-    """
-    Mengestimasi Remaining Useful Life (RUL)
-    - LLD Ref: Section 5.B.3
-    - Input: 30 data terakhir dari 3 sensor
-    - Output: Estimasi umur pakai dalam jam
-    """
-    ...
-```
+📂 **Tabel Gangguan**
 
----
+| Tabel                | Modul HLD Terkait   | Deskripsi Fungsi       |
+| -------------------- | ------------------- | ---------------------- |
+| `disturbance_log`    | Disturbance Manager | Gangguan operasional   |
+| `disturbance_source` | Disturbance Manager | Master sumber gangguan |
 
-## **VII. Testing**
+📂 **Tabel Organisasi & User**
 
-Tahap pengujian adalah fase krusial dalam SDLC untuk memastikan bahwa implementasi sistem sesuai dengan **requirement (SRS)** dan **use-case** yang telah ditentukan sebelumnya. Pada sistem industri seperti `mx-core-metric`, pengujian tidak hanya fokus pada fungsionalitas, tetapi juga pada **keandalan**, **respons waktu**, dan **akurasi sistem prediksi AI**.
+| Tabel        | Modul HLD Terkait    | Deskripsi Fungsi            |
+| ------------ | -------------------- | --------------------------- |
+| `unit`       | User Context Manager | Unit fisik dalam organisasi |
+| `department` | User Context Manager | Departemen induk            |
 
 ---
 
-### Test Plan dan Test Case
+- 📖 2. **Data Dictionary (Contoh)**
 
-#### Test Plan
+Berikut cuplikan struktur **field-level** yang relevan untuk pengembangan:
 
-Dokumen **test plan** menjelaskan strategi umum pengujian sistem, termasuk ruang lingkup, metode, dan tanggung jawab tiap tim.
+🔹 Tabel `kpi_record`
 
-| Komponen            | Isi                                                               |
-| ------------------- | ----------------------------------------------------------------- |
-| **Tujuan Uji**      | Validasi fungsionalitas, performa, dan keakuratan prediksi        |
-| **Lingkup Uji**     | Modul utama: sensor ingest, prediksi RUL, notifikasi, dashboard   |
-| **Jenis Pengujian** | Unit test, integration test, API test, model accuracy test, UAT   |
-| **Tim Terlibat**    | QA engineer, data scientist, software developer, teknisi lapangan |
-| **Lingkungan Uji**  | QA environment yang identik dengan staging                        |
-
-#### Test Case
-
-Setiap **test case** dirancang berdasarkan **use-case** dan requirement di dokumen SRS.
-
-Contoh test case untuk use-case UC-001: _Prediksi kegagalan pompa kritikal_
-
-| ID     | Nama Test Case                            | Input                         | Ekspektasi Output                           | Status |
-| ------ | ----------------------------------------- | ----------------------------- | ------------------------------------------- | ------ |
-| TC-001 | Prediksi RUL valid                        | Data sensor 30 menit terakhir | RUL (dalam jam) muncul, status = critical   | ✅     |
-| TC-002 | Notifikasi dikirim saat prediksi < 48 jam | Prediksi RUL = 36 jam         | WhatsApp/email dikirim ke teknisi           | ✅     |
-| TC-003 | Anomali score threshold trigger           | Sensor anomali > threshold    | Tercatat di DB dan ditampilkan di dashboard | ✅     |
-| TC-004 | Validasi autentikasi dashboard            | User login dengan token       | Akses dashboard berhasil jika role valid    | ✅     |
+| Field           | Tipe Data    | Deskripsi                       |          |            |
+| --------------- | ------------ | ------------------------------- | -------- | ---------- |
+| `id`            | varchar (pk) | Primary key                     |          |            |
+| `kpi_id`        | varchar      | FK ke `kpi`                     |          |            |
+| `department_id` | varchar      | FK ke `department`              |          |            |
+| `unit_id`       | varchar      | FK ke `unit`                    |          |            |
+| `periode`       | date         | Tanggal pencapaian              |          |            |
+| `value`         | float        | Nilai aktual (sesuai jenis KPI) |          |            |
+| `note`          | varchar      | Catatan tambahan                |          |            |
+| `source`        | enum         | 'manual'                        | 'sensor' | 'imported' |
+| `created_by`    | varchar      | User pencatat / sistem IoT      |          |            |
+| `created_at`    | datetime     | Timestamp                       |          |            |
 
 ---
 
-### Keterkaitan dengan Use-Case
+- 🌐 3. **Skema API (REST API)**
 
-Pengujian **harus bersifat traceable ke use-case dan SRS**. Ini memastikan bahwa setiap kebutuhan teknis yang diturunkan dari kebutuhan bisnis benar-benar diuji.
+Sesuai dengan arsitektur HLD (Next.js API / Nest.js), berikut contoh endpoint utama:
 
-Contoh traceability testing:
+🔹 `POST /api/kpi-record`
 
-| Use-Case ID | Requirement (SRS)                  | Test Case ID | Jenis Test  |
-| ----------- | ---------------------------------- | ------------ | ----------- |
-| UC-001      | SRS-02: Notifikasi < 1 menit       | TC-002       | Integration |
-| UC-001      | SRS-01: Prediksi RUL akurat        | TC-001       | Model test  |
-| UC-002      | SRS-05: Dashboard tampil real-time | TC-005       | UI/API Test |
-
----
-
-### UAT untuk Sistem Prediksi
-
-**UAT (User Acceptance Testing)** merupakan pengujian dari perspektif pengguna akhir, untuk memastikan sistem memenuhi kebutuhan operasional nyata di lapangan.
-
-Pada `mx-core-metric`, UAT dilakukan oleh:
-
-- **Teknisi lapangan**: mengevaluasi notifikasi, kejelasan data di dashboard.
-- **Manajer operasional**: menilai akurasi KPI dan kemudahan akses informasi.
-- **Data engineer/QA**: memverifikasi bahwa data sensor masuk sesuai alur.
-
-Contoh checklist UAT:
-
-| No  | Uji                                                  | Hasil yang Diharapkan                            | Status |
-| --- | ---------------------------------------------------- | ------------------------------------------------ | ------ |
-| 1   | Sistem menampilkan status “kritis” saat RUL < 48 jam | Label status muncul di dashboard, berwarna merah | ✅     |
-| 2   | Notifikasi diterima teknisi                          | WA masuk dengan isi yang informatif dan ringkas  | ✅     |
-| 3   | Data historis disimpan                               | Prediksi dan skor disimpan dan bisa ditracking   | ✅     |
-
----
-
-### Tools yang Digunakan
-
-Beberapa tools populer yang digunakan dalam proses pengujian `mx-core-metric`:
-
-| Tool                 | Fungsi                                                          |
-| -------------------- | --------------------------------------------------------------- |
-| **Postman**          | Menguji API endpoint, validasi input/output                     |
-| **TestRail**         | Manajemen test plan dan test case, termasuk traceability matrix |
-| **Jest**             | Unit testing untuk modul Node.js / frontend (Next.js)           |
-| **Pytest**           | Testing untuk service Python (anomaly, RUL predictor)           |
-| **Supabase Studio**  | Validasi isi database, perubahan status real-time               |
-| **Grafana (QA Env)** | Monitoring log dan error trace saat UAT                         |
-
----
-
-## **VIII. Deployment**
-
-Tahap **deployment** dalam SDLC adalah proses memindahkan sistem dari lingkungan pengembangan ke lingkungan operasional. Untuk sistem industri seperti `mx-core-metric`, proses ini harus menjamin **zero-downtime**, **keamanan data**, serta **kemampuan rollback jika terjadi kegagalan**.
-
----
-
-### Deployment Pipeline
-
-`mx-core-metric` menggunakan pendekatan **automated deployment pipeline** berbasis GitHub Actions dan Docker. Pipeline ini bertugas:
-
-- Build image setiap commit ke branch `main`
-- Menjalankan pengujian otomatis
-- Deploy ke server QA / Production sesuai environment target
-- Kirim notifikasi hasil deployment ke tim (Slack/email)
-
-#### Contoh Alur CI/CD Pipeline:
-
-```plaintext
-Commit ke main
-    ↓
-Build Docker image
-    ↓
-Jalankan unit test (Jest / Pytest)
-    ↓
-Push ke container registry
-    ↓
-Deploy ke environment (QA atau Prod)
-    ↓
-Jalankan health-check otomatis
-    ↓
-Kirim notifikasi status ke Slack
-```
-
-#### Sample: Konfigurasi GitHub Actions
-
-```yaml
-name: Deploy Mx-Core
-
-on:
-  push:
-    branches: ['main']
-
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - run: docker-compose -f docker-compose.prod.yml build
-      - run: docker-compose -f docker-compose.prod.yml up -d
-      - name: Health Check
-        run: curl -f http://your-domain.com/health || exit 1
-```
-
----
-
-### Environment Setup (Dev, QA, Prod)
-
-Untuk menjaga stabilitas dan konsistensi, deployment dilakukan melalui **tiga tahapan environment**:
-
-| Environment | Tujuan                                   | Akses & Konfigurasi                                 |
-| ----------- | ---------------------------------------- | --------------------------------------------------- |
-| **Dev**     | Untuk pengujian lokal & eksperimen fitur | Docker Compose, database dummy, model non-produktif |
-| **QA**      | UAT & pre-release testing                | Mirror dari prod (data sintetik / semi-realistis)   |
-| **Prod**    | Sistem operasional aktual                | Server stabil, model AI versi teruji, data asli     |
-
-#### Konfigurasi Umum per Environment:
-
-- `.env.dev`, `.env.qa`, `.env.prod`
-- Skema database tetap konsisten
-- Penggunaan **feature flag** untuk mengaktifkan fitur tertentu di Dev saja
-
----
-
-### Rollback & Release Notes
-
-#### Rollback
-
-Rollback dirancang untuk kasus deployment gagal atau muncul bug kritikal pasca rilis.
-
-Strategi yang digunakan:
-
-- **Versioned Docker Image**: Setiap versi dirilis dengan tag unik (`mx-core:v1.3.2`)
-- **Backup otomatis**: Database dan model AI disimpan sebelum upgrade
-- **Revert script**: `docker-compose -f rollback.yml up` untuk memulihkan versi sebelumnya
-
-#### Release Notes
-
-Release notes disusun dan dibagikan untuk setiap rilis versi baru, mencakup:
-
-| Elemen             | Deskripsi                                                         |
-| ------------------ | ----------------------------------------------------------------- |
-| **Versi**          | v1.3.2                                                            |
-| **Tanggal Rilis**  | 15 Desember 2025                                                  |
-| **Perubahan Baru** | - Penambahan notifikasi via email<br>- Optimasi akurasi model RUL |
-| **Bug Fixes**      | - Fix error status “unknown” di dashboard saat device offline     |
-| **Dokumentasi**    | Link ke LLD & endpoint API yang diperbarui                        |
-
-Release notes ini didistribusikan via Confluence atau sebagai `CHANGELOG.md` di repo Git utama.
-
----
-
-### Integrasi ke Ekosistem Mx-Core
-
-`mx-core-metric` bukan sistem yang berdiri sendiri. Ia merupakan bagian dari ekosistem **Mx-Core**, yang mencakup:
-
-- **mx-core-docs**: sistem dokumentasi interaktif dan auto-traceable
-- **mx-core-cmms**: sistem manajemen maintenance dan inspeksi lapangan
-- **mx-core-dashboard**: dashboard agregat untuk monitoring multi-plant
-
-#### Bentuk Integrasi:
-
-| Sistem Eksternal    | Bentuk Integrasi                                          |
-| ------------------- | --------------------------------------------------------- |
-| `mx-core-docs`      | Setiap endpoint dan model terhubung ke referensi LLD/SRS  |
-| `mx-core-cmms`      | Status prediksi otomatis mengisi field CMMS               |
-| `mx-core-dashboard` | Widget “Health Score” ditarik dari modul `mx-core-metric` |
-| MQTT Broker (EMQX)  | Publikasi status RUL via topik `plant/metric/status`      |
-
-Integrasi ini membuat `mx-core-metric` tidak hanya menjalankan fungsinya sendiri, tetapi juga **berkontribusi pada sistem monitoring dan pengambilan keputusan secara menyeluruh.**
-
----
-
-## **IX. Maintenance**
-
-Tahap **maintenance** dalam SDLC mencakup semua aktivitas yang dilakukan **setelah sistem dirilis ke produksi**, termasuk pemantauan performa, perbaikan bug, pembaruan model AI, dan penyesuaian terhadap kebutuhan baru.
-
-Untuk sistem industri seperti `mx-core-metric`, maintenance bukan hanya soal stabilitas sistem, tetapi juga **responsivitas terhadap dinamika operasional**, seperti perubahan pola data sensor, kebutuhan bisnis baru, dan integrasi tambahan.
-
----
-
-### 1. Post-deployment Monitoring
-
-Monitoring dilakukan untuk memastikan sistem tetap berjalan stabil dan dapat dideteksi lebih awal jika terjadi anomali operasional.
-
-#### Komponen Monitoring:
-
-| Aspek yang Dipantau       | Tools / Strategi                            |
-| ------------------------- | ------------------------------------------- |
-| **Status Service**        | Uptime monitoring via Grafana + Prometheus  |
-| **Log Error**             | ELK Stack / Supabase log, log level standar |
-| **MQTT Traffic**          | EMQX dashboard, packet drop, topic lag      |
-| **Database Health**       | Query time monitoring, deadlock detection   |
-| **AI Output Consistency** | Range checking dan histogram prediksi       |
-
-#### Contoh Alert Otomatis:
-
-- Jika tidak ada data masuk > 10 menit → alert ke Slack DevOps
-- Jika anomali meningkat 3x lipat dalam 1 jam → notifikasi ke Data Engineer
-- Jika latency prediksi > 5 detik → masuk ke incident queue
-
----
-
-### 2. SLA dan Respon Insiden
-
-SLA (**Service Level Agreement**) mendefinisikan standar waktu respon dan waktu pemulihan jika terjadi gangguan sistem. Ini penting untuk sistem industri yang digunakan dalam operasi 24/7.
-
-| Tipe Insiden                  | SLA Respon Awal | Waktu Pemulihan Target | Tim Terkait            |
-| ----------------------------- | --------------- | ---------------------- | ---------------------- |
-| **Service Down**              | ≤ 15 menit      | ≤ 2 jam                | DevOps / Infrastruktur |
-| **Prediksi Tidak Jalan**      | ≤ 30 menit      | ≤ 4 jam                | Data Engineer / ML Ops |
-| **Notifikasi Gagal Terkirim** | ≤ 1 jam         | ≤ 6 jam                | Backend / Integration  |
-| **Kesalahan Prediksi Tinggi** | ≤ 1 hari        | ≤ 3 hari (via retrain) | ML Engineer            |
-
-Insiden dicatat dan ditindaklanjuti melalui **incident ticketing system** seperti Jira atau GitHub Issues.
-
----
-
-### 3. Model Retraining dan Model Drift Handling
-
-Karena `mx-core-metric` menggunakan model AI untuk deteksi anomali dan prediksi RUL, **retraining model** adalah bagian penting dari maintenance.
-
-#### Jadwal dan Strategi Retraining:
-
-| Model            | Frekuensi Retrain | Trigger Otomatis                           |
-| ---------------- | ----------------- | ------------------------------------------ |
-| Anomaly Detector | Bulanan           | Akurasi menurun > 10%                      |
-| RUL Predictor    | Setiap 2 bulan    | Error prediksi meningkat berturut 2 minggu |
-
-#### Handling Model Drift
-
-Model drift terjadi saat performa model menurun karena pola data berubah. Tanda-tandanya:
-
-- Prediksi sering terlalu cepat/lambat
-- Anomali score meningkat tanpa gangguan nyata
-- Feedback teknisi bertentangan dengan hasil prediksi
-
-**Solusi:**
-
-- Evaluasi ulang dataset
-- Tambah fitur baru (misalnya: load mesin, shift kerja)
-- Terapkan **continual learning pipeline** (opsional)
-- Log dan simpan semua hasil prediksi untuk audit dan fine-tuning
-
----
-
-### 4. Change Request Management
-
-Dalam sistem industri, **kebutuhan bisnis dapat berubah** (misalnya, integrasi plant baru atau perubahan metrik KPI). Maka dibutuhkan proses formal untuk manajemen **Change Request (CR).**
-
-#### Siklus Change Request:
-
-1. **Pengajuan CR**
-   → oleh stakeholder melalui form CR (bisa di Confluence, Jira, atau sistem custom)
-
-2. **Analisis Dampak**
-   → dilakukan oleh tim arsitek dan developer: modul yang terpengaruh, effort estimasi, downtime potensial
-
-3. **Persetujuan CR**
-   → oleh manajer proyek atau product owner
-
-4. **Implementasi Terjadwal**
-   → dilakukan dalam sprint mendatang atau patch release
-
-5. **Retesting & Deployment**
-   → testing difokuskan pada area yang terdampak, dengan tambahan regresi test
-
-#### Contoh CR:
-
-| ID CR  | Deskripsi Perubahan                            | Status    | Dampak Utama               |
-| ------ | ---------------------------------------------- | --------- | -------------------------- |
-| CR-014 | Tambah prediksi RUL untuk mesin baru (IDN-109) | Disetujui | Perlu retrain + mapping DB |
-| CR-015 | Tambah endpoint untuk webhook internal CMMS    | Draft     | Perubahan API Gateway      |
-| CR-016 | Ubah threshold status “critical”               | Closed    | Hanya config, tanpa deploy |
-
----
-
-## **X. Dokumentasi & Deliverable**
-
-Dokumentasi adalah fondasi penting dalam pengembangan software skala industri. Di luar implementasi teknis, **kualitas dokumentasi menentukan keberhasilan komunikasi, audit, pelatihan, dan keberlanjutan sistem**. Dalam proyek seperti `mx-core-metric`, dokumentasi bukan sekadar formalitas—tetapi bagian integral dari alur kerja teknis dan bisnis.
-
----
-
-### 1. Tabel Daftar Dokumen Tiap Fase SDLC
-
-Berikut adalah mapping dokumen terhadap tiap fase dalam SDLC `mx-core-metric`:
-
-| Fase SDLC             | Dokumen Utama                                | Format              | Status Deliverable                      |
-| --------------------- | -------------------------------------------- | ------------------- | --------------------------------------- |
-| **BRS**               | Business Requirement Specification           | `.docx`             | ✅ Mandatory                            |
-| **SRS + Use Case**    | Software Requirement Specification, Use-Case | `.docx`, `.xlsx`    | ✅ Mandatory                            |
-| **HLD**               | High-Level Design Diagram & Deskripsi        | `.pptx`, `.drawio`  | ✅ Mandatory                            |
-| **LLD**               | Low-Level Design: ERD, API, Algoritma        | `.md`, `.json`      | ✅ Mandatory                            |
-| **Implementation**    | Struktur repositori, kode, `README.md`       | `.md`, `.ts`, `.py` | ✅ Mandatory                            |
-| **Testing**           | Test Plan, Test Case, UAT Report             | `.xlsx`, `.pdf`     | ✅ Mandatory                            |
-| **Deployment**        | Deployment SOP, CI/CD config, Release Notes  | `.md`, `.yml`       | ✅ Mandatory                            |
-| **Maintenance**       | Log retrain, Incident Report, CR List        | `.xlsx`, `.docx`    | ✅ Opsional (wajib jika ada insiden/CR) |
-| **Dokumentasi Akhir** | Master Dokumen SDLC + Checklist Implementasi | `.xlsx`, `.docx`    | ✅ Mandatory                            |
-
----
-
-### 2. Template / Contoh File Dokumentasi
-
-Agar konsistensi dan traceability terjaga, berikut beberapa contoh format atau template yang digunakan:
-
-#### 📄 BRS Template (`.docx`)
-
-```plaintext
-1. Latar Belakang
-2. Tujuan Sistem
-3. Ruang Lingkup
-4. Stakeholder
-5. Kebutuhan Bisnis (tabel prioritas)
-6. KPI / Target
-7. Keterbatasan Sistem
-```
-
-#### 📊 Test Case Format (`.xlsx`)
-
-| Test Case ID | Nama Test           | Input Data       | Expected Output             | Status | Terkait Use-Case |
-| ------------ | ------------------- | ---------------- | --------------------------- | ------ | ---------------- |
-| TC-01        | Prediksi RUL akurat | 30 window sensor | RUL dalam jam (≤ error 10%) | ✅     | UC-001           |
-
-#### 🧾 API Schema (`.json`)
-
-File `rul-predictor.openapi.json`:
+| Deskripsi       | Mencatat capaian KPI manual atau dari sensor |
+| --------------- | -------------------------------------------- |
+| Payload Example |                                              |
 
 ```json
 {
-  "paths": {
-    "/api/predict/rul": {
-      "post": {
-        "summary": "Prediksi Remaining Useful Life",
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": { "$ref": "#/components/schemas/SensorWindow" }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Prediksi berhasil",
-            "content": {
-              "application/json": {
-                "schema": { "$ref": "#/components/schemas/RULResponse" }
-              }
-            }
-          }
-        }
-      }
-    }
+  "kpi_id": "kpi-001",
+  "unit_id": "unit-a",
+  "department_id": "dept-prod",
+  "periode": "2025-12-01",
+  "value": 9500,
+  "source": "manual",
+  "note": "Capaian minggu ke-1",
+  "created_by": "user-001"
+}
+```
+
+| Response |
+
+```json
+{
+  "status": "success",
+  "data": {
+    "id": "record-12345"
   }
 }
 ```
 
-#### 📘 Release Notes Format (`.md`)
+---
 
-```markdown
-## v1.3.2 - 15 Desember 2025
+🔹 `POST /api/mqtt-ingest`
 
-### 🔼 Fitur Baru
+| Deskripsi | Endpoint untuk menerima payload dari MQTT listener (internal call) |
+| Payload |
 
-- Notifikasi email tambahan untuk status `critical`
-- Monitoring latency prediksi (metrics API)
-
-### 🐞 Bug Fixes
-
-- Perbaikan error parsing data MQTT dari sensor legacy
-
-### 📎 Dokumen Terkait
-
-- LLD Ref: v1.3.2/design/llm-predictor.md
-- Test Case Ref: QA-TC-043
+```json
+{
+  "topic": "kpi/update/unit-a",
+  "payload": {
+    "kpi_id": "kpi-001",
+    "value": 480,
+    "periode": "2025-12-02",
+    "source": "sensor"
+  }
+}
 ```
 
 ---
 
-### 3. Best Practices dalam Penyusunan & Pengelolaan Dokumen
+🔹 `GET /api/dashboard/summary`
 
-#### ✅ Prinsip Utama
+| Fungsi | Mendapatkan ringkasan KPI vs target untuk dashboard |
+| Query Params | `periode`, `unit_id`, `department_id` |
+| Response Example |
 
-| Prinsip                        | Penjelasan                                                                          |
-| ------------------------------ | ----------------------------------------------------------------------------------- |
-| **Single Source of Truth**     | Dokumen hanya disimpan di satu lokasi resmi (mis. Git, Confluence)                  |
-| **Version Control**            | Semua dokumen penting di-track via Git (`.md`, `.json`, `.yaml`, `.drawio`)         |
-| **Linkage dan Traceability**   | Setiap dokumen harus mengacu ke dokumen sebelumnya dan berikutnya (misal SRS ➝ HLD) |
-| **Live Documentation**         | Gunakan auto-generated docs untuk API, ERD, test result                             |
-| **Format Konsisten**           | Gunakan template standar perusahaan/klien                                           |
-| **Dokumentasi = Implementasi** | Jika dokumentasi berubah, kode/fitur harus ikut diperbarui (dan sebaliknya)         |
-
-#### 📦 Tools Pendukung
-
-| Kebutuhan                 | Tools / Format                    |
-| ------------------------- | --------------------------------- |
-| Document repository       | GitHub, GitLab, Confluence        |
-| API documentation         | Swagger, Redoc, Postman Docs      |
-| Diagram & ERD             | dbdiagram.io, draw.io, Lucidchart |
-| Dokumentasi berbasis kode | README.md, JSDoc, docstring       |
-| Spreadsheet testing       | Excel, Google Sheets, TestRail    |
+```json
+{
+  "target": 10000,
+  "actual": 9500,
+  "achievement_percent": 95,
+  "status": "warning"
+}
+```
 
 ---
 
-Dengan dokumentasi yang **terstandar, traceable, dan versioned**, proyek seperti `mx-core-metric` akan:
+- 🧠 4. **Algoritma Forecasting**
 
-- **Lebih mudah dipelihara**
-- **Lebih cepat di-audit**
-- **Mendukung onboarding tim baru**
-- **Siap untuk skalabilitas lintas site atau pabrik**
+Modul `Forecast Engine` akan menjalankan perhitungan otomatis dengan metode:
 
----
+📌 Default Method: **Linear Projection**
 
-## **XI. Penutup**
+```ts
+/**
+ * Linear Forecast
+ * @param actuals Array of past values with known time delta (weekly/monthly)
+ * @param currentIndex Index of current period (e.g. month 8 of 12)
+ */
+function forecastLinear(actuals: number[], currentIndex: number): number {
+  const sum = actuals.reduce((a, b) => a + b, 0);
+  const avg = sum / currentIndex;
+  const projectedTotal = avg * 12;
+  return projectedTotal;
+}
+```
 
-### 🔁 Ringkasan: Pentingnya Keterpaduan BRS ➝ SRS ➝ Desain ➝ Implementasi
+**Catatan:**
 
-Dalam pengembangan software industri yang kompleks dan kritikal seperti `mx-core-metric`, **keterpaduan antar fase SDLC bukanlah opsi—melainkan kebutuhan**.
-
-Setiap fase saling terkait secara **vertikal dan logis**:
-
-- **BRS** menjabarkan _apa_ yang dibutuhkan dari sisi bisnis.
-- **SRS** menerjemahkan kebutuhan tersebut menjadi _apa yang harus dilakukan oleh sistem_.
-- **Desain (HLD & LLD)** mengubah SRS menjadi _bagaimana sistem akan dibangun dan bekerja_.
-- **Implementasi** mewujudkan desain dalam bentuk _kode nyata dan layanan produksi_.
-
-Tanpa alur yang terstruktur ini:
-
-- Tim mudah kehilangan arah saat skala proyek membesar.
-- Perubahan bisnis tidak cepat diakomodasi secara teknis.
-- Sistem rawan error, sulit diuji, dan sulit dikembangkan ulang.
-
-Dengan alur yang terstruktur:
-
-- Perubahan dapat ditelusuri dan dikendalikan.
-- Dokumentasi mendukung kolaborasi dan audit.
-- Kualitas sistem meningkat secara signifikan.
+- Untuk NFR **forecast cepat**, algoritma ini sangat ringan
+- Di masa depan bisa diganti dengan **regression, LSTM**, dsb (sesuai roadmap)
 
 ---
 
-### 🛠️ Rekomendasi: Gunakan SDLC sebagai Standar Proyek Digital Maintenance
+- 🧪 5. **Validasi Payload Sensor (MQTT Format)**
 
-Berikut rekomendasi untuk perusahaan industri atau tim pengembang dalam membangun **sistem digital maintenance** berbasis data dan AI:
+| Format MQTT Payload (JSON) | Topik: `kpi/update/{unit}` |
 
-1. **Standarkan penggunaan SDLC untuk seluruh proyek** — mulai dari sistem dashboard sederhana hingga prediksi berbasis machine learning.
-2. **Jadikan dokumen BRS/SRS sebagai bahan komunikasi lintas fungsi** — agar tim bisnis dan teknis berbicara dalam satu kerangka.
-3. **Sisipkan prinsip agile secara taktis** — terutama pada fase desain, implementasi, dan retraining model AI.
-4. **Otomatiskan sebanyak mungkin** — CI/CD, testing, monitoring, retraining, hingga dokumentasi API.
-5. **Integrasikan SDLC ke dalam budaya kerja proyek industri** — bukan sekadar checklist, tetapi sebagai kerangka berpikir kolaboratif.
+```json
+{
+  "kpi_id": "kpi-001",
+  "value": 123.45,
+  "periode": "2025-12-10"
+}
+```
 
----
+| Validasi saat diterima:               |
+| ------------------------------------- |
+| ✅ Apakah `kpi_id` valid?             |
+| ✅ Apakah `periode` dalam format ISO? |
+| ✅ Apakah `value` numerik?            |
+| ✅ Apakah unit/kpi aktif?             |
 
-### ✅ Checklist: Sukses Implementasi SDLC di Proyek Industrial / AI
-
-| Aspek                           | Tindakan Kunci                                               | Status |
-| ------------------------------- | ------------------------------------------------------------ | ------ |
-| 🔹 **BRS Disetujui**            | Terdapat dokumen kebutuhan bisnis dengan stakeholder lengkap | ✅     |
-| 🔹 **SRS Tersusun Rinci**       | Use-case, skenario, NFR, dan traceability tersedia           | ✅     |
-| 🔹 **Desain Terstruktur**       | HLD & LLD terdokumentasi dan bisa diimplementasikan          | ✅     |
-| 🔹 **Kode Modular & Testable**  | Implementasi mengikuti arsitektur dan LLD                    | ✅     |
-| 🔹 **Testing Terverifikasi**    | Test case mencakup semua use-case utama + UAT                | ✅     |
-| 🔹 **Deploy Otomatis**          | CI/CD pipeline mendukung update aman                         | ✅     |
-| 🔹 **Monitoring Aktif**         | Sistem log, alert, dan health check berjalan pasca deploy    | ✅     |
-| 🔹 **Model AI Terkelola**       | Retrain schedule, versioning, dan drift monitoring ada       | ✅     |
-| 🔹 **Dokumentasi Terintegrasi** | Semua artefak terdokumentasi dan traceable                   | ✅     |
+> Jika tidak valid → reject & log error
 
 ---
 
-Dengan menerapkan pendekatan ini, proyek seperti `mx-core-metric` tidak hanya menjadi solusi fungsional, tapi juga **menjadi standar baru dalam pengembangan sistem AI untuk dunia industri** — yang transparan, terukur, dan berkelanjutan.
+- ⚙️ 6. **MQTT Listener Design**
+
+* **Broker:** Bisa pakai `Mosquitto` atau MQTT Cloud (e.g. HiveMQ, EMQX)
+* **Topik Standar:**
+  Format: `kpi/update/{unit_id}`
+  Payload: JSON (sesuai skema di atas)
+* **Processor:** Listener subscribe ke topik, validasi, lalu simpan ke DB
 
 ---
 
-📘 **Akhir Kata**
-Blueprint ini diharapkan dapat menjadi panduan praktis bagi tim teknis dan manajerial dalam mengembangkan solusi digital maintenance yang berbasis data, AI, dan IoT — dengan struktur SDLC sebagai tulang punggung utama.
+- 🔐 7. **Konfigurasi Role & Logging**
 
-Jika dibutuhkan, blueprint ini juga bisa dikembangkan menjadi **template proyek siap pakai** atau basis untuk membangun platform SDLC internal perusahaan.
+| Role      | Hak Akses Modul                     |
+| --------- | ----------------------------------- |
+| Admin     | Semua modul                         |
+| Dept Head | KPI & Target di departemen tertentu |
+| Operator  | Input capaian & gangguan            |
+| Viewer    | Read-only akses dashboard & laporan |
+
+| Logging | Entitas yang dilog: `kpi_record`, `target`, `forecast`, `disturbance` |
+
+---
+
+- ✅ Sinkronisasi LLD dengan HLD & SRS
+
+| Elemen        | Dipetakan dalam LLD                                                                  |
+| ------------- | ------------------------------------------------------------------------------------ |
+| FR-01 s/d 12  | CRUD API, struktur data, relasi                                                      |
+| NFR-01 s/d 07 | Latency MQTT, security, scalability                                                  |
+| UC-001–012    | Setiap modul terwakili                                                               |
+| BL-01 s/d 05  | Dihindari / ditangani (misal BL-03: forecasting linear, BL-05: validasi MQTT format) |
+
+---
+
+- 📦 Ringkasan Output LLD
+
+✅ Struktur tabel dan field lengkap (ERD & data dictionary)
+✅ API endpoint & payload lengkap untuk tiap fungsi utama
+✅ Algoritma forecast sudah ditentukan
+✅ Format dan arsitektur integrasi sensor via MQTT
+✅ Role access dan audit trail siap diimplementasikan
+
+---
+
+### 🧩 4. **Implementation (Coding)**
+
+> 📌 _Tujuan:_ Penerjemahan desain ke dalam kode sumber
+
+#### 🔹 Struktur Aktivitas:
+
+- Setup repositori (Git)
+- Coding by module/sprint
+- Kode mengacu pada LLD
+- Versioning dan dokumentasi
+- Code review & integration checklist
+
+#### ✅ Output:
+
+- Source code versi alpha → siap diuji
+
+---
+
+### 🧩 5. **Testing**
+
+> 📌 _Tujuan:_ Validasi bahwa sistem bekerja sesuai SRS dan use-case
+
+#### 🔹 Jenis Pengujian:
+
+- **Unit Test**: Pengujian fungsi spesifik
+- **Integration Test**: Antarmuka antar modul
+- **System Test**: End-to-end dari perspektif use-case
+- **User Acceptance Test (UAT)**: Verifikasi oleh user
+
+#### 🔹 Dokumen Terkait:
+
+- Test Plan
+- Test Case
+- Bug Log & Traceability
+
+#### ✅ Output:
+
+- Release Candidate → siap deploy
+
+---
+
+### 🧩 6. **Deployment**
+
+> 📌 _Tujuan:_ Meluncurkan aplikasi ke lingkungan produksi
+
+#### 🔹 Checklist:
+
+- Build & CI/CD pipeline
+- Environment setup (Dev, Staging, Prod)
+- Backup & Rollback Plan
+- Dokumen Release Notes
+- Deployment Log
+
+#### ✅ Output:
+
+- Aplikasi berjalan di production environment
+
+---
+
+### 🧩 7. **Maintenance & Support**
+
+> 📌 _Tujuan:_ Menjamin kelangsungan layanan, perbaikan bug, dan peningkatan
+
+#### 🔹 Aktivitas:
+
+- Monitoring performance
+- Patch & bug fix
+- User feedback loop
+- Model retraining (jika AI)
+- Feature improvement roadmap
+
+#### ✅ Output:
+
+- SLA & KPI pemeliharaan terukur
+
+---
+
+## 🔚 **Kesimpulan**
+
+Template di atas memberikan kerangka lengkap dan runtut dari:
+
+- 🏢 **Kebutuhan bisnis** →
+- ⚙️ **Spesifikasi teknis** →
+- 🔧 **Desain sistem** →
+- 💻 **Implementasi dan pengujian** →
+- 📦 **Deploy dan rawat**
+
+> 📌 Cocok digunakan untuk proyek dengan pendekatan _structured (Waterfall)_ maupun _iterative (Agile Hybrid)_
 
 ---
