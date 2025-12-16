@@ -47,6 +47,9 @@ summary: Artikel ini menyajikan panduan lengkap pengembangan perangkat lunak ind
 - [🧩 **Bab IV – SRS: Software Requirement Specification**](#-bab-iv--srs-software-requirement-specification)
   - [📌 **Perbedaan SRS dengan BRS**](#-perbedaan-srs-dengan-brs)
   - [📌 **Fungsi dan Isi SRS**](#-fungsi-dan-isi-srs)
+  - [📌 **Studi Kasus: Turunan dari BRS ke SRS (Plugin `mx-core-ai`)**](#-studi-kasus-turunan-dari-brs-ke-srs-plugin-mx-core-ai)
+  - [🧭 **Contoh Turunan dari BRS ke SRS**](#-contoh-turunan-dari-brs-ke-srs)
+  - [📦 **Format SRS Modular (Contoh Ringkas)**](#-format-srs-modular-contoh-ringkas)
   - [📌 **Integrasi Use-Case dalam SRS**](#-integrasi-use-case-dalam-srs)
   - [📋 **Format Use-Case (Naratif)**](#-format-use-case-naratif)
   - [📊 **Contoh Use-Case Mx-Core-AI: UC-01 – “Prediksi Kegagalan Pompa”**](#-contoh-use-case-mx-core-ai-uc-01--prediksi-kegagalan-pompa)
@@ -368,6 +371,38 @@ Mengurangi downtime dan biaya pemeliharaan dengan menerapkan sistem prediksi keg
 | **Use-Case Detail**                   | Narasi alur sistem dari perspektif pengguna         |
 | **Data Requirement**                  | Tipe data, format input/output, integrasi           |
 | **Traceability Matrix**               | Keterkaitan antara BRS ➝ SRS ➝ Use-case ➝ Test Case |
+
+---
+
+### 📌 **Studi Kasus: Turunan dari BRS ke SRS (Plugin `mx-core-ai`)**
+
+Sebelum masuk ke use-case, penting ditunjukkan **bagaimana kebutuhan bisnis (BRS)** diturunkan menjadi **Functional Requirements (FR)** dalam dokumen SRS. Hal ini memperkuat **traceability** dan menjembatani pemahaman antara tim bisnis dan teknis.
+
+### 🧭 **Contoh Turunan dari BRS ke SRS**
+
+| ID     | Business Capability (dari BRS)         | Functional Requirement (FR) – Turunan di SRS                                                           |
+| ------ | -------------------------------------- | ------------------------------------------------------------------------------------------------------ |
+| BRS-01 | Predict Equipment Failure              | FR-01: Sistem harus menghitung Remaining Useful Life (RUL) berdasarkan data vibrasi, suhu, dan arus    |
+|        |                                        | FR-02: Sistem harus menampilkan confidence score untuk hasil prediksi                                  |
+| BRS-02 | Detect Operational Anomaly             | FR-03: Sistem harus mendeteksi anomali parameter berdasarkan threshold model                           |
+|        |                                        | FR-04: Sistem harus memberikan notifikasi jika nilai di luar baseline normal terdeteksi                |
+| BRS-03 | Intelligent Maintenance Recommendation | FR-05: Sistem harus memberikan rekomendasi WO berdasarkan hasil prediksi                               |
+|        |                                        | FR-06: Sistem harus mengirimkan rekomendasi ke plugin `mx-core-cmms` melalui endpoint internal         |
+| BRS-04 | Root Cause Insight _(Future)_          | FR-07: Sistem harus menyajikan kemungkinan akar penyebab berdasarkan histori kegagalan                 |
+|        |                                        | FR-08: Sistem dapat menerima prompt natural language dan merespons insight berbasis data histori (NLP) |
+
+> 🔍 Catatan: FR di atas akan **diturunkan lagi** ke **use-case detail**, HLD modul, LLD algoritma/API, dan test case.
+
+---
+
+### 📦 **Format SRS Modular (Contoh Ringkas)**
+
+| FR-ID | Nama Requirement                     | Tipe       | Prioritas | Keterangan Teknis Ringkas                                      |
+| ----- | ------------------------------------ | ---------- | --------- | -------------------------------------------------------------- |
+| FR-01 | Prediksi Remaining Useful Life (RUL) | Functional | High      | Model regresi memproses input sensor untuk estimasi umur pakai |
+| FR-03 | Deteksi Anomali Operasi              | Functional | High      | Model unsupervised mendeteksi outlier dari trend normal        |
+| FR-05 | Rekomendasi WO                       | Functional | Medium    | Output prediksi dikonversi jadi saran tindakan teknis          |
+| FR-08 | NLP Query Insight                    | Functional | Low       | Sistem memahami query user untuk insight kegagalan             |
 
 ---
 
