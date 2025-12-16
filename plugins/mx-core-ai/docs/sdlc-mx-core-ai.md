@@ -48,7 +48,7 @@ summary: Artikel ini menyajikan panduan lengkap pengembangan perangkat lunak ind
   - [📌 **Perbedaan SRS dengan BRS**](#-perbedaan-srs-dengan-brs)
   - [📌 **Fungsi dan Isi SRS**](#-fungsi-dan-isi-srs)
   - [📌 **Integrasi Use-Case dalam SRS**](#-integrasi-use-case-dalam-srs)
-  - [📋 **Format Use-Case (Narratif)**](#-format-use-case-narratif)
+  - [📋 **Format Use-Case (Naratif)**](#-format-use-case-naratif)
   - [📊 **Contoh Use-Case Mx-Core-AI: UC-01 – “Prediksi Kegagalan Pompa”**](#-contoh-use-case-mx-core-ai-uc-01--prediksi-kegagalan-pompa)
   - [📌 **Traceability dari BRS ke SRS**](#-traceability-dari-brs-ke-srs)
 - [🧩 **Bab V – System Design**](#-bab-v--system-design)
@@ -307,17 +307,28 @@ Mengurangi downtime dan biaya pemeliharaan dengan menerapkan sistem prediksi keg
 
 ### 📊 **Contoh Format Tabel BRS (Mx-Core-AI)**
 
-| Elemen                | Deskripsi                                                                                      |
-| --------------------- | ---------------------------------------------------------------------------------------------- |
-| **Project Name**      | `mx-core-ai` – Predictive Maintenance Plugin                                                   |
-| **Business Problem**  | Downtime tak terduga dari equipment rotatif menimbulkan kerugian operasional                   |
-| **Business Goal**     | Meningkatkan reliability dan mengurangi maintenance reaktif                                    |
-| **Scope**             | Plugin analitik berbasis AI untuk prediksi kegagalan, deteksi anomali, dan rekomendasi WO      |
-| **Out of Scope**      | Sensor hardware, penggantian sistem CMMS, pengelolaan user akses                               |
-| **Expected Benefits** | - Waktu respons lebih cepat <br> - Preventive action yang lebih tepat <br> - Cost saving       |
-| **Success Metrics**   | - >80% akurasi prediksi <br> - Penurunan unplanned WO bulanan <br> - UAT sukses dalam 1 siklus |
-| **Constraints**       | Harus berjalan di infrastruktur cloud hybrid internal; hanya menggunakan data yang sudah ada   |
-| **Assumptions**       | Semua equipment target sudah memiliki sensor aktif dan data histori minimal 12 bulan tersedia  |
+| Elemen                | Deskripsi                                                                                                        |
+| --------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| **Project Name**      | `mx-core-ai` – Predictive Maintenance Plugin                                                                     |
+| **Business Problem**  | Downtime tak terduga dari equipment rotatif menimbulkan kerugian operasional                                     |
+| **Business Goal**     | Meningkatkan reliability dan mengurangi maintenance reaktif                                                      |
+| **Scope**             | Plugin analitik berbasis AI untuk prediksi kegagalan, deteksi anomali, dan rekomendasi WO                        |
+| **Out of Scope**      | Sensor hardware, penggantian sistem CMMS, pengelolaan user akses                                                 |
+| **Expected Benefits** | <ul><li>Waktu respons lebih cepat</li><li>Preventive action yang lebih tepat</li><li>Cost saving</li></ul>       |
+| **Success Metrics**   | <ul><li>>80% akurasi prediksi</li><li>Penurunan unplanned WO bulanan</li><li>UAT sukses dalam 1 siklus</li></ul> |
+| **Constraints**       | Harus berjalan di infrastruktur cloud hybrid internal; hanya menggunakan data yang sudah ada                     |
+| **Assumptions**       | Semua equipment target sudah memiliki sensor aktif dan data histori minimal 12 bulan tersedia                    |
+
+---
+
+**Berikut adalah versi tabel yang diperluas dengan tools, model, dan libraries untuk tiap capability mxcore-ai:**
+
+| Priority        | Business Capability                    | Deskripsi Bisnis                                                    | Tools & Model Suggestion                                                    |
+| --------------- | -------------------------------------- | ------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| **Mandatory**   | Predict Equipment Failure              | Sistem harus mampu memprediksi potensi kegagalan equipment kritikal | `XGBoost`, `scikit-learn`, `MLflow`, `pandas`, `Docker`                     |
+| **Mandatory**   | Detect Operational Anomaly             | Sistem harus mendeteksi penyimpangan parameter operasi              | `Isolation Forest`, `AutoEncoder`, `TensorFlow`, `Prometheus`, `Grafana`    |
+| **Recommended** | Intelligent Maintenance Recommendation | Sistem membantu planner menentukan aksi maintenance                 | `Rule-based engine`, `PostgreSQL`, `OpenAI embedding` (opsional), `fastapi` |
+| **Future**      | Root Cause Insight                     | Sistem membantu analisis penyebab kegagalan                         | `langchain`, `GPT-4 API`, `timeseries causal analysis`, `neo4j` (opsional)  |
 
 ---
 
@@ -372,20 +383,20 @@ Use-case juga dapat divisualisasikan dalam **diagram UML** untuk memudahkan pema
 
 ---
 
-### 📋 **Format Use-Case (Narratif)**
+### 📋 **Format Use-Case (Naratif)**
 
-| Elemen                     | Penjelasan                                                                                                                                                   |
-| -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| **ID**                     | UC-01                                                                                                                                                        |
-| **Nama Use-Case**          | Prediksi Kegagalan Pompa                                                                                                                                     |
-| **Aktor**                  | Reliability Engineer                                                                                                                                         |
-| **Deskripsi**              | User ingin mengetahui prediksi sisa umur pompa sebelum failure terjadi                                                                                       |
-| **Pre-condition**          | Data historis tersedia minimal 30 hari                                                                                                                       |
-| **Trigger**                | Engineer mengakses halaman Equipment Health dan klik tombol “Run Prediction”                                                                                 |
-| **Alur Utama (Main Flow)** | 1. User input Equipment ID <br> 2. Sistem menarik histori <br> 3. Sistem lakukan inference model RUL <br> 4. Sistem menampilkan hasil prediksi & rekomendasi |
-| **Alur Alternatif**        | - Jika data kurang → sistem menampilkan notifikasi “data tidak cukup”                                                                                        |
-| **Post-condition**         | Prediksi RUL dan confidence level ditampilkan dalam dashboard                                                                                                |
-| **Exception**              | Sistem gagal mengakses model / API error                                                                                                                     |
+| Elemen                     | Penjelasan                                                                                                                                                                  |
+| -------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **ID**                     | UC-01                                                                                                                                                                       |
+| **Nama Use-Case**          | Prediksi Kegagalan Pompa                                                                                                                                                    |
+| **Aktor**                  | Reliability Engineer                                                                                                                                                        |
+| **Deskripsi**              | User ingin mengetahui prediksi sisa umur pompa sebelum failure terjadi                                                                                                      |
+| **Pre-condition**          | Data historis tersedia minimal 30 hari                                                                                                                                      |
+| **Trigger**                | Engineer mengakses halaman Equipment Health dan klik tombol “Run Prediction”                                                                                                |
+| **Alur Utama (Main Flow)** | <ol><li>User input Equipment ID</li><li>Sistem menarik histori</li><li>Sistem lakukan inference model RUL</li><li>Sistem menampilkan hasil prediksi & rekomendasi</li></ol> |
+| **Alur Alternatif**        | <ul><li>Jika data kurang → sistem menampilkan notifikasi “data tidak cukup”</li></ul>                                                                                       |
+| **Post-condition**         | Prediksi RUL dan confidence level ditampilkan dalam dashboard                                                                                                               |
+| **Exception**              | Sistem gagal mengakses model / API error                                                                                                                                    |
 
 ---
 
