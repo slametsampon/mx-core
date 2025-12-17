@@ -33,312 +33,1584 @@ summary: Artikel ini menyajikan panduan lengkap pengembangan perangkat lunak ind
 
 ---
 
-- [**I. Pendahuluan**](#i-pendahuluan)
-- [**II. Ringkasan SDLC dan Alur Tahapan**](#ii-ringkasan-sdlc-dan-alur-tahapan)
-- [**III. BRS – Business Requirement Specification**](#iii-brs--business-requirement-specification)
-- [**IV. SRS – Software Requirement Specification**](#iv-srs--software-requirement-specification)
-- [**V. System Design**](#v-system-design)
-- [**VI. Implementation**](#vi-implementation)
-- [**VII. Testing**](#vii-testing)
-- [**VIII. Deployment**](#viii-deployment)
-- [**IX. Maintenance**](#ix-maintenance)
-- [**X. Dokumentasi \& Deliverable**](#x-dokumentasi--deliverable)
-- [**XI. Penutup**](#xi-penutup)
+### ✅ **🧩 1. Business Requirement Specification (BRS)**
+
+**Studi Kasus: mx-core-rbm**
 
 ---
 
-### **I. Pendahuluan**
+- 📘 **Judul Proyek**
 
-- Apa itu SDLC?
-
-**SDLC (Software Development Life Cycle)** adalah kerangka kerja sistematis yang digunakan untuk merencanakan, mengembangkan, menguji, dan memelihara sistem perangkat lunak. SDLC menjamin bahwa perangkat lunak dikembangkan secara **terstruktur, terdokumentasi, dan dapat dipelihara jangka panjang.**
-
-- Mengapa SDLC penting untuk proyek berskala industri?
-
-Dalam proyek industri — khususnya sektor **petrokimia, manufaktur, atau utilitas** — sistem software tidak hanya mendukung proses, tetapi **mengotomatisasi pengambilan keputusan kritikal** seperti penjadwalan inspeksi, prediksi kegagalan, hingga perencanaan shutdown. Oleh karena itu, **SDLC menjadi fondasi manajemen risiko teknis dan bisnis.**
-
-- Peran SDLC dalam sistem cerdas seperti `Mx-Core-RBM`
-
-`Mx-Core-RBM` adalah plugin modul Risk-Based Maintenance (RBM) dari platform Mx-Core, dirancang untuk:
-
-- Menerapkan metodologi **API 580/581**
-- Menyediakan visualisasi **risk matrix**
-- Menghasilkan output rekomendasi **prioritas inspeksi**
-- Memberi insight dalam **pengambilan keputusan TA (Turn Around)**
-
-Karena berperan dalam **strategi pemeliharaan jangka panjang**, maka implementasi sistem ini **tidak bisa sembarangan.** SDLC memastikan bahwa **setiap fitur** seperti **PoF (Probability of Failure)** atau **Criticality Ranking** dibangun dengan **kebutuhan bisnis yang terdefinisi dengan jelas dan diuji akurat.**
+**Modul Plugin `mx-core-rbm` untuk Strategi Risk-Based Maintenance Industri**
 
 ---
 
-### **II. Ringkasan SDLC dan Alur Tahapan**
+- 📖 **Latar Belakang Masalah**
 
-- Diagram Alur SDLC (Iteratif atau Waterfall)
+Pemeliharaan aset industri selama ini masih dominan berbasis waktu (TBM – Time-Based Maintenance), yang tidak selalu efektif dalam mencegah kegagalan fungsi kritis, dan sering kali menimbulkan biaya perawatan yang tidak proporsional terhadap risikonya.
+
+Perusahaan seperti **PT PON** membutuhkan pendekatan yang lebih presisi dan efisien, yaitu melalui **Risk-Based Maintenance (RBM)** — strategi yang mempertimbangkan **dampak kegagalan (failure impact)** terhadap **lingkungan, keselamatan, dan kontinuitas produksi.**
+
+---
+
+- 🎯 **Visi dan Tujuan Bisnis**
+
+* Menyediakan sistem **pengambilan keputusan strategis** dalam perencanaan pemeliharaan berbasis data.
+* Meningkatkan **keandalan dan efisiensi biaya** dengan mengidentifikasi aset yang kritis dan menentukan jenis perawatan yang tepat.
+* Menstandarkan pendekatan **RBM yang digunakan PT PON** ke dalam bentuk sistem digital modular.
+* Memungkinkan **integrasi lintas sistem** seperti CMMS, IoT monitoring, dan dashboard manajerial.
+
+---
+
+- 👥 **Stakeholders dan Peran**
+
+| Stakeholder           | Peran & Kebutuhan                                             |
+| --------------------- | ------------------------------------------------------------- |
+| Reliability Engineer  | Melakukan ESC grading dan evaluasi risiko                     |
+| Maintenance Planner   | Membuat strategi pemeliharaan dan rencana TBM                 |
+| Maintenance Scheduler | Menjadwalkan dan mengeksekusi pemeliharaan                    |
+| Inspector             | Melakukan evaluasi dan input histori perawatan                |
+| IT/CMMS Admin         | Menyiapkan integrasi dan sinkronisasi ke CMMS                 |
+| Supervisor / Manager  | Melihat laporan, KPI, dan insight untuk pengambilan keputusan |
+
+---
+
+- 📌 **Kebutuhan Bisnis Tingkat Tinggi**
+
+1. Sistem dapat melakukan **penilaian risiko** berdasarkan aspek ESC.
+2. Sistem dapat menghasilkan **klasifikasi kritikalitas** aset.
+3. Sistem dapat menyusun **strategi pemeliharaan** berdasarkan hasil evaluasi risiko.
+4. Sistem dapat menghasilkan **jadwal TBM hybrid** jika diperlukan.
+5. Sistem menyediakan **dashboard** dan visualisasi kondisi aset.
+6. Sistem dapat **mengekspor data** ke CMMS atau sistem lain.
+
+---
+
+- ✅ **Kriteria Keberhasilan Proyek**
+
+* Sistem mampu **menangani seluruh aset** yang didefinisikan dalam struktur `mx-core`.
+* Minimal 90% data aset tergradasi dengan model ESC dan memiliki criticality.
+* Tersedianya dashboard yang menampilkan klasifikasi risiko dan strategi perawatan.
+* Tersedia export CMMS yang dapat digunakan untuk integrasi operasional harian.
+* Feedback positif dari stakeholders dalam UAT.
+
+---
+
+- ⚠️ **Batasan dan Asumsi**
+
+* Data aset tersedia dalam sistem `mx-core` melalui struktur `Asset`, `AssetType`, `AssetDetail`.
+* Engineer memiliki kompetensi dalam melakukan penilaian ESC.
+* Penentuan strategi pemeliharaan tetap membutuhkan validasi manusia.
+* Sistem tidak bertanggung jawab atas eksekusi fisik pemeliharaan (hanya perencanaan dan monitoring).
+* Plugin `mx-core-rbm` hanya mengelola domain RBM — bukan manajemen aset secara umum.
+
+---
+
+### 🧩 2. **Software Requirement Specification (SRS)**
+
+> 📌 **Tujuan Dokumen**
+
+Dokumen ini bertujuan untuk menjabarkan **kebutuhan teknis** dari modul `mx-core-rbm`, sebuah plugin pada sistem `mx-core`, yang digunakan untuk mendukung implementasi **Risk-Based Maintenance (RBM)** di lingkungan industri, khususnya sesuai praktik PT PON.
+
+Dokumen ini akan menjadi acuan utama bagi tim pengembang, QA, dan integrator sistem selama proses pengembangan, pengujian, dan validasi modul.
+
+---
+
+> 📌 **Ruang Lingkup**
+
+Modul `mx-core-rbm` merupakan plugin mandiri dalam arsitektur monorepo `mx-core` yang bertugas menangani:
+
+- **Pengelolaan data evaluasi risiko** berbasis ESC (Environment, Safety, Continuity)
+- **Klasifikasi kritikalitas aset**
+- **Perencanaan strategi pemeliharaan** (Preventive, Predictive, Corrective)
+- **Penyusunan jadwal TBM hybrid**
+- **Monitoring histori evaluasi aset**
+- **Export data ke CMMS**
+- **Dashboard visualisasi kondisi aset**
+
+Modul ini **tidak mencakup manajemen aset secara umum**, yang sudah dikelola oleh sub-domain `Asset` dari `mx-core`.
+
+---
+
+> 📌 **Definisi & Akronim**
+
+| Istilah / Akronim    | Definisi                                                                   |
+| -------------------- | -------------------------------------------------------------------------- |
+| RBM                  | Risk-Based Maintenance – Strategi pemeliharaan berdasarkan tingkat risiko  |
+| ESC Grading          | Penilaian aset berdasarkan tiga aspek: Environment, Safety, Continuity     |
+| CMMS                 | Computerized Maintenance Management System – Sistem manajemen pemeliharaan |
+| TBM                  | Time-Based Maintenance – Pemeliharaan berdasarkan waktu atau jadwal        |
+| Criticality          | Tingkat pentingnya suatu aset terhadap keberlangsungan operasi             |
+| DIA                  | Daftar Induk Aset – struktur dan deskripsi aset di sistem                  |
+| Tier                 | Kategori aset berdasar hasil grading dan criticality (Tier1–Tier3)         |
+| Plugin `mx-core-rbm` | Modul mandiri dalam monorepo `mx-core` yang menangani domain RBM           |
+
+---
+
+> 🧭 **Gambaran Umum Sistem**
+
+Modul `mx-core-rbm` dibangun di atas dua sub-domain utama:
+
+1. **Asset Sub-Domain**
+
+   - Menyediakan data statis dan struktural dari aset
+   - Berperan sebagai _data source_ untuk RBM
+   - Tidak memuat logika evaluasi
+
+2. **RBM Sub-Domain**
+
+   - Berisi logika evaluasi risiko dan perencanaan strategi
+   - Mencakup fitur grading ESC, criticality, perencanaan, evaluasi, dan export
+
+Sistem ini **terintegrasi secara internal** dalam `mx-core` dan dapat melakukan **export eksternal** ke CMMS.
+
+---
+
+> 🧪 **Functional Requirements (FR-n)**
+
+| Kode  | Nama Fitur                       | Deskripsi Singkat                                                              |
+| ----- | -------------------------------- | ------------------------------------------------------------------------------ |
+| FR-01 | ESC Grading Form                 | Engineer dapat mengisi nilai ESC untuk setiap aset berdasarkan `tagNumber`     |
+| FR-02 | Asset Criticality Assignment     | Sistem menentukan criticality (Kritis / Normal) berdasarkan hasil ESC          |
+| FR-03 | Maintenance Strategy Planning    | Sistem menyarankan strategi (P, P+C, P+P+C) untuk aset berdasarkan criticality |
+| FR-04 | TBM Schedule Generation          | Sistem menghasilkan jadwal pemeliharaan berdasarkan tier hasil evaluasi        |
+| FR-05 | Evaluation Record Logging        | Inspector dapat mencatat hasil evaluasi fisik aset dalam histori               |
+| FR-06 | Dashboard Risk View              | Sistem menampilkan visualisasi tier, grading, dan histori evaluasi             |
+| FR-07 | Export Data ke CMMS              | Data RBM dapat diekspor dalam format JSON/CSV sesuai kebutuhan integrasi       |
+| FR-08 | DIA Management Interface         | Halaman daftar aset yang dapat ditagging dan diklasifikasi oleh planner        |
+| FR-09 | Role-based Access Control (RBAC) | Setiap fitur dibatasi berdasarkan peran pengguna (Engineer, Planner, dll)      |
+
+---
+
+> ⚙️ **Non-Functional Requirements**
+
+| NFR-ID | Kategori         | Spesifikasi                                                               |
+| ------ | ---------------- | ------------------------------------------------------------------------- |
+| NFR-01 | **Availability** | Sistem harus tersedia minimal 99.5% selama jam operasional                |
+| NFR-02 | **Security**     | Sistem hanya bisa diakses user terautentikasi, data tersimpan terenkripsi |
+| NFR-03 | **Performance**  | Waktu respon form < 1 detik, export < 3 detik untuk 1000 record           |
+| NFR-04 | **Scalability**  | Sistem mampu menangani 10.000+ aset dan histori tanpa degradasi performa  |
+| NFR-05 | **Usability**    | UI dirancang responsif dan sesuai peran user di lapangan                  |
+| NFR-06 | **Auditability** | Setiap grading/evaluasi dicatat lengkap dengan user, waktu, dan histori   |
+
+---
+
+> 🧩 **Use-Case List & Detail**
+
+> 📋 **Daftar Use-Case**
+
+| UC-ID | Nama Use-Case                   | Aktor Utama              | FR Terkait |
+| ----- | ------------------------------- | ------------------------ | ---------- |
+| UC-01 | Melakukan ESC Grading           | Reliability Engineer     | FR-01      |
+| UC-02 | Menentukan Criticality Aset     | Sistem (otomatis/manual) | FR-02      |
+| UC-03 | Menyusun Strategi Pemeliharaan  | Maintenance Planner      | FR-03      |
+| UC-04 | Menghasilkan Jadwal TBM         | Sistem / Scheduler       | FR-04      |
+| UC-05 | Mencatat Evaluation Record      | Inspector                | FR-05      |
+| UC-06 | Melihat Dashboard Risiko & Tier | Supervisor / Manager     | FR-06      |
+| UC-07 | Menjalankan Export CMMS         | IT / CMMS Admin          | FR-07      |
+| UC-08 | Mengelola DIA (Aset)            | Maintenance Planner      | FR-08      |
+| UC-09 | Akses berbasis Peran (RBAC)     | Semua Pengguna           | FR-09      |
+
+---
+
+> ⚠️ Use-case diagram dapat disiapkan secara visual menggunakan tools seperti draw.io, Lucidchart, atau PlantUML (jika dibutuhkan nanti).
+
+---
+
+> 🔹 **UC-01: Melakukan ESC Grading**
+
+- **Nama**: ESC Grading Form Input
+- **Aktor**: Reliability Engineer
+- **Deskripsi**: Engineer melakukan evaluasi risiko terhadap aset berdasarkan tiga aspek: Environment, Safety, dan Continuity.
+- **Trigger**: Engineer membuka form grading untuk suatu aset yang sudah terdaftar.
+- **Alur Utama**:
+
+  1. Engineer memilih aset dari daftar (berdasarkan `tagNumber`)
+  2. Sistem menampilkan form grading ESC
+  3. Engineer mengisi nilai untuk setiap aspek (Low / Medium / High)
+  4. Engineer menyimpan grading
+
+- **Alur Alternatif**:
+
+  - Data tidak lengkap → sistem menolak penyimpanan
+  - Aset belum tersedia → redirect ke halaman DIA
+
+- **Kondisi Sukses**: Grading ESC tersimpan dalam model `ESCGrading`, dan dapat dipakai untuk proses criticality
+- **Catatan Khusus**: Timestamp dan nama grader disimpan sebagai audit trail
+
+---
+
+> 🔹 **UC-02: Menentukan Criticality Aset**
+
+- **Nama**: Asset Criticality Determination
+- **Aktor**: Sistem (otomatis) atau Reliability Engineer (manual override)
+- **Deskripsi**: Menentukan apakah aset bersifat _Kritis_ atau _Normal_ berdasarkan ESC Grading
+- **Trigger**: ESC Grading disubmit atau diubah
+- **Alur Utama**:
+
+  1. Sistem membaca nilai ESC
+  2. Menjalankan rule-set penilaian (misalnya ≥ 2 aspek "High" = _Kritis_)
+  3. Menyimpan hasil ke `AssetCriticality`
+
+- **Alur Alternatif**:
+
+  - Engineer bisa override hasil melalui halaman review
+
+- **Kondisi Sukses**: Aset memiliki entry `AssetCriticality` yang valid
+- **Catatan Khusus**: Overriding harus dicatat oleh user dan alasan
+
+---
+
+> 🔹 **UC-03: Menyusun Strategi Pemeliharaan**
+
+- **Nama**: Maintenance Plan Builder
+- **Aktor**: Maintenance Planner
+- **Deskripsi**: Menentukan strategi pemeliharaan yang sesuai (Preventive, Predictive, Corrective) berdasarkan criticality dan kondisi teknis
+- **Trigger**: Criticality aset telah ditentukan
+- **Alur Utama**:
+
+  1. Planner membuka halaman Maintenance Plan
+  2. Sistem menyarankan strategi default (berdasarkan Tier)
+  3. Planner dapat memilih/menyesuaikan strategi (P / P+C / P+P+C)
+  4. Strategi disimpan ke `MaintenancePlan`
+
+- **Alur Alternatif**:
+
+  - Planner override → harus memberikan alasan
+
+- **Kondisi Sukses**: Strategi tercatat dan siap diproses ke TBM scheduler
+- **Catatan Khusus**: Sistem harus mencatat perubahan strategi di histori audit
+
+---
+
+> 🔹 **UC-04: Menghasilkan Jadwal TBM**
+
+- **Nama**: TBM Schedule Generator
+- **Aktor**: Maintenance Scheduler / Sistem
+- **Deskripsi**: Menghasilkan jadwal pemeliharaan berbasis strategi yang ditentukan
+- **Trigger**: Maintenance plan disimpan
+- **Alur Utama**:
+
+  1. Sistem membaca strategi dari `MaintenancePlan`
+  2. Sistem menghasilkan `TBMSchedule` berdasarkan interval (misalnya: Predictive = 6 Bulanan)
+  3. Jadwal ditampilkan di halaman scheduler
+
+- **Alur Alternatif**:
+
+  - Aset Tier-3 → tidak dijadwalkan otomatis
+
+- **Kondisi Sukses**: Jadwal TBM tercatat dan bisa diubah/eksekusi oleh scheduler
+- **Catatan Khusus**: Jadwal harus memperhitungkan `last_executed` dan `next_due`
+
+---
+
+Siap 👍
+Kita lanjutkan **Use-Case Narrative UC‑05 sampai UC‑09**, dengan **konsistensi penuh terhadap SRS 2/1 (FR & NFR)** dan gaya dokumentasi yang sama seperti UC‑01 s.d. UC‑04.
+
+---
+
+> 🔹 **UC-05: Mencatat Evaluation Record**
+
+- **Nama**: Asset Evaluation Recording
+
+- **Aktor**: Inspector / Reliability Engineer
+
+- **Deskripsi**:
+  Mencatat hasil inspeksi atau evaluasi aktual kondisi aset sebagai histori evaluasi periodik atau insidental.
+
+- **Trigger**:
+  Inspector melakukan inspeksi fisik atau evaluasi kondisi aset.
+
+- **Alur Utama**:
+
+  1. Inspector memilih aset berdasarkan `tagNumber`
+  2. Sistem menampilkan form Evaluation Record
+  3. Inspector mengisi:
+
+     - Tanggal evaluasi
+     - Hasil evaluasi (OK / Warning / Failure)
+     - Catatan tambahan (opsional)
+
+  4. Inspector menyimpan data
+  5. Sistem mencatat data ke tabel `EvaluationRecord`
+
+- **Alur Alternatif**:
+
+  - Aset belum memiliki ESC Grading → sistem memberi peringatan
+  - Inspector membatalkan input → tidak ada data tersimpan
+
+- **Kondisi Sukses**:
+  Evaluation Record tersimpan dan dapat dilihat pada histori evaluasi aset
+
+- **Catatan Khusus**:
+
+  - Data Evaluation Record **tidak mengubah criticality secara otomatis**
+  - Digunakan sebagai referensi untuk re-evaluasi RBM
+
+---
+
+> 🔹 **UC-06: Melihat Dashboard Risiko & Tier**
+
+- **Nama**: RBM Dashboard Visualization
+
+- **Aktor**: Supervisor, Manager, Reliability Engineer
+
+- **Deskripsi**:
+  Menyajikan visualisasi kondisi risiko aset secara agregat dan individual untuk mendukung pengambilan keputusan.
+
+- **Trigger**:
+  User membuka halaman dashboard RBM.
+
+- **Alur Utama**:
+
+  1. User mengakses menu Dashboard
+  2. Sistem memuat data:
+
+     - ESC grading
+     - Criticality
+     - Tier aset
+     - Strategi pemeliharaan
+     - Ringkasan Evaluation Record
+
+  3. Sistem menampilkan grafik dan tabel (pie, bar, trend)
+
+- **Alur Alternatif**:
+
+  - Data belum tersedia → sistem menampilkan notifikasi "data belum lengkap"
+
+- **Kondisi Sukses**:
+  User dapat memahami distribusi risiko dan prioritas aset
+
+- **Catatan Khusus**:
+  Dashboard bersifat **read-only**, tidak untuk input atau editing data
+
+---
+
+> 🔹 **UC-07: Menjalankan Export CMMS**
+
+- **Nama**: CMMS Data Export
+
+- **Aktor**: IT / CMMS Admin
+
+- **Deskripsi**:
+  Mengekspor data RBM untuk digunakan pada sistem CMMS eksternal.
+
+- **Trigger**:
+  Admin memilih menu Export CMMS.
+
+- **Alur Utama**:
+
+  1. Admin memilih jenis data yang akan diekspor:
+
+     - Asset
+     - Criticality
+     - Maintenance Plan
+     - TBM Schedule
+
+  2. Admin memilih format (JSON / CSV)
+  3. Sistem memproses dan menghasilkan file export
+  4. Admin mengunduh file hasil export
+
+- **Alur Alternatif**:
+
+  - Data kosong → sistem menampilkan peringatan
+  - Format tidak didukung → sistem menolak permintaan
+
+- **Kondisi Sukses**:
+  File export berhasil diunduh dan siap digunakan CMMS
+
+- **Catatan Khusus**:
+
+  - Mapping field mengikuti standar `mx-core`
+  - Tidak ada koneksi langsung (push) ke CMMS pada fase ini
+
+---
+
+> 🔹 **UC-08: Mengelola DIA (Daftar Induk Aset)**
+
+- **Nama**: Asset Master Data Management
+
+- **Aktor**: Maintenance Planner
+
+- **Deskripsi**:
+  Mengelola daftar aset sebagai fondasi RBM.
+
+- **Trigger**:
+  Planner membuka menu DIA / Assets.
+
+- **Alur Utama**:
+
+  1. Planner melihat daftar aset
+  2. Planner dapat:
+
+     - Menambah aset baru
+     - Mengedit metadata aset
+     - Mengaitkan Asset Type & Category
+
+  3. Sistem menyimpan perubahan ke domain Asset
+
+- **Alur Alternatif**:
+
+  - Data tidak valid → sistem menolak penyimpanan
+  - Aset sudah digunakan RBM → beberapa field terkunci
+
+- **Kondisi Sukses**:
+  Data aset tersedia dan siap dievaluasi oleh RBM
+
+- **Catatan Khusus**:
+  Modul RBM **tidak mengubah struktur asset inti**, hanya mengonsumsinya
+
+---
+
+> 🔹 **UC-09: Akses Berbasis Peran (RBAC)**
+
+- **Nama**: Role-Based Access Control
+
+- **Aktor**: Semua pengguna
+
+- **Deskripsi**:
+  Mengatur hak akses fitur berdasarkan peran pengguna.
+
+- **Trigger**:
+  User login dan mengakses modul RBM.
+
+- **Alur Utama**:
+
+  1. Sistem membaca role user
+  2. Sistem menentukan akses ke:
+
+     - Menu
+     - Form input
+     - Aksi (create/update/export)
+
+  3. Sistem menampilkan UI sesuai peran
+
+- **Alur Alternatif**:
+
+  - User mencoba akses fitur terlarang → sistem menolak
+
+- **Kondisi Sukses**:
+  User hanya dapat mengakses fitur sesuai perannya
+
+- **Catatan Khusus**:
+  RBAC mengikuti kebijakan otorisasi `mx-core`
+
+---
+
+> ❓ Apa Itu MoSCoW?
+
+**MoSCoW** adalah metode untuk **mengelompokkan prioritas kebutuhan dalam pengembangan sistem**, agar tim tahu mana fitur yang wajib ada sejak awal, mana yang bisa ditunda, dan mana yang bersifat opsional.
+
+MoSCoW adalah akronim dari:
+
+| Singkatan | Makna                | Deskripsi                                                              |
+| --------- | -------------------- | ---------------------------------------------------------------------- |
+| **M**     | Must Have            | Fitur wajib, tanpa ini sistem tidak bisa berjalan                      |
+| **S**     | Should Have          | Sangat penting, tapi sistem masih bisa berjalan tanpanya sementara     |
+| **C**     | Could Have           | Fitur tambahan yang memberikan nilai tambah tapi bukan prioritas utama |
+| **W**     | Won't Have (for now) | Tidak akan dikembangkan dalam versi ini, tapi mungkin di masa depan    |
+
+---
+
+> 📋 **Prioritas Pengembangan (MoSCoW) – mx-core-rbm**
+
+| FR-ID | Fitur                            | Kategori   | Alasan                                                                |
+| ----- | -------------------------------- | ---------- | --------------------------------------------------------------------- |
+| FR-01 | ESC Grading Form                 | **Must**   | Dasar dari seluruh proses RBM; tidak ada grading → tidak ada evaluasi |
+| FR-02 | Asset Criticality Assignment     | **Must**   | Penentu utama prioritas strategi pemeliharaan                         |
+| FR-03 | Maintenance Strategy Planning    | **Must**   | Menyusun rencana pemeliharaan berbasis risiko                         |
+| FR-04 | TBM Schedule Generation          | **Should** | Hanya diperlukan jika strategi mengarah ke TBM                        |
+| FR-05 | Evaluation Record Logging        | **Should** | Untuk histori dan audit trail; penting untuk keberlanjutan sistem     |
+| FR-06 | Dashboard Risk View              | **Could**  | Memberikan insight visual, tapi bukan blocker proses utama            |
+| FR-07 | Export Data ke CMMS              | **Should** | Penting untuk integrasi operasional, tapi bisa manual sementara       |
+| FR-08 | DIA Management Interface         | **Must**   | Tanpa struktur aset, grading tidak bisa dilakukan                     |
+| FR-09 | Role-based Access Control (RBAC) | **Must**   | Keamanan sistem; hanya user yang berhak bisa mengakses fiturnya       |
+
+---
+
+> ✅ Catatan:
+>
+> - Fitur-fitur **Must Have** adalah scope minimum untuk versi MVP / rilis awal
+> - Fitur **Should Have** akan dikejar setelah Must selesai
+> - Fitur **Could Have** akan dikerjakan jika resource mencukupi
+> - Saat ini tidak ada fitur yang dikategorikan sebagai **Won’t Have**
+
+---
+
+> 📊 **Traceability Matrix (Opsional)**
+
+Traceability Matrix digunakan untuk **memetakan keterkaitan antar artefak SDLC** — misalnya dari kebutuhan bisnis (BRS), ke fitur (FR), lalu ke use-case (UC), dan seterusnya ke test-case.
+
+| ID BRS | Kebutuhan Bisnis Tingkat Tinggi          | FR Terkait | Use Case Terkait |
+| ------ | ---------------------------------------- | ---------- | ---------------- |
+| BRS-01 | Sistem dapat melakukan ESC grading       | FR-01      | UC-01            |
+| BRS-02 | Sistem dapat menghasilkan criticality    | FR-02      | UC-02            |
+| BRS-03 | Sistem menyusun strategi perawatan       | FR-03      | UC-03            |
+| BRS-04 | Sistem menjadwalkan TBM hybrid           | FR-04      | UC-04            |
+| BRS-05 | Sistem menyimpan histori evaluasi        | FR-05      | UC-05            |
+| BRS-06 | Dashboard menampilkan kondisi aset       | FR-06      | UC-06            |
+| BRS-07 | Export data RBM ke CMMS                  | FR-07      | UC-07            |
+| BRS-08 | User dapat mengelola struktur aset (DIA) | FR-08      | UC-08            |
+| BRS-09 | Sistem membatasi akses sesuai peran      | FR-09      | UC-09            |
+
+> 🔁 Traceability Matrix ini akan lebih kaya saat test-case sudah tersedia di tahap **Testing** (misalnya TC-01 menguji UC-01 yang berasal dari FR-01 dan BRS-01)
+
+---
+
+### 🧩 **3. System Design – Bagian 1: High-Level Design (HLD)**
+
+> 📌 _Tujuan: Menjabarkan struktur sistem secara modular, menggambarkan bagaimana komponen utama saling terhubung dan berinteraksi._
+
+---
+
+#### 🔷 **3.1.1 Diagram Arsitektur Sistem**
+
+Berikut adalah arsitektur konseptual tingkat tinggi dari plugin `mx-core-rbm`:
 
 ```
-[BRS] → [SRS + Use-Case] → [HLD → LLD] → [Implementation] → [Testing] → [Deployment] → [Maintenance]
+             +------------------------+
+             |     User Interface     |
+             | (Next.js + Tailwind UI)|
+             +-----------+------------+
+                         |
+                         ▼
+     +-------------------------+--------------------------+
+     |                   RBM Application Layer           |
+     |  (Routing, Pages, Controllers, Role Guarding)     |
+     +-------------------------+--------------------------+
+                         |
+                         ▼
+     +-------------------------+--------------------------+
+     |     Business Logic / Services Layer                |
+     |  - ESC Grading Engine                              |
+     |  - Criticality Calculator                          |
+     |  - Maintenance Strategy Mapper                     |
+     |  - TBM Scheduler                                   |
+     |  - Evaluation Recorder                             |
+     +-------------------------+--------------------------+
+                         |
+                         ▼
+     +------------------------+---------------------------+
+     |     Data Access Layer (Models / Prisma)            |
+     |  - Asset Domain Models                             |
+     |  - RBM Domain Models                               |
+     +------------------------+---------------------------+
+                         |
+                         ▼
+             +----------------------------+
+             |        PostgreSQL DB       |
+             | (Schema: asset + rbm)      |
+             +----------------------------+
+
+                         ⇅
+             +----------------------------+
+             |     External Interfaces    |
+             |     (Export CMMS, IoT*)    |
+             +----------------------------+
 ```
-
-- Hubungan Hirarkis
-
-* **BRS**: Mendefinisikan kebutuhan dari sisi bisnis
-* **SRS**: Menerjemahkan BRS ke kebutuhan teknis
-* **Desain (HLD/LLD)**: Menjabarkan solusi secara struktural & teknis
-* **Implementasi**: Kode program sebagai artefak nyata
-* **Testing → Deployment → Maintenance**: Menjamin kualitas & kesinambungan sistem
-
-- Traceability
-
-* **Setiap fitur** di kode harus ditelusuri asalnya ke **use-case di SRS**, dan berakar pada **tujuan bisnis di BRS**.
-* Hal ini memudahkan validasi, audit, dan pengembangan berkelanjutan.
 
 ---
 
-### **III. BRS – Business Requirement Specification**
+#### 🔷 **3.1.2 Modul / Subsystem Overview**
 
-- Fungsi BRS
+Plugin `mx-core-rbm` dibagi menjadi **dua sub-domain logis**, namun tetap dalam satu modul:
 
-* Mendefinisikan kebutuhan sistem dari perspektif bisnis
-* Menentukan scope dan objektif strategis sistem
-* Menjadi dasar komunikasi antara bisnis dan tim teknis
+> 1. **Asset Sub-Domain**
 
-- Komponen BRS
+> Modul ini menyediakan data dasar aset, bersifat statis, struktural, dan tidak mengandung logika bisnis RBM.
 
-| Komponen     | Isi                                                   |
-| ------------ | ----------------------------------------------------- |
-| Tujuan       | Mengurangi downtime melalui inspeksi berbasis risiko  |
-| Stakeholder  | Tim reliability, tim asset management, teknikal site  |
-| Fungsi Utama | Risk assessment, matrix visual, prioritas maintenance |
-| Risiko       | Data tidak akurat, kegagalan algoritma prediksi       |
+- `Asset`
+- `AssetType`
+- `AssetCategory`
+- `AssetTypeSchema`
+- `AssetDetail`
 
-- Studi Kasus: Mx-Core-RBM
+> 2. **RBM Sub-Domain**
 
-* **Tujuan bisnis utama:**
-  Memfokuskan kegiatan inspeksi dan preventive maintenance (PM) hanya pada peralatan dengan **risiko tertinggi** — sehingga meningkatkan efisiensi biaya dan **menurunkan downtime**.
+> Modul yang menyimpan logika bisnis evaluasi, strategi, dan histori. Dinamis dan bergantung pada data dari Asset Sub-Domain.
 
-* **Stakeholder internal:**
-  Reliability engineer, kepala maintenance, process engineer.
-
-* **Contoh Format Tabel BRS:**
-
-| No  | Kebutuhan Bisnis                      | Prioritas | Deskripsi Teknis Awal                 |
-| --- | ------------------------------------- | --------- | ------------------------------------- |
-| 1   | Menentukan equipment berisiko tinggi  | Tinggi    | Menggunakan API 581 PoF + CoF         |
-| 2   | Menampilkan matrix risiko warna-warni | Sedang    | Red-yellow-green matrix               |
-| 3   | Menyediakan ranking criticality       | Tinggi    | Sorting berdasarkan skor risiko total |
-| 4   | Interval PM otomatis berbasis risiko  | Tinggi    | Output berupa rekomendasi maintenance |
+- `ESCGrading`
+- `AssetCriticality`
+- `MaintenancePlan`
+- `TBMSchedule`
+- `EvaluationRecord`
+- `AssetTier` _(derived)_
 
 ---
 
-### **IV. SRS – Software Requirement Specification**
+#### 🔷 **3.1.3 Komunikasi Antar Modul**
 
-- Perbedaan BRS dan SRS
+| Dari Modul         | Ke Modul       | Bentuk Interaksi         |
+| ------------------ | -------------- | ------------------------ |
+| UI (Next.js Pages) | Services Layer | Handler / Controller     |
+| Services           | Models (ORM)   | Prisma ORM / Direct Call |
+| RBM Services       | Asset Models   | Read-only reference      |
+| Export Service     | File Generator | JSON / CSV               |
 
-| Aspek   | BRS                      | SRS                             |
-| ------- | ------------------------ | ------------------------------- |
-| Fokus   | Tujuan bisnis            | Spesifikasi teknis              |
-| Format  | Naratif, tabel kebutuhan | Use-case, requirement list      |
-| Pemilik | Business analyst / user  | System analyst / arsitek sistem |
-
-- Komponen SRS
-
-* Functional Requirements
-* Non-Functional Requirements (keamanan, respons time)
-* Use Case Diagram & Deskripsi
-* Validasi terhadap BRS
-
-- Use Case: “Prediksi Kegagalan Pompa Kritikal”
-
-| Elemen        | Isi                                       |
-| ------------- | ----------------------------------------- |
-| Nama Use Case | Prediksi kegagalan pompa kritikal         |
-| Aktor         | Reliability engineer                      |
-| Tujuan        | Mengetahui risiko gagal dari pompa utama  |
-| Input         | ID pompa, histori CMMS, tekanan, vibrasi  |
-| Output        | Skor PoF, interval inspeksi rekomendasi   |
-| Algoritma     | ML dengan regresi time-series (RUL model) |
+> _Catatan_: Komunikasi antar sub-domain tetap dilakukan melalui API internal atau shared services, tanpa memecah menjadi microservices.
 
 ---
 
-### **V. System Design**
+#### 🔷 **3.1.4 External Interfaces**
 
-- A. High-Level Design (HLD)
+| Nama Sistem Eksternal    | Jenis Integrasi  | Protokol / Format   | Tujuan                        |
+| ------------------------ | ---------------- | ------------------- | ----------------------------- |
+| CMMS (SAP, Maximo, dsb)  | Export Manual    | JSON / CSV          | Impor strategi / jadwal       |
+| IoT (future-ready)       | MQTT / REST      | (Opsional)          | Menyediakan kondisi aset real |
+| Dashboard umum (mx-core) | Internal sharing | Internal plugin API | Visualisasi global KPI        |
 
-* **Komponen utama:**
+> Integrasi dilakukan secara **modular & terisolasi** agar plugin tetap mandiri dalam `mx-core`.
 
-  - Risk Engine
-  - API Integrator (CMMS, mx-core-metric)
-  - Frontend plugin
+---
 
-* **Diagram Integrasi:**
+#### 🔷 **3.1.5 Security & Auth Flow**
+
+| Aspek               | Mekanisme                                                            |
+| ------------------- | -------------------------------------------------------------------- |
+| **Authentication**  | Menggunakan mekanisme `auth` dari `mx-core` (NextAuth / JWT / SSO)   |
+| **Authorization**   | Role-based Access Control (RBAC) per halaman & aksi                  |
+| **Audit Trail**     | Setiap aksi grading / evaluasi disimpan dengan user & timestamp      |
+| **Data Protection** | Tidak ada data sensitif; hanya evaluasi teknis aset                  |
+| **Access Logging**  | Opsional logging untuk critical actions (misalnya override strategi) |
+
+---
+
+#### 🔷 **3.1.6 Integrasi Internal & Eksternal**
+
+> 🔄 **Internal Integration**
+
+- Plugin membaca data dari `Asset Sub-Domain` via shared Prisma models
+- Tersedia API internal untuk halaman dashboard dan CMMS export
+- Tidak terjadi duplikasi data antar plugin `mx-core`
+
+> 🔗 **External Integration**
+
+- Modul Export menghasilkan file JSON / CSV yang bisa diimpor oleh CMMS eksternal
+- Data terstruktur berdasarkan `tagNumber`, `criticality`, dan `schedule`
+- Terbuka untuk penambahan adapter REST / MQTT (jika dibutuhkan IoT link ke RBM)
+
+---
+
+#### 🧩 **3.2 Low-Level Design (LLD) – mx-core-rbm**
+
+> 🎯 _LLD menyusun spesifikasi teknis yang lebih detail untuk setiap komponen sistem. Semua ini langsung berkaitan dengan FR dan Use Case yang sebelumnya sudah kita tetapkan._
+
+---
+
+> 🔹 1. **Data Model**
+
+> 📌 a. Entity-Relationship Diagram (ERD)
+
+ERD ini sudah dituliskan secara lengkap di dokumen konsep sebelumnya, dan kini diposisikan sebagai dasar _database design_ untuk LLD:
 
 ```
-[CMMS Data] ↔ [Mx-Core-RBM API] ↔ [Risk Engine]
-                               ↘ [mx-core-dashboard]
+      Asset (tag_number PK)
+           │
+           ├───► ESCGrading (FK)
+           ├───► AssetCriticality (FK)
+           ├───► AssetTier (FK)
+           ├───► TBMSchedule (FK)
+           ├───► MaintenancePlan (FK)
+           └───► EvaluationRecord (FK)
 ```
 
-- B. Low-Level Design (LLD)
+> Catatan: Semua entitas di domain RBM memiliki `tag_number` sebagai foreign key untuk referensi ke data aset.
 
-* **Struktur DB (ERD)**:
-  Tabel: `asset`, `risk_result`, `inspection_plan`, `component`
+---
 
-* **Contoh API Schema:**
+> 📘 b. Data Dictionary
 
-```json
-POST /api/rbm/predict
-{
-  "equipment_id": "PMP-001",
-  "metrics": {
-    "vibration": 2.1,
-    "temperature": 85
+Contoh data dictionary untuk entitas utama:
+
+Table: `esc_grading`
+
+| Field                | Tipe Data | Constraint     | Deskripsi                               |
+| -------------------- | --------- | -------------- | --------------------------------------- |
+| `tag_number`         | VARCHAR   | PK, FK → asset | ID unik aset                            |
+| `environment`        | ENUM      | NOT NULL       | Dampak lingkungan (Low / Medium / High) |
+| `safety`             | ENUM      | NOT NULL       | Dampak keselamatan                      |
+| `continuous_running` | ENUM      | NOT NULL       | Dampak kontinuitas operasi              |
+| `graded_by`          | VARCHAR   | NOT NULL       | User input                              |
+| `graded_at`          | TIMESTAMP | NOT NULL       | Waktu input grading                     |
+
+Table: `maintenance_plan`
+
+| Field        | Tipe Data | Constraint     | Deskripsi                     |
+| ------------ | --------- | -------------- | ----------------------------- |
+| `tag_number` | VARCHAR   | PK, FK → asset | ID aset                       |
+| `strategy`   | ENUM      | NOT NULL       | Strategi: P, P+C, P+P+C       |
+| `updated_by` | VARCHAR   | NOT NULL       | User terakhir yang mengupdate |
+| `updated_at` | TIMESTAMP | NOT NULL       | Timestamp pembaruan           |
+
+(_Data Dictionary lengkap bisa diturunkan lebih lanjut ke semua entitas model `mx-core-rbm` jika dibutuhkan._)
+
+---
+
+> 🔹 2. **Algoritma / Flowchart**
+
+> ⚙️ a. ESC Grading to Criticality Rule (Inference Logic)
+
+Deskripsi:
+
+- Criticality otomatis ditentukan berdasarkan skor ESC.
+
+Logika Sederhana (Ruleset):
+
+```ts
+function determineCriticality(esc: {
+  environment: string;
+  safety: string;
+  continuous_running: string;
+}) {
+  const weights = {
+    Low: 1,
+    Medium: 2,
+    High: 3,
+  };
+
+  const totalScore =
+    weights[esc.environment] +
+    weights[esc.safety] +
+    weights[esc.continuous_running];
+
+  return totalScore >= 7 ? 'Kritis' : 'Normal';
+}
+```
+
+> 🎯 Bisa di-refactor sebagai service `calculateCriticality()` di folder `services/criticality.ts`
+
+---
+
+> ⚙️ b. Maintenance Plan Decision Logic
+
+```ts
+function mapToStrategy(criticality: string): 'P' | 'P+C' | 'P+P+C' {
+  switch (criticality) {
+    case 'Kritis':
+      return 'P+P+C';
+    case 'Normal':
+    default:
+      return 'P+C';
   }
 }
 ```
 
-- **Desain Algoritma:**
+---
 
-  - Input: sensor CMMS
-  - Output: `risk_score`, `interval`, `recommendation`
-  - Model: PoF/CoF scoring + ML untuk RUL (Remaining Useful Life)
+> 🔹 3. **Schema API (REST)**
+
+Plugin ini berbasis monorepo dan modular internal, tetapi tetap memungkinkan exposure API internal (Next.js App Router).
+
+> 📌 a. Endpoint: `POST /api/grading`
+
+- **Deskripsi**: Menyimpan grading ESC untuk sebuah aset
+
+✅ Payload (JSON)
+
+```json
+{
+  "tagNumber": "PU-101",
+  "environment": "High",
+  "safety": "Medium",
+  "continuous_running": "High",
+  "gradedBy": "eng.rizki"
+}
+```
+
+✅ Response
+
+```json
+{
+  "success": true,
+  "message": "Grading berhasil disimpan",
+  "criticality": "Kritis"
+}
+```
 
 ---
 
-### **VI. Implementation**
+> 📌 b. Endpoint: `GET /api/plan/:tagNumber`
 
-- **Struktur Plugin Mx-Core-RBM:**
+- **Deskripsi**: Mendapatkan strategi pemeliharaan untuk aset
 
-  ```
-  /plugins/mx-core-rbm/
-  ├── src/
-  │   ├── app/
-  │   ├── models/
-  │   ├── components/
-  │   └── services/
-  ```
+✅ Response
 
-- **Stack Teknologi:**
+```json
+{
+  "tagNumber": "PU-101",
+  "strategy": "P+P+C",
+  "tier": "Tier1",
+  "lastUpdated": "2025-12-12T09:30:00Z"
+}
+```
 
-  - **Frontend**: React, Tailwind
-  - **Backend**: Node.js, Express
-  - **AI Engine**: Python + TensorFlow
-  - **Data Store**: PostgreSQL, Redis
+> Catatan:
 
-- **CI/CD Ringkas:**
-
-  - Github Actions
-  - Unit test → Build → Deploy QA
-
-- **Relasi dengan LLD:**
-
-  - Setiap modul/endpoint ditracking ke spesifikasi di SRS dan LLD
+- Semua endpoint ditangani dengan middleware auth (JWT / session dari `mx-core`)
+- Format JSON mengikuti konvensi snake_case atau camelCase konsisten (direkomendasikan camelCase)
 
 ---
 
-### **VII. Testing**
+> 🔹 4. **Database Design**
 
-- **Test Plan** mencakup:
+> 📌 a. Normalisasi
 
-  - Validasi algoritma prediksi (PoF/CoF)
-  - Validasi input/output API
-  - Respons matrix risiko terhadap input ekstrem
+- Sudah diterapkan hingga 3NF:
 
-- **Tool:**
+  - Tidak ada data redundan
+  - Kategori dan tipe aset dipisah dari data grading
+  - Setiap evaluasi punya histori sendiri
 
-  - Postman untuk API
-  - TestRail untuk tracking manual test
-  - Jest / Mocha untuk unit test
+> 📌 b. Indexing
 
-- **UAT (User Acceptance Test):**
+| Table                     | Field        | Tipe Index                            |
+| ------------------------- | ------------ | ------------------------------------- |
+| `esc_grading`             | `tag_number` | Primary Index                         |
+| `maintenance_plan`        | `tag_number` | Unique Index                          |
+| `evaluation_record`       | `tag_number` | Index (composite with `evaluated_at`) |
+| `asset_type_schema_field` | `schema_id`  | Foreign Index                         |
 
-  - Disimulasikan dengan data real CMMS
-  - Dibandingkan dengan hasil expert human judgement
+> 📌 c. Partitioning (Opsional)
 
----
-
-### **VIII. Deployment**
-
-- **Environment:**
-
-  - Dev ➝ QA ➝ Prod
-
-- **Pipeline:**
-
-  - Auto-deploy via Git tag
-  - Rollback melalui release snapshot
-
-- **Release Notes:**
-
-  - Per fitur dan bug fix
-  - Dokumentasi API & field baru
+- **EvaluationRecord** dapat dipartisi berdasarkan `evaluated_at` bulanan atau tahunan jika jumlah data tinggi.
+- Tidak diterapkan di awal, namun disiapkan desain skemanya.
 
 ---
 
-### **IX. Maintenance**
+> 🔹 5. **Config & Parameter List**
 
-- **Monitoring:**
+| Parameter                   | Tipe    | Default                            | Deskripsi                                        |
+| --------------------------- | ------- | ---------------------------------- | ------------------------------------------------ |
+| `RBM_CRITICALITY_THRESHOLD` | integer | `7`                                | Batas skor ESC untuk aset dikategorikan "Kritis" |
+| `TBM_INTERVAL_DEFAULT`      | enum    | `6Months`                          | Interval default jika tidak ditentukan manual    |
+| `EXPORT_FORMAT`             | enum    | `JSON`                             | Format file ekspor default                       |
+| `RBAC_ROLES`                | array   | `[‘Engineer’, ‘Planner’, ‘Admin’]` | Daftar role user sistem                          |
+| `ESC_WEIGHTS`               | object  | `{Low:1, Medium:2, High:3}`        | Bobot default untuk ESC Grading                  |
 
-  - Log system + risk engine
-  - Model performance drift
-
-- **Model Retraining:**
-
-  - Jadwal bulanan
-  - Threshold error ditentukan untuk trigger retraining
-
-- **Incident Handling:**
-
-  - SLA response < 2 jam (kritikal)
-
-- **Change Request:**
-
-  - Dilakukan melalui tracking dokumen CR + impact analysis
+> Konfigurasi ini bisa diletakkan di file `.env` atau `config/rbm-config.ts` agar mudah dimodifikasi dan di-maintain.
 
 ---
 
-### **X. Dokumentasi & Deliverable**
+### 🧩 **4. Implementation (Coding)**
 
-- Tabel Dokumen Tiap Fase:
-
-| Fase         | Dokumen                            |
-| ------------ | ---------------------------------- |
-| BRS          | `brs-mx-core-rbm.docx`             |
-| SRS          | `srs-rbm-v1.docx`, `use-case.xlsx` |
-| Desain       | `hld.png`, `lld-schema.json`       |
-| Implementasi | `source-code.zip`, `README.md`     |
-| Testing      | `test-plan.docx`, `postman.json`   |
-| Deployment   | `deployment-guide.md`              |
-| Maintenance  | `retraining-policy.docx`           |
-
-- Best Practice:
-
-* Gunakan versioning pada seluruh dokumen (`v1.0`, `v1.1`, ...)
-* Semua file dokumentasi di-_link_ dari Git repo utama
+> Mengubah dokumen teknis (LLD) menjadi implementasi kode sumber dalam bentuk plugin modular `mx-core-rbm` yang bisa dibuild, dijalankan, dan diuji.
 
 ---
 
-### **XI. Penutup**
+> 🔹 I. Setup Repositori (Git)
 
-- Ringkasan
+> 📁 Struktur Repositori (`mx-core`)
 
-Proyek **Mx-Core-RBM** membuktikan pentingnya pendekatan SDLC dalam sistem industri cerdas. **Dokumen BRS ➝ SRS ➝ HLD ➝ Implementasi ➝ Testing ➝ Deployment** bukan hanya formalitas, tapi struktur krusial untuk:
+Berikut adalah struktur direktori dari monorepo `mx-core`, dengan `mx-core-rbm` sebagai salah satu plugin-nya:
 
-- **Keterlacakan fitur**
-- **Kepastian mutu sistem**
-- **Kolaborasi lintas tim**
-
-* Rekomendasi
-
-- Terapkan SDLC sebagai standar dalam proyek AI/industrial software
-- Gunakan _traceability matrix_ agar setiap baris kode punya “asal-usul”
-- Mulai dari kebutuhan bisnis yang kuat sebelum menulis satu baris kode pun
-
-* Checklist Sukses SDLC
-
-- [x] BRS dan SRS terdokumentasi dan ditandatangani
-- [x] Use-case tervalidasi oleh user
-- [x] Arsitektur sistem divisualisasikan
-- [x] Kode modular & terdokumentasi
-- [x] Pengujian otomatis dan UAT dilaksanakan
-- [x] Deployment konsisten dan dapat di-_rollback_
-- [x] Maintenance didukung dengan SLA dan retraining policy
+```bash
+mx-core/
+├── apps/
+│   ├── web/               # frontend utama
+│   └── api/               # backend utama
+├── plugins/
+│   └── mx-core-rbm/       # 🔍 plugin RBM (fokus kita)
+│       ├── src/
+│       │   ├── app/
+│       │   ├── models/
+│       │   ├── services/
+│       │   ├── hooks/
+│       │   ├── utils/
+│       │   └── ...
+│       ├── public/
+│       ├── plugin.json
+│       ├── next.config.js
+│       ├── tsconfig.json
+│       └── ...
+├── package.json
+└── turbo.json
+```
 
 ---
+
+> 🔧 Setup Git Branching
+
+| Praktik Git             | Deskripsi                                  |
+| ----------------------- | ------------------------------------------ |
+| **Branch utama**        | `main` → stable release                    |
+| **Branch pengembangan** | `develop` → integrasi antar fitur          |
+| **Branch fitur**        | `feature/rbm-<nama-fitur>`                 |
+| **Branch bugfix**       | `bugfix/rbm-<bug-desc>`                    |
+| **Tag versi**           | `v1.0.0-rbm` → menandai release plugin RBM |
+
+Contoh perintah:
+
+```bash
+git checkout -b feature/rbm-esc-grading
+```
+
+---
+
+> 📦 Setup Tools & Dependency
+
+Plugin `mx-core-rbm` menggunakan stack:
+
+- **Next.js (App Router)**
+- **Tailwind CSS**
+- **TypeScript**
+- **Prisma (ORM)**
+- **Zod (validasi input)**
+- **React Hook Form** untuk form grading/input
+
+Perintah setup awal:
+
+```bash
+cd plugins/mx-core-rbm
+npm install
+npx prisma generate
+npm run dev
+```
+
+---
+
+> 🔹 Coding by Module / Sprint
+
+📅 Sprint Planning (modular breakdown)
+
+Berikut mapping antara **FR/UC → Modul Coding**:
+
+| Sprint | Modul                      | FR Terkait | UC Terkait | Folder/Path                              |
+| ------ | -------------------------- | ---------- | ---------- | ---------------------------------------- |
+| 1      | DIA Management             | FR-08      | UC-08      | `app/assets`, `models/asset`             |
+| 2      | ESC Grading Form           | FR-01      | UC-01      | `app/grading`, `services/grading.ts`     |
+| 3      | Auto Criticality Logic     | FR-02      | UC-02      | `services/criticality.ts`                |
+| 4      | Maintenance Plan Generator | FR-03      | UC-03      | `app/plan`, `services/plan.ts`           |
+| 5      | TBM Scheduler              | FR-04      | UC-04      | `app/schedule`, `services/scheduler.ts`  |
+| 6      | Evaluation Logging         | FR-05      | UC-05      | `app/evaluation`, `models/evaluation.ts` |
+| 7      | CMMS Export                | FR-07      | UC-07      | `app/export`, `utils/exporter.ts`        |
+| 8      | Dashboard Visual           | FR-06      | UC-06      | `app/dashboard`, `hooks/useDashboard.ts` |
+| 9      | Role-based Access Control  | FR-09      | UC-09      | `middleware/auth.ts`, `config/rbac.ts`   |
+
+> 🎯 Setiap sprint diturunkan ke PR (Pull Request) dengan deskripsi:
+>
+> - UC/FR yang diimplementasikan
+> - Screenshot UI (jika ada)
+> - Rujukan LLD (algoritma/API yang dipakai)
+
+---
+
+Memastikan setiap kode:
+
+- Mengacu pada **struktur model, field, dan relasi** di ERD
+- Mengimplementasikan **algoritma** sesuai logika RBM
+- Memenuhi kontrak **API endpoint** yang didefinisikan
+- Mengikuti struktur file/folder modular
+- Konsisten dengan standar `mx-core` (Next.js App Router + TypeScript)
+
+---
+
+> 🔹 1. Implementasi Model Mengacu ERD
+
+Model ditulis menggunakan **Prisma ORM**, mengacu langsung pada struktur LLD.
+
+Contoh:
+
+`prisma/schema.prisma` (sebagian RBM domain)
+
+```prisma
+model ESCGrading {
+  tagNumber          String   @id @map("tag_number")
+  environment        ESCLevel
+  safety             ESCLevel
+  continuousRunning  ESCLevel @map("continuous_running")
+  gradedBy           String   @map("graded_by")
+  gradedAt           DateTime @map("graded_at")
+
+  Asset              Asset    @relation(fields: [tagNumber], references: [tagNumber])
+}
+
+enum ESCLevel {
+  Low
+  Medium
+  High
+}
+```
+
+> Implementasi TypeScript Model (untuk service layer):
+
+```ts
+// models/rbm/ESCGrading.ts
+export interface ESCGrading {
+  tagNumber: string;
+  environment: 'Low' | 'Medium' | 'High';
+  safety: 'Low' | 'Medium' | 'High';
+  continuousRunning: 'Low' | 'Medium' | 'High';
+  gradedBy: string;
+  gradedAt: Date;
+}
+```
+
+---
+
+> 🔹 2. Implementasi Algoritma / Logic dari LLD
+
+Sesuai dengan algoritma `calculateCriticality()` di LLD:
+
+```ts
+// services/criticality.ts
+export function calculateCriticality(grading: {
+  environment: string;
+  safety: string;
+  continuousRunning: string;
+}): 'Kritis' | 'Normal' {
+  const weights = {
+    Low: 1,
+    Medium: 2,
+    High: 3,
+  };
+  const score =
+    weights[grading.environment] +
+    weights[grading.safety] +
+    weights[grading.continuousRunning];
+
+  return score >= 7 ? 'Kritis' : 'Normal';
+}
+```
+
+> 🔁 Dipakai dalam controller saat user submit ESC grading untuk langsung menentukan criticality.
+
+---
+
+> 🔹 3. API Handler Sesuai Kontrak LLD
+
+Contoh implementasi endpoint sesuai skema:
+
+> Endpoint: `POST /api/grading`
+
+```ts
+// app/api/grading/route.ts
+import { NextRequest, NextResponse } from 'next/server';
+import { prisma } from '@/lib/prisma';
+import { calculateCriticality } from '@/services/criticality';
+
+export async function POST(req: NextRequest) {
+  const data = await req.json();
+
+  const criticality = calculateCriticality(data);
+
+  await prisma.eSCGrading.upsert({
+    where: { tagNumber: data.tagNumber },
+    update: {
+      ...data,
+      criticality,
+      gradedAt: new Date(),
+    },
+    create: {
+      ...data,
+      criticality,
+      gradedAt: new Date(),
+    },
+  });
+
+  return NextResponse.json({
+    success: true,
+    criticality,
+  });
+}
+```
+
+> ✅ Payload dan response sesuai dengan LLD API schema.
+
+---
+
+> 🔹 4. Struktur Folder & Modularisasi
+
+Folder mengikuti pembagian sub-domain sesuai dengan desain sebelumnya:
+
+```bash
+mx-core-rbm/
+├── src/
+│   ├── app/
+│   │   ├── grading/          # UC-01
+│   │   ├── plan/             # UC-03
+│   │   ├── schedule/         # UC-04
+│   ├── models/
+│   │   ├── asset/            # asset base models
+│   │   └── rbm/              # RBM-specific models
+│   ├── services/
+│   │   ├── grading.ts
+│   │   ├── criticality.ts
+│   │   ├── plan.ts
+│   ├── utils/
+│   │   ├── score-utils.ts
+│   └── ...
+```
+
+> 🔁 Service dan model dipisah berdasarkan fungsi agar mudah di-maintain dan di-test.
+
+---
+
+> 🔹 5. Validasi Input: Schema + Type Safety
+
+Plugin `mx-core-rbm` menggunakan **Zod** untuk validasi input:
+
+```ts
+// schemas/gradingSchema.ts
+import { z } from 'zod';
+
+export const gradingSchema = z.object({
+  tagNumber: z.string().min(1),
+  environment: z.enum(['Low', 'Medium', 'High']),
+  safety: z.enum(['Low', 'Medium', 'High']),
+  continuousRunning: z.enum(['Low', 'Medium', 'High']),
+  gradedBy: z.string().min(1),
+});
+```
+
+Digunakan di API handler:
+
+```ts
+const parsed = gradingSchema.safeParse(data);
+if (!parsed.success) {
+  return NextResponse.json(
+    { success: false, errors: parsed.error.format() },
+    { status: 400 }
+  );
+}
+```
+
+---
+
+> 🔹 **1. Versioning & Dokumentasi**
+
+> 📦 a. Versioning (Penomoran Rilis)
+
+Plugin `mx-core-rbm` mengikuti **semver** (`Semantic Versioning`) standar:
+
+```text
+vX.Y.Z
+└┬┘ └┬┘ └┬┘
+ │   │   └── Patch → Fix kecil
+ │   └───── Minor → Penambahan fitur backward-compatible
+ └───────── Major → Breaking change besar
+```
+
+Contoh penomoran versi:
+
+- `v1.0.0-rbm` → Rilis awal MVP RBM
+- `v1.1.0-rbm` → Penambahan fitur dashboard dan export
+- `v1.1.1-rbm` → Fix minor pada jadwal TBM
+- `v2.0.0-rbm` → Perubahan struktur model grading (breaking)
+
+> 🔧 b. Tagging Git + Release Notes
+
+```bash
+git tag -a v1.0.0-rbm -m "Initial release of mx-core-rbm plugin"
+git push origin v1.0.0-rbm
+```
+
+> 📝 **Release Notes** dikelola di file:
+> `plugins/mx-core-rbm/docs/RELEASE-NOTES.md`
+
+Contoh isi:
+
+```markdown
+> v1.0.0-rbm – 2025-12-20
+> 🎯 Fitur:
+
+- ESC Grading Form (UC-01)
+- Criticality Logic (UC-02)
+- Maintenance Plan Generator (UC-03)
+- Basic TBM Scheduler (UC-04)
+- Evaluation Record Form (UC-05)
+
+🔐 Security:
+
+- Role-based access control untuk semua halaman
+
+📁 Struktur:
+
+- Modular plugin dalam `plugins/mx-core-rbm`
+```
+
+---
+
+> 🔹 **2. Code Review & Integration Checklist**
+
+> 📋 a. Code Review Checklist
+
+| Checklist                                       | Status     |
+| ----------------------------------------------- | ---------- |
+| 🔍 Kode sesuai struktur LLD                     | ✅         |
+| 🔐 Validasi input dengan schema Zod             | ✅         |
+| 🧱 Model database sesuai Prisma / ERD           | ✅         |
+| 🧪 Unit test / logic test tersedia (jika ada)   | ⚠️ Partial |
+| 🔄 Tidak ada hardcoded data                     | ✅         |
+| 📖 Fungsi diberi komentar deskriptif seperlunya | ✅         |
+| 🔁 Pull Request mencantumkan FR / UC terkait    | ✅         |
+| ✅ Build lulus (lint, typecheck, etc.)          | ✅         |
+
+> 🧪 Catatan: Unit test akan lebih dikembangkan pada tahap **Testing (SDLC 5)**
+
+---
+
+> 🔗 b. Integration Checklist
+
+| Langkah Integrasi                               | Status |
+| ----------------------------------------------- | ------ |
+| 📦 Plugin bisa diimport dalam sistem `mx-core`  | ✅     |
+| 🧩 Tersambung dengan domain `Asset`             | ✅     |
+| 🔐 Auth & RBAC aktif berdasarkan session/role   | ✅     |
+| 📁 Folder terisolasi di `plugins/mx-core-rbm/`  | ✅     |
+| 📤 Export file JSON / CSV bisa diakses          | ✅     |
+| 🔧 `.env` plugin tidak konflik dengan `mx-core` | ✅     |
+
+---
+
+# 🧩 **5. Testing**
+
+> 📌 _Tujuan:_ Validasi bahwa sistem `mx-core-rbm` bekerja sesuai dengan spesifikasi teknis (SRS) dan skenario nyata (use-case UC-01 s.d. UC-09).
+
+---
+
+> ✅ 1. **Unit Test**
+
+> Menguji logika kecil atau fungsi tunggal yang tidak bergantung pada modul lain.
+
+| Target                   | Tools             | Contoh Test Case                              |
+| ------------------------ | ----------------- | --------------------------------------------- |
+| `calculateCriticality()` | Vitest / Jest     | Input ESC = High+High+Low → output = "Kritis" |
+| `mapToStrategy()`        | Vitest            | Criticality = "Normal" → return = "P+C"       |
+| API Payload Validation   | Zod + Test Runner | Payload invalid → return 400                  |
+
+✅ Ditulis di folder: `__tests__/services/` dan `__tests__/utils/`
+
+---
+
+> 🔁 2. **Integration Test**
+
+> Menguji interaksi antar modul, seperti controller → service → database.
+
+| Skenario                 | Contoh                                                   |
+| ------------------------ | -------------------------------------------------------- |
+| Submit ESC grading       | Simulasi request ke `POST /api/grading` dan cek response |
+| Simpan Evaluation Record | Cek apakah data masuk ke tabel dan histori muncul        |
+| Load data dashboard      | Pastikan data tier, ESC, dan strategi bisa dibaca        |
+
+> Test dilakukan dengan `supertest` / `Next.js test utils` atau Postman collection.
+
+---
+
+> 🔧 3. **System Test (E2E)**
+
+> Menguji alur lengkap dari perspektif pengguna.
+> Tools: **Playwright**, **Cypress**, atau manual UAT.
+
+Contoh Skenario:
+
+🟩 **UC-01 sampai UC-05 (grading → strategi):**
+
+1. User login sebagai Engineer
+2. Pilih aset → isi ESC grading
+3. Submit → sistem menilai criticality
+4. Login sebagai Planner → buka halaman Maintenance Plan
+5. Pilih strategi → sistem generate TBM schedule
+6. Evaluasi tercatat → histori muncul
+
+🟩 **UC-06 (Dashboard):**
+
+- User membuka dashboard dan melihat jumlah Tier1 / Tier2 / Tier3
+- Klik satu aset → tampil histori evaluasi
+
+🟩 **UC-07 (Export):**
+
+- IT mengakses `/export` → memilih tipe data → download file
+
+---
+
+> 👤 4. **User Acceptance Test (UAT)**
+
+> Melibatkan user dari PT PON (misalnya Reliability Engineer, Planner) untuk mencoba langsung sistem sesuai peran mereka.
+
+| Tujuan              | Detail                                                             |
+| ------------------- | ------------------------------------------------------------------ |
+| Verifikasi real-use | Apakah proses grading dan perencanaan sesuai alur kerja nyata      |
+| Validasi usability  | Apakah UI cukup intuitif di lapangan                               |
+| Final feedback      | Apakah fitur sesuai ekspektasi business (kembali ke BRS)           |
+| Uji integrasi CMMS  | Apakah export CMMS bisa langsung digunakan tanpa modifikasi manual |
+
+> ✅ Hasil UAT akan menjadi dasar keputusan **Go-Live / Release Approval**
+
+---
+
+#### 🧩 **Dokumen Pengujian**
+
+---
+
+> 📘 **1. Test Plan**
+
+> Test Plan adalah dokumen strategis untuk mengatur pendekatan, cakupan, peran, dan jadwal pengujian modul `mx-core-rbm`.
+
+> 📄 Struktur Test Plan
+
+| Elemen              | Isi                                                                        |
+| ------------------- | -------------------------------------------------------------------------- |
+| **Nama Proyek**     | Plugin `mx-core-rbm`                                                       |
+| **Tujuan Uji**      | Memastikan sistem bekerja sesuai SRS, LLD, dan Use Case (UC-01 s.d. UC-09) |
+| **Cakupan**         | Semua fitur RBM (ESC Grading, Criticality, Plan, Schedule, Export, dsb)    |
+| **Jenis Pengujian** | Unit Test, Integration Test, System Test, UAT                              |
+| **Lingkungan Uji**  | Staging Environment `mx-core` dengan plugin aktif                          |
+| **Tools**           | Jest / Vitest, Postman, Playwright, Manual testing sheet                   |
+| **Waktu Uji**       | 1 minggu post-implementasi                                                 |
+| **Tim QA**          | QA Engineer, Reliability Eng, IT Admin                                     |
+| **Kriteria Lulus**  | 100% UC berjalan tanpa blocker, UAT disetujui                              |
+
+---
+
+> 🧪 **2. Test Case (berbasis Use Case)**
+
+> Masing-masing **UC-01 sampai UC-09** dijabarkan ke dalam 1 atau lebih test case terstruktur.
+
+📄 Format Test Case
+
+| Test Case ID | UC Referensi | Nama Test Case                | Input                        | Ekspektasi Hasil                   | Status |
+| ------------ | ------------ | ----------------------------- | ---------------------------- | ---------------------------------- | ------ |
+| TC-01        | UC-01        | ESC Grading – Input Valid     | tagNumber = PU-101, ESC=HHM  | Data tersimpan, criticality keluar | ✅     |
+| TC-02        | UC-01        | ESC Grading – Input Invalid   | ESC = kosong                 | Return 400 + error message         | ✅     |
+| TC-03        | UC-02        | Hitung Criticality Otomatis   | ESC = High, High, High       | Output = "Kritis"                  | ✅     |
+| TC-04        | UC-03        | Generate Plan Based on Tier   | Tier1                        | Strategy = P+P+C                   | ✅     |
+| TC-05        | UC-05        | Catat Evaluation Record       | Result = Warning             | Tersimpan di histori               | ✅     |
+| TC-06        | UC-07        | Export CMMS as JSON           | Asset list selected          | File JSON tersedia                 | ✅     |
+| TC-07        | UC-09        | Role Akses Planner ke Grading | Login Planner → buka grading | Ditolak (403)                      | ✅     |
+| TC-08        | UC-06        | Lihat Dashboard Summary       | Login Supervisor             | Pie chart muncul, data benar       | ✅     |
+
+> Format ini bisa ditransfer ke Excel / Test Management System seperti TestRail.
+
+---
+
+> 🐞 **3. Bug Log**
+
+> Bug Log mencatat temuan selama pengujian dan status penyelesaiannya.
+
+| ID Bug | Modul       | Deskripsi                                | Severity | Status | PIC   |
+| ------ | ----------- | ---------------------------------------- | -------- | ------ | ----- |
+| BUG-01 | ESC Grading | ESC “Medium” tidak dihitung dengan benar | Major    | Fixed  | Dev A |
+| BUG-02 | Export      | CSV export gagal bila 0 data             | Minor    | Open   | Dev B |
+| BUG-03 | RBAC        | Planner bisa akses halaman export        | Critical | Fixed  | Dev A |
+| BUG-04 | Evaluation  | Timestamp tidak tersimpan                | Major    | Fixed  | Dev C |
+
+---
+
+> 🔗 **4. Traceability Matrix (Final)**
+
+Menghubungkan seluruh artefak dari **BRS → FR → UC → TC**.
+
+| BRS-ID | FR-ID | UC-ID | TC-ID | Status |
+| ------ | ----- | ----- | ----- | ------ |
+| BRS-01 | FR-01 | UC-01 | TC-01 | ✅     |
+| BRS-01 | FR-01 | UC-01 | TC-02 | ✅     |
+| BRS-02 | FR-02 | UC-02 | TC-03 | ✅     |
+| BRS-03 | FR-03 | UC-03 | TC-04 | ✅     |
+| BRS-05 | FR-05 | UC-05 | TC-05 | ✅     |
+| BRS-07 | FR-07 | UC-07 | TC-06 | ✅     |
+| BRS-09 | FR-09 | UC-09 | TC-07 | ✅     |
+| BRS-06 | FR-06 | UC-06 | TC-08 | ✅     |
+
+---
+
+### 🧩 **6. Deployment – mx-core-rbm**
+
+> 📌 _Tujuan:_ Meluncurkan plugin `mx-core-rbm` ke lingkungan produksi dengan proses terkontrol dan terdokumentasi.
+
+---
+
+> 🔹 **Checklist Deployment**
+
+> ⚙️ 1. Build & CI/CD Pipeline
+
+- Menggunakan **Turborepo** untuk membangun monorepo `mx-core`
+- CI/CD via **GitHub Actions** atau **GitLab CI**
+- Pipeline mencakup:
+
+  - Lint & typecheck
+  - Unit & integration test
+  - Build plugin
+  - Deploy ke environment staging/production
+
+```yml
+# .github/workflows/deploy.yml (contoh sederhana)
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: npm install
+      - run: npm run build
+      - run: npm run test
+      - run: bash ./scripts/deploy.sh
+```
+
+---
+
+> 🌐 2. Environment Setup
+
+| Env         | URL (Contoh)                                                     | Tujuan              | Catatan            |
+| ----------- | ---------------------------------------------------------------- | ------------------- | ------------------ |
+| **Dev**     | [http://localhost:3000](http://localhost:3000)                   | Pengembangan lokal  | Dengan DB lokal    |
+| **Staging** | [https://rbm-staging.mx-core.io](https://rbm-staging.mx-core.io) | Uji internal tim QA | Sinkron data dummy |
+| **Prod**    | [https://rbm.mx-core.io](https://rbm.mx-core.io)                 | Live PT PON         | Data aset asli     |
+
+- `.env.local` → untuk dev
+- `.env.staging` → untuk staging
+- `.env.production` → untuk prod
+
+---
+
+> 🛡️ 3. Backup & Rollback Plan
+
+- Backup DB otomatis (PostgreSQL via cron/pg_dump)
+- Snapshot konfigurasi `.env`, schema, dan plugin.json
+- Rollback:
+
+  - Revert ke tag Git: `git checkout v1.0.0-rbm`
+  - Restore database backup
+  - Trigger deploy ulang dari CI/CD
+
+---
+
+> 📄 4. Release Notes
+
+- Disimpan di:
+  `plugins/mx-core-rbm/docs/RELEASE-NOTES.md`
+
+Contoh:
+
+```md
+_v1.0.0-rbm – Production Release (2025-12-24)_
+
+✅ Fitur:
+
+- ESC Grading
+- Asset Criticality
+- Maintenance Strategy
+- TBM Schedule
+- Dashboard
+- Export CMMS
+
+🔒 RBAC aktif
+🧪 Telah melalui UAT
+```
+
+---
+
+> 📜 5. Deployment Log
+
+Contoh entry log:
+
+```md
+_Deployment Log - v1.0.0-rbm_
+
+Date: 2025-12-24
+By: DevOps Team
+
+- Deploy sukses ke https://rbm.mx-core.io
+- DB migrated via prisma migrate
+- Release Notes attached
+- No error in first 24h monitoring
+```
+
+---
+
+> ✅ Output Deployment
+
+| Hasil                     | Status |
+| ------------------------- | ------ |
+| Plugin live di production | ✅     |
+| CI/CD build otomatis      | ✅     |
+| Release terdokumentasi    | ✅     |
+| Rollback plan tersedia    | ✅     |
+
+---
+
+### 🧩 **7. Maintenance & Support – mx-core-rbm**
+
+> 📌 Menjaga keberlangsungan layanan plugin RBM dan menyiapkan peningkatan jangka panjang.
+
+---
+
+> 🔧 Aktivitas Maintenance
+
+> 🖥️ 1. **Monitoring Performance**
+
+- Tools: **Logtail / Grafana / Vercel Analytics**
+- Parameter:
+
+  - Load halaman grading & dashboard
+  - Waktu respon API
+  - Error rate (500, 403, dll)
+
+> 🐞 2. **Patch & Bug Fix**
+
+- Bug tracking via GitHub Issues / internal dashboard
+- Patch dirilis via versi `v1.x.x-rbm` (patch semver)
+- Hotfix langsung di-merge ke `main` dengan testing cepat
+
+> 📣 3. **User Feedback Loop**
+
+- Tim Planner dan Engineer memberikan masukan rutin
+- Feedback dikumpulkan via:
+
+  - Form internal
+  - Group WA/Telegram
+  - Review pasca shutdown/turnaround
+
+> 🔄 4. **Model Retraining (Jika AI Diterapkan)**
+
+- _[Opsional untuk versi mendatang]_ jika RBM ditingkatkan dengan scoring berbasis AI
+- Data histori dari `EvaluationRecord` dapat digunakan
+
+> 🚀 5. **Roadmap Feature Improvement**
+
+Contoh rencana jangka pendek:
+
+| Versi      | Fitur Baru                     | Status   |
+| ---------- | ------------------------------ | -------- |
+| v1.1.0-rbm | Role granular untuk Supervisor | 🟡 Draft |
+| v1.2.0-rbm | Visual ESC trend mingguan      | 🟡 Draft |
+| v2.0.0-rbm | REST-to-MQTT bridge untuk IoT  | ⏳ Ide   |
+
+---
+
+> 📏 SLA & KPI Maintenance
+
+| Parameter           | Target                    |
+| ------------------- | ------------------------- |
+| Uptime              | ≥ 99.5%                   |
+| Bug fix response    | < 2 hari kerja untuk High |
+| Release cycle minor | 1–2 minggu                |
+| Response API        | < 1 detik                 |
+
+---
+
+> ✅ Output Maintenance & Support
+
+| Hasil                      | Status |
+| -------------------------- | ------ |
+| Performa dimonitor         | ✅     |
+| Patch terjadwal            | ✅     |
+| Feedback aktif dikumpulkan | ✅     |
+| Roadmap disusun            | ✅     |
+| SLA & KPI ditentukan       | ✅     |
+
+---
+
+> 🎯 Kesimpulan
+
+✅ Proyek `mx-core-rbm` telah selesai dirancang dan diimplementasikan **mengikuti struktur SDLC end-to-end**, meliputi:
+
+1. Business Needs (BRS)
+2. Technical Specs (SRS)
+3. Design (HLD & LLD)
+4. Coding (modular, tested, documented)
+5. Testing (Unit → UAT)
+6. Deployment (CI/CD, backup, live)
+7. Maintenance (Support & roadmap)
+
+---
+
+> 📌 Cocok digunakan untuk proyek dengan pendekatan _structured (Waterfall)_ maupun _iterative (Agile Hybrid)_

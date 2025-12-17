@@ -170,13 +170,6 @@ Membangun sistem KPI terpadu yang mampu mencatat, mengelola, dan memprediksi per
 
 ---
 
-- ✅ **Output BRS**
-
-✅ Dokumen BRS ini menjadi dasar pengembangan kebutuhan teknis di tahap berikutnya (**SRS**).
-Semua stakeholder bisnis dapat meninjau dan menyetujui visi, peran, dan kebutuhan yang dijabarkan.
-
----
-
 ## 📘 **2. SRS – Software Requirement Specification**
 
 ---
