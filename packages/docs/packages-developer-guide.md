@@ -1,0 +1,210 @@
+**📁 mx-core/packages Developer Guide**
+
+---
+
+- [🧠 TUJUAN UMUM MONOREPO](#-tujuan-umum-monorepo)
+- [🧱 1. `@mx-core/core`](#-1-mx-corecore)
+- [🧬 2. `@mx-core/types`](#-2-mx-coretypes)
+- [🧩 3. `@mx-core/ui`](#-3-mx-coreui)
+- [🔄 Integrasi Antar Modul](#-integrasi-antar-modul)
+- [🗺️ Ringkasan End-to-End Alur RBAC](#️-ringkasan-end-to-end-alur-rbac)
+- [✅ Tujuan Kolektif Ketiga Sub-project](#-tujuan-kolektif-ketiga-sub-project)
+- [🚧 Catatan Pengembangan Lanjutan](#-catatan-pengembangan-lanjutan)
+
+### 🧠 TUJUAN UMUM MONOREPO
+
+- Menyediakan sistem plugin modular untuk ekspansi fitur
+- Menerapkan RBAC (Role-Based Access Control) secara **terstandarisasi** di semua lapisan (backend, frontend, plugin)
+- Membangun fondasi tipe yang kuat & reusable lintas modul (`types`)
+- Memudahkan pengembangan antarmuka yang sadar-peran (`@mx-core/ui`)
+
+---
+
+### 🧱 1. `@mx-core/core`
+
+- 🎯 **High-Level Design (HLD)**
+
+* Menjadi **engine utama** untuk:
+
+  - Plugin registration
+  - Plugin loading (dari folder plugin eksternal)
+  - RBAC rule parsing dan evaluasi
+
+* Berfungsi sebagai backend utility layer, **tidak bergantung pada framework tertentu**
+* Fokus pada **runtime logic** dan integrasi lintas modul (`types`, plugin.json)
+
+- 🔍 **Low-Level Design (LLD)**
+
+📁 Struktur Folder
+
+```
+packages/core/
+├── src/
+│   ├── index.ts               // Entry ekspor
+│   ├── types.ts               // PluginMeta, dsb.
+│   ├── plugin-loader.ts       // Loader dari plugin folder
+│   ├── plugin-registry.ts     // Map registry plugin
+│   └── rbac/
+│       ├── index.ts
+│       ├── rules.ts           // Menyimpan aturan RBAC
+│       ├── policy.ts          // Evaluasi akses
+│       └── init.ts            // Default rules
+```
+
+🔧 Komponen Penting
+
+| File                 | Fungsi                                                         |
+| -------------------- | -------------------------------------------------------------- |
+| `plugin-loader.ts`   | Meload plugin dari disk, validasi `plugin.json`, register RBAC |
+| `plugin-registry.ts` | Menyimpan metadata plugin aktif (digunakan UI/backend)         |
+| `rbac/rules.ts`      | Menyimpan dan mendaftarkan rule RBAC (in-memory)               |
+| `rbac/policy.ts`     | Fungsi `canAccess(context)` untuk mengevaluasi izin            |
+| `rbac/init.ts`       | Mendaftarkan rule default (seperti Admin) saat init sistem     |
+
+📌 Tujuan Developer
+
+- Menulis plugin yang sesuai standar `plugin.json`
+- Memastikan rule RBAC dimasukkan dengan benar
+- Menggunakan fungsi-fungsi RBAC dari `core` untuk pengecekan akses
+- Tidak perlu tahu cara kerja internal RBAC — cukup lewat API
+
+---
+
+### 🧬 2. `@mx-core/types`
+
+- 🎯 **High-Level Design (HLD)**
+
+* Menjadi **single source of truth** untuk tipe-tipe penting lintas modul:
+
+  - RBAC: `RBACRule`, `RBACContext`, `RBACAction`
+  - Roles: `UserRole`
+
+* Memastikan konsistensi antar `core`, `ui`, dan plugin developer
+
+- 🔍 **Low-Level Design (LLD)**
+
+📁 Struktur Folder
+
+```
+packages/types/
+├── src/
+│   ├── index.ts          // Ekspor seluruh tipe
+│   ├── rbac.ts           // RBACRule, Action, Context
+│   └── roles.ts          // Tipe role (UserRole)
+```
+
+🔧 Komponen Penting
+
+| Tipe          | Fungsi                                           |
+| ------------- | ------------------------------------------------ |
+| `UserRole`    | Enumerasi peran pengguna yang valid              |
+| `RBACAction`  | Daftar aksi yang bisa dikontrol dengan RBAC      |
+| `RBACRule`    | Struktur deklaratif satu aturan RBAC             |
+| `RBACContext` | Digunakan untuk evaluasi akses via `canAccess()` |
+
+📌 Tujuan Developer
+
+- Mengimpor tipe dari satu tempat (`@mx-core/types`)
+- Menulis `plugin.json` berdasarkan tipe valid
+- Menghindari hardcoded role/action
+
+---
+
+### 🧩 3. `@mx-core/ui`
+
+🎯 **High-Level Design (HLD)**
+
+- Menyediakan komponen frontend berbasis React untuk:
+
+  - Menampilkan komponen hanya jika RBAC mengizinkan
+  - Mengabstraksi logika `canAccess` dari `core` ke level UI
+
+- Didesain agar ringan, stateless, dan pure-functional
+
+🔍 **Low-Level Design (LLD)**
+
+📁 Struktur Folder
+
+```
+packages/ui/
+├── src/
+│   └── components/
+│       └── CanAccess.tsx
+```
+
+🔧 Komponen Penting
+
+| Komponen        | Fungsi                                          |
+| --------------- | ----------------------------------------------- |
+| `<CanAccess />` | Wrapper untuk render bersyarat berdasarkan RBAC |
+
+Props:
+
+```ts
+interface Props {
+  role: UserRole;
+  resource: string;
+  action: RBACAction;
+  children: ReactNode;
+}
+```
+
+📌 Tujuan Developer
+
+- Menggunakan `<CanAccess>` untuk semua fitur UI yang perlu kontrol izin
+- Menyambungkan role dari auth state atau session
+- Meningkatkan keamanan dan UX dengan menyembunyikan elemen yang tidak relevan
+
+---
+
+### 🔄 Integrasi Antar Modul
+
+| Modul   | Bergantung pada | Digunakan oleh                   |
+| ------- | --------------- | -------------------------------- |
+| `types` | —               | `core`, `ui`, plugin eksternal   |
+| `core`  | `types`         | backend API, plugin system, `ui` |
+| `ui`    | `core`, `types` | frontend (Next.js)               |
+
+---
+
+### 🗺️ Ringkasan End-to-End Alur RBAC
+
+1. **Plugin** mendeklarasikan rule di `plugin.json`
+2. **`@mx-core/core`**:
+
+   - Meload plugin dan rule-nya
+   - Menyimpan rule dalam memory
+   - Mengevaluasi akses dengan `canAccess(context)`
+
+3. **`@mx-core/ui`**:
+
+   - Menggunakan `canAccess()` untuk merender UI sesuai role
+
+4. **Semua tipe** diambil dari `@mx-core/types`
+
+---
+
+### ✅ Tujuan Kolektif Ketiga Sub-project
+
+| Tujuan                           | Modul yang Terlibat |
+| -------------------------------- | ------------------- |
+| Standarisasi tipe (RBAC, Role)   | `@mx-core/types`    |
+| Plugin system modular            | `@mx-core/core`     |
+| Evaluasi rule otorisasi          | `@mx-core/core`     |
+| RBAC-aware UI rendering          | `@mx-core/ui`       |
+| Reusability lintas sistem        | Semua               |
+| Developer experience (DX) tinggi | Semua               |
+
+---
+
+### 🚧 Catatan Pengembangan Lanjutan
+
+| Fitur Potensial                        | Modul                        |
+| -------------------------------------- | ---------------------------- |
+| Middleware RBAC untuk API Express      | `@mx-core/core`              |
+| UI RBAC Editor (drag & drop rules)     | `@mx-core/ui` (frontend app) |
+| Validasi `plugin.json` schema otomatis | `@mx-core/core`              |
+| Dukungan ABAC atau tenant-aware rule   | `@mx-core/types` dan `core`  |
+| Komponen HOC `withAccess()`            | `@mx-core/ui`                |
+
+---
