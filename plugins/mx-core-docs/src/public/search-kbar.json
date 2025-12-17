@@ -1,5 +1,44 @@
 [
   {
+    "id": "Management/iceberg-theory",
+    "name": "Beyond the Surface - Pendekatan Iceberg dalam Memperkuat Keandalan Aset Industri Petrokimia",
+    "section": "CONTENT",
+    "href": "/blog/Management/iceberg-theory",
+    "subtitle": "December 17, 2025",
+    "keywords": [
+      "iceberg-theory",
+      "asset-reliability",
+      "petrochemical-industry",
+      "risk-based-maintenance",
+      "maintenance-strategy",
+      "hidden-failure",
+      "reliability-engineering",
+      "asset-management"
+    ]
+  },
+  {
+    "id": "website/sdlc-template",
+    "name": "Software Development Life Cycle -SDLC",
+    "section": "CONTENT",
+    "href": "/blog/website/sdlc-template",
+    "subtitle": "December 17, 2025",
+    "keywords": [
+      "sdlc",
+      "brs-srs",
+      "system-design",
+      "hld-lld",
+      "software-development",
+      "requirement-analysis",
+      "use-case",
+      "implementation",
+      "testing-deployment",
+      "maintenance-support",
+      "enterprise-app",
+      "project-documentation",
+      "agile-waterfall"
+    ]
+  },
+  {
     "id": "AI/artikel-teknis-dengan-ai",
     "name": "Meningkatkan Kualitas Dokumentasi Teknik melalui Penulisan Artikel yang Sistematis",
     "section": "CONTENT",
@@ -150,7 +189,7 @@
   },
   {
     "id": "website/mx-core-monorepo",
-    "name": "MxCore – Monorepo",
+    "name": "Mx-Core – Monorepo",
     "section": "CONTENT",
     "href": "/blog/website/mx-core-monorepo",
     "subtitle": "November 16, 2025",
@@ -306,20 +345,6 @@
       "contentlayer",
       "tailwind",
       "eslint"
-    ]
-  },
-  {
-    "id": "markdown/github-markdown-guide",
-    "name": "Panduan Markdown",
-    "section": "CONTENT",
-    "href": "/blog/markdown/github-markdown-guide",
-    "subtitle": "October 7, 2025",
-    "keywords": [
-      "github",
-      "panduan",
-      "markdown",
-      "md",
-      "mdx"
     ]
   },
   {

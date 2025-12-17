@@ -45,11 +45,30 @@ summary: Artikel ini menyajikan panduan lengkap pengembangan perangkat lunak ind
 
 ---
 
-- 📖 **Latar Belakang Masalah**
+### 📖 **Latar Belakang Masalah**
 
-Pemeliharaan aset industri selama ini masih dominan berbasis waktu (TBM – Time-Based Maintenance), yang tidak selalu efektif dalam mencegah kegagalan fungsi kritis, dan sering kali menimbulkan biaya perawatan yang tidak proporsional terhadap risikonya.
+Sebelum menerapkan pendekatan **Risk-Based Maintenance (RBM)**, strategi pemeliharaan aset di PT PON menggunakan metode yang **seragam untuk semua aset**, termasuk pemeliharaan berbasis waktu (**TBM – Time-Based Maintenance**) tanpa mempertimbangkan tingkat kritikalitas dan risiko kegagalan dari masing-masing aset.
 
-Perusahaan seperti **PT PON** membutuhkan pendekatan yang lebih presisi dan efisien, yaitu melalui **Risk-Based Maintenance (RBM)** — strategi yang mempertimbangkan **dampak kegagalan (failure impact)** terhadap **lingkungan, keselamatan, dan kontinuitas produksi.**
+Pendekatan tersebut menyebabkan:
+
+- **Penggunaan resources yang tinggi** (tenaga kerja, waktu, biaya)
+- Masih sering terjadi **gangguan unplanned** dan **emergency**
+- Efektivitas perawatan rendah karena **pemeliharaan dilakukan sama rata**, bukan berdasarkan dampak potensial kegagalan
+
+Setelah diterapkan RBM:
+
+- Strategi pemeliharaan disusun berdasarkan **tingkat risiko aktual** dari tiap aset
+- **Penggunaan resources menurun signifikan**, lebih terfokus pada aset kritis
+- **Tingkat unplanned shutdown menurun**
+- **Performa aset membaik**, mendekati kondisi optimal awalnya (**mendekati nameplate**)
+
+Dengan pendekatan ini, RBM berperan sebagai **kerangka pengambilan keputusan strategis** untuk pemeliharaan, yang tidak hanya memperhitungkan frekuensi, tetapi **dampak dan konsekuensi kegagalan** terhadap:
+
+- **Keselamatan (Safety)**
+- **Lingkungan (Environment)**
+- **Kontinuitas produksi (Continuity)**
+
+Inilah yang mendorong kebutuhan sistem digital RBM seperti `mx-core-rbm`, agar strategi tersebut dapat diotomatisasi, distandardisasi, dan diintegrasikan ke sistem pemeliharaan yang lebih luas (CMMS, dashboard, dsb).
 
 ---
 
