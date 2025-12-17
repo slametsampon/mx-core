@@ -33,7 +33,62 @@ summary: Artikel ini menyajikan panduan lengkap pengembangan perangkat lunak ind
 
 ---
 
-## 📌 **Latar Belakang Masalah**
+- [**1. BRS - Business Requirement Specification**](#1-brs---business-requirement-specification)
+- [📘 **2. SRS – Software Requirement Specification**](#-2-srs--software-requirement-specification)
+  - [📌 **1. Tujuan Dokumen**](#-1-tujuan-dokumen)
+  - [📦 **2. Ruang Lingkup Sistem**](#-2-ruang-lingkup-sistem)
+  - [📚 **3. Definisi dan Akronim**](#-3-definisi-dan-akronim)
+  - [📈 **4. Deskripsi Umum Sistem**](#-4-deskripsi-umum-sistem)
+  - [⚙️ **5. Fungsi Sistem (Functional Requirements Overview)**](#️-5-fungsi-sistem-functional-requirements-overview)
+  - [🔐 **6. Non-Functional Requirements (NFR)**](#-6-non-functional-requirements-nfr)
+  - [⛔ **7. Batasan Sistem**](#-7-batasan-sistem)
+  - [📌 1. **Use-Case List**](#-1-use-case-list)
+  - [📑 2. **Use-Case Detail (Narratif)**](#-2-use-case-detail-narratif)
+  - [📌 Traceability Matrix](#-traceability-matrix)
+  - [✅ **🔼 Prioritas Pengembangan (MoSCoW)**](#--prioritas-pengembangan-moscow)
+- [🎯 **3. System Design**](#-3-system-design)
+  - [🔷 **3.1. High-Level Design (HLD)** → kita bahas sekarang](#-31-high-level-design-hld--kita-bahas-sekarang)
+- [🎯 **4. Implementation (Coding)**](#-4-implementation-coding)
+  - [1️⃣ **Setup Repositori (Git)**](#1️⃣-setup-repositori-git)
+  - [2️⃣ **Coding by Module/Sprint**](#2️⃣-coding-by-modulesprint)
+  - [✅ 3️⃣ Kode Mengacu pada LLD](#-3️⃣-kode-mengacu-pada-lld)
+  - [🗂️ 6. **Modularisasi File Sesuai Struktur HLD \& LLD**](#️-6-modularisasi-file-sesuai-struktur-hld--lld)
+  - [✅ 4️⃣ Versioning dan Dokumentasi](#-4️⃣-versioning-dan-dokumentasi)
+  - [✅ 5️⃣ Code Review \& Integration Checklist](#-5️⃣-code-review--integration-checklist)
+  - [✅ 6️⃣ Output: Source Code Versi Alpha](#-6️⃣-output-source-code-versi-alpha)
+  - [🧠 Keterkaitan dengan SRS, HLD, dan LLD](#-keterkaitan-dengan-srs-hld-dan-lld)
+- [📘 \*\*5 Testing \*\*](#-5-testing-)
+  - [✅ 1. **Unit Test**](#-1-unit-test)
+  - [✅ 2. **Integration Test**](#-2-integration-test)
+  - [✅ 3. **System Test**](#-3-system-test)
+  - [✅ 4. **User Acceptance Test (UAT)**](#-4-user-acceptance-test-uat)
+  - [🧠 Korelasi dengan SRS \& UC](#-korelasi-dengan-srs--uc)
+  - [📝 5️⃣ **Test Plan**](#-5️⃣-test-plan)
+  - [✅ 6️⃣ **Test Case**](#-6️⃣-test-case)
+  - [🐞 7️⃣ **Bug Log \& Traceability Matrix**](#-7️⃣-bug-log--traceability-matrix)
+  - [🧩 8️⃣ **Release Candidate (RC) Definition**](#-8️⃣-release-candidate-rc-definition)
+  - [📤 **Output Tahap Testing**](#-output-tahap-testing)
+  - [🧠 Keterkaitan dengan Tahap Sebelumnya](#-keterkaitan-dengan-tahap-sebelumnya)
+- [📘 **6 Deployment – mx-core-metric**](#-6-deployment--mx-core-metric)
+  - [✅ 1. **Build \& CI/CD Pipeline**](#-1-build--cicd-pipeline)
+  - [✅ 2. **Environment Setup**](#-2-environment-setup)
+    - [Variabel Lingkungan (`.env`)](#variabel-lingkungan-env)
+  - [✅ 3. **Backup \& Rollback Plan**](#-3-backup--rollback-plan)
+  - [✅ 4. **Dokumen Release Notes**](#-4-dokumen-release-notes)
+  - [✅ 5. **Deployment Log**](#-5-deployment-log)
+- [📘 **7 Maintenance \& Support – mx-core-metric**](#-7-maintenance--support--mx-core-metric)
+  - [✅ 1. **Monitoring Performance**](#-1-monitoring-performance)
+  - [✅ 2. **Patch \& Bug Fix**](#-2-patch--bug-fix)
+  - [✅ 3. **User Feedback Loop**](#-3-user-feedback-loop)
+  - [✅ 4. **Model Retraining (Jika Menggunakan AI)**](#-4-model-retraining-jika-menggunakan-ai)
+  - [✅ 5. **Feature Improvement Roadmap**](#-5-feature-improvement-roadmap)
+  - [✅ Output: SLA \& KPI Pemeliharaan](#-output-sla--kpi-pemeliharaan)
+
+---
+
+## **1. BRS - Business Requirement Specification**
+
+- 📌 **Latar Belakang Masalah**
 
 Dalam operasional industri berskala besar, pemantauan performa lintas departemen secara real-time menjadi tantangan besar. Selama ini:
 
@@ -45,7 +100,7 @@ Dalam operasional industri berskala besar, pemantauan performa lintas departemen
 
 ---
 
-## 🎯 **Visi dan Tujuan Bisnis**
+- 🎯 **Visi dan Tujuan Bisnis**
 
 **Visi:**
 Membangun sistem KPI terpadu yang mampu mencatat, mengelola, dan memprediksi performa operasional lintas departemen secara otomatis, fleksibel, dan dapat diintegrasikan dengan sistem sensor/IoT.
@@ -60,7 +115,7 @@ Membangun sistem KPI terpadu yang mampu mencatat, mengelola, dan memprediksi per
 
 ---
 
-## 👥 **Stakeholders dan Peran**
+- 👥 **Stakeholders dan Peran**
 
 | Peran                   | Deskripsi                                                           |
 | ----------------------- | ------------------------------------------------------------------- |
@@ -73,7 +128,7 @@ Membangun sistem KPI terpadu yang mampu mencatat, mengelola, dan memprediksi per
 
 ---
 
-## 🧭 **Kebutuhan Bisnis Tingkat Tinggi**
+- 🧭 **Kebutuhan Bisnis Tingkat Tinggi**
 
 1. Sistem mampu mengelola target KPI tahunan dan breakdown periodik (bulanan/mingguan/harian).
 2. Sistem mendukung input aktual capaian KPI dan gangguan (disturbance) secara manual maupun otomatis.
@@ -83,7 +138,7 @@ Membangun sistem KPI terpadu yang mampu mencatat, mengelola, dan memprediksi per
 
 ---
 
-## 🏁 **Kriteria Keberhasilan Proyek**
+- 🏁 **Kriteria Keberhasilan Proyek**
 
 | Kriteria                   | Indikator                                                                                |
 | -------------------------- | ---------------------------------------------------------------------------------------- |
@@ -95,7 +150,7 @@ Membangun sistem KPI terpadu yang mampu mencatat, mengelola, dan memprediksi per
 
 ---
 
-## 🧱 **Batasan dan Asumsi**
+- 🧱 **Batasan dan Asumsi**
 
 | Batasan                                             | Asumsi                                                                    |
 | --------------------------------------------------- | ------------------------------------------------------------------------- |
@@ -106,7 +161,7 @@ Membangun sistem KPI terpadu yang mampu mencatat, mengelola, dan memprediksi per
 
 ---
 
-## 📚 **Referensi Pendukung**
+- 📚 **Referensi Pendukung**
 
 - Dokumen ERD & Struktur Data `mx-core-metric`
 - Studi kasus penggunaan KPI di Maintenance, Produksi, dan K3
@@ -115,14 +170,14 @@ Membangun sistem KPI terpadu yang mampu mencatat, mengelola, dan memprediksi per
 
 ---
 
-## ✅ **Output BRS**
+- ✅ **Output BRS**
 
 ✅ Dokumen BRS ini menjadi dasar pengembangan kebutuhan teknis di tahap berikutnya (**SRS**).
 Semua stakeholder bisnis dapat meninjau dan menyetujui visi, peran, dan kebutuhan yang dijabarkan.
 
 ---
 
-## 📘 **SRS – Software Requirement Specification (Part 1: General + Functional Requirements)**
+## 📘 **2. SRS – Software Requirement Specification**
 
 ---
 
@@ -228,23 +283,7 @@ Berikut daftar kebutuhan fungsional sistem `mx-core-metric`:
 
 ---
 
-Baik! Kita akan lanjutkan ke bagian **[2/7-B] Software Requirement Specification (SRS Part 2)** untuk sub-project `mx-core-metric`.
-
-Fokus bagian ini adalah:
-
-1. 📌 Use-Case List & Detail
-2. 🔼 Prioritas Pengembangan (MoSCoW)
-3. 🔁 Traceability Matrix (opsional)
-
-Semua **Functional Requirements (FR)**, **Non-Functional Requirements (NFR)**, dan **Batasan (BL)** akan **dipetakan dan diwakili dalam Use-Case yang relevan**, sehingga tidak ada requirement yang tercecer.
-
----
-
-# 📘 **[2/7-B] SRS – Use-Case, Prioritas, dan Traceability**
-
----
-
-## 📌 1. **Use-Case List**
+### 📌 1. **Use-Case List**
 
 | Use-Case ID | Nama Use-Case                | Aktor                     | FR/NFR/BL Terkait    |
 | ----------- | ---------------------------- | ------------------------- | -------------------- |
@@ -263,13 +302,13 @@ Semua **Functional Requirements (FR)**, **Non-Functional Requirements (NFR)**, d
 
 ---
 
-## 📑 2. **Use-Case Detail (Narratif)**
+### 📑 2. **Use-Case Detail (Narratif)**
 
 Berikut beberapa use-case utama yang mewakili seluruh FR dan NFR:
 
 ---
 
-### 🟦 UC-001 — **Manajemen Master KPI**
+- 🟦 UC-001 — **Manajemen Master KPI**
 
 | Elemen         | Deskripsi                                                      |
 | -------------- | -------------------------------------------------------------- |
@@ -284,7 +323,7 @@ Berikut beberapa use-case utama yang mewakili seluruh FR dan NFR:
 
 ---
 
-### 🟨 UC-003 — **Breakdown Target Periodik**
+- 🟨 UC-003 — **Breakdown Target Periodik**
 
 | Elemen         | Deskripsi                                                            |
 | -------------- | -------------------------------------------------------------------- |
@@ -299,7 +338,7 @@ Berikut beberapa use-case utama yang mewakili seluruh FR dan NFR:
 
 ---
 
-### 🟩 UC-004 — **Input Capaian Aktual KPI (Manual & Sensor)**
+- 🟩 UC-004 — **Input Capaian Aktual KPI (Manual & Sensor)**
 
 | Elemen         | Deskripsi                                                     |
 | -------------- | ------------------------------------------------------------- |
@@ -314,7 +353,7 @@ Berikut beberapa use-case utama yang mewakili seluruh FR dan NFR:
 
 ---
 
-### 🟥 UC-007 — **Forecast Capaian Otomatis**
+- 🟥 UC-007 — **Forecast Capaian Otomatis**
 
 | Elemen         | Deskripsi                                                               |
 | -------------- | ----------------------------------------------------------------------- |
@@ -329,7 +368,7 @@ Berikut beberapa use-case utama yang mewakili seluruh FR dan NFR:
 
 ---
 
-### 🟪 UC-008 — **Visualisasi Dashboard KPI & Gangguan**
+- 🟪 UC-008 — **Visualisasi Dashboard KPI & Gangguan**
 
 | Elemen         | Deskripsi                                                             |
 | -------------- | --------------------------------------------------------------------- |
@@ -344,7 +383,7 @@ Berikut beberapa use-case utama yang mewakili seluruh FR dan NFR:
 
 ---
 
-### 🟨 UC-009 — **Manajemen Role & Hak Akses**
+- 🟨 UC-009 — **Manajemen Role & Hak Akses**
 
 | Elemen         | Deskripsi                                                                   |
 | -------------- | --------------------------------------------------------------------------- |
@@ -359,7 +398,7 @@ Berikut beberapa use-case utama yang mewakili seluruh FR dan NFR:
 
 ---
 
-### 🟩 UC-010 — **Terima Data Sensor via MQTT**
+- 🟩 UC-010 — **Terima Data Sensor via MQTT**
 
 | Elemen         | Deskripsi                                                                               |
 | -------------- | --------------------------------------------------------------------------------------- |
@@ -374,7 +413,7 @@ Berikut beberapa use-case utama yang mewakili seluruh FR dan NFR:
 
 ---
 
-### 🟥 UC-011 — **Audit Trail Perubahan Data**
+- 🟥 UC-011 — **Audit Trail Perubahan Data**
 
 | Elemen         | Deskripsi                                                                                       |
 | -------------- | ----------------------------------------------------------------------------------------------- |
@@ -389,7 +428,7 @@ Berikut beberapa use-case utama yang mewakili seluruh FR dan NFR:
 
 ---
 
-### 🟦 UC-012 — **Ekspor Data & Laporan**
+- 🟦 UC-012 — **Ekspor Data & Laporan**
 
 | Elemen         | Deskripsi                                                                    |
 | -------------- | ---------------------------------------------------------------------------- |
@@ -876,93 +915,843 @@ function forecastLinear(actuals: number[], currentIndex: number): number {
 
 ---
 
-### 🧩 4. **Implementation (Coding)**
+## 🎯 **4. Implementation (Coding)**
 
-> 📌 _Tujuan:_ Penerjemahan desain ke dalam kode sumber
-
-#### 🔹 Struktur Aktivitas:
-
-- Setup repositori (Git)
-- Coding by module/sprint
-- Kode mengacu pada LLD
-- Versioning dan dokumentasi
-- Code review & integration checklist
-
-#### ✅ Output:
-
-- Source code versi alpha → siap diuji
+Tahap ini menerjemahkan semua desain dari HLD dan LLD menjadi **kode sumber nyata**, melalui struktur kerja yang **terorganisasi dan dapat ditinjau**. Tahap ini juga menjadi dasar untuk penentuan **milestone sprint**, pengelolaan repositori, dan distribusi tugas tim dev.
 
 ---
 
-### 🧩 5. **Testing**
+### 1️⃣ **Setup Repositori (Git)**
 
-> 📌 _Tujuan:_ Validasi bahwa sistem bekerja sesuai SRS dan use-case
+- 📁 Struktur Direktori (Monorepo – Plugin `mx-core-metric`)
 
-#### 🔹 Jenis Pengujian:
+Karena `mx-core-metric` adalah **submodul** dari monorepo `mx-core`, maka struktur awalnya mengikuti standar plugin:
 
-- **Unit Test**: Pengujian fungsi spesifik
-- **Integration Test**: Antarmuka antar modul
-- **System Test**: End-to-end dari perspektif use-case
-- **User Acceptance Test (UAT)**: Verifikasi oleh user
+```
+mx-core/
+│
+├── apps/
+│   ├── dashboard/         ← Aplikasi utama (Next.js Web UI)
+│   └── api/               ← Next.js API routes (jika monolith)
+│
+├── packages/
+│   ├── mx-core-metric/    ← Plugin KPI & metric (kode kita)
+│   └── mx-core-auth/      ← Plugin lain (misal: auth, user)
+│
+├── libs/                  ← Library bersama (utils, UI kit, dsb)
+│
+└── .github/               ← CI/CD, workflows
+```
 
-#### 🔹 Dokumen Terkait:
+- 🔧 Naming Repositori Internal
 
-- Test Plan
-- Test Case
-- Bug Log & Traceability
+* Package Name: `@mx-core/metric`
+* Folder Path: `packages/mx-core-metric`
+* Namespace: `metric`, dengan ekspor modular (e.g. `metric.api`, `metric.forecast`, `metric.utils`)
 
-#### ✅ Output:
+- 🛠️ Inisialisasi Repositori
 
-- Release Candidate → siap deploy
+* Git branch default: `main`
+* Branch protection: ✔ PR required, ✔ review 1x
+* Template commit: [Conventional Commits](https://www.conventionalcommits.org/)
 
----
+  - `feat(metric): add forecast calculation`
+  - `fix(metric): validate MQTT payload before insert`
 
-### 🧩 6. **Deployment**
-
-> 📌 _Tujuan:_ Meluncurkan aplikasi ke lingkungan produksi
-
-#### 🔹 Checklist:
-
-- Build & CI/CD pipeline
-- Environment setup (Dev, Staging, Prod)
-- Backup & Rollback Plan
-- Dokumen Release Notes
-- Deployment Log
-
-#### ✅ Output:
-
-- Aplikasi berjalan di production environment
-
----
-
-### 🧩 7. **Maintenance & Support**
-
-> 📌 _Tujuan:_ Menjamin kelangsungan layanan, perbaikan bug, dan peningkatan
-
-#### 🔹 Aktivitas:
-
-- Monitoring performance
-- Patch & bug fix
-- User feedback loop
-- Model retraining (jika AI)
-- Feature improvement roadmap
-
-#### ✅ Output:
-
-- SLA & KPI pemeliharaan terukur
+* Setup tool: `turbo` (untuk monorepo builder)
 
 ---
 
-## 🔚 **Kesimpulan**
+### 2️⃣ **Coding by Module/Sprint**
 
-Template di atas memberikan kerangka lengkap dan runtut dari:
+- 📆 Sprint Breakdown (Rekomendasi: 2 minggu/sprint)
 
-- 🏢 **Kebutuhan bisnis** →
-- ⚙️ **Spesifikasi teknis** →
-- 🔧 **Desain sistem** →
-- 💻 **Implementasi dan pengujian** →
-- 📦 **Deploy dan rawat**
+| Sprint | Fokus Modul                        | FR/UC Terkait                |
+| ------ | ---------------------------------- | ---------------------------- |
+| S1     | KPI Master, Target Tahunan         | FR-01, FR-02, UC-001, UC-002 |
+| S2     | Breakdown Target Periodik          | FR-03, UC-003                |
+| S3     | Input KPI Manual                   | FR-04, UC-004                |
+| S4     | MQTT Ingestion + Input Sensor      | FR-10, UC-010                |
+| S5     | Forecast Engine                    | FR-07, UC-007                |
+| S6     | Gangguan Operasional + Link ke KPI | FR-05, FR-06, UC-005, UC-006 |
+| S7     | Dashboard Viewer & Summary         | FR-08, UC-008                |
+| S8     | Export & Reporting                 | FR-12, UC-012                |
+| S9     | Role, Auth, Logging                | FR-09, FR-11, UC-009, UC-011 |
 
-> 📌 Cocok digunakan untuk proyek dengan pendekatan _structured (Waterfall)_ maupun _iterative (Agile Hybrid)_
+- 📦 Struktur Modular Package (Coding Level)
+
+Dalam `packages/mx-core-metric`:
+
+```
+mx-core-metric/
+│
+├── src/
+│   ├── api/                     ← API handler per endpoint
+│   ├── services/                ← Logic per modul (forecast, record, etc)
+│   ├── models/                  ← Tipe data (TypeScript) dan skema DB
+│   ├── utils/                   ← Helper functions
+│   └── config/                  ← Config MQTT, forecast, dsb
+│
+├── tests/                      ← Unit & integration tests
+├── README.md
+├── tsconfig.json
+└── package.json
+```
+
+- 📌 Contoh Modul Sprint: `Forecast Engine`
+
+* Lokasi: `src/services/forecast/linear.ts`
+* Tipe: `manual`, `linear`, dan disiapkan untuk `ml_model`
+* Dipanggil dari: `src/api/forecast.ts`
+
+```ts
+export function forecastLinear(
+  actuals: number[],
+  currentIndex: number
+): number {
+  const sum = actuals.reduce((a, b) => a + b, 0);
+  const avg = sum / currentIndex;
+  return avg * 12;
+}
+```
 
 ---
+
+### ✅ 3️⃣ Kode Mengacu pada LLD
+
+- 🧩 1. **Acuan Data Model & Tipe Data**
+
+✅ Kode sumber **menggunakan model TypeScript** yang merepresentasikan entitas dari ERD:
+
+```ts
+// src/models/KpiRecord.ts
+export interface KpiRecord {
+  id: string;
+  kpi_id: string;
+  unit_id: string;
+  department_id: string;
+  periode: string; // ISO 8601
+  value: number;
+  source: 'manual' | 'sensor' | 'imported';
+  note?: string;
+  created_by: string;
+  created_at: string;
+}
+```
+
+🟢 Sesuai dengan **LLD → Data Dictionary → Table `kpi_record`**
+
+---
+
+- 🔧 2. **Validasi Input Sesuai Spesifikasi LLD**
+
+> Setiap endpoint (manual maupun MQTT) wajib **validasi schema** sebelum insert/update.
+
+✅ Contoh: Validasi payload `POST /api/kpi-record`:
+
+```ts
+import { z } from 'zod';
+
+const kpiRecordSchema = z.object({
+  kpi_id: z.string().min(1),
+  unit_id: z.string().min(1),
+  department_id: z.string().min(1),
+  periode: z.string().refine((val) => !isNaN(Date.parse(val)), {
+    message: 'Invalid date format',
+  }),
+  value: z.number(),
+  source: z.enum(['manual', 'sensor', 'imported']),
+  note: z.string().optional(),
+  created_by: z.string().min(1),
+});
+
+export type KpiRecordInput = z.infer<typeof kpiRecordSchema>;
+```
+
+🟢 Ini sesuai dengan **LLD → API Schema & Validasi Payload MQTT**
+
+---
+
+- 📊 3. **Penerapan Algoritma Forecast Sesuai LLD**
+
+✅ Implementasi kalkulasi linear projection:
+
+```ts
+// src/services/forecast/linear.ts
+export function forecastLinear(values: number[], currentIndex: number): number {
+  const sum = values.reduce((a, b) => a + b, 0);
+  const avg = sum / currentIndex;
+  return avg * 12;
+}
+```
+
+- Sudah sesuai dengan **algoritma yang didefinisikan di LLD**
+- Forecast siap dipanggil via scheduler atau cron
+
+---
+
+- 🌐 4. **Endpoint Sesuai Spesifikasi API LLD**
+
+| Endpoint                     | Tipe             | Sesuai LLD |
+| ---------------------------- | ---------------- | ---------- |
+| `POST /api/kpi-record`       | Manual Entry KPI | ✅         |
+| `POST /api/mqtt-ingest`      | MQTT data push   | ✅         |
+| `GET /api/dashboard/summary` | Ringkasan KPI    | ✅         |
+
+> Semua endpoint memanfaatkan input schema, response handler, dan ORM layer yang mengacu ke model LLD
+
+---
+
+- 🔐 5. **Role & Auth Flow Sesuai LLD**
+
+* ✅ Role di-_inject_ dari token JWT
+* ✅ Role digunakan untuk _gate_ API (e.g. hanya `admin` bisa input KPI tahunan)
+
+```ts
+// Middleware (pseudo)
+if (user.role !== 'admin') {
+  return res.status(403).json({ error: 'Forbidden' });
+}
+```
+
+🟢 Sesuai dengan **LLD → Role Access** dan NFR-03
+
+---
+
+### 🗂️ 6. **Modularisasi File Sesuai Struktur HLD & LLD**
+
+- Modul `services/`, `api/`, `models/`, `utils/`, dan `config/` digunakan sesuai fungsinya
+- Struktur kode **mengikuti struktur modular HLD**
+- Memudahkan pengujian dan refactor per modul
+
+---
+
+- 🔄 7. **Traceability dari FR/UC ke Kode**
+
+| FR / UC        | Modul & File yang Diimplementasi                 |
+| -------------- | ------------------------------------------------ |
+| FR-01 / UC-001 | `services/kpi.ts`, `models/Kpi.ts`               |
+| FR-04 / UC-004 | `api/kpi-record.ts`, `services/record.ts`        |
+| FR-10 / UC-010 | `api/mqtt-ingest.ts`, `services/mqtt.ts`         |
+| FR-07 / UC-007 | `services/forecast/linear.ts`, `api/forecast.ts` |
+| FR-09 / UC-009 | Middleware Auth, Role Guard                      |
+
+> Semua fitur utama **terhubung langsung ke SRS dan LLD**
+
+---
+
+### ✅ 4️⃣ Versioning dan Dokumentasi
+
+- 🧭 Versioning Strategy (Git + Semver)
+
+| Aspek         | Strategi Implementasi                                  |
+| ------------- | ------------------------------------------------------ |
+| **VCS**       | Git (GitHub / GitLab)                                  |
+| **Branching** | `main`, `dev`, `feature/*`, `bugfix/*`                 |
+| **Tagging**   | Semantic Versioning (SemVer) → `v1.0.0`, `v1.1.0`, dll |
+| **Release**   | Dirilis berdasarkan tag & CI pipeline                  |
+
+- 🚀 Semantic Versioning (SemVer)
+
+| Versi   | Kapan digunakan                         |
+| ------- | --------------------------------------- |
+| `MAJOR` | Perubahan besar / breaking changes      |
+| `MINOR` | Penambahan fitur tanpa merusak existing |
+| `PATCH` | Perbaikan bug atau perbaikan kecil      |
+
+---
+
+- 📚 Dokumentasi Kode
+
+✅ Disusun per modul dalam folder `docs/` atau dalam file `README.md` tiap direktori:
+
+| Lokasi File           | Isi                                                |
+| --------------------- | -------------------------------------------------- |
+| `docs/forecast.md`    | Penjelasan algoritma, input/output, metode linear  |
+| `docs/mqtt-ingest.md` | Format payload, validasi, error handling           |
+| `README.md` root      | Deskripsi plugin `mx-core-metric`, struktur folder |
+
+📌 Format dokumentasi: **Markdown**, ditulis ringkas dan fokus pada integrasi + pemakaian
+
+---
+
+### ✅ 5️⃣ Code Review & Integration Checklist
+
+- 🧩 Pull Request Workflow
+
+| Langkah                | Checklist                                                 |
+| ---------------------- | --------------------------------------------------------- |
+| ⬆️ PR dibuat           | Dari `feature/*` ke `dev`                                 |
+| 👀 Reviewer ditugaskan | 1–2 orang (minimal 1 reviewer)                            |
+| ✅ Checklist PR        | - Deskripsi jelas<br>- Link ke FR/UC<br>- Lolos unit test |
+| 🔒 Proteksi branch     | Tidak bisa merge langsung ke `main` tanpa review          |
+
+- ✅ Integration Checklist
+
+| Area                                                        | Checklist                         |
+| ----------------------------------------------------------- | --------------------------------- |
+| ⬜ Modul terhubung antar API                                | Endpoint saling panggil berhasil  |
+| ⬜ Validasi input JSON dan response API                     | Sesuai schema (Zod / Yup)         |
+| ⬜ Forecast dapat dijalankan otomatis (manual trigger/cron) |                                   |
+| ⬜ MQTT listener bisa terima payload valid                  | Payload masuk DB dengan status OK |
+| ⬜ Role-based access jalan                                  | Tes akses admin vs viewer         |
+| ⬜ Audit trail tercatat                                     | Created_by, updated_at, dsb       |
+
+📌 Checklist ini dijalankan oleh **tim dev** sebelum lanjut ke testing/UAT
+
+---
+
+### ✅ 6️⃣ Output: Source Code Versi Alpha
+
+- 🚧 Kriteria Versi Alpha
+
+| Kriteria                                | Status |
+| --------------------------------------- | ------ |
+| Seluruh FR prioritas “Must” sudah ada   | ✅     |
+| Endpoint API utama sudah tersedia       | ✅     |
+| DB schema stabil dan siap migrasi       | ✅     |
+| MQTT listener menerima data             | ✅     |
+| Forecast dapat dijalankan (manual/auto) | ✅     |
+| Role dan auth berjalan sesuai peran     | ✅     |
+| Dokumentasi awal tersedia               | ✅     |
+
+> 📌 Versi Alpha ini bisa diberi tag: `v0.1.0-alpha`
+
+---
+
+### 🧠 Keterkaitan dengan SRS, HLD, dan LLD
+
+| Dokumen          | Status Integrasi dalam Implementasi                              |
+| ---------------- | ---------------------------------------------------------------- |
+| **SRS (FR, UC)** | ✅ Semua FR/UC diterjemahkan jadi modul/kode                     |
+| **HLD**          | ✅ Semua komponen modular diimplementasikan                      |
+| **LLD**          | ✅ Semua struktur data, API, dan algoritma dipakai sesuai desain |
+
+---
+
+## 📘 **5 Testing **
+
+---
+
+🎯 Tujuan:
+
+> **Memastikan sistem `mx-core-metric` berjalan sesuai SRS dan Use-Case**
+> Validasi dilakukan secara bertahap, dari unit terkecil (fungsi) hingga keseluruhan sistem (UAT).
+
+### ✅ 1. **Unit Test**
+
+> Menguji fungsi/method individual untuk memastikan logika berjalan sesuai ekspektasi.
+
+- Contoh Unit yang Diuji:
+
+| Fungsi / Modul                  | Pengujian                          |
+| ------------------------------- | ---------------------------------- |
+| `forecastLinear()`              | Output sesuai dengan data historis |
+| `validateKpiRecordInput()`      | Validasi semua field payload       |
+| `calculateAchievementPercent()` | Hitung % capaian KPI dari target   |
+| `parseMqttPayload()`            | Format, nilai, tipe data           |
+
+- Tools:
+
+* `Jest` (untuk TypeScript)
+* Coverage target: ≥ 80% modul `services/` dan `utils/`
+
+---
+
+### ✅ 2. **Integration Test**
+
+> Menguji interaksi antar modul: API ↔ DB, API ↔ Service, MQTT ↔ Handler.
+
+- Contoh Skenario:
+
+| Modul Terkait                 | Pengujian                                        |
+| ----------------------------- | ------------------------------------------------ |
+| API `POST /api/kpi-record`    | Data tersimpan ke DB dan response benar          |
+| MQTT Listener → DB            | Payload valid masuk, invalid di-reject           |
+| Forecast Engine → Write ke DB | Hasil forecast tersimpan dan muncul di dashboard |
+| Role-Based Access Middleware  | Akses dibatasi sesuai peran (admin/operator)     |
+
+- Tools:
+
+* `Supertest` untuk REST API
+* `ts-mockito` / `msw` untuk mocking service
+
+---
+
+### ✅ 3. **System Test**
+
+> Simulasi alur end-to-end berdasarkan **Use-Case**
+
+- Contoh Alur UC yang Diuji:
+
+| Use-Case ID | Nama Use-Case        | Alur E2E yang Diuji                                      |
+| ----------- | -------------------- | -------------------------------------------------------- |
+| UC-004      | Input Capaian KPI    | Form input → Validasi → DB insert → Dashboard muncul     |
+| UC-007      | Forecast Otomatis    | Data historis → Run forecast → Nilai muncul di dashboard |
+| UC-006      | Link Gangguan ke KPI | Input disturbance → Hubungkan ke KPI → Lihat deviasi     |
+| UC-010      | MQTT Data Sensor     | Publish MQTT → Listener proses → DB record tercatat      |
+
+- Coverage:
+
+* Minimal 1 test untuk setiap UC prioritas `Must` dan `Should`
+* Fokus pada alur utama dan validasi kondisi sukses
+
+---
+
+### ✅ 4. **User Acceptance Test (UAT)**
+
+> Validasi oleh **end-user** bahwa sistem sesuai ekspektasi fungsional.
+
+- Pelaksanaan:
+
+* Peserta: Perwakilan **dept. Maintenance, Produksi, K3**
+* Format: Workshop + form checklist
+* Fokus:
+
+  - Kemudahan input & navigasi
+  - Visualisasi data KPI, forecast, gangguan
+  - Sesuai terminologi dan struktur organisasi user
+
+- Form Checklist UAT:
+
+| Item yang Diuji                    | Sukses | Catatan           |
+| ---------------------------------- | ------ | ----------------- |
+| Input KPI manual                   | ✅     |                   |
+| Forecast update otomatis           | ✅     | Forecast > real?  |
+| Capaian KPI per unit muncul benar  | ✅     |                   |
+| Link gangguan → KPI terlihat jelas | ⚠️     | Butuh tooltip     |
+| Export PDF                         | ✅     | Format sudah rapi |
+
+---
+
+### 🧠 Korelasi dengan SRS & UC
+
+| Jenis Tes   | FR/UC yang Terkait               |
+| ----------- | -------------------------------- |
+| Unit Test   | FR-04, FR-07, FR-10              |
+| Integration | FR-01 s/d FR-12                  |
+| System Test | UC-001 s/d UC-012                |
+| UAT         | Semua FR prioritas Must & Should |
+
+---
+
+### 📝 5️⃣ **Test Plan**
+
+> Rencana pengujian secara menyeluruh terhadap sistem `mx-core-metric`.
+
+- 📌 Struktur Test Plan
+
+| Elemen                   | Isi                                                             |
+| ------------------------ | --------------------------------------------------------------- |
+| **Nama Proyek**          | `mx-core-metric`                                                |
+| **Tujuan Pengujian**     | Memastikan sistem berjalan sesuai SRS & UC                      |
+| **Lingkup Pengujian**    | Semua modul: KPI, Target, Input, Forecast, MQTT, Dashboard, dsb |
+| **Jenis Testing**        | Unit, Integration, System, UAT                                  |
+| **Lingkungan Pengujian** | Env: `staging-mx-core`, DB clone production, MQTT test broker   |
+| **Tools yang Digunakan** | Jest, Supertest, Postman, MQTTBox, Google Sheet (UAT checklist) |
+| **Tim Pengujian**        | QA Engineer, Developer, Perwakilan User                         |
+| **Kriteria Sukses**      | Semua test case prioritas MUST dan SHOULD lolos                 |
+| **Exit Criteria**        | Tidak ada bug kritikal/blocker aktif                            |
+
+---
+
+### ✅ 6️⃣ **Test Case**
+
+> Daftar skenario pengujian berdasarkan **Use-Case & FR**
+
+- 📋 Contoh Format Test Case (Tabel)
+
+| ID     | Modul            | Deskripsi Pengujian                        | Input                    | Expected Result                        | Status |
+| ------ | ---------------- | ------------------------------------------ | ------------------------ | -------------------------------------- | ------ |
+| TC-001 | KPI Record       | Input KPI manual valid                     | Payload JSON             | Data tersimpan, response 200           | ✅     |
+| TC-002 | KPI Record       | Input KPI dengan value kosong              | Payload `{ value: "" }`  | Response 400, pesan error muncul       | ✅     |
+| TC-003 | Forecast Engine  | Hitung forecast dari 6 bulan data historis | `values[]`               | Output total forecast ≥ rata-rata × 12 | ✅     |
+| TC-004 | MQTT Ingest      | Payload valid dikirim dari sensor          | JSON via MQTT            | Data masuk DB, status “sensor”         | ✅     |
+| TC-005 | Auth Middleware  | User tanpa role coba akses POST KPI        | No JWT / role: viewer    | Response 403                           | ✅     |
+| TC-006 | Dashboard API    | Ambil ringkasan KPI                        | `GET /dashboard/summary` | Output JSON dengan target, actual, %   | ✅     |
+| TC-007 | Disturbance Link | Gangguan dikaitkan ke KPI                  | UI link → save           | Link berhasil & muncul di dashboard    | ✅     |
+
+- 📌 Kriteria:
+
+* Mapped ke **UC dan FR**
+* Harus cover:
+
+  - Positive test
+  - Negative test (validasi gagal)
+  - Boundary (nilai ekstrem, null, 0, max float)
+
+* Status: ✅ = Lolos, ❌ = Gagal, ⚠ = Butuh review
+
+---
+
+### 🐞 7️⃣ **Bug Log & Traceability Matrix**
+
+- 🐞 Bug Log
+
+| Bug ID  | Modul       | Deskripsi                           | Severity | Status | Ditemukan oleh |
+| ------- | ----------- | ----------------------------------- | -------- | ------ | -------------- |
+| BUG-001 | Forecast    | Forecast salah total jika data < 3  | Medium   | Open   | QA             |
+| BUG-002 | MQTT Ingest | Payload gagal karena `periode` null | High     | Fixed  | Dev            |
+| BUG-003 | Export PDF  | Format kolom terpotong di mobile    | Low      | Open   | User           |
+
+- Tool: GitHub Issues / Linear / Notion
+- Severity:
+
+  - **Blocker**: Tidak bisa lanjut proses
+  - **High**: Gangguan fitur utama
+  - **Medium/Low**: Tidak berdampak signifikan
+
+---
+
+- 🔁 Traceability Matrix (SRS → Test Case)
+
+| FR/UC          | Test Case ID | Status | Keterangan           |
+| -------------- | ------------ | ------ | -------------------- |
+| FR-01 / UC-001 | TC-001       | ✅     | Input KPI master     |
+| FR-04 / UC-004 | TC-001–002   | ✅     | Input capaian manual |
+| FR-10 / UC-010 | TC-004       | ✅     | MQTT → Record        |
+| FR-07 / UC-007 | TC-003       | ✅     | Forecast linear      |
+| FR-09 / UC-009 | TC-005       | ✅     | Role-based access    |
+| FR-08 / UC-008 | TC-006       | ✅     | Dashboard ringkasan  |
+| FR-06 / UC-006 | TC-007       | ✅     | Link gangguan ke KPI |
+
+> 📌 **Semua FR dan UC utama tercover dalam test case**
+
+---
+
+### 🧩 8️⃣ **Release Candidate (RC) Definition**
+
+- 📦 **Apa itu Release Candidate?**
+
+> Versi kode yang dianggap **feature-complete dan telah lolos semua pengujian kritikal**, siap untuk:
+
+- Di-_freeze_ (tidak ditambah fitur lagi)
+- Diuji regresi secara menyeluruh
+- Dideploy ke staging atau production (setelah approval)
+
+---
+
+- ✅ **Kriteria RC untuk mx-core-metric**
+
+| Kriteria                                           | Status |
+| -------------------------------------------------- | ------ |
+| ✅ Semua **FR prioritas Must & Should** selesai    | ✅     |
+| ✅ Semua **UC utama** diuji lewat system test      | ✅     |
+| ✅ Seluruh test case “Pass” atau minor issue saja  | ✅     |
+| ✅ Tidak ada **bug blocker / severity high aktif** | ✅     |
+| ✅ MQTT ingestion stabil di staging                | ✅     |
+| ✅ Forecast engine menghasilkan output valid       | ✅     |
+| ✅ Role-based access diverifikasi                  | ✅     |
+| ✅ Dokumentasi pengguna minimal sudah tersedia     | ✅     |
+
+> 📌 **RC Tag:** `v1.0.0-rc.1`
+
+---
+
+- 🧪 **Regresi & Final Check**
+
+> Dilakukan untuk memastikan **fitur-fitur eksisting tidak rusak** akibat perubahan/penambahan terbaru.
+
+| Area yang Dites Ulang    | Status |
+| ------------------------ | ------ |
+| Dashboard summary        | ✅     |
+| Input KPI manual         | ✅     |
+| Forecast update otomatis | ✅     |
+| MQTT payload → DB        | ✅     |
+| Export PDF & CSV         | ✅     |
+
+---
+
+### 📤 **Output Tahap Testing**
+
+| Item                         | Status / File                         |
+| ---------------------------- | ------------------------------------- |
+| ✅ Test Plan                 | `docs/test-plan.md`                   |
+| ✅ Test Case                 | `docs/test-cases.xlsx` / Notion Table |
+| ✅ Bug Log                   | `issues` / Notion / Linear            |
+| ✅ Traceability Matrix       | `docs/traceability.md`                |
+| ✅ Release Candidate Build   | `v1.0.0-rc.1` (tag di GitHub/CI/CD)   |
+| ✅ UAT Form Checklist (user) | Google Sheet / Notion / PDF signed    |
+
+---
+
+### 🧠 Keterkaitan dengan Tahap Sebelumnya
+
+| Dokumen Referensi | Status Sinkron            |
+| ----------------- | ------------------------- |
+| SRS               | ✅ Covered                |
+| HLD & LLD         | ✅ Diimplementasi & Diuji |
+| Implementation    | ✅ Semua fitur diuji      |
+
+---
+
+## 📘 **6 Deployment – mx-core-metric**
+
+> Menyusun strategi dan checklist implementasi untuk **meluncurkan sistem `mx-core-metric` ke production** secara aman, terdokumentasi, dan dapat di-_rollback_ jika diperlukan.
+
+Deployment dilakukan dari hasil **release candidate** (`v1.0.0-rc.1`) yang telah lolos semua pengujian sebelumnya.
+
+🔹 **Checklist Deployment**
+
+---
+
+### ✅ 1. **Build & CI/CD Pipeline**
+
+| Elemen                   | Rincian                                                  |
+| ------------------------ | -------------------------------------------------------- |
+| **Build Tool**           | `turbo` (monorepo builder), `next build`, `tsc`          |
+| **CI/CD**                | GitHub Actions / GitLab CI                               |
+| **Lint & Test Otomatis** | Setiap push & PR menjalankan `lint`, `typecheck`, `test` |
+| **Build Artifact**       | `/dist`, `/out`, dan image Docker untuk deploy           |
+| **Docker Image**         | `mx-core-metric:1.0.0-rc.1`                              |
+| **Release Trigger**      | Manual deploy dari CI (dengan tag `v1.0.0`)              |
+
+---
+
+### ✅ 2. **Environment Setup**
+
+| Lingkungan  | URL/Host              | Tujuan                    | Catatan                         |
+| ----------- | --------------------- | ------------------------- | ------------------------------- |
+| **Dev**     | `localhost`, `dev-mx` | Pengujian internal dev    | Tidak stabil, semua fitur aktif |
+| **Staging** | `stg.mxcore.local`    | UAT & simulasi production | Mirror data production          |
+| **Prod**    | `mxcore.domain.com`   | Live untuk end-user       | Stable, read-only di non-admin  |
+
+#### Variabel Lingkungan (`.env`)
+
+| Kunci             | Contoh Nilai                     | Deskripsi            |
+| ----------------- | -------------------------------- | -------------------- |
+| `DATABASE_URL`    | `postgres://...`                 | DB utama             |
+| `MQTT_BROKER_URL` | `mqtt://broker.stg.local`        | Broker sensor        |
+| `FORECAST_METHOD` | `linear`                         | Default forecasting  |
+| `AUTH_SECRET`     | `xxxxx`                          | JWT Signing Key      |
+| `ENVIRONMENT`     | `development`, `staging`, `prod` | Untuk logging & mode |
+
+---
+
+### ✅ 3. **Backup & Rollback Plan**
+
+| Elemen             | Rencana                                                        |
+| ------------------ | -------------------------------------------------------------- |
+| **Database**       | Backup full dump via cron (`pg_dump`) sebelum deploy           |
+| **App Version**    | Image Docker `v1.0.0-rc.1` disimpan                            |
+| **Rollback Plan**  | Gunakan image versi sebelumnya (`v0.9.3`) jika gagal deploy    |
+| **Log Monitoring** | Pantau log error 24 jam pertama via Grafana, Loki, atau Sentry |
+| **Alerting**       | Integrasi ke Telegram/email jika error ≥ threshold tertentu    |
+
+---
+
+### ✅ 4. **Dokumen Release Notes**
+
+| Versi       | `v1.0.0` (Initial Production) |
+| ----------- | ----------------------------- |
+| Rilis Fitur | - Input KPI manual dan sensor |
+
+```
+           - Target tahunan dan periodik
+           - Forecast capaian
+           - Dashboard
+           - Gangguan operasional & linking
+           - Export PDF/CSV
+           - Role & akses berbasis peran
+```
+
+| Perbaikan | - Validasi input ketat
+
+- Format payload MQTT
+- Error handling endpoint
+  | Known Issue | - Belum ada notifikasi otomatis
+- Belum support forecasting berbasis ML
+
+📄 File: `RELEASE_NOTES_v1.0.0.md`
+
+---
+
+### ✅ 5. **Deployment Log**
+
+Disimpan otomatis oleh CI/CD dan/atau dicatat manual oleh DevOps:
+
+| Tanggal    | Versi       | Lingkungan | Status    | Catatan                           |
+| ---------- | ----------- | ---------- | --------- | --------------------------------- |
+| 2025-12-17 | v1.0.0-rc.1 | Staging    | ✅ Sukses | UAT selesai, siap ke prod         |
+| 2025-12-18 | v1.0.0      | Production | ✅ Sukses | Deployed dengan Docker            |
+| 2025-12-19 | v1.0.0      | Production | ⚠ Minor   | CPU spike – forecast cron ditunda |
+
+📄 File: `deployment-log.yaml`
+
+---
+
+- ✅ Output
+
+| Elemen                               | Status |
+| ------------------------------------ | ------ |
+| ✅ Aplikasi live di Production       | ✅     |
+| ✅ Versi dikunci (`v1.0.0`)          | ✅     |
+| ✅ Log & release note terdokumentasi | ✅     |
+| ✅ Backup & rollback plan aktif      | ✅     |
+
+---
+
+- 🧠 Keterkaitan dengan SDLC Sebelumnya
+
+| Tahap          | Status Sinkron                  |
+| -------------- | ------------------------------- |
+| SRS            | ✅ Terimplementasi              |
+| HLD & LLD      | ✅ Terwujud di infra & pipeline |
+| Implementation | ✅ Code release version stabil  |
+| Testing        | ✅ Release Candidate lulus UAT  |
+
+---
+
+## 📘 **7 Maintenance & Support – mx-core-metric**
+
+---
+
+🎯 **Tujuan**
+
+Menjamin bahwa sistem `mx-core-metric`:
+
+- Berjalan secara **berkelanjutan (sustain)**
+- **Adaptif terhadap kebutuhan pengguna**
+- Mendapatkan **perbaikan cepat** jika terjadi kendala
+- Dapat **ditingkatkan (scalable)** tanpa mengganggu sistem yang sudah live
+
+---
+
+### ✅ 1. **Monitoring Performance**
+
+🎯 Tujuan:
+
+- Deteksi dini terhadap penurunan performa sistem
+- Pemantauan uptime, latency, error rate
+
+🔧 Tools & Praktik:
+
+| Aspek                   | Implementasi                                  |
+| ----------------------- | --------------------------------------------- |
+| **Error Logging**       | Sentry / LogRocket / Loki                     |
+| **Performance Metrics** | Grafana + Prometheus                          |
+| **Service Health**      | Endpoint `/healthz` + alert ke Telegram/email |
+| **Uptime Monitor**      | StatusCake / Uptime Kuma / Pingdom            |
+| **Resource Monitor**    | Node exporter, PostgreSQL exporter            |
+
+---
+
+### ✅ 2. **Patch & Bug Fix**
+
+🛠️ Prosedur:
+
+1. Bug dilaporkan via user / QA
+2. Tercatat di **Bug Tracker** (GitHub Issues / Notion)
+3. Diperbaiki dan di-_merge_ ke branch `hotfix/`
+4. Rilis dengan tag `vX.Y.Z-patch`
+5. Update changelog & log deploy
+
+SLA Target:
+
+| Severity    | Target Respon | Target Perbaikan |
+| ----------- | ------------- | ---------------- |
+| **Blocker** | < 1 jam       | < 4 jam          |
+| **High**    | < 4 jam       | < 1 hari         |
+| **Medium**  | < 1 hari      | < 2 hari         |
+| **Low**     | < 2 hari      | Dalam 3 hari     |
+
+---
+
+### ✅ 3. **User Feedback Loop**
+
+📥 Sumber Feedback:
+
+- User lapangan (operator, supervisor)
+- Admin KPI
+- Manajemen (dashboard visibility, export)
+
+🔄 Siklus Feedback:
+
+1. Kumpulkan → melalui form, survey, atau WA group user
+2. Triage → Tentukan apakah bug, usulan fitur, atau edukasi
+3. Simpan → Dalam backlog Notion atau board Linear
+4. Prioritaskan → Gunakan MoSCoW atau RICE score
+
+📌 Contoh Feedback Nyata:
+
+| Feedback                                        | Aksi                               |
+| ----------------------------------------------- | ---------------------------------- |
+| “Filter per unit di dashboard kurang fleksibel” | Tambahkan dropdown + autocomplete  |
+| “Forecast tidak akurat di Q4”                   | Review metode & tambahkan model ML |
+| “Perlu export Excel”                            | Sudah diimplementasi v1.1.0        |
+
+---
+
+### ✅ 4. **Model Retraining (Jika Menggunakan AI)**
+
+> Untuk sistem forecast KPI berbasis tren, bisa berkembang ke **ML-based forecasting**
+
+🧠 Pipeline Sederhana:
+
+1. Ambil data historis dari `kpi_record`
+2. Jalankan training setiap bulan (job cron)
+3. Simpan model terbaru
+4. Bandingkan hasil forecast ML vs Linear
+5. Gunakan yang terbaik
+
+📌 Ini dapat menjadi fitur fase 2 (UC-013 / BL-03)
+
+---
+
+### ✅ 5. **Feature Improvement Roadmap**
+
+> Dirancang dari hasil UAT, feedback user, dan evaluasi sistem.
+
+📅 Rencana Peningkatan (Sample Roadmap)
+
+| Kuartal | Fitur / Perbaikan                         | Status    |
+| ------- | ----------------------------------------- | --------- |
+| Q1      | Forecast ML (regression / LSTM)           | On Plan   |
+| Q1      | Notifikasi telegram untuk KPI kritis      | Planned   |
+| Q2      | Integrasi sensor produksi tambahan (MQTT) | Backlog   |
+| Q2      | Multi-language support                    | Backlog   |
+| Q3      | UI/UX refresh & dark mode                 | Open Idea |
+
+---
+
+### ✅ Output: SLA & KPI Pemeliharaan
+
+- 📊 SLA (Service Level Agreement)
+
+| Kategori          | Target                         |
+| ----------------- | ------------------------------ |
+| **Availability**  | ≥ 99.5% uptime (bulanan)       |
+| **Response Time** | ≤ 2 detik rata-rata halaman    |
+| **Bug Response**  | Sesuai tabel SLA patch di atas |
+
+- 📈 KPI Maintenance Tim Dev
+
+| Indikator                        | Target Bulanan          |
+| -------------------------------- | ----------------------- |
+| Bug resolved time (avg)          | < 24 jam                |
+| Uptime system                    | > 99.5%                 |
+| User feedback resolved           | ≥ 90% feedback ditindak |
+| Fitur baru dirilis (minor/patch) | ≥ 2 rilis per bulan     |
+
+---
+
+- 🧠 Integrasi dengan Tahap SDLC Sebelumnya
+
+| Elemen     | Status Sinkron                            |
+| ---------- | ----------------------------------------- |
+| SRS        | Ditetapkan sebagai acuan evaluasi         |
+| HLD/LLD    | Jadi referensi saat bug fixing            |
+| Testing    | Hasil UAT jadi masukan roadmap            |
+| Deployment | Infrastruktur monitoring & rollback aktif |
+
+---
+
+- ✅ Kesimpulan Tahap Maintenance
+
+| Komponen                               | Status |
+| -------------------------------------- | ------ |
+| Monitoring dan alerting aktif          | ✅     |
+| SLA & KPI terdefinisi                  | ✅     |
+| Feedback loop terjadwal                | ✅     |
+| Perencanaan pengembangan berkelanjutan | ✅     |
+| Model retraining roadmap tersedia      | ✅     |
