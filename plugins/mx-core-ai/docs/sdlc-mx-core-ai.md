@@ -1,5 +1,5 @@
 ---
-title: Blueprint Pengembangan Software Industri - SDLC + Studi Kasus Mx-Core-AI
+title: Blueprint Pengembangan Software Industri - Mx-Core-AI
 authors: ['sam']
 date: '2025-12-16'
 tags:
@@ -26,7 +26,7 @@ tags:
     'project-lifecycle-management',
   ]
 draft: false
-summary: Artikel ini menyajikan panduan lengkap pengembangan perangkat lunak industri berbasis Software Development Life Cycle (SDLC), mulai dari tahap Business Requirement Specification (BRS) hingga Maintenance. Disusun secara sistematis dengan studi kasus nyata mx-core-ai, plugin AI untuk prediktif maintenance di lingkungan petrokimia. Setiap fase—BRS, SRS, HLD, LLD, implementasi, testing, deployment, hingga dukungan pasca-produksi—dibahas dengan contoh dokumen, alur kerja, dan praktik terbaik. Artikel ini menjadi referensi menyeluruh untuk tim engineer, arsitek sistem, dan manajemen proyek dalam membangun sistem cerdas berbasis data industri.
+summary: Artikel ini menyajikan panduan lengkap pengembangan perangkat lunak industri berbasis Software Development Life Cycle (SDLC), mulai dari tahap Business Requirement Specification (BRS) hingga Maintenance. Disusun secara sistematis mx-core-ai, plugin AI untuk prediktif maintenance di lingkungan petrokimia. Setiap fase—BRS, SRS, HLD, LLD, implementasi, testing, deployment, hingga dukungan pasca-produksi—dibahas dengan contoh dokumen, alur kerja, dan praktik terbaik. Artikel ini menjadi referensi menyeluruh untuk tim engineer, arsitek sistem, dan manajemen proyek dalam membangun sistem cerdas berbasis data industri.
 ---
 
 - [🧩 **Bab I – Pendahuluan**](#-bab-i--pendahuluan)
@@ -61,7 +61,7 @@ summary: Artikel ini menyajikan panduan lengkap pengembangan perangkat lunak ind
   - [📡 **Komunikasi Antar Plugin (Modular Integration)**](#-komunikasi-antar-plugin-modular-integration)
   - [🧭 **Diagram Arsitektur Mx-Core-AI (HLD)**](#-diagram-arsitektur-mx-core-ai-hld)
 - [🔶 B. **Low-Level Design (LLD)**](#-b-low-level-design-lld)
-  - [� **Mapping FR ke Implementasi Teknis**](#-mapping-fr-ke-implementasi-teknis)
+  - [📋 **Mapping FR ke Implementasi Teknis**](#-mapping-fr-ke-implementasi-teknis)
   - [📌 Kesimpulan \& Benefit](#-kesimpulan--benefit)
   - [📌 **Struktur Data – ERD dan Tabel DB (Simplifikasi)**](#-struktur-data--erd-dan-tabel-db-simplifikasi)
   - [📌 **Deskripsi Algoritma AI**](#-deskripsi-algoritma-ai)
@@ -244,7 +244,7 @@ Manfaat traceability:
 
 ---
 
-Berikut adalah **Bab III/XI – BRS (Business Requirement Specification)** dari artikel _"Blueprint Pengembangan Software Industri: SDLC + Studi Kasus Mx-Core-AI"_.
+Berikut adalah **Bab III/XI – BRS (Business Requirement Specification)** dari artikel _"Blueprint Pengembangan Software Industri: Mx-Core-AI"_.
 
 ---
 
@@ -1256,7 +1256,7 @@ Berikut adalah praktik terbaik dalam menyusun dan mengelola dokumentasi proyek S
 
 ---
 
-Berikut adalah **Bab XI/XI – Penutup** dari artikel _"Blueprint Pengembangan Software Industri: SDLC + Studi Kasus Mx-Core-AI"_.
+Berikut adalah **Bab XI/XI – Penutup** dari artikel _"Blueprint Pengembangan Software Industri: Mx-Core-AI"_.
 
 ---
 

@@ -1,5 +1,5 @@
 ---
-title: Blueprint Pengembangan Software Industri - SDLC + Studi Kasus Mx-Core-Docs
+title: Blueprint Pengembangan Software Industri - Mx-Core-Docs
 authors: ['sam']
 date: '2025-12-16'
 tags:
@@ -26,10 +26,10 @@ tags:
     'project-lifecycle-management',
   ]
 draft: false
-summary: Artikel ini menyajikan panduan lengkap pengembangan perangkat lunak industri berbasis Software Development Life Cycle (SDLC), mulai dari tahap Business Requirement Specification (BRS) hingga Maintenance. Disusun secara sistematis dengan studi kasus nyata mx-core-docs, plugin AI untuk prediktif maintenance di lingkungan petrokimia. Setiap fase—BRS, SRS, HLD, LLD, implementasi, testing, deployment, hingga dukungan pasca-produksi—dibahas dengan contoh dokumen, alur kerja, dan praktik terbaik. Artikel ini menjadi referensi menyeluruh untuk tim engineer, arsitek sistem, dan manajemen proyek dalam membangun sistem cerdas berbasis data industri.
+summary: Artikel ini menyajikan panduan lengkap pengembangan perangkat lunak industri berbasis Software Development Life Cycle (SDLC), mulai dari tahap Business Requirement Specification (BRS) hingga Maintenance. Disusun secara sistematis mx-core-docs, plugin AI untuk prediktif maintenance di lingkungan petrokimia. Setiap fase—BRS, SRS, HLD, LLD, implementasi, testing, deployment, hingga dukungan pasca-produksi—dibahas dengan contoh dokumen, alur kerja, dan praktik terbaik. Artikel ini menjadi referensi menyeluruh untuk tim engineer, arsitek sistem, dan manajemen proyek dalam membangun sistem cerdas berbasis data industri.
 ---
 
-**Blueprint Pengembangan Software Industri: SDLC + Studi Kasus Mx-Core-Docs**
+**Blueprint Pengembangan Software Industri: Mx-Core-Docs**
 
 ---
 
