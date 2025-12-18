@@ -44,7 +44,7 @@ summary: Artikel ini menyajikan panduan lengkap pengembangan perangkat lunak ind
 - [**III. BRS – Business Requirement Specification**](#iii-brs--business-requirement-specification)
   - [📌 Fungsi BRS](#-fungsi-brs)
   - [🧩 Komponen Utama Dokumen BRS](#-komponen-utama-dokumen-brs)
-  - [🔍 Studi Kasus: BRS untuk `mx-core-docs`](#-studi-kasus-brs-untuk-mx-core-docs)
+  - [🔍 : BRS untuk `mx-core-docs`](#--brs-untuk-mx-core-docs)
   - [📋 Contoh Format Tabel BRS](#-contoh-format-tabel-brs)
   - [**IV. SRS – Software Requirement Specification**](#iv-srs--software-requirement-specification)
   - [🧾 Fungsi \& Isi Dokumen SRS](#-fungsi--isi-dokumen-srs)
@@ -242,7 +242,7 @@ Struktur umum dokumen BRS mencakup:
 
 ---
 
-### 🔍 Studi Kasus: BRS untuk `mx-core-docs`
+### 🔍 : BRS untuk `mx-core-docs`
 
 - ✅ Latar Belakang
 

@@ -42,12 +42,12 @@ summary: Artikel ini menyajikan panduan lengkap pengembangan perangkat lunak ind
 - [🧩 **Bab III – BRS: Business Requirement Specification**](#-bab-iii--brs-business-requirement-specification)
   - [📌 **Fungsi BRS**](#-fungsi-brs)
   - [📌 **Komponen Dokumen BRS**](#-komponen-dokumen-brs)
-  - [📌 **Studi Kasus: BRS untuk Plugin `mx-core-ai`**](#-studi-kasus-brs-untuk-plugin-mx-core-ai)
+  - [📌 **: BRS untuk Plugin `mx-core-ai`**](#-studi-kasus-brs-untuk-plugin-mx-core-ai)
   - [📊 **Contoh Format Tabel BRS (Mx-Core-AI)**](#-contoh-format-tabel-brs-mx-core-ai)
 - [🧩 **Bab IV – SRS: Software Requirement Specification**](#-bab-iv--srs-software-requirement-specification)
   - [📌 **Perbedaan SRS dengan BRS**](#-perbedaan-srs-dengan-brs)
   - [📌 **Fungsi dan Isi SRS**](#-fungsi-dan-isi-srs)
-  - [📌 **Studi Kasus: Turunan dari BRS ke SRS (Plugin `mx-core-ai`)**](#-studi-kasus-turunan-dari-brs-ke-srs-plugin-mx-core-ai)
+  - [📌 **: Turunan dari BRS ke SRS (Plugin `mx-core-ai`)**](#-studi-kasus-turunan-dari-brs-ke-srs-plugin-mx-core-ai)
   - [🧭 **Contoh Turunan dari BRS ke SRS**](#-contoh-turunan-dari-brs-ke-srs)
   - [📦 **Format SRS Modular (Contoh Ringkas)**](#-format-srs-modular-contoh-ringkas)
   - [📌 **Integrasi Use-Case dalam SRS**](#-integrasi-use-case-dalam-srs)
@@ -281,7 +281,7 @@ BRS tidak berbicara tentang **bagaimana solusi dibangun** (itu tugas SRS dan Des
 
 ---
 
-### 📌 **Studi Kasus: BRS untuk Plugin `mx-core-ai`**
+### 📌 **: BRS untuk Plugin `mx-core-ai`**
 
 - 📍 **Latar Belakang**
 
@@ -376,7 +376,7 @@ Mengurangi downtime dan biaya pemeliharaan dengan menerapkan sistem prediksi keg
 
 ---
 
-### 📌 **Studi Kasus: Turunan dari BRS ke SRS (Plugin `mx-core-ai`)**
+### 📌 **: Turunan dari BRS ke SRS (Plugin `mx-core-ai`)**
 
 Sebelum masuk ke use-case, penting ditunjukkan **bagaimana kebutuhan bisnis (BRS)** diturunkan menjadi **Functional Requirements (FR)** dalam dokumen SRS. Hal ini memperkuat **traceability** dan menjembatani pemahaman antara tim bisnis dan teknis.
 
