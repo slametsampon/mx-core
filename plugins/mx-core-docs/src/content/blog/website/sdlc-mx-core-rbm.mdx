@@ -33,7 +33,26 @@ summary: Artikel ini menyajikan panduan lengkap pengembangan perangkat lunak ind
 
 ---
 
-### ✅ **🧩 1. Business Requirement Specification (BRS)**
+- [✅ **🧩 1. Business Requirement Specification (BRS)**](#--1-business-requirement-specification-brs)
+  - [📖 **Latar Belakang Masalah**](#-latar-belakang-masalah)
+- [🧩 2. **Software Requirement Specification (SRS)**](#-2-software-requirement-specification-srs)
+- [🧩 **3. System Design – Bagian 1: High-Level Design (HLD)**](#-3-system-design--bagian-1-high-level-design-hld)
+  - [🔷 **3.1.1 Diagram Arsitektur Sistem**](#-311-diagram-arsitektur-sistem)
+  - [🔷 **3.1.2 Modul / Subsystem Overview**](#-312-modul--subsystem-overview)
+  - [🔷 **3.1.3 Komunikasi Antar Modul**](#-313-komunikasi-antar-modul)
+  - [🔷 **3.1.4 External Interfaces**](#-314-external-interfaces)
+  - [🔷 **3.1.5 Security \& Auth Flow**](#-315-security--auth-flow)
+  - [🔷 **3.1.6 Integrasi Internal \& Eksternal**](#-316-integrasi-internal--eksternal)
+  - [🧩 **3.2 Low-Level Design (LLD) – mx-core-rbm**](#-32-low-level-design-lld--mx-core-rbm)
+- [🧩 **4. Implementation (Coding)**](#-4-implementation-coding)
+- [🧩 **5. Testing**](#-5-testing)
+  - [🧩 **Dokumen Pengujian**](#-dokumen-pengujian)
+- [🧩 **6. Deployment – mx-core-rbm**](#-6-deployment--mx-core-rbm)
+- [🧩 **7. Maintenance \& Support – mx-core-rbm**](#-7-maintenance--support--mx-core-rbm)
+
+---
+
+## ✅ **🧩 1. Business Requirement Specification (BRS)**
 
 ---
 
@@ -123,7 +142,7 @@ Inilah yang mendorong kebutuhan sistem digital RBM seperti `mx-core-rbm`, agar s
 
 ---
 
-### 🧩 2. **Software Requirement Specification (SRS)**
+## 🧩 2. **Software Requirement Specification (SRS)**
 
 > 📌 **Tujuan Dokumen**
 
@@ -144,8 +163,6 @@ Modul `mx-core-rbm` merupakan plugin mandiri dalam arsitektur monorepo `mx-core`
 - **Monitoring histori evaluasi aset**
 - **Export data ke CMMS**
 - **Dashboard visualisasi kondisi aset**
-
-Modul ini **tidak mencakup manajemen aset secara umum**, yang sudah dikelola oleh sub-domain `Asset` dari `mx-core`.
 
 ---
 
@@ -185,17 +202,18 @@ Sistem ini **terintegrasi secara internal** dalam `mx-core` dan dapat melakukan 
 
 > 🧪 **Functional Requirements (FR-n)**
 
-| Kode  | Nama Fitur                       | Deskripsi Singkat                                                              |
-| ----- | -------------------------------- | ------------------------------------------------------------------------------ |
-| FR-01 | ESC Grading Form                 | Engineer dapat mengisi nilai ESC untuk setiap aset berdasarkan `tagNumber`     |
-| FR-02 | Asset Criticality Assignment     | Sistem menentukan criticality (Kritis / Normal) berdasarkan hasil ESC          |
-| FR-03 | Maintenance Strategy Planning    | Sistem menyarankan strategi (P, P+C, P+P+C) untuk aset berdasarkan criticality |
-| FR-04 | TBM Schedule Generation          | Sistem menghasilkan jadwal pemeliharaan berdasarkan tier hasil evaluasi        |
-| FR-05 | Evaluation Record Logging        | Inspector dapat mencatat hasil evaluasi fisik aset dalam histori               |
-| FR-06 | Dashboard Risk View              | Sistem menampilkan visualisasi tier, grading, dan histori evaluasi             |
-| FR-07 | Export Data ke CMMS              | Data RBM dapat diekspor dalam format JSON/CSV sesuai kebutuhan integrasi       |
-| FR-08 | DIA Management Interface         | Halaman daftar aset yang dapat ditagging dan diklasifikasi oleh planner        |
-| FR-09 | Role-based Access Control (RBAC) | Setiap fitur dibatasi berdasarkan peran pengguna (Engineer, Planner, dll)      |
+| Kode  | Nama Fitur                       | Deskripsi Singkat                                                                  |
+| ----- | -------------------------------- | ---------------------------------------------------------------------------------- |
+| FR-01 | ESC Grading Form                 | Engineer dapat mengisi nilai ESC untuk setiap aset berdasarkan `tagNumber`         |
+| FR-02 | Asset Criticality Assignment     | Sistem menentukan criticality (Kritis / Normal) berdasarkan hasil ESC              |
+| FR-03 | Maintenance Strategy Planning    | Sistem menyarankan strategi (P, P+C, P+P+C) untuk aset berdasarkan criticality     |
+| FR-04 | TBM Schedule Generation          | Sistem menghasilkan jadwal pemeliharaan berdasarkan tier hasil evaluasi            |
+| FR-05 | Evaluation Record Logging        | Inspector dapat mencatat hasil evaluasi fisik aset dalam histori                   |
+| FR-06 | Dashboard Risk View              | Sistem menampilkan visualisasi tier, grading, dan histori evaluasi                 |
+| FR-07 | Export Data ke CMMS              | Data RBM dapat diekspor dalam format JSON/CSV sesuai kebutuhan integrasi           |
+| FR-08 | DIA Management Interface         | Halaman daftar aset yang dapat ditagging dan diklasifikasi oleh planner            |
+| FR-09 | Role-based Access Control (RBAC) | Setiap fitur dibatasi berdasarkan peran pengguna (Engineer, Planner, dll)          |
+| FR-10 | Export-Import File (CSV/XLS)     | Sistem dapat menerima dan mengirim data konfigurasi/view dalam format CSV atau XLS |
 
 ---
 
@@ -318,11 +336,6 @@ Sistem ini **terintegrasi secara internal** dalam `mx-core` dan dapat melakukan 
 
 - **Kondisi Sukses**: Jadwal TBM tercatat dan bisa diubah/eksekusi oleh scheduler
 - **Catatan Khusus**: Jadwal harus memperhitungkan `last_executed` dan `next_due`
-
----
-
-Siap 👍
-Kita lanjutkan **Use-Case Narrative UC‑05 sampai UC‑09**, dengan **konsistensi penuh terhadap SRS 2/1 (FR & NFR)** dan gaya dokumentasi yang sama seperti UC‑01 s.d. UC‑04.
 
 ---
 
@@ -514,6 +527,48 @@ Kita lanjutkan **Use-Case Narrative UC‑05 sampai UC‑09**, dengan **konsisten
 
 ---
 
+> 🔹 **UC-10: Export-Import File CSV/XLS**
+
+- **Nama**: Export-Import File CSV/XLS
+
+- **Aktor**: Planner, CMMS Admin, Inspector
+
+- **Deskripsi**:
+  Sistem menyediakan fitur untuk **mengimpor dan mengekspor** data RBM (seperti konfigurasi, grading, evaluasi, dan rencana perawatan) menggunakan format file **CSV** dan **XLS**.
+
+- **Trigger**:
+  User memilih menu “Import” atau “Export” pada halaman yang mendukung (misalnya: Grading, Evaluation, Plan).
+
+- **Alur Utama**:
+
+  1. User membuka halaman Import/Export
+  2. User memilih jenis data yang akan diproses (e.g. ESC Grading, Evaluation)
+  3. User memilih format file (CSV atau XLS)
+  4. Untuk **export**: sistem memproses dan menghasilkan file download
+  5. Untuk **import**:
+
+     - User mengunggah file dari lokal
+     - Sistem membaca file dan menampilkan **preview**
+     - User mengonfirmasi simpan
+     - Sistem menyimpan data ke database
+
+- **Alur Alternatif**:
+
+  - File tidak sesuai format → sistem tampilkan error validasi
+  - File kosong → sistem menolak dan menampilkan pesan
+  - Terdapat data duplikat → sistem meminta opsi: override, skip, atau merge
+
+- **Kondisi Sukses**:
+  Data berhasil diimpor dari file atau diekspor ke file yang sesuai, dengan notifikasi keberhasilan dan data tervalidasi.
+
+- **Catatan Khusus**:
+
+  - Format header file harus sesuai template sistem
+  - Sistem harus menyediakan **template file** untuk membantu user
+  - File besar (>1000 row) diproses secara **async** dan ditampilkan progresnya
+
+---
+
 > ❓ Apa Itu MoSCoW?
 
 **MoSCoW** adalah metode untuk **mengelompokkan prioritas kebutuhan dalam pengembangan sistem**, agar tim tahu mana fitur yang wajib ada sejak awal, mana yang bisa ditunda, dan mana yang bersifat opsional.
@@ -558,23 +613,24 @@ MoSCoW adalah akronim dari:
 
 Traceability Matrix digunakan untuk **memetakan keterkaitan antar artefak SDLC** — misalnya dari kebutuhan bisnis (BRS), ke fitur (FR), lalu ke use-case (UC), dan seterusnya ke test-case.
 
-| ID BRS | Kebutuhan Bisnis Tingkat Tinggi          | FR Terkait | Use Case Terkait |
-| ------ | ---------------------------------------- | ---------- | ---------------- |
-| BRS-01 | Sistem dapat melakukan ESC grading       | FR-01      | UC-01            |
-| BRS-02 | Sistem dapat menghasilkan criticality    | FR-02      | UC-02            |
-| BRS-03 | Sistem menyusun strategi perawatan       | FR-03      | UC-03            |
-| BRS-04 | Sistem menjadwalkan TBM hybrid           | FR-04      | UC-04            |
-| BRS-05 | Sistem menyimpan histori evaluasi        | FR-05      | UC-05            |
-| BRS-06 | Dashboard menampilkan kondisi aset       | FR-06      | UC-06            |
-| BRS-07 | Export data RBM ke CMMS                  | FR-07      | UC-07            |
-| BRS-08 | User dapat mengelola struktur aset (DIA) | FR-08      | UC-08            |
-| BRS-09 | Sistem membatasi akses sesuai peran      | FR-09      | UC-09            |
+| ID BRS     | Kebutuhan Bisnis Tingkat Tinggi                                       | FR Terkait | Use Case Terkait | Test Case Terkait       |
+| ---------- | --------------------------------------------------------------------- | ---------- | ---------------- | ----------------------- |
+| BRS-01     | Sistem dapat melakukan ESC grading                                    | FR-01      | UC-01            | TC-01, TC-02            |
+| BRS-02     | Sistem dapat menghasilkan criticality                                 | FR-02      | UC-02            | TC-03                   |
+| BRS-03     | Sistem menyusun strategi perawatan                                    | FR-03      | UC-03            | TC-04                   |
+| BRS-04     | Sistem menjadwalkan TBM hybrid                                        | FR-04      | UC-04            | —                       |
+| BRS-05     | Sistem menyimpan histori evaluasi                                     | FR-05      | UC-05            | TC-05                   |
+| BRS-06     | Dashboard menampilkan kondisi aset                                    | FR-06      | UC-06            | TC-08                   |
+| BRS-07     | Export data RBM ke CMMS                                               | FR-07      | UC-07            | TC-06                   |
+| BRS-08     | User dapat mengelola struktur aset (DIA)                              | FR-08      | UC-08            | —                       |
+| BRS-09     | Sistem membatasi akses sesuai peran                                   | FR-09      | UC-09            | TC-07                   |
+| **BRS-10** | **Sistem dapat mengimpor dan mengekspor data RBM via file (CSV/XLS)** | **FR-10**  | **UC-10**        | **TC-09, TC-10, TC-11** |
 
 > 🔁 Traceability Matrix ini akan lebih kaya saat test-case sudah tersedia di tahap **Testing** (misalnya TC-01 menguji UC-01 yang berasal dari FR-01 dan BRS-01)
 
 ---
 
-### 🧩 **3. System Design – Bagian 1: High-Level Design (HLD)**
+## 🧩 **3. System Design – Bagian 1: High-Level Design (HLD)**
 
 > 📌 _Tujuan: Menjabarkan struktur sistem secara modular, menggambarkan bagaimana komponen utama saling terhubung dan berinteraksi._
 
@@ -908,7 +964,7 @@ Plugin ini berbasis monorepo dan modular internal, tetapi tetap memungkinkan exp
 
 ---
 
-### 🧩 **4. Implementation (Coding)**
+## 🧩 **4. Implementation (Coding)**
 
 > Mengubah dokumen teknis (LLD) menjadi implementasi kode sumber dalam bentuk plugin modular `mx-core-rbm` yang bisa dibuild, dijalankan, dan diuji.
 
@@ -989,19 +1045,18 @@ npm run dev
 
 📅 Sprint Planning (modular breakdown)
 
-Berikut mapping antara **FR/UC → Modul Coding**:
-
-| Sprint | Modul                      | FR Terkait | UC Terkait | Folder/Path                              |
-| ------ | -------------------------- | ---------- | ---------- | ---------------------------------------- |
-| 1      | DIA Management             | FR-08      | UC-08      | `app/assets`, `models/asset`             |
-| 2      | ESC Grading Form           | FR-01      | UC-01      | `app/grading`, `services/grading.ts`     |
-| 3      | Auto Criticality Logic     | FR-02      | UC-02      | `services/criticality.ts`                |
-| 4      | Maintenance Plan Generator | FR-03      | UC-03      | `app/plan`, `services/plan.ts`           |
-| 5      | TBM Scheduler              | FR-04      | UC-04      | `app/schedule`, `services/scheduler.ts`  |
-| 6      | Evaluation Logging         | FR-05      | UC-05      | `app/evaluation`, `models/evaluation.ts` |
-| 7      | CMMS Export                | FR-07      | UC-07      | `app/export`, `utils/exporter.ts`        |
-| 8      | Dashboard Visual           | FR-06      | UC-06      | `app/dashboard`, `hooks/useDashboard.ts` |
-| 9      | Role-based Access Control  | FR-09      | UC-09      | `middleware/auth.ts`, `config/rbac.ts`   |
+| Sprint | Modul                      | FR Terkait | UC Terkait | Folder/Path                                                         |
+| ------ | -------------------------- | ---------- | ---------- | ------------------------------------------------------------------- |
+| 1      | DIA Management             | FR-08      | UC-08      | `app/assets`, `models/asset`                                        |
+| 2      | ESC Grading Form           | FR-01      | UC-01      | `app/grading`, `services/grading.ts`                                |
+| 3      | Auto Criticality Logic     | FR-02      | UC-02      | `services/criticality.ts`                                           |
+| 4      | Maintenance Plan Generator | FR-03      | UC-03      | `app/plan`, `services/plan.ts`                                      |
+| 5      | TBM Scheduler              | FR-04      | UC-04      | `app/schedule`, `services/scheduler.ts`                             |
+| 6      | Evaluation Logging         | FR-05      | UC-05      | `app/evaluation`, `models/evaluation.ts`                            |
+| 7      | CMMS Export                | FR-07      | UC-07      | `app/export`, `utils/exporter.ts`                                   |
+| 8      | Dashboard Visual           | FR-06      | UC-06      | `app/dashboard`, `hooks/useDashboard.ts`                            |
+| 9      | Role-based Access Control  | FR-09      | UC-09      | `middleware/auth.ts`, `config/rbac.ts`                              |
+| **10** | **Export-Import CSV/XLS**  | **FR-10**  | **UC-10**  | `app/import-export`, `services/importer.ts`, `services/exporter.ts` |
 
 > 🎯 Setiap sprint diturunkan ke PR (Pull Request) dengan deskripsi:
 >
@@ -1279,7 +1334,7 @@ Contoh isi:
 
 ---
 
-# 🧩 **5. Testing**
+## 🧩 **5. Testing**
 
 > 📌 _Tujuan:_ Validasi bahwa sistem `mx-core-rbm` bekerja sesuai dengan spesifikasi teknis (SRS) dan skenario nyata (use-case UC-01 s.d. UC-09).
 
@@ -1385,16 +1440,19 @@ Contoh Skenario:
 
 📄 Format Test Case
 
-| Test Case ID | UC Referensi | Nama Test Case                | Input                        | Ekspektasi Hasil                   | Status |
-| ------------ | ------------ | ----------------------------- | ---------------------------- | ---------------------------------- | ------ |
-| TC-01        | UC-01        | ESC Grading – Input Valid     | tagNumber = PU-101, ESC=HHM  | Data tersimpan, criticality keluar | ✅     |
-| TC-02        | UC-01        | ESC Grading – Input Invalid   | ESC = kosong                 | Return 400 + error message         | ✅     |
-| TC-03        | UC-02        | Hitung Criticality Otomatis   | ESC = High, High, High       | Output = "Kritis"                  | ✅     |
-| TC-04        | UC-03        | Generate Plan Based on Tier   | Tier1                        | Strategy = P+P+C                   | ✅     |
-| TC-05        | UC-05        | Catat Evaluation Record       | Result = Warning             | Tersimpan di histori               | ✅     |
-| TC-06        | UC-07        | Export CMMS as JSON           | Asset list selected          | File JSON tersedia                 | ✅     |
-| TC-07        | UC-09        | Role Akses Planner ke Grading | Login Planner → buka grading | Ditolak (403)                      | ✅     |
-| TC-08        | UC-06        | Lihat Dashboard Summary       | Login Supervisor             | Pie chart muncul, data benar       | ✅     |
+| Test Case ID | UC Referensi | Nama Test Case                  | Input                                | Ekspektasi Hasil                       | Status |
+| ------------ | ------------ | ------------------------------- | ------------------------------------ | -------------------------------------- | ------ |
+| TC-01        | UC-01        | ESC Grading – Input Valid       | tagNumber = PU-101, ESC=HHM          | Data tersimpan, criticality keluar     | ✅     |
+| TC-02        | UC-01        | ESC Grading – Input Invalid     | ESC = kosong                         | Return 400 + error message             | ✅     |
+| TC-03        | UC-02        | Hitung Criticality Otomatis     | ESC = High, High, High               | Output = "Kritis"                      | ✅     |
+| TC-04        | UC-03        | Generate Plan Based on Tier     | Tier1                                | Strategy = P+P+C                       | ✅     |
+| TC-05        | UC-05        | Catat Evaluation Record         | Result = Warning                     | Tersimpan di histori                   | ✅     |
+| TC-06        | UC-07        | Export CMMS as JSON             | Asset list selected                  | File JSON tersedia                     | ✅     |
+| TC-07        | UC-09        | Role Akses Planner ke Grading   | Login Planner → buka grading         | Ditolak (403)                          | ✅     |
+| TC-08        | UC-06        | Lihat Dashboard Summary         | Login Supervisor                     | Pie chart muncul, data benar           | ✅     |
+| TC-09        | UC-10        | Export Evaluation to XLS        | Klik Export → Pilih Evaluation + XLS | File XLS terunduh dengan header sesuai | ✅     |
+| TC-10        | UC-10        | Import ESC Grading from CSV     | Upload file CSV valid                | Data ditampilkan dan disimpan ke DB    | ✅     |
+| TC-11        | UC-10        | Import file dengan format salah | Upload CSV kosong / kolom salah      | Error ditampilkan, data tidak disimpan | ✅     |
 
 > Format ini bisa ditransfer ke Excel / Test Management System seperti TestRail.
 
@@ -1430,7 +1488,7 @@ Menghubungkan seluruh artefak dari **BRS → FR → UC → TC**.
 
 ---
 
-### 🧩 **6. Deployment – mx-core-rbm**
+## 🧩 **6. Deployment – mx-core-rbm**
 
 > 📌 _Tujuan:_ Meluncurkan plugin `mx-core-rbm` ke lingkungan produksi dengan proses terkontrol dan terdokumentasi.
 
@@ -1544,7 +1602,7 @@ By: DevOps Team
 
 ---
 
-### 🧩 **7. Maintenance & Support – mx-core-rbm**
+## 🧩 **7. Maintenance & Support – mx-core-rbm**
 
 > 📌 Menjaga keberlangsungan layanan plugin RBM dan menyiapkan peningkatan jangka panjang.
 
