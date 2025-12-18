@@ -194,13 +194,14 @@
     "href": "/blog/website/mx-core-monorepo",
     "subtitle": "November 16, 2025",
     "keywords": [
-      "Maintenance",
-      "System",
       "mx-core",
-      "monorepo",
-      "modular",
-      "dinamis-plugin",
-      "Scalable"
+      "monorepo-architecture",
+      "plugin-system",
+      "rbac",
+      "industrial-digital-platform",
+      "nextjs-typescript",
+      "iot-cmms-rbm-ai",
+      "sdlc-based-documentation"
     ]
   },
   {
@@ -345,6 +346,20 @@
       "contentlayer",
       "tailwind",
       "eslint"
+    ]
+  },
+  {
+    "id": "markdown/github-markdown-guide",
+    "name": "Panduan Markdown",
+    "section": "CONTENT",
+    "href": "/blog/markdown/github-markdown-guide",
+    "subtitle": "October 7, 2025",
+    "keywords": [
+      "github",
+      "panduan",
+      "markdown",
+      "md",
+      "mdx"
     ]
   },
   {
