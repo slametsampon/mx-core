@@ -1,0 +1,939 @@
+---
+title: Mx-Core – Monorepo
+authors: ['sam']
+date: '2025-11-16'
+tags:
+  [
+    'mx-core',
+    'monorepo-architecture',
+    'plugin-system',
+    'rbac',
+    'industrial-digital-platform',
+    'nextjs-typescript',
+    'iot-cmms-rbm-ai',
+    'sdlc-based-documentation',
+  ]
+draft: false
+summary: Mx-Core adalah platform modular berbasis monorepo yang dirancang untuk memenuhi kebutuhan digitalisasi industri seperti CMMS, IoT, RBM, dan AI. Dengan arsitektur plugin dinamis dan sistem RBAC terintegrasi, Mx-Core memungkinkan pengembangan fitur yang scalable, reusable, dan terstandarisasi. Setiap modul dirancang berdasarkan kebutuhan bisnis nyata, mulai dari dokumentasi teknis hingga prediksi kegagalan peralatan. Arsitektur ini dibangun di atas Next.js, TypeScript, dan NPM Workspaces, dengan strategi deployment hybrid (Vercel + GitHub Pages). Dokumentasi ini disusun mengikuti pola SDLC, dimulai dari BRS hingga detail teknis, untuk memastikan pemahaman menyeluruh bagi developer dan stakeholder.
+---
+
+- [I. 📊 **Business Requirement Specification (BRS) – Platform Mx-Core**](#i--business-requirement-specification-brs--platform-mx-core)
+  - [1. 📍 **Latar Belakang \& Tantangan Industri**](#1--latar-belakang--tantangan-industri)
+  - [2. 🌐 **Visi Sistem Mx-Core**](#2--visi-sistem-mx-core)
+  - [3. 🎯 **Tujuan Bisnis Tingkat Platform**](#3--tujuan-bisnis-tingkat-platform)
+    - [✅ **Sebagai satu platform terpadu** untuk:](#-sebagai-satu-platform-terpadu-untuk)
+    - [✅ **Standarisasi Akses (RBAC)**](#-standarisasi-akses-rbac)
+    - [✅ **Kolaborasi dan Efisiensi Operasional**](#-kolaborasi-dan-efisiensi-operasional)
+- [II. 📦 **BRS Sub-Project: `packages/` – Core Foundation Layer**](#ii--brs-sub-project-packages--core-foundation-layer)
+  - [1. `@mx-core/core`](#1-mx-corecore)
+  - [2. `@mx-core/types`](#2-mx-coretypes)
+  - [3. `@mx-core/ui`](#3-mx-coreui)
+- [III. 🔌 **BRS Plugin Modul Bisnis**](#iii--brs-plugin-modul-bisnis)
+  - [1. Plugin `mx-core-docs`](#1-plugin-mx-core-docs)
+  - [2. Plugin `mx-core-metric` \& `mx-core-dashboard`](#2-plugin-mx-core-metric--mx-core-dashboard)
+  - [3. Plugin `mx-core-rbm`](#3-plugin-mx-core-rbm)
+  - [4. Plugin `mx-core-ai`](#4-plugin-mx-core-ai)
+- [IV. 🧱 **Arsitektur Sistem \& Monorepo**](#iv--arsitektur-sistem--monorepo)
+  - [1. 🎯 **Alasan Strategis Memilih Monorepo**](#1--alasan-strategis-memilih-monorepo)
+    - [📌 Keuntungan utama:](#-keuntungan-utama)
+  - [2. 🗂️ **Struktur Folder Final**](#2-️-struktur-folder-final)
+    - [🔍 Konvensi Umum:](#-konvensi-umum)
+  - [3. 🔌 **Plugin Lifecycle \& Runtime Integration**](#3--plugin-lifecycle--runtime-integration)
+    - [📄 Contoh `plugin.json`](#-contoh-pluginjson)
+    - [🔁 Alur Plugin Runtime:](#-alur-plugin-runtime)
+    - [⚙️ Keunggulan Pendekatan Ini:](#️-keunggulan-pendekatan-ini)
+- [V. ⚙️ **Konfigurasi dan Integrasi Teknis**](#v-️-konfigurasi-dan-integrasi-teknis)
+  - [1. 📦 **Root Workspace \& Package Management**](#1--root-workspace--package-management)
+    - [📁 Contoh `package.json` (root level)](#-contoh-packagejson-root-level)
+    - [⚙️ Hasil dari Workspaces:](#️-hasil-dari-workspaces)
+  - [2. 🧬 **Shared Type \& Import Path Configuration**](#2--shared-type--import-path-configuration)
+    - [📁 Root `tsconfig.json`:](#-root-tsconfigjson)
+    - [📁 packages/types/package.json:](#-packagestypespackagejson)
+    - [⚙️ Konfigurasi di Next.js (frontend):](#️-konfigurasi-di-nextjs-frontend)
+  - [3. 🔐 **RBAC Flow End-to-End**](#3--rbac-flow-end-to-end)
+    - [🔁 Alur Evaluasi Akses:](#-alur-evaluasi-akses)
+    - [✅ Penjelasan Alur:](#-penjelasan-alur)
+    - [💡 Contoh Penggunaan UI:](#-contoh-penggunaan-ui)
+    - [💡 Contoh Backend Check:](#-contoh-backend-check)
+  - [4. 🔄 **Integrasi Antar Plugin**](#4--integrasi-antar-plugin)
+    - [🧩 Contoh Alur Integrasi:](#-contoh-alur-integrasi)
+    - [🔗 Contoh Integrasi Kode:](#-contoh-integrasi-kode)
+    - [📡 Komponen Pendukung:](#-komponen-pendukung)
+- [VI. 🚀 **Strategi Hosting dan Deployment**](#vi--strategi-hosting-dan-deployment)
+  - [1. 🚫 **Keterbatasan GitHub Pages**](#1--keterbatasan-github-pages)
+  - [2. ✅ **Final Deployment Plan**](#2--final-deployment-plan)
+  - [🔁 Contoh Integrasi Hosting Runtime](#-contoh-integrasi-hosting-runtime)
+  - [🌐 Public Asset: `plugin-manifest.json`](#-public-asset-plugin-manifestjson)
+- [VII. ✅ **Kesimpulan Arsitektur**](#vii--kesimpulan-arsitektur)
+  - [📌 Ringkasan Status Arsitektur](#-ringkasan-status-arsitektur)
+  - [🧩 Ciri Khas Arsitektur Mx-Core](#-ciri-khas-arsitektur-mx-core)
+  - [📈 Dampak terhadap Bisnis \& Tim Pengembang](#-dampak-terhadap-bisnis--tim-pengembang)
+  - [📦 Platform Ini Siap Untuk:](#-platform-ini-siap-untuk)
+- [VIII. 🔭 **Catatan \& Rencana Pengembangan Lanjutan**](#viii--catatan--rencana-pengembangan-lanjutan)
+  - [🛠️ 1. **Middleware RBAC untuk Backend API**](#️-1-middleware-rbac-untuk-backend-api)
+  - [🧩 2. **Visual Editor RBAC (Drag \& Drop Rules)**](#-2-visual-editor-rbac-drag--drop-rules)
+  - [✅ 3. **Schema Validator untuk `plugin.json`**](#-3-schema-validator-untuk-pluginjson)
+  - [🧠 4. **Dukungan ABAC dan Multi-Tenant**](#-4-dukungan-abac-dan-multi-tenant)
+  - [🧩 5. **Komponen `withAccess()` untuk React**](#-5-komponen-withaccess-untuk-react)
+    - [📄 Contoh:](#-contoh)
+  - [🚧 Rencana Jangka Menengah – Tambahan (Opsional)](#-rencana-jangka-menengah--tambahan-opsional)
+- [IX. 📁 **Lampiran**](#ix--lampiran)
+  - [📄 1. Contoh `plugin.json`](#-1-contoh-pluginjson)
+  - [📁 2. Contoh Struktur Plugin](#-2-contoh-struktur-plugin)
+  - [🧩 3. Format Dokumentasi Plugin Baru](#-3-format-dokumentasi-plugin-baru)
+    - [📌 Metadata](#-metadata)
+    - [📄 Struktur Direktori](#-struktur-direktori)
+    - [🔐 RBAC](#-rbac)
+    - [🔗 Integrasi](#-integrasi)
+- [🔚 **Catatan Akhir**](#-catatan-akhir)
+  - [🎯 Untuk Developer:](#-untuk-developer)
+  - [🧩 Untuk Stakeholder:](#-untuk-stakeholder)
+  - [🤝 Untuk Klien:](#-untuk-klien)
+
+---
+
+## I. 📊 **Business Requirement Specification (BRS) – Platform Mx-Core**
+
+### 1. 📍 **Latar Belakang & Tantangan Industri**
+
+Dalam operasional industri berskala besar (manufaktur, EPC, energi), ditemukan tantangan umum berikut:
+
+- 📉 **Fragmentasi sistem informasi**, di mana data KPI, CMMS, RBM, IoT, dan dokumen teknis tersebar dalam berbagai aplikasi tidak terintegrasi.
+- ⚠️ **Downtime tinggi**, karena troubleshooting lambat dan knowledge tidak terdokumentasi dengan baik.
+- 📚 **Ketergantungan tinggi pada individu senior**, tanpa alur standar dalam berbagi informasi teknis.
+- 🔐 **Tidak adanya standar akses terpusat (RBAC)** — menyebabkan kebocoran informasi atau fitur tidak relevan ditampilkan ke user.
+- 🧩 **Keterbatasan ekspansi sistem**, karena arsitektur tidak mendukung modularisasi plugin atau pengembangan paralel antar tim.
+
+---
+
+### 2. 🌐 **Visi Sistem Mx-Core**
+
+> Membangun **platform digital industri** yang modular, terintegrasi, dan scalable, yang memungkinkan setiap domain (KPI, CMMS, IoT, RBM, AI) berjalan sebagai plugin dinamis, dengan kontrol akses terstandarisasi dan pengalaman pengguna yang konsisten.
+
+🧱 _Visi ini diturunkan dari kebutuhan lintas fungsi industri yang menuntut fleksibilitas teknologi tanpa mengorbankan stabilitas dan maintainability._
+
+Komponen utama dari visi:
+
+- 🔌 **Modular Plugin Architecture** → Setiap domain bisnis berjalan sebagai plugin independen namun terintegrasi.
+- 🔄 **Data Interoperability** → Plugin dapat berbagi model data dan logika bisnis secara konsisten.
+- 👥 **RBAC-aware UI & API** → Setiap fitur dan endpoint terkontrol sesuai role pengguna.
+- 📈 **Real-time & Predictive Insight** → Integrasi dengan sensor IoT & AI untuk automasi dan prediksi.
+
+---
+
+### 3. 🎯 **Tujuan Bisnis Tingkat Platform**
+
+Platform Mx-Core dibangun untuk memenuhi sasaran bisnis strategis berikut:
+
+#### ✅ **Sebagai satu platform terpadu** untuk:
+
+- 📊 **KPI Dashboard**
+  Memonitor performa operasional secara real-time, dari tahunan hingga harian.
+
+- 🛠️ **CMMS (Computerized Maintenance Management System)**
+  Mengelola work order, preventive maintenance, dan histori aset.
+
+- 🧪 **RBM (Risk-Based Maintenance)**
+  Menentukan strategi pemeliharaan berdasarkan dampak risiko dan prioritas aset.
+
+- 📂 **Dokumen Teknis (Docs)**
+  Menyediakan dokumentasi SOP, troubleshooting, dan referensi teknis berbasis UI modern.
+
+- 📡 **IoT Monitoring**
+  Menerima data sensor, visualisasi parameter, serta koneksi ke action otomatis.
+
+- 🤖 **AI Prediktif**
+  Memprediksi kegagalan peralatan, mendeteksi anomali, dan memberi rekomendasi kerja.
+
+---
+
+#### ✅ **Standarisasi Akses (RBAC)**
+
+- Menerapkan Role-Based Access Control pada:
+
+  - API backend
+  - Komponen frontend
+  - Plugin eksternal
+
+- Mengurangi risiko kesalahan akses dan meningkatkan UX dengan menyembunyikan fitur yang tidak relevan.
+
+---
+
+#### ✅ **Kolaborasi dan Efisiensi Operasional**
+
+- Mengurangi duplikasi sistem dan alur kerja
+- Memungkinkan pengembangan lintas tim dengan codebase dan tipe data yang disepakati bersama
+- Meningkatkan kecepatan onboarding, maintenance, dan pengembangan fitur baru
+
+---
+
+## II. 📦 **BRS Sub-Project: `packages/` – Core Foundation Layer**
+
+> Fokus pada standar RBAC, tipe terpadu, dan UI yang sadar peran
+
+### 1. `@mx-core/core`
+
+- Plugin engine modular
+- RBAC policy evaluation
+- Plugin loader dari manifest
+
+### 2. `@mx-core/types`
+
+- Tipe global untuk role, rules, action
+- Digunakan oleh semua modul
+
+### 3. `@mx-core/ui`
+
+- Komponen React `<CanAccess />`
+- UX-aware permission layer
+
+---
+
+## III. 🔌 **BRS Plugin Modul Bisnis**
+
+> Ditarik dari kebutuhan spesifik domain dalam industri
+
+### 1. Plugin `mx-core-docs`
+
+- Otomatisasi dokumentasi teknis
+- Mengurangi ketergantungan pada teknisi senior
+
+### 2. Plugin `mx-core-metric` & `mx-core-dashboard`
+
+- Digitalisasi KPI real-time
+- Prediksi performa tahunan
+- Integrasi gangguan operasional
+
+### 3. Plugin `mx-core-rbm`
+
+- Strategi maintenance berbasis risiko
+- Alokasi resource yang efisien
+- Reduksi unplanned shutdown
+
+### 4. Plugin `mx-core-ai`
+
+- Prediksi kegagalan berbasis AI
+- Insight untuk planner dan reliability engineer
+- Integrasi penuh dengan CMMS dan RBM
+
+---
+
+## IV. 🧱 **Arsitektur Sistem & Monorepo**
+
+> Setelah kebutuhan bisnis dirumuskan dalam bentuk BRS, solusi teknis Mx-Core diwujudkan melalui **arsitektur monorepo** yang mendukung pengembangan modular, reusability tinggi, dan integrasi lintas domain secara aman dan efisien.
+
+---
+
+### 1. 🎯 **Alasan Strategis Memilih Monorepo**
+
+Mx-Core mengadopsi pola **Monorepo berbasis NPM Workspaces** untuk menyatukan seluruh sub-proyek (frontend, backend, plugin, packages) dalam satu codebase terpadu.
+
+#### 📌 Keuntungan utama:
+
+| Aspek Bisnis/Teknis             | Penjelasan                                                                                     |
+| ------------------------------- | ---------------------------------------------------------------------------------------------- |
+| 🔄 **Skalabilitas**             | Arsitektur siap menampung puluhan hingga ratusan plugin tanpa kompleksitas berlipat            |
+| ♻️ **Reusability**              | Semua modul dapat berbagi tipe, komponen UI, dan utilitas tanpa duplikasi                      |
+| 👥 **Pengembangan Paralel**     | Tim dapat bekerja di plugin berbeda secara independen tanpa konflik struktur                   |
+| 🧩 **Modularisasi Rapi**        | Plugin tidak saling tergantung secara langsung, hanya melalui kontrak (`types`) dan registrasi |
+| 🚀 **Build & Deploy Fleksibel** | Setiap modul bisa dibangun atau di-deploy secara independen per kebutuhan                      |
+
+---
+
+### 2. 🗂️ **Struktur Folder Final**
+
+Struktur direktori telah ditetapkan dan dioptimalkan berdasarkan **fungsi, domain, dan alur pengembangan**:
+
+```
+/mx-core
+├── apps/                     ← Aplikasi utama
+│   ├── frontend/             ← Next.js (UI utama)
+│   └── backend/              ← Express API + database
+│
+├── packages/                 ← Paket core (berbagi lintas modul)
+│   ├── core/                 ← Plugin engine, RBAC evaluator
+│   ├── types/                ← Shared domain models (RBAC, Role, dsb)
+│   ├── ui/                   ← Komponen React sadar-peran (CanAccess)
+│   └── utils/                ← Utility/helper umum
+│
+├── plugins/                  ← Modul bisnis berbasis plugin
+│   ├── mx-core-docs/         ← Plugin statis (dokumentasi)
+│   ├── mx-core-cmms/         ← CMMS plugin
+│   ├── mx-core-rbm/          ← RBM plugin
+│   ├── mx-core-ai/           ← AI prediktif
+│   ├── mx-core-dashboard/    ← Visualisasi KPI
+│   └── mx-core-metric/       ← Input dan manajemen KPI
+│
+├── package.json              ← Root scripts + workspace config
+└── tsconfig.json             ← Alias path + base config
+```
+
+#### 🔍 Konvensi Umum:
+
+- Semua plugin adalah modul **independen & opt-in**
+- Hanya plugin yang terdaftar dan valid yang akan dimuat oleh engine
+- Struktur ini memungkinkan isolasi tanggung jawab per domain tanpa kehilangan interoperabilitas
+
+---
+
+### 3. 🔌 **Plugin Lifecycle & Runtime Integration**
+
+Setiap plugin dalam Mx-Core mengikuti **kontrak minimal** berupa `plugin.json`, serta struktur direktori standar:
+
+```
+/plugins/<plugin-name>/
+├── package.json
+├── plugin.json              ← Metadata plugin
+└── src/
+    ├── index.ts             ← Entrypoint modul
+    ├── ui/                  ← Komponen Next.js (opsional)
+    ├── api/                 ← API handler (opsional)
+    └── schema/              ← Model lokal (jika ada)
+```
+
+#### 📄 Contoh `plugin.json`
+
+```json
+{
+  "name": "mx-core-ai",
+  "ui": true,
+  "api": true,
+  "module": "./dist/index.js"
+}
+```
+
+#### 🔁 Alur Plugin Runtime:
+
+1. **Registrasi**:
+   Saat aplikasi dijalankan, `@mx-core/core` membaca `plugin.json` dari semua direktori plugin.
+
+2. **Validasi & Loading**:
+
+   - Memastikan struktur & metadata valid
+   - Plugin dimasukkan ke dalam registry internal
+
+3. **RBAC Injection**:
+
+   - Jika plugin mendeklarasikan `rules`, maka rule tersebut didaftarkan otomatis ke engine
+   - Terintegrasi ke fungsi evaluasi `canAccess(context)`
+
+4. **UI & API Integration**:
+
+   - Jika plugin menyediakan komponen UI, frontend akan menampilkannya berdasar role user
+   - Jika plugin menyediakan API, backend mengatur routing dan otorisasi sesuai deklarasi
+
+#### ⚙️ Keunggulan Pendekatan Ini:
+
+| Fitur                              | Penjelasan                                                          |
+| ---------------------------------- | ------------------------------------------------------------------- |
+| 🔄 **Hot Reload Plugin**           | Plugin bisa ditambahkan/dihapus tanpa mengubah sistem utama         |
+| 🔒 **RBAC Terintegrasi**           | Rule plugin dimuat ke sistem otorisasi saat startup                 |
+| 🧩 **Extensibility Siap Produksi** | Developer eksternal dapat membuat plugin baru tanpa menyentuh core  |
+| 🧠 **Auto Discovery**              | Frontend membaca `plugin-manifest.json` untuk menampilkan UI plugin |
+
+---
+
+📌 **Kesimpulan Bagian Ini**
+
+Arsitektur Monorepo dan sistem plugin dinamis yang diadopsi Mx-Core bukan sekadar keputusan teknis, tetapi **strategi struktural** untuk:
+
+- Mendukung pertumbuhan sistem tanpa menambah kompleksitas
+- Memungkinkan integrasi domain-domain baru (AI, IoT, CMMS, dll)
+- Menjamin standarisasi melalui core packages (`types`, `core`, `ui`)
+- Memberikan kontrol penuh kepada developer internal dan eksternal melalui plugin modular
+
+---
+
+## V. ⚙️ **Konfigurasi dan Integrasi Teknis**
+
+> Bagian ini membahas bagaimana arsitektur modular dan plugin diimplementasikan secara teknis melalui konfigurasi workspace, manajemen dependency, struktur import antar modul, serta integrasi RBAC dan komunikasi antar plugin.
+
+---
+
+### 1. 📦 **Root Workspace & Package Management**
+
+Mx-Core menggunakan **NPM Workspaces** untuk mengelola seluruh sub-proyek dalam satu monorepo. Hal ini memungkinkan:
+
+- Dependency sharing
+- Build & dev terpisah per modul
+- Manajemen versi yang konsisten
+
+#### 📁 Contoh `package.json` (root level)
+
+```json
+{
+  "name": "mx-core",
+  "private": true,
+  "workspaces": ["apps/*", "packages/*", "plugins/*"],
+  "scripts": {
+    "dev": "npm run dev -w apps/frontend",
+    "dev:backend": "npm run dev -w apps/backend",
+    "build": "npm run build -w apps/frontend && npm run build -w apps/backend",
+    "build:types": "npm run build -w packages/types"
+  }
+}
+```
+
+#### ⚙️ Hasil dari Workspaces:
+
+| Fitur                  | Efek                                                       |
+| ---------------------- | ---------------------------------------------------------- |
+| Shared `node_modules`  | Semua modul memakai dependency yang sama dari root         |
+| Dev/build modular      | Jalankan per modul tanpa konflik                           |
+| Reuse lint/build/test  | Semua modul bisa berbagi konfigurasi tool linting/building |
+| Saling import langsung | Package internal dapat langsung diimport via path alias    |
+
+---
+
+### 2. 🧬 **Shared Type & Import Path Configuration**
+
+Agar semua modul dan plugin bisa mengakses tipe yang konsisten, Mx-Core mengatur:
+
+- TypeScript path alias (`tsconfig.json`)
+- Next.js transpile settings (`transpilePackages`)
+
+#### 📁 Root `tsconfig.json`:
+
+```json
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@mx-core/types": ["packages/types/dist"],
+      "@mx-core/core": ["packages/core/dist"],
+      "@mx-core/ui": ["packages/ui"],
+      "@mx-core/utils": ["packages/utils"]
+    }
+  }
+}
+```
+
+#### 📁 packages/types/package.json:
+
+```json
+{
+  "name": "@mx-core/types",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": "./dist/index.js"
+  }
+}
+```
+
+#### ⚙️ Konfigurasi di Next.js (frontend):
+
+```js
+// next.config.js
+module.exports = {
+  transpilePackages: ['@mx-core/types', '@mx-core/core', '@mx-core/ui'],
+};
+```
+
+🔁 **Hasilnya:**
+Plugin, frontend, backend, dan UI semua bisa menggunakan tipe shared dari `@mx-core/types` tanpa error import atau duplikasi dependency.
+
+---
+
+### 3. 🔐 **RBAC Flow End-to-End**
+
+RBAC (Role-Based Access Control) diimplementasikan secara **terpusat dan konsisten** melalui alur berikut:
+
+#### 🔁 Alur Evaluasi Akses:
+
+```
+plugin.json → @mx-core/core → RBAC Registry → canAccess() → UI/API
+```
+
+#### ✅ Penjelasan Alur:
+
+| Tahap                       | Komponen                | Deskripsi                                                        |
+| --------------------------- | ----------------------- | ---------------------------------------------------------------- |
+| 1. Definisi Rule            | `plugin.json`           | Setiap plugin bisa mendefinisikan `rules` berbasis role & action |
+| 2. Registrasi RBAC          | `@mx-core/core/rbac`    | Rule dimuat dan disimpan saat startup                            |
+| 3. Evaluasi Akses           | `canAccess(context)`    | Digunakan oleh UI dan backend untuk cek izin                     |
+| 4. UI Conditional Rendering | `@mx-core/ui/CanAccess` | Render komponen jika akses diizinkan                             |
+
+#### 💡 Contoh Penggunaan UI:
+
+```tsx
+<CanAccess role="Planner" resource="kpi" action="view">
+  <KPIDashboard />
+</CanAccess>
+```
+
+#### 💡 Contoh Backend Check:
+
+```ts
+if (canAccess({ role: 'Engineer', resource: 'equipment', action: 'edit' })) {
+  // Allow API access
+}
+```
+
+🎯 **Tujuan:** Menjamin bahwa semua interaksi pengguna, baik melalui UI maupun API, divalidasi melalui satu sumber otorisasi.
+
+---
+
+### 4. 🔄 **Integrasi Antar Plugin**
+
+Mx-Core memungkinkan aliran data lintas plugin dengan model komunikasi terbuka namun terstandarisasi. Komunikasi dilakukan melalui:
+
+- Shared types (`@mx-core/types`)
+- API antar modul
+- Backend services (Express API)
+- Komponen UI yang saling consume
+
+#### 🧩 Contoh Alur Integrasi:
+
+```
+IoT Sensor Data
+    ↓
+CMMS Plugin → Membuat Work Order untuk Equipment
+    ↓
+RBM Plugin → Evaluasi Risiko Equipment Berdasarkan Failure History
+    ↓
+AI Plugin → Prediksi Kegagalan Berikutnya & Rekomendasi WO
+    ↓
+Dashboard Plugin → Visualisasi KPI, Anomali, dan Tren
+```
+
+#### 🔗 Contoh Integrasi Kode:
+
+```ts
+// Plugin CMMS mengimpor tipe dari @mx-core/types
+import { Equipment } from '@mx-core/types/cmms';
+
+// Plugin RBM menggunakan skor dari plugin AI
+const predictedRisk = await aiService.getRiskScore(equipmentId);
+```
+
+#### 📡 Komponen Pendukung:
+
+| Integrasi               | Pendukung Teknis              |
+| ----------------------- | ----------------------------- |
+| Shared schema           | `@mx-core/types`              |
+| Komunikasi API          | Express API (apps/backend)    |
+| Komunikasi antar plugin | `@mx-core/core` plugin loader |
+| Rendering UI terpadu    | `@mx-core/ui`, shared layout  |
+
+---
+
+📌 **Kesimpulan Bagian Ini**
+
+Konfigurasi teknis dalam Mx-Core memastikan bahwa semua komponen:
+
+- Menggunakan dependency dan tipe yang konsisten
+- Berkomunikasi dengan cara yang aman, terstruktur, dan scalable
+- Menghormati prinsip RBAC di seluruh lapisan aplikasi
+- Dapat dikembangkan dan diintegrasikan tanpa saling tergantung secara langsung
+
+---
+
+## VI. 🚀 **Strategi Hosting dan Deployment**
+
+> Strategi deployment Mx-Core dirancang agar **fleksibel, efisien, dan sesuai dengan kemampuan masing-masing platform hosting**. Dengan pendekatan _hybrid deployment_, sistem mampu mendukung kebutuhan server-side (API, SSR), sekaligus memanfaatkan hosting statis untuk plugin ringan seperti dokumentasi.
+
+---
+
+### 1. 🚫 **Keterbatasan GitHub Pages**
+
+GitHub Pages ideal untuk **hosting konten statis** seperti dokumentasi atau hasil `next export`, namun tidak dapat digunakan untuk kebutuhan dinamis.
+
+| Fitur                       | Status   | Penjelasan                                                         |
+| --------------------------- | -------- | ------------------------------------------------------------------ |
+| Server-Side Rendering (SSR) | ❌ Tidak | Tidak bisa menjalankan runtime Node.js atau logic server-side      |
+| API Routes / Backend        | ❌ Tidak | Tidak mendukung Express API atau fungsi serverless                 |
+| Dynamic Plugin Loading      | ❌ Tidak | Tidak bisa membaca dan menjalankan plugin `plugin.json` di runtime |
+| Static File Hosting         | ✅ Ya    | Sangat baik untuk file HTML, JS, CSS statis dari `next export`     |
+
+🔍 **Kesimpulan:**
+GitHub Pages **tidak cocok** untuk frontend utama, backend API, maupun plugin dinamis.
+Namun **sangat cocok** untuk:
+
+- Plugin `mx-core-docs`
+- Dokumentasi teknis tambahan
+- Modul UI statis lain yang tidak butuh SSR atau data dinamis
+
+---
+
+### 2. ✅ **Final Deployment Plan**
+
+Untuk memastikan performa, fleksibilitas, dan kemudahan scaling, strategi hosting dibagi berdasarkan **fungsi dan kebutuhan teknis** masing-masing komponen:
+
+| Komponen        | Platform             | Alasan Utama                                                                |
+| --------------- | -------------------- | --------------------------------------------------------------------------- |
+| `apps/frontend` | **Vercel**           | Support SSR, CSR, SSG, edge functions, CDN built-in                         |
+| `apps/backend`  | **Vercel / Railway** | Untuk Express API: Railway (lebih bebas); Vercel untuk Serverless sederhana |
+| Plugin Dinamis  | **Vercel**           | Bisa jalankan SSR + API secara modular                                      |
+| Plugin Statis   | **GitHub Pages**     | Build via `next export`, cepat, ringan, tidak butuh server-side runtime     |
+
+📦 **Deployment Hybrid seperti ini adalah strategi yang efisien**, bukan rumit:
+
+- ✔ Beban server hanya untuk yang butuh SSR/API
+- ✔ Plugin yang tidak perlu backend bisa tetap live tanpa cost tambahan
+- ✔ Mudah diskalakan dan dipindahkan per modul
+
+---
+
+### 🔁 Contoh Integrasi Hosting Runtime
+
+| Modul               | Dihosting Di     | Alur Akses                                            |
+| ------------------- | ---------------- | ----------------------------------------------------- |
+| `frontend`          | Vercel           | Menampilkan plugin dinamis via `plugin-manifest.json` |
+| `mx-core-docs`      | GitHub Pages     | Diakses sebagai static asset oleh frontend            |
+| `mx-core-rbm`       | Vercel           | Melayani SSR + API untuk risk matrix                  |
+| `mx-core-ai`        | Vercel           | API prediksi, SSR rekomendasi AI                      |
+| `backend` (Express) | Railway / Vercel | Handle API CMMS, integrasi sensor, auth, dsb.         |
+
+---
+
+### 🌐 Public Asset: `plugin-manifest.json`
+
+Frontend membaca file publik `plugin-manifest.json` untuk:
+
+- Menentukan plugin mana yang tersedia
+- Membedakan antara plugin statis dan dinamis
+- Melakukan dynamic load hanya untuk plugin yang valid
+
+Contoh:
+
+```json
+[
+  {
+    "name": "mx-core-docs",
+    "type": "static",
+    "url": "https://your-org.github.io/mx-core-docs/"
+  },
+  {
+    "name": "mx-core-ai",
+    "type": "dynamic",
+    "entry": "/api/plugins/mx-core-ai"
+  }
+]
+```
+
+---
+
+📌 **Kesimpulan Bagian Ini**
+
+Strategi hosting Mx-Core adalah:
+
+- **Modular** — tiap komponen dideploy sesuai kebutuhannya
+- **Efisien** — meminimalkan resource dengan tidak memaksakan SSR untuk semua
+- **Praktis** — memanfaatkan keunggulan platform seperti Vercel dan GitHub Pages secara optimal
+
+---
+
+## VII. ✅ **Kesimpulan Arsitektur**
+
+> Setelah melalui tahap perumusan kebutuhan bisnis, desain sistem modular, dan implementasi teknis yang terstruktur, Mx-Core berhasil membentuk **arsitektur platform industri digital yang solid dan siap produksi.** Arsitektur ini dibangun tidak hanya untuk menjawab kebutuhan saat ini, tetapi juga untuk pertumbuhan jangka panjang.
+
+---
+
+### 📌 Ringkasan Status Arsitektur
+
+| Aspek                 | Status         | Penjelasan Singkat                                                                                    |
+| --------------------- | -------------- | ----------------------------------------------------------------------------------------------------- |
+| **Struktur Monorepo** | ✔ Final        | Struktur direktori `apps/`, `packages/`, dan `plugins/` telah ditetapkan secara konsisten             |
+| **Plugin System**     | ✔ Modular      | Setiap domain bisnis berjalan sebagai plugin independen, dengan kontrak standar (`plugin.json`)       |
+| **RBAC**              | ✔ Terintegrasi | Role-Based Access Control digunakan di semua lapisan: UI, API, plugin                                 |
+| **Scalability**       | ✔ Enterprise   | Siap menangani puluhan hingga ratusan plugin tanpa peningkatan kompleksitas                           |
+| **DX Developer**      | ✔ Tinggi       | TypeScript, shared types, path alias, RBAC-aware UI, dan dokumentasi standar mempermudah pengembangan |
+
+---
+
+### 🧩 Ciri Khas Arsitektur Mx-Core
+
+- **Berbasis plugin dinamis**, dapat diperluas tanpa mengubah core system
+- **Satu sumber kebenaran untuk tipe data dan otorisasi**
+- **Pendekatan hybrid deployment** yang efisien antara Vercel dan GitHub Pages
+- **Konsistensi antar modul** melalui `@mx-core/core`, `@mx-core/types`, dan `@mx-core/ui`
+- **Mudah onboarding developer baru**, karena struktur modular dan dokumentasi terpusat
+
+---
+
+### 📈 Dampak terhadap Bisnis & Tim Pengembang
+
+| Dampak Bisnis                          | Dampak Teknis                         |
+| -------------------------------------- | ------------------------------------- |
+| Integrasi lintas departemen lebih kuat | Developer tidak perlu duplikasi logic |
+| Maintenance sistem lebih presisi       | Plugin bisa dikembangkan paralel      |
+| Data lebih siap dianalisis             | Tipe dan struktur tetap konsisten     |
+| Efisiensi operasional meningkat        | Build, lint, dan test terotomatisasi  |
+
+---
+
+### 📦 Platform Ini Siap Untuk:
+
+- Penerapan penuh pada lingkungan produksi industri (plant, manufacturing, EPC, energi)
+- Pengembangan dan penambahan plugin baru (internal & eksternal)
+- Integrasi ke sistem lain melalui API dan MQTT
+- Ekspansi ke edge computing, AI reasoning, dan integrasi IoT berskala besar
+
+---
+
+## VIII. 🔭 **Catatan & Rencana Pengembangan Lanjutan**
+
+> Arsitektur Mx-Core telah siap produksi, namun tetap dirancang terbuka untuk ekspansi dan peningkatan fitur. Bagian ini merangkum catatan pengembangan lanjutan yang akan memperkuat kapabilitas sistem dan memperluas jangkauan penggunaannya di masa depan.
+
+---
+
+### 🛠️ 1. **Middleware RBAC untuk Backend API**
+
+**Tujuan:**
+Mengamankan seluruh endpoint backend (Express) menggunakan middleware RBAC berbasis konteks pengguna.
+
+**Fungsi Utama:**
+
+- Mengevaluasi akses terhadap endpoint berdasarkan `RBACContext`
+- Reusable untuk semua route dalam `apps/backend`
+- Terhubung langsung dengan rule yang dideklarasikan dalam `plugin.json`
+
+📦 **Akan menjadi bagian dari:** `@mx-core/core`
+🧩 Integrasi dengan: Plugin backend (CMMS, AI, RBM)
+
+---
+
+### 🧩 2. **Visual Editor RBAC (Drag & Drop Rules)**
+
+**Tujuan:**
+Menyediakan UI interaktif bagi admin untuk:
+
+- Membuat / mengedit rule RBAC
+- Menyusun akses per role tanpa menyentuh kode
+- Melihat dampak rule secara visual terhadap UI
+
+**Teknologi Pendukung:**
+
+- React + Zustand / Form Builder
+- Penyimpanan ke file konfigurasi atau DB
+- Preview real-time akses berdasarkan role
+
+📦 **Akan dikembangkan di:** `apps/frontend`
+🔗 Terhubung ke: `@mx-core/core` untuk evaluasi live
+
+---
+
+### ✅ 3. **Schema Validator untuk `plugin.json`**
+
+**Tujuan:**
+Memastikan setiap plugin mematuhi standar kontrak struktural sebelum dijalankan.
+
+**Manfaat:**
+
+- Menjaga integritas registry plugin
+- Memudahkan debugging plugin baru
+- Menolak plugin yang tidak valid sejak awal
+
+**Teknologi Pendukung:**
+
+- `zod` atau `ajv` untuk JSON schema validation
+- Dijalankan saat startup oleh `@mx-core/core/plugin-loader.ts`
+
+📦 **Akan terintegrasi ke:** `@mx-core/core`
+
+---
+
+### 🧠 4. **Dukungan ABAC dan Multi-Tenant**
+
+**Tujuan:**
+Mengembangkan sistem otorisasi dari RBAC menjadi:
+
+- **ABAC (Attribute-Based Access Control)**
+  Berdasarkan atribut seperti `location`, `equipment status`, `shift`, dll.
+
+- **Multi-Tenant**
+  Memungkinkan satu instance Mx-Core digunakan oleh beberapa entitas (plant/divisi) tanpa saling mengakses data
+
+**Dampak Teknis:**
+
+- Perluasan tipe `RBACContext`
+- Integrasi metadata plugin & session
+- Dukungan filter data per tenant
+
+📦 **Modifikasi pada:**
+
+- `@mx-core/types` → `AccessContext`
+- `@mx-core/core` → policy evaluator
+
+---
+
+### 🧩 5. **Komponen `withAccess()` untuk React**
+
+**Tujuan:**
+Menyediakan Higher Order Component (HOC) untuk kontrol akses di level komponen React.
+
+**Kelebihan:**
+
+- Tidak perlu membungkus manual dengan `<CanAccess />`
+- Bisa langsung membungkus halaman, form, atau modul React
+
+#### 📄 Contoh:
+
+```tsx
+const SecuredButton = withAccess(Button, {
+  role: 'Planner',
+  action: 'submit',
+  resource: 'kpi',
+});
+```
+
+📦 **Akan menjadi bagian dari:** `@mx-core/ui`
+
+---
+
+### 🚧 Rencana Jangka Menengah – Tambahan (Opsional)
+
+| Inisiatif                        | Status     | Keterangan                                        |
+| -------------------------------- | ---------- | ------------------------------------------------- |
+| MQTT Broker Integration          | 🔜 Planned | Untuk plugin IoT, koneksi langsung ke sensor      |
+| `mx-core-plugin-kit` SDK         | 🔜 Planned | Tooling untuk membuat plugin baru dengan CLI      |
+| Plugin Marketplace / Registry UI | 🔜 Planned | UI untuk memilih, mengaktifkan, dan deploy plugin |
+| `PluginUnitTestRunner` CLI Tool  | 🔜 Planned | Validasi & uji plugin secara otomatis             |
+
+---
+
+📌 **Kesimpulan Rencana Lanjutan**
+
+Pengembangan lanjutan ini fokus pada:
+
+- ⚙️ _Hardening sistem_ dari sisi keamanan, validasi, dan isolasi tenant
+- 🧠 _Peningkatan DX dan usability_ bagi developer dan admin
+- 🔄 _Meningkatkan integrasi dengan sistem eksternal_ seperti sensor, data historis, atau platform cloud
+
+---
+
+➡ **Seluruh pondasi telah tersedia.**
+Dengan roadmap yang jelas, Mx-Core dapat terus bertumbuh sebagai **platform digital industri modular yang kuat, adaptif, dan enterprise-ready**.
+
+---
+
+## IX. 📁 **Lampiran**
+
+Bagian ini menyediakan referensi teknis praktis yang dibutuhkan oleh tim pengembang internal maupun pihak ketiga untuk membangun dan mengintegrasikan plugin baru ke dalam platform Mx-Core.
+
+---
+
+### 📄 1. Contoh `plugin.json`
+
+```json
+{
+  "name": "mx-core-ai",
+  "version": "1.0.0",
+  "ui": true,
+  "api": true,
+  "module": "./dist/index.js",
+  "rules": [
+    {
+      "role": "Planner",
+      "resource": "prediction",
+      "action": "view"
+    },
+    {
+      "role": "Engineer",
+      "resource": "anomaly",
+      "action": "investigate"
+    }
+  ]
+}
+```
+
+📌 Keterangan:
+
+- `ui`: apakah plugin menyediakan komponen UI
+- `api`: apakah plugin memiliki API handler
+- `rules`: deklarasi RBAC yang akan di-_inject_ ke core system
+
+---
+
+### 📁 2. Contoh Struktur Plugin
+
+```
+/plugins/mx-core-<plugin-name>/
+├── package.json
+├── plugin.json
+└── src/
+    ├── index.ts              # Entrypoint utama plugin
+    ├── api/                  # Route handler / logic backend
+    ├── ui/                   # Komponen frontend (jika ada)
+    └── schema/               # Model data lokal, opsional
+```
+
+📌 Semua plugin bersifat opsional terhadap UI dan API — hanya perlu mengikuti struktur standar agar bisa diload oleh `@mx-core/core`.
+
+---
+
+### 🧩 3. Format Dokumentasi Plugin Baru
+
+Developer internal atau eksternal perlu menyertakan dokumentasi minimal berikut untuk setiap plugin:
+
+#### 📌 Metadata
+
+- Nama plugin
+- Tujuan bisnis
+- Scope fitur
+- Role yang didukung
+- Ketergantungan pada plugin lain (jika ada)
+
+#### 📄 Struktur Direktori
+
+```md
+## Struktur Direktori
+```
+
+```
+plugins/mx-core-<nama>/
+├── plugin.json
+├── src/
+│   ├── api/
+│   ├── ui/
+│   └── ...
+```
+
+#### 🔐 RBAC
+
+```md
+## Role & Permission
+
+- Planner → view & create data
+- Engineer → investigate anomaly
+- Admin → full access
+```
+
+#### 🔗 Integrasi
+
+```md
+## Integrasi
+
+- Konsumsi tipe dari @mx-core/types
+- Mengakses data dari CMMS plugin
+- Push insight ke Dashboard
+```
+
+---
+
+## 🔚 **Catatan Akhir**
+
+Dokumentasi ini berfungsi sebagai **_sumber tunggal kebenaran (single source of truth)_** untuk seluruh pihak yang terlibat dalam pengembangan, penerapan, dan pengelolaan platform **Mx-Core**.
+
+### 🎯 Untuk Developer:
+
+- Memahami struktur monorepo
+- Mengetahui kontrak plugin
+- Menggunakan kembali komponen, tipe, dan utilitas bersama
+
+### 🧩 Untuk Stakeholder:
+
+- Mendapat justifikasi arsitektural atas desain modular
+- Memahami alur integrasi lintas domain (CMMS, RBM, AI, IoT)
+
+### 🤝 Untuk Klien:
+
+- Menilai kesiapan sistem untuk integrasi dan skalabilitas
+- Melihat arah roadmap dan rencana ekspansi fungsional platform
+
+---
+
+> Dengan fondasi teknis yang solid dan orientasi bisnis yang jelas, **Mx-Core hadir sebagai solusi digital industri yang scalable, modular, dan siap produksi.** Platform ini bukan hanya _produk_, melainkan _kerangka kerja terbuka_ untuk membangun masa depan digitalisasi industri.
+
+---
