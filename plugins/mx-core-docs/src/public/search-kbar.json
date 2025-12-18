@@ -39,12 +39,32 @@
     ]
   },
   {
+    "id": "website/packages-developer-guide",
+    "name": "Mx-Core – Packages Developer Guide",
+    "section": "CONTENT",
+    "href": "/blog/website/packages-developer-guide",
+    "subtitle": "December 16, 2025",
+    "keywords": [
+      "mx-core",
+      "monorepo-architecture",
+      "plugin-system",
+      "rbac-engine",
+      "typescript-shared-types",
+      "react-rbac-components",
+      "nextjs-typescript",
+      "developer-documentation",
+      "modular-backend",
+      "secure-ui-rendering"
+    ]
+  },
+  {
     "id": "website/sdlc-mx-core-docs",
     "name": "Blueprint Pengembangan Software Industri - Mx-Core-Docs",
     "section": "CONTENT",
     "href": "/blog/website/sdlc-mx-core-docs",
     "subtitle": "December 16, 2025",
     "keywords": [
+      "mx-core",
       "SDLC",
       "software-development",
       "industrial-software",
@@ -74,6 +94,7 @@
     "href": "/blog/website/sdlc-mx-core-metric",
     "subtitle": "December 16, 2025",
     "keywords": [
+      "mx-core",
       "SDLC",
       "software-development",
       "industrial-software",
@@ -103,6 +124,7 @@
     "href": "/blog/website/sdlc-mx-core-rbm",
     "subtitle": "December 16, 2025",
     "keywords": [
+      "mx-core",
       "SDLC",
       "software-development",
       "industrial-software",
@@ -433,20 +455,6 @@
       "contentlayer",
       "tailwind",
       "eslint"
-    ]
-  },
-  {
-    "id": "markdown/github-markdown-guide",
-    "name": "Panduan Markdown",
-    "section": "CONTENT",
-    "href": "/blog/markdown/github-markdown-guide",
-    "subtitle": "October 7, 2025",
-    "keywords": [
-      "github",
-      "panduan",
-      "markdown",
-      "md",
-      "mdx"
     ]
   },
   {
