@@ -1,5 +1,22 @@
 [
   {
+    "id": "maintenance/instrument-range",
+    "name": "Best Practice dalam Pemilihan Range Instrumentasi Proses - Panduan Teknikal untuk Engineer",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/instrument-range",
+    "subtitle": "December 19, 2025",
+    "keywords": [
+      "instrument-range",
+      "process-control",
+      "transmitter-selection",
+      "engineering-best-practice",
+      "ISA-API-IEC",
+      "instrument-specification",
+      "resolution-accuracy",
+      "datasheet-format"
+    ]
+  },
+  {
     "id": "Management/iceberg-theory",
     "name": "Beyond the Surface - Pendekatan Iceberg dalam Memperkuat Keandalan Aset Industri Petrokimia",
     "section": "CONTENT",
@@ -455,6 +472,20 @@
       "contentlayer",
       "tailwind",
       "eslint"
+    ]
+  },
+  {
+    "id": "markdown/github-markdown-guide",
+    "name": "Panduan Markdown",
+    "section": "CONTENT",
+    "href": "/blog/markdown/github-markdown-guide",
+    "subtitle": "October 7, 2025",
+    "keywords": [
+      "github",
+      "panduan",
+      "markdown",
+      "md",
+      "mdx"
     ]
   },
   {

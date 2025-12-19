@@ -1,6 +1,6 @@
 ---
 title: Best Practice dalam Pemilihan Range Instrumentasi Proses - Panduan Teknikal untuk Engineer
-authors: ['amd']
+authors: ['sam']
 date: '2025-12-19'
 tags:
   [
@@ -80,9 +80,11 @@ Contoh: Jika sebuah transmitter memiliki LRV = 0 bar dan URV = 10 bar, maka inst
 > **3.2 Span**
 
 Span adalah selisih antara URV dan LRV, yang merepresentasikan total rentang kerja dari instrumen.
-[
+
+$$
 \text{Span} = \text{URV} - \text{LRV}
-]
+$$
+
 Dalam contoh sebelumnya, span = 10 – 0 = 10 bar.
 
 ---
@@ -428,7 +430,7 @@ Tangki penyimpanan H₂SO₄ pekat dengan viskositas tinggi dan densitas ±1840 
 - URV ditentukan 5000 mm (standar pabrik) tanpa mempertimbangkan densitas aktual dan tinggi tangki
 - Akibatnya:
 
-  - DP transmitter bekerja pada LT 50% span
+  - DP transmitter bekerja pada &lt;50% span
   - Akurasi dan sensitivitas menurun signifikan
   - Alarm low-level sering tidak aktif meskipun level kritis
 
