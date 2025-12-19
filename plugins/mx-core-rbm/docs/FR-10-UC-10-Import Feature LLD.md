@@ -211,6 +211,35 @@ Kamu telah menyempurnakan **Step 3 menjadi titik kontrol metadata** yang sangat 
 
 ### ✅ **Step 4 – Interpretasi Kolom XLSX → Calon Schema**
 
+plugins/
+└── mx-core-rbm/
+└── src/
+├── app/
+│ └── configuration/
+│ └── SidebarNavigation.tsx ✅
+├── components/
+│ └── configuration/
+│ └── import/
+│ ├── AssetTypeEditor.tsx 🆕
+│ ├── SchemaFieldEditor.tsx 🆕
+│ ├── EnumEditorModal.tsx 🆕
+│ ├── AssetTypeMetaEditor.tsx 🆕
+│ └── SaveAssetTypeSchemaButton.tsx 🆕
+├── contexts/
+│ └── ImportSchemaContext.tsx ✅
+├── hooks/
+│ ├── useColumnInference.ts 🆕
+│ └── useImportSchema.ts ✅
+├── utils/
+│ └── camelCase.ts ✅ / 🆕
+└── public/
+├── mocks/
+│ ├── KDIA-2026.xlsx ✅
+│ └── asset-category.json ⚠️ upload jika perlu
+└── schemas/
+└── asset-types/
+└── control-valve.json (contoh output)
+
 - Ambil baris header dari worksheet
 - Untuk setiap kolom:
 

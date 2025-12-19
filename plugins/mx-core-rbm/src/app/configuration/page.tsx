@@ -3,17 +3,29 @@
 'use client';
 
 import { useState } from 'react';
+
 import ModelFormRenderer from '@/components/configuration/ModelFormRenderer';
 import DynamicTable from '@/components/configuration/DynamicTable';
+import SidebarNavigation from '@/components/configuration/SidebarNavigation';
+
 import { zodToFieldDefs } from '@/utils/zodToFieldDefs';
 import { assetSchema } from '@/models/asset/asset';
 import { modelOptions, ModelName } from '@/config/modelDefinitions';
 import { useModelManager } from '@/hooks/useModelManager';
+import { ImportSchemaProvider } from '@/contexts/ImportSchemaContext';
+import AssetTypeEditor from '@/components/configuration/AssetTypeEditor'; // ✅ Tambahkan ini
 
 export default function ConfigurationRootPage() {
+  const [mode, setMode] = useState<'manual' | 'import'>('manual');
+
   const [selectedModel, setSelectedModel] = useState<ModelName>(
     modelOptions[0].id
   );
+
+  const [selectedSchemaName, setSelectedSchemaName] = useState<string | null>(
+    null
+  );
+
   const {
     data,
     setData,
@@ -30,69 +42,84 @@ export default function ConfigurationRootPage() {
   } = useModelManager(selectedModel);
 
   return (
-    <div className="space-y-6 p-6">
-      <h1 className="text-2xl font-bold text-gray-800">
-        ⚙️ Konfigurasi Data: {selectedModel}
-      </h1>
-
-      <div className="w-full max-w-md">
-        <label
-          htmlFor="modelSelect"
-          className="mb-1 block text-sm font-medium text-gray-700"
-        >
-          Pilih Data Model
-        </label>
-        <select
-          id="modelSelect"
-          value={selectedModel}
-          onChange={(e) => {
-            setSelectedModel(e.target.value as ModelName);
+    <ImportSchemaProvider>
+      <div className="flex min-h-screen">
+        {/* ================= SIDEBAR ================= */}
+        <SidebarNavigation
+          mode={mode}
+          selectedModel={selectedModel}
+          selectedAssetTypeId={selectedSchemaName ?? ''}
+          onModelSelect={(modelId) => {
+            setMode('manual');
+            setSelectedModel(modelId as ModelName);
+            setSelectedSchemaName(null);
             setEditIndex(null);
           }}
-          className="w-full rounded border px-3 py-2 shadow-sm"
-        >
-          {modelOptions.map((model) => (
-            <option key={model.id} value={model.id}>
-              {model.label}
-            </option>
-          ))}
-        </select>
-      </div>
+          onAssetTypeSelect={(schemaName) => {
+            setMode('import');
+            setSelectedSchemaName(schemaName);
+          }}
+        />
 
-      <div className="rounded border bg-white p-4 shadow">
-        {loading || !isReady ? (
-          <p>⏳ Memuat data dan schema...</p>
-        ) : (
-          <ModelFormRenderer
-            selectedModel={selectedModel}
-            schema={schema}
-            data={data}
-            editIndex={editIndex}
-            onSave={handleSave}
-            setSchema={setSchema}
-            setData={(d) => {}}
-            setEditIndex={setEditIndex}
-          />
-        )}
-      </div>
+        {/* ================= MAIN AREA ================= */}
+        <main className="flex-1 space-y-6 p-6">
+          {/* ========= MANUAL MODE ========= */}
+          {mode === 'manual' && (
+            <>
+              <h1 className="text-2xl font-bold text-gray-800">
+                ⚙️ Konfigurasi Data: {selectedModel}
+              </h1>
 
-      <div className="rounded border bg-white p-4 shadow">
-        {loading || !isReady ? (
-          <p>⏳ Memuat data dan schema...</p>
-        ) : (
-          <DynamicTable
-            data={data}
-            setData={setData}
-            fields={
-              selectedModel === 'asset'
-                ? zodToFieldDefs(assetSchema)
-                : tableFields
-            }
-            onEdit={handleEdit}
-            onDelete={handleDelete}
-          />
-        )}
+              <div className="rounded border bg-white p-4 shadow">
+                {loading || !isReady ? (
+                  <p>⏳ Memuat data dan schema...</p>
+                ) : (
+                  <ModelFormRenderer
+                    selectedModel={selectedModel}
+                    schema={schema}
+                    data={data}
+                    editIndex={editIndex}
+                    onSave={handleSave}
+                    setSchema={setSchema}
+                    setData={() => {}}
+                    setEditIndex={setEditIndex}
+                  />
+                )}
+              </div>
+
+              <div className="rounded border bg-white p-4 shadow">
+                {loading || !isReady ? (
+                  <p>⏳ Memuat data dan schema...</p>
+                ) : (
+                  <DynamicTable
+                    data={data}
+                    setData={setData}
+                    fields={
+                      selectedModel === 'asset'
+                        ? zodToFieldDefs(assetSchema)
+                        : tableFields
+                    }
+                    onEdit={handleEdit}
+                    onDelete={handleDelete}
+                  />
+                )}
+              </div>
+            </>
+          )}
+
+          {/* ========= IMPORT MODE ========= */}
+          {mode === 'import' && selectedSchemaName && (
+            <>
+              <h1 className="text-2xl font-bold text-gray-800">
+                ⚙️ Konfigurasi Schema (Import XLSX)
+              </h1>
+
+              {/* ✅ Tampilkan komponen editor Phase 2 */}
+              <AssetTypeEditor assetTypeId={selectedSchemaName} />
+            </>
+          )}
+        </main>
       </div>
-    </div>
+    </ImportSchemaProvider>
   );
 }
