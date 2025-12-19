@@ -3,17 +3,13 @@
 'use client';
 
 import React, { createContext, useContext, useEffect, useState } from 'react';
-import {
-  parseAssetTypeWorkbook,
-  ParsedXlsxResult,
-  WorksheetDefinition,
-} from '@/services/importer';
+import { parseAssetTypeWorkbook, ParsedXlsxResult } from '@/services/importer';
 
 type ImportSchemaContextType = {
   isLoading: boolean;
   error: string | null;
-  worksheetDefs: WorksheetDefinition[];
-  rawData: Record<string, any[]>;
+  worksheetDefs: ParsedXlsxResult['worksheetDefs'];
+  rawData: ParsedXlsxResult['rawData'];
   getWorksheetRows: (ws: string) => any[];
 };
 
@@ -28,13 +24,15 @@ export const ImportSchemaProvider = ({
 }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [worksheetDefs, setWorksheetDefs] = useState<WorksheetDefinition[]>([]);
-  const [rawData, setRawData] = useState<Record<string, any[]>>({});
+  const [worksheetDefs, setWorksheetDefs] = useState<
+    ParsedXlsxResult['worksheetDefs']
+  >([]);
+  const [rawData, setRawData] = useState<ParsedXlsxResult['rawData']>({});
 
   useEffect(() => {
     async function load() {
       try {
-        const result: ParsedXlsxResult = await parseAssetTypeWorkbook();
+        const result = await parseAssetTypeWorkbook();
         setWorksheetDefs(result.worksheetDefs);
         setRawData(result.rawData);
       } catch (err: any) {
@@ -43,6 +41,7 @@ export const ImportSchemaProvider = ({
         setIsLoading(false);
       }
     }
+
     load();
   }, []);
 
@@ -65,7 +64,8 @@ export const ImportSchemaProvider = ({
 
 export const useImportSchema = () => {
   const ctx = useContext(ImportSchemaContext);
-  if (!ctx)
+  if (!ctx) {
     throw new Error('useImportSchema must be used within ImportSchemaProvider');
+  }
   return ctx;
 };

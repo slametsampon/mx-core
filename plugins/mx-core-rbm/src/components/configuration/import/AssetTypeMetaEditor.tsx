@@ -1,4 +1,4 @@
-// plugins/mx-core-rbm/src/components/configuration/AssetTypeMetaEditor.tsx
+// plugins/mx-core-rbm/src/components/configuration/import/AssetTypeMetaEditor.tsx
 
 'use client';
 

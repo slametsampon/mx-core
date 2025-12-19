@@ -1,4 +1,4 @@
-// plugins/mx-core-rbm/src/components/configuration/SchemaFieldEditor.tsx
+// plugins/mx-core-rbm/src/components/configuration/import/SchemaFieldEditor.tsx
 
 'use client';
 

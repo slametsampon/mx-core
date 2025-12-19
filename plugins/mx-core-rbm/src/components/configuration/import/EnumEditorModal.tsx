@@ -1,4 +1,4 @@
-// plugins/mx-core-rbm/src/components/configuration/EnumEditorModal.tsx
+// plugins/mx-core-rbm/src/components/configuration/import/EnumEditorModal.tsx
 
 'use client';
 

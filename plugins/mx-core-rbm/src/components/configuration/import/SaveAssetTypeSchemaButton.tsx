@@ -1,4 +1,4 @@
-// plugins/mx-core-rbm/src/components/configuration/SaveAssetTypeSchemaButton.tsx
+// plugins/mx-core-rbm/src/components/configuration/import/SaveAssetTypeSchemaButton.tsx
 
 'use client';
 
