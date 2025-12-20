@@ -3,6 +3,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
+import RowNavigator from '@/components/shared/RowNavigator';
 
 type AssetCategory = {
   category_id: string;
@@ -18,23 +19,26 @@ type Meta = {
 type Props = {
   meta: Meta;
   onChange: (meta: Meta) => void;
+
+  currentIndex: number;
+  totalRows: number;
+  onNavigate: (index: number) => void;
 };
 
-export default function AssetTypeMetaEditor({ meta, onChange }: Props) {
+export default function AssetTypeMetaEditor({
+  meta,
+  onChange,
+  currentIndex,
+  totalRows,
+  onNavigate,
+}: Props) {
   const [categories, setCategories] = useState<AssetCategory[]>([]);
 
   useEffect(() => {
-    async function loadCategories() {
-      try {
-        const res = await fetch('/mocks/asset-category.json');
-        const json = await res.json();
-        setCategories(json);
-      } catch {
-        console.error('Gagal memuat kategori aset');
-      }
-    }
-
-    loadCategories();
+    fetch('/mocks/asset-category.json')
+      .then((r) => r.json())
+      .then(setCategories)
+      .catch(() => console.error('Gagal memuat kategori aset'));
   }, []);
 
   const update = <K extends keyof Meta>(key: K, value: Meta[K]) => {
@@ -42,66 +46,61 @@ export default function AssetTypeMetaEditor({ meta, onChange }: Props) {
   };
 
   return (
-    <div className="space-y-4 rounded border bg-white p-4 shadow dark:bg-gray-800">
-      <h2 className="text-lg font-semibold text-gray-800 dark:text-white">
-        ⚙️ Metadata Asset-Type
-      </h2>
+    <div className="space-y-4 rounded border bg-white p-4 shadow">
+      <h2 className="text-lg font-semibold">⚙️ Metadata Asset-Type</h2>
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         {/* Schema Name */}
         <div>
-          <label
-            htmlFor="schemaSelect"
-            className="text-sm font-medium text-gray-600 dark:text-gray-300"
-          >
+          <label htmlFor="schemaName" className="text-sm font-medium">
             Schema Name
           </label>
           <input
-            type="text"
             value={meta.asset_type_id}
             onChange={(e) => update('asset_type_id', e.target.value)}
-            className="w-full rounded border px-3 py-2 text-sm shadow-sm"
+            className="w-full rounded border px-3 py-2 text-sm"
           />
         </div>
 
-        {/* Label */}
+        {/* Asset Label */}
         <div>
-          <label
-            htmlFor="labelSelect"
-            className="text-sm font-medium text-gray-600 dark:text-gray-300"
-          >
+          <label htmlFor="forLabel" className="text-sm font-medium">
             Asset Label
           </label>
           <input
-            type="text"
             value={meta.label}
             onChange={(e) => update('label', e.target.value)}
-            className="w-full rounded border px-3 py-2 text-sm shadow-sm"
+            className="w-full rounded border px-3 py-2 text-sm"
           />
         </div>
 
-        {/* Asset Category */}
+        {/* Category */}
         <div>
-          <label
-            htmlFor="categoryAsset"
-            className="text-sm font-medium text-gray-600 dark:text-gray-300"
-          >
+          <label htmlFor="catOption" className="text-sm font-medium">
             Kategori Aset
           </label>
           <input
             list="category-options"
             value={meta.category_id}
             onChange={(e) => update('category_id', e.target.value)}
-            placeholder="-- Pilih atau ketik kategori --"
-            className="w-full rounded border px-3 py-2 text-sm shadow-sm"
+            className="w-full rounded border px-3 py-2 text-sm"
           />
           <datalist id="category-options">
-            {categories.map((cat) => (
-              <option key={cat.category_id} value={cat.category_id}>
-                {cat.name}
+            {categories.map((c) => (
+              <option key={c.category_id} value={c.category_id}>
+                {c.name}
               </option>
             ))}
           </datalist>
+        </div>
+
+        {/* ✅ NAVIGATOR DI TEMPAT YANG BENAR */}
+        <div className="flex items-end justify-end">
+          <RowNavigator
+            currentIndex={currentIndex}
+            totalRows={totalRows}
+            onNavigate={onNavigate}
+          />
         </div>
       </div>
     </div>

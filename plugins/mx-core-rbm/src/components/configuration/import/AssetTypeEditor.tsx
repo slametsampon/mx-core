@@ -25,6 +25,7 @@ export default function AssetTypeEditor({ worksheet }: Props) {
     label: worksheet.label,
     category_id: worksheet.categoryId ?? '',
   });
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
     setMeta({
@@ -32,6 +33,7 @@ export default function AssetTypeEditor({ worksheet }: Props) {
       label: worksheet.label,
       category_id: worksheet.categoryId ?? '',
     });
+    setCurrentIndex(0);
   }, [worksheet]);
 
   const rows: any[] = getWorksheetRows(worksheet.worksheet);
@@ -69,7 +71,13 @@ export default function AssetTypeEditor({ worksheet }: Props) {
       {/* ✅ Layout: Metadata dan Dropdown sebelah kiri sidebar, lalu Table full width */}
       <div className="grid grid-cols-1 items-start gap-6 lg:grid-cols-[300px_1fr]">
         {/* 📌 Metadata di sisi kiri */}
-        <AssetTypeMetaEditor meta={meta} onChange={setMeta} />
+        <AssetTypeMetaEditor
+          meta={meta}
+          onChange={setMeta}
+          currentIndex={currentIndex}
+          totalRows={rows.length}
+          onNavigate={setCurrentIndex}
+        />
 
         {/* 📌 Field Table di sisi kanan */}
         <SchemaFieldEditor fields={fields} onChange={setFields} />

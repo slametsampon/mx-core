@@ -60,11 +60,12 @@ export default function SchemaFieldEditor({ fields, onChange }: Props) {
         <thead className="bg-gray-100 dark:bg-gray-800">
           <tr>
             <th className="border px-3 py-2 text-left">Include</th>
+            <th className="border px-3 py-2 text-left">Required</th>
             <th className="border px-3 py-2 text-left">Raw Name</th>
             <th className="border px-3 py-2 text-left">Suggested Name</th>
             <th className="border px-3 py-2 text-left">Type</th>
             <th className="border px-3 py-2 text-left">Unit</th>
-            <th className="border px-3 py-2 text-left">Required</th>
+            <th className="border px-3 py-2 text-left">Value</th>
           </tr>
         </thead>
 
@@ -78,6 +79,17 @@ export default function SchemaFieldEditor({ fields, onChange }: Props) {
                   checked={f.include}
                   onChange={(e) =>
                     updateField(idx, { include: e.target.checked })
+                  }
+                />
+              </td>
+
+              {/* Required */}
+              <td className="border px-3 py-2 text-center">
+                <input
+                  type="checkbox"
+                  checked={!!f.required}
+                  onChange={(e) =>
+                    updateField(idx, { required: e.target.checked })
                   }
                 />
               </td>
@@ -138,17 +150,8 @@ export default function SchemaFieldEditor({ fields, onChange }: Props) {
                   '-'
                 )}
               </td>
-
-              {/* Required */}
-              <td className="border px-3 py-2 text-center">
-                <input
-                  type="checkbox"
-                  checked={!!f.required}
-                  onChange={(e) =>
-                    updateField(idx, { required: e.target.checked })
-                  }
-                />
-              </td>
+              {/* Value */}
+              <td className="border px-3 py-2">-</td>
             </tr>
           ))}
         </tbody>
