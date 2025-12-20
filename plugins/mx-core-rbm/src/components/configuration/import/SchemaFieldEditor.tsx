@@ -31,8 +31,6 @@ export default function SchemaFieldEditor({ fields, onChange }: Props) {
             <th className="border px-3 py-2 text-left">Suggested Name</th>
             <th className="border px-3 py-2 text-left">Type</th>
             <th className="border px-3 py-2 text-left">Required</th>
-            <th className="border px-3 py-2 text-left">Unit</th>
-            <th className="border px-3 py-2 text-left">Enum</th>
           </tr>
         </thead>
 
@@ -65,6 +63,16 @@ export default function SchemaFieldEditor({ fields, onChange }: Props) {
                   <option value="boolean">boolean</option>
                   <option value="enum">enum</option>
                 </select>
+
+                {f.type === 'enum' && (
+                  <button
+                    type="button"
+                    className="ml-2 inline-flex items-center text-xs text-blue-600 hover:underline"
+                    onClick={() => setEditingEnumIndex(idx)}
+                  >
+                    ⚙️
+                  </button>
+                )}
               </td>
 
               {/* Required */}
@@ -76,30 +84,6 @@ export default function SchemaFieldEditor({ fields, onChange }: Props) {
                     updateField(idx, { required: e.target.checked })
                   }
                 />
-              </td>
-
-              {/* Unit */}
-              <td className="border px-3 py-2">
-                <input
-                  className="w-full rounded border px-2 py-1"
-                  value={f.unit ?? ''}
-                  onChange={(e) => updateField(idx, { unit: e.target.value })}
-                />
-              </td>
-
-              {/* Enum */}
-              <td className="border px-3 py-2 text-center">
-                {f.type === 'enum' ? (
-                  <button
-                    type="button"
-                    className="rounded border px-2 py-1 text-xs hover:bg-gray-100 dark:hover:bg-gray-700"
-                    onClick={() => setEditingEnumIndex(idx)}
-                  >
-                    ⚙️ Edit
-                  </button>
-                ) : (
-                  '-'
-                )}
               </td>
             </tr>
           ))}

@@ -5,6 +5,7 @@
 import React from 'react';
 import { modelOptions } from '@/config/modelDefinitions';
 import { useImportSchema } from '@/contexts/ImportSchemaContext';
+import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/20/solid';
 
 type Props = {
   mode: 'manual' | 'import';
@@ -12,6 +13,8 @@ type Props = {
   selectedAssetTypeId?: string;
   onModelSelect: (modelId: string) => void;
   onAssetTypeSelect: (assetTypeId: string) => void;
+  collapsed: boolean; // ✅ tambahan
+  onToggleCollapse: () => void; // ✅ tambahan
 };
 
 export default function SidebarNavigation({
@@ -20,57 +23,84 @@ export default function SidebarNavigation({
   selectedAssetTypeId,
   onModelSelect,
   onAssetTypeSelect,
+  collapsed,
+  onToggleCollapse,
 }: Props) {
   const { worksheetDefs, isLoading, error } = useImportSchema();
 
   return (
-    <aside className="min-w-[220px] max-w-xs space-y-6 border-r bg-gray-50 p-4 dark:bg-gray-900">
-      <div>
-        <h2 className="mb-1 text-sm font-semibold text-gray-500">
-          🔽 Model Bawaan
-        </h2>
-        <select
-          className="w-full rounded border px-3 py-2 shadow-sm"
-          value={selectedModel}
-          onChange={(e) => onModelSelect(e.target.value)}
+    <aside
+      className={`transition-all duration-300 ${
+        collapsed ? 'w-[48px]' : 'min-w-[220px] max-w-xs'
+      } border-r bg-gray-50 p-2 dark:bg-gray-900 sm:p-4`}
+    >
+      {/* 🔘 Tombol collapse / expand */}
+      <div className="mb-4 flex justify-end">
+        <button
+          onClick={onToggleCollapse}
+          className="rounded bg-gray-300 p-1 text-xs hover:bg-gray-400 dark:bg-gray-700 dark:text-white"
+          aria-label="Toggle sidebar"
         >
-          {modelOptions.map((model) => (
-            <option key={model.id} value={model.id}>
-              {model.label}
-            </option>
-          ))}
-        </select>
+          {collapsed ? (
+            <ChevronRightIcon className="h-5 w-5" />
+          ) : (
+            <ChevronLeftIcon className="h-5 w-5" />
+          )}
+        </button>
       </div>
 
-      <div>
-        <h2 className="mb-1 text-sm font-semibold text-gray-500">
-          🔽 Asset-Type dari XLSX
-        </h2>
+      {/* Jika collapsed, sembunyikan isi */}
+      {!collapsed && (
+        <div className="space-y-6">
+          <div>
+            <h2 className="mb-1 text-sm font-semibold text-gray-500">
+              🔽 Model Bawaan
+            </h2>
+            <select
+              className="w-full rounded border px-3 py-2 shadow-sm"
+              value={selectedModel}
+              onChange={(e) => onModelSelect(e.target.value)}
+            >
+              {modelOptions.map((model) => (
+                <option key={model.id} value={model.id}>
+                  {model.label}
+                </option>
+              ))}
+            </select>
+          </div>
 
-        {isLoading ? (
-          <p className="text-sm text-gray-400">⏳ Memuat file XLSX...</p>
-        ) : error ? (
-          <p className="text-sm text-red-500">⚠️ Gagal memuat XLSX</p>
-        ) : worksheetDefs.length === 0 ? (
-          <p className="text-sm text-gray-400">Tidak ada asset-type</p>
-        ) : (
-          <select
-            className="w-full rounded border px-3 py-2 shadow-sm"
-            value={selectedAssetTypeId ?? ''}
-            onChange={(e) => onAssetTypeSelect(e.target.value)}
-          >
-            <option value="">-- Pilih Asset-Type --</option>
-            {worksheetDefs.map((ws) => (
-              <option
-                key={ws.suggestedSchemaName}
-                value={ws.suggestedSchemaName}
+          <div>
+            <h2 className="mb-1 text-sm font-semibold text-gray-500">
+              🔽 Asset-Type dari XLSX
+            </h2>
+            {isLoading ? (
+              <p className="text-sm text-gray-400">⏳ Memuat file XLSX...</p>
+            ) : error ? (
+              <p className="text-sm text-red-500">⚠️ Gagal memuat XLSX</p>
+            ) : worksheetDefs.length === 0 ? (
+              <p className="text-sm text-gray-400">Tidak ada asset-type</p>
+            ) : (
+              <select
+                className="w-full rounded border px-3 py-2 shadow-sm"
+                value={selectedAssetTypeId ?? ''}
+                onChange={(e) => onAssetTypeSelect(e.target.value)}
               >
-                {ws.label}
-              </option>
-            ))}
-          </select>
-        )}
-      </div>
+                <option value="">-- Pilih Asset-Type --</option>
+                {[...worksheetDefs]
+                  .sort((a, b) => a.label.localeCompare(b.label))
+                  .map((ws) => (
+                    <option
+                      key={ws.suggestedSchemaName}
+                      value={ws.suggestedSchemaName}
+                    >
+                      {ws.label}
+                    </option>
+                  ))}
+              </select>
+            )}
+          </div>
+        </div>
+      )}
     </aside>
   );
 }

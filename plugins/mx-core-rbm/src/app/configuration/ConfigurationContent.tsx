@@ -13,7 +13,7 @@ import { modelOptions, ModelName } from '@/config/modelDefinitions';
 import { useModelManager } from '@/hooks/useModelManager';
 
 import { useImportSchema } from '@/contexts/ImportSchemaContext';
-import AssetTypeEditor from '@/components/configuration/import/AssetTypeEditor'; // ✅ Tambahkan ini
+import AssetTypeEditor from '@/components/configuration/import/AssetTypeEditor';
 
 export default function ConfigurationContent() {
   const [mode, setMode] = useState<'manual' | 'import'>('manual');
@@ -23,6 +23,7 @@ export default function ConfigurationContent() {
   const [selectedSchemaName, setSelectedSchemaName] = useState<string | null>(
     null
   );
+  const [collapsed, setCollapsed] = useState(false); // ✅ Tambahkan collapse state
 
   const { worksheetDefs } = useImportSchema();
 
@@ -61,10 +62,11 @@ export default function ConfigurationContent() {
           setMode('import');
           setSelectedSchemaName(schemaName);
         }}
+        collapsed={collapsed} // ✅ berikan prop collapsed
+        onToggleCollapse={() => setCollapsed((prev) => !prev)} // ✅ toggle
       />
 
-      <main className="flex-1 space-y-6 p-6">
-        {/* ========= MANUAL MODE ========= */}
+      <main className="flex-1 space-y-6 p-6 transition-all duration-300">
         {mode === 'manual' && (
           <>
             <h1 className="text-2xl font-bold text-gray-800">
@@ -108,14 +110,11 @@ export default function ConfigurationContent() {
           </>
         )}
 
-        {/* ========= IMPORT MODE ========= */}
         {mode === 'import' && selectedWorksheet && (
           <>
             <h1 className="text-2xl font-bold text-gray-800">
               ⚙️ Interpretasi Struktur (Import XLSX)
             </h1>
-
-            {/* ✅ Editor Schema Terintegrasi */}
             <AssetTypeEditor worksheet={selectedWorksheet} />
           </>
         )}

@@ -9,6 +9,7 @@ type Props = {
   label: string;
   categoryId: string;
   fields: any[];
+  disabled?: boolean; // ✅ TAMBAH INI
 };
 
 export default function SaveAssetTypeSchemaButton({
@@ -16,6 +17,7 @@ export default function SaveAssetTypeSchemaButton({
   label,
   categoryId,
   fields,
+  disabled,
 }: Props) {
   const handleSave = () => {
     if (!assetTypeId || !label) {
@@ -52,7 +54,12 @@ export default function SaveAssetTypeSchemaButton({
     <div className="mt-4 text-right">
       <button
         onClick={handleSave}
-        className="rounded bg-blue-600 px-4 py-2 text-sm text-white hover:bg-blue-700"
+        disabled={disabled}
+        className={`rounded px-4 py-2 text-sm text-white ${
+          disabled
+            ? 'cursor-not-allowed bg-gray-400'
+            : 'bg-blue-600 hover:bg-blue-700'
+        }`}
       >
         💾 Simpan Schema (Download JSON)
       </button>

@@ -20,7 +20,6 @@ type Props = {
 export default function AssetTypeEditor({ worksheet }: Props) {
   const { getWorksheetRows } = useImportSchema();
 
-  // 🧠 1. Sync metadata with worksheet selection
   const [meta, setMeta] = useState({
     asset_type_id: worksheet.suggestedSchemaName,
     label: worksheet.label,
@@ -35,15 +34,21 @@ export default function AssetTypeEditor({ worksheet }: Props) {
     });
   }, [worksheet]);
 
-  // 🧠 2. Ambil rows langsung dari context
   const rows: any[] = getWorksheetRows(worksheet.worksheet);
   const headerRow: string[] = rows[0] ? Object.keys(rows[0]) : [];
 
-  // 🧠 3. Infer struktur kolom
   const inferredFields = useColumnInference(headerRow, rows);
 
-  // 🧠 4. Konversi ke FieldDefinition saat worksheet berubah
   const [fields, setFields] = useState<FieldDefinition[]>([]);
+
+  const isFieldNameValid = () => {
+    const requiredFields = fields.filter((f) => f.required);
+    const names = requiredFields.map((f) => f.name.trim());
+    const hasEmpty = names.some((name) => name === '');
+    const hasDuplicates = new Set(names).size !== names.length;
+    return !hasEmpty && !hasDuplicates;
+  };
+
   useEffect(() => {
     setFields(
       inferredFields.map((f) => ({
@@ -60,18 +65,22 @@ export default function AssetTypeEditor({ worksheet }: Props) {
 
   return (
     <div className="space-y-6">
-      {/* 📌 Metadata Editor */}
-      <AssetTypeMetaEditor meta={meta} onChange={setMeta} />
+      {/* ✅ Layout: Metadata dan Dropdown sebelah kiri sidebar, lalu Table full width */}
+      <div className="grid grid-cols-1 items-start gap-6 lg:grid-cols-[300px_1fr]">
+        {/* 📌 Metadata di sisi kiri */}
+        <AssetTypeMetaEditor meta={meta} onChange={setMeta} />
 
-      {/* 📌 Editor Fields */}
-      <SchemaFieldEditor fields={fields} onChange={setFields} />
+        {/* 📌 Field Table di sisi kanan */}
+        <SchemaFieldEditor fields={fields} onChange={setFields} />
+      </div>
 
-      {/* 📌 Tombol Simpan */}
+      {/* ✅ Tombol Save */}
       <SaveAssetTypeSchemaButton
         assetTypeId={meta.asset_type_id}
         label={meta.label}
         categoryId={meta.category_id}
         fields={fields}
+        disabled={!isFieldNameValid()}
       />
     </div>
   );

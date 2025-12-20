@@ -83,23 +83,25 @@ export default function AssetTypeMetaEditor({ meta, onChange }: Props) {
         {/* Asset Category */}
         <div>
           <label
-            htmlFor="categorySelect"
+            htmlFor="categoryAsset"
             className="text-sm font-medium text-gray-600 dark:text-gray-300"
           >
             Kategori Aset
           </label>
-          <select
+          <input
+            list="category-options"
             value={meta.category_id}
             onChange={(e) => update('category_id', e.target.value)}
+            placeholder="-- Pilih atau ketik kategori --"
             className="w-full rounded border px-3 py-2 text-sm shadow-sm"
-          >
-            <option value="">-- Pilih Kategori --</option>
+          />
+          <datalist id="category-options">
             {categories.map((cat) => (
               <option key={cat.category_id} value={cat.category_id}>
                 {cat.name}
               </option>
             ))}
-          </select>
+          </datalist>
         </div>
       </div>
     </div>
