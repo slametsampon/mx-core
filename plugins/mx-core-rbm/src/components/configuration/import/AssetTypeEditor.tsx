@@ -37,6 +37,7 @@ export default function AssetTypeEditor({ worksheet }: Props) {
   }, [worksheet]);
 
   const rows: any[] = getWorksheetRows(worksheet.worksheet);
+  const currentRow = rows[currentIndex] ?? {}; // 🔧 ADDED
   const headerRow: string[] = rows[0] ? Object.keys(rows[0]) : [];
 
   const inferredFields = useColumnInference(headerRow, rows);
@@ -80,7 +81,11 @@ export default function AssetTypeEditor({ worksheet }: Props) {
         />
 
         {/* 📌 Field Table di sisi kanan */}
-        <SchemaFieldEditor fields={fields} onChange={setFields} />
+        <SchemaFieldEditor
+          fields={fields}
+          onChange={setFields}
+          currentRow={currentRow} // 🔧 ADDED
+        />
       </div>
 
       {/* ✅ Tombol Save */}

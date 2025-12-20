@@ -1,5 +1,6 @@
 // plugins/mx-core-rbm/src/services/importer.ts
 
+import { cleanWorksheetData } from '@/utils/cleaners';
 import * as XLSX from 'xlsx';
 
 /* ======================================================
@@ -57,13 +58,14 @@ function extractTableFromSheet(sheet: XLSX.WorkSheet): {
   if (!ref) return { headers: [], data: [] };
 
   const range = XLSX.utils.decode_range(ref);
+
   let headerRowIndex = -1;
 
+  // 🔍 Deteksi baris header berdasarkan nilai kolom A yang cocok dengan "NO"
   for (let r = range.s.r; r <= range.e.r; r++) {
     const cell = sheet[XLSX.utils.encode_cell({ r, c: 0 })];
-    const value = cell?.v?.toString().trim().toLowerCase();
-
-    if (value === 'no' || value === 'no.' || value === 'no ') {
+    const value = cell?.v?.toString().trim();
+    if (/^no\.?$/i.test(value ?? '')) {
       headerRowIndex = r;
       break;
     }
@@ -74,6 +76,7 @@ function extractTableFromSheet(sheet: XLSX.WorkSheet): {
     headerRowIndex = 3;
   }
 
+  // Ambil semua baris dari header hingga akhir
   const table = XLSX.utils.sheet_to_json<any[]>(sheet, {
     header: 1,
     range: {
@@ -91,13 +94,58 @@ function extractTableFromSheet(sheet: XLSX.WorkSheet): {
 
   const headers: string[] = headerRow.map((h: any) => String(h || '').trim());
 
-  const data = bodyRows.map((row) => {
-    const obj: Record<string, any> = {};
-    headers.forEach((h, idx) => {
-      obj[h] = row[idx];
+  // 🧠 Temukan indeks kolom "NO"
+  const noColIndex = headers.findIndex((h) => /^no\.?$/i.test(h.trim()));
+
+  let data: Record<string, any>[] = [];
+
+  if (noColIndex !== -1) {
+    // 🔍 Temukan batas bawah: baris pertama dengan NO = 1
+    let startIdx = bodyRows.findIndex((row) => {
+      const val = parseInt(String(row[noColIndex]).trim(), 10);
+      return val === 1;
     });
-    return obj;
-  });
+
+    // Jika tidak ketemu NO = 1, fallback ke awal
+    if (startIdx === -1) startIdx = 0;
+
+    // 🔍 Ambil semua nilai NO numerik dari baris setelah startIdx
+    const parsedNumbers = bodyRows
+      .slice(startIdx)
+      .map((row) => {
+        const raw = row[noColIndex];
+        const num = parseInt(String(raw).trim(), 10);
+        return isNaN(num) ? null : num;
+      })
+      .filter((v): v is number => v !== null);
+
+    const maxNo = Math.max(...parsedNumbers);
+
+    // 🔍 Tentukan batas atas (inklusif)
+    const limitedRows = bodyRows.slice(startIdx).filter((row) => {
+      const raw = row[noColIndex];
+      const num = parseInt(String(raw).trim(), 10);
+      return !isNaN(num) && num >= 1 && num <= maxNo;
+    });
+
+    // Konversi array menjadi object per row
+    data = limitedRows.map((row) => {
+      const obj: Record<string, any> = {};
+      headers.forEach((h, idx) => {
+        obj[h] = row[idx];
+      });
+      return obj;
+    });
+  } else {
+    // ❗Jika kolom "NO" tidak ditemukan, fallback ke semua baris
+    data = bodyRows.map((row) => {
+      const obj: Record<string, any> = {};
+      headers.forEach((h, idx) => {
+        obj[h] = row[idx];
+      });
+      return obj;
+    });
+  }
 
   return { headers, data };
 }
@@ -162,7 +210,10 @@ export async function parseAssetTypeWorkbook(): Promise<ParsedXlsxResult> {
       const sheet = workbook.Sheets[wsName];
       const { headers, data } = extractTableFromSheet(sheet);
 
-      rawData[wsName] = data;
+      // Setelah rows dibaca:
+      const cleanedRows = cleanWorksheetData(data);
+
+      rawData[wsName] = cleanedRows;
 
       const base = worksheetDefsBase.find((d) => d.worksheet === wsName);
       if (base) {
