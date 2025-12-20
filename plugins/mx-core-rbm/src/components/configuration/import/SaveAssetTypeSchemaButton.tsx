@@ -3,13 +3,14 @@
 'use client';
 
 import React from 'react';
+import { FieldDefinition } from '@/types/AssetTypeSchema';
 
 type Props = {
   assetTypeId: string;
   label: string;
   categoryId: string;
-  fields: any[];
-  disabled?: boolean; // ✅ TAMBAH INI
+  fields: FieldDefinition[];
+  disabled?: boolean;
 };
 
 export default function SaveAssetTypeSchemaButton({
@@ -25,11 +26,23 @@ export default function SaveAssetTypeSchemaButton({
       return;
     }
 
+    // ✅ Filter hanya field yang di-'include'
+    const cleanedFields = fields
+      .filter((f) => f.include)
+      .map(({ name, label, type, required, unit, options }) => ({
+        name,
+        label,
+        type,
+        required,
+        ...(unit ? { unit } : {}),
+        ...(type === 'enum' && options ? { options } : {}),
+      }));
+
     const schema = {
       asset_type_id: assetTypeId,
       label,
       category_id: categoryId || 'uncategorized',
-      fields,
+      fields: cleanedFields,
       ppc_strategy: {
         preventive: [],
         predictive: [],

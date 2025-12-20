@@ -289,54 +289,42 @@ plugins/
 
 ---
 
-### ✅ **Step 6 – Header Matching**
+### 🔹 **Step 6: Data Cleaning & Normalisasi**
 
-- Cek apakah semua kolom di Excel dapat dimapping ke `fields[]`
-- Pastikan:
+> 🎯 Target:
 
-  - Semua kolom `required: true` tersedia
-  - Tidak ada kolom tidak dikenal (jika strict)
+- Replace `0,03`, `0.03`, `,03`, `.03` → `0.03` (normalize desimal, comma → dot)
+- Replace `-` → `null`
+- Trim whitespace semua cell (termasuk leading/trailing)
 
-- Gunakan `label`, `header`, atau `aliases[]` untuk fleksibilitas
+> 🔧 Solusi:
 
----
-
-### ✅ **Step 7 – Data Normalization**
-
-- Bersihkan nilai cell:
-
-  - Ganti `0,03` → `0.03`, `-` → `null`, trim whitespace
-
-- Terapkan transformasi berdasarkan `type` dan `unit`
-- Hasil: data siap divalidasi
+- Buat `cleanWorksheetData(rows: any[]): any[]` di helper file `cleaners.ts`
+- Fungsi ini akan dipanggil **saat membaca data dari XLSX**, **sebelum** disimpan sebagai CSV
 
 ---
 
-### ✅ **Step 8 – Row-Level Validation**
+### 🔹 **Step 7: Simpan data ke CSV**
 
-- Bangun schema runtime dari `fields[]` (misal: Zod)
-- Validasi tiap baris:
+> 🎯 Target:
 
-  - Cek tipe, enum, kolom kosong
+- Simpan data ke `.csv` dengan delimiter `;` (bukan `,`)
+- Nama file mengikuti `asset_type_id`. Contoh: `agitator.csv`
+- Gunakan tombol baru: 💾 `Simpan Data (CSV)`
 
-- Tandai baris valid dan error
-- Buat ringkasan error
+> 🔧 Solusi:
+
+- Buat button baru seperti tombol schema JSON
+- Gunakan `Papa.unparse(data, { delimiter: ";" })` untuk export CSV
 
 ---
 
-### ✅ **Step 9 – Preview & Summary**
+### 🔹 **Step 8: Tampilkan isi data**
 
-- Tampilkan:
+> 🎯 Target:
 
-  - Jumlah baris valid / error
-  - Preview data valid
-  - Baris error + alasan
-
-- Opsi user:
-
-  - Simpan hanya baris valid
-  - Perbaiki error dan reupload
-  - Export error sebagai file terpisah
+- Tampilkan data hasil clean + normalisasi (preview)
+- Bisa di bawah tabel struktur schema (opsional)
 
 ---
 

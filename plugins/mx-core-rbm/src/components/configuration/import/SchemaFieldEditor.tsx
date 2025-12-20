@@ -11,6 +11,38 @@ type Props = {
   onChange: (fields: FieldDefinition[]) => void;
 };
 
+const COMMON_UNITS = [
+  '',
+  'kg',
+  'g',
+  'mg',
+  'ton',
+  'mm',
+  'cm',
+  'm',
+  'km',
+  'inch',
+  'ft',
+  'liter',
+  'ml',
+  'bar',
+  'psi',
+  '°C',
+  '°F',
+  'rpm',
+  'Hz',
+  'volt',
+  'ampere',
+  'watt',
+  'kWh',
+  'hour',
+  'minute',
+  'second',
+  '%',
+  'N',
+  'Pa',
+];
+
 export default function SchemaFieldEditor({ fields, onChange }: Props) {
   // 🔑 index field enum yang sedang diedit (null = modal tertutup)
   const [editingEnumIndex, setEditingEnumIndex] = useState<number | null>(null);
@@ -27,9 +59,11 @@ export default function SchemaFieldEditor({ fields, onChange }: Props) {
       <table className="min-w-full table-auto text-sm">
         <thead className="bg-gray-100 dark:bg-gray-800">
           <tr>
+            <th className="border px-3 py-2 text-left">Include</th>
             <th className="border px-3 py-2 text-left">Raw Name</th>
             <th className="border px-3 py-2 text-left">Suggested Name</th>
             <th className="border px-3 py-2 text-left">Type</th>
+            <th className="border px-3 py-2 text-left">Unit</th>
             <th className="border px-3 py-2 text-left">Required</th>
           </tr>
         </thead>
@@ -37,10 +71,21 @@ export default function SchemaFieldEditor({ fields, onChange }: Props) {
         <tbody>
           {fields.map((f, idx) => (
             <tr key={idx} className="hover:bg-gray-50 dark:hover:bg-gray-700">
-              {/* Raw Name */}
-              <td className="border px-3 py-2">{f.rawName ?? '-'}</td>
+              {/* Include */}
+              <td className="border px-3 py-2 text-center">
+                <input
+                  type="checkbox"
+                  checked={f.include}
+                  onChange={(e) =>
+                    updateField(idx, { include: e.target.checked })
+                  }
+                />
+              </td>
 
-              {/* Suggested Name */}
+              {/* Raw Name */}
+              <td className="border px-3 py-2">{f.rawName}</td>
+
+              {/* Schema Name */}
               <td className="border px-3 py-2">
                 <input
                   className="w-full rounded border px-2 py-1"
@@ -72,6 +117,25 @@ export default function SchemaFieldEditor({ fields, onChange }: Props) {
                   >
                     ⚙️
                   </button>
+                )}
+              </td>
+
+              {/* Unit (only if number) */}
+              <td className="border px-3 py-2">
+                {f.type === 'number' ? (
+                  <select
+                    className="w-full rounded border px-2 py-1"
+                    value={f.unit ?? ''}
+                    onChange={(e) => updateField(idx, { unit: e.target.value })}
+                  >
+                    {COMMON_UNITS.map((unit) => (
+                      <option key={unit} value={unit}>
+                        {unit === '' ? '--' : unit}
+                      </option>
+                    ))}
+                  </select>
+                ) : (
+                  '-'
                 )}
               </td>
 

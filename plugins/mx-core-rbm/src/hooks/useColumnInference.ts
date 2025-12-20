@@ -4,11 +4,12 @@ import { useMemo } from 'react';
 import { toSnakeCase } from '@/utils/snakeCase';
 
 export type InferredField = {
-  rawName: string;
+  label: string;
   suggestedName: string;
   type: 'string' | 'number' | 'boolean' | 'enum';
   required: boolean;
   unit?: string;
+  include: boolean;
 };
 
 function guessType(values: any[]): 'string' | 'number' | 'boolean' | 'enum' {
@@ -40,18 +41,19 @@ export function useColumnInference(
   rows: any[]
 ): InferredField[] {
   return useMemo(() => {
-    return headerRow.map((rawName) => {
-      const suggestedName = toSnakeCase(rawName);
-      const sampleValues = rows.map((row) => row[rawName]);
+    return headerRow.map((label) => {
+      const suggestedName = toSnakeCase(label);
+      const sampleValues = rows.map((row) => row[label]);
 
       const fieldType = guessType(sampleValues);
-      const unit = extractUnit(rawName);
+      const unit = extractUnit(label);
 
       return {
-        rawName,
+        label,
         suggestedName,
         type: fieldType,
         required: sampleValues.some((v) => v !== '' && v !== null),
+        include: true,
         ...(unit ? { unit } : {}),
       };
     });

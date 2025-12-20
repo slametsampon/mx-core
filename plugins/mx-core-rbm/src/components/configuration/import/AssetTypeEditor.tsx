@@ -53,12 +53,13 @@ export default function AssetTypeEditor({ worksheet }: Props) {
     setFields(
       inferredFields.map((f) => ({
         name: f.suggestedName,
-        label: f.rawName,
-        rawName: f.rawName,
+        label: f.label,
+        rawName: f.label,
         type: f.type,
         required: f.required,
         unit: f.unit,
         options: f.type === 'enum' ? [] : undefined,
+        include: f.include,
       }))
     );
   }, [worksheet]);
