@@ -6,12 +6,13 @@ import React, { useEffect, useState } from 'react';
 
 import AssetTypeMetaEditor from './AssetTypeMetaEditor';
 import SchemaFieldEditor from './SchemaFieldEditor';
-import SaveAssetTypeSchemaButton from './SaveAssetTypeSchemaButton';
 
 import { WorksheetDefinition } from '@/services/importer';
 import { useColumnInference } from '@/hooks/useColumnInference';
 import { FieldDefinition } from '@/types/AssetTypeSchema';
 import { useImportSchema } from '@/contexts/ImportSchemaContext';
+import DownloadDropdownButton from './DownloadDropdownButton';
+import RowNavigator from '@/components/shared/RowNavigator';
 
 type Props = {
   worksheet: WorksheetDefinition;
@@ -68,33 +69,34 @@ export default function AssetTypeEditor({ worksheet }: Props) {
   }, [worksheet]);
 
   return (
-    <div className="space-y-6">
-      {/* ✅ Layout: Metadata dan Dropdown sebelah kiri sidebar, lalu Table full width */}
-      <div className="grid grid-cols-1 items-start gap-6 lg:grid-cols-[300px_1fr]">
-        {/* 📌 Metadata di sisi kiri */}
-        <AssetTypeMetaEditor
-          meta={meta}
-          onChange={setMeta}
+    <div className="space-y-4">
+      <AssetTypeMetaEditor
+        meta={meta}
+        onChange={setMeta}
+        currentIndex={currentIndex}
+        totalRows={rows.length}
+        onNavigate={setCurrentIndex}
+      />
+      <div className="flex flex-row items-end justify-between">
+        <DownloadDropdownButton
+          assetTypeId={meta.asset_type_id}
+          label={meta.label}
+          categoryId={meta.category_id}
+          fields={fields}
+          disabled={!isFieldNameValid()}
+          dataRows={rows}
+        />
+        <RowNavigator
           currentIndex={currentIndex}
           totalRows={rows.length}
           onNavigate={setCurrentIndex}
         />
-
-        {/* 📌 Field Table di sisi kanan */}
-        <SchemaFieldEditor
-          fields={fields}
-          onChange={setFields}
-          currentRow={currentRow} // 🔧 ADDED
-        />
       </div>
 
-      {/* ✅ Tombol Save */}
-      <SaveAssetTypeSchemaButton
-        assetTypeId={meta.asset_type_id}
-        label={meta.label}
-        categoryId={meta.category_id}
+      <SchemaFieldEditor
         fields={fields}
-        disabled={!isFieldNameValid()}
+        onChange={setFields}
+        currentRow={currentRow}
       />
     </div>
   );

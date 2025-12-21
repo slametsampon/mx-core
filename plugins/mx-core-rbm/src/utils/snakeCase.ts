@@ -1,24 +1,24 @@
 // plugins/mx-core-rbm/src/utils/snakeCase.ts
 
-/**
- * Mengubah string label menjadi snake_case
- * Contoh:
- *   "TAG NO."     → "tag_number"
- *   "Flow Max"    → "flow_max"
- *   "Flow (Nm3/h)" → "flow"
- */
+import { resolveAlias } from './domainAliasResolver';
+
 const EXCEPTION_MAP: Record<string, string> = {
-  'tag no.': 'tag_number',
+  'tag no.': 'tag_number', // legacy support (optional)
 };
 
 export function toSnakeCase(input: string): string {
   const normalized = input.trim().toLowerCase();
 
-  // ✅ Tangani exception
+  // ✅ Step 1: Tangani via domain alias resolver
+  const alias = resolveAlias(normalized);
+  if (alias) return alias;
+
+  // ✅ Step 2: Tangani via EXCEPTION_MAP (jika masih ada)
   if (EXCEPTION_MAP[normalized]) {
     return EXCEPTION_MAP[normalized];
   }
 
+  // ✅ Step 3: Normalisasi biasa (fallback)
   return normalized
     .replace(/\(.*?\)/g, '') // hilangkan unit di dalam tanda kurung
     .replace(/[^a-zA-Z0-9 ]/g, '') // hilangkan karakter non-alfabet/numerik

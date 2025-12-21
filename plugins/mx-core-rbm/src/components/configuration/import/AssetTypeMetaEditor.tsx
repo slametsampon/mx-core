@@ -3,7 +3,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import RowNavigator from '@/components/shared/RowNavigator';
+import { getService } from '@/services/getService';
 
 type AssetCategory = {
   category_id: string;
@@ -25,20 +25,21 @@ type Props = {
   onNavigate: (index: number) => void;
 };
 
-export default function AssetTypeMetaEditor({
-  meta,
-  onChange,
-  currentIndex,
-  totalRows,
-  onNavigate,
-}: Props) {
+export default function AssetTypeMetaEditor({ meta, onChange }: Props) {
   const [categories, setCategories] = useState<AssetCategory[]>([]);
 
   useEffect(() => {
-    fetch('/mocks/asset-category.json')
-      .then((r) => r.json())
-      .then(setCategories)
-      .catch(() => console.error('Gagal memuat kategori aset'));
+    const loadCategories = async () => {
+      try {
+        const service = getService<AssetCategory>('asset-category');
+        const result = await service.getAll();
+        setCategories(result);
+      } catch (err) {
+        console.error('Gagal memuat kategori aset:', err);
+      }
+    };
+
+    loadCategories();
   }, []);
 
   const update = <K extends keyof Meta>(key: K, value: Meta[K]) => {
@@ -56,6 +57,7 @@ export default function AssetTypeMetaEditor({
             Schema Name
           </label>
           <input
+            id="schemaName"
             value={meta.asset_type_id}
             onChange={(e) => update('asset_type_id', e.target.value)}
             className="w-full rounded border px-3 py-2 text-sm"
@@ -64,43 +66,35 @@ export default function AssetTypeMetaEditor({
 
         {/* Asset Label */}
         <div>
-          <label htmlFor="forLabel" className="text-sm font-medium">
+          <label htmlFor="label" className="text-sm font-medium">
             Asset Label
           </label>
           <input
+            id="label"
             value={meta.label}
             onChange={(e) => update('label', e.target.value)}
             className="w-full rounded border px-3 py-2 text-sm"
           />
         </div>
 
-        {/* Category */}
+        {/* Category: SELECT + Suggested */}
         <div>
-          <label htmlFor="catOption" className="text-sm font-medium">
+          <label htmlFor="category" className="text-sm font-medium">
             Kategori Aset
           </label>
-          <input
-            list="category-options"
+          <select
+            id="category"
             value={meta.category_id}
             onChange={(e) => update('category_id', e.target.value)}
             className="w-full rounded border px-3 py-2 text-sm"
-          />
-          <datalist id="category-options">
+          >
+            <option value="">-- Pilih Kategori Aset --</option>
             {categories.map((c) => (
               <option key={c.category_id} value={c.category_id}>
-                {c.name}
+                {c.category_id} - {c.name}
               </option>
             ))}
-          </datalist>
-        </div>
-
-        {/* ✅ NAVIGATOR DI TEMPAT YANG BENAR */}
-        <div className="flex items-end justify-end">
-          <RowNavigator
-            currentIndex={currentIndex}
-            totalRows={totalRows}
-            onNavigate={onNavigate}
-          />
+          </select>
         </div>
       </div>
     </div>
