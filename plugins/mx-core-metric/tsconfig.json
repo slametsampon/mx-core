@@ -19,7 +19,7 @@
       "@/utils/*": ["src/utils/*"],
       "@/mocks/*": ["src/mocks/*"]
     },
-    "noEmit": true
+    "noEmit": false
   },
   "include": ["src", ".next/types/**/*.ts"],
   "references": [

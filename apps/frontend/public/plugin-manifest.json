@@ -49,5 +49,48 @@
         "action": "approve"
       }
     ]
+  },
+  {
+    "name": "mx-core-rbm",
+    "type": "plugin",
+    "version": "0.1.0",
+    "description": "Risk-Based Maintenance plugin untuk manajemen aset berbasis ESC grading dan strategi TBM adaptif",
+    "ui": true,
+    "api": true,
+    "active": true,
+    "module": "dist/index.js",
+    "basePath": "https://mx-core-rbm.vercel.app",
+    "rbac": [
+      {
+        "role": "Operator",
+        "resource": "rbm",
+        "action": "view"
+      },
+      {
+        "role": "Inspector",
+        "resource": "rbm",
+        "action": "evaluate"
+      },
+      {
+        "role": "Engineer",
+        "resource": "rbm",
+        "action": "grade"
+      },
+      {
+        "role": "Planner",
+        "resource": "rbm",
+        "action": "schedule"
+      },
+      {
+        "role": "Supervisor",
+        "resource": "rbm",
+        "action": "approve"
+      },
+      {
+        "role": "Manager",
+        "resource": "rbm",
+        "action": "export"
+      }
+    ]
   }
 ]
