@@ -14,9 +14,12 @@ import { useModelManager } from '@/hooks/useModelManager';
 
 import { useImportSchema } from '@/contexts/ImportSchemaContext';
 import AssetTypeEditor from '@/components/configuration/import/AssetTypeEditor';
+import AssetTypeListEditor from '@/components/configuration/import/AssetTypeListEditor';
 
 export default function ConfigurationContent() {
-  const [mode, setMode] = useState<'manual' | 'import'>('manual');
+  const [mode, setMode] = useState<'manual' | 'import' | 'import-list'>(
+    'manual'
+  );
   const [selectedModel, setSelectedModel] = useState<ModelName>(
     modelOptions[0].id
   );
@@ -61,6 +64,10 @@ export default function ConfigurationContent() {
         onAssetTypeSelect={(schemaName) => {
           setMode('import');
           setSelectedSchemaName(schemaName);
+        }}
+        onImportListClick={() => {
+          setMode('import-list');
+          setSelectedSchemaName(null);
         }}
         collapsed={collapsed} // ✅ berikan prop collapsed
         onToggleCollapse={() => setCollapsed((prev) => !prev)} // ✅ toggle
@@ -116,6 +123,15 @@ export default function ConfigurationContent() {
               ⚙️ Interpretasi Struktur (Import XLSX)
             </h1>
             <AssetTypeEditor worksheet={selectedWorksheet} />
+          </>
+        )}
+
+        {mode === 'import-list' && (
+          <>
+            <h1 className="text-2xl font-bold text-gray-800">
+              🗂 Daftar Asset Type dari Worksheet
+            </h1>
+            <AssetTypeListEditor />
           </>
         )}
       </main>

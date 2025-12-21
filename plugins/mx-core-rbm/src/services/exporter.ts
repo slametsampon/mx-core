@@ -1,5 +1,6 @@
 // plugins/mx-core-rbm/src/services/exporter.ts
 
+import { AssetType } from '@/models/asset/asset-type';
 import { FieldDefinition } from '@/types/AssetTypeSchema';
 
 /**
@@ -48,10 +49,7 @@ export function convertRowsToCSV(
 ): string {
   const includedFields = fields.filter((f) => f.include);
 
-  // Header pakai name (snake_case)
   const headers = includedFields.map((f) => f.name);
-
-  // Data diambil dari rawName
   const rawKeys = includedFields.map((f) => f.rawName);
 
   const csv = [
@@ -62,7 +60,6 @@ export function convertRowsToCSV(
           const val = row[key];
           if (val == null) return '';
           const str = String(val);
-          // escape CSV jika perlu
           return /[;\n"]/.test(str) ? `"${str.replace(/"/g, '""')}"` : str;
         })
         .join(';')
@@ -86,6 +83,47 @@ export function triggerDownload(
   const a = document.createElement('a');
   a.href = url;
   a.download = filename;
+  a.click();
+
+  URL.revokeObjectURL(url);
+}
+
+/**
+ * Export all schemas to JSON and trigger download
+ * ✅ Termasuk VALIDASI: suggested name tidak boleh kosong/duplikat, dan category harus ada
+ */
+export function exportAllSchemasToJSON(allSchemas: AssetType[]) {
+  // Validasi field kosong
+  for (const item of allSchemas) {
+    if (!item.asset_type_id?.trim()) {
+      alert(`⚠️ Suggested name kosong pada "${item.label}"`);
+      return;
+    }
+    if (!item.category_id?.trim()) {
+      alert(`⚠️ Category kosong pada "${item.label}"`);
+      return;
+    }
+  }
+
+  // Validasi duplikat suggested name
+  const seen = new Set<string>();
+  for (const item of allSchemas) {
+    const name = item.asset_type_id;
+    if (seen.has(name)) {
+      alert(`⚠️ Duplicate suggested name: "${name}"`);
+      return;
+    }
+    seen.add(name);
+  }
+
+  // Jika lolos validasi, export
+  const json = JSON.stringify(allSchemas, null, 2);
+  const blob = new Blob([json], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'asset-type.json';
   a.click();
 
   URL.revokeObjectURL(url);

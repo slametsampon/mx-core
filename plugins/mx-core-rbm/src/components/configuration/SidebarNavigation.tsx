@@ -8,13 +8,14 @@ import { useImportSchema } from '@/contexts/ImportSchemaContext';
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/20/solid';
 
 type Props = {
-  mode: 'manual' | 'import';
+  mode: 'manual' | 'import' | 'import-list';
   selectedModel: string;
   selectedAssetTypeId?: string;
   onModelSelect: (modelId: string) => void;
   onAssetTypeSelect: (assetTypeId: string) => void;
-  collapsed: boolean; // ✅ tambahan
-  onToggleCollapse: () => void; // ✅ tambahan
+  onImportListClick: () => void; // ✅ Tambahan
+  collapsed: boolean;
+  onToggleCollapse: () => void;
 };
 
 export default function SidebarNavigation({
@@ -24,6 +25,7 @@ export default function SidebarNavigation({
   onModelSelect,
   onAssetTypeSelect,
   collapsed,
+  onImportListClick,
   onToggleCollapse,
 }: Props) {
   const { worksheetDefs, isLoading, error } = useImportSchema();
@@ -68,6 +70,13 @@ export default function SidebarNavigation({
               ))}
             </select>
           </div>
+
+          <button
+            onClick={onImportListClick}
+            className="mb-2 w-full rounded border bg-white px-3 py-2 text-left text-sm font-medium text-blue-600 hover:bg-gray-100"
+          >
+            🗂 Lihat Semua Asset-Type
+          </button>
 
           <div>
             <h2 className="mb-1 text-sm font-semibold text-gray-500">

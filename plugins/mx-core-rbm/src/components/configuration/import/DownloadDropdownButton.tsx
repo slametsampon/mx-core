@@ -67,7 +67,7 @@ export default function DownloadDropdownButton({
               onClick={handleExportJSON}
               className="w-full px-4 py-2 text-left hover:bg-gray-100"
             >
-              📁 Simpan Schema (.json)
+              📁 Export Schema (.json)
             </button>
           </MenuItem>
 
