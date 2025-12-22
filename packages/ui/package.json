@@ -14,7 +14,7 @@
       "import": "./dist/rbac/init.js"
     },
     "./components/CanAccess": {
-      "import": "./dist/components/CanAccess.js"
+      "import": "./dist/components/CanAccess.jsx"
     }
   },
   "scripts": {
