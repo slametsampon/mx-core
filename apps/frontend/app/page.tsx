@@ -16,6 +16,11 @@ interface PluginMeta {
 const currentRole: UserRole = 'Foreman'; // TODO: Ganti dengan context auth dinamis jika tersedia
 const BASE_PATH = process.env.BASE_PATH ?? '';
 
+export const metadata = {
+  title: 'Beranda | Frontend',
+  description: 'Mx Core Frontend - Entry point untuk Mx-Core System',
+};
+
 export default function HomePage() {
   const [plugins, setPlugins] = useState<PluginMeta[]>([]);
   const [error, setError] = useState<string | null>(null);

@@ -1,6 +1,9 @@
 // apps/frontend/app/layout.tsx
 
+import siteMetadata from '@/data/siteMetadata';
 import './globals.css';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 
 export default function RootLayout({
   children,
@@ -8,8 +11,19 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className="bg-white text-black">{children}</body>
+    <html lang="id" suppressHydrationWarning>
+      <head>
+        <link rel="icon" href="favicon.ico" type="image/x-icon" sizes="any" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta charSet="utf-8" />
+        <title>{siteMetadata.title}</title>
+        <meta name="description" content={siteMetadata.description} />
+      </head>
+      <body className="antialiased">
+        <Header /> {/* ✅ Header akan jadi full width */}
+        {children}
+        <Footer /> {/* ✅ Footer juga full width */}
+      </body>
     </html>
   );
 }
