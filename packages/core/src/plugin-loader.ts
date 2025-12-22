@@ -4,6 +4,9 @@ import path from 'path';
 import fs from 'fs';
 import { defineRule } from './rbac/rules.js';
 
+/**
+ * Metadata deklaratif yang didefinisikan oleh plugin.
+ */
 export interface PluginMeta {
   name: string;
   type?: string;
@@ -27,8 +30,24 @@ function isValidRule(rule: any): boolean {
   );
 }
 
+/**
+ * Memuat plugin dari folder tertentu.
+ *
+ * @param pluginsDir - Path direktori plugin, default ke `plugins`
+ * @param options - Opsi tambahan:
+ *   - `skipModuleCheck`: jika `true`, tidak akan memverifikasi file module plugin.
+ *
+ * Cocok digunakan untuk:
+ * - Runtime di backend (`skipModuleCheck: false`)
+ * - Generate plugin manifest di frontend (`skipModuleCheck: true`)
+ *
+ * @returns Daftar plugin dengan flag `ui: true` yang valid.
+ */
 export async function loadPlugins(
-  pluginsDir = 'plugins'
+  pluginsDir = 'plugins',
+  options?: {
+    skipModuleCheck?: boolean;
+  }
 ): Promise<PluginMeta[]> {
   console.log('[DEBUG] loadPlugins called with:', pluginsDir);
 
@@ -61,11 +80,18 @@ export async function loadPlugins(
     );
 
     const entryPath = path.join(pluginPath, pluginConfig.module);
-    if (!fs.existsSync(entryPath)) {
+
+    if (!options?.skipModuleCheck && !fs.existsSync(entryPath)) {
       console.warn(
         `[Plugin Loader] Skipped: ${plugin.name} (module not found at ${entryPath})`
       );
       continue;
+    }
+
+    if (options?.skipModuleCheck && !fs.existsSync(entryPath)) {
+      console.log(
+        `[Plugin Loader] [SKIPPED MODULE CHECK] ${plugin.name} has no module at ${entryPath} (ignored as expected)`
+      );
     }
 
     if (!pluginConfig.active) {

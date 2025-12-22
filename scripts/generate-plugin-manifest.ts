@@ -8,7 +8,7 @@ async function main() {
   const pluginsDir = 'plugins';
   console.log(`🔍 Scanning plugins from: ${pluginsDir}`);
 
-  const plugins: PluginMeta[] = await loadPlugins(pluginsDir);
+  const plugins = await loadPlugins('plugins', { skipModuleCheck: true });
 
   if (plugins.length === 0) {
     console.warn('⚠️  Tidak ada plugin UI yang ditemukan.');
