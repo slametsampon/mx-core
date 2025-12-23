@@ -8,6 +8,7 @@
   "active": true,
   "module": "dist/index.js",
   "basePath": "https://mx-core-metric.vercel.app",
+  "emoji": "📊",
   "rbac": [
     { "role": "Operator", "resource": "kpi", "action": "read" },
     { "role": "Supervisor", "resource": "kpi", "action": "validate" },

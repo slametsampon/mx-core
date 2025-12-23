@@ -8,6 +8,7 @@
     "api": false,
     "active": true,
     "module": "dist/index.js",
+    "emoji": "📝",
     "rbac": [
       {
         "role": "Engineer",
@@ -27,6 +28,7 @@
     "active": true,
     "module": "dist/index.js",
     "basePath": "https://mx-core-metric.vercel.app",
+    "emoji": "📊",
     "rbac": [
       {
         "role": "Operator",
@@ -60,6 +62,7 @@
     "active": true,
     "module": "dist/index.js",
     "basePath": "https://mx-core-rbm.vercel.app",
+    "emoji": "🛠️",
     "rbac": [
       {
         "role": "Operator",

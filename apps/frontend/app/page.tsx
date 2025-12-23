@@ -10,6 +10,7 @@ interface PluginMeta {
   name: string;
   basePath: string;
   description: string;
+  emoji?: string; // ✨ Tambahkan field emoji opsional
   [key: string]: any;
 }
 
@@ -28,45 +29,37 @@ export default function HomePage() {
   useEffect(() => {
     const manifestPath = `${BASE_PATH}/plugin-manifest.json`;
 
-    console.log('📦 Loading plugin manifest...');
-    console.log('🔍 BASE_PATH:', BASE_PATH);
-    console.log('🔗 Final fetch URL:', manifestPath);
-
     fetch(manifestPath)
       .then((res) => {
-        console.log('📡 Fetch status:', res.status);
         if (!res.ok) {
-          throw new Error(
-            `❌ Failed to fetch manifest (${res.status}) from ${manifestPath}`
-          );
+          throw new Error(`❌ Failed to fetch manifest (${res.status})`);
         }
         return res.json();
       })
-      .then((data) => {
-        console.log('✅ Plugin manifest loaded:', data);
-        setPlugins(data);
-      })
-      .catch((err) => {
-        console.error('🚨 Error loading plugin manifest:', err.message);
-        setError(err.message);
-      });
+      .then((data) => setPlugins(data))
+      .catch((err) => setError(err.message));
   }, []);
 
   return (
     <main className="mx-auto max-w-4xl px-6 py-10">
       {/* 🔰 HERO SECTION */}
       <section className="mb-10">
-        <h1 className="text-4xl font-bold text-gray-800">
-          🔧 MX-Core Platform
+        <h1 className="text-4xl font-bold text-gray-900">
+          🔧 <span className="text-indigo-600">MX-Core</span> Platform
         </h1>
-        <p className="mt-2 text-lg text-gray-600">
-          Industrial Plugin-based Platform untuk Metric, Docs, CMMS, RBM, dan
-          AI. Bangun solusi digital secara modular dan aman menggunakan plugin
-          yang dapat dikembangkan secara terpisah.
+        <p className="mt-3 text-lg text-gray-600">
+          Industrial Plugin-based Platform untuk{' '}
+          <span className="font-semibold italic text-indigo-600">Metric</span>,{' '}
+          <span className="font-semibold italic text-blue-700">Docs</span>,{' '}
+          <span className="font-semibold italic text-emerald-600">CMMS</span>,{' '}
+          <span className="font-semibold italic text-purple-600">RBM</span>, dan{' '}
+          <span className="font-semibold italic text-pink-600">AI</span>. Bangun
+          solusi digital secara modular dan aman menggunakan plugin yang dapat
+          dikembangkan secara terpisah.
         </p>
       </section>
 
-      {/* ⚠️ ERROR LOADING PLUGIN MANIFEST */}
+      {/* ⚠️ ERROR LOADING */}
       {error && (
         <div className="mb-6 rounded bg-red-100 p-4 text-sm text-red-800">
           ⚠️ {error}
@@ -85,18 +78,21 @@ export default function HomePage() {
           {plugins.map((plugin) => (
             <a
               key={plugin.name}
-              href={`${BASE_PATH}${plugin.basePath}`}
+              href={plugin.basePath}
               className="block rounded border p-4 transition hover:bg-gray-50"
             >
-              <h3 className="text-xl font-semibold">{plugin.name}</h3>
+              <h3 className="flex items-center gap-2 text-xl font-semibold">
+                <span>{plugin.emoji ?? '📦'}</span> {/* ✅ fallback emoji */}
+                {plugin.name}
+              </h3>
               <p className="text-sm text-gray-600">{plugin.description}</p>
             </a>
           ))}
         </div>
       </section>
 
-      {/* 🔐 RBAC-AWARE SECTION */}
-      <section className="mb-10">
+      {/* 🔐 RBAC SECTION */}
+      <section className="mb-6">
         <h2 className="mb-2 text-2xl font-semibold">
           🔐 Akses Berdasarkan Role
         </h2>
@@ -114,12 +110,6 @@ export default function HomePage() {
             </p>
           </div>
         </CanAccess>
-      </section>
-
-      {/* 🚀 CTA SECTION */}
-      <section className="mt-12 border-t pt-6 text-center text-sm text-gray-500">
-        Powered by <strong>MX-Core</strong> • Modular Digital Ecosystem for
-        Industry
       </section>
     </main>
   );

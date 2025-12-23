@@ -7,6 +7,7 @@
   "api": false,
   "active": true,
   "module": "dist/index.js",
+  "emoji": "📝",
   "rbac": [
     {
       "role": "Engineer",
