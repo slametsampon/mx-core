@@ -13,7 +13,7 @@ const Header = () => {
         <CustomLink href="/" aria-label={siteMetadata.headerTitle}>
           <div className="flex items-center justify-between">
             <div className="mr-3 rounded-lg border border-gray-300 shadow-sm dark:border-gray-600">
-              RBM Plugin
+              🛠️ RBM Plugin
             </div>
           </div>
         </CustomLink>

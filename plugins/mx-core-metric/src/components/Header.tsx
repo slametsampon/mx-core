@@ -12,8 +12,8 @@ const Header = () => {
       <div>
         <CustomLink href="/" aria-label={siteMetadata.headerTitle}>
           <div className="flex items-center justify-between">
-            <div className="mr-3 rounded-lg border border-gray-300 shadow-sm dark:border-gray-600">
-              Metric Plugin
+            <div className="mr-3 rounded-lg border border-gray-300 p-1 shadow-sm dark:border-gray-600">
+              📈 Metric Plugin
             </div>
           </div>
         </CustomLink>

@@ -20,6 +20,7 @@ export default function RootLayout({
     <html lang="id" suppressHydrationWarning>
       <head>
         <link rel="icon" href="favicon.ico" type="image/x-icon" sizes="any" />
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta charSet="utf-8" />
         <title>{siteMetadata.title}</title>
