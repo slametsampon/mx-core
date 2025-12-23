@@ -16,9 +16,6 @@ const Header = () => {
           <div className="rounded-md border border-indigo-300 bg-indigo-100 px-3 py-1 text-sm font-bold text-indigo-700 shadow-sm dark:border-indigo-500 dark:bg-indigo-900 dark:text-indigo-100">
             🚀 Mx-Core
           </div>
-          <span className="hidden text-base font-semibold text-gray-700 dark:text-gray-200 sm:inline">
-            <em>Frontend Gateway</em>
-          </span>
         </div>
       </CustomLink>
 
