@@ -1,10 +1,7 @@
 // apps/frontend/tailwind.config.js
 
 const config = {
-  content: [
-    './app/**/*.{ts,tsx,js,jsx}',
-    '../../plugins/mx-core-docs/src/**/*.{ts,tsx}', // ✅ tetap sertakan plugin
-  ],
+  content: ['./app/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {},
   },
