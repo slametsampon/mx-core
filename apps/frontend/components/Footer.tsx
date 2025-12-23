@@ -19,7 +19,7 @@ export default function Footer() {
         </div>
 
         {/* Footer Text & Links */}
-        <div className="mb-4">
+        <div className="mb-2">
           {/* 🚀 CTA */}
           <section className="mt-1 border-t pt-1 text-center text-sm text-gray-500">
             Powered by <strong>MX-Core</strong> • Modular Digital Ecosystem for

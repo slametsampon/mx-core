@@ -5,6 +5,7 @@
 import { useEffect, useState } from 'react';
 import { CanAccess } from '@mx-core/ui/components/CanAccess';
 import type { UserRole } from '@mx-core/types';
+import { PluginCard } from '@/components/PluginCard';
 
 interface PluginMeta {
   name: string;
@@ -24,23 +25,68 @@ export default function HomePageClient() {
   useEffect(() => {
     const manifestPath = `${BASE_PATH}/plugin-manifest.json`;
 
-    fetch(manifestPath)
-      .then((res) => {
-        if (!res.ok) {
+    async function fetchManifest() {
+      try {
+        const res = await fetch(manifestPath);
+        if (!res.ok)
           throw new Error(`Failed to fetch manifest (${res.status})`);
+
+        const raw = await res.json();
+
+        // Validasi dan filter plugin
+        const validated = Array.isArray(raw)
+          ? raw.filter(isValidPluginMeta)
+          : [];
+
+        if (validated.length === 0) {
+          throw new Error('No valid plugin entries found');
         }
-        return res.json();
-      })
-      .then(setPlugins)
-      .catch((err) => setError(err.message));
+
+        // Simpan ke localStorage sebagai fallback
+        localStorage.setItem(
+          'plugin-manifest-cache',
+          JSON.stringify(validated)
+        );
+        setPlugins(validated);
+      } catch (err: any) {
+        console.error('Plugin manifest error:', err.message);
+
+        // Fallback dari localStorage
+        const cached = localStorage.getItem('plugin-manifest-cache');
+        if (cached) {
+          try {
+            const parsed = JSON.parse(cached);
+            const valid = Array.isArray(parsed)
+              ? parsed.filter(isValidPluginMeta)
+              : [];
+            setPlugins(valid);
+          } catch {
+            setError('Plugin manifest corrupt and fallback failed.');
+          }
+        } else {
+          setError('Gagal memuat plugin dan tidak ada fallback.');
+        }
+      }
+    }
+
+    fetchManifest();
   }, []);
+
+  function isValidPluginMeta(obj: any): obj is PluginMeta {
+    return (
+      typeof obj === 'object' &&
+      typeof obj.name === 'string' &&
+      typeof obj.basePath === 'string' &&
+      typeof obj.description === 'string'
+    );
+  }
 
   return (
     <main className="mx-auto max-w-4xl px-6 py-10">
       {/* 🔰 HERO */}
       <section className="mb-10">
         <h1 className="text-4xl font-bold text-gray-900">
-          🔧 <span className="text-indigo-600">MX-Core</span> Platform
+          🔧 <span className="text-indigo-600">Mx-Core</span> Platform
         </h1>
         <p className="mt-3 text-lg text-gray-600">
           Industrial Plugin-based Platform untuk{' '}
@@ -70,17 +116,15 @@ export default function HomePageClient() {
           )}
 
           {plugins.map((plugin) => (
-            <a
+            <PluginCard
               key={plugin.name}
+              name={plugin.name}
+              emoji={plugin.emoji}
+              description={plugin.description}
               href={plugin.basePath}
-              className="block rounded border p-4 transition hover:bg-gray-50"
-            >
-              <h3 className="flex items-center gap-2 text-xl font-semibold">
-                <span>{plugin.emoji ?? '📦'}</span>
-                {plugin.name}
-              </h3>
-              <p className="text-sm text-gray-600">{plugin.description}</p>
-            </a>
+              version={plugin.version}
+              active={plugin.active}
+            />
           ))}
         </div>
       </section>
