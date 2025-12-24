@@ -3,8 +3,10 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import { LoginForm } from '@/components/LoginForm';
 import { RegisterModal } from '@/components/RegisterModal';
+import { AuthService } from '@/services/auth-service'; // Pastikan path benar
 
 export default function LoginPage() {
   const [form, setForm] = useState({
@@ -26,6 +28,8 @@ export default function LoginPage() {
   const [registerError, setRegisterError] = useState('');
   const [showRegister, setShowRegister] = useState(false);
 
+  const router = useRouter();
+
   useEffect(() => {
     setForm((prev) => ({
       ...prev,
@@ -42,15 +46,60 @@ export default function LoginPage() {
     setRegisterForm((prev) => ({ ...prev, [field]: value }));
   };
 
-  const handleLogin = (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    // 👉 Logic login akan ditambahkan nanti
-    setError('Belum ada logic login.');
+    setError('');
+    setLoading(true);
+
+    try {
+      await AuthService.login(form.username.trim(), form.password);
+      const nextPath = sessionStorage.getItem('next_path') || '/';
+      sessionStorage.removeItem('next_path');
+
+      router.push(nextPath);
+    } catch (err: any) {
+      setError(err?.message || 'Login gagal.');
+    } finally {
+      setLoading(false);
+    }
   };
 
-  const handleRegister = () => {
-    // 👉 Logic register akan ditambahkan nanti
-    setRegisterError('Belum ada logic register.');
+  const handleRegister = async () => {
+    setRegisterError('');
+
+    if (
+      !registerForm.username ||
+      !registerForm.password1 ||
+      !registerForm.password2
+    ) {
+      setRegisterError('Semua field harus diisi.');
+      return;
+    }
+
+    if (registerForm.password1 !== registerForm.password2) {
+      setRegisterError('Password tidak cocok.');
+      return;
+    }
+
+    try {
+      await AuthService.register({
+        username: registerForm.username.trim(),
+        password: registerForm.password1,
+        role: registerForm.role as any,
+        avatarUrl: `https://i.pravatar.cc/100?u=${registerForm.username}`,
+      });
+
+      // Autofill login form setelah register
+      setForm((prev) => ({
+        ...prev,
+        username: registerForm.username,
+        password: registerForm.password1,
+      }));
+
+      setShowRegister(false);
+    } catch (err: any) {
+      setRegisterError(err.message || 'Registrasi gagal.');
+    }
   };
 
   return (
