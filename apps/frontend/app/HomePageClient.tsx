@@ -6,12 +6,15 @@ import { useEffect, useState } from 'react';
 import { CanAccess } from '@mx-core/ui/components/CanAccess';
 import type { UserRole } from '@mx-core/types';
 import { PluginCard } from '@/components/PluginCard';
+import PluginIframe from '@/components/PluginIframe';
 
 interface PluginMeta {
   name: string;
   basePath: string;
   description: string;
   emoji?: string;
+  version?: string;
+  active?: boolean;
   [key: string]: any;
 }
 
@@ -20,6 +23,7 @@ const BASE_PATH = process.env.BASE_PATH ?? '';
 
 export default function HomePageClient() {
   const [plugins, setPlugins] = useState<PluginMeta[]>([]);
+  const [activePlugin, setActivePlugin] = useState<PluginMeta | null>(null);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
@@ -33,7 +37,6 @@ export default function HomePageClient() {
 
         const raw = await res.json();
 
-        // Validasi dan filter plugin
         const validated = Array.isArray(raw)
           ? raw.filter(isValidPluginMeta)
           : [];
@@ -42,7 +45,6 @@ export default function HomePageClient() {
           throw new Error('No valid plugin entries found');
         }
 
-        // Simpan ke localStorage sebagai fallback
         localStorage.setItem(
           'plugin-manifest-cache',
           JSON.stringify(validated)
@@ -51,7 +53,6 @@ export default function HomePageClient() {
       } catch (err: any) {
         console.error('Plugin manifest error:', err.message);
 
-        // Fallback dari localStorage
         const cached = localStorage.getItem('plugin-manifest-cache');
         if (cached) {
           try {
@@ -124,13 +125,37 @@ export default function HomePageClient() {
               href={plugin.basePath}
               version={plugin.version}
               active={plugin.active}
+              onOpen={() => setActivePlugin(plugin)} // 🎯 Integrasi iframe
             />
           ))}
         </div>
       </section>
 
+      {/* 🧭 Plugin Frame Viewer */}
+      {activePlugin && (
+        <section className="mt-10">
+          <div className="mb-2 flex items-center justify-between">
+            <h2 className="text-xl font-bold">
+              📦 Plugin Aktif: {activePlugin.name}
+            </h2>
+            <button
+              onClick={() => setActivePlugin(null)}
+              className="text-sm text-red-600 hover:underline"
+            >
+              ✖ Tutup Plugin
+            </button>
+          </div>
+
+          <PluginIframe
+            src={activePlugin.basePath}
+            title={activePlugin.name}
+            className="h-[80vh] w-full rounded-md border"
+          />
+        </section>
+      )}
+
       {/* 🔐 RBAC */}
-      <section>
+      <section className="mt-16">
         <h2 className="mb-2 text-2xl font-semibold">
           🔐 Akses Berdasarkan Role
         </h2>
