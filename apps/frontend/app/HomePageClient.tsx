@@ -125,7 +125,7 @@ export default function HomePageClient() {
               href={plugin.basePath}
               version={plugin.version}
               active={plugin.active}
-              onOpen={() => setActivePlugin(plugin)} // 🎯 Integrasi iframe
+              onOpenIframe={() => setActivePlugin(plugin)} // 🎯 Integrasi iframe
             />
           ))}
         </div>
