@@ -5,6 +5,7 @@ import siteMetadata from '@/data/siteMetadata';
 import headerNavLinks from '@/data/headerNavLinks';
 import CustomLink from './CustomLink';
 import MobileNav from './MobileNav';
+import UserInfoPlugin from './UserInfoPlugin';
 
 const Header = () => {
   return (
@@ -31,6 +32,8 @@ const Header = () => {
             </CustomLink>
           ))}
         <MobileNav />
+        {/* ✅ Tambahkan ini */}
+        <UserInfoPlugin />
       </div>
     </header>
   );

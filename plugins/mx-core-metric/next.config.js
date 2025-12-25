@@ -10,12 +10,27 @@ const nextConfig = {
   // Aktifkan source map untuk debugging di Vercel (opsional)
   productionBrowserSourceMaps: true,
 
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'i.pravatar.cc',
+      },
+    ],
+  },
+
   webpack(config) {
     config.module.rules.push({
       test: /\.svg$/i,
       issuer: /\.[jt]sx?$/,
       use: ['@svgr/webpack'],
     });
+    // Tambahkan ini:
+    config.module.rules.push({
+      test: /\.json$/,
+      type: 'json',
+    });
+
     return config;
   },
 };

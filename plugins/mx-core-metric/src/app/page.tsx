@@ -15,7 +15,7 @@ export default function LandingPage() {
       {/* Hero Section */}
       <section className="mx-auto max-w-5xl space-y-6 text-center">
         <h1 className="text-4xl font-bold leading-tight tracking-tight sm:text-5xl">
-          Metricube
+          Metric
         </h1>
         <p className="mx-auto max-w-3xl text-lg text-gray-600 dark:text-gray-300 sm:text-xl">
           Platform pemantauan <strong>KPI</strong> dan{' '}
@@ -63,7 +63,7 @@ export default function LandingPage() {
           Siap Meningkatkan Efisiensi Maintenance?
         </h2>
         <p className="mx-auto mb-6 max-w-xl text-gray-600 dark:text-gray-400">
-          Mulai gunakan Metricube sekarang dan pantau performa plant Anda dengan
+          Mulai gunakan Metric sekarang dan pantau performa plant Anda dengan
           lebih cerdas dan efisien.
         </p>
         <CustomLink

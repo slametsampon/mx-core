@@ -5,6 +5,7 @@ import '@/css/tailwind.css';
 import siteMetadata from '@/data/siteMetadata';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import { AuthContextProvider } from '@/context/AuthContextProvider';
 
 export const metadata: Metadata = {
   title: siteMetadata.title,
@@ -27,9 +28,11 @@ export default function RootLayout({
         <meta name="description" content={siteMetadata.description} />
       </head>
       <body className="antialiased">
-        <Header /> {/* ✅ Header akan jadi full width */}
-        {children}
-        <Footer /> {/* ✅ Footer juga full width */}
+        <AuthContextProvider>
+          <Header />
+          {children}
+          <Footer />
+        </AuthContextProvider>
       </body>
     </html>
   );
