@@ -1,6 +1,7 @@
-// packages/types/roles.ts
+// packages/types/src/roles.ts
 
 export type UserRole =
+  | 'Guest'
   | 'Operator'
   | 'Teknisi'
   | 'Engineer'

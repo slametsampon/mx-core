@@ -6,10 +6,10 @@ import SocialIcon from '@/components/social-icons';
 
 export default function Footer() {
   return (
-    <footer>
-      <div className="mt-8 flex flex-col items-center">
+    <footer className="w-full bg-gray-50 dark:bg-gray-900">
+      <div className="mx-auto w-full px-4 py-3 sm:px-6 lg:px-8">
         {/* Social Icons */}
-        <div className="mb-4 flex space-x-4">
+        <div className="mb-4 flex justify-center space-x-4">
           <SocialIcon
             kind="mail"
             href={`mailto:${siteMetadata.email}`}
@@ -19,14 +19,13 @@ export default function Footer() {
         </div>
 
         {/* Footer Text & Links */}
-        <div className="mb-2">
-          {/* 🚀 CTA */}
-          <section className="mt-1 border-t pt-1 text-center text-sm text-gray-500">
+        <div className="mb-4 text-center">
+          <section className="mt-1 border-t pt-1 text-sm text-gray-500">
             Powered by <strong>MX-Core</strong> • Modular Digital Ecosystem for
             Industry
           </section>
 
-          <div className="mb-2 flex flex-wrap justify-center space-x-2 text-sm text-gray-500 dark:text-gray-400">
+          <div className="mt-2 flex flex-wrap justify-center space-x-2 text-sm text-gray-500 dark:text-gray-400">
             <span>{siteMetadata.author}</span>
             <span>•</span>
             <span>© {new Date().getFullYear()}</span>
