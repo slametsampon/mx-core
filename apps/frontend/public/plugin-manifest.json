@@ -27,7 +27,7 @@
     "api": false,
     "active": true,
     "module": "dist/index.js",
-    "basePath": "https://mx-core-metric.vercel.app",
+    "basePath": "http://localhost:3001",
     "emoji": "📊",
     "rbac": [
       {
