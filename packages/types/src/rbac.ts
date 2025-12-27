@@ -3,6 +3,7 @@
 import { UserRole } from './roles';
 
 export type RBACAction =
+  | 'operate'
   | 'create'
   | 'read'
   | 'update'
