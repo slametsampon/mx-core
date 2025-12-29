@@ -2,57 +2,41 @@
 
 import path from 'path';
 import fs from 'fs';
-import { defineRule } from './rbac/rules.js';
+import { defineRule } from './rbac/rules';
+import {
+  USER_ROLES,
+  RBAC_ACTIONS,
+  type PluginMeta,
+  type RBACRule,
+  type UserRole,
+  type RBACAction,
+} from '@mx-core/types';
 
 /**
- * Metadata deklaratif yang didefinisikan oleh plugin.
+ * Validasi aturan RBAC dari plugin.json
  */
-export interface PluginMeta {
-  name: string;
-  type?: string;
-  ui: boolean;
-  api?: boolean;
-  module: string;
-  version?: string;
-  description?: string;
-  basePath?: string;
-  active?: boolean;
-  rbac?: any[];
-  [key: string]: any;
-}
-
 function isValidRule(rule: any): boolean {
-  return (
-    rule &&
-    typeof rule.role === 'string' &&
-    typeof rule.resource === 'string' &&
-    typeof rule.action === 'string'
-  );
+  if (
+    typeof rule !== 'object' ||
+    typeof rule.role !== 'string' ||
+    typeof rule.resource !== 'string' ||
+    typeof rule.action !== 'string'
+  ) {
+    return false;
+  }
+
+  const roleValid = USER_ROLES.includes(rule.role as UserRole);
+  const actionValid = RBAC_ACTIONS.includes(rule.action as RBACAction);
+  const resourceValid = rule.resource.trim().length > 0;
+
+  return roleValid && actionValid && resourceValid;
 }
 
-/**
- * Memuat plugin dari folder tertentu.
- *
- * @param pluginsDir - Path direktori plugin, default ke `plugins`
- * @param options - Opsi tambahan:
- *   - `skipModuleCheck`: jika `true`, tidak akan memverifikasi file module plugin.
- *
- * Cocok digunakan untuk:
- * - Runtime di backend (`skipModuleCheck: false`)
- * - Generate plugin manifest di frontend (`skipModuleCheck: true`)
- *
- * @returns Daftar plugin dengan flag `ui: true` yang valid.
- */
 export async function loadPlugins(
   pluginsDir = 'plugins',
-  options?: {
-    skipModuleCheck?: boolean;
-  }
+  options?: { skipModuleCheck?: boolean }
 ): Promise<PluginMeta[]> {
-  console.log('[DEBUG] loadPlugins called with:', pluginsDir);
-
   const resolvedPluginsDir = path.resolve(pluginsDir);
-  console.log('[DEBUG] Resolved plugin directory:', resolvedPluginsDir);
 
   if (!fs.existsSync(resolvedPluginsDir)) {
     throw new Error(`❌ Plugin directory not found: ${resolvedPluginsDir}`);
@@ -70,7 +54,7 @@ export async function loadPlugins(
 
     if (!fs.existsSync(configPath)) {
       console.warn(
-        `[Plugin Loader] Skipped: ${plugin.name} (plugin.json not found)`
+        `[Plugin Loader] ⚠️ Skipped: ${plugin.name} (plugin.json not found)`
       );
       continue;
     }
@@ -83,46 +67,51 @@ export async function loadPlugins(
 
     if (!options?.skipModuleCheck && !fs.existsSync(entryPath)) {
       console.warn(
-        `[Plugin Loader] Skipped: ${plugin.name} (module not found at ${entryPath})`
+        `[Plugin Loader] ⚠️ Skipped: ${plugin.name} (module not found: ${entryPath})`
       );
       continue;
-    }
-
-    if (options?.skipModuleCheck && !fs.existsSync(entryPath)) {
-      console.log(
-        `[Plugin Loader] [SKIPPED MODULE CHECK] ${plugin.name} has no module at ${entryPath} (ignored as expected)`
-      );
     }
 
     if (!pluginConfig.active) {
-      console.log(`[Plugin Loader] Skipped: ${plugin.name} (inactive)`);
+      console.log(`[Plugin Loader] ⏸️  Skipped (inactive): ${plugin.name}`);
       continue;
     }
 
-    // 💡 Proses deklarasi RBAC rules
+    // 🧩 RBAC CONFIG → REGISTER
     if (Array.isArray(pluginConfig.rbac)) {
-      for (const rule of pluginConfig.rbac) {
+      for (const raw of pluginConfig.rbac) {
+        if (!isValidRule(raw)) {
+          console.warn(`[RBAC] ⚠️ Invalid rule in ${plugin.name}:`, raw);
+          continue;
+        }
+
+        // 🧽 NORMALISASI tipe – agar cocok RBACRule (TS strict)
+        const normRule: RBACRule = {
+          role: raw.role as UserRole,
+          resource: raw.resource,
+          action: raw.action as RBACAction,
+        };
+
         try {
-          if (isValidRule(rule)) {
-            defineRule(rule);
-            console.log(`[RBAC] Rule registered from ${plugin.name}:`, rule);
-          } else {
-            console.warn(`[RBAC] Invalid rule format in ${plugin.name}:`, rule);
-          }
+          defineRule(normRule);
+          console.log(
+            `[RBAC] ✅ Rule registered from plugin "${plugin.name}":`,
+            normRule
+          );
         } catch (err) {
-          console.warn(`[RBAC] Invalid rule in ${plugin.name}:`, rule, err);
+          console.error(
+            `[RBAC] ❌ Error registering rule in plugin "${plugin.name}":`,
+            normRule,
+            err
+          );
         }
       }
     }
 
-    // 💡 Register plugin (yang UI-nya aktif)
+    // 🧩 UI Plugin registry
     if (pluginConfig.ui) {
-      pluginList.push({
-        ...pluginConfig,
-        name: plugin.name,
-      });
-
-      console.log(`[Plugin Loader] UI Registered: ${plugin.name}`);
+      pluginList.push({ ...pluginConfig, name: plugin.name });
+      console.log(`[Plugin Loader] ✅ UI plugin registered: ${plugin.name}`);
     }
   }
 

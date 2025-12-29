@@ -27,8 +27,8 @@
     "api": false,
     "active": true,
     "module": "dist/index.js",
-    "basePath": "http://localhost:3001",
-    "emoji": "📊",
+    "basePath": "https://mx-core-metric.vercel.app",
+    "emoji": "📈",
     "rbac": [
       {
         "role": "Operator",
@@ -94,23 +94,6 @@
         "resource": "rbm",
         "action": "export"
       }
-    ]
-  },
-  {
-    "name": "mx-core-ai",
-    "type": "plugin",
-    "version": "0.1.0",
-    "description": "AI untuk prediksi kegagalan peralatan industri dan rekomendasi kerja berbasis data.",
-    "ui": true,
-    "api": true,
-    "active": false,
-    "module": "dist/index.js",
-    "basePath": "https://mx-core-ai.vercel.app",
-    "emoji": "🤖",
-    "rbac": [
-      { "role": "Engineer", "resource": "ai", "action": "analyze" },
-      { "role": "Manager", "resource": "ai", "action": "approve" },
-      { "role": "Operator", "resource": "ai", "action": "view" }
     ]
   }
 ]

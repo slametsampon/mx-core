@@ -2,22 +2,26 @@
 
 import { UserRole } from './roles';
 
-export type RBACAction =
-  | 'operate'
-  | 'create'
-  | 'read'
-  | 'update'
-  | 'delete'
-  | 'approve'
-  | 'assign'
-  | 'validate'
-  | 'manage';
+// ✅ SSOT: semua RBAC actions dari sini
+export const RBAC_ACTIONS = [
+  'operate',
+  'create',
+  'read',
+  'update',
+  'delete',
+  'approve',
+  'assign',
+  'validate',
+  'manage',
+] as const;
+
+export type RBACAction = (typeof RBAC_ACTIONS)[number];
 
 export interface RBACRule {
   role: UserRole;
   resource: string;
   action: RBACAction;
-  condition?: Record<string, unknown>; // optional for ABAC in future
+  condition?: Record<string, unknown>;
 }
 
 export interface RBACContext {

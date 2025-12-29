@@ -1,6 +1,6 @@
 // packages/core/src/plugin-registry.ts
 
-import { PluginMeta } from './types';
+import { PluginMeta } from '@mx-core/types';
 
 const registry = new Map<string, PluginMeta>();
 

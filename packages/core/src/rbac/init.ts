@@ -40,7 +40,6 @@ export function registerDefaultRules() {
 
 /**
  * Initialize ulang sistem RBAC
- * Bisa digunakan di SSR, test, dynamic reload
  */
 export function initializeRBAC(opts?: { includeDefault?: boolean }) {
   resetRules();

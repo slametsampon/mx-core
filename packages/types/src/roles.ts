@@ -1,18 +1,7 @@
 // packages/types/src/roles.ts
 
-export type UserRole =
-  | 'Guest'
-  | 'Operator'
-  | 'Teknisi'
-  | 'Engineer'
-  | 'Foreman'
-  | 'Supervisor'
-  | 'Superintendent'
-  | 'Manager'
-  | 'Admin';
-
-// Urutan hierarki role (dari terendah ke tertinggi)
-export const ROLE_ORDER: UserRole[] = [
+// ✅ SSOT: Daftar role tunggal & tidak boleh berubah sembarangan
+export const USER_ROLES = [
   'Guest',
   'Operator',
   'Teknisi',
@@ -22,15 +11,20 @@ export const ROLE_ORDER: UserRole[] = [
   'Superintendent',
   'Manager',
   'Admin',
-];
+] as const;
 
-// Fungsi bandingkan level role
+export type UserRole = (typeof USER_ROLES)[number];
+
+// Urutan hierarki role (dari terendah ke tertinggi)
+export const ROLE_ORDER: UserRole[] = [...USER_ROLES];
+
+// Bandingkan level role
 export function roleGte(a: UserRole, b: UserRole): boolean {
   return ROLE_ORDER.indexOf(a) >= ROLE_ORDER.indexOf(b);
 }
 
-// Fungsi normalisasi dari string bebas ke UserRole valid
+// Normalisasi dari string bebas ke UserRole (case-insensitive)
 export function normalizeRole(input: string): UserRole | undefined {
   const lower = input.toLowerCase();
-  return ROLE_ORDER.find((role) => role.toLowerCase() === lower);
+  return USER_ROLES.find((r) => r.toLowerCase() === lower);
 }

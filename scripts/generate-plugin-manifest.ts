@@ -2,7 +2,7 @@
 
 import fs from 'fs';
 import path from 'path';
-import { loadPlugins, PluginMeta } from '@mx-core/core';
+import { loadPlugins } from '@mx-core/core';
 
 async function main() {
   const pluginsDir = 'plugins';

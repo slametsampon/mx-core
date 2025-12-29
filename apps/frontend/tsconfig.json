@@ -9,7 +9,11 @@
       "@/data/*": ["data/*"],
       "@/styles/*": ["styles/*"],
       "@mx-core/ui": ["../../packages/ui/dist"],
-      "@mx-core/ui/*": ["../../packages/ui/dist/*"]
+      "@mx-core/ui/*": ["../../packages/ui/dist/*"],
+      "@mx-core/core": ["../../packages/core/dist"],
+      "@mx-core/core/*": ["../../packages/core/dist/*"],
+      "@mx-core/core/rbac": ["../../packages/core/dist/rbac"],
+      "@mx-core/core/rbac/*": ["../../packages/core/dist/rbac/*"]
     },
     "noEmit": true
   },
