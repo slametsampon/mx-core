@@ -10,7 +10,7 @@
     "resolveJsonModule": true,
     "strict": true,
     "baseUrl": ".",
-    "typeRoots": ["./types", "./node_modules/@types"],
+    "typeRoots": ["src/types", "./node_modules/@types"],
     "paths": {
       "@mx-core/core": ["../../packages/core/dist"],
       "@mx-core/core/*": ["../../packages/core/dist/*"],

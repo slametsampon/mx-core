@@ -4,26 +4,23 @@
 
 import { useEffect, useState } from 'react';
 import { CanAccess } from '@mx-core/ui/components/CanAccess';
-import type { UserRole } from '@mx-core/types';
+import { PluginMeta, UserBase, UserRole } from '@mx-core/types';
 import { PluginCard } from '@/components/PluginCard';
 import PluginIframe from '@/components/PluginIframe';
+import { AuthService } from '@/services/auth-service';
+import { createSession } from '@/services/session.service';
 
-interface PluginMeta {
-  name: string;
-  basePath: string;
-  description: string;
-  emoji?: string;
-  version?: string;
-  active?: boolean;
-  [key: string]: any;
-}
-
-const currentRole: UserRole = 'Foreman';
 const BASE_PATH = process.env.BASE_PATH ?? '';
+
+interface ActivePluginSession {
+  plugin: PluginMeta;
+  sessionId: string;
+  iframeUrl: string;
+}
 
 export default function HomePageClient() {
   const [plugins, setPlugins] = useState<PluginMeta[]>([]);
-  const [activePlugin, setActivePlugin] = useState<PluginMeta | null>(null);
+  const [active, setActive] = useState<ActivePluginSession | null>(null);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
@@ -36,14 +33,12 @@ export default function HomePageClient() {
           throw new Error(`Failed to fetch manifest (${res.status})`);
 
         const raw = await res.json();
-
         const validated = Array.isArray(raw)
           ? raw.filter(isValidPluginMeta)
           : [];
 
-        if (validated.length === 0) {
+        if (validated.length === 0)
           throw new Error('No valid plugin entries found');
-        }
 
         localStorage.setItem(
           'plugin-manifest-cache',
@@ -52,7 +47,6 @@ export default function HomePageClient() {
         setPlugins(validated);
       } catch (err: any) {
         console.error('Plugin manifest error:', err.message);
-
         const cached = localStorage.getItem('plugin-manifest-cache');
         if (cached) {
           try {
@@ -81,6 +75,40 @@ export default function HomePageClient() {
       typeof obj.description === 'string'
     );
   }
+
+  const handleOpenPlugin = async (plugin: PluginMeta) => {
+    try {
+      const rawUser = AuthService.getUser();
+      if (!rawUser) {
+        setError('User belum login. Silakan login ulang.');
+        return;
+      }
+
+      const user: UserBase = {
+        username: rawUser.username,
+        avatarUrl: rawUser.avatarUrl,
+        role: rawUser.role ?? 'Guest',
+      };
+
+      const scope = plugin.basePath ?? plugin.name;
+      const sessionId = await createSession(user, scope);
+
+      localStorage.setItem('plugin_session_id', sessionId);
+
+      const url = `${scope}?session=${sessionId}`;
+      setActive({ plugin, sessionId, iframeUrl: url });
+
+      // 🧹 Reset error jika berhasil
+      setError(null);
+    } catch (err: any) {
+      console.error('Gagal membuka plugin:', err);
+      setError(
+        'Gagal membuka plugin. Coba lagi nanti atau hubungi admin jika error terus berulang.'
+      );
+    }
+  };
+
+  const currentRole: UserRole = AuthService.getUser()?.role ?? 'Guest';
 
   return (
     <main className="mx-auto max-w-4xl px-6 py-10">
@@ -121,25 +149,25 @@ export default function HomePageClient() {
               key={plugin.name}
               name={plugin.name}
               emoji={plugin.emoji}
-              description={plugin.description}
-              href={plugin.basePath}
+              description={plugin.description ?? ''}
+              href={plugin.basePath ?? '#'}
               version={plugin.version}
               active={plugin.active}
-              onOpenIframe={() => setActivePlugin(plugin)} // 🎯 Integrasi iframe
+              onOpenIframe={() => handleOpenPlugin(plugin)}
             />
           ))}
         </div>
       </section>
 
       {/* 🧭 Plugin Frame Viewer */}
-      {activePlugin && (
+      {active && (
         <section className="mt-10">
           <div className="mb-2 flex items-center justify-between">
             <h2 className="text-xl font-bold">
-              📦 Plugin Aktif: {activePlugin.name}
+              📦 Plugin Aktif: {active.plugin.name}
             </h2>
             <button
-              onClick={() => setActivePlugin(null)}
+              onClick={() => setActive(null)}
               className="text-sm text-red-600 hover:underline"
             >
               ✖ Tutup Plugin
@@ -147,8 +175,8 @@ export default function HomePageClient() {
           </div>
 
           <PluginIframe
-            src={activePlugin.basePath}
-            title={activePlugin.name}
+            src={active.iframeUrl}
+            title={active.plugin.name}
             className="h-[80vh] w-full rounded-md border"
           />
         </section>

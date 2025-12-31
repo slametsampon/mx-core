@@ -9,57 +9,81 @@ interface Props {
   children: ReactNode;
 }
 
-/**
- * AuthContextProvider
- *
- * - Menunggu pesan dari parent (frontend host) via postMessage
- * - Jika tidak ada pesan, fallback baca dari localStorage (untuk tab baru)
- * - Menyediakan AuthContext ke seluruh plugin
- */
 export function AuthContextProvider({ children }: Props) {
   const [user, setUser] = useState<AuthContextUser | null>(null);
+  const [sessionError, setSessionError] = useState<string | null>(null);
 
   useEffect(() => {
     let messageReceived = false;
 
+    // === 1️⃣ POSTMESSAGE (utama) ===
     function handleMessage(event: MessageEvent) {
       if (!event.data || event.data.type !== 'auth') return;
 
-      // ✅ Terima postMessage
       const userData = event.data.user;
       if (userData && typeof userData.username === 'string') {
         messageReceived = true;
         setUser(userData);
-        // Simpan ke localStorage sebagai fallback untuk tab baru selanjutnya
         try {
           localStorage.setItem('plugin_user_cache', JSON.stringify(userData));
         } catch (err) {
-          console.error('Unexpected error:', err);
+          console.error('Unexpected error storing cache:', err);
         }
       }
     }
 
-    // Dengarkan pesan dari host
     window.addEventListener('message', handleMessage);
 
-    // ⏱️ Fallback jika tidak ada pesan masuk dalam 500ms
-    const fallbackTimeout = setTimeout(() => {
-      if (!messageReceived) {
+    // === 2️⃣ FALLBACK: Tunggu 500ms, lalu cek localStorage & session API ===
+    const fallbackTimeout = setTimeout(async () => {
+      if (messageReceived) return;
+
+      try {
+        const cached = localStorage.getItem('plugin_user_cache');
+        if (cached) {
+          const parsed = JSON.parse(cached);
+          if (parsed?.username && parsed?.role) {
+            setUser(parsed);
+            console.warn('[AuthContext] Fallback to localStorage');
+            return;
+          }
+        }
+      } catch (err) {
+        console.warn('[AuthContext] Failed parsing plugin_user_cache', err);
+      }
+
+      // === 3️⃣ Fallback terakhir: Coba ambil dari ?session=
+      const sessionId = getSessionIdFromURL();
+      const pluginScope = 'mx-core-metric';
+
+      if (sessionId) {
         try {
-          const cached = localStorage.getItem('plugin_user_cache');
-          if (cached) {
-            const parsed = JSON.parse(cached);
-            if (parsed?.username && parsed?.role) {
-              setUser(parsed);
-              console.warn(
-                '[AuthContext] Fallback to localStorage (plugin_user_cache)'
-              );
-            }
+          const res = await fetch(
+            `/api/session/${sessionId}?scope=${pluginScope}`
+          );
+
+          if (res.status === 401 || res.status === 410) {
+            setSessionError(
+              'Sesi Anda telah kedaluwarsa. Silakan tutup plugin dan login ulang.'
+            );
+            return;
+          }
+
+          if (!res.ok) throw new Error(`Status ${res.status}`);
+
+          const data = await res.json();
+          if (data?.user?.username && data?.user?.role) {
+            setUser(data.user);
+            localStorage.setItem(
+              'plugin_user_cache',
+              JSON.stringify(data.user)
+            );
+            console.warn('[AuthContext] Loaded from session API');
           }
         } catch (err) {
-          console.warn(
-            '[AuthContext] Failed to parse fallback from localStorage',
-            err
+          console.error('[AuthContext] Failed to fetch session', err);
+          setSessionError(
+            'Terjadi kesalahan saat memuat sesi. Silakan tutup plugin dan coba lagi.'
           );
         }
       }
@@ -71,5 +95,20 @@ export function AuthContextProvider({ children }: Props) {
     };
   }, []);
 
+  if (sessionError) {
+    return (
+      <div className="rounded bg-red-100 p-4 text-sm text-red-800">
+        ⚠️ {sessionError}
+      </div>
+    );
+  }
+
   return <AuthContext.Provider value={user}>{children}</AuthContext.Provider>;
+}
+
+function getSessionIdFromURL(): string | null {
+  if (typeof window === 'undefined') return null;
+  const params = new URLSearchParams(window.location.search);
+  const sessionId = params.get('session');
+  return sessionId && sessionId.length >= 10 ? sessionId : null;
 }

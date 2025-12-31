@@ -8,6 +8,7 @@ import { canAccess } from '@mx-core/core/rbac/policy';
 import { permToContext } from '@mx-core/core/rbac/perm-to-rbac';
 import { roleGte } from '@mx-core/types';
 import type { UserRole, Perm } from '@mx-core/types';
+import toast from 'react-hot-toast';
 
 export type AuthUser = {
   username: string;
@@ -103,10 +104,27 @@ export class AuthService {
     });
   }
 
-  static logout() {
+  static async logout() {
+    // 🧹 Hapus session ID jika ada
+    const sessionId = localStorage.getItem('plugin_session_id');
+    if (sessionId) {
+      try {
+        await fetch(`${API_BASE}/api/session/${sessionId}`, {
+          method: 'DELETE',
+        });
+      } catch (err) {
+        console.warn('Gagal hapus session ID:', err);
+      }
+    }
+
+    // 🧼 Bersihkan data lokal
     localStorage.removeItem(this.KEY);
     localStorage.removeItem(this.USER);
+    localStorage.removeItem('plugin_session_id');
     window.dispatchEvent(new Event('auth:changed'));
+
+    // ✅ Notifikasi
+    toast.success('✅ Logout berhasil & session plugin dihapus.');
   }
 
   static getToken(): string | null {

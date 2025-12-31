@@ -22,9 +22,10 @@
     "build": "npm run clean && tsc -p tsconfig.json"
   },
   "dependencies": {
-    "react": "^18.x",
     "@mx-core/core": "*",
-    "@mx-core/types": "*"
+    "@mx-core/types": "*",
+    "react": "^18.x",
+    "uuid": "^13.0.0"
   },
   "devDependencies": {
     "rimraf": "^5.0.0",
