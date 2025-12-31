@@ -4,6 +4,7 @@ import siteMetadata from '@/data/siteMetadata';
 import './globals.css';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import { Toaster } from 'react-hot-toast';
 
 export default function RootLayout({
   children,
@@ -25,6 +26,17 @@ export default function RootLayout({
         <Header /> {/* ✅ Header akan jadi full width */}
         {children}
         <Footer /> {/* ✅ Footer juga full width */}
+        {/* ✅ Tambahkan ini untuk mengaktifkan semua toast */}
+        <Toaster
+          position="top-right"
+          toastOptions={{
+            duration: 3000,
+            style: {
+              fontSize: '14px',
+              padding: '10px 16px',
+            },
+          }}
+        />{' '}
       </body>
     </html>
   );

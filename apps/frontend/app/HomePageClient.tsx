@@ -108,7 +108,12 @@ export default function HomePageClient() {
     }
   };
 
-  const currentRole: UserRole = AuthService.getUser()?.role ?? 'Guest';
+  const [currentRole, setCurrentRole] = useState<UserRole>('Guest');
+
+  useEffect(() => {
+    const u = AuthService.getUser();
+    if (u?.role) setCurrentRole(u.role);
+  }, []);
 
   return (
     <main className="mx-auto max-w-4xl px-6 py-10">

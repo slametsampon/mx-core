@@ -17,6 +17,14 @@ export type AuthUser = {
   role?: UserRole;
 };
 
+function clearPluginCache() {
+  // Kirim broadcast ke semua iframe
+  const iframes = document.querySelectorAll('iframe');
+  iframes.forEach((iframe) => {
+    iframe.contentWindow?.postMessage({ type: 'logout' }, '*');
+  });
+}
+
 export class AuthService {
   private static KEY = 'auth_token_v1';
   private static USER = 'auth_user_v1';
@@ -122,6 +130,7 @@ export class AuthService {
     localStorage.removeItem(this.USER);
     localStorage.removeItem('plugin_session_id');
     window.dispatchEvent(new Event('auth:changed'));
+    clearPluginCache();
 
     // ✅ Notifikasi
     toast.success('✅ Logout berhasil & session plugin dihapus.');
