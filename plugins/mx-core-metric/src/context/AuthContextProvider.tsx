@@ -18,6 +18,11 @@ export function AuthContextProvider({ children }: Props) {
 
     // === 1️⃣ POSTMESSAGE (utama) ===
     function handleMessage(event: MessageEvent) {
+      if (event.data.type === 'logout') {
+        localStorage.removeItem('plugin_user_cache'); // 🧹 optional
+        setUser(null);
+      }
+
       if (!event.data || event.data.type !== 'auth') return;
 
       const userData = event.data.user;
@@ -34,58 +39,52 @@ export function AuthContextProvider({ children }: Props) {
 
     window.addEventListener('message', handleMessage);
 
-    // === 2️⃣ FALLBACK: Tunggu 500ms, lalu cek localStorage & session API ===
+    // === Fallback langsung ke session API
     const fallbackTimeout = setTimeout(async () => {
       if (messageReceived) return;
 
-      try {
-        const cached = localStorage.getItem('plugin_user_cache');
-        if (cached) {
-          const parsed = JSON.parse(cached);
-          if (parsed?.username && parsed?.role) {
-            setUser(parsed);
-            console.warn('[AuthContext] Fallback to localStorage');
-            return;
-          }
-        }
-      } catch (err) {
-        console.warn('[AuthContext] Failed parsing plugin_user_cache', err);
-      }
-
-      // === 3️⃣ Fallback terakhir: Coba ambil dari ?session=
       const sessionId = getSessionIdFromURL();
       const pluginScope = 'mx-core-metric';
 
-      if (sessionId) {
-        try {
-          const res = await fetch(
-            `/api/session/${sessionId}?scope=${pluginScope}`
-          );
+      if (!sessionId) {
+        setSessionError(
+          'Tidak ada sesi aktif. Silakan login ulang melalui host.'
+        );
+        return;
+      }
 
-          if (res.status === 401 || res.status === 410) {
+      try {
+        const res = await fetch(
+          `/api/session/${sessionId}?scope=${pluginScope}`
+        );
+
+        if (res.status === 401 || res.status === 410) {
+          setSessionError(
+            'Sesi Anda telah kedaluwarsa. Silakan tutup plugin dan login ulang.'
+          );
+          return;
+        }
+
+        if (!res.ok) throw new Error(`Status ${res.status}`);
+
+        const data = await res.json();
+        if (data?.user?.username && data?.user?.role) {
+          const expectedRole = 'Operator';
+          if (data.user.role !== expectedRole) {
             setSessionError(
-              'Sesi Anda telah kedaluwarsa. Silakan tutup plugin dan login ulang.'
+              'Sesi Anda tidak sesuai dengan role plugin. Silakan login ulang dengan akun yang benar.'
             );
             return;
           }
 
-          if (!res.ok) throw new Error(`Status ${res.status}`);
-
-          const data = await res.json();
-          if (data?.user?.username && data?.user?.role) {
-            setUser(data.user);
-            localStorage.setItem(
-              'plugin_user_cache',
-              JSON.stringify(data.user)
-            );
-            console.warn('[AuthContext] Loaded from session API');
-          }
-        } catch (err) {
-          console.error('[AuthContext] Failed to fetch session', err);
-          setSessionError(
-            'Terjadi kesalahan saat memuat sesi. Silakan tutup plugin dan coba lagi.'
-          );
+          setUser(data.user);
+          console.warn('[AuthContext] Loaded from session API');
         }
+      } catch (err) {
+        console.error('[AuthContext] Failed to fetch session', err);
+        setSessionError(
+          'Terjadi kesalahan saat memuat sesi. Silakan tutup plugin dan coba lagi.'
+        );
       }
     }, 500);
 

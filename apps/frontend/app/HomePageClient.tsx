@@ -98,6 +98,20 @@ export default function HomePageClient() {
       const url = `${scope}?session=${sessionId}`;
       setActive({ plugin, sessionId, iframeUrl: url });
 
+      // Kirim postMessage setelah iframe dimount
+      setTimeout(() => {
+        const iframe = document.querySelector('iframe');
+        if (iframe && iframe.contentWindow) {
+          iframe.contentWindow.postMessage(
+            {
+              type: 'auth',
+              user,
+            },
+            '*' // ✅ atau domain asal jika strict
+          );
+        }
+      }, 300); // ⏱️ delay kecil untuk pastikan iframe siap
+
       // 🧹 Reset error jika berhasil
       setError(null);
     } catch (err: any) {

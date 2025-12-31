@@ -53,6 +53,11 @@ export default function PluginIframe({
 
   return (
     <iframe
+      onLoad={() => {
+        const user = AuthService.getUser();
+        const iframe = document.querySelector('iframe');
+        iframe?.contentWindow?.postMessage({ type: 'auth', user }, '*');
+      }}
       ref={iframeRef}
       src={src}
       title={title}
