@@ -1,5 +1,21 @@
 // apps/frontend/app/HomePageClient.tsx
 
+/**
+ * @file HomePageClient.tsx
+ * @description Komponen halaman utama yang menangani:
+ * - Daftar plugin dari manifest
+ * - Aktivasi plugin via iframe
+ * - Pembuatan sesi per plugin (scoped session)
+ * - Kirim postMessage ke plugin
+ * - Validasi akses (RBAC) berdasarkan role user
+ *
+ * 🔗 Hubungan Modul:
+ * - `AuthService` → Mengambil user aktif dari localStorage.
+ * - `createSession` → Membuat sesi plugin via `/api/session`.
+ * - `PluginCard`, `PluginIframe` → UI rendering plugin.
+ * - `CanAccess` → Akses berbasis role (RBAC).
+ */
+
 'use client';
 
 import { useEffect, useState } from 'react';
@@ -12,17 +28,33 @@ import { createSession } from '@/services/session.service';
 
 const BASE_PATH = process.env.BASE_PATH ?? '';
 
+/**
+ * Tipe sesi plugin aktif yang sedang dibuka oleh user.
+ */
 interface ActivePluginSession {
   plugin: PluginMeta;
   sessionId: string;
   iframeUrl: string;
 }
 
+/**
+ * Komponen utama halaman `HomePageClient`.
+ * Menampilkan:
+ * - Hero text platform
+ * - Daftar plugin dari `plugin-manifest.json`
+ * - Panel plugin aktif dengan iframe
+ * - Akses berbasis role
+ *
+ * @component
+ */
 export default function HomePageClient() {
   const [plugins, setPlugins] = useState<PluginMeta[]>([]);
   const [active, setActive] = useState<ActivePluginSession | null>(null);
   const [error, setError] = useState<string | null>(null);
 
+  // ================================
+  // 🔁 Fetch plugin manifest (JSON)
+  // ================================
   useEffect(() => {
     const manifestPath = `${BASE_PATH}/plugin-manifest.json`;
 
@@ -67,6 +99,9 @@ export default function HomePageClient() {
     fetchManifest();
   }, []);
 
+  /**
+   * Validasi bahwa sebuah objek cocok dengan struktur `PluginMeta`.
+   */
   function isValidPluginMeta(obj: any): obj is PluginMeta {
     return (
       typeof obj === 'object' &&
@@ -76,6 +111,14 @@ export default function HomePageClient() {
     );
   }
 
+  /**
+   * Handler untuk membuka plugin:
+   * - Ambil user login dari `AuthService`
+   * - Buat sesi scoped plugin via API
+   * - Simpan sessionId ke localStorage
+   * - Render iframe dengan query `?session=`
+   * - Kirim data user ke iframe via `postMessage`
+   */
   const handleOpenPlugin = async (plugin: PluginMeta) => {
     try {
       const rawUser = AuthService.getUser();
@@ -98,7 +141,7 @@ export default function HomePageClient() {
       const url = `${scope}?session=${sessionId}`;
       setActive({ plugin, sessionId, iframeUrl: url });
 
-      // Kirim postMessage setelah iframe dimount
+      // ⏱️ Kirim postMessage (type: auth) ke iframe
       setTimeout(() => {
         const iframe = document.querySelector('iframe');
         if (iframe && iframe.contentWindow) {
@@ -107,13 +150,12 @@ export default function HomePageClient() {
               type: 'auth',
               user,
             },
-            '*' // ✅ atau domain asal jika strict
+            '*' // Bisa diganti dengan origin untuk security
           );
         }
-      }, 300); // ⏱️ delay kecil untuk pastikan iframe siap
+      }, 300);
 
-      // 🧹 Reset error jika berhasil
-      setError(null);
+      setError(null); // bersihkan error
     } catch (err: any) {
       console.error('Gagal membuka plugin:', err);
       setError(
@@ -122,6 +164,9 @@ export default function HomePageClient() {
     }
   };
 
+  // ================================
+  // Role user saat ini (untuk RBAC)
+  // ================================
   const [currentRole, setCurrentRole] = useState<UserRole>('Guest');
 
   useEffect(() => {
@@ -129,9 +174,12 @@ export default function HomePageClient() {
     if (u?.role) setCurrentRole(u.role);
   }, []);
 
+  // ================================
+  // Render Komponen UI
+  // ================================
   return (
     <main className="mx-auto max-w-4xl px-6 py-10">
-      {/* 🔰 HERO */}
+      {/* 🔰 Hero Section */}
       <section className="mb-10">
         <h1 className="text-4xl font-bold text-gray-900">
           🔧 <span className="text-indigo-600">Mx-Core</span> Platform
@@ -146,14 +194,14 @@ export default function HomePageClient() {
         </p>
       </section>
 
-      {/* ⚠️ ERROR */}
+      {/* ⚠️ Error State */}
       {error && (
         <div className="mb-6 rounded bg-red-100 p-4 text-sm text-red-800">
           ⚠️ {error}
         </div>
       )}
 
-      {/* 🔌 PLUGINS */}
+      {/* 🔌 Daftar Plugin */}
       <section className="mb-10">
         <h2 className="mb-4 text-2xl font-semibold">🧩 Plugin Tersedia</h2>
         <div className="space-y-3">
@@ -178,7 +226,7 @@ export default function HomePageClient() {
         </div>
       </section>
 
-      {/* 🧭 Plugin Frame Viewer */}
+      {/* 🧭 Plugin Iframe Viewer */}
       {active && (
         <section className="mt-10">
           <div className="mb-2 flex items-center justify-between">
@@ -201,7 +249,7 @@ export default function HomePageClient() {
         </section>
       )}
 
-      {/* 🔐 RBAC */}
+      {/* 🔐 RBAC Viewer */}
       <section className="mt-16">
         <h2 className="mb-2 text-2xl font-semibold">
           🔐 Akses Berdasarkan Role

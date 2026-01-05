@@ -1,5 +1,17 @@
 // plugins/mx-core-metric/src/components/UserInfoPlugin.tsx
 
+/**
+ * @file UserInfoPlugin.tsx
+ * @description
+ * Komponen UI untuk menampilkan informasi user yang sedang login dalam plugin `mx-core-metric`.
+ *
+ * Menampilkan avatar, username, dan menu dropdown dengan role serta informasi plugin.
+ * Data user diperoleh dari `AuthContext`, yang sebelumnya diisi oleh `AuthMessageListener` melalui `postMessage` dari host.
+ *
+ * 📦 Dipakai oleh:
+ * - `Header.tsx` di dalam plugin
+ */
+
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
@@ -7,8 +19,19 @@ import { useAuthContext } from '@/context/AuthContext';
 import Image from 'next/image';
 import plugin from '../../plugin.json';
 
+/**
+ * Komponen UI user info (avatar + nama) untuk plugin.
+ * Menampilkan:
+ * - Username dan avatar (jika ada)
+ * - Role user (Operator, Guest, dst.)
+ * - Informasi plugin (name & version dari `plugin.json`)
+ *
+ * Menggunakan dropdown yang bisa toggle dan auto-close jika klik di luar area.
+ *
+ * @returns {JSX.Element} Komponen informasi user (dropdown panel)
+ */
 export default function UserInfoPlugin() {
-  const user = useAuthContext();
+  const user = useAuthContext(); // Ambil user dari context plugin
   const [open, setOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -19,7 +42,7 @@ export default function UserInfoPlugin() {
   const avatarUrl = user?.avatarUrl;
   const role = user?.role || 'guest';
 
-  // 🛡️ Deteksi klik di luar area
+  // 🛡️ Tutup dropdown saat klik di luar area
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
       if (
@@ -36,13 +59,14 @@ export default function UserInfoPlugin() {
 
   return (
     <div className="relative" ref={dropdownRef}>
-      {/* Trigger */}
+      {/* Trigger button */}
       <button
         className="flex items-center gap-2 rounded px-2 py-1 hover:bg-gray-100 dark:hover:bg-gray-700"
         onClick={toggle}
         aria-haspopup="menu"
         aria-expanded={open}
       >
+        {/* Avatar */}
         {avatarUrl ? (
           <div className="h-8 w-8 overflow-hidden rounded-full border">
             <Image
@@ -58,9 +82,13 @@ export default function UserInfoPlugin() {
             {username[0]?.toUpperCase() ?? '?'}
           </div>
         )}
+
+        {/* Username */}
         <span className="max-w-[10rem] truncate text-sm font-medium text-slate-700 dark:text-white">
           {username}
         </span>
+
+        {/* Dropdown icon */}
         <svg
           className="h-4 w-4 text-gray-500"
           viewBox="0 0 20 20"
@@ -74,7 +102,7 @@ export default function UserInfoPlugin() {
         </svg>
       </button>
 
-      {/* Dropdown */}
+      {/* Dropdown Content */}
       {open && (
         <div className="absolute right-0 z-50 mt-2 w-52 rounded-lg border bg-white py-2 shadow-lg dark:border-gray-600 dark:bg-gray-800">
           <div className="px-4 py-2 text-sm text-gray-700 dark:text-white">

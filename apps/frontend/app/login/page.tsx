@@ -1,14 +1,37 @@
 // apps/frontend/app/login/page.tsx
 
+/**
+ * @file login/page.tsx
+ * @description
+ * Halaman login interaktif yang menyediakan form autentikasi dan modal registrasi.
+ * Menggunakan `AuthService` untuk proses login dan registrasi, serta menyimpan sesi user secara lokal.
+ *
+ * Komponen ini bekerja dalam konteks Next.js App Router (`/app` directory) dan berjalan di client-side (`'use client'`).
+ *
+ * 🔗 Terkait langsung dengan:
+ * - `AuthService` → untuk login & registrasi
+ * - `LoginForm` → komponen UI form login
+ * - `RegisterModal` → form registrasi akun baru
+ */
+
 'use client';
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { LoginForm } from '@/components/LoginForm';
 import { RegisterModal } from '@/components/RegisterModal';
-import { AuthService } from '@/services/auth-service'; // Pastikan path benar
+import { AuthService } from '@/services/auth-service'; // ✅ Login + Register logic
 
+/**
+ * Komponen halaman login utama.
+ * Menyediakan fungsionalitas login, register, error handling, dan navigasi otomatis.
+ *
+ * @returns {JSX.Element}
+ */
 export default function LoginPage() {
+  const router = useRouter();
+
+  /** State untuk form login */
   const [form, setForm] = useState({
     username: '',
     password: '',
@@ -16,6 +39,7 @@ export default function LoginPage() {
     showPassword: false,
   });
 
+  /** State untuk form registrasi */
   const [registerForm, setRegisterForm] = useState({
     username: '',
     password1: '',
@@ -28,8 +52,7 @@ export default function LoginPage() {
   const [registerError, setRegisterError] = useState('');
   const [showRegister, setShowRegister] = useState(false);
 
-  const router = useRouter();
-
+  /** 🔧 Prefill login saat component mount */
   useEffect(() => {
     setForm((prev) => ({
       ...prev,
@@ -38,14 +61,26 @@ export default function LoginPage() {
     }));
   }, []);
 
+  /**
+   * Handler perubahan field di form login.
+   * @param {string} field - Nama field (username, password, dll)
+   * @param {string | boolean} value - Nilai field
+   */
   const onFormChange = (field: string, value: string | boolean) => {
     setForm((prev) => ({ ...prev, [field]: value }));
   };
 
+  /**
+   * Handler perubahan field di form registrasi.
+   */
   const onRegisterChange = (field: string, value: string) => {
     setRegisterForm((prev) => ({ ...prev, [field]: value }));
   };
 
+  /**
+   * Handler utama saat form login disubmit.
+   * Proses login, simpan token, dan redirect ke halaman sebelumnya.
+   */
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
@@ -53,10 +88,11 @@ export default function LoginPage() {
 
     try {
       await AuthService.login(form.username.trim(), form.password);
+
       const nextPath = sessionStorage.getItem('next_path') || '/';
       sessionStorage.removeItem('next_path');
 
-      router.push(nextPath);
+      router.push(nextPath); // 🚀 Navigasi setelah login
     } catch (err: any) {
       setError(err?.message || 'Login gagal.');
     } finally {
@@ -64,6 +100,10 @@ export default function LoginPage() {
     }
   };
 
+  /**
+   * Handler untuk proses registrasi user baru.
+   * Lakukan validasi field dan trigger `AuthService.register`.
+   */
   const handleRegister = async () => {
     setRegisterError('');
 
@@ -89,7 +129,7 @@ export default function LoginPage() {
         avatarUrl: `https://i.pravatar.cc/100?u=${registerForm.username}`,
       });
 
-      // Autofill login form setelah register
+      // Prefill login form
       setForm((prev) => ({
         ...prev,
         username: registerForm.username,
@@ -104,7 +144,7 @@ export default function LoginPage() {
 
   return (
     <section className="flex min-h-[90vh] items-center justify-center bg-gradient-to-br from-emerald-50 via-white to-sky-50">
-      {/* Container */}
+      {/* ⬛ Container Box */}
       <div className="relative mx-4 w-full max-w-md rounded-3xl border bg-white shadow-xl">
         <div className="px-8 pt-8 text-center">
           <div className="mx-auto mb-4 grid h-16 w-16 place-items-center rounded-2xl bg-gradient-to-br from-emerald-500 to-sky-500 text-white">
@@ -138,6 +178,7 @@ export default function LoginPage() {
         </div>
       </div>
 
+      {/* 🧾 Modal Registrasi */}
       <RegisterModal
         visible={showRegister}
         values={registerForm}

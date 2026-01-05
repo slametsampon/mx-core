@@ -1,5 +1,13 @@
 // apps/frontend/services/auth-service.ts
 
+/**
+ * AuthService bertanggung jawab atas autentikasi user,
+ * penyimpanan sesi ke `localStorage`, RBAC policy check,
+ * serta pengiriman notifikasi logout ke seluruh plugin iframe.
+ *
+ * Mendukung mode produksi maupun mock.
+ */
+
 import { fetchUserByUsername, createUser } from './user.service';
 import { isMockMode } from './mode';
 import { API_BASE } from '../config/api-base';
@@ -10,6 +18,9 @@ import { roleGte } from '@mx-core/types';
 import type { UserRole, Perm } from '@mx-core/types';
 import toast from 'react-hot-toast';
 
+/**
+ * Struktur user yang disimpan di localStorage dan digunakan di seluruh frontend.
+ */
 export type AuthUser = {
   username: string;
   avatarUrl?: string;
@@ -17,8 +28,10 @@ export type AuthUser = {
   role?: UserRole;
 };
 
+/**
+ * Kirim broadcast `postMessage` ke semua plugin iframe untuk memberitahu bahwa sesi telah logout.
+ */
 function clearPluginCache() {
-  // Kirim broadcast ke semua iframe
   const iframes = document.querySelectorAll('iframe');
   iframes.forEach((iframe) => {
     iframe.contentWindow?.postMessage({ type: 'logout' }, '*');
@@ -29,6 +42,15 @@ export class AuthService {
   private static KEY = 'auth_token_v1';
   private static USER = 'auth_user_v1';
 
+  /**
+   * Melakukan login user dan menyimpan data ke localStorage.
+   * Mendukung mode mock dan produksi.
+   *
+   * @param username - Username user
+   * @param password - Password user
+   * @returns Promise yang menyelesaikan AuthUser
+   * @throws Error jika login gagal
+   */
   static async login(username: string, password: string): Promise<AuthUser> {
     if (isMockMode()) {
       const user = await fetchUserByUsername(username);
@@ -98,6 +120,11 @@ export class AuthService {
     return authUser;
   }
 
+  /**
+   * Registrasi user baru (hanya berlaku di mode mock).
+   *
+   * @param user - Data user baru
+   */
   static async register(user: {
     username: string;
     password: string;
@@ -112,8 +139,11 @@ export class AuthService {
     });
   }
 
+  /**
+   * Melakukan logout, menghapus sesi plugin di backend, membersihkan localStorage,
+   * dan mengirim notifikasi ke plugin iframe.
+   */
   static async logout() {
-    // 🧹 Hapus session ID jika ada
     const sessionId = localStorage.getItem('plugin_session_id');
     if (sessionId) {
       try {
@@ -125,26 +155,35 @@ export class AuthService {
       }
     }
 
-    // 🧼 Bersihkan data lokal
     localStorage.removeItem(this.KEY);
     localStorage.removeItem(this.USER);
     localStorage.removeItem('plugin_session_id');
     window.dispatchEvent(new Event('auth:changed'));
     clearPluginCache();
 
-    // ✅ Notifikasi
     toast.success('✅ Logout berhasil & session plugin dihapus.');
   }
 
+  /**
+   * Ambil token autentikasi dari localStorage.
+   *
+   * @returns Token string atau null jika tidak ditemukan
+   */
   static getToken(): string | null {
     return localStorage.getItem(this.KEY);
   }
 
+  /**
+   * Ambil data user dari localStorage (tanpa token).
+   *
+   * @returns Object user atau null jika tidak ditemukan atau parsing gagal
+   */
   static getUser() {
     if (typeof window === 'undefined') return null;
 
     const raw = localStorage.getItem(this.USER);
     if (!raw) return null;
+
     try {
       const j = JSON.parse(raw);
       const role = j.role ? (String(j.role) as UserRole) : undefined;
@@ -158,27 +197,55 @@ export class AuthService {
     }
   }
 
+  /**
+   * Ambil user lengkap beserta token dari localStorage.
+   *
+   * @returns Object AuthUser atau null jika tidak valid
+   */
   static getUserWithToken(): AuthUser | null {
     const user = this.getUser();
     const token = this.getToken();
     return user && token ? { ...user, token } : null;
   }
 
+  /**
+   * Cek apakah user saat ini sudah login (berdasarkan token).
+   *
+   * @returns `true` jika ada token, `false` jika tidak
+   */
   static isLoggedIn(): boolean {
     return !!this.getToken();
   }
 
+  /**
+   * Cek apakah user memiliki role tertentu (exact match).
+   *
+   * @param role - Role yang dicek
+   * @returns `true` jika cocok, `false` jika tidak
+   */
   static hasRole(role: UserRole): boolean {
     const u = this.getUser();
     return !!u?.role && u.role === role;
   }
 
+  /**
+   * Cek apakah user memiliki role minimal (menggunakan hirarki role).
+   *
+   * @param minRole - Role minimum yang dibutuhkan
+   * @returns `true` jika user memiliki role yang sama atau lebih tinggi
+   */
   static hasRoleAtLeast(minRole: UserRole): boolean {
     const u = this.getUser();
     if (!u?.role) return false;
     return roleGte(u.role, minRole);
   }
 
+  /**
+   * Evaluasi apakah user memiliki izin akses terhadap permission tertentu (RBAC).
+   *
+   * @param perm - Permission yang akan dicek
+   * @returns `true` jika diizinkan, `false` jika tidak
+   */
   static can(perm: Perm): boolean {
     const u = this.getUser();
     if (!u?.role) return false;

@@ -1,19 +1,74 @@
 // apps/frontend/components/UserInfo.tsx
 
+/**
+ * @file UserInfo.tsx
+ * @description Komponen UI dropdown akun user (avatar + nama), dengan menu untuk login, logout, dan profil.
+ *              Dapat digunakan di header atau sidebar.
+ *
+ * 🔗 Hubungan:
+ * - Mengandalkan status login (`isLoggedIn`) dan data user dari parent.
+ * - Callback `onLogin`, `onLogout`, `onProfile` biasanya terhubung ke:
+ *   - `AuthService.logout()` → menghapus session dan localStorage.
+ *   - Navigasi ke halaman login / profil.
+ */
+
 'use client';
 
 import { useState } from 'react';
 import Image from 'next/image';
 
+/**
+ * Props yang diterima oleh komponen `UserInfo`.
+ */
 interface UserInfoProps {
+  /**
+   * Status login user saat ini.
+   */
   isLoggedIn: boolean;
+
+  /**
+   * Username untuk ditampilkan (default: `'Guest'`).
+   */
   username?: string;
+
+  /**
+   * URL avatar user (jika ada).
+   */
   avatarUrl?: string;
+
+  /**
+   * Callback saat pengguna memilih "Login".
+   */
   onLogin?: () => void;
+
+  /**
+   * Callback saat pengguna memilih "Logout".
+   */
   onLogout?: () => void;
+
+  /**
+   * Callback saat pengguna memilih "Detail Profil".
+   */
   onProfile?: () => void;
 }
 
+/**
+ * Komponen dropdown identitas pengguna (avatar + nama) dengan menu aksi:
+ * - Jika user login → Tampilkan opsi **Profil** dan **Logout**.
+ * - Jika belum login → Tampilkan opsi **Login**.
+ *
+ * Komponen ini tidak menyimpan state autentikasi, hanya presentasional.
+ *
+ * @component
+ * @example
+ * <UserInfo
+ *   isLoggedIn={true}
+ *   username="operator01"
+ *   avatarUrl="/avatars/op1.png"
+ *   onLogout={() => AuthService.logout()}
+ *   onProfile={() => router.push('/profile')}
+ * />
+ */
 export default function UserInfo({
   isLoggedIn,
   username = 'Guest',
@@ -29,13 +84,14 @@ export default function UserInfo({
 
   return (
     <div className="relative">
-      {/* Trigger */}
+      {/* Trigger dropdown */}
       <button
         className="flex items-center gap-2 rounded px-2 py-1 hover:bg-gray-100 dark:hover:bg-gray-700"
         onClick={toggle}
         aria-haspopup="menu"
         aria-expanded={open}
       >
+        {/* Avatar / fallback icon */}
         {avatarUrl ? (
           <div className="h-8 w-8 overflow-hidden rounded-full border">
             <Image
@@ -51,9 +107,13 @@ export default function UserInfo({
             ?
           </div>
         )}
+
+        {/* Username */}
         <span className="max-w-[10rem] truncate text-sm font-medium text-slate-700 dark:text-white">
           {username}
         </span>
+
+        {/* Chevron icon */}
         <svg
           className="h-4 w-4 text-gray-500"
           viewBox="0 0 20 20"
@@ -67,11 +127,12 @@ export default function UserInfo({
         </svg>
       </button>
 
-      {/* Dropdown */}
+      {/* Dropdown menu */}
       {open && (
         <div className="absolute right-0 z-50 mt-2 w-44 overflow-hidden rounded-lg border bg-white shadow-lg dark:border-gray-600 dark:bg-gray-800">
           {isLoggedIn ? (
             <>
+              {/* Detail Profil */}
               <button
                 onClick={() => {
                   close();
@@ -81,6 +142,8 @@ export default function UserInfo({
               >
                 Detail Profil
               </button>
+
+              {/* Logout */}
               <button
                 onClick={() => {
                   close();
@@ -92,6 +155,7 @@ export default function UserInfo({
               </button>
             </>
           ) : (
+            // Jika belum login
             <button
               onClick={() => {
                 close();
