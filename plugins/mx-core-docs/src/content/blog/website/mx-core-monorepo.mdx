@@ -283,22 +283,55 @@ Setiap plugin dalam Mx-Core mengikuti **kontrak minimal** berupa `plugin.json`, 
 ```
 /plugins/<plugin-name>/
 ├── package.json
-├── plugin.json              ← Metadata plugin
-└── src/
-    ├── index.ts             ← Entrypoint modul
-    ├── ui/                  ← Komponen Next.js (opsional)
-    ├── api/                 ← API handler (opsional)
-    └── schema/              ← Model lokal (jika ada)
+├── plugin.json                 ← Metadata & RBAC plugin
+├── next.config.js              ← Konfigurasi Next.js (jika UI)
+├── tsconfig.json
+├── postcss.config.js
+├── tailwind.config.js
+├── .env.local                  ← Konfigurasi runtime (opsional)
+├── public/                     ← Asset statis plugin
+├── docs/                       ← Dokumentasi plugin (opsional)
+├── dist/                       ← Output build (untuk module entry)
+├── .next/                      ← Build output Next.js (runtime)
+├── src/
+│   ├── app/                    ← Next.js App Router (UI Plugin)
+│   │   ├── layout.tsx
+│   │   ├── page.tsx
+│   │   ├── dashboard/
+│   │   ├── configuration/
+│   │   └── about/
+│   │
+│   ├── components/             ← UI components
+│   ├── context/                ← Context / state management
+│   ├── hooks/                  ← Custom hooks
+│   ├── services/               ← API / business logic
+│   ├── models/                 ← Model lokal plugin
+│   ├── data/                   ← Static / mock data
+│   ├── utils/                  ← Helper plugin
+│   ├── config/                 ← Konfigurasi internal plugin
+│   └── css/                    ← Styling global plugin
 ```
 
 #### 📄 Contoh `plugin.json`
 
 ```json
 {
-  "name": "mx-core-ai",
+  "name": "mx-core-metric",
+  "type": "plugin",
+  "version": "0.1.0",
+  "description": "Monitoring KPI dan evaluasi performa per departemen",
   "ui": true,
-  "api": true,
-  "module": "./dist/index.js"
+  "api": false,
+  "active": true,
+  "module": "dist/index.js",
+  "basePath": "https://mx-core-metric.vercel.app",
+  "emoji": "📈",
+  "rbac": [
+    { "role": "Operator", "resource": "kpi", "action": "read" },
+    { "role": "Supervisor", "resource": "kpi", "action": "validate" },
+    { "role": "Engineer", "resource": "kpi", "action": "analyze" },
+    { "role": "Manager", "resource": "kpi", "action": "approve" }
+  ]
 }
 ```
 
@@ -601,13 +634,62 @@ Contoh:
 [
   {
     "name": "mx-core-docs",
-    "type": "static",
-    "url": "https://your-org.github.io/mx-core-docs/"
+    "type": "plugin",
+    "version": "0.1.0",
+    "description": "Dokumentasi teknis berbasis static page + Contentlayer",
+    "ui": true,
+    "api": false,
+    "active": true,
+    "module": "dist/index.js",
+    "emoji": "📝",
+    "rbac": [
+      {
+        "role": "Engineer",
+        "resource": "user",
+        "action": "read"
+      }
+    ],
+    "basePath": "https://mx-core-docs.vercel.app"
   },
   {
-    "name": "mx-core-ai",
-    "type": "dynamic",
-    "entry": "/api/plugins/mx-core-ai"
+    "name": "mx-core-metric",
+    "type": "plugin",
+    "version": "0.1.0",
+    "description": "Monitoring KPI dan evaluasi performa per departemen",
+    "ui": true,
+    "api": false,
+    "active": true,
+    "module": "dist/index.js",
+    "basePath": "https://mx-core-metric.vercel.app",
+    "emoji": "📈",
+    "rbac": [
+      {
+        "role": "Operator",
+        "resource": "kpi",
+        "action": "read"
+      },
+      {
+        "role": "Supervisor",
+        "resource": "kpi",
+        "action": "validate"
+      },
+      {
+        "role": "Engineer",
+        "resource": "kpi",
+        "action": "analyze"
+      },
+      {
+        "role": "Manager",
+        "resource": "kpi",
+        "action": "approve"
+      }
+    ]
+  },
+  {
+    "name": "mx-core-other",
+    "type": "plugin",
+    "version": "0.1.0",
+    "etc": "etc...."
   }
 ]
 ```
@@ -819,21 +901,19 @@ Bagian ini menyediakan referensi teknis praktis yang dibutuhkan oleh tim pengemb
 ```json
 {
   "name": "mx-core-ai",
-  "version": "1.0.0",
+  "type": "plugin",
+  "version": "0.1.0",
+  "description": "AI untuk prediksi kegagalan peralatan industri dan rekomendasi kerja berbasis data.",
   "ui": true,
   "api": true,
-  "module": "./dist/index.js",
-  "rules": [
-    {
-      "role": "Planner",
-      "resource": "prediction",
-      "action": "view"
-    },
-    {
-      "role": "Engineer",
-      "resource": "anomaly",
-      "action": "investigate"
-    }
+  "active": false,
+  "module": "dist/index.js",
+  "basePath": "https://mx-core-ai.vercel.app",
+  "emoji": "🤖",
+  "rbac": [
+    { "role": "Engineer", "resource": "ai", "action": "analyze" },
+    { "role": "Manager", "resource": "ai", "action": "approve" },
+    { "role": "Operator", "resource": "ai", "action": "view" }
   ]
 }
 ```

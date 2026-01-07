@@ -120,6 +120,7 @@ Inilah yang mendorong kebutuhan sistem digital RBM seperti `mx-core-rbm`, agar s
 4. Sistem dapat menghasilkan **jadwal TBM hybrid** jika diperlukan.
 5. Sistem menyediakan **dashboard** dan visualisasi kondisi aset.
 6. Sistem dapat **mengekspor data** ke CMMS atau sistem lain.
+7. Sistem dapat **mengimport data** dari file xlsx sebagai data awal aset.
 
 ---
 
@@ -203,18 +204,18 @@ Sistem ini **terintegrasi secara internal** dalam `mx-core` dan dapat melakukan 
 
 > 🧪 **Functional Requirements (FR-n)**
 
-| Kode  | Nama Fitur                       | Deskripsi Singkat                                                                  |
-| ----- | -------------------------------- | ---------------------------------------------------------------------------------- |
-| FR-01 | ESC Grading Form                 | Engineer dapat mengisi nilai ESC untuk setiap aset berdasarkan `tagNumber`         |
-| FR-02 | Asset Criticality Assignment     | Sistem menentukan criticality (Kritis / Normal) berdasarkan hasil ESC              |
-| FR-03 | Maintenance Strategy Planning    | Sistem menyarankan strategi (P, P+C, P+P+C) untuk aset berdasarkan criticality     |
-| FR-04 | TBM Schedule Generation          | Sistem menghasilkan jadwal pemeliharaan berdasarkan tier hasil evaluasi            |
-| FR-05 | Evaluation Record Logging        | Inspector dapat mencatat hasil evaluasi fisik aset dalam histori                   |
-| FR-06 | Dashboard Risk View              | Sistem menampilkan visualisasi tier, grading, dan histori evaluasi                 |
-| FR-07 | Export Data ke CMMS              | Data RBM dapat diekspor dalam format JSON/CSV sesuai kebutuhan integrasi           |
-| FR-08 | DIA Management Interface         | Halaman daftar aset yang dapat ditagging dan diklasifikasi oleh planner            |
-| FR-09 | Role-based Access Control (RBAC) | Setiap fitur dibatasi berdasarkan peran pengguna (Engineer, Planner, dll)          |
-| FR-10 | Export-Import File (CSV/XLS)     | Sistem dapat menerima dan mengirim data konfigurasi/view dalam format CSV atau XLS |
+| Kode  | Nama Fitur                                     | Deskripsi Singkat                                                                                                                                                                                                                                                                                                                                                                        |
+| ----- | ---------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| FR-01 | ESC Grading Form                               | Engineer dapat mengisi nilai ESC untuk setiap aset berdasarkan `tagNumber`.                                                                                                                                                                                                                                                                                                              |
+| FR-02 | Asset Criticality Assignment                   | Sistem menentukan criticality (Kritis / Normal) berdasarkan hasil ESC.                                                                                                                                                                                                                                                                                                                   |
+| FR-03 | Maintenance Strategy Planning                  | Sistem menyarankan strategi pemeliharaan (P, P+C, P+P+C) untuk aset berdasarkan criticality.                                                                                                                                                                                                                                                                                             |
+| FR-04 | TBM Schedule Generation                        | Sistem menghasilkan jadwal pemeliharaan berdasarkan tier hasil evaluasi RBM.                                                                                                                                                                                                                                                                                                             |
+| FR-05 | Evaluation Record Logging                      | Inspector dapat mencatat hasil evaluasi fisik aset dan menyimpannya dalam histori evaluasi.                                                                                                                                                                                                                                                                                              |
+| FR-06 | Dashboard Risk View                            | Sistem menampilkan visualisasi tier, ESC grading, dan histori evaluasi aset.                                                                                                                                                                                                                                                                                                             |
+| FR-07 | Export Data ke CMMS                            | Sistem dapat mengekspor data RBM ke CMMS dalam format terstruktur (JSON/CSV).                                                                                                                                                                                                                                                                                                            |
+| FR-08 | DIA Management Interface                       | Sistem menyediakan antarmuka pengelolaan Daftar Induk Aset (DIA) sebagai fondasi RBM.                                                                                                                                                                                                                                                                                                    |
+| FR-09 | Role-based Access Control (RBAC)               | Sistem membatasi akses fitur berdasarkan peran pengguna (Engineer, Planner, Inspector, Admin).                                                                                                                                                                                                                                                                                           |
+| FR-10 | Export‑Import File (CSV/XLS) – Multi Worksheet | Sistem dapat mengimpor dan mengekspor data aset/RBM melalui file CSV/XLS yang mendukung banyak worksheet dengan struktur kolom bervariasi, melakukan normalisasi dan validasi data berdasarkan kategori aset, menampilkan preview dan error log sebelum commit, serta menyimpan seluruh data ke database relasional (SQL) dalam struktur flat dengan `tagNumber` sebagai identitas unik. |
 
 ---
 
@@ -235,17 +236,18 @@ Sistem ini **terintegrasi secara internal** dalam `mx-core` dan dapat melakukan 
 
 > 📋 **Daftar Use-Case**
 
-| UC-ID | Nama Use-Case                   | Aktor Utama              | FR Terkait |
-| ----- | ------------------------------- | ------------------------ | ---------- |
-| UC-01 | Melakukan ESC Grading           | Reliability Engineer     | FR-01      |
-| UC-02 | Menentukan Criticality Aset     | Sistem (otomatis/manual) | FR-02      |
-| UC-03 | Menyusun Strategi Pemeliharaan  | Maintenance Planner      | FR-03      |
-| UC-04 | Menghasilkan Jadwal TBM         | Sistem / Scheduler       | FR-04      |
-| UC-05 | Mencatat Evaluation Record      | Inspector                | FR-05      |
-| UC-06 | Melihat Dashboard Risiko & Tier | Supervisor / Manager     | FR-06      |
-| UC-07 | Menjalankan Export CMMS         | IT / CMMS Admin          | FR-07      |
-| UC-08 | Mengelola DIA (Aset)            | Maintenance Planner      | FR-08      |
-| UC-09 | Akses berbasis Peran (RBAC)     | Semua Pengguna           | FR-09      |
+| UC-ID | Nama Use-Case                   | Aktor Utama                    | FR Terkait |
+| ----- | ------------------------------- | ------------------------------ | ---------- |
+| UC-01 | Melakukan ESC Grading           | Reliability Engineer           | FR-01      |
+| UC-02 | Menentukan Criticality Aset     | Sistem (otomatis/manual)       | FR-02      |
+| UC-03 | Menyusun Strategi Pemeliharaan  | Maintenance Planner            | FR-03      |
+| UC-04 | Menghasilkan Jadwal TBM         | Sistem / Scheduler             | FR-04      |
+| UC-05 | Mencatat Evaluation Record      | Inspector                      | FR-05      |
+| UC-06 | Melihat Dashboard Risiko & Tier | Supervisor / Manager           | FR-06      |
+| UC-07 | Menjalankan Export CMMS         | IT / CMMS Admin                | FR-07      |
+| UC-08 | Mengelola DIA (Aset)            | Maintenance Planner            | FR-08      |
+| UC-09 | Akses berbasis Peran (RBAC)     | Semua Pengguna                 | FR-09      |
+| UC-10 | Import dan Export Data XLSX/CSV | Planner, CMMS Admin, Inspector | FR-10      |
 
 ---
 
@@ -528,45 +530,104 @@ Sistem ini **terintegrasi secara internal** dalam `mx-core` dan dapat melakukan 
 
 ---
 
-> 🔹 **UC-10: Export-Import File CSV/XLS**
+> 🔹 **UC-10: Import dan Export Data CSV/XLS (Multi-Sheet, Dynamic Schema)**
 
-- **Nama**: Export-Import File CSV/XLS
+- **Nama**: Import dan Export Data CSV/XLS
 
-- **Aktor**: Planner, CMMS Admin, Inspector
+- **Aktor**:
 
-- **Deskripsi**:
-  Sistem menyediakan fitur untuk **mengimpor dan mengekspor** data RBM (seperti konfigurasi, grading, evaluasi, dan rencana perawatan) menggunakan format file **CSV** dan **XLS**.
+  - Planner
+  - CMMS Admin
+  - Inspector
 
-- **Trigger**:
-  User memilih menu “Import” atau “Export” pada halaman yang mendukung (misalnya: Grading, Evaluation, Plan).
+---
 
-- **Alur Utama**:
+- 🧾 Deskripsi:
 
-  1. User membuka halaman Import/Export
-  2. User memilih jenis data yang akan diproses (e.g. ESC Grading, Evaluation)
-  3. User memilih format file (CSV atau XLS)
-  4. Untuk **export**: sistem memproses dan menghasilkan file download
-  5. Untuk **import**:
+Sistem menyediakan fitur untuk **mengimpor dan mengekspor** data RBM dalam format **CSV** dan **XLS/XLSX**, mencakup data konfigurasi aset, hasil grading, evaluasi kondisi, dan rencana pemeliharaan. File **dapat terdiri dari banyak worksheet**, dan setiap worksheet mewakili **kategori aset berbeda** dengan struktur kolom yang bervariasi.
 
-     - User mengunggah file dari lokal
-     - Sistem membaca file dan menampilkan **preview**
-     - User mengonfirmasi simpan
-     - Sistem menyimpan data ke database
+Sistem akan melakukan **pembacaan, validasi, preview, dan penyimpanan** data dari worksheet ke dalam **database relasional (SQL-type)**, menggunakan struktur **flat table** dan `tagNumber` sebagai ID unik.
 
-- **Alur Alternatif**:
+---
 
-  - File tidak sesuai format → sistem tampilkan error validasi
-  - File kosong → sistem menolak dan menampilkan pesan
-  - Terdapat data duplikat → sistem meminta opsi: override, skip, atau merge
+- ⚡ Trigger:
 
-- **Kondisi Sukses**:
-  Data berhasil diimpor dari file atau diekspor ke file yang sesuai, dengan notifikasi keberhasilan dan data tervalidasi.
+User memilih menu **Import** atau **Export** pada halaman terkait (misalnya: Grading, Evaluation, Plan), atau dari halaman khusus Import-Export.
 
-- **Catatan Khusus**:
+---
 
-  - Format header file harus sesuai template sistem
-  - Sistem harus menyediakan **template file** untuk membantu user
-  - File besar (>1000 row) diproses secara **async** dan ditampilkan progresnya
+- 🔄 Alur Utama:
+
+> Untuk **Export**:
+
+1. User membuka halaman **Import/Export**
+2. User memilih jenis data yang akan diekspor (e.g. Grading, Evaluation, Maintenance Plan)
+3. User memilih format file (CSV atau XLS)
+4. Sistem memproses dan mengemas data ke dalam:
+
+   - Beberapa worksheet (jika XLSX)
+   - Beberapa file (jika CSV per kategori)
+
+5. Sistem menghasilkan file download dan memberi notifikasi
+
+> Untuk **Import**:
+
+1. User membuka halaman **Import/Export**
+2. User mengunggah file (CSV atau XLSX)
+3. Sistem membaca seluruh worksheet dan:
+
+   - Mencocokkan struktur header berdasarkan `asset_type`
+   - Memetakan kolom menjadi **General** dan **Detail**
+   - Menampilkan **preview** data terstruktur per worksheet
+
+4. Sistem melakukan **validasi**:
+
+   - Format kolom sesuai template
+   - `tagNumber` valid dan unik
+   - Kolom general wajib ada
+
+5. User memilih opsi simpan:
+
+   - Per worksheet, atau
+   - Semua sekaligus
+
+6. Sistem menyimpan data ke DB dalam struktur flat berdasarkan asset type
+
+---
+
+- 🔁 Alur Alternatif:
+
+* File tidak sesuai format → sistem tampilkan error validasi
+* Terdapat worksheet kosong → sistem skip dan beri notifikasi
+* Worksheet tidak dikenali → sistem minta mapping manual ke `AssetType`
+* Terdapat `tagNumber` duplikat → sistem beri opsi: **override**, **skip**, atau **merge**
+* File terlalu besar → sistem proses **secara async**, dengan progress bar
+
+---
+
+- ✅ Kondisi Sukses:
+
+* File berhasil diimpor atau diekspor tanpa error
+* Data tersimpan ke database per kategori aset (struktur flat)
+* Notifikasi sukses diberikan per worksheet atau global
+* Error log tersedia jika sebagian gagal
+
+---
+
+- 📝 Catatan Khusus:
+
+* Sistem menyediakan **template file** per kategori aset untuk memudahkan user
+* XLSX didukung multi-sheet, CSV didukung batch per kategori
+* Setiap worksheet minimal harus punya kolom:
+
+  - `tagNumber` (wajib, unik)
+  - Kolom **General** (unit, lokasi, status, dll)
+
+* **Kolom Detail** dapat bervariasi berdasarkan `asset_type_schema`
+* Penyimpanan dilakukan ke tabel:
+
+  - `asset` untuk kolom general
+  - `asset_detail_<kategori>` untuk kolom detail
 
 ---
 
@@ -614,18 +675,18 @@ MoSCoW adalah akronim dari:
 
 Traceability Matrix digunakan untuk **memetakan keterkaitan antar artefak SDLC** — misalnya dari kebutuhan bisnis (BRS), ke fitur (FR), lalu ke use-case (UC), dan seterusnya ke test-case.
 
-| ID BRS     | Kebutuhan Bisnis Tingkat Tinggi                                       | FR Terkait | Use Case Terkait | Test Case Terkait       |
-| ---------- | --------------------------------------------------------------------- | ---------- | ---------------- | ----------------------- |
-| BRS-01     | Sistem dapat melakukan ESC grading                                    | FR-01      | UC-01            | TC-01, TC-02            |
-| BRS-02     | Sistem dapat menghasilkan criticality                                 | FR-02      | UC-02            | TC-03                   |
-| BRS-03     | Sistem menyusun strategi perawatan                                    | FR-03      | UC-03            | TC-04                   |
-| BRS-04     | Sistem menjadwalkan TBM hybrid                                        | FR-04      | UC-04            | —                       |
-| BRS-05     | Sistem menyimpan histori evaluasi                                     | FR-05      | UC-05            | TC-05                   |
-| BRS-06     | Dashboard menampilkan kondisi aset                                    | FR-06      | UC-06            | TC-08                   |
-| BRS-07     | Export data RBM ke CMMS                                               | FR-07      | UC-07            | TC-06                   |
-| BRS-08     | User dapat mengelola struktur aset (DIA)                              | FR-08      | UC-08            | —                       |
-| BRS-09     | Sistem membatasi akses sesuai peran                                   | FR-09      | UC-09            | TC-07                   |
-| **BRS-10** | **Sistem dapat mengimpor dan mengekspor data RBM via file (CSV/XLS)** | **FR-10**  | **UC-10**        | **TC-09, TC-10, TC-11** |
+| ID BRS | Kebutuhan Bisnis Tingkat Tinggi                                   | FR Terkait | Use Case Terkait | Test Case Terkait   |
+| ------ | ----------------------------------------------------------------- | ---------- | ---------------- | ------------------- |
+| BRS-01 | Sistem dapat melakukan ESC grading                                | FR-01      | UC-01            | TC-01, TC-02        |
+| BRS-02 | Sistem dapat menghasilkan criticality                             | FR-02      | UC-02            | TC-03               |
+| BRS-03 | Sistem menyusun strategi perawatan                                | FR-03      | UC-03            | TC-04               |
+| BRS-04 | Sistem menjadwalkan TBM hybrid                                    | FR-04      | UC-04            | —                   |
+| BRS-05 | Sistem menyimpan histori evaluasi                                 | FR-05      | UC-05            | TC-05               |
+| BRS-06 | Dashboard menampilkan kondisi aset                                | FR-06      | UC-06            | TC-08               |
+| BRS-07 | Export data RBM ke CMMS                                           | FR-07      | UC-07            | TC-06               |
+| BRS-08 | User dapat mengelola struktur aset (DIA)                          | FR-08      | UC-08            | —                   |
+| BRS-09 | Sistem membatasi akses sesuai peran                               | FR-09      | UC-09            | TC-07               |
+| BRS-10 | Sistem dapat mengimpor dan mengekspor data RBM via file (CSV/XLS) | FR-10      | UC-10            | TC-09, TC-10, TC-11 |
 
 > 🔁 Traceability Matrix ini akan lebih kaya saat test-case sudah tersedia di tahap **Testing** (misalnya TC-01 menguji UC-01 yang berasal dari FR-01 dan BRS-01)
 
@@ -1057,7 +1118,7 @@ npm run dev
 | 7      | CMMS Export                | FR-07      | UC-07      | `app/export`, `utils/exporter.ts`                                   |
 | 8      | Dashboard Visual           | FR-06      | UC-06      | `app/dashboard`, `hooks/useDashboard.ts`                            |
 | 9      | Role-based Access Control  | FR-09      | UC-09      | `middleware/auth.ts`, `config/rbac.ts`                              |
-| **10** | **Export-Import CSV/XLS**  | **FR-10**  | **UC-10**  | `app/import-export`, `services/importer.ts`, `services/exporter.ts` |
+| 10     | Export-Import CSV/XLS      | FR-10      | UC-10      | `app/import-export`, `services/importer.ts`, `services/exporter.ts` |
 
 > 🎯 Setiap sprint diturunkan ke PR (Pull Request) dengan deskripsi:
 >
