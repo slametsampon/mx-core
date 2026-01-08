@@ -2,230 +2,322 @@
 title: COGS - Cost of Goods Sold
 authors: ['sam']
 date: '2024-09-05'
-tags: ['cogs', 'capex', 'opex', 'proyek']
+tags:
+  [
+    'cogs-petrokimia',
+    'conversion-cost',
+    'raw-material-cost',
+    'cost-per-ton',
+    'operasi-pabrik',
+    'maintenance-reliability',
+    'turn-around',
+    'energy-efficiency',
+    'she-compliance',
+    'harga-jual-petrokimia',
+  ]
 draft: false
-summary: COGS merujuk pada total biaya yang terkait dengan produksi bahan kimia dari bahan baku hingga menjadi produk jadi yang siap dijual.
+summary: Artikel ini membahas COGS dalam operasi pabrik petrokimia dengan pendekatan menyeluruh, menghubungkan konsep akuntansi dengan praktik industri. Dalam praktik lapangan, COGS dinyatakan dalam USD/ton produk dan dihitung sebagai penjumlahan Raw Material Cost dan Conversion Cost. Raw material cost bersifat market-driven dan sangat volatil, sedangkan conversion cost mencerminkan kinerja internal pabrik, mencakup energi, maintenance, tenaga kerja, overhead, depresiasi, serta losses. Pendekatan ini memudahkan benchmarking, evaluasi efisiensi, dan penentuan harga jual berbasis margin USD/ton. Artikel juga menegaskan peran maintenance, Turn Around, dan kepatuhan SHE sebagai pengendali utama conversion cost dan profitabilitas jangka panjang.
 ---
 
-- [Pengertian COGS (Cost of Goods Sold) dalam Operasi Pabrik Petrokimia](#pengertian-cogs-cost-of-goods-sold-dalam-operasi-pabrik-petrokimia)
-- [Komponen Utama COGS di Pabrik Petrokimia](#komponen-utama-cogs-di-pabrik-petrokimia)
-  - [1. **Biaya Bahan Baku (Raw Materials Costs)**](#1-biaya-bahan-baku-raw-materials-costs)
-  - [2. **Biaya Energi (Energy Costs)**](#2-biaya-energi-energy-costs)
-  - [3. **Biaya Tenaga Kerja Langsung (Direct Labor Costs)**](#3-biaya-tenaga-kerja-langsung-direct-labor-costs)
-  - [4. **Biaya Overhead Pabrik (Factory Overhead Costs)**](#4-biaya-overhead-pabrik-factory-overhead-costs)
-- [Proses Penghitungan COGS dalam Pabrik Petrokimia](#proses-penghitungan-cogs-dalam-pabrik-petrokimia)
-- [Contoh Kasus Perhitungan COGS di Pabrik Petrokimia](#contoh-kasus-perhitungan-cogs-di-pabrik-petrokimia)
-- [Pengaruh COGS terhadap Profitabilitas Pabrik Petrokimia](#pengaruh-cogs-terhadap-profitabilitas-pabrik-petrokimia)
-- [Kesimpulan](#kesimpulan)
-- [Template Worksheet COGS](#template-worksheet-cogs)
-- [Penjelasan Kolom:](#penjelasan-kolom)
-- [Contoh Pengisian:](#contoh-pengisian)
-- [1. **Menentukan COGS**](#1-menentukan-cogs)
-- [2. **Menentukan Margin Keuntungan (Profit Margin)**](#2-menentukan-margin-keuntungan-profit-margin)
-- [3. **Contoh Penghitungan Harga Jual**](#3-contoh-penghitungan-harga-jual)
-- [4. **Poin Penting dalam Penetapan Harga Jual**](#4-poin-penting-dalam-penetapan-harga-jual)
+- [1. Pendahuluan](#1-pendahuluan)
+- [2. Definisi COGS dan “Cost of Conversion” (Landasan Akuntansi)](#2-definisi-cogs-dan-cost-of-conversion-landasan-akuntansi)
+- [3. Mengapa Petrokimia Menggunakan Rumus Industri: Raw Material + Conversion Cost](#3-mengapa-petrokimia-menggunakan-rumus-industri-raw-material--conversion-cost)
+- [4. Raw Material Cost (USD/ton produk): Cara Hitung yang Dipakai di Lapangan](#4-raw-material-cost-usdton-produk-cara-hitung-yang-dipakai-di-lapangan)
+- [5. Conversion Cost (USD/ton produk): Definisi Praktis Petrokimia](#5-conversion-cost-usdton-produk-definisi-praktis-petrokimia)
+- [6. Keterkaitan SHE dan Relevansi NFPA 30 terhadap Biaya (Tanpa Salah Klasifikasi)](#6-keterkaitan-she-dan-relevansi-nfpa-30-terhadap-biaya-tanpa-salah-klasifikasi)
+- [7. Contoh Perhitungan Realistis (Format USD/ton)](#7-contoh-perhitungan-realistis-format-usdton)
+- [8. Harga Jual yang “Tidak Rugi dan Tidak Kemahalan”: Praktik yang Lebih Aman](#8-harga-jual-yang-tidak-rugi-dan-tidak-kemahalan-praktik-yang-lebih-aman)
+- [9. Template Worksheet (USD) yang Lebih Operasional dan Lengkap](#9-template-worksheet-usd-yang-lebih-operasional-dan-lengkap)
+- [10. Kesimpulan](#10-kesimpulan)
 - [Hak cipta^1. Artikel ini berdasar ChatGpt \& penulis tidak menjamin seluruh akurasi isinya](#hak-cipta1-artikel-ini-berdasar-chatgpt--penulis-tidak-menjamin-seluruh-akurasi-isinya)
 
-### Pengertian COGS (Cost of Goods Sold) dalam Operasi Pabrik Petrokimia
+---
 
-**COGS** (Cost of Goods Sold) atau Biaya Pokok Penjualan merupakan salah satu komponen penting dalam manajemen keuangan, terutama dalam industri manufaktur seperti pabrik petrokimia. Dalam konteks pabrik petrokimia, COGS merujuk pada total biaya yang terkait dengan produksi bahan kimia dari bahan baku hingga menjadi produk jadi yang siap dijual. Ini mencakup berbagai elemen biaya yang digunakan dalam proses produksi, seperti bahan baku, energi, tenaga kerja langsung, hingga biaya overhead produksi.
+### 1. Pendahuluan
 
-### Komponen Utama COGS di Pabrik Petrokimia
+Di pabrik petrokimia, _profitability_ umumnya sangat sensitif terhadap:
 
-Berikut adalah rincian komponen yang termasuk dalam COGS pada operasi pabrik petrokimia:
+- **harga feedstock (USD-based commodity)**,
+- **yield & losses**,
+- **intensitas energi**, serta
+- **reliability peralatan (availability/uptime)**.
 
-#### 1. **Biaya Bahan Baku (Raw Materials Costs)**
+Karena operasi bersifat _continuous_ dan volume besar, pengendalian biaya paling efektif dilakukan dengan satuan:
 
-Bahan baku utama dalam pabrik petrokimia bisa berupa minyak mentah, gas alam, naphtha, atau bahan kimia dasar lainnya. Biaya bahan baku biasanya merupakan porsi terbesar dari COGS, karena bahan-bahan ini adalah input langsung yang diperlukan untuk menghasilkan produk akhir seperti plastik, bahan bakar, dan produk petrokimia lainnya.
+> **USD/ton produk** (atau USD/metric ton).
 
-**Rumus dasar biaya bahan baku:**
+Pendekatan ini membuat COGS menjadi **alat operasional** untuk:
 
-$$
-\text{Total biaya bahan baku} = \text{Harga per unit bahan baku} \times \text{Jumlah bahan baku yang digunakan}
-$$
+- benchmarking antar unit/plant,
+- evaluasi efisiensi,
+- simulasi margin/harga jual,
+  bukan hanya angka akuntansi.
 
-Biaya bahan baku sering kali berfluktuasi tergantung harga komoditas global, membuat kontrol yang baik terhadap biaya ini menjadi sangat penting.
+---
 
-#### 2. **Biaya Energi (Energy Costs)**
+### 2. Definisi COGS dan “Cost of Conversion” (Landasan Akuntansi)
 
-Industri petrokimia sangat intensif dalam penggunaan energi, baik listrik maupun bahan bakar. Energi digunakan dalam berbagai tahap proses produksi seperti pemanasan, pendinginan, destilasi, kompresi, dan lainnya. Sumber energi yang umum digunakan termasuk listrik, gas alam, dan steam.
+Secara prinsip akuntansi persediaan, biaya persediaan mencakup:
 
-**Rumus dasar untuk biaya energi:**
+- **cost of purchase** (biaya perolehan/pembelian),
+- **costs of conversion** (biaya konversi: direct labor + production overhead),
+- dan biaya lain yang diperlukan untuk membawa persediaan ke kondisi & lokasi saat ini. ([IFRS Foundation][1])
 
-$$
-\text{Total biaya energi} = \text{Harga per unit energi} \times \text{Konsumsi energi total}
-$$
+Di cost accounting, **conversion cost** lazim didefinisikan sebagai:
 
-Manajemen energi yang efisien penting untuk mengurangi dampak pada COGS, mengingat tingginya konsumsi energi dalam pabrik petrokimia.
+> **Direct labor + manufacturing (factory) overhead** ([AccountingCoach.com][2])
 
-#### 3. **Biaya Tenaga Kerja Langsung (Direct Labor Costs)**
+Catatan penting: banyak biaya yang sering “terlihat terkait pabrik” sebenarnya **tidak masuk cost of inventories** (misalnya abnormal waste tertentu, sebagian biaya penyimpanan, selling cost) tergantung kebijakan dan standar yang digunakan. IAS 2 memberi contoh biaya yang dikecualikan dari cost of inventories dan diakui sebagai expense periode berjalan. ([IFRS Foundation][3])
 
-Biaya tenaga kerja langsung mengacu pada upah yang dibayarkan kepada karyawan yang terlibat langsung dalam proses produksi, seperti operator mesin, teknisi, dan staf pemeliharaan. Biaya tenaga kerja diukur berdasarkan jumlah jam kerja yang dihabiskan dalam produksi dan upah per jam.
+---
 
-**Rumus dasar untuk biaya tenaga kerja langsung:**
+### 3. Mengapa Petrokimia Menggunakan Rumus Industri: Raw Material + Conversion Cost
 
-$$
-\text{Total biaya tenaga kerja langsung} = \text{Upah per jam} \times \text{Jumlah jam kerja}
-$$
-
-#### 4. **Biaya Overhead Pabrik (Factory Overhead Costs)**
-
-Biaya overhead mencakup semua biaya lain yang tidak langsung terkait dengan produksi, seperti biaya pemeliharaan mesin, biaya penyusutan peralatan, biaya keamanan, dan biaya umum operasional pabrik. Biaya ini bersifat tetap dan variabel, tergantung pada skala operasi pabrik.
-
-**Rumus dasar untuk biaya overhead:**
+Dalam praktik industri petrokimia, COGS operasional disederhanakan secara **terstruktur** (bukan disimplifikasi sembarangan) menjadi dua kelompok besar:
 
 $$
-\text{Total biaya overhead} = \text{Biaya tetap overhead} + \text{Biaya overhead variabel}
+\boxed{\text{COGS (USD/ton)} = \text{Raw Material Cost (USD/ton)} + \text{Conversion Cost (USD/ton)}}
 $$
 
-Untuk overhead tetap, misalnya, penyusutan mesin petrokimia dihitung menggunakan metode penyusutan tertentu (misalnya metode garis lurus atau metode saldo menurun ganda).
+**Alasan teknisnya:**
 
-### Proses Penghitungan COGS dalam Pabrik Petrokimia
+1. **Raw material cost dominan** dan volatil (market-driven).
+2. Biaya selain bahan baku relatif lebih “_within plant control_” → dikelola sebagai **conversion cost**.
+3. Praktis untuk _daily/weekly performance review_ dan _margin simulation_.
 
-Penghitungan COGS dalam pabrik petrokimia mencakup perhitungan seluruh biaya yang terlibat dalam produksi barang. Tahapan penghitungan COGS umumnya adalah sebagai berikut:
+---
 
-1. **Menghitung biaya bahan baku yang digunakan.**
-2. **Menghitung biaya energi yang digunakan selama produksi.**
-3. **Menghitung biaya tenaga kerja langsung yang dibutuhkan dalam produksi.**
-4. **Mengakumulasi semua biaya overhead yang terlibat dalam proses.**
+### 4. Raw Material Cost (USD/ton produk): Cara Hitung yang Dipakai di Lapangan
 
-Setelah semua komponen tersebut dihitung, hasilnya diakumulasi untuk mendapatkan nilai COGS total:
-
-$$
-COGS = \text{Biaya bahan baku} + \text{Biaya energi} + \text{Biaya tenaga kerja langsung} + \text{Biaya overhead}
-$$
-
-### Contoh Kasus Perhitungan COGS di Pabrik Petrokimia
-
-Misalkan sebuah pabrik petrokimia memproduksi 1.000 ton etilena, dengan rincian biaya sebagai berikut:
-
-- **Biaya bahan baku:** Rp 10.000 per ton x 1.000 ton = Rp 10.000.000
-- **Biaya energi:** Rp 500.000 per 1.000 ton = Rp 500.000
-- **Biaya tenaga kerja langsung:** Rp 1.000.000 (jumlah upah operator) per bulan
-- **Biaya overhead tetap:** Rp 2.000.000 per bulan
-- **Biaya overhead variabel:** Rp 200.000 per 1.000 ton = Rp 200.000
-
-Maka perhitungan COGS adalah:
+> 4.1 Rumus inti (berbasis konsumsi spesifik)
 
 $$
-COGS = 10.000.000 + 500.000 + 1.000.000 + (2.000.000 + 200.000) = Rp 13.700.000
+\text{Raw Material Cost (USD/ton produk)}=
+\sum_i \Big(\text{SFC}_i ;(\text{ton feed}/\text{ton produk}) \times \text{Price}_i ;(\text{USD}/\text{ton feed})\Big)
 $$
 
-COGS ini menunjukkan total biaya yang diperlukan untuk memproduksi 1.000 ton etilena. Angka ini nantinya digunakan untuk menentukan harga jual produk dan menghitung margin keuntungan.
+Keterangan:
 
-### Pengaruh COGS terhadap Profitabilitas Pabrik Petrokimia
+- **SFC** (_Specific Feed Consumption_) harus mencerminkan realisasi operasi (severity, recycle, purge).
+- Jika multi-feed (mis. naphtha + LPG), gunakan penjumlahan.
 
-COGS sangat berpengaruh pada profitabilitas pabrik petrokimia. Semakin tinggi COGS, semakin kecil margin keuntungan yang bisa diambil dari penjualan produk. Oleh karena itu, manajemen pabrik berusaha mengoptimalkan COGS dengan berbagai cara, seperti:
+> 4.2 Faktor yang wajib dicakup agar tidak “menggampangkan”
 
-- **Optimalisasi penggunaan bahan baku:** Mengurangi limbah dan meningkatkan efisiensi produksi.
-- **Efisiensi energi:** Menggunakan teknologi hemat energi atau sumber energi alternatif.
-- **Pengelolaan biaya tenaga kerja:** Otomatisasi proses produksi dan pemeliharaan mesin.
-- **Pengelolaan biaya overhead:** Pemeliharaan prediktif untuk mengurangi downtime dan perbaikan mesin.
+- **Yield & selectivity**: perubahan yield langsung mengubah SFC.
+- **Losses**: flare loss, venting, off-spec rework.
+- **By-product credit** (bila dipakai): sebagian plant menghitung _net feed cost_ setelah kredit by-product—ini harus konsisten dengan kebijakan internal (sangat mempengaruhi perbandingan antarkasus).
 
-### Kesimpulan
+---
 
-COGS adalah metrik yang sangat penting dalam pengelolaan operasi pabrik petrokimia karena berhubungan langsung dengan biaya produksi dan profitabilitas perusahaan. Penghitungan yang tepat atas biaya bahan baku, energi, tenaga kerja langsung, dan overhead sangat penting untuk menentukan COGS secara akurat. Dengan pemahaman yang baik tentang COGS, pabrik petrokimia dapat mengoptimalkan proses produksinya dan memastikan keberlanjutan finansial jangka panjang.
+### 5. Conversion Cost (USD/ton produk): Definisi Praktis Petrokimia
 
-Berikut adalah template worksheet sederhana untuk menghitung **COGS** (Cost of Goods Sold) di pabrik petrokimia, yang bisa digunakan dalam format Excel atau Google Sheets.
+> 5.1 Definisi operasional
 
-### Template Worksheet COGS
+Dalam petrokimia, conversion cost biasanya mencakup semua biaya produksi **di luar feedstock**, termasuk hal-hal yang secara akuntansi bisa muncul sebagai overhead produksi.
 
-| No. | Komponen COGS               | Rincian Perhitungan                       | Biaya Per Unit | Jumlah Unit/Volume | Total Biaya   |
-| --- | --------------------------- | ----------------------------------------- | -------------- | ------------------ | ------------- |
-| 1   | **Bahan Baku**              | Harga bahan baku x Volume produksi        | Rp             | Ton/Kg             | Rp            |
-|     |                             | Misal: Rp 10.000 x 1.000 ton              | 10.000         | 1.000              | Rp 10.000.000 |
-| 2   | **Biaya Energi**            | Harga energi x Konsumsi energi            | Rp/kWh         | kWh                | Rp            |
-|     |                             | Misal: Rp 500 x 1.000 kWh                 | 500            | 1.000              | Rp 500.000    |
-| 3   | **Tenaga Kerja Langsung**   | Upah per jam x Jumlah jam kerja           | Rp/jam         | Jam kerja          | Rp            |
-|     |                             | Misal: Rp 25.000 x 40 jam                 | 25.000         | 40                 | Rp 1.000.000  |
-| 4   | **Biaya Overhead Tetap**    | Biaya pemeliharaan, penyusutan, dll.      | Rp             | -                  | Rp            |
-|     |                             | Misal: Rp 2.000.000                       | -              | -                  | Rp 2.000.000  |
-| 5   | **Biaya Overhead Variabel** | Biaya overhead variabel per unit produksi | Rp             | Unit/Volume        | Rp            |
-|     |                             | Misal: Rp 200 x 1.000 unit                | 200            | 1.000              | Rp 200.000    |
-|     |                             |                                           |                |                    |               |
-|     | **Total COGS**              | Sum dari semua komponen biaya             |                |                    | Rp 13.700.000 |
-
-### Penjelasan Kolom:
-
-1. **No.** - Penomoran setiap komponen biaya yang terkait dengan COGS.
-2. **Komponen COGS** - Berisi deskripsi dari setiap komponen biaya seperti bahan baku, energi, tenaga kerja langsung, overhead tetap, dan overhead variabel.
-3. **Rincian Perhitungan** - Berisi formula dasar untuk setiap komponen, misalnya harga bahan baku dikalikan dengan volume produksi atau jumlah energi yang digunakan.
-4. **Biaya Per Unit** - Biaya untuk setiap unit produksi, misalnya harga bahan baku per ton, harga energi per kWh, atau upah tenaga kerja per jam.
-5. **Jumlah Unit/Volume** - Jumlah unit atau volume yang digunakan dalam produksi.
-6. **Total Biaya** - Hasil akhir dari biaya per komponen setelah dikalikan dengan jumlah unit atau volume yang digunakan.
-
-### Contoh Pengisian:
-
-Misalkan dalam satu siklus produksi, pabrik petrokimia memproduksi 1.000 ton bahan dengan biaya bahan baku sebesar Rp 10.000 per ton, konsumsi energi 1.000 kWh dengan biaya Rp 500 per kWh, tenaga kerja langsung Rp 25.000 per jam dengan jumlah jam kerja 40 jam, overhead tetap Rp 2.000.000, dan overhead variabel Rp 200 per ton.
-
-- **Biaya bahan baku:** Rp 10.000 x 1.000 = Rp 10.000.000
-- **Biaya energi:** Rp 500 x 1.000 = Rp 500.000
-- **Biaya tenaga kerja langsung:** Rp 25.000 x 40 = Rp 1.000.000
-- **Biaya overhead tetap:** Rp 2.000.000
-- **Biaya overhead variabel:** Rp 200 x 1.000 = Rp 200.000
-
-Sehingga total COGS adalah Rp 13.700.000.
-
-Template ini bisa digunakan untuk berbagai jenis produk petrokimia dan disesuaikan dengan rincian biaya spesifik dari operasi pabrik.
-
-Untuk menentukan **harga jual** suatu produk agar tidak mengalami kerugian dan tetap kompetitif, Anda perlu memperhitungkan COGS (Cost of Goods Sold) serta menambahkan margin keuntungan yang diinginkan. Berikut langkah-langkah cara menghitung harga jual berdasarkan COGS:
-
-### 1. **Menentukan COGS**
-
-Pastikan Anda telah menghitung **COGS** dengan benar, yang mencakup seluruh biaya yang terlibat dalam proses produksi, seperti bahan baku, energi, tenaga kerja langsung, dan overhead (seperti yang dijelaskan sebelumnya).
-
-### 2. **Menentukan Margin Keuntungan (Profit Margin)**
-
-Setelah mengetahui COGS, tentukan **margin keuntungan** yang diinginkan. Margin ini dinyatakan dalam persentase dan bergantung pada target laba, kondisi pasar, serta persaingan di industri.
-
-**Rumus untuk margin keuntungan dalam bentuk persentase:**
+Secara operasional:
 
 $$
-\text{Margin keuntungan (\%)} = \frac{\text{Harga Jual} - \text{COGS}}{\text{Harga Jual}} \times 100
+\text{Conversion Cost (USD/ton)}=
+\frac{\text{Total biaya konversi periode (USD)}}{\text{Total produksi on-spec periode (ton)}}
 $$
 
-Atau dapat ditulis dalam bentuk langsung menghitung **Harga Jual**:
+Catatan: denominator **sebaiknya “on-spec saleable product”**, bukan gross production, supaya biaya kualitas (off-spec) terlihat nyata.
+
+> 5.2 Komponen conversion cost yang esensial (wajib tertangkap)
+
+Berikut struktur yang umum dipakai untuk plant petrokimia (dapat disesuaikan CoA perusahaan):
+
+1. **Energy & Utilities (USD/ton)**
+
+- Electricity, steam, fuel gas, cooling water, nitrogen, instrument air
+- Rumus praktis:
+
+  $$
+  \text{Energy Cost/ton}=\frac{\sum(\text{Consumption}_j \times \text{Tariff}_j)}{\text{On-spec ton}}
+  $$
+
+1. **Direct Operating Labor (USD/ton)**
+
+- operator shift, field/panel operator (yang langsung menjalankan operasi)
+
+3. **Maintenance Cost (USD/ton)**
+
+- preventive, corrective, condition monitoring
+- termasuk _contractor maintenance_ yang terkait produksi
+- **Turn Around (TA)** biasanya diperlakukan sebagai:
+
+  - expense periode TA, atau
+  - **diamortisasi** ke cost/ton antar TA (lebih “operasional” untuk analisis).
+
+    $$
+    \text{TA Amortization (USD/ton)}=
+    \frac{\text{Total TA Cost (USD)}}{\text{Total on-spec ton antara dua TA}}
+    $$
+
+1. **Catalyst & Chemicals (USD/ton)**
+
+- catalyst make-up, scavenger, inhibitor, solvent, water treatment chemical
+
+5. **Production Overhead & Plant Overhead (USD/ton)**
+
+- lab QC, produksi engineering, supervision, workshop support, area utilities
+- **SHE compliance cost yang melekat pada produksi** masuk di sini (contoh: inspeksi periodik, pelatihan wajib, permit system, fire protection readiness yang spesifik area proses).
+
+6. **Depreciation / Fixed Cost Allocation (USD/ton)**
+
+- sangat sensitif terhadap throughput:
+
+  $$
+  \text{Depreciation/ton}=\frac{\text{Depreciation periode}}{\text{On-spec ton}}
+  $$
+
+  Jika load turun, depreciation/ton naik walau depresiasi nominal tetap.
+
+1. **Waste, Losses, Off-spec & Rework (USD/ton)**
+
+- jangan dihilangkan; ini sering “membocorkan” biaya nyata operasi.
+- sebaiknya dipisah sebagai _loss bucket_ agar menjadi target improvement.
+
+---
+
+### 6. Keterkaitan SHE dan Relevansi NFPA 30 terhadap Biaya (Tanpa Salah Klasifikasi)
+
+**NFPA 30** mengatur keselamatan penyimpanan dan penanganan cairan mudah terbakar. Implementasi di pabrik biasanya memunculkan biaya seperti:
+
+- sistem proteksi kebakaran (foam, hydrant, detection),
+- inspeksi/pengujian berkala,
+- manajemen area tank farm (bund/dike, drain, spill control),
+- prosedur kerja aman dan pelatihan.
+
+Secara costing:
+
+- Bila biaya tersebut **melekat pada fasilitas produksi/penyimpanan bahan baku untuk proses**, umumnya masuk **production overhead (conversion cost)**.
+- Bila biaya tersebut **lebih dominan untuk distribusi/penjualan** (mis. terminal pemasaran, biaya pengiriman), biasanya masuk **selling/distribution cost** (di luar COGS operasional), tergantung kebijakan akuntansi internal dan standard yang diadopsi.
+
+Intinya: **jangan mencampur biaya produksi vs biaya penjualan** agar COGS tidak bias.
+
+---
+
+### 7. Contoh Perhitungan Realistis (Format USD/ton)
+
+> 7.1 Raw Material Cost (contoh single feed)
+
+- SFC naphtha = 3.20 ton naphtha / ton produk
+- Harga naphtha = 650 USD/ton naphtha
 
 $$
-\text{Harga Jual} = \text{COGS} + (\text{COGS} \times \text{Margin Keuntungan (\%)})
+\text{Raw Material Cost} = 3.20 \times 650 = 2{,}080;\text{USD/ton}
 $$
 
-Misalnya, jika Anda ingin menetapkan margin keuntungan sebesar 20%, maka formula yang digunakan adalah:
+> 7.2 Conversion Cost (breakdown)
+
+| Komponen                      | USD/ton |
+| ----------------------------- | ------: |
+| Energy & utilities            |     120 |
+| Operating labor               |      18 |
+| Maintenance (incl. TA amort.) |      55 |
+| Catalyst & chemicals          |      25 |
+| Production + SHE overhead     |      22 |
+| Depreciation allocation       |      40 |
+| Waste/loss/off-spec (bucket)  |      20 |
+| **Total Conversion Cost**     | **300** |
+
+> 7.3 Total COGS
 
 $$
-\text{Harga Jual} = \text{COGS} + (\text{COGS} \times 20\%)
+\boxed{\text{COGS} = 2{,}080 + 300 = 2{,}380;\text{USD/ton}}
 $$
 
-### 3. **Contoh Penghitungan Harga Jual**
+---
 
-Misalkan kita telah menghitung COGS untuk produk tertentu di pabrik petrokimia sebesar **Rp 13.700.000** dan kita ingin memperoleh margin keuntungan sebesar **30%**.
+### 8. Harga Jual yang “Tidak Rugi dan Tidak Kemahalan”: Praktik yang Lebih Aman
 
-$$
-\text{Harga Jual} = 13.700.000 + (13.700.000 \times 30\%)
-$$
+Di petrokimia, _pricing_ yang robust biasanya memakai:
 
-Hitung margin keuntungan:
+- **Target margin USD/ton** (bukan %), karena feedstock volatil.
 
 $$
-\text{Harga Jual} = 13.700.000 + (13.700.000 \times 0,30)
+\text{Selling Price (USD/ton)} = \text{COGS (USD/ton)} + \text{Target Margin (USD/ton)}
 $$
 
+Contoh:
+
+- COGS = 2,380 USD/ton
+- Target margin = 150 USD/ton
+
 $$
-\text{Harga Jual} = 13.700.000 + 4.110.000 = Rp 17.810.000
+\text{Harga Jual Target} = 2{,}530;\text{USD/ton}
 $$
 
-Jadi, harga jual yang sebaiknya ditetapkan untuk produk tersebut adalah **Rp 17.810.000** untuk memperoleh margin keuntungan 30%.
+> Guardrail agar “tidak kemahalan”
 
-### 4. **Poin Penting dalam Penetapan Harga Jual**
+Tambahkan _market check_:
 
-Beberapa faktor penting yang perlu diperhatikan saat menetapkan harga jual:
+- Bandingkan dengan **market reference price** (index/ICIS/Argus internal subscription perusahaan) → jangan saya asumsi angkanya.
+- Lakukan _sensitivity_:
 
-- **Kondisi Pasar:** Jika harga jual terlalu tinggi dibandingkan dengan pesaing, produk mungkin kurang kompetitif di pasar.
-- **Permintaan Pasar:** Jika permintaan pasar tinggi dan Anda memiliki keunggulan produk, Anda dapat meningkatkan margin keuntungan.
-- **Biaya Tambahan:** Pertimbangkan biaya lain di luar COGS, seperti distribusi, pemasaran, pajak, dan lain-lain.
-- **Strategi Diskon:** Jika Anda berencana memberikan diskon di masa depan, pertimbangkan hal tersebut dalam harga jual awal.
+  - jika feedstock naik 10%, apakah harga jual masih kompetitif?
+  - jika load turun 15%, depreciation/ton naik—apakah margin tetap aman?
 
-Dengan memperhatikan semua faktor ini, Anda dapat menetapkan harga jual yang menguntungkan tetapi tetap kompetitif di pasar.
+---
+
+### 9. Template Worksheet (USD) yang Lebih Operasional dan Lengkap
+
+> 9.1 Sheet A — Raw Material Cost (USD/ton)
+
+| Feed                        | Price (USD/ton feed) | SFC (ton feed/ton product) | Cost (USD/ton product) |
+| --------------------------- | -------------------: | -------------------------: | ---------------------: |
+| Feed-1                      |                      |                            |            =Price\*SFC |
+| Feed-2                      |                      |                            |            =Price\*SFC |
+| **Total Raw Material Cost** |                      |                            |             =SUM(Cost) |
+
+> 9.2 Sheet B — Conversion Cost (USD/ton)
+
+| Bucket                    | Total Cost Periode (USD) | Basis Ton On-spec (ton) |       USD/ton |
+| ------------------------- | -----------------------: | ----------------------: | ------------: |
+| Energy & utilities        |                          |                         |  =Total/Basis |
+| Operating labor           |                          |                         |  =Total/Basis |
+| Maintenance               |                          |                         |  =Total/Basis |
+| Catalyst & chemicals      |                          |                         |  =Total/Basis |
+| Production + SHE overhead |                          |                         |  =Total/Basis |
+| Depreciation              |                          |                         |  =Total/Basis |
+| Waste/loss/off-spec       |                          |                         |  =Total/Basis |
+| **Total Conversion Cost** |                          |                         | =SUM(USD/ton) |
+
+> 9.3 Sheet C — COGS & Pricing
+
+| Item                     |             USD/ton |
+| ------------------------ | ------------------: |
+| Total Raw Material Cost  | (link dari Sheet A) |
+| Total Conversion Cost    | (link dari Sheet B) |
+| **COGS**                 |           =Raw+Conv |
+| Target Margin            |               input |
+| **Selling Price Target** |        =COGS+Margin |
+
+---
+
+### 10. Kesimpulan
+
+1. Pendekatan industri **COGS = Raw Material + Conversion Cost** adalah bentuk pengelompokan yang tepat untuk petrokimia, karena memisahkan **market-driven** vs **plant-controllable cost**.
+2. Conversion cost harus memuat bucket esensial: **energy, maintenance (termasuk TA), overhead termasuk SHE, depresiasi, serta losses/off-spec**.
+3. Penetapan harga jual paling stabil menggunakan **margin USD/ton** ditambah _market check_ dan _sensitivity_.
+
+---
+
+> Catatan untuk memastikan “teliti & akurat” saat Anda memfinalkan artikel
+
+Agar artikel Anda benar-benar kuat dan tidak bias, pastikan Anda menegaskan 3 hal kebijakan (tanpa perlu membuka data rahasia pabrik):
+
+1. **Basis ton**: gross vs on-spec saleable ton (saya rekomendasikan on-spec).
+2. **By-product credit**: dipakai atau tidak (dan konsisten).
+3. **TA cost treatment**: expense periode vs amortisasi antar TA (dan konsisten).
+
+---
+
+[1]: https://www.ifrs.org/issued-standards/list-of-standards/ias-2-inventories/?utm_source=chatgpt.com 'IAS 2 Inventories'
+[2]: https://www.accountingcoach.com/blog/what-are-conversion-costs?utm_source=chatgpt.com 'What are conversion costs?'
+[3]: https://www.ifrs.org/content/dam/ifrs/publications/pdf-standards/english/2022/issued/part-a/ias-2-inventories.pdf?bypass=on&utm_source=chatgpt.com 'IAS 2 Inventories'
 
 ---
 
