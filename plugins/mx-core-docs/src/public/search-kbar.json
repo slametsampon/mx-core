@@ -1,9 +1,9 @@
 [
   {
-    "id": "Management/moscow",
+    "id": "management/moscow",
     "name": "Dari Perencanaan hingga Eksekusi - MoSCoW sebagai Alat Pengambil Keputusan",
     "section": "CONTENT",
-    "href": "/blog/Management/moscow",
+    "href": "/blog/management/moscow",
     "subtitle": "January 7, 2026",
     "keywords": [
       "MoSCoW-method",
@@ -69,10 +69,10 @@
     ]
   },
   {
-    "id": "Management/iceberg-theory",
+    "id": "management/iceberg-theory",
     "name": "Beyond the Surface - Pendekatan Iceberg dalam Memperkuat Keandalan Aset Industri Petrokimia",
     "section": "CONTENT",
-    "href": "/blog/Management/iceberg-theory",
+    "href": "/blog/management/iceberg-theory",
     "subtitle": "December 17, 2025",
     "keywords": [
       "iceberg-theory",
@@ -480,10 +480,10 @@
     ]
   },
   {
-    "id": "Management/housekeeping-keandalan",
+    "id": "management/housekeeping-keandalan",
     "name": "Housekeeping sebagai Cerminan Keandalan Pabrik Petrokimia",
     "section": "CONTENT",
-    "href": "/blog/Management/housekeeping-keandalan",
+    "href": "/blog/management/housekeeping-keandalan",
     "subtitle": "October 13, 2025",
     "keywords": [
       "Pemeliharaan",
@@ -658,10 +658,10 @@
     ]
   },
   {
-    "id": "Management/maintenance-laporan",
+    "id": "management/maintenance-laporan",
     "name": "Panduan Pembuatan Laporan Bulanan Departemen Maintenance di Industri Petrokimia",
     "section": "CONTENT",
-    "href": "/blog/Management/maintenance-laporan",
+    "href": "/blog/management/maintenance-laporan",
     "subtitle": "October 14, 2024",
     "keywords": [
       "Pemeliharaan",
@@ -715,10 +715,10 @@
     ]
   },
   {
-    "id": "Management/maintenance-manajemen",
+    "id": "management/maintenance-manajemen",
     "name": "Efisiensi dan Keandalan dalam Manajemen Pemeliharaan",
     "section": "CONTENT",
-    "href": "/blog/Management/maintenance-manajemen",
+    "href": "/blog/management/maintenance-manajemen",
     "subtitle": "September 27, 2024",
     "keywords": [
       "Pemeliharaan",
@@ -729,10 +729,10 @@
     ]
   },
   {
-    "id": "Management/maintenance-proactive",
+    "id": "management/maintenance-proactive",
     "name": "Transformasi dari Pemeliharaan Reaktif ke Proaktif",
     "section": "CONTENT",
-    "href": "/blog/Management/maintenance-proactive",
+    "href": "/blog/management/maintenance-proactive",
     "subtitle": "September 27, 2024",
     "keywords": [
       "Pemeliharaan",
