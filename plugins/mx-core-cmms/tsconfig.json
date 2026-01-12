@@ -1,0 +1,31 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "composite": true,
+    "declaration": true,
+    "declarationMap": true,
+    "rootDir": ".",
+    "outDir": "dist",
+    "baseUrl": ".",
+    "types": [],
+    "paths": {
+      "@/*": ["src/*"],
+      "@/components/*": ["src/components/*"],
+      "@/app/*": ["src/app/*"],
+      "@/models/*": ["src/models/*"],
+      "@/services/*": ["src/services/*"],
+      "@/lib/*": ["src/lib/*"],
+      "@/css/*": ["src/css/*"],
+      "@/data/*": ["src/data/*"],
+      "@/utils/*": ["src/utils/*"],
+      "@/mocks/*": ["src/mocks/*"]
+    },
+    "noEmit": true
+  },
+  "include": ["src", ".next/types/**/*.ts", "tailwind.config.ts"],
+  "references": [
+    { "path": "../../packages/types" },
+    { "path": "../../packages/core" }
+  ],
+  "exclude": ["node_modules"]
+}

@@ -1,0 +1,21 @@
+{
+  "name": "mx-core-cmms",
+  "type": "plugin",
+  "version": "0.1.0",
+  "description": "CMMS plugin untuk manajemen work order, penjadwalan preventive maintenance, dan histori aset",
+  "ui": true,
+  "api": true,
+  "active": true,
+  "module": "dist/index.js",
+  "basePath": "https://mx-core-cmms.vercel.app",
+  "emoji": "🧰",
+  "rbac": [
+    { "role": "Technician", "resource": "work-order", "action": "update" },
+    { "role": "Planner", "resource": "work-order", "action": "create" },
+    { "role": "Planner", "resource": "work-order", "action": "view" },
+    { "role": "Planner", "resource": "work-order", "action": "schedule" },
+    { "role": "Engineer", "resource": "work-order", "action": "analyze" },
+    { "role": "Supervisor", "resource": "work-order", "action": "approve" },
+    { "role": "Supervisor", "resource": "work-order", "action": "view" }
+  ]
+}
