@@ -1,14 +1,14 @@
-// plugins/mx-core-rbm/src/data/siteMetadata.ts
+// plugins/mx-core-cmms/src/data/siteMetadata.ts
 
 const siteMetadata = {
-  title: 'Mx Core RBM',
+  title: 'Mx Core CMMS',
   version: '0.1.0',
   author: 'Slamet-Sam',
-  headerTitle: 'mx-core-rbm',
+  headerTitle: 'mx-core-cmms',
   description: 'Risk-Based Maintenance Plugin for MxCore System',
   language: 'id-ID',
   theme: 'system', // system, dark, or light
-  siteUrl: 'https://mx-core-rbm.vercel.app/',
+  siteUrl: 'https://mx-core-cmms.vercel.app/',
   siteRepo: 'https://github.com/slametsampon/mx-core',
   siteLogo: '/static/images/logo.png',
   socialBanner: '/static/images/twitter-card.png',

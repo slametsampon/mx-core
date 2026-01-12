@@ -1,24 +1,24 @@
-// plugins/mx-core-rbm/src/data/features.ts
+// plugins/mx-core-cmms/src/data/features.ts
 
 export const features = [
   {
-    title: 'Identifikasi Risiko',
-    desc: 'Temukan potensi kegagalan pada asset berdasarkan criticality dan konsekuensinya.',
-    icon: '🧠',
+    title: 'Manajemen Work Order',
+    desc: 'Buat, atur, dan pantau work order secara digital untuk maintenance rutin maupun korektif.',
+    icon: '📋',
   },
   {
-    title: 'Analisis RBM',
-    desc: 'Analisa risiko berdasarkan probabilitas dan dampak terhadap operasi.',
-    icon: '📉',
+    title: 'Jadwal Preventive Maintenance',
+    desc: 'Rancang jadwal perawatan berkala berdasarkan aset, kategori, dan interval waktu.',
+    icon: '🗓️',
   },
   {
-    title: 'Perencanaan Mitigasi',
-    desc: 'Susun strategi mitigasi yang efektif dan prioritas tindakan berbasis risiko.',
-    icon: '🛡️',
+    title: 'Histori Pemeliharaan',
+    desc: 'Lihat histori tindakan maintenance pada setiap aset untuk evaluasi dan perencanaan ulang.',
+    icon: '📚',
   },
   {
-    title: 'Monitoring Asset',
-    desc: 'Pantau kondisi asset secara berkala untuk mendukung keputusan berbasis data.',
-    icon: '🔍',
+    title: 'Integrasi AI & IoT',
+    desc: 'Dukung keputusan maintenance dengan data real-time dari sensor dan rekomendasi AI.',
+    icon: '🤖',
   },
 ];
