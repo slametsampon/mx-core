@@ -1,5 +1,74 @@
 [
   {
+    "id": "Management/moscow",
+    "name": "Dari Perencanaan hingga Eksekusi - MoSCoW sebagai Alat Pengambil Keputusan",
+    "section": "CONTENT",
+    "href": "/blog/Management/moscow",
+    "subtitle": "January 7, 2026",
+    "keywords": [
+      "MoSCoW-method",
+      "turnaround-petrochemical",
+      "risk-based-maintenance-RBM",
+      "EPC-projects",
+      "prioritization-tools",
+      "maintenance-strategy",
+      "engineering-decision-making"
+    ]
+  },
+  {
+    "id": "website/autentikasi-rbac",
+    "name": "Autentikasi & Akses - Dari JSON ke JWT, Menyusun RBAC yang Aman dan Skalabel",
+    "section": "CONTENT",
+    "href": "/blog/website/autentikasi-rbac",
+    "subtitle": "December 26, 2025",
+    "keywords": [
+      "rbac",
+      "authentication-authorization",
+      "jwt-session",
+      "web-development",
+      "nextjs-serverless",
+      "developer-guide",
+      "iot-security",
+      "token-vs-session",
+      "auth-best-practices",
+      "vercel-monorepo"
+    ]
+  },
+  {
+    "id": "website/hosting-server",
+    "name": "Memilih Hosting dan Server untuk Aplikasi Next.js",
+    "section": "CONTENT",
+    "href": "/blog/website/hosting-server",
+    "subtitle": "December 26, 2025",
+    "keywords": [
+      "next.js",
+      "web-hosting",
+      "ssr-ssg",
+      "cdn-performance",
+      "serverless-custom-server",
+      "express-alternatives",
+      "javascript-frameworks",
+      "deployment-guide"
+    ]
+  },
+  {
+    "id": "maintenance/instrument-range",
+    "name": "Best Practice dalam Pemilihan Range Instrumentasi Proses - Panduan Teknikal untuk Engineer",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/instrument-range",
+    "subtitle": "December 19, 2025",
+    "keywords": [
+      "instrument-range",
+      "process-control",
+      "transmitter-selection",
+      "engineering-best-practice",
+      "ISA-API-IEC",
+      "instrument-specification",
+      "resolution-accuracy",
+      "datasheet-format"
+    ]
+  },
+  {
     "id": "Management/iceberg-theory",
     "name": "Beyond the Surface - Pendekatan Iceberg dalam Memperkuat Keandalan Aset Industri Petrokimia",
     "section": "CONTENT",
@@ -39,12 +108,32 @@
     ]
   },
   {
+    "id": "website/packages-developer-guide",
+    "name": "Mx-Core – Packages Developer Guide",
+    "section": "CONTENT",
+    "href": "/blog/website/packages-developer-guide",
+    "subtitle": "December 16, 2025",
+    "keywords": [
+      "mx-core",
+      "monorepo-architecture",
+      "plugin-system",
+      "rbac-engine",
+      "typescript-shared-types",
+      "react-rbac-components",
+      "nextjs-typescript",
+      "developer-documentation",
+      "modular-backend",
+      "secure-ui-rendering"
+    ]
+  },
+  {
     "id": "website/sdlc-mx-core-docs",
     "name": "Blueprint Pengembangan Software Industri - Mx-Core-Docs",
     "section": "CONTENT",
     "href": "/blog/website/sdlc-mx-core-docs",
     "subtitle": "December 16, 2025",
     "keywords": [
+      "mx-core",
       "SDLC",
       "software-development",
       "industrial-software",
@@ -74,6 +163,7 @@
     "href": "/blog/website/sdlc-mx-core-metric",
     "subtitle": "December 16, 2025",
     "keywords": [
+      "mx-core",
       "SDLC",
       "software-development",
       "industrial-software",
@@ -103,6 +193,7 @@
     "href": "/blog/website/sdlc-mx-core-rbm",
     "subtitle": "December 16, 2025",
     "keywords": [
+      "mx-core",
       "SDLC",
       "software-development",
       "industrial-software",
@@ -599,14 +690,14 @@
     "href": "/blog/maintenance/troubleshooting-metode",
     "subtitle": "October 11, 2024",
     "keywords": [
-      "fmea",
-      "fta",
-      "rcfa",
-      "8D",
-      "bowtie-analysis",
-      "Fishbone-Diagram",
       "troubleshooting",
-      "Risk-Management"
+      "root-cause-analysis",
+      "petrochemical-maintenance",
+      "rca-fmea-fta",
+      "5whys-fishbone",
+      "8d-bowtie",
+      "rcfa-failure-analysis",
+      "industrial-reliability"
     ]
   },
   {
@@ -660,10 +751,14 @@
     "href": "/blog/maintenance/tco",
     "subtitle": "September 26, 2024",
     "keywords": [
-      "tco",
-      "life-cycle",
-      "umur-pakai",
-      "Risk-Management"
+      "maintenance-strategy",
+      "total-cost-of-ownership",
+      "life-cycle-costing",
+      "petrochemical-plant",
+      "equipment-replacement",
+      "reliability-centered-maintenance",
+      "predictive-maintenance",
+      "asset-management"
     ]
   },
   {
@@ -943,10 +1038,16 @@
     "href": "/blog/project/cogs",
     "subtitle": "September 5, 2024",
     "keywords": [
-      "cogs",
-      "capex",
-      "opex",
-      "proyek"
+      "cogs-petrokimia",
+      "conversion-cost",
+      "raw-material-cost",
+      "cost-per-ton",
+      "operasi-pabrik",
+      "maintenance-reliability",
+      "turn-around",
+      "energy-efficiency",
+      "she-compliance",
+      "harga-jual-petrokimia"
     ]
   },
   {
