@@ -1,5 +1,68 @@
 [
   {
+    "id": "general/presentasi-guide",
+    "name": "Dari Data ke Keputusan -  Cara Menyusun Presentasi yang Tepat Sasaran",
+    "section": "CONTENT",
+    "href": "/blog/general/presentasi-guide",
+    "subtitle": "January 21, 2026",
+    "keywords": [
+      "presentasi-teknis",
+      "industri-petrokimia",
+      "engineering-communication",
+      "turn-around-management",
+      "EPC-project",
+      "SHE-risk-management",
+      "decision-making-engineering",
+      "maintenance-management",
+      "plant-operation"
+    ]
+  },
+  {
+    "id": "website/sdlc-product-affiliate",
+    "name": "Pengembangan Aplikasi Web Statis untuk Display Produk dan Dukungan Afiliasi",
+    "section": "CONTENT",
+    "href": "/blog/website/sdlc-product-affiliate",
+    "subtitle": "January 15, 2026",
+    "keywords": [
+      "affiliate-site",
+      "nextjs-typescript",
+      "tailwindcss-seo",
+      "static-web",
+      "sdlc-brs"
+    ]
+  },
+  {
+    "id": "management/gemba-kaizen",
+    "name": "Langkah Nyata Menghadapi Masalah Operasional - 5 Golden Rules Gemba Kaizen untuk Praktisi Teknik",
+    "section": "CONTENT",
+    "href": "/blog/management/gemba-kaizen",
+    "subtitle": "January 13, 2026",
+    "keywords": [
+      "gemba-kaizen",
+      "operational-troubleshooting",
+      "petrochemical-maintenance",
+      "reactor-overpressure",
+      "root-cause-analysis",
+      "technical-guidance",
+      "maintenance-engineering"
+    ]
+  },
+  {
+    "id": "management/qcdsm",
+    "name": "Implementasi QCDSM sebagai Pilar Evaluasi Kinerja Maintenance Berbasis Risiko (RBM) di Industri Petrokimia",
+    "section": "CONTENT",
+    "href": "/blog/management/qcdsm",
+    "subtitle": "January 13, 2026",
+    "keywords": [
+      "QCDSM",
+      "maintenance-RBM",
+      "asset-reliability",
+      "operational-excellence",
+      "performance-monitoring",
+      "petrochemical-plant"
+    ]
+  },
+  {
     "id": "management/moscow",
     "name": "Dari Perencanaan hingga Eksekusi - MoSCoW sebagai Alat Pengambil Keputusan",
     "section": "CONTENT",
