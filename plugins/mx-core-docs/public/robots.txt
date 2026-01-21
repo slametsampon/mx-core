@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://kawruhnology.vercel.app/sitemap.xml
+Sitemap: https://mx-core-docs.vercel.app/sitemap.xml
