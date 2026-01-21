@@ -11,13 +11,13 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   trailingSlash: true,
-  output: 'export',
+  // output: 'export',
 
-  basePath: pluginBasePath,
-  assetPrefix: pluginBasePath,
+  // basePath: pluginBasePath,
+  // assetPrefix: pluginBasePath,
 
   images: {
-    unoptimized: true,
+    unoptimized: false,
   },
 
   env: {
@@ -33,7 +33,7 @@ const nextConfig = {
 
     config.resolve.alias['contentlayer/generated'] = path.resolve(
       __dirname,
-      'contentlayer/generated'
+      'contentlayer/generated',
     );
 
     return config;
