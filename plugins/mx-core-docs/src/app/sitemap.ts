@@ -7,18 +7,26 @@ import siteMetadata from '@/data/siteMetadata';
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = siteMetadata.siteUrl.replace(/\/$/, '');
 
-  const blogs = allBlogs
+  // 1️⃣ Dynamic routes (blog / contentlayer)
+  const blogRoutes = allBlogs
     .filter((blog) => blog.draft !== true)
     .map((blog) => ({
       url: `${baseUrl}/${blog._raw.flattenedPath}`,
       lastModified: blog.lastmod ?? blog.date,
     }));
 
-  return [
-    {
-      url: baseUrl,
-      lastModified: new Date(),
-    },
-    ...blogs,
-  ];
+  // 2️⃣ Static routes (manual, sesuai app/)
+  const staticRoutes = [
+    '/', // home
+    '/blog', // blog index
+    '/posts',
+    '/tags',
+    '/author',
+  ].map((path) => ({
+    url: `${baseUrl}${path}`,
+    lastModified: new Date(),
+  }));
+
+  // 3️⃣ Gabungkan
+  return [...staticRoutes, ...blogRoutes];
 }
