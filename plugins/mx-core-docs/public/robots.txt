@@ -1,4 +1,15 @@
 User-agent: *
 Allow: /
 
+# Block Next.js runtime & non-content
+Disallow: /_next/
+Disallow: /api/
+
+# Optional: block internal tooling jika ter-expose
+Disallow: /.contentlayer/
+Disallow: /.turbo/
+Disallow: /dist/
+Disallow: /out/
+Disallow: /src/
+
 Sitemap: https://mx-core-docs.vercel.app/sitemap.xml
