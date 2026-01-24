@@ -1,5 +1,65 @@
 [
   {
+    "id": "Management/fundamental-rbi-rbm",
+    "name": "Memahami Dasar Risk-Based Inventory (RBI) dalam Kerangka Risk-Based Maintenance (RBM)",
+    "section": "CONTENT",
+    "href": "/blog/Management/fundamental-rbi-rbm",
+    "subtitle": "January 24, 2026",
+    "keywords": [
+      "risk-based-maintenance",
+      "risk-based-inventory",
+      "asset-management",
+      "maintenance-reliability",
+      "inventory-strategy",
+      "rcm-fmea"
+    ]
+  },
+  {
+    "id": "Management/implementasi-rbi",
+    "name": "Implementasi Sistem dan Integrasi Operasional RBI dalam RBM",
+    "section": "CONTENT",
+    "href": "/blog/Management/implementasi-rbi",
+    "subtitle": "January 24, 2026",
+    "keywords": [
+      "risk-based-inventory",
+      "rbi-implementation",
+      "erp-cmms",
+      "inventory-integration",
+      "rcm-fmea",
+      "industrial-case-study"
+    ]
+  },
+  {
+    "id": "Management/metodologi-rbi",
+    "name": "Metodologi Klasifikasi Inventory Berbasis Risiko (RBI)",
+    "section": "CONTENT",
+    "href": "/blog/Management/metodologi-rbi",
+    "subtitle": "January 24, 2026",
+    "keywords": [
+      "risk-based-inventory",
+      "inventory-risk-assessment",
+      "risk-based-maintenance",
+      "spare-part-criticality",
+      "inventory-classification",
+      "reorder-point-strategy"
+    ]
+  },
+  {
+    "id": "Management/template-rbi",
+    "name": "Template, SOP, dan Strategi Lanjutan dalam RBI",
+    "section": "CONTENT",
+    "href": "/blog/Management/template-rbi",
+    "subtitle": "January 24, 2026",
+    "keywords": [
+      "rbi-tools",
+      "inventory-template",
+      "sop-maintenance-warehouse",
+      "jit-risk-based",
+      "material-readiness",
+      "shutdown-support"
+    ]
+  },
+  {
     "id": "general/Cause–Effect–Risk–Decision",
     "name": "Kerangka Berpikir Engineer Berbasis Cause–Effect–Risk–Decision",
     "section": "CONTENT",
@@ -50,10 +110,10 @@
     ]
   },
   {
-    "id": "management/gemba-kaizen",
+    "id": "Management/gemba-kaizen",
     "name": "Langkah Nyata Menghadapi Masalah Operasional - 5 Golden Rules Gemba Kaizen untuk Praktisi Teknik",
     "section": "CONTENT",
-    "href": "/blog/management/gemba-kaizen",
+    "href": "/blog/Management/gemba-kaizen",
     "subtitle": "January 13, 2026",
     "keywords": [
       "gemba-kaizen",
@@ -66,10 +126,10 @@
     ]
   },
   {
-    "id": "management/qcdsm",
+    "id": "Management/qcdsm",
     "name": "Implementasi QCDSM sebagai Pilar Evaluasi Kinerja Maintenance Berbasis Risiko (RBM) di Industri Petrokimia",
     "section": "CONTENT",
-    "href": "/blog/management/qcdsm",
+    "href": "/blog/Management/qcdsm",
     "subtitle": "January 13, 2026",
     "keywords": [
       "QCDSM",
@@ -81,10 +141,10 @@
     ]
   },
   {
-    "id": "management/moscow",
+    "id": "Management/moscow",
     "name": "Dari Perencanaan hingga Eksekusi - MoSCoW sebagai Alat Pengambil Keputusan",
     "section": "CONTENT",
-    "href": "/blog/management/moscow",
+    "href": "/blog/Management/moscow",
     "subtitle": "January 7, 2026",
     "keywords": [
       "MoSCoW-method",
@@ -150,10 +210,10 @@
     ]
   },
   {
-    "id": "management/iceberg-theory",
+    "id": "Management/iceberg-theory",
     "name": "Beyond the Surface - Pendekatan Iceberg dalam Memperkuat Keandalan Aset Industri Petrokimia",
     "section": "CONTENT",
-    "href": "/blog/management/iceberg-theory",
+    "href": "/blog/Management/iceberg-theory",
     "subtitle": "December 17, 2025",
     "keywords": [
       "iceberg-theory",
@@ -539,13 +599,31 @@
     "href": "/blog/maintenance/maintenance-rbm",
     "subtitle": "November 8, 2025",
     "keywords": [
-      "Maintenance",
-      "System",
-      "API RP 580",
-      "Risk-Management",
-      "rbm",
-      "tbm",
-      "critical"
+      "risk-based-maintenance",
+      "pemeliharaan-pabrik-petrokimia",
+      "keandalan-peralatan",
+      "safety-environment",
+      "continuous-process",
+      "tbm-cbm-pdm",
+      "asset-management",
+      "case-study-pt-pon"
+    ]
+  },
+  {
+    "id": "Management/maintenance-rbm",
+    "name": "Risk-Based Maintenance (RBM) di Industri Petrokimia - Strategi, Praktik, dan Studi Kasus PT. Petro Oxo Nusantara",
+    "section": "CONTENT",
+    "href": "/blog/Management/maintenance-rbm",
+    "subtitle": "November 8, 2025",
+    "keywords": [
+      "risk-based-maintenance",
+      "pemeliharaan-pabrik-petrokimia",
+      "keandalan-peralatan",
+      "safety-environment",
+      "continuous-process",
+      "tbm-cbm-pdm",
+      "asset-management",
+      "case-study-pt-pon"
     ]
   },
   {
@@ -561,21 +639,20 @@
     ]
   },
   {
-    "id": "management/housekeeping-keandalan",
+    "id": "Management/housekeeping-keandalan",
     "name": "Housekeeping sebagai Cerminan Keandalan Pabrik Petrokimia",
     "section": "CONTENT",
-    "href": "/blog/management/housekeeping-keandalan",
+    "href": "/blog/Management/housekeeping-keandalan",
     "subtitle": "October 13, 2025",
     "keywords": [
-      "Pemeliharaan",
-      "housekeeping",
-      "keandalan",
-      "6M",
-      "ownership",
-      "awareness",
-      "rca",
-      "5s",
-      "tpm"
+      "housekeeping-petrokimia",
+      "reliability-engineering",
+      "root-cause-analysis-6m",
+      "maintenance-management",
+      "process-safety",
+      "5s-tpm",
+      "rcm-preventive-maintenance",
+      "budaya-kerja-industri"
     ]
   },
   {
@@ -605,20 +682,6 @@
       "contentlayer",
       "tailwind",
       "eslint"
-    ]
-  },
-  {
-    "id": "markdown/github-markdown-guide",
-    "name": "Panduan Markdown",
-    "section": "CONTENT",
-    "href": "/blog/markdown/github-markdown-guide",
-    "subtitle": "October 7, 2025",
-    "keywords": [
-      "github",
-      "panduan",
-      "markdown",
-      "md",
-      "mdx"
     ]
   },
   {
@@ -739,15 +802,20 @@
     ]
   },
   {
-    "id": "management/maintenance-laporan",
+    "id": "Management/maintenance-laporan",
     "name": "Panduan Pembuatan Laporan Bulanan Departemen Maintenance di Industri Petrokimia",
     "section": "CONTENT",
-    "href": "/blog/management/maintenance-laporan",
+    "href": "/blog/Management/maintenance-laporan",
     "subtitle": "October 14, 2024",
     "keywords": [
-      "Pemeliharaan",
-      "laporan-bulanan",
-      "manajemen"
+      "laporan-bulanan-maintenance",
+      "maintenance-management",
+      "kpi-maintenance",
+      "cmms",
+      "reliability-engineering",
+      "preventive-predictive-maintenance",
+      "organisasi-maintenance",
+      "industri-petrokimia"
     ]
   },
   {
@@ -771,14 +839,14 @@
     "href": "/blog/maintenance/troubleshooting-metode",
     "subtitle": "October 11, 2024",
     "keywords": [
-      "troubleshooting",
       "root-cause-analysis",
-      "petrochemical-maintenance",
-      "rca-fmea-fta",
-      "5whys-fishbone",
-      "8d-bowtie",
-      "rcfa-failure-analysis",
-      "industrial-reliability"
+      "rca-petrokimia",
+      "troubleshooting-industri",
+      "reliability-engineering",
+      "process-safety",
+      "maintenance-management",
+      "continuous-improvement",
+      "asset-integrity"
     ]
   },
   {
@@ -796,10 +864,10 @@
     ]
   },
   {
-    "id": "management/maintenance-manajemen",
+    "id": "Management/maintenance-manajemen",
     "name": "Efisiensi dan Keandalan dalam Manajemen Pemeliharaan",
     "section": "CONTENT",
-    "href": "/blog/management/maintenance-manajemen",
+    "href": "/blog/Management/maintenance-manajemen",
     "subtitle": "September 27, 2024",
     "keywords": [
       "Pemeliharaan",
@@ -810,19 +878,20 @@
     ]
   },
   {
-    "id": "management/maintenance-proactive",
+    "id": "Management/maintenance-proactive",
     "name": "Transformasi dari Pemeliharaan Reaktif ke Proaktif",
     "section": "CONTENT",
-    "href": "/blog/management/maintenance-proactive",
+    "href": "/blog/Management/maintenance-proactive",
     "subtitle": "September 27, 2024",
     "keywords": [
-      "Pemeliharaan",
-      "efisiensi",
-      "proaktif",
-      "organisasi",
-      "manajemen",
-      "rbm",
-      "rcm"
+      "pemeliharaan-proaktif",
+      "maintenance-management",
+      "reliability-engineering",
+      "rcm-rbm",
+      "predictive-maintenance",
+      "condition-monitoring",
+      "kpi-maintenance",
+      "industri-petrokimia"
     ]
   },
   {
@@ -1038,9 +1107,14 @@
     "href": "/blog/safety/hazops",
     "subtitle": "September 6, 2024",
     "keywords": [
-      "safety",
       "hazops",
-      "risiko"
+      "process-safety-management",
+      "risk-analysis",
+      "industri-petrokimia",
+      "hazard-identification",
+      "operability-study",
+      "engineering-safety",
+      "plant-design"
     ]
   },
   {
@@ -1050,10 +1124,14 @@
     "href": "/blog/safety/jsa",
     "subtitle": "September 6, 2024",
     "keywords": [
-      "safety",
-      "safety-distance",
-      "jsa",
-      "risiko"
+      "job-safety-analysis",
+      "keselamatan-kerja",
+      "she-petrokimia",
+      "risk-assessment",
+      "permit-to-work",
+      "nfpa-30",
+      "iso-45001",
+      "industri-petrokimia"
     ]
   },
   {
@@ -1079,10 +1157,14 @@
     "href": "/blog/safety/stbm",
     "subtitle": "September 6, 2024",
     "keywords": [
-      "safety",
+      "safety-tool-box-meeting",
       "stbm",
-      "jsa",
-      "risiko"
+      "she-petrokimia",
+      "keselamatan-kerja",
+      "budaya-keselamatan",
+      "hot-work-loto",
+      "maintenance-safety",
+      "industri-petrokimia"
     ]
   },
   {
@@ -1093,9 +1175,13 @@
     "subtitle": "September 5, 2024",
     "keywords": [
       "5r",
-      "gemba",
-      "kaizen",
-      "house-keeping"
+      "ringkas-rapi-resik-rawat-rajin",
+      "pemeliharaan-pabrik-petrokimia",
+      "gemba-kaizen",
+      "safety-culture",
+      "continuous-improvement",
+      "efisiensi-operasional",
+      "keselamatan-kerja"
     ]
   },
   {
@@ -1422,12 +1508,14 @@
     "href": "/blog/maintenance/maintenance-fishbone-diagram",
     "subtitle": "October 26, 2023",
     "keywords": [
-      "Maintenance",
-      "FTA",
-      "rcfa",
-      "Fishbone-Diagram",
-      "troubleshooting",
-      "Risk-Management"
+      "fishbone-diagram",
+      "diagram-ishikawa",
+      "pemeliharaan-pabrik-petrokimia",
+      "analisis-akar-masalah",
+      "troubleshooting-industri",
+      "manajemen-risiko",
+      "process-improvement",
+      "safety-environment"
     ]
   },
   {
@@ -1437,13 +1525,14 @@
     "href": "/blog/maintenance/maintenance-fmea",
     "subtitle": "October 26, 2023",
     "keywords": [
-      "Maintenance",
-      "FTA",
-      "rcfa",
       "fmea",
-      "Fishbone-Diagram",
-      "troubleshooting",
-      "Risk-Management"
+      "failure-mode-and-effects-analysis",
+      "pemeliharaan-pabrik-petrokimia",
+      "manajemen-risiko",
+      "keandalan-peralatan",
+      "risk-priority-number",
+      "safety-environment",
+      "continuous-improvement"
     ]
   },
   {
@@ -1471,12 +1560,14 @@
     "href": "/blog/maintenance/maintenance-fta",
     "subtitle": "October 25, 2023",
     "keywords": [
-      "Maintenance",
-      "FTA",
-      "rcfa",
-      "Fishbone-Diagram",
-      "troubleshooting",
-      "Risk-Management"
+      "fta",
+      "failure-tree-analysis",
+      "analisis-risiko",
+      "pemeliharaan-pabrik-petrokimia",
+      "keandalan-sistem",
+      "process-safety",
+      "manajemen-risiko",
+      "safety-engineering"
     ]
   },
   {
@@ -1486,12 +1577,14 @@
     "href": "/blog/maintenance/maintenance-rcfa",
     "subtitle": "October 25, 2023",
     "keywords": [
-      "Maintenance",
-      "FTA",
       "rcfa",
-      "Fishbone-Diagram",
-      "troubleshooting",
-      "Risk-Management"
+      "root-cause-failure-analysis",
+      "pemeliharaan-pabrik-petrokimia",
+      "keandalan-peralatan",
+      "analisis-kegagalan",
+      "safety-environment",
+      "maintenance-management",
+      "continuous-improvement"
     ]
   },
   {
