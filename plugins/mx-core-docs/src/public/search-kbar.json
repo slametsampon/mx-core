@@ -1,5 +1,131 @@
 [
   {
+    "id": "Management/MSH-1-maintenance-fondasi-risiko",
+    "name": "Filosofi Sistem Pemeliharaan dan Fondasi Risiko",
+    "section": "CONTENT",
+    "href": "/blog/Management/MSH-1-maintenance-fondasi-risiko",
+    "subtitle": "January 25, 2026",
+    "keywords": [
+      "maintenance-philosophy",
+      "risk-based-thinking",
+      "risk-based-maintenance",
+      "api-rp-580",
+      "pemeliharaan-pabrik-petrokimia",
+      "process-industry",
+      "safety-environment-risk",
+      "asset-reliability"
+    ]
+  },
+  {
+    "id": "Management/MSH-2-model-risiko",
+    "name": "Model Risiko dan Logika Pengambilan Keputusan Pemeliharaan",
+    "section": "CONTENT",
+    "href": "/blog/Management/MSH-2-model-risiko",
+    "subtitle": "January 25, 2026",
+    "keywords": [
+      "risk-model",
+      "risk-based-decision-making",
+      "pof-cof",
+      "esc-framework",
+      "risk-based-maintenance",
+      "pemeliharaan-pabrik-petrokimia",
+      "engineering-judgment",
+      "api-rp-580",
+      "maintenance-decision-logic"
+    ]
+  },
+  {
+    "id": "Management/MSH-3-rbm",
+    "name": "Risk-Based Maintenance sebagai Strategi Pemeliharaan Praktis",
+    "section": "CONTENT",
+    "href": "/blog/Management/MSH-3-rbm",
+    "subtitle": "January 25, 2026",
+    "keywords": [
+      "risk-based-maintenance",
+      "maintenance-strategy",
+      "preventive-adaptive-tbm",
+      "pemeliharaan-pabrik-petrokimia",
+      "asset-criticality",
+      "maintenance-execution",
+      "plant-maintenance-training",
+      "rbm-implementation",
+      "continuous-process-maintenance"
+    ]
+  },
+  {
+    "id": "Management/MSH-4-organization",
+    "name": "Organisasi, KPI, dan Akuntabilitas dalam Sistem Pemeliharaan",
+    "section": "CONTENT",
+    "href": "/blog/Management/MSH-4-organization",
+    "subtitle": "January 25, 2026",
+    "keywords": [
+      "organisasi-pemeliharaan",
+      "job-description-dan-akuntabilitas",
+      "kpi-berbasis-peran",
+      "governance-maintenance",
+      "manajemen-aset-iso-55000",
+      "audit-dan-akuntabilitas",
+      "maintenance-management-system",
+      "risk-based-maintenance-governance"
+    ]
+  },
+  {
+    "id": "Management/MSH-5-eksekusi",
+    "name": "Eksekusi, Troubleshooting, dan Sistem Pembelajaran Pemeliharaan",
+    "section": "CONTENT",
+    "href": "/blog/Management/MSH-5-eksekusi",
+    "subtitle": "January 25, 2026",
+    "keywords": [
+      "eksekusi-pemeliharaan",
+      "troubleshooting-sistematis",
+      "root-cause-analysis-rca",
+      "fmea-dan-fta",
+      "first-time-fix",
+      "learning-loop-maintenance",
+      "dokumentasi-pemeliharaan",
+      "risk-based-maintenance-execution",
+      "continuous-improvement-maintenance"
+    ]
+  },
+  {
+    "id": "Management/MSH-6-she-compliance",
+    "name": "SHE sebagai Batas Sistem dalam Pengambilan Keputusan Pemeliharaan",
+    "section": "CONTENT",
+    "href": "/blog/Management/MSH-6-she-compliance",
+    "subtitle": "January 25, 2026",
+    "keywords": [
+      "she-maintenance",
+      "safety-health-environment",
+      "risk-decision-boundary",
+      "esc-risk-integration",
+      "rbm-she-governance",
+      "maintenance-compliance",
+      "process-safety",
+      "asset-management-iso55000",
+      "api-rp-580-581",
+      "petrochemical-maintenance-system"
+    ]
+  },
+  {
+    "id": "Management/MSH-7-lifecycle-ta",
+    "name": "Lifecycle Aset, Turnaround, dan Continuous Improvement Sistem Pemeliharaan",
+    "section": "CONTENT",
+    "href": "/blog/Management/MSH-7-lifecycle-ta",
+    "subtitle": "January 25, 2026",
+    "keywords": [
+      "maintenance-system-handbook",
+      "asset-lifecycle-management",
+      "turnaround-maintenance",
+      "continuous-improvement",
+      "reliability-growth",
+      "rbm-maturity",
+      "iso-55000",
+      "api-rp-580-581",
+      "long-term-maintenance-strategy",
+      "petrochemical-maintenance"
+    ]
+  },
+  {
     "id": "Management/fundamental-rbi-rbm",
     "name": "Memahami Dasar Risk-Based Inventory (RBI) dalam Kerangka Risk-Based Maintenance (RBM)",
     "section": "CONTENT",
@@ -42,6 +168,192 @@
       "spare-part-criticality",
       "inventory-classification",
       "reorder-point-strategy"
+    ]
+  },
+  {
+    "id": "Management/MSH-0-maintenance-evolusi",
+    "name": "Konteks Industri dan Alasan Sistem Pemeliharaan Harus Berevolusi",
+    "section": "CONTENT",
+    "href": "/blog/Management/MSH-0-maintenance-evolusi",
+    "subtitle": "January 24, 2026",
+    "keywords": [
+      "pemeliharaan-pabrik-petrokimia",
+      "maintenance-system",
+      "risk-based-maintenance",
+      "continuous-process-industry",
+      "downtime-risk",
+      "asset-management",
+      "safety-environment-business",
+      "maintenance-governance"
+    ]
+  },
+  {
+    "id": "Management/MSH-panduan-lengkap",
+    "name": "Dari Risk-Based Thinking ke Reliability-Driven Organization - Panduan Lengkap Maintenance System Handbook",
+    "section": "CONTENT",
+    "href": "/blog/Management/MSH-panduan-lengkap",
+    "subtitle": "January 24, 2026",
+    "keywords": [
+      "maintenance-system-handbook",
+      "risk-based-maintenance-rbm",
+      "asset-management-iso-55000",
+      "maintenance-strategy",
+      "she-system-constraint",
+      "turnaround-management",
+      "reliability-growth",
+      "continuous-improvement",
+      "maintenance-maturity-model",
+      "pemeliharaan-pabrik-petrokimia"
+    ]
+  },
+  {
+    "id": "Management/RBI-1-fundamental-rbi-rbm",
+    "name": "Memahami Dasar Risk-Based Inventory (RBInv) dalam Kerangka Risk-Based Maintenance (RBM)",
+    "section": "CONTENT",
+    "href": "/blog/Management/RBI-1-fundamental-rbi-rbm",
+    "subtitle": "January 24, 2026",
+    "keywords": [
+      "risk-based-maintenance",
+      "risk-based-inventory",
+      "asset-management",
+      "maintenance-reliability",
+      "inventory-strategy",
+      "rcm-fmea"
+    ]
+  },
+  {
+    "id": "Management/RBI-2-metodologi-rbi",
+    "name": "Metodologi Klasifikasi Inventory Berbasis Risiko (RBInv)",
+    "section": "CONTENT",
+    "href": "/blog/Management/RBI-2-metodologi-rbi",
+    "subtitle": "January 24, 2026",
+    "keywords": [
+      "risk-based-inventory",
+      "inventory-risk-assessment",
+      "risk-based-maintenance",
+      "spare-part-criticality",
+      "inventory-classification",
+      "reorder-point-strategy"
+    ]
+  },
+  {
+    "id": "Management/RBI-3-implementasi-rbi",
+    "name": "Implementasi Sistem dan Integrasi Operasional RBInv dalam RBM",
+    "section": "CONTENT",
+    "href": "/blog/Management/RBI-3-implementasi-rbi",
+    "subtitle": "January 24, 2026",
+    "keywords": [
+      "risk-based-inventory",
+      "rbi-implementation",
+      "erp-cmms",
+      "inventory-integration",
+      "rcm-fmea",
+      "industrial-case-study"
+    ]
+  },
+  {
+    "id": "Management/RBI-4-template-rbi",
+    "name": "Template, SOP, dan Strategi Lanjutan dalam RBInv",
+    "section": "CONTENT",
+    "href": "/blog/Management/RBI-4-template-rbi",
+    "subtitle": "January 24, 2026",
+    "keywords": [
+      "rbi-tools",
+      "inventory-template",
+      "sop-maintenance-warehouse",
+      "jit-risk-based",
+      "material-readiness",
+      "shutdown-support"
+    ]
+  },
+  {
+    "id": "Management/RBI-panduan-lengkap",
+    "name": "Buku Panduan - Sistem Risk-Based Inventory (RBInv) dalam Risk-Based Maintenance (RBM)",
+    "section": "CONTENT",
+    "href": "/blog/Management/RBI-panduan-lengkap",
+    "subtitle": "January 24, 2026",
+    "keywords": [
+      "rbi-guide",
+      "risk-based-maintenance",
+      "inventory-management",
+      "engineering-reference",
+      "jit-sop-template",
+      "cmms-erp"
+    ]
+  },
+  {
+    "id": "Management/RBInv-1-fundamental-rbi-rbm",
+    "name": "Memahami Dasar Risk-Based Inventory (RBInv) dalam Kerangka Risk-Based Maintenance (RBM)",
+    "section": "CONTENT",
+    "href": "/blog/Management/RBInv-1-fundamental-rbi-rbm",
+    "subtitle": "January 24, 2026",
+    "keywords": [
+      "risk-based-maintenance",
+      "risk-based-inventory",
+      "asset-management",
+      "maintenance-reliability",
+      "inventory-strategy",
+      "rcm-fmea"
+    ]
+  },
+  {
+    "id": "Management/RBInv-2-metodologi-rbi",
+    "name": "Metodologi Klasifikasi Inventory Berbasis Risiko (RBInv)",
+    "section": "CONTENT",
+    "href": "/blog/Management/RBInv-2-metodologi-rbi",
+    "subtitle": "January 24, 2026",
+    "keywords": [
+      "risk-based-inventory",
+      "inventory-risk-assessment",
+      "risk-based-maintenance",
+      "spare-part-criticality",
+      "inventory-classification",
+      "reorder-point-strategy"
+    ]
+  },
+  {
+    "id": "Management/RBInv-3-implementasi-rbi",
+    "name": "Implementasi Sistem dan Integrasi Operasional RBInv dalam RBM",
+    "section": "CONTENT",
+    "href": "/blog/Management/RBInv-3-implementasi-rbi",
+    "subtitle": "January 24, 2026",
+    "keywords": [
+      "risk-based-inventory",
+      "rbi-implementation",
+      "erp-cmms",
+      "inventory-integration",
+      "rcm-fmea",
+      "industrial-case-study"
+    ]
+  },
+  {
+    "id": "Management/RBInv-4-template-rbi",
+    "name": "Template, SOP, dan Strategi Lanjutan dalam RBInv",
+    "section": "CONTENT",
+    "href": "/blog/Management/RBInv-4-template-rbi",
+    "subtitle": "January 24, 2026",
+    "keywords": [
+      "rbi-tools",
+      "inventory-template",
+      "sop-maintenance-warehouse",
+      "jit-risk-based",
+      "material-readiness",
+      "shutdown-support"
+    ]
+  },
+  {
+    "id": "Management/RBInv-panduan-lengkap",
+    "name": "Buku Panduan - Sistem Risk-Based Inventory (RBInv) dalam Risk-Based Maintenance (RBM)",
+    "section": "CONTENT",
+    "href": "/blog/Management/RBInv-panduan-lengkap",
+    "subtitle": "January 24, 2026",
+    "keywords": [
+      "rbi-guide",
+      "risk-based-maintenance",
+      "inventory-management",
+      "engineering-reference",
+      "jit-sop-template",
+      "cmms-erp"
     ]
   },
   {
@@ -1706,6 +2018,19 @@
     "name": "Maintenance System",
     "section": "CONTENT",
     "href": "/blog/maintenance/maintenance-system",
+    "subtitle": "October 20, 2023",
+    "keywords": [
+      "Maintenance",
+      "System",
+      "API RP 580",
+      "Risk-Management"
+    ]
+  },
+  {
+    "id": "Management/maintenance-system",
+    "name": "Maintenance System",
+    "section": "CONTENT",
+    "href": "/blog/Management/maintenance-system",
     "subtitle": "October 20, 2023",
     "keywords": [
       "Maintenance",

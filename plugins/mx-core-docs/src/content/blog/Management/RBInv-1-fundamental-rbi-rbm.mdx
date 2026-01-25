@@ -1,5 +1,5 @@
 ---
-title: Memahami Dasar Risk-Based Inventory (RBI) dalam Kerangka Risk-Based Maintenance (RBM)
+title: Memahami Dasar Risk-Based Inventory (RBInv) dalam Kerangka Risk-Based Maintenance (RBM)
 authors: ['sam']
 date: '2026-01-24'
 tags:
@@ -12,53 +12,53 @@ tags:
     'rcm-fmea',
   ]
 draft: false
-summary: Modul ini membahas dasar integrasi antara Risk-Based Maintenance (RBM) dan Risk-Based Inventory (RBI) dalam manajemen aset industri proses. RBM mengidentifikasi peralatan kritikal berbasis risiko, sementara RBI menerjemahkan informasi tersebut ke dalam strategi pengelolaan inventory yang selaras dengan kebutuhan operasional. Ditekankan pentingnya menjadikan output RBM (melalui RCM dan FMEA) sebagai input teknis RBI untuk memastikan material readiness, meminimalkan downtime, dan menghindari overstock. Modul ini menjadi fondasi konseptual sebelum masuk ke metodologi klasifikasi risiko inventory pada modul selanjutnya.
+summary: Modul ini membahas dasar integrasi antara Risk-Based Maintenance (RBM) dan Risk-Based Inventory (RBInv) dalam manajemen aset industri proses. RBM mengidentifikasi peralatan kritikal berbasis risiko, sementara RBInv menerjemahkan informasi tersebut ke dalam strategi pengelolaan inventory yang selaras dengan kebutuhan operasional. Ditekankan pentingnya menjadikan output RBM (melalui RCM dan FMEA) sebagai input teknis RBInv untuk memastikan material readiness, meminimalkan downtime, dan menghindari overstock. Modul ini menjadi fondasi konseptual sebelum masuk ke metodologi klasifikasi risiko inventory pada modul selanjutnya.
 ---
 
-**_Memahami Dasar Risk-Based Inventory (RBI) dalam Kerangka Risk-Based Maintenance (RBM)_**
+**_Memahami Dasar Risk-Based Inventory (RBInv) dalam Kerangka Risk-Based Maintenance (RBM)_**
 
 ---
 
-- [🧭 **Bagian dari Seri Modul RBI dalam RBM**](#-bagian-dari-seri-modul-rbi-dalam-rbm)
+- [🧭 **Bagian dari Seri Modul RBInv dalam RBM**](#-bagian-dari-seri-modul-rbi-dalam-rbm)
 - [1. **Pendahuluan**](#1-pendahuluan)
 - [2. **Konsep Dasar Risk-Based Maintenance (RBM)**](#2-konsep-dasar-risk-based-maintenance-rbm)
   - [📌 **Tujuan RBM:**](#-tujuan-rbm)
   - [🔧 **Pendekatan Utama dalam RBM:**](#-pendekatan-utama-dalam-rbm)
   - [📊 **Dampak terhadap Perencanaan dan Prioritas Pemeliharaan:**](#-dampak-terhadap-perencanaan-dan-prioritas-pemeliharaan)
-- [3. **Konsep Dasar Risk-Based Inventory (RBI)**](#3-konsep-dasar-risk-based-inventory-rbi)
-  - [🏗️ **Posisi RBI dalam Supply Chain Industri Proses:**](#️-posisi-rbi-dalam-supply-chain-industri-proses)
-  - [🔄 **Perbedaan RBI dengan Klasifikasi ABC/XYZ:**](#-perbedaan-rbi-dengan-klasifikasi-abcxyz)
-  - [🎯 **Tujuan dan Manfaat Utama RBI dalam Konteks RBM:**](#-tujuan-dan-manfaat-utama-rbi-dalam-konteks-rbm)
-- [4. **Hubungan Strategis antara RBI dan RBM**](#4-hubungan-strategis-antara-rbi-dan-rbm)
-  - [📥 **RBM sebagai Pemasok Data Teknis untuk RBI**](#-rbm-sebagai-pemasok-data-teknis-untuk-rbi)
-  - [📈 **Dampak Keputusan RBI terhadap Keberhasilan Strategi RBM**](#-dampak-keputusan-rbi-terhadap-keberhasilan-strategi-rbm)
-  - [🔄 **Diagram Integrasi: FMEA → RBI → Material Readiness**](#-diagram-integrasi-fmea--rbi--material-readiness)
+- [3. **Konsep Dasar Risk-Based Inventory (RBInv)**](#3-konsep-dasar-risk-based-inventory-rbi)
+  - [🏗️ **Posisi RBInv dalam Supply Chain Industri Proses:**](#️-posisi-rbi-dalam-supply-chain-industri-proses)
+  - [🔄 **Perbedaan RBInv dengan Klasifikasi ABC/XYZ:**](#-perbedaan-rbi-dengan-klasifikasi-abcxyz)
+  - [🎯 **Tujuan dan Manfaat Utama RBInv dalam Konteks RBM:**](#-tujuan-dan-manfaat-utama-rbi-dalam-konteks-rbm)
+- [4. **Hubungan Strategis antara RBInv dan RBM**](#4-hubungan-strategis-antara-rbi-dan-rbm)
+  - [📥 **RBM sebagai Pemasok Data Teknis untuk RBInv**](#-rbm-sebagai-pemasok-data-teknis-untuk-rbi)
+  - [📈 **Dampak Keputusan RBInv terhadap Keberhasilan Strategi RBM**](#-dampak-keputusan-rbi-terhadap-keberhasilan-strategi-rbm)
+  - [🔄 **Diagram Integrasi: FMEA → RBInv → Material Readiness**](#-diagram-integrasi-fmea--rbi--material-readiness)
 - [✅ **Kesimpulan Modul 1**](#-kesimpulan-modul-1)
 - [📚 **Referensi Modul 1**](#-referensi-modul-1)
 
 ---
 
-### 🧭 **Bagian dari Seri Modul RBI dalam RBM**
+### 🧭 **Bagian dari Seri Modul RBInv dalam RBM**
 
-Dokumen ini merupakan **Modul 1 dari total 4 modul** yang disusun secara sistematis untuk memberikan pemahaman menyeluruh dan aplikatif mengenai konsep serta implementasi **Risk-Based Inventory (RBI)** sebagai bagian integral dari strategi pemeliharaan berbasis risiko, yaitu **Risk-Based Maintenance (RBM)**.
+Dokumen ini merupakan **Modul 1 dari total 4 modul** yang disusun secara sistematis untuk memberikan pemahaman menyeluruh dan aplikatif mengenai konsep serta implementasi **Risk-Based Inventory (RBInv)** sebagai bagian integral dari strategi pemeliharaan berbasis risiko, yaitu **Risk-Based Maintenance (RBM)**.
 
 Keempat modul ini dirancang agar dapat:
 
 - Dipelajari secara individual sesuai kebutuhan fungsional pembaca (engineer, planner, warehouse, hingga manajemen),
 - Namun tetap saling terhubung dan membentuk satu kesatuan kerangka kerja **manajemen aset berbasis risiko** yang menyeluruh, dari perencanaan strategi hingga eksekusi operasional.
 
-Modul 1 akan membahas aspek fundamental dari RBM dan RBI, serta menjelaskan hubungan strategis antara keduanya sebagai dasar konseptual sebelum memasuki metodologi teknis dan implementasi sistem.
+Modul 1 akan membahas aspek fundamental dari RBM dan RBInv, serta menjelaskan hubungan strategis antara keduanya sebagai dasar konseptual sebelum memasuki metodologi teknis dan implementasi sistem.
 
 ---
 
 🔗 **Navigasi Antar Modul:**
 Untuk efisiensi pembelajaran dan referensi silang, berikut daftar modul lengkap dalam seri ini:
 
-- 📘 [Risk-Based Maintenance-RBM di Industri Petrokimia](/blog/Management/maintenance-rbm)
-- 📘 [Modul 1: Memahami Dasar RBI dalam RBM (saat ini)](/blog/Management/fundamental-rbi-rbm)
-- 📘 [Modul 2: Metodologi Klasifikasi Inventory Berbasis Risiko](/blog/Management/metodologi-rbi)
-- 📘 [Modul 3: Implementasi Sistem dan Integrasi Operasional](/blog/Management/implementasi-rbi)
-- 📘 [Modul 4: Template, SOP, dan Strategi Lanjutan](/blog/Management/template-rbi)
+- 📘 [Buku Panduan - Sistem Risk-Based Inventory (RBInv)](/blog/Management/RBInv-panduan-lengkap)
+- 📘 [Modul 1: Memahami Dasar RBInv dalam RBM (saat ini)](/blog/Management/RBInv-1-fundamental-rbi-rbm)
+- 📘 [Modul 2: Metodologi Klasifikasi Inventory Berbasis Risiko](/blog/Management/RBInv-2-metodologi-rbi)
+- 📘 [Modul 3: Implementasi Sistem dan Integrasi Operasional](/blog/Management/RBInv-3-implementasi-rbi)
+- 📘 [Modul 4: Template, SOP, dan Strategi Lanjutan](/blog/Management/RBInv-4-template-rbi)
 
 ---
 
@@ -66,13 +66,13 @@ Untuk efisiensi pembelajaran dan referensi silang, berikut daftar modul lengkap 
 
 Dalam industri proses seperti petrokimia, migas, pembangkit listrik, dan manufaktur berat, tantangan dalam menjaga **keandalan operasional** sangat erat kaitannya dengan **ketersediaan material dan spare part kritikal**. Kegagalan peralatan utama (seperti pompa, kompresor, motor, dan sistem instrumentasi safety) sering kali bukan hanya disebabkan oleh aspek teknis dari alat itu sendiri, namun juga oleh **ketidaksiapan logistik**, seperti keterlambatan pengadaan suku cadang atau ketidaktepatan klasifikasi inventory.
 
-Tradisi pengelolaan inventory berbasis forecast konsumsi (seperti metode ABC/XYZ) belum sepenuhnya mampu menjawab kebutuhan real-time dan risiko downtime tinggi akibat kegagalan peralatan kritikal. Oleh karena itu, pendekatan berbasis risiko menjadi semakin relevan, yaitu dengan **mengintegrasikan strategi pemeliharaan berbasis risiko (Risk-Based Maintenance/RBM)** dengan **pengelolaan inventory berbasis risiko (Risk-Based Inventory/RBI)**.
+Tradisi pengelolaan inventory berbasis forecast konsumsi (seperti metode ABC/XYZ) belum sepenuhnya mampu menjawab kebutuhan real-time dan risiko downtime tinggi akibat kegagalan peralatan kritikal. Oleh karena itu, pendekatan berbasis risiko menjadi semakin relevan, yaitu dengan **mengintegrasikan strategi pemeliharaan berbasis risiko (Risk-Based Maintenance/RBM)** dengan **pengelolaan inventory berbasis risiko (Risk-Based Inventory/RBInv)**.
 
 Pendekatan ini tidak hanya memperkuat keandalan sistem pemeliharaan melalui teknik seperti RCM (Reliability-Centered Maintenance) dan FMEA (Failure Modes and Effects Analysis), tetapi juga memastikan bahwa **material dan spare part tersedia pada waktu dan tempat yang tepat, berdasarkan tingkat kritikalitas aktual dan dampaknya terhadap operasi.**
 
 Modul ini bertujuan untuk:
 
-- Memberikan pemahaman dasar mengenai konsep RBM dan RBI serta alasan keduanya harus diintegrasikan secara strategis,
+- Memberikan pemahaman dasar mengenai konsep RBM dan RBInv serta alasan keduanya harus diintegrasikan secara strategis,
 - Menyediakan fondasi konseptual sebelum masuk ke dalam aspek metodologi klasifikasi risiko, implementasi sistem, dan optimalisasi operasional,
 - Menyajikan kerangka 4 modul yang terstruktur, sehingga pembaca dapat mengikuti alur materi secara progresif atau langsung menuju bagian yang paling relevan dengan fungsi atau tanggung jawabnya.
 
@@ -122,36 +122,36 @@ Penerapan RBM memungkinkan tim engineering dan operasi untuk:
 - Menentukan kebutuhan inspeksi dan pengujian (non-destructive test, monitoring) berdasarkan level risiko peralatan.
 - Mengurangi backlog pekerjaan yang tidak bernilai tambah terhadap keandalan sistem.
 
-Lebih jauh lagi, output dari RBM menjadi **input krusial dalam perencanaan inventory strategis**, yang akan dibahas lebih lanjut dalam bagian berikutnya, khususnya terkait **peran Risk-Based Inventory (RBI)** dalam mendukung readiness dan efektivitas strategi RBM.
+Lebih jauh lagi, output dari RBM menjadi **input krusial dalam perencanaan inventory strategis**, yang akan dibahas lebih lanjut dalam bagian berikutnya, khususnya terkait **peran Risk-Based Inventory (RBInv)** dalam mendukung readiness dan efektivitas strategi RBM.
 
 ---
 
-### 3. **Konsep Dasar Risk-Based Inventory (RBI)**
+### 3. **Konsep Dasar Risk-Based Inventory (RBInv)**
 
-**Risk-Based Inventory (RBI)** adalah pendekatan pengelolaan inventory yang menekankan pada **penentuan level persediaan berdasarkan analisis risiko operasional**, bukan semata-mata pada nilai ekonomi atau pola konsumsi historis. RBI mempertimbangkan tingkat **kritisnya suatu item terhadap keselamatan, keberlangsungan operasi, dan potensi dampak finansial** apabila item tersebut tidak tersedia saat dibutuhkan.
+**Risk-Based Inventory (RBInv)** adalah pendekatan pengelolaan inventory yang menekankan pada **penentuan level persediaan berdasarkan analisis risiko operasional**, bukan semata-mata pada nilai ekonomi atau pola konsumsi historis. RBInv mempertimbangkan tingkat **kritisnya suatu item terhadap keselamatan, keberlangsungan operasi, dan potensi dampak finansial** apabila item tersebut tidak tersedia saat dibutuhkan.
 
-Dalam konteks industri proses, RBI memegang peran strategis sebagai perpanjangan dari kebijakan pemeliharaan berbasis risiko (RBM), dengan memastikan bahwa **spare part dan material penting tersedia secara tepat waktu** untuk mendukung keandalan sistem produksi.
+Dalam konteks industri proses, RBInv memegang peran strategis sebagai perpanjangan dari kebijakan pemeliharaan berbasis risiko (RBM), dengan memastikan bahwa **spare part dan material penting tersedia secara tepat waktu** untuk mendukung keandalan sistem produksi.
 
 ---
 
-#### 🏗️ **Posisi RBI dalam Supply Chain Industri Proses:**
+#### 🏗️ **Posisi RBInv dalam Supply Chain Industri Proses:**
 
-RBI berada di titik pertemuan antara:
+RBInv berada di titik pertemuan antara:
 
 - **Reliability Engineering** (sebagai sumber input risiko),
 - **Maintenance Planning** (sebagai pemilik kebutuhan material),
 - **Warehouse & Procurement** (sebagai eksekutor pengadaan dan penyimpanan).
 
-Dengan pendekatan ini, RBI menjembatani kebutuhan **teknis dan logistik**, dan menghindari terjadinya:
+Dengan pendekatan ini, RBInv menjembatani kebutuhan **teknis dan logistik**, dan menghindari terjadinya:
 
 - **Overstock** pada item non-kritis (pemborosan modal),
 - **Stockout** pada item kritikal (potensi downtime atau kegagalan proses safety).
 
 ---
 
-#### 🔄 **Perbedaan RBI dengan Klasifikasi ABC/XYZ:**
+#### 🔄 **Perbedaan RBInv dengan Klasifikasi ABC/XYZ:**
 
-| Aspek                     | ABC/XYZ Classification                                                                                   | Risk-Based Inventory (RBI)                                                                     |
+| Aspek                     | ABC/XYZ Classification                                                                                   | Risk-Based Inventory (RBInv)                                                                   |
 | ------------------------- | -------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
 | **Tujuan Utama**          | Mengelola inventory berdasarkan nilai konsumsi tahunan dan variabilitas permintaan                       | Mengelola inventory berdasarkan kritisnya dampak risiko terhadap operasi, safety, dan downtime |
 | **Parameter Klasifikasi** | ABC: Nilai konsumsi tahunan (Annual Consumption Value); XYZ: Variabilitas permintaan (demand volatility) | Equipment criticality; failure frequency; lead time; cost & safety impact                      |
@@ -161,11 +161,11 @@ Dengan pendekatan ini, RBI menjembatani kebutuhan **teknis dan logistik**, dan m
 | **Kelebihan**             | Sederhana dan mudah diterapkan; cocok untuk strategi pembelian & kontrol persediaan                      | Cocok untuk critical spare; mencegah stockout berdampak tinggi; mendukung RCM/FMEA             |
 | **Kelemahan**             | Tidak mempertimbangkan criticality atau konsekuensi downtime; item murah tapi penting bisa terabaikan    | Lebih kompleks; membutuhkan data teknis dan analisis risiko                                    |
 
-Sebagai contoh, **bearing khusus untuk kompresor API 618** mungkin masuk kategori **C item (nilai rendah)** dalam klasifikasi ABC, namun dalam RBI diklasifikasikan sebagai **High-Risk Inventory** karena failure-nya dapat menyebabkan downtime besar dan kerugian produksi signifikan.
+Sebagai contoh, **bearing khusus untuk kompresor API 618** mungkin masuk kategori **C item (nilai rendah)** dalam klasifikasi ABC, namun dalam RBInv diklasifikasikan sebagai **High-Risk Inventory** karena failure-nya dapat menyebabkan downtime besar dan kerugian produksi signifikan.
 
 ---
 
-#### 🎯 **Tujuan dan Manfaat Utama RBI dalam Konteks RBM:**
+#### 🎯 **Tujuan dan Manfaat Utama RBInv dalam Konteks RBM:**
 
 1. **Menjamin ketersediaan spare part untuk peralatan kritikal**, terutama pada sistem dengan konsekuensi tinggi (safety, lingkungan, produksi).
 2. **Mengurangi risiko kegagalan pemeliharaan terencana** (preventive/predictive) akibat ketidaksiapan material.
@@ -173,17 +173,17 @@ Sebagai contoh, **bearing khusus untuk kompresor API 618** mungkin masuk kategor
 4. **Meningkatkan efisiensi procurement** melalui prioritisasi pengadaan berbasis criticality dan lead time.
 5. **Mendukung pengambilan keputusan operasional** dalam perencanaan turnaround, emergency repair, dan investasi inventory strategis.
 
-RBI secara langsung mendukung prinsip RBM dengan mengubah hasil analisis risiko peralatan menjadi tindakan konkret dalam manajemen material. Pendekatan ini menjadi fondasi dalam membangun keterhubungan antara **engineering, maintenance, dan supply chain** secara fungsional dan strategis.
+RBInv secara langsung mendukung prinsip RBM dengan mengubah hasil analisis risiko peralatan menjadi tindakan konkret dalam manajemen material. Pendekatan ini menjadi fondasi dalam membangun keterhubungan antara **engineering, maintenance, dan supply chain** secara fungsional dan strategis.
 
 ---
 
-### 4. **Hubungan Strategis antara RBI dan RBM**
+### 4. **Hubungan Strategis antara RBInv dan RBM**
 
-Integrasi antara **Risk-Based Maintenance (RBM)** dan **Risk-Based Inventory (RBI)** merupakan fondasi utama dalam membangun sistem manajemen aset yang andal dan efisien. Keduanya berangkat dari prinsip yang sama, yaitu **prioritisasi berbasis risiko**, namun bekerja di dua domain yang berbeda: **RBM di ranah perencanaan dan eksekusi pemeliharaan**, sementara **RBI di ranah kesiapan material dan pengelolaan logistik**.
+Integrasi antara **Risk-Based Maintenance (RBM)** dan **Risk-Based Inventory (RBInv)** merupakan fondasi utama dalam membangun sistem manajemen aset yang andal dan efisien. Keduanya berangkat dari prinsip yang sama, yaitu **prioritisasi berbasis risiko**, namun bekerja di dua domain yang berbeda: **RBM di ranah perencanaan dan eksekusi pemeliharaan**, sementara **RBInv di ranah kesiapan material dan pengelolaan logistik**.
 
 ---
 
-#### 📥 **RBM sebagai Pemasok Data Teknis untuk RBI**
+#### 📥 **RBM sebagai Pemasok Data Teknis untuk RBInv**
 
 Dalam proses RBM, peralatan dinilai berdasarkan:
 
@@ -192,7 +192,7 @@ Dalam proses RBM, peralatan dinilai berdasarkan:
 - Frekuensi dan sejarah kegagalan,
 - Ketersediaan teknologi deteksi atau pemantauan.
 
-Dari hasil ini, peralatan diklasifikasikan menjadi **kategori kritikalitas** (mis. High, Medium, Low). Informasi ini selanjutnya menjadi **basis teknis untuk menentukan strategi inventory RBI**, yaitu:
+Dari hasil ini, peralatan diklasifikasikan menjadi **kategori kritikalitas** (mis. High, Medium, Low). Informasi ini selanjutnya menjadi **basis teknis untuk menentukan strategi inventory RBInv**, yaitu:
 
 - Item apa yang harus disiapkan di gudang (safety stock),
 - Kapan harus dilakukan pemesanan ulang (reorder point),
@@ -200,15 +200,15 @@ Dari hasil ini, peralatan diklasifikasikan menjadi **kategori kritikalitas** (mi
 
 ---
 
-#### 📈 **Dampak Keputusan RBI terhadap Keberhasilan Strategi RBM**
+#### 📈 **Dampak Keputusan RBInv terhadap Keberhasilan Strategi RBM**
 
-Keputusan yang diambil dalam RBI—seperti klasifikasi item dan strategi stocking—akan berdampak langsung terhadap:
+Keputusan yang diambil dalam RBInv—seperti klasifikasi item dan strategi stocking—akan berdampak langsung terhadap:
 
 - **Keberhasilan pelaksanaan preventive/predictive maintenance**, karena ketersediaan part menentukan eksekusi tepat waktu,
 - **Durasi downtime saat corrective maintenance**, karena keterlambatan part akan memperpanjang MTTR,
 - **Efektivitas turnaround/shutdown plan**, yang sangat tergantung pada keakuratan material readiness.
 
-RBI yang tidak disusun berdasarkan input RBM akan berisiko menyebabkan:
+RBInv yang tidak disusun berdasarkan input RBM akan berisiko menyebabkan:
 
 - Over-stocking item yang tidak kritikal,
 - Stockout pada part yang memiliki konsekuensi downtime tinggi,
@@ -216,9 +216,9 @@ RBI yang tidak disusun berdasarkan input RBM akan berisiko menyebabkan:
 
 ---
 
-#### 🔄 **Diagram Integrasi: FMEA → RBI → Material Readiness**
+#### 🔄 **Diagram Integrasi: FMEA → RBInv → Material Readiness**
 
-Berikut alur logis keterkaitan antara RBM dan RBI:
+Berikut alur logis keterkaitan antara RBM dan RBInv:
 
 ```text
 RCM / FMEA Analysis (RBM)
@@ -227,22 +227,22 @@ Critical Equipment Ranking
        ↓
 Spare Part Mapping per Equipment
        ↓
-Risk Classification of Inventory (RBI)
+Risk Classification of Inventory (RBInv)
        ↓
 Safety Stock / Reorder Strategy
        ↓
 Material Readiness for Maintenance Execution
 ```
 
-Diagram ini menjelaskan bahwa **RBI bukan sistem terpisah**, melainkan **turunan langsung dari strategi pemeliharaan berbasis risiko**. Artinya, semakin matang sistem RBM, maka semakin presisi dan efisien sistem RBI yang dibangun.
+Diagram ini menjelaskan bahwa **RBInv bukan sistem terpisah**, melainkan **turunan langsung dari strategi pemeliharaan berbasis risiko**. Artinya, semakin matang sistem RBM, maka semakin presisi dan efisien sistem RBInv yang dibangun.
 
 ---
 
 ### ✅ **Kesimpulan Modul 1**
 
-Modul ini telah membahas fondasi konseptual dari integrasi antara **Risk-Based Maintenance (RBM)** dan **Risk-Based Inventory (RBI)** sebagai dua pilar penting dalam strategi manajemen aset berbasis risiko. RBM bertugas mengidentifikasi peralatan kritikal dan menentukan prioritas tindakan pemeliharaan berbasis dampak risiko, sementara RBI berperan menyediakan dukungan logistik dan material yang selaras dengan kebutuhan teknis tersebut.
+Modul ini telah membahas fondasi konseptual dari integrasi antara **Risk-Based Maintenance (RBM)** dan **Risk-Based Inventory (RBInv)** sebagai dua pilar penting dalam strategi manajemen aset berbasis risiko. RBM bertugas mengidentifikasi peralatan kritikal dan menentukan prioritas tindakan pemeliharaan berbasis dampak risiko, sementara RBInv berperan menyediakan dukungan logistik dan material yang selaras dengan kebutuhan teknis tersebut.
 
-Penerapan RBI yang efektif tidak dapat dipisahkan dari kualitas input yang dihasilkan oleh proses RBM, khususnya melalui analisis RCM dan FMEA. Dengan mengalirkan informasi kritikalitas peralatan ke dalam sistem klasifikasi dan pengelolaan inventory, perusahaan dapat memastikan **material readiness**, menurunkan risiko **stockout untuk item strategis**, serta mengurangi pemborosan akibat **overstock item non-kritis**.
+Penerapan RBInv yang efektif tidak dapat dipisahkan dari kualitas input yang dihasilkan oleh proses RBM, khususnya melalui analisis RCM dan FMEA. Dengan mengalirkan informasi kritikalitas peralatan ke dalam sistem klasifikasi dan pengelolaan inventory, perusahaan dapat memastikan **material readiness**, menurunkan risiko **stockout untuk item strategis**, serta mengurangi pemborosan akibat **overstock item non-kritis**.
 
 Pemahaman dalam modul ini menjadi landasan penting sebelum melangkah ke modul berikutnya, yang akan membahas secara teknis bagaimana menyusun klasifikasi risiko inventory melalui metode kuantitatif dan logika pengambilan keputusan yang dapat diintegrasikan ke dalam sistem ERP/CMMS.
 
@@ -260,7 +260,7 @@ Pemahaman dalam modul ini menjadi landasan penting sebelum melangkah ke modul be
    → Panduan terstruktur penerapan RBM dan FMEA di sistem kompleks.
 
 4. **API RP 580** – _Risk-Based Inspection_. American Petroleum Institute.
-   → Digunakan sebagai referensi pengelolaan risiko teknis berbasis konsekuensi dan probabilitas, relevan untuk pendekatan RBI.
+   → Digunakan sebagai referensi pengelolaan risiko teknis berbasis konsekuensi dan probabilitas, relevan untuk pendekatan RBInv.
 
 5. **SMRP Best Practices** – _Maintenance and Reliability Metrics_.
    → Standar metrik pemeliharaan dan inventory management berbasis risiko.
@@ -271,7 +271,7 @@ Pemahaman dalam modul ini menjadi landasan penting sebelum melangkah ke modul be
 7. **APICS Dictionary (16th Edition)** – American Production and Inventory Control Society.
    → Referensi istilah dan praktik dalam manajemen inventory dan supply chain.
 
-8. **Data internal sistem CMMS (SAP PM/MM, Maximo, Oracle EAM)** – sebagai acuan praktik implementasi RBM–RBI di industri.
+8. **Data internal sistem CMMS (SAP PM/MM, Maximo, Oracle EAM)** – sebagai acuan praktik implementasi RBM–RBInv di industri.
 
 ---
 
