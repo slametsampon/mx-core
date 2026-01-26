@@ -22,7 +22,6 @@ summary: Panduan ini menyajikan sistem Risk-Based Inventory (RBInv) secara menye
 - [**1. PROLOG: Tentang Buku Panduan Ini**](#1-prolog-tentang-buku-panduan-ini)
   - [📚 **Tujuan Penyusunan**](#-tujuan-penyusunan)
   - [📂 **Struktur Panduan: 4 Modul Terstruktur**](#-struktur-panduan-4-modul-terstruktur)
-  - [⚠️ **Catatan: Klarifikasi Terminologi RBI**](#️-catatan-klarifikasi-terminologi-rbi)
   - [🔄 **Posisi RBInv dalam Ekosistem RBM dan Supply Chain**](#-posisi-rbinv-dalam-ekosistem-rbm-dan-supply-chain)
 - [**2. EXECUTIVE SUMMARY: Rangkuman Inti \& Pemetaan Modul**](#2-executive-summary-rangkuman-inti--pemetaan-modul)
   - [**2.1 Ringkasan Strategi RBInv dalam RBM**](#21-ringkasan-strategi-rbinv-dalam-rbm)
@@ -69,6 +68,7 @@ Buku panduan ini disusun untuk memberikan pemahaman menyeluruh, terstruktur, dan
 🔗 **Navigasi Antar Modul:**
 Untuk efisiensi pembelajaran dan referensi silang, berikut daftar modul lengkap dalam seri ini:
 
+- 📘 [Dari Risk-Based Thinking ke Reliability-Driven Organization](/blog/Management/MSH-panduan-lengkap)
 - 📘 [Buku Panduan - Sistem Risk-Based Inventory (RBInv)](/blog/Management/RBInv-panduan-lengkap)
 - 📘 [Modul 1: Memahami Dasar RBInv dalam RBM (saat ini)](/blog/Management/RBInv-1-fundamental-rbi-rbm)
 - 📘 [Modul 2: Metodologi Klasifikasi Inventory Berbasis Risiko](/blog/Management/RBInv-2-metodologi-rbi)
@@ -106,27 +106,13 @@ Pendekatan modular ini dipilih agar materi:
 
 ---
 
-### ⚠️ **Catatan: Klarifikasi Terminologi RBI**
-
-Agar tidak terjadi kekeliruan pemahaman, perlu ditegaskan bahwa:
-
-- **Risk-Based Inventory (RBInv)**
-  Merupakan strategi klasifikasi dan pengelolaan spare part/logistik berdasarkan **risiko teknis, dampak downtime, dan kesiapan operasional**, sebagai bagian dari sistem pemeliharaan berbasis risiko.
-
-- **Risk-Based Inspection (juga RBI, API 580)**
-  Adalah metodologi inspeksi pressure equipment (vessel, exchanger, dsb) berbasis risiko kegagalan, sesuai standar **API 580**. Fokusnya adalah pada program inspeksi, bukan pengelolaan spare part.
-
-Keduanya menggunakan prinsip risk-ranking, namun dengan cakupan, metode, dan sistem pelaksanaan yang berbeda.
-
----
-
 ### 🔄 **Posisi RBInv dalam Ekosistem RBM dan Supply Chain**
 
 Untuk memberikan konteks visual terhadap posisi RBInv, pembaca dapat merujuk pada diagram berikut:
 
 ```
 RCM/FMEA  →  Equipment Criticality  →  RBInv Classification  →  Inventory Planning  →  Procurement & Logistic
-        ↘___________________________→  Shutdown/TAR Readiness  →  Warehouse Control
+        ↘___________________________→  Shutdown/TA Readiness  →  Warehouse Control
 ```
 
 Diagram ini menunjukkan bahwa RBInv adalah _perpanjangan dari RBM_ yang berfungsi menjembatani kebutuhan teknis dengan manajemen logistik.
@@ -289,12 +275,12 @@ Berikut adalah **struktur `Bagian 3. ISI INTI: Kompilasi 4 Modul`** dari buku pa
 
 - Alur kerja permintaan material berbasis risiko
 - Keterlibatan fungsi lintas departemen
-- Tinjauan berkala & audit kesiapan material (shutdown/TAR)
+- Tinjauan berkala & audit kesiapan material (shutdown/TA)
 
 #### 3.4.4 Integrasi Strategi Just‑In‑Time (JIT) dalam Kerangka RBInv
 
 - Kriteria item yang layak untuk JIT dalam RBInv
-- Sinkronisasi dengan jadwal PM & TAR
+- Sinkronisasi dengan jadwal PM & TA
 - Risiko JIT pada item kritikal dan mitigasi
 
 #### 3.4.5 Kesimpulan Modul 4
