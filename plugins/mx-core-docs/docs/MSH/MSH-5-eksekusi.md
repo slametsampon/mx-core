@@ -74,8 +74,8 @@ Dalam modul ini, **troubleshooting, analisa akar masalah, dan dokumentasi** dipo
 
 **Korelasi internal-link modul:**
 
-- [Modul sebelumnya: **Module 4 – Organization, KPI & Accountability**](/blog/Management/MSH-4-organization)
-- [Modul berikutnya: **Module 6 – SHE, Compliance & Risk Control**](/blog/Management/MSH-5-eksekusi)
+- [Modul sebelumnya: **Module 4 – Organization, KPI & Accountability**](/blog/Management/MSH/MSH-4-organization)
+- [Modul berikutnya: **Module 6 – SHE, Compliance & Risk Control**](/blog/Management/MSH/MSH-5-eksekusi)
 
 ---
 
@@ -369,11 +369,11 @@ Dengan demikian, Module 5 menjadi penghubung penting antara **strategi (Module 3
 
 ## 🔗 Korelasi dengan Modul Lain
 
-- [**Module 3** → Menetapkan _apa_ strategi pemeliharaan yang diterapkan (RBM dan TBM adaptif)](/blog/Management/MSH-3-rbm)
-- [**Module 4** → Menetapkan _siapa_ yang bertanggung jawab atas kualitas eksekusi](/blog/Management/MSH-4-organization)
-- [**Module 5** → Memastikan eksekusi menghasilkan pembelajaran sistemik](/blog/Management/MSH-5-eksekusi)
-- [**Module 6** → Akan memastikan seluruh aktivitas eksekusi berada dalam batas SHE dan kepatuhan](/blog/Management/MSH-6-she-compliance)
-- [**Module 7** → Menutup siklus melalui continuous improvement dan pendekatan lifecycle](/blog/Management/MSH-7-lifecycle-ta)
+- [**Module 3** → Menetapkan _apa_ strategi pemeliharaan yang diterapkan (RBM dan TBM adaptif)](/blog/Management/MSH/MSH-3-rbm)
+- [**Module 4** → Menetapkan _siapa_ yang bertanggung jawab atas kualitas eksekusi](/blog/Management/MSH/MSH-4-organization)
+- [**Module 5** → Memastikan eksekusi menghasilkan pembelajaran sistemik](/blog/Management/MSH/MSH-5-eksekusi)
+- [**Module 6** → Akan memastikan seluruh aktivitas eksekusi berada dalam batas SHE dan kepatuhan](/blog/Management/MSH/MSH-6-she-compliance)
+- [**Module 7** → Menutup siklus melalui continuous improvement dan pendekatan lifecycle](/blog/Management/MSH/MSH-7-lifecycle-ta)
 
 ---
 

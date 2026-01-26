@@ -1,0 +1,345 @@
+---
+title: Metodologi Klasifikasi Inventory Berbasis Risiko (RBInv)
+authors: ['sam']
+date: '2026-01-24'
+tags:
+  [
+    'risk-based-inventory',
+    'inventory-risk-assessment',
+    'risk-based-maintenance',
+    'spare-part-criticality',
+    'inventory-classification',
+    'reorder-point-strategy',
+  ]
+draft: false
+summary: Modul ini membahas metodologi teknis dalam menerapkan Risk-Based Inventory (RBInv) sebagai turunan langsung dari Risk-Based Maintenance (RBM). Fokus utama diberikan pada penilaian risiko spare part melalui parameter seperti equipment criticality, frekuensi kegagalan, lead time, dan dampak downtime. Modul ini menjelaskan cara menyusun matriks skoring risiko, mengonversinya menjadi kategori High–Medium–Low Risk, serta menerjemahkannya ke dalam strategi stok yang tepat. Perbandingan dengan metode ABC/XYZ disajikan untuk menegaskan keunggulan pendekatan berbasis risiko, dilengkapi dengan rule of thumb penentuan stock minimum dan reorder point yang aplikatif.
+---
+
+**_Metodologi Klasifikasi Inventory Berbasis Risiko (RBInv)_**
+
+---
+
+- [🧭 **Bagian dari Seri Modul RBInv dalam RBM**](#-bagian-dari-seri-modul-rbi-dalam-rbm)
+- [1. **Pendahuluan Modul**](#1-pendahuluan-modul)
+  - [🎯 **Tujuan Pembelajaran Modul:**](#-tujuan-pembelajaran-modul)
+- [2. **Parameter Penilaian Risiko dalam RBInv**](#2-parameter-penilaian-risiko-dalam-rbi)
+  - [📌 **2.1 Definisi Parameter Utama**](#-21-definisi-parameter-utama)
+  - [📊 **2.2 Sumber Data yang Digunakan**](#-22-sumber-data-yang-digunakan)
+  - [📐 **2.3 Contoh Tabel Parameter dan Skala Risiko**](#-23-contoh-tabel-parameter-dan-skala-risiko)
+- [3. **Matriks Skoring dan Klasifikasi Risiko**](#3-matriks-skoring-dan-klasifikasi-risiko)
+  - [🧮 **3.1 Penyusunan Matriks Risiko untuk Spare Part**](#-31-penyusunan-matriks-risiko-untuk-spare-part)
+  - [🎯 **3.2 Konversi Skor ke Kategori Risiko**](#-32-konversi-skor-ke-kategori-risiko)
+  - [📦 **3.3 Penerapan Strategi Stok Berdasarkan Kategori Risiko**](#-33-penerapan-strategi-stok-berdasarkan-kategori-risiko)
+- [4. **Perbandingan RBInv dengan ABC/XYZ Classification**](#4-perbandingan-rbi-dengan-abcxyz-classification)
+  - [🎯 **4.1 Tujuan dan Pendekatan Masing-Masing Metode**](#-41-tujuan-dan-pendekatan-masing-masing-metode)
+  - [📚 **4.2 Studi Kasus Perbedaan Klasifikasi**](#-42-studi-kasus-perbedaan-klasifikasi)
+- [5. **Penentuan Stock Minimum dan Reorder Point Berbasis Risiko**](#5-penentuan-stock-minimum-dan-reorder-point-berbasis-risiko)
+  - [🧮 **5.1 Rumus Dasar Reorder Point (ROP) dan Safety Stock**](#-51-rumus-dasar-reorder-point-rop-dan-safety-stock)
+  - [📌 **5.2 Rule of Thumb berdasarkan Kategori Risiko**](#-52-rule-of-thumb-berdasarkan-kategori-risiko)
+  - [🔧 **5.3 Studi Kasus: Pompa dan Instrumentasi**](#-53-studi-kasus-pompa-dan-instrumentasi)
+- [✅ **Kesimpulan Modul 2**](#-kesimpulan-modul-2)
+- [📚 **Referensi Modul 2**](#-referensi-modul-2)
+
+---
+
+### 🧭 **Bagian dari Seri Modul RBInv dalam RBM**
+
+Dokumen ini merupakan **Modul 2 dari total 4 modul** yang dirancang untuk memberikan pemahaman lengkap dan terstruktur mengenai penerapan **Risk-Based Inventory (RBInv)** dalam kerangka kerja **Risk-Based Maintenance (RBM)**. Modul ini membahas secara khusus **metodologi penilaian risiko inventory**, mulai dari identifikasi parameter risiko, penyusunan matriks skoring, hingga konversi menjadi strategi stocking yang terukur.
+
+Setiap modul disusun agar dapat berdiri sendiri sebagai sumber referensi teknis, namun tetap saling melengkapi secara sistemik untuk membentuk satu kesatuan strategi manajemen aset berbasis risiko. Modul ini ditujukan untuk para engineer, planner, manajer pemeliharaan, dan tim warehouse/supply chain yang terlibat dalam pengelolaan spare part strategis.
+
+---
+
+🔗 **Navigasi Antar Modul:**
+Untuk efisiensi pembelajaran dan referensi silang, berikut daftar modul lengkap dalam seri ini:
+
+- 📘 [Dari Risk-Based Thinking ke Reliability-Driven Organization](/blog/Management/MSH/MSH-panduan-lengkap)
+- 📘 [Buku Panduan - Sistem Risk-Based Inventory (RBInv)](/blog/Management/RBInv/RBInv-panduan-lengkap)
+- 📘 [Modul 1: Memahami Dasar RBInv dalam RBM](/blog/Management/RBInv/RBInv-1-fundamental-rbi-rbm)
+- 📘 [Modul 2: Metodologi Klasifikasi Inventory Berbasis Risiko (saat ini)](/blog/Management/RBInv/RBInv-2-metodologi-rbi)
+- 📘 [Modul 3: Implementasi Sistem dan Integrasi Operasional](/blog/Management/RBInv/RBInv-3-implementasi-rbi)
+- 📘 [Modul 4: Template, SOP, dan Strategi Lanjutan](/blog/Management/RBInv/RBInv-4-template-rbi)
+
+---
+
+### 1. **Pendahuluan Modul**
+
+Pengelolaan inventory dalam industri proses telah lama didominasi oleh pendekatan berbasis nilai ekonomi dan pola konsumsi historis, seperti metode ABC dan XYZ. Meskipun metode tersebut cukup efektif untuk pengendalian biaya dan rotasi stok secara umum, namun pendekatan tersebut sering kali **mengabaikan aspek kritikalitas teknis**, khususnya dalam konteks **manajemen peralatan strategis dan keselamatan operasi**.
+
+Modul ini hadir untuk menjawab tantangan tersebut, dengan memperkenalkan **metodologi klasifikasi inventory berbasis risiko (Risk-Based Inventory – RBInv)** yang mengintegrasikan input teknis dari sistem pemeliharaan berbasis risiko (RBM). Pendekatan ini memungkinkan organisasi untuk menyusun strategi stocking yang lebih **presisi, berbasis data risiko**, dan lebih selaras dengan **prioritas operasional dan pemeliharaan**.
+
+---
+
+#### 🎯 **Tujuan Pembelajaran Modul:**
+
+- Memahami parameter-parameter teknis yang digunakan dalam penilaian risiko inventory (criticality, frequency, lead time, impact),
+- Menyusun matriks klasifikasi risiko untuk spare part berdasarkan data realistik dan logika operasional,
+- Menghubungkan klasifikasi risiko dengan kebijakan stok seperti safety stock, reorder point, dan strategi procurement.
+
+---
+
+Dengan penguasaan metodologi ini, engineer dan tim perencana akan mampu menyusun kebijakan inventory yang **tidak hanya hemat biaya**, tetapi juga **mendukung keandalan peralatan kritikal** secara berkelanjutan.
+
+---
+
+### 2. **Parameter Penilaian Risiko dalam RBInv**
+
+Penilaian risiko dalam konteks **Risk-Based Inventory (RBInv)** bertujuan untuk menentukan prioritas pengelolaan spare part dan material berdasarkan **tingkat urgensi teknis** dan **dampak operasional** jika item tersebut tidak tersedia. Penilaian ini bersifat sistematis dan berbasis data, menggunakan kombinasi beberapa parameter risiko yang saling terkait.
+
+---
+
+#### 📌 **2.1 Definisi Parameter Utama**
+
+Berikut adalah empat parameter kunci yang digunakan dalam RBInv untuk mengevaluasi risiko terhadap setiap item inventory:
+
+1. **Equipment Criticality**
+   Mengukur seberapa penting item terhadap fungsi operasional, keselamatan, atau kepatuhan regulasi.
+   Contoh: Komponen ESD valve atau bearing utama pada pompa proses.
+
+2. **Failure Frequency (Likelihood)**
+   Frekuensi terjadinya kerusakan atau penggantian item berdasarkan histori aktual atau prediksi teknis.
+   Sumber data: CMMS (SAP PM, Maximo), laporan maintenance, histori TA.
+
+3. **Lead Time (Availability Risk)**
+   Waktu yang dibutuhkan dari pemesanan hingga ketersediaan item di gudang.
+   Dihitung dari histori pembelian atau dikonfirmasi dengan vendor/supplier.
+
+4. **Downtime or Business Impact**
+   Estimasi dampak biaya dan operasional akibat ketidakterediaan item, termasuk potensi downtime, risiko keselamatan, dan dampak terhadap produksi atau lingkungan.
+
+---
+
+#### 📊 **2.2 Sumber Data yang Digunakan**
+
+Untuk menjamin akurasi klasifikasi risiko, parameter di atas harus didukung oleh data yang valid, antara lain:
+
+- **FMEA / RCM Results**: Menyediakan informasi mode kegagalan dan dampaknya.
+- **CMMS Data**: Riwayat kegagalan, frekuensi penggantian, dan durasi perbaikan.
+- **Logistik / Procurement**: Data lead time aktual dan tingkat pemenuhan vendor.
+- **Produksi / Operasional**: Estimasi biaya downtime dan sensitivitas proses.
+
+---
+
+#### 📐 **2.3 Contoh Tabel Parameter dan Skala Risiko**
+
+| Parameter             | Skor 1 (Low)       | Skor 3 (Medium)        | Skor 5 (High)                             |
+| --------------------- | ------------------ | ---------------------- | ----------------------------------------- |
+| Equipment Criticality | Non-safety, backup | Mendukung proses utama | Safety-critical / single point of failure |
+| Failure Frequency     | < 1x / tahun       | 2–3x / tahun           | ≥ 4x / tahun                              |
+| Lead Time             | < 7 hari           | 2–4 minggu             | > 1 bulan / long lead item                |
+| Downtime Impact       | < $1,000           | $5,000–$10,000         | > $20,000 / jam produksi hilang           |
+
+> Nilai skor tiap parameter akan dijumlahkan untuk menghasilkan total risiko, yang kemudian digunakan untuk klasifikasi (High, Medium, Low Risk) dalam langkah selanjutnya.
+
+---
+
+### 3. **Matriks Skoring dan Klasifikasi Risiko**
+
+Setelah parameter risiko utama ditentukan dan diberi skor, langkah selanjutnya dalam pendekatan **Risk-Based Inventory (RBInv)** adalah menyusun **matriks skoring risiko** dan mengonversi skor total menjadi kategori risiko yang digunakan untuk menetapkan strategi stocking.
+
+---
+
+#### 🧮 **3.1 Penyusunan Matriks Risiko untuk Spare Part**
+
+Setiap item inventory dinilai berdasarkan empat parameter risiko:
+
+- Equipment Criticality
+- Failure Frequency
+- Lead Time
+- Downtime Impact
+
+Masing-masing parameter diberikan skor 1 (rendah) hingga 5 (tinggi). Nilai-nilai ini kemudian dijumlahkan untuk mendapatkan skor risiko total.
+
+**Contoh:**
+
+| Item                  | Crit. | Freq. | Lead Time | Impact | **Total Skor** |
+| --------------------- | ----- | ----- | --------- | ------ | -------------- |
+| Seal Kit Pump P-1101A | 5     | 3     | 4         | 5      | **17**         |
+| Bolt M10 SS316        | 1     | 3     | 2         | 1      | **7**          |
+
+---
+
+#### 🎯 **3.2 Konversi Skor ke Kategori Risiko**
+
+| Total Skor | Kategori Risiko |
+| ---------- | --------------- |
+| 16–20      | **High Risk**   |
+| 11–15      | **Medium Risk** |
+| ≤10        | **Low Risk**    |
+
+Kategori ini menjadi **dasar pengambilan keputusan inventory**, memastikan bahwa perhatian utama difokuskan pada item dengan potensi dampak operasional tertinggi.
+
+---
+
+#### 📦 **3.3 Penerapan Strategi Stok Berdasarkan Kategori Risiko**
+
+| Kategori Risiko | Strategi Inventory                                                                                            |
+| --------------- | ------------------------------------------------------------------------------------------------------------- |
+| **High Risk**   | Simpan di gudang (safety stock); tetapkan reorder point; pertimbangkan kontrak jangka panjang dengan supplier |
+| **Medium Risk** | Stock terbatas; pembelian berdasarkan jadwal pemeliharaan (PM/PdM); monitor histori pemakaian                 |
+| **Low Risk**    | Tidak perlu distok; cukup procure-on-demand; pastikan lead time dapat dipenuhi                                |
+
+Pendekatan ini mendorong efisiensi biaya dan pengelolaan warehouse, tanpa mengorbankan kesiapan terhadap kondisi darurat atau jadwal pemeliharaan terencana.
+
+---
+
+Dengan dasar klasifikasi ini, tim pemeliharaan dan warehouse dapat berkoordinasi dalam menetapkan kebijakan stocking yang **selaras dengan risiko operasional**, bukan sekadar volume pemakaian atau harga satuan.
+
+---
+
+### 4. **Perbandingan RBInv dengan ABC/XYZ Classification**
+
+Sistem klasifikasi inventory yang umum digunakan di banyak organisasi adalah **ABC/XYZ classification**, yang didasarkan pada prinsip **nilai ekonomi dan perilaku permintaan**. Meskipun metode ini sederhana dan mudah diterapkan, pendekatan ini **tidak mempertimbangkan tingkat kritikalitas teknis** atau **dampak risiko** terhadap operasi dan keselamatan. Di sinilah pendekatan **Risk-Based Inventory (RBInv)** menawarkan keunggulan yang lebih strategis.
+
+---
+
+#### 🎯 **4.1 Tujuan dan Pendekatan Masing-Masing Metode**
+
+| Aspek                     | ABC/XYZ Classification                                                             | Risk-Based Inventory (RBInv)                                                                   |
+| ------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| **Tujuan Utama**          | Mengelola inventory berdasarkan nilai konsumsi tahunan dan variabilitas permintaan | Mengelola inventory berdasarkan kritisnya dampak risiko terhadap operasi, safety, dan downtime |
+| **Parameter Klasifikasi** | ABC: Nilai konsumsi tahunan; XYZ: Variabilitas permintaan                          | Equipment criticality; failure frequency; lead time; cost & safety impact                      |
+| **Fokus**                 | Efisiensi biaya dan pengendalian stok berbasis nilai                               | Keandalan operasional dan mitigasi risiko                                                      |
+| **Klasifikasi**           | A, B, C berdasarkan nilai; X, Y, Z berdasarkan kestabilan demand                   | High Risk, Medium Risk, Low Risk berdasarkan skor risiko                                       |
+| **Basis Data**            | Data historis pemakaian dan harga satuan                                           | Output FMEA/RCM, histori kegagalan, lead time, dampak operasional                              |
+| **Kelebihan**             | Sederhana dan cepat diterapkan; cocok untuk kontrol anggaran                       | Menghindari stockout kritikal; mendukung keputusan teknis berbasis risiko                      |
+| **Kelemahan**             | Mengabaikan criticality teknis; item murah tapi penting bisa terabaikan            | Membutuhkan integrasi data teknis lintas fungsi                                                |
+
+---
+
+#### 📚 **4.2 Studi Kasus Perbedaan Klasifikasi**
+
+**Contoh Kasus: Bearing Khusus untuk Kompresor API 618**
+
+- **ABC/XYZ View:**
+
+  - Konsumsi sangat rendah, nilai unit moderat → **Klasifikasi C/X**
+  - Disimpulkan sebagai item dengan prioritas rendah
+
+- **RBInv View:**
+
+  - Equipment sangat kritikal (kompresor utama)
+  - Lead time 2 bulan, frekuensi kegagalan tidak dapat diprediksi
+  - Downtime impact sangat tinggi (> USD 20.000/jam)
+  - → **Klasifikasi: High Risk**
+
+**Implikasi:**
+
+- Jika hanya mengandalkan ABC/XYZ, item ini mungkin tidak distok, berisiko menyebabkan downtime kritikal.
+- Dengan RBInv, item ini mendapat prioritas stocking dan pemantauan khusus meskipun nilainya kecil.
+
+---
+
+Dengan memahami perbedaan ini, pembaca dapat menyimpulkan bahwa **ABC/XYZ cocok untuk kendali biaya inventory secara umum**, namun **tidak cukup untuk menjamin ketersediaan spare part yang mendukung keandalan operasional dan keselamatan proses**. RBInv menjawab kekosongan tersebut dengan pendekatan yang lebih adaptif terhadap kebutuhan teknis di lapangan.
+
+---
+
+### 5. **Penentuan Stock Minimum dan Reorder Point Berbasis Risiko**
+
+Salah satu penerapan paling nyata dari pendekatan **Risk-Based Inventory (RBInv)** adalah penentuan **stock minimum** dan **reorder point (ROP)** secara lebih presisi, berdasarkan profil risiko teknis dari item tersebut, bukan hanya berdasarkan rata-rata pemakaian atau nilai ekonomi. Ini sangat penting untuk menjamin **material readiness** khususnya pada spare part kritikal yang mendukung peralatan utama dan sistem keselamatan.
+
+---
+
+#### 🧮 **5.1 Rumus Dasar Reorder Point (ROP) dan Safety Stock**
+
+Rumus standar untuk perhitungan ROP dalam konteks inventory manajemen:
+
+$$
+\text{ROP} = (\text{Rata-rata konsumsi harian} \times \text{Lead time}) + \text{Safety stock}
+$$
+
+**Safety stock** dapat ditentukan berdasarkan deviasi permintaan dan ketidakpastian lead time, atau secara praktis menggunakan pendekatan risiko sebagai berikut:
+
+$$
+\text{Safety Stock} = Z \times \sigma \times \sqrt{L}
+$$
+
+- ( Z ): Faktor service level (mis. 1.65 untuk 95%)
+- ( \sigma ): Deviasi standar konsumsi harian
+- ( L ): Lead time
+
+Namun, dalam pendekatan RBInv, **faktor risiko** dari setiap item digunakan sebagai panduan tambahan untuk menentukan level safety stock, khususnya untuk **High Risk Items**.
+
+---
+
+#### 📌 **5.2 Rule of Thumb berdasarkan Kategori Risiko**
+
+| Kategori Risiko | Strategi ROP & Safety Stock                                                      |
+| --------------- | -------------------------------------------------------------------------------- |
+| **High Risk**   | Safety stock minimal 1 unit; ROP disesuaikan lead time maksimum                  |
+| **Medium Risk** | Safety stock = 50% dari konsumsi lead time; ROP disesuaikan permintaan rata-rata |
+| **Low Risk**    | Tidak perlu safety stock; procure-on-demand                                      |
+
+---
+
+#### 🔧 **5.3 Studi Kasus: Pompa dan Instrumentasi**
+
+**Kasus A: Seal Kit untuk Pompa Proses (P-1101A)**
+
+- Criticality: Tinggi
+- Failure frequency: 2x/tahun
+- Lead time: 60 hari
+- Konsumsi: 1 unit per 6 bulan
+
+**Strategi RBInv:**
+
+- Safety stock = 1 unit (High Risk Item)
+- ROP = 1 unit, karena failure unpredictability dan lead time panjang
+
+---
+
+**Kasus B: Thermocouple untuk Furnace**
+
+- Criticality: Medium
+- Lead time: 14 hari
+- Konsumsi: 2 unit/bulan (≈ 0.067/hari)
+
+$$
+\text{ROP} = (0.067 \times 14) + 1 = 0.94 + 1 \approx 2 \text{ unit}
+$$
+
+**Strategi RBInv:**
+
+- Safety stock = 1 unit
+- ROP = 2 unit
+
+---
+
+Dengan penyesuaian berdasarkan klasifikasi risiko, pendekatan ini memungkinkan organisasi untuk **menghindari overstock yang tidak perlu pada item non-kritikal**, serta **menjamin ketersediaan item strategis**, sehingga selaras dengan prinsip-prinsip RBM dan mendukung keandalan sistem secara keseluruhan.
+
+---
+
+### ✅ **Kesimpulan Modul 2**
+
+Modul ini telah menguraikan secara sistematis metode untuk mengklasifikasikan item inventory berbasis risiko dengan mempertimbangkan parameter-parameter teknis seperti **equipment criticality**, **frekuensi kegagalan**, **lead time**, dan **dampak downtime**. Proses ini menghasilkan sistem klasifikasi yang lebih presisi (High, Medium, Low Risk) dibandingkan pendekatan tradisional seperti **ABC/XYZ classification** yang cenderung mengutamakan nilai ekonomi.
+
+Dengan menyusun **matriks risiko** dan menerapkan skoring terstandarisasi, organisasi dapat menentukan **strategi stocking** yang selaras dengan profil risiko operasionalnya, bukan semata berdasar konsumsi historis. Pendekatan ini memperkuat keterkaitan antara fungsi pemeliharaan, perencanaan material, dan pengadaan, menjadikan **Risk-Based Inventory (RBInv)** sebagai sistem pendukung strategis bagi pelaksanaan **Risk-Based Maintenance (RBM)**.
+
+Penerapan metodologi ini memberikan manfaat langsung berupa:
+
+- **Peningkatan keandalan sistem** melalui material readiness,
+- **Efisiensi pengelolaan gudang dan procurement**,
+- **Mitigasi risiko downtime** akibat kegagalan pengadaan part kritikal.
+
+Modul berikutnya (Modul 3) akan membahas aspek implementasi sistem, integrasi ke dalam ERP/CMMS, serta peran lintas fungsi dalam menjalankan strategi RBInv yang terstandarisasi.
+
+---
+
+### 📚 **Referensi Modul 2**
+
+1. **ISO 55000:2014** – Asset Management – Overview, principles and terminology.
+2. **API RP 581** – Risk-Based Inspection Methodology, American Petroleum Institute.
+3. Moubray, J. (1997). _Reliability-Centered Maintenance_. Butterworth-Heinemann.
+4. NASA (2006). _Reliability-Centered Maintenance Guide for Facilities and Collateral Equipment_.
+5. Schroeder, R. G., et al. (2011). _Operations Management: Contemporary Concepts and Cases_.
+6. SMRP Best Practices – _Maintenance and Reliability Metrics_.
+7. Data dan praktik industri umum dalam sistem SAP PM/MM dan Maximo EAM.
+
+---
+
+<small>
+  **_Catatan Penyusunan_** Artikel ini disusun sebagai materi edukasi dan
+  referensi umum berdasarkan berbagai sumber pustaka, praktik lapangan, serta
+  bantuan alat penulisan. Pembaca disarankan untuk melakukan verifikasi lanjutan
+  dan penyesuaian sesuai dengan kondisi serta kebutuhan masing-masing sistem.
+</small>

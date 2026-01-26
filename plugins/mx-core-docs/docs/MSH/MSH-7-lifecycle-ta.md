@@ -54,8 +54,8 @@ Dengan fondasi tersebut, **Module 7** berfokus pada keberlanjutan sistem. Modul 
 
 **Korelasi internal-link modul:**
 
-- [Modul sebelumnya: **Module 6 – SHE as System Constraint**](/blog/Management/MSH-6-she-compliance)
-- [Modul ini mengikat **seluruh Modul 0–6** ke dalam satu **siklus tertutup dan berkelanjutan**](/blog/Management/MSH-panduan-lengkap)
+- [Modul sebelumnya: **Module 6 – SHE as System Constraint**](/blog/Management/MSH/MSH-6-she-compliance)
+- [Modul ini mengikat **seluruh Modul 0–6** ke dalam satu **siklus tertutup dan berkelanjutan**](/blog/Management/MSH/MSH-panduan-lengkap)
 
 ---
 
@@ -317,19 +317,19 @@ Dengan mengaitkan pemeliharaan pada **siklus hidup aset**, **Turnaround (TA)**, 
 ## 🔗 Korelasi dengan Seluruh Modul
 
 - **Module 0** → membangun konteks dan urgensi perubahan sistem pemeliharaan
-  [_Module 0 – Konteks Industri dan Alasan Sistem Pemeliharaan Harus Berevolusi_](/blog/Management/MSH-0-maintenance-evolusi)
+  [_Module 0 – Konteks Industri dan Alasan Sistem Pemeliharaan Harus Berevolusi_](/blog/Management/MSH/MSH-0-maintenance-evolusi)
 - **Module 1–2** → menetapkan filosofi dan logika pengambilan keputusan berbasis risiko
-  [_Module 1 – Filosofi dan Fondasi Risiko Sistem Pemeliharaan_](/blog/Management/MSH-1-maintenance-fondasi-risiko)
-  [_Module 2 – Model Risiko dan Logika Pengambilan Keputusan Pemeliharaan_](/blog/Management/MSH-2-model-risiko)
+  [_Module 1 – Filosofi dan Fondasi Risiko Sistem Pemeliharaan_](/blog/Management/MSH/MSH-1-maintenance-fondasi-risiko)
+  [_Module 2 – Model Risiko dan Logika Pengambilan Keputusan Pemeliharaan_](/blog/Management/MSH/MSH-2-model-risiko)
 - **Module 3** → menerjemahkan logika tersebut ke dalam strategi RBM yang operasional
-  [_Module 3 – Risk-Based Maintenance sebagai Strategi Pemeliharaan Praktis_](/blog/Management/MSH-3-rbm)
+  [_Module 3 – Risk-Based Maintenance sebagai Strategi Pemeliharaan Praktis_](/blog/Management/MSH/MSH-3-rbm)
 - **Module 4–5** → memastikan eksekusi yang akuntabel dan pembelajaran sistemik
-  [_Module 4 – Organisasi, KPI, dan Akuntabilitas dalam Sistem Pemeliharaan_](/blog/Management/MSH-4-organization)
-  [_Module 5 – Eksekusi, Troubleshooting, dan Sistem Pembelajaran Pemeliharaan_](/blog/Management/MSH-5-eksekusi)
+  [_Module 4 – Organisasi, KPI, dan Akuntabilitas dalam Sistem Pemeliharaan_](/blog/Management/MSH/MSH-4-organization)
+  [_Module 5 – Eksekusi, Troubleshooting, dan Sistem Pembelajaran Pemeliharaan_](/blog/Management/MSH/MSH-5-eksekusi)
 - **Module 6** → menetapkan batas SHE sebagai _hard constraint_
-  [_Module 6 – SHE sebagai Batas Sistem dalam Pengambilan Keputusan Pemeliharaan_](/blog/Management/MSH-6-she-compliance)
+  [_Module 6 – SHE sebagai Batas Sistem dalam Pengambilan Keputusan Pemeliharaan_](/blog/Management/MSH/MSH-6-she-compliance)
 - **Module 7** → menjaga seluruh sistem tetap hidup, adaptif, dan berkelanjutan
-  [_Module 7 – Lifecycle Aset, Turnaround, dan Continuous Improvement Sistem Pemeliharaan_](/blog/Management/MSH-7-lifecycle-ta)
+  [_Module 7 – Lifecycle Aset, Turnaround, dan Continuous Improvement Sistem Pemeliharaan_](/blog/Management/MSH/MSH-7-lifecycle-ta)
 
 📌 **Module 7 berfungsi sebagai penutup sekaligus pengunci seluruh sistem**, memastikan bahwa _Maintenance System Handbook_ tidak hanya menjadi dokumen referensi, tetapi kerangka kerja yang relevan dan bernilai sepanjang umur aset.
 

@@ -54,8 +54,8 @@ Dengan demikian, Modul 2 memastikan bahwa keputusan pemeliharaan tidak bersifat 
 
 **Korelasi internal-link modul:**
 
-- [Modul sebelumnya: **Module 1 – Filosofi Sistem Pemeliharaan dan Fondasi Risiko**](/blog/Management/MSH-1-maintenance-fondasi-risiko)
-- [Modul berikutnya: **Module 3 – Risk-Based Maintenance sebagai Strategi Praktis**](/blog/Management/MSH-1-rbm)
+- [Modul sebelumnya: **Module 1 – Filosofi Sistem Pemeliharaan dan Fondasi Risiko**](/blog/Management/MSH/MSH-1-maintenance-fondasi-risiko)
+- [Modul berikutnya: **Module 3 – Risk-Based Maintenance sebagai Strategi Praktis**](/blog/Management/MSH/MSH-1-rbm)
 
 ---
 
@@ -195,10 +195,10 @@ Pendekatan **ESC (Environmental – Safety – Continuous Running)** serta keput
 
 ## 🔗 Korelasi dengan Modul Lain
 
-- [**Module 1** menyediakan filosofi dan legitimasi normatif _risk-based thinking_ sebagai fondasi sistem pemeliharaan.](/blog/Management/MSH-1-maintenance-fondasi-risiko)
-- [**Module 3** akan menerjemahkan keputusan berbasis risiko ini menjadi **strategi Risk-Based Maintenance (RBM)** dan **Time-Based Maintenance (TBM) adaptif**](/blog/Management/MSH-1-rbm)
-- [**Module 6** akan menunjukkan bagaimana keputusan risiko dibatasi dan diarahkan oleh **SHE sebagai sistem constraint**.](/blog/Management/MSH-6-she-compliance)
-- [**Module 7** akan menutup siklus dengan **evaluasi kinerja, audit, dan perbaikan berkelanjutan**](/blog/Management/MSH-7-lifecycle-ta)
+- [**Module 1** menyediakan filosofi dan legitimasi normatif _risk-based thinking_ sebagai fondasi sistem pemeliharaan.](/blog/Management/MSH/MSH-1-maintenance-fondasi-risiko)
+- [**Module 3** akan menerjemahkan keputusan berbasis risiko ini menjadi **strategi Risk-Based Maintenance (RBM)** dan **Time-Based Maintenance (TBM) adaptif**](/blog/Management/MSH/MSH-1-rbm)
+- [**Module 6** akan menunjukkan bagaimana keputusan risiko dibatasi dan diarahkan oleh **SHE sebagai sistem constraint**.](/blog/Management/MSH/MSH-6-she-compliance)
+- [**Module 7** akan menutup siklus dengan **evaluasi kinerja, audit, dan perbaikan berkelanjutan**](/blog/Management/MSH/MSH-7-lifecycle-ta)
 
 ---
 

@@ -126,6 +126,132 @@
     ]
   },
   {
+    "id": "management/MSH/MSH-1-maintenance-fondasi-risiko",
+    "name": "Filosofi Sistem Pemeliharaan dan Fondasi Risiko",
+    "section": "CONTENT",
+    "href": "/blog/management/MSH/MSH-1-maintenance-fondasi-risiko",
+    "subtitle": "January 25, 2026",
+    "keywords": [
+      "maintenance-philosophy",
+      "risk-based-thinking",
+      "risk-based-maintenance",
+      "api-rp-580",
+      "pemeliharaan-pabrik-petrokimia",
+      "process-industry",
+      "safety-environment-risk",
+      "asset-reliability"
+    ]
+  },
+  {
+    "id": "management/MSH/MSH-2-model-risiko",
+    "name": "Model Risiko dan Logika Pengambilan Keputusan Pemeliharaan",
+    "section": "CONTENT",
+    "href": "/blog/management/MSH/MSH-2-model-risiko",
+    "subtitle": "January 25, 2026",
+    "keywords": [
+      "risk-model",
+      "risk-based-decision-making",
+      "pof-cof",
+      "esc-framework",
+      "risk-based-maintenance",
+      "pemeliharaan-pabrik-petrokimia",
+      "engineering-judgment",
+      "api-rp-580",
+      "maintenance-decision-logic"
+    ]
+  },
+  {
+    "id": "management/MSH/MSH-3-rbm",
+    "name": "Risk-Based Maintenance sebagai Strategi Pemeliharaan Praktis",
+    "section": "CONTENT",
+    "href": "/blog/management/MSH/MSH-3-rbm",
+    "subtitle": "January 25, 2026",
+    "keywords": [
+      "risk-based-maintenance",
+      "maintenance-strategy",
+      "preventive-adaptive-tbm",
+      "pemeliharaan-pabrik-petrokimia",
+      "asset-criticality",
+      "maintenance-execution",
+      "plant-maintenance-training",
+      "rbm-implementation",
+      "continuous-process-maintenance"
+    ]
+  },
+  {
+    "id": "management/MSH/MSH-4-organization",
+    "name": "Organisasi, KPI, dan Akuntabilitas dalam Sistem Pemeliharaan",
+    "section": "CONTENT",
+    "href": "/blog/management/MSH/MSH-4-organization",
+    "subtitle": "January 25, 2026",
+    "keywords": [
+      "organisasi-pemeliharaan",
+      "job-description-dan-akuntabilitas",
+      "kpi-berbasis-peran",
+      "governance-maintenance",
+      "manajemen-aset-iso-55000",
+      "audit-dan-akuntabilitas",
+      "maintenance-management-system",
+      "risk-based-maintenance-governance"
+    ]
+  },
+  {
+    "id": "management/MSH/MSH-5-eksekusi",
+    "name": "Eksekusi, Troubleshooting, dan Sistem Pembelajaran Pemeliharaan",
+    "section": "CONTENT",
+    "href": "/blog/management/MSH/MSH-5-eksekusi",
+    "subtitle": "January 25, 2026",
+    "keywords": [
+      "eksekusi-pemeliharaan",
+      "troubleshooting-sistematis",
+      "root-cause-analysis-rca",
+      "fmea-dan-fta",
+      "first-time-fix",
+      "learning-loop-maintenance",
+      "dokumentasi-pemeliharaan",
+      "risk-based-maintenance-execution",
+      "continuous-improvement-maintenance"
+    ]
+  },
+  {
+    "id": "management/MSH/MSH-6-she-compliance",
+    "name": "SHE sebagai Batas Sistem dalam Pengambilan Keputusan Pemeliharaan",
+    "section": "CONTENT",
+    "href": "/blog/management/MSH/MSH-6-she-compliance",
+    "subtitle": "January 25, 2026",
+    "keywords": [
+      "she-maintenance",
+      "safety-health-environment",
+      "risk-decision-boundary",
+      "esc-risk-integration",
+      "rbm-she-governance",
+      "maintenance-compliance",
+      "process-safety",
+      "asset-management-iso55000",
+      "api-rp-580-581",
+      "petrochemical-maintenance-system"
+    ]
+  },
+  {
+    "id": "management/MSH/MSH-7-lifecycle-ta",
+    "name": "Lifecycle Aset, Turnaround, dan Continuous Improvement Sistem Pemeliharaan",
+    "section": "CONTENT",
+    "href": "/blog/management/MSH/MSH-7-lifecycle-ta",
+    "subtitle": "January 25, 2026",
+    "keywords": [
+      "maintenance-system-handbook",
+      "asset-lifecycle-management",
+      "turnaround-maintenance",
+      "continuous-improvement",
+      "reliability-growth",
+      "rbm-maturity",
+      "iso-55000",
+      "api-rp-580-581",
+      "long-term-maintenance-strategy",
+      "petrochemical-maintenance"
+    ]
+  },
+  {
     "id": "management/MSH-0-maintenance-evolusi",
     "name": "Konteks Industri dan Alasan Sistem Pemeliharaan Harus Berevolusi",
     "section": "CONTENT",
@@ -147,6 +273,42 @@
     "name": "Dari Risk-Based Thinking ke Reliability-Driven Organization - Panduan Lengkap Maintenance System Handbook",
     "section": "CONTENT",
     "href": "/blog/management/MSH-panduan-lengkap",
+    "subtitle": "January 24, 2026",
+    "keywords": [
+      "maintenance-system-handbook",
+      "risk-based-maintenance-rbm",
+      "asset-management-iso-55000",
+      "maintenance-strategy",
+      "she-system-constraint",
+      "turnaround-management",
+      "reliability-growth",
+      "continuous-improvement",
+      "maintenance-maturity-model",
+      "pemeliharaan-pabrik-petrokimia"
+    ]
+  },
+  {
+    "id": "management/MSH/MSH-0-maintenance-evolusi",
+    "name": "Konteks Industri dan Alasan Sistem Pemeliharaan Harus Berevolusi",
+    "section": "CONTENT",
+    "href": "/blog/management/MSH/MSH-0-maintenance-evolusi",
+    "subtitle": "January 24, 2026",
+    "keywords": [
+      "pemeliharaan-pabrik-petrokimia",
+      "maintenance-system",
+      "risk-based-maintenance",
+      "continuous-process-industry",
+      "downtime-risk",
+      "asset-management",
+      "safety-environment-business",
+      "maintenance-governance"
+    ]
+  },
+  {
+    "id": "management/MSH/MSH-panduan-lengkap",
+    "name": "Dari Risk-Based Thinking ke Reliability-Driven Organization - Panduan Lengkap Maintenance System Handbook",
+    "section": "CONTENT",
+    "href": "/blog/management/MSH/MSH-panduan-lengkap",
     "subtitle": "January 24, 2026",
     "keywords": [
       "maintenance-system-handbook",
@@ -226,6 +388,81 @@
     "name": "Buku Panduan - Sistem Risk-Based Inventory (RBInv) dalam Risk-Based Maintenance (RBM)",
     "section": "CONTENT",
     "href": "/blog/management/RBInv-panduan-lengkap",
+    "subtitle": "January 24, 2026",
+    "keywords": [
+      "rbi-guide",
+      "risk-based-maintenance",
+      "inventory-management",
+      "engineering-reference",
+      "jit-sop-template",
+      "cmms-erp"
+    ]
+  },
+  {
+    "id": "management/RBInv/RBInv-1-fundamental-rbi-rbm",
+    "name": "Memahami Dasar Risk-Based Inventory (RBInv) dalam Kerangka Risk-Based Maintenance (RBM)",
+    "section": "CONTENT",
+    "href": "/blog/management/RBInv/RBInv-1-fundamental-rbi-rbm",
+    "subtitle": "January 24, 2026",
+    "keywords": [
+      "risk-based-maintenance",
+      "risk-based-inventory",
+      "asset-management",
+      "maintenance-reliability",
+      "inventory-strategy",
+      "rcm-fmea"
+    ]
+  },
+  {
+    "id": "management/RBInv/RBInv-2-metodologi-rbi",
+    "name": "Metodologi Klasifikasi Inventory Berbasis Risiko (RBInv)",
+    "section": "CONTENT",
+    "href": "/blog/management/RBInv/RBInv-2-metodologi-rbi",
+    "subtitle": "January 24, 2026",
+    "keywords": [
+      "risk-based-inventory",
+      "inventory-risk-assessment",
+      "risk-based-maintenance",
+      "spare-part-criticality",
+      "inventory-classification",
+      "reorder-point-strategy"
+    ]
+  },
+  {
+    "id": "management/RBInv/RBInv-3-implementasi-rbi",
+    "name": "Implementasi Sistem dan Integrasi Operasional RBInv dalam RBM",
+    "section": "CONTENT",
+    "href": "/blog/management/RBInv/RBInv-3-implementasi-rbi",
+    "subtitle": "January 24, 2026",
+    "keywords": [
+      "risk-based-inventory",
+      "rbi-implementation",
+      "erp-cmms",
+      "inventory-integration",
+      "rcm-fmea",
+      "industrial-case-study"
+    ]
+  },
+  {
+    "id": "management/RBInv/RBInv-4-template-rbi",
+    "name": "Template, SOP, dan Strategi Lanjutan dalam RBInv",
+    "section": "CONTENT",
+    "href": "/blog/management/RBInv/RBInv-4-template-rbi",
+    "subtitle": "January 24, 2026",
+    "keywords": [
+      "rbi-tools",
+      "inventory-template",
+      "sop-maintenance-warehouse",
+      "jit-risk-based",
+      "material-readiness",
+      "shutdown-support"
+    ]
+  },
+  {
+    "id": "management/RBInv/RBInv-panduan-lengkap",
+    "name": "Buku Panduan - Sistem Risk-Based Inventory (RBInv) dalam Risk-Based Maintenance (RBM)",
+    "section": "CONTENT",
+    "href": "/blog/management/RBInv/RBInv-panduan-lengkap",
     "subtitle": "January 24, 2026",
     "keywords": [
       "rbi-guide",
@@ -1041,6 +1278,23 @@
     ]
   },
   {
+    "id": "management/RCA/troubleshooting-metode",
+    "name": "Panduan Troubleshooting dengan Root Cause Analysis di Pabrik Petrokimia - Metode, Implementasi, dan Studi Kasus",
+    "section": "CONTENT",
+    "href": "/blog/management/RCA/troubleshooting-metode",
+    "subtitle": "October 11, 2024",
+    "keywords": [
+      "root-cause-analysis",
+      "rca-petrokimia",
+      "troubleshooting-industri",
+      "reliability-engineering",
+      "process-safety",
+      "maintenance-management",
+      "continuous-improvement",
+      "asset-integrity"
+    ]
+  },
+  {
     "id": "maintenance/ftfr",
     "name": "FTFR - First-Time Fix Rate",
     "section": "CONTENT",
@@ -1727,6 +1981,74 @@
     ]
   },
   {
+    "id": "management/RCA/maintenance-fishbone-diagram",
+    "name": "Optimasi Proses dalam Industri Petrokimia Menggunakan Fishbone Diagram",
+    "section": "CONTENT",
+    "href": "/blog/management/RCA/maintenance-fishbone-diagram",
+    "subtitle": "October 26, 2023",
+    "keywords": [
+      "fishbone-diagram",
+      "diagram-ishikawa",
+      "pemeliharaan-pabrik-petrokimia",
+      "analisis-akar-masalah",
+      "troubleshooting-industri",
+      "manajemen-risiko",
+      "process-improvement",
+      "safety-environment"
+    ]
+  },
+  {
+    "id": "management/RCA/maintenance-fmea",
+    "name": "Mengungkap Keunggulan FMEA dalam Meningkatkan Keandalan di Industri Petrokimia",
+    "section": "CONTENT",
+    "href": "/blog/management/RCA/maintenance-fmea",
+    "subtitle": "October 26, 2023",
+    "keywords": [
+      "fmea",
+      "failure-mode-and-effects-analysis",
+      "pemeliharaan-pabrik-petrokimia",
+      "manajemen-risiko",
+      "keandalan-peralatan",
+      "risk-priority-number",
+      "safety-environment",
+      "continuous-improvement"
+    ]
+  },
+  {
+    "id": "management/RCA/rca-fishbone-diagram",
+    "name": "Optimasi Proses dalam Industri Petrokimia Menggunakan Fishbone Diagram",
+    "section": "CONTENT",
+    "href": "/blog/management/RCA/rca-fishbone-diagram",
+    "subtitle": "October 26, 2023",
+    "keywords": [
+      "fishbone-diagram",
+      "diagram-ishikawa",
+      "pemeliharaan-pabrik-petrokimia",
+      "analisis-akar-masalah",
+      "troubleshooting-industri",
+      "manajemen-risiko",
+      "process-improvement",
+      "safety-environment"
+    ]
+  },
+  {
+    "id": "management/RCA/rca-fmea",
+    "name": "Mengungkap Keunggulan FMEA dalam Meningkatkan Keandalan di Industri Petrokimia",
+    "section": "CONTENT",
+    "href": "/blog/management/RCA/rca-fmea",
+    "subtitle": "October 26, 2023",
+    "keywords": [
+      "fmea",
+      "failure-mode-and-effects-analysis",
+      "pemeliharaan-pabrik-petrokimia",
+      "manajemen-risiko",
+      "keandalan-peralatan",
+      "risk-priority-number",
+      "safety-environment",
+      "continuous-improvement"
+    ]
+  },
+  {
     "id": "project/Manajemen-Proyek",
     "name": "Manajemen Proyek - Panduan tentang bagaimana menjalankan manajemen suatu project",
     "section": "CONTENT",
@@ -1766,6 +2088,74 @@
     "name": "Mengungkap Akar Masalah - Panduan Lengkap Analisis Akar Penyebab Kegagalan (RCFA)",
     "section": "CONTENT",
     "href": "/blog/maintenance/maintenance-rcfa",
+    "subtitle": "October 25, 2023",
+    "keywords": [
+      "rcfa",
+      "root-cause-failure-analysis",
+      "pemeliharaan-pabrik-petrokimia",
+      "keandalan-peralatan",
+      "analisis-kegagalan",
+      "safety-environment",
+      "maintenance-management",
+      "continuous-improvement"
+    ]
+  },
+  {
+    "id": "management/RCA/maintenance-fta",
+    "name": "Mengungkap Risiko Tersembunyi - Panduan Lengkap tentang Failure Tree Analysis (FTA)",
+    "section": "CONTENT",
+    "href": "/blog/management/RCA/maintenance-fta",
+    "subtitle": "October 25, 2023",
+    "keywords": [
+      "fta",
+      "failure-tree-analysis",
+      "analisis-risiko",
+      "pemeliharaan-pabrik-petrokimia",
+      "keandalan-sistem",
+      "process-safety",
+      "manajemen-risiko",
+      "safety-engineering"
+    ]
+  },
+  {
+    "id": "management/RCA/maintenance-rcfa",
+    "name": "Mengungkap Akar Masalah - Panduan Lengkap Analisis Akar Penyebab Kegagalan (RCFA)",
+    "section": "CONTENT",
+    "href": "/blog/management/RCA/maintenance-rcfa",
+    "subtitle": "October 25, 2023",
+    "keywords": [
+      "rcfa",
+      "root-cause-failure-analysis",
+      "pemeliharaan-pabrik-petrokimia",
+      "keandalan-peralatan",
+      "analisis-kegagalan",
+      "safety-environment",
+      "maintenance-management",
+      "continuous-improvement"
+    ]
+  },
+  {
+    "id": "management/RCA/rca-fta",
+    "name": "Mengungkap Risiko Tersembunyi - Panduan Lengkap tentang Failure Tree Analysis (FTA)",
+    "section": "CONTENT",
+    "href": "/blog/management/RCA/rca-fta",
+    "subtitle": "October 25, 2023",
+    "keywords": [
+      "fta",
+      "failure-tree-analysis",
+      "analisis-risiko",
+      "pemeliharaan-pabrik-petrokimia",
+      "keandalan-sistem",
+      "process-safety",
+      "manajemen-risiko",
+      "safety-engineering"
+    ]
+  },
+  {
+    "id": "management/RCA/rca-rcfa",
+    "name": "Mengungkap Akar Masalah - Panduan Lengkap Analisis Akar Penyebab Kegagalan (RCFA)",
+    "section": "CONTENT",
+    "href": "/blog/management/RCA/rca-rcfa",
     "subtitle": "October 25, 2023",
     "keywords": [
       "rcfa",
@@ -1916,6 +2306,18 @@
       "System",
       "API RP 580",
       "Risk-Management"
+    ]
+  },
+  {
+    "id": "management/RCA/maintenance-gemba-kaizen",
+    "name": "Gemba Kaizen",
+    "section": "CONTENT",
+    "href": "/blog/management/RCA/maintenance-gemba-kaizen",
+    "subtitle": "October 20, 2023",
+    "keywords": [
+      "Maintenance",
+      "gemba",
+      "kaizen"
     ]
   },
   {

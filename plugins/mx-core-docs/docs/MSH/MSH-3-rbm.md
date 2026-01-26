@@ -51,8 +51,8 @@ Sebagai tulang punggung pembahasan, Modul 3 menggunakan **studi kasus nyata PT P
 
 **Korelasi internal-link modul:**
 
-- [Modul sebelumnya: **Module 2 – Risk Model & Decision Logic**](/blog/Management/MSH-2-model-risiko)(/blog/Management/MSH-2-model-risiko)
-- [Modul berikutnya: **Module 4 – Organizational Roles, KPI & Governance**](/blog/Management/MSH-4-organization)
+- [Modul sebelumnya: **Module 2 – Risk Model & Decision Logic**](/blog/Management/MSH/MSH-2-model-risiko)(/blog/Management/MSH/MSH-2-model-risiko)
+- [Modul berikutnya: **Module 4 – Organizational Roles, KPI & Governance**](/blog/Management/MSH/MSH-4-organization)
 
 ---
 
@@ -222,10 +222,10 @@ Studi kasus PT Petro Oxo Nusantara menunjukkan bahwa RBM dapat diterapkan secara
 
 ## 🔗 Korelasi dengan Modul Lain
 
-- [**Module 2** menyediakan **logika keputusan berbasis risiko**](/blog/Management/MSH-2-model-risiko)
-- [**Module 3** mengeksekusi keputusan tersebut menjadi **strategi dan praktik pemeliharaan lapangan**.](/blog/Management/MSH-3-rbm)
-- [**Module 4** akan mengatur **peran organisasi, KPI, dan struktur tata kelola**](/blog/Management/MSH-4-organization)
-- [**Module 7** akan menutup siklus dengan **continuous improvement dan evaluasi jangka panjang**](/blog/Management/MSH-7-lifecycle-ta).
+- [**Module 2** menyediakan **logika keputusan berbasis risiko**](/blog/Management/MSH/MSH-2-model-risiko)
+- [**Module 3** mengeksekusi keputusan tersebut menjadi **strategi dan praktik pemeliharaan lapangan**.](/blog/Management/MSH/MSH-3-rbm)
+- [**Module 4** akan mengatur **peran organisasi, KPI, dan struktur tata kelola**](/blog/Management/MSH/MSH-4-organization)
+- [**Module 7** akan menutup siklus dengan **continuous improvement dan evaluasi jangka panjang**](/blog/Management/MSH/MSH-7-lifecycle-ta).
 
 ---
 

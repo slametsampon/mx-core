@@ -161,9 +161,9 @@ Tujuan utamanya adalah memastikan bahwa **setiap keputusan maintenance dapat dip
 
 - **Module 0–1 | Konteks & Filosofi**
 
-[_Module 0 – Konteks Industri dan Alasan Sistem Pemeliharaan Harus Berevolusi_](/blog/Management/MSH-0-maintenance-evolusi)
+[_Module 0 – Konteks Industri dan Alasan Sistem Pemeliharaan Harus Berevolusi_](/blog/Management/MSH/MSH-0-maintenance-evolusi)
 
-[_Module 1 – Filosofi dan Fondasi Risiko Sistem Pemeliharaan_](/blog/Management/MSH-1-maintenance-fondasi-risiko)
+[_Module 1 – Filosofi dan Fondasi Risiko Sistem Pemeliharaan_](/blog/Management/MSH/MSH-1-maintenance-fondasi-risiko)
 
 Menetapkan **arah sistem pemeliharaan**:
 maintenance diposisikan sebagai **fungsi manajemen risiko dan keandalan**, bukan sekadar cost center atau aktivitas teknis.
@@ -174,7 +174,7 @@ maintenance diposisikan sebagai **fungsi manajemen risiko dan keandalan**, bukan
 
 - **Module 2 | Risk-Based Decision Logic**
 
-[_Module 2 – Model Risiko dan Logika Pengambilan Keputusan Pemeliharaan_](/blog/Management/MSH-1-model-risiko)
+[_Module 2 – Model Risiko dan Logika Pengambilan Keputusan Pemeliharaan_](/blog/Management/MSH/MSH-2-model-risiko)
 
 Membangun **logika keputusan berbasis risiko** sebagai fondasi sistem.
 Setiap keputusan maintenance harus dapat dijelaskan melalui **konsekuensi kegagalan (CoF)** dan **risk acceptance** yang eksplisit.
@@ -185,7 +185,7 @@ Setiap keputusan maintenance harus dapat dijelaskan melalui **konsekuensi kegaga
 
 - **Module 3 | Risk-Based Maintenance (RBM)**
 
-[_Module 3 – Risk-Based Maintenance sebagai Strategi Pemeliharaan Praktis_](/blog/Management/MSH-1-rbm)
+[_Module 3 – Risk-Based Maintenance sebagai Strategi Pemeliharaan Praktis_](/blog/Management/MSH/MSH-3-rbm)
 
 Menerjemahkan risiko menjadi **strategi pemeliharaan nyata** (TBM, CBM, PdM, redesign).
 RBM diposisikan sebagai **kerangka seleksi strategi**, bukan metode baru.
@@ -196,7 +196,7 @@ RBM diposisikan sebagai **kerangka seleksi strategi**, bukan metode baru.
 
 - **Module 4 | Organisasi, KPI & Akuntabilitas**
 
-[_Module 4 – Organisasi, KPI, dan Akuntabilitas dalam Sistem Pemeliharaan_](/blog/Management/MSH-1-organization)
+[_Module 4 – Organisasi, KPI, dan Akuntabilitas dalam Sistem Pemeliharaan_](/blog/Management/MSH/MSH-4-organization)
 
 Menegaskan bahwa sistem hanya bekerja jika ada:
 
@@ -210,7 +210,7 @@ Menegaskan bahwa sistem hanya bekerja jika ada:
 
 - **Module 5 | Eksekusi, Troubleshooting & Learning**
 
-[_Module 5 – Eksekusi, Troubleshooting, dan Sistem Pembelajaran Pemeliharaan_](/blog/Management/MSH-1-eksekusi)
+[_Module 5 – Eksekusi, Troubleshooting, dan Sistem Pembelajaran Pemeliharaan_](/blog/Management/MSH/MSH-5-eksekusi)
 
 Memastikan setiap gangguan menghasilkan **pembelajaran sistem**, melalui:
 
@@ -224,7 +224,7 @@ Memastikan setiap gangguan menghasilkan **pembelajaran sistem**, melalui:
 
 - **Module 6 | SHE sebagai System Constraint**
 
-[_Module 6 – SHE sebagai Batas Sistem dalam Pengambilan Keputusan Pemeliharaan_](/blog/Management/MSH-1-eksekusi)
+[_Module 6 – SHE sebagai Batas Sistem dalam Pengambilan Keputusan Pemeliharaan_](/blog/Management/MSH/MSH-6-she-compliance)
 
 Menempatkan **SHE sebagai batas keras (hard boundary)** dalam seluruh keputusan maintenance.
 Tidak ada efisiensi, optimasi biaya, atau inovasi yang sah jika melewati batas keselamatan.
@@ -235,7 +235,7 @@ Tidak ada efisiensi, optimasi biaya, atau inovasi yang sah jika melewati batas k
 
 - **Module 7 | Lifecycle, Turnaround & Continuous Improvement**
 
-[_Module 7 – Lifecycle Aset, Turnaround, dan Continuous Improvement Sistem Pemeliharaan_](/blog/Management/MSH-1-eksekusi)
+[_Module 7 – Lifecycle Aset, Turnaround, dan Continuous Improvement Sistem Pemeliharaan_](/blog/Management/MSH/MSH-7-lifecycle-ta)
 
 Mengikat seluruh modul ke dalam **siklus hidup aset jangka panjang** (10–20 tahun).
 Maintenance diposisikan sebagai **living system** yang ditinjau, ditingkatkan, dan disesuaikan secara berkala.
@@ -282,9 +282,9 @@ Manajemen, superintendent, engineer senior
 **Modul yang dibaca:**
 
 - **Module 0** – Konteks & urgensi perubahan
-  [_Module 0 – Konteks Industri dan Alasan Sistem Pemeliharaan Harus Berevolusi_](/blog/Management/MSH-0-maintenance-evolusi)
+  [_Module 0 – Konteks Industri dan Alasan Sistem Pemeliharaan Harus Berevolusi_](/blog/Management/MSH/MSH-0-maintenance-evolusi)
 - **Module 1** – Filosofi sistem maintenance
-  [_Module 1 – Filosofi dan Fondasi Risiko Sistem Pemeliharaan_](/blog/Management/MSH-1-maintenance-fondasi-risiko)
+  [_Module 1 – Filosofi dan Fondasi Risiko Sistem Pemeliharaan_](/blog/Management/MSH/MSH-1-maintenance-fondasi-risiko)
 
 **Fokus pemahaman:**
 
@@ -307,7 +307,7 @@ Engineer, supervisor, superintendent
 **Modul yang dibaca:**
 
 - **Module 2** – Risk model & decision logic
-  [_Module 2 – Model Risiko dan Logika Pengambilan Keputusan Pemeliharaan_](/blog/Management/MSH-2-model-risiko)
+  [_Module 2 – Model Risiko dan Logika Pengambilan Keputusan Pemeliharaan_](/blog/Management/MSH/MSH-2-model-risiko)
 
 **Fokus pemahaman:**
 
@@ -330,7 +330,7 @@ Maintenance team inti
 **Modul yang dibaca:**
 
 - **Module 3** – RBM sebagai strategi praktis
-  [_Module 3 – Risk-Based Maintenance sebagai Strategi Pemeliharaan Praktis_](/blog/Management/MSH-3-rbm)
+  [_Module 3 – Risk-Based Maintenance sebagai Strategi Pemeliharaan Praktis_](/blog/Management/MSH/MSH-3-rbm)
 
 **Fokus pemahaman:**
 
@@ -353,7 +353,7 @@ Manajemen, HR teknis, supervisor
 **Modul yang dibaca:**
 
 - **Module 4** – Organization, KPI & accountability
-  [_Module 4 – Organisasi, KPI, dan Akuntabilitas dalam Sistem Pemeliharaan_](/blog/Management/MSH-4-organization)
+  [_Module 4 – Organisasi, KPI, dan Akuntabilitas dalam Sistem Pemeliharaan_](/blog/Management/MSH/MSH-4-organization)
 
 **Fokus pemahaman:**
 
@@ -375,7 +375,7 @@ Seluruh level maintenance
 **Modul yang dibaca:**
 
 - **Module 5** – Execution, troubleshooting & learning
-  [_Module 5 – Eksekusi, Troubleshooting, dan Sistem Pembelajaran Pemeliharaan_](/blog/Management/MSH-5-eksekusi)
+  [_Module 5 – Eksekusi, Troubleshooting, dan Sistem Pembelajaran Pemeliharaan_](/blog/Management/MSH/MSH-5-eksekusi)
 
 **Fokus pemahaman:**
 
@@ -398,9 +398,9 @@ Semua level, wajib untuk leader
 **Modul yang dibaca:**
 
 - **Module 6** – SHE sebagai system constraint
-  [_Module 6 – SHE sebagai Batas Sistem dalam Pengambilan Keputusan Pemeliharaan_](/blog/Management/MSH-6-she-compliance)
+  [_Module 6 – SHE sebagai Batas Sistem dalam Pengambilan Keputusan Pemeliharaan_](/blog/Management/MSH/MSH-6-she-compliance)
 - **Module 7** – Lifecycle & continuous improvement
-  [_Module 7 – Lifecycle Aset, Turnaround, dan Continuous Improvement Sistem Pemeliharaan_](/blog/Management/MSH-7-lifecycle-ta)
+  [_Module 7 – Lifecycle Aset, Turnaround, dan Continuous Improvement Sistem Pemeliharaan_](/blog/Management/MSH/MSH-7-lifecycle-ta)
 
 **Fokus pemahaman:**
 
