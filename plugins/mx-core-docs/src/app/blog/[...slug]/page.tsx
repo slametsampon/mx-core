@@ -4,7 +4,7 @@ import 'css/prism.css';
 import 'katex/dist/katex.css';
 
 import PageTitle from '@/components/PageTitle';
-import { components } from '@/components/MDXComponents';
+import { MDXComponents } from '@/components/mdx/MDXComponents';
 import { MDXLayoutRenderer } from 'pliny/mdx-components';
 import {
   sortPosts,
@@ -140,7 +140,7 @@ export default async function Page({ params }: { params: { slug: string[] } }) {
       >
         <MDXLayoutRenderer
           code={post.body.code}
-          components={components}
+          components={MDXComponents}
           toc={post.toc}
         />
       </Layout>

@@ -1,9 +1,9 @@
 [
   {
-    "id": "Management/MSH-1-maintenance-fondasi-risiko",
+    "id": "management/MSH-1-maintenance-fondasi-risiko",
     "name": "Filosofi Sistem Pemeliharaan dan Fondasi Risiko",
     "section": "CONTENT",
-    "href": "/blog/Management/MSH-1-maintenance-fondasi-risiko",
+    "href": "/blog/management/MSH-1-maintenance-fondasi-risiko",
     "subtitle": "January 25, 2026",
     "keywords": [
       "maintenance-philosophy",
@@ -17,10 +17,10 @@
     ]
   },
   {
-    "id": "Management/MSH-2-model-risiko",
+    "id": "management/MSH-2-model-risiko",
     "name": "Model Risiko dan Logika Pengambilan Keputusan Pemeliharaan",
     "section": "CONTENT",
-    "href": "/blog/Management/MSH-2-model-risiko",
+    "href": "/blog/management/MSH-2-model-risiko",
     "subtitle": "January 25, 2026",
     "keywords": [
       "risk-model",
@@ -35,10 +35,10 @@
     ]
   },
   {
-    "id": "Management/MSH-3-rbm",
+    "id": "management/MSH-3-rbm",
     "name": "Risk-Based Maintenance sebagai Strategi Pemeliharaan Praktis",
     "section": "CONTENT",
-    "href": "/blog/Management/MSH-3-rbm",
+    "href": "/blog/management/MSH-3-rbm",
     "subtitle": "January 25, 2026",
     "keywords": [
       "risk-based-maintenance",
@@ -53,10 +53,10 @@
     ]
   },
   {
-    "id": "Management/MSH-4-organization",
+    "id": "management/MSH-4-organization",
     "name": "Organisasi, KPI, dan Akuntabilitas dalam Sistem Pemeliharaan",
     "section": "CONTENT",
-    "href": "/blog/Management/MSH-4-organization",
+    "href": "/blog/management/MSH-4-organization",
     "subtitle": "January 25, 2026",
     "keywords": [
       "organisasi-pemeliharaan",
@@ -70,10 +70,10 @@
     ]
   },
   {
-    "id": "Management/MSH-5-eksekusi",
+    "id": "management/MSH-5-eksekusi",
     "name": "Eksekusi, Troubleshooting, dan Sistem Pembelajaran Pemeliharaan",
     "section": "CONTENT",
-    "href": "/blog/Management/MSH-5-eksekusi",
+    "href": "/blog/management/MSH-5-eksekusi",
     "subtitle": "January 25, 2026",
     "keywords": [
       "eksekusi-pemeliharaan",
@@ -88,10 +88,10 @@
     ]
   },
   {
-    "id": "Management/MSH-6-she-compliance",
+    "id": "management/MSH-6-she-compliance",
     "name": "SHE sebagai Batas Sistem dalam Pengambilan Keputusan Pemeliharaan",
     "section": "CONTENT",
-    "href": "/blog/Management/MSH-6-she-compliance",
+    "href": "/blog/management/MSH-6-she-compliance",
     "subtitle": "January 25, 2026",
     "keywords": [
       "she-maintenance",
@@ -107,10 +107,10 @@
     ]
   },
   {
-    "id": "Management/MSH-7-lifecycle-ta",
+    "id": "management/MSH-7-lifecycle-ta",
     "name": "Lifecycle Aset, Turnaround, dan Continuous Improvement Sistem Pemeliharaan",
     "section": "CONTENT",
-    "href": "/blog/Management/MSH-7-lifecycle-ta",
+    "href": "/blog/management/MSH-7-lifecycle-ta",
     "subtitle": "January 25, 2026",
     "keywords": [
       "maintenance-system-handbook",
@@ -126,55 +126,10 @@
     ]
   },
   {
-    "id": "Management/fundamental-rbi-rbm",
-    "name": "Memahami Dasar Risk-Based Inventory (RBI) dalam Kerangka Risk-Based Maintenance (RBM)",
-    "section": "CONTENT",
-    "href": "/blog/Management/fundamental-rbi-rbm",
-    "subtitle": "January 24, 2026",
-    "keywords": [
-      "risk-based-maintenance",
-      "risk-based-inventory",
-      "asset-management",
-      "maintenance-reliability",
-      "inventory-strategy",
-      "rcm-fmea"
-    ]
-  },
-  {
-    "id": "Management/implementasi-rbi",
-    "name": "Implementasi Sistem dan Integrasi Operasional RBI dalam RBM",
-    "section": "CONTENT",
-    "href": "/blog/Management/implementasi-rbi",
-    "subtitle": "January 24, 2026",
-    "keywords": [
-      "risk-based-inventory",
-      "rbi-implementation",
-      "erp-cmms",
-      "inventory-integration",
-      "rcm-fmea",
-      "industrial-case-study"
-    ]
-  },
-  {
-    "id": "Management/metodologi-rbi",
-    "name": "Metodologi Klasifikasi Inventory Berbasis Risiko (RBI)",
-    "section": "CONTENT",
-    "href": "/blog/Management/metodologi-rbi",
-    "subtitle": "January 24, 2026",
-    "keywords": [
-      "risk-based-inventory",
-      "inventory-risk-assessment",
-      "risk-based-maintenance",
-      "spare-part-criticality",
-      "inventory-classification",
-      "reorder-point-strategy"
-    ]
-  },
-  {
-    "id": "Management/MSH-0-maintenance-evolusi",
+    "id": "management/MSH-0-maintenance-evolusi",
     "name": "Konteks Industri dan Alasan Sistem Pemeliharaan Harus Berevolusi",
     "section": "CONTENT",
-    "href": "/blog/Management/MSH-0-maintenance-evolusi",
+    "href": "/blog/management/MSH-0-maintenance-evolusi",
     "subtitle": "January 24, 2026",
     "keywords": [
       "pemeliharaan-pabrik-petrokimia",
@@ -188,10 +143,10 @@
     ]
   },
   {
-    "id": "Management/MSH-panduan-lengkap",
+    "id": "management/MSH-panduan-lengkap",
     "name": "Dari Risk-Based Thinking ke Reliability-Driven Organization - Panduan Lengkap Maintenance System Handbook",
     "section": "CONTENT",
-    "href": "/blog/Management/MSH-panduan-lengkap",
+    "href": "/blog/management/MSH-panduan-lengkap",
     "subtitle": "January 24, 2026",
     "keywords": [
       "maintenance-system-handbook",
@@ -207,10 +162,10 @@
     ]
   },
   {
-    "id": "Management/RBI-1-fundamental-rbi-rbm",
+    "id": "management/RBInv-1-fundamental-rbi-rbm",
     "name": "Memahami Dasar Risk-Based Inventory (RBInv) dalam Kerangka Risk-Based Maintenance (RBM)",
     "section": "CONTENT",
-    "href": "/blog/Management/RBI-1-fundamental-rbi-rbm",
+    "href": "/blog/management/RBInv-1-fundamental-rbi-rbm",
     "subtitle": "January 24, 2026",
     "keywords": [
       "risk-based-maintenance",
@@ -222,10 +177,10 @@
     ]
   },
   {
-    "id": "Management/RBI-2-metodologi-rbi",
+    "id": "management/RBInv-2-metodologi-rbi",
     "name": "Metodologi Klasifikasi Inventory Berbasis Risiko (RBInv)",
     "section": "CONTENT",
-    "href": "/blog/Management/RBI-2-metodologi-rbi",
+    "href": "/blog/management/RBInv-2-metodologi-rbi",
     "subtitle": "January 24, 2026",
     "keywords": [
       "risk-based-inventory",
@@ -237,10 +192,10 @@
     ]
   },
   {
-    "id": "Management/RBI-3-implementasi-rbi",
+    "id": "management/RBInv-3-implementasi-rbi",
     "name": "Implementasi Sistem dan Integrasi Operasional RBInv dalam RBM",
     "section": "CONTENT",
-    "href": "/blog/Management/RBI-3-implementasi-rbi",
+    "href": "/blog/management/RBInv-3-implementasi-rbi",
     "subtitle": "January 24, 2026",
     "keywords": [
       "risk-based-inventory",
@@ -252,10 +207,10 @@
     ]
   },
   {
-    "id": "Management/RBI-4-template-rbi",
+    "id": "management/RBInv-4-template-rbi",
     "name": "Template, SOP, dan Strategi Lanjutan dalam RBInv",
     "section": "CONTENT",
-    "href": "/blog/Management/RBI-4-template-rbi",
+    "href": "/blog/management/RBInv-4-template-rbi",
     "subtitle": "January 24, 2026",
     "keywords": [
       "rbi-tools",
@@ -267,10 +222,10 @@
     ]
   },
   {
-    "id": "Management/RBI-panduan-lengkap",
+    "id": "management/RBInv-panduan-lengkap",
     "name": "Buku Panduan - Sistem Risk-Based Inventory (RBInv) dalam Risk-Based Maintenance (RBM)",
     "section": "CONTENT",
-    "href": "/blog/Management/RBI-panduan-lengkap",
+    "href": "/blog/management/RBInv-panduan-lengkap",
     "subtitle": "January 24, 2026",
     "keywords": [
       "rbi-guide",
@@ -279,96 +234,6 @@
       "engineering-reference",
       "jit-sop-template",
       "cmms-erp"
-    ]
-  },
-  {
-    "id": "Management/RBInv-1-fundamental-rbi-rbm",
-    "name": "Memahami Dasar Risk-Based Inventory (RBInv) dalam Kerangka Risk-Based Maintenance (RBM)",
-    "section": "CONTENT",
-    "href": "/blog/Management/RBInv-1-fundamental-rbi-rbm",
-    "subtitle": "January 24, 2026",
-    "keywords": [
-      "risk-based-maintenance",
-      "risk-based-inventory",
-      "asset-management",
-      "maintenance-reliability",
-      "inventory-strategy",
-      "rcm-fmea"
-    ]
-  },
-  {
-    "id": "Management/RBInv-2-metodologi-rbi",
-    "name": "Metodologi Klasifikasi Inventory Berbasis Risiko (RBInv)",
-    "section": "CONTENT",
-    "href": "/blog/Management/RBInv-2-metodologi-rbi",
-    "subtitle": "January 24, 2026",
-    "keywords": [
-      "risk-based-inventory",
-      "inventory-risk-assessment",
-      "risk-based-maintenance",
-      "spare-part-criticality",
-      "inventory-classification",
-      "reorder-point-strategy"
-    ]
-  },
-  {
-    "id": "Management/RBInv-3-implementasi-rbi",
-    "name": "Implementasi Sistem dan Integrasi Operasional RBInv dalam RBM",
-    "section": "CONTENT",
-    "href": "/blog/Management/RBInv-3-implementasi-rbi",
-    "subtitle": "January 24, 2026",
-    "keywords": [
-      "risk-based-inventory",
-      "rbi-implementation",
-      "erp-cmms",
-      "inventory-integration",
-      "rcm-fmea",
-      "industrial-case-study"
-    ]
-  },
-  {
-    "id": "Management/RBInv-4-template-rbi",
-    "name": "Template, SOP, dan Strategi Lanjutan dalam RBInv",
-    "section": "CONTENT",
-    "href": "/blog/Management/RBInv-4-template-rbi",
-    "subtitle": "January 24, 2026",
-    "keywords": [
-      "rbi-tools",
-      "inventory-template",
-      "sop-maintenance-warehouse",
-      "jit-risk-based",
-      "material-readiness",
-      "shutdown-support"
-    ]
-  },
-  {
-    "id": "Management/RBInv-panduan-lengkap",
-    "name": "Buku Panduan - Sistem Risk-Based Inventory (RBInv) dalam Risk-Based Maintenance (RBM)",
-    "section": "CONTENT",
-    "href": "/blog/Management/RBInv-panduan-lengkap",
-    "subtitle": "January 24, 2026",
-    "keywords": [
-      "rbi-guide",
-      "risk-based-maintenance",
-      "inventory-management",
-      "engineering-reference",
-      "jit-sop-template",
-      "cmms-erp"
-    ]
-  },
-  {
-    "id": "Management/template-rbi",
-    "name": "Template, SOP, dan Strategi Lanjutan dalam RBI",
-    "section": "CONTENT",
-    "href": "/blog/Management/template-rbi",
-    "subtitle": "January 24, 2026",
-    "keywords": [
-      "rbi-tools",
-      "inventory-template",
-      "sop-maintenance-warehouse",
-      "jit-risk-based",
-      "material-readiness",
-      "shutdown-support"
     ]
   },
   {
@@ -422,10 +287,10 @@
     ]
   },
   {
-    "id": "Management/gemba-kaizen",
+    "id": "management/gemba-kaizen",
     "name": "Langkah Nyata Menghadapi Masalah Operasional - 5 Golden Rules Gemba Kaizen untuk Praktisi Teknik",
     "section": "CONTENT",
-    "href": "/blog/Management/gemba-kaizen",
+    "href": "/blog/management/gemba-kaizen",
     "subtitle": "January 13, 2026",
     "keywords": [
       "gemba-kaizen",
@@ -438,10 +303,10 @@
     ]
   },
   {
-    "id": "Management/qcdsm",
+    "id": "management/qcdsm",
     "name": "Implementasi QCDSM sebagai Pilar Evaluasi Kinerja Maintenance Berbasis Risiko (RBM) di Industri Petrokimia",
     "section": "CONTENT",
-    "href": "/blog/Management/qcdsm",
+    "href": "/blog/management/qcdsm",
     "subtitle": "January 13, 2026",
     "keywords": [
       "QCDSM",
@@ -453,10 +318,10 @@
     ]
   },
   {
-    "id": "Management/moscow",
+    "id": "management/moscow",
     "name": "Dari Perencanaan hingga Eksekusi - MoSCoW sebagai Alat Pengambil Keputusan",
     "section": "CONTENT",
-    "href": "/blog/Management/moscow",
+    "href": "/blog/management/moscow",
     "subtitle": "January 7, 2026",
     "keywords": [
       "MoSCoW-method",
@@ -522,10 +387,10 @@
     ]
   },
   {
-    "id": "Management/iceberg-theory",
+    "id": "management/iceberg-theory",
     "name": "Beyond the Surface - Pendekatan Iceberg dalam Memperkuat Keandalan Aset Industri Petrokimia",
     "section": "CONTENT",
-    "href": "/blog/Management/iceberg-theory",
+    "href": "/blog/management/iceberg-theory",
     "subtitle": "December 17, 2025",
     "keywords": [
       "iceberg-theory",
@@ -922,10 +787,10 @@
     ]
   },
   {
-    "id": "Management/maintenance-rbm",
+    "id": "management/maintenance-rbm",
     "name": "Risk-Based Maintenance (RBM) di Industri Petrokimia - Strategi, Praktik, dan Studi Kasus PT. Petro Oxo Nusantara",
     "section": "CONTENT",
-    "href": "/blog/Management/maintenance-rbm",
+    "href": "/blog/management/maintenance-rbm",
     "subtitle": "November 8, 2025",
     "keywords": [
       "risk-based-maintenance",
@@ -951,10 +816,10 @@
     ]
   },
   {
-    "id": "Management/housekeeping-keandalan",
+    "id": "management/housekeeping-keandalan",
     "name": "Housekeeping sebagai Cerminan Keandalan Pabrik Petrokimia",
     "section": "CONTENT",
-    "href": "/blog/Management/housekeeping-keandalan",
+    "href": "/blog/management/housekeeping-keandalan",
     "subtitle": "October 13, 2025",
     "keywords": [
       "housekeeping-petrokimia",
@@ -994,6 +859,20 @@
       "contentlayer",
       "tailwind",
       "eslint"
+    ]
+  },
+  {
+    "id": "markdown/github-markdown-guide",
+    "name": "Panduan Markdown",
+    "section": "CONTENT",
+    "href": "/blog/markdown/github-markdown-guide",
+    "subtitle": "October 7, 2025",
+    "keywords": [
+      "github",
+      "panduan",
+      "markdown",
+      "md",
+      "mdx"
     ]
   },
   {
@@ -1114,10 +993,10 @@
     ]
   },
   {
-    "id": "Management/maintenance-laporan",
+    "id": "management/maintenance-laporan",
     "name": "Panduan Pembuatan Laporan Bulanan Departemen Maintenance di Industri Petrokimia",
     "section": "CONTENT",
-    "href": "/blog/Management/maintenance-laporan",
+    "href": "/blog/management/maintenance-laporan",
     "subtitle": "October 14, 2024",
     "keywords": [
       "laporan-bulanan-maintenance",
@@ -1176,10 +1055,10 @@
     ]
   },
   {
-    "id": "Management/maintenance-manajemen",
+    "id": "management/maintenance-manajemen",
     "name": "Efisiensi dan Keandalan dalam Manajemen Pemeliharaan",
     "section": "CONTENT",
-    "href": "/blog/Management/maintenance-manajemen",
+    "href": "/blog/management/maintenance-manajemen",
     "subtitle": "September 27, 2024",
     "keywords": [
       "Pemeliharaan",
@@ -1190,10 +1069,10 @@
     ]
   },
   {
-    "id": "Management/maintenance-proactive",
+    "id": "management/maintenance-proactive",
     "name": "Transformasi dari Pemeliharaan Reaktif ke Proaktif",
     "section": "CONTENT",
-    "href": "/blog/Management/maintenance-proactive",
+    "href": "/blog/management/maintenance-proactive",
     "subtitle": "September 27, 2024",
     "keywords": [
       "pemeliharaan-proaktif",
@@ -2027,10 +1906,10 @@
     ]
   },
   {
-    "id": "Management/maintenance-system",
+    "id": "management/maintenance-system",
     "name": "Maintenance System",
     "section": "CONTENT",
-    "href": "/blog/Management/maintenance-system",
+    "href": "/blog/management/maintenance-system",
     "subtitle": "October 20, 2023",
     "keywords": [
       "Maintenance",
