@@ -1,618 +1,420 @@
 ---
-title: Mengungkap Risiko Tersembunyi - Panduan Lengkap tentang Failure Tree Analysis (FTA)
+title: Failure Tree Analysis (FTA) – Modul Metode dalam Ekosistem RCA–RBM
 authors: ['sam', 'amr']
 date: '2023-10-25'
 tags:
   [
-    'fta',
     'failure-tree-analysis',
+    'fault-tree-analysis',
     'analisis-risiko',
-    'pemeliharaan-pabrik-petrokimia',
-    'keandalan-sistem',
     'process-safety',
-    'manajemen-risiko',
+    'pemeliharaan-pabrik-petrokimia',
+    'risk-based-maintenance',
+    'rca-framework',
+    'keandalan-sistem',
     'safety-engineering',
   ]
 draft: false
-summary: Artikel ini membahas Failure Tree Analysis (FTA) sebagai metode analisis risiko yang sistematis untuk mengidentifikasi jalur kegagalan dalam suatu sistem menggunakan pendekatan pohon kegagalan dan logika Boolean (AND, OR, NOT). Dimulai dari konsep dasar event hingga top event, artikel ini menjelaskan tahapan implementasi FTA, manfaatnya dalam meningkatkan keandalan, keselamatan, dan efisiensi biaya, serta tantangan penerapannya. Studi kasus bearing di industri petrokimia menunjukkan bagaimana FTA digunakan secara praktis untuk mengidentifikasi risiko kritis dan merancang strategi mitigasi. Perbandingan dengan RCFA, FMEA, dan Fishbone Diagram menegaskan posisi FTA sebagai alat proaktif dalam manajemen risiko dan keselamatan sistem kompleks.
+summary: Artikel ini membahas Failure Tree Analysis (FTA) sebagai metode analisis risiko yang bersifat proaktif dan sistemik untuk memetakan jalur kegagalan pada sistem kompleks, khususnya di industri petrokimia. Dengan pendekatan top-down dan logika Boolean (AND, OR, NOT), FTA membantu mengidentifikasi kombinasi kegagalan yang dapat memicu top event berkonsekuensi tinggi, terutama terkait process safety dan keandalan peralatan kritikal. Artikel ini menegaskan posisi FTA dalam ekosistem RCA berbasis Risk-Based Maintenance (RBM), membedakannya dari RCFA, FMEA, dan Fishbone Diagram, serta menekankan pentingnya batasan penggunaan dan stop rule agar FTA tidak disalahgunakan atau berujung pada over-analysis.
 ---
 
-### Daftar Isi :
-
-[I. Pengenalan pada Failure Tree Analysis (FTA)](#i-pengenalan-pada-failure-tree-analysis-fta)
-
-[II. Dasar-Dasar Failure Tree Analysis](#ii-dasar-dasar-failure-tree-analysis)
-
-[III. Langkah-Langkah Pelaksanaan FTA](#iii-langkah-langkah-pelaksanaan-fta)
-
-[IV. Manfaat Penerapan FTA](#iv-manfaat-penerapan-fta)
-
-[V. Studi Kasus: Analisis Keselamatan Bearing dalam Industri Petrokimia Menggunakan Failure Tree Analysis (FTA)](#v-studi-kasus-analisis-keselamatan-bearing-dalam-industri-petrokimia-menggunakan-failure-tree-analysis-fta)
-
--[Studi Kasus Check Sheet FTA: Analisis Risiko Bearing dalam Industri Petrokimia](#studi-kasus-check-sheet-fta-analisis-risiko-bearing-dalam-industri-petrokimia)
-
-[VI. Tantangan dan Hambatan dalam FTA](#vi-tantangan-dan-hambatan-dalam-fta)
-
-[VII. FTA vs RCFA](#vii-fta-vs-rcfa)
-
-[VIII. FTA vs Fishbone Diagram](#VIII-fta-vs-fishbone-diagram)
-
-[IX. Penggunaan Fishbone Diagram (diagram sebab-akibat), RCFA (Root Cause Failure Analysis), dan FTA (Fault Tree Analysis)](#ix-penggunaan-fishbone-diagram-diagram-sebab-akibat-rcfa-root-cause-failure-analysis-dan-fta-fault-tree-analysis)
-
-[X. Kesimpulan](#x-kesimpulan)
-
-[XI. Pustaka dan Referensi](#xi-pustaka-dan-referensi)
-
-**Sekilas Pengantar**:
-
-Artikel ini akan memberikan wawasan mendalam tentang Failure Tree Analysis (FTA), sebuah teknik analisis yang kritis dalam manajemen risiko dan perbaikan sistem. Pembaca akan diajak untuk memahami konsep dasar, langkah-langkah pelaksanaan, dan manfaat penerapan FTA dalam berbagai bidang, mulai dari industri hingga teknologi.
-
-![FTA Image](/static/images/artikel/FTAimage.jpg)
-
-### I. Pengenalan pada Failure Tree Analysis (FTA)
-
-Failure Tree Analysis (FTA) adalah sebuah metode analisis yang digunakan untuk mengidentifikasi dan menganalisis potensi kegagalan dalam sebuah sistem atau proses. Metode ini sangat berguna dalam manajemen risiko, perencanaan keamanan, dan perbaikan sistem. FTA digunakan untuk memahami bagaimana berbagai faktor atau peristiwa dapat menyebabkan kegagalan suatu sistem atau proses.
-
-**Konsep Dasar dalam FTA**:
-
-- **Event (Kejadian)**: Dalam konteks FTA, sebuah event adalah kejadian atau kondisi yang dapat terjadi dalam sistem. Event ini dapat bersifat positif (misalnya, operasi normal) atau negatif (misalnya, kegagalan).
-- **Basic Event (Kejadian Dasar)**: Basic event adalah kejadian yang tidak dapat didekomposisi lebih lanjut. Mereka adalah elemen-elemen dasar dalam analisis FTA. Contoh basic event mungkin termasuk kerusakan komponen tertentu dalam sistem.
-- **Intermediate Event (Kejadian Perantara)**: Intermediate event adalah kejadian yang terjadi sebagai hasil dari kombinasi beberapa kejadian dasar. Mereka adalah perantara antara basic event dan top event.
-- **Top Event (Kejadian Puncak)**: Top event adalah kejadian yang ingin dihindari atau dianalisis. Biasanya, top event merupakan kegagalan sistem secara keseluruhan.
-
-**Logika Boolean dalam FTA**:
-
-- Dalam FTA, digunakan logika Boolean untuk menggambarkan hubungan antara berbagai event. Terdapat tiga jenis gerbang logika utama:
-  - **AND Gate (Gerbang DAN)**: Dua atau lebih event harus terjadi bersamaan untuk menciptakan kejadian perantara atau top event. Ini menggambarkan ketergantungan antara event-event tersebut.
-  - **OR Gate (Gerbang ATAU)**: Salah satu dari dua atau lebih event harus terjadi untuk menciptakan kejadian perantara atau top event. Ini menggambarkan alternatif dalam penyebab kegagalan.
-  - **NOT Gate (Gerbang NOT)**: Digunakan untuk menggambarkan bahwa suatu event tidak terjadi.
-
-**Beberapa rujukan yang menunjang :**
-
-- [Efisiensi dan Keandalan dalam Manajemen Pemeliharaan](/blog/Management/maintenance-manajemen)
-- [pendekatan sistematis cause–effect dalam troubleshooting](/blog/general/Cause-Effect-Risk-Decision)
-- [akar masalah yang tersembunyi di balik kegagalan berulang](/blog/Management/iceberg-theory)
-- [root cause failure analysis](/blog/Management/RCA/rca-rcfa)
-- [failure mode and effect analysis](/blog/Management/RCA/rca-fmea)
-- [Fishbone diagram](/blog/Management/RCA/rca-fishbone-diagram)
-- [troubleshooting metode](/blog/Management/RCA/troubleshooting-metode)
-- [work breakdown structure](/blog/maintenance/wbs-level)
-
-**Pentingnya FTA**:
-
-- FTA membantu dalam mengidentifikasi berbagai jalur kegagalan dalam suatu sistem.
-- Ini memungkinkan analisis menyeluruh terhadap penyebab kegagalan dan dampaknya.
-- Membantu dalam merencanakan tindakan pencegahan dan perbaikan.
-- Digunakan dalam berbagai industri, termasuk manufaktur, otomotif, energi, dan lebih banyak lagi.
-
-Pentingnya FTA dalam manajemen risiko dan perbaikan sistem tidak dapat diabaikan. Dengan memahami dasar-dasar FTA dan logika di baliknya, kita dapat mengidentifikasi dan mengelola risiko dengan lebih baik serta meningkatkan keandalan sistem. Dalam artikel ini, kita akan menjelajahi lebih dalam tentang bagaimana FTA dapat diterapkan dalam berbagai konteks dan industri.
-
-**Mengapa FTA penting dalam manajemen risiko dan perbaikan sistem.**
-
-Failure Tree Analysis (FTA) sangat penting dalam manajemen risiko dan perbaikan sistem karena membawa sejumlah manfaat signifikan dalam memahami, menganalisis, dan mengatasi potensi kegagalan dalam suatu sistem. Berikut adalah alasan mengapa FTA penting dalam konteks ini:
-
-1. **Identifikasi Kegagalan Potensial**: FTA membantu mengidentifikasi dan mengkategorikan potensi kegagalan dalam sistem. Dengan demikian, ini membantu dalam mengidentifikasi titik-titik kritis yang perlu mendapatkan perhatian dalam manajemen risiko.
-
-2. **Analisis Dampak**: FTA tidak hanya mengidentifikasi kegagalan tetapi juga menganalisis dampaknya. Ini membantu dalam memahami konsekuensi dari setiap kegagalan yang mungkin terjadi. Sehingga, perusahaan atau organisasi dapat mempersiapkan strategi mitigasi yang sesuai.
-
-3. **Perencanaan Tindakan Pencegahan**: Dengan memahami penyebab kegagalan potensial, FTA memungkinkan perencanaan tindakan pencegahan yang efektif. Perusahaan dapat mengambil langkah-langkah proaktif untuk mengurangi risiko kegagalan.
-
-4. **Pengambilan Keputusan yang Lebih Baik**: FTA menyediakan wawasan mendalam tentang kompleksitas sistem. Ini membantu dalam pengambilan keputusan yang lebih baik karena informasi yang disediakan oleh FTA adalah dasar yang kuat untuk mengukur risiko dan mengembangkan strategi mitigasi.
-
-5. **Peningkatan Keandalan Sistem**: Dengan mengidentifikasi dan mengatasi potensi kegagalan, FTA dapat membantu meningkatkan keandalan sistem. Hal ini sangat penting dalam industri seperti otomotif, penerbangan, dan energi di mana kegagalan sistem dapat memiliki konsekuensi serius.
-
-6. **Efisiensi Biaya**: FTA dapat membantu menghindari biaya yang timbul akibat kegagalan sistem. Dengan merencanakan tindakan pencegahan yang efektif, organisasi dapat menghemat uang yang seharusnya dikeluarkan untuk perbaikan darurat atau kerugian yang timbul akibat kegagalan.
-
-7. **Kepatuhan dan Standar Keselamatan**: Di banyak industri, ada persyaratan regulasi ketat terkait dengan keselamatan dan keandalan sistem. FTA membantu organisasi untuk mematuhi standar ini dan menghindari potensi sanksi hukum atau kerugian reputasi.
-
-8. **Peningkatan Inovasi**: Dengan memahami kegagalan potensial dalam sistem saat ini, perusahaan dapat bekerja untuk mengembangkan inovasi yang mengurangi risiko kegagalan di masa depan. Ini mendorong pengembangan teknologi yang lebih baik.
-
-Secara keseluruhan, FTA adalah alat penting dalam mengelola risiko dan meningkatkan keandalan sistem. Dengan menerapkan FTA, organisasi dapat menjadi lebih efisien, aman, dan handal dalam operasi mereka, serta mengurangi risiko yang terkait dengan kegagalan sistem.
-
-### II. Dasar-Dasar Failure Tree Analysis
-
-- Konsep dasar: Event, Basic Event, Intermediate Event, dan Top Event.
-
-Konsep dasar dalam Failure Tree Analysis (FTA) mencakup empat elemen kunci: Event, Basic Event, Intermediate Event, dan Top Event. Memahami peran dan hierarki masing-masing elemen ini sangat penting dalam menerapkan FTA. Berikut adalah penjelasan lebih rinci tentang setiap konsep:
-
-1. **Event (Kejadian)**:
-
-   - Event dalam FTA merujuk pada kejadian atau kondisi yang bisa terjadi dalam sistem. Ini bisa menjadi kejadian positif (misalnya, operasi normal) atau kejadian negatif (misalnya, kegagalan).
-   - Event adalah elemen dasar dalam konstruksi pohon kegagalan dalam FTA.
-   - Event bisa memiliki tingkat kompleksitas yang berbeda, tergantung pada sejauh mana kita ingin mendekomposisinya dalam analisis.
-
-2. **Basic Event (Kejadian Dasar)**:
-
-   - Basic Event adalah jenis event yang tidak dapat didekomposisi lebih lanjut dalam analisis FTA. Mereka adalah elemen paling dasar dalam pohon kegagalan.
-   - Basic Event mewakili kejadian yang dapat terjadi secara langsung tanpa perlu dikembangkan lebih lanjut.
-   - Contoh Basic Event bisa mencakup kerusakan komponen kritis dalam sistem, kegagalan sensor, atau kejadian dasar lainnya yang relevan.
-
-3. **Intermediate Event (Kejadian Perantara)**:
-
-   - Intermediate Event adalah jenis event yang terjadi sebagai hasil dari kombinasi satu atau lebih Basic Event.
-   - Mereka berperan sebagai jembatan antara Basic Event dan Top Event dalam pohon kegagalan.
-   - Intermediate Event sering digunakan untuk menggambarkan penyebab kegagalan yang lebih kompleks yang melibatkan lebih dari satu kejadian dasar.
-
-4. **Top Event (Kejadian Puncak)**:
-   - Top Event adalah kejadian yang menjadi fokus utama dalam analisis FTA. Ini adalah kejadian yang ingin dihindari atau dipahami dengan baik.
-   - Top Event mewakili kegagalan sistem secara keseluruhan atau kejadian kritis yang akan memiliki dampak serius jika terjadi.
-   - Seluruh analisis FTA dirancang untuk memahami penyebab-penyebab yang mungkin mengarah ke Top Event.
-
-Hierarki konsep ini menciptakan struktur pohon kegagalan yang kompleks, di mana Top Event berada di puncak pohon, diikuti oleh Intermediate Events yang terkait dengannya, dan Basic Events sebagai elemen paling dasar yang merupakan penyebab-penyebab yang lebih sederhana.
-
-Paham akan konsep ini adalah kunci dalam menyusun dan menganalisis pohon kegagalan FTA. Dalam proses analisis, perlu mengidentifikasi, mengevaluasi, dan memahami setiap elemen ini dengan baik untuk mengidentifikasi risiko potensial dan tindakan yang diperlukan.
-
-- Logika Boolean: AND, OR, dan NOT Gates dalam FTA.
-
-Dalam Failure Tree Analysis (FTA), logika Boolean digunakan untuk menggambarkan hubungan antara event dan elemen dalam pohon kegagalan. Terdapat tiga gerbang logika utama yang digunakan dalam FTA: AND, OR, dan NOT Gates. Berikut adalah penjelasan tentang masing-masing gerbang logika:
-
-1. **AND Gate (Gerbang DAN)**:
-
-   - Gerbang AND digunakan untuk menggambarkan hubungan di mana dua atau lebih event harus terjadi bersamaan untuk menciptakan kejadian perantara atau top event.
-   - Ini menggambarkan ketergantungan antara event-event yang terkait, yang berarti jika salah satu dari event tersebut tidak terjadi, kejadian perantara atau top event tidak akan terjadi.
-   - Simbol gerbang AND biasanya digambarkan sebagai titik (·) atau tanda "+".
-
-   ![ANDGateimage](/static/images/artikel/ANDGateimage.jpg)
-
-Contoh:
-
-- AND (A, B) berarti bahwa kejadian A DAN B harus terjadi bersamaan untuk menciptakan kejadian perantara atau top event.
-
-2. **OR Gate (Gerbang ATAU)**:
-
-   - Gerbang OR digunakan untuk menggambarkan hubungan di mana salah satu dari dua atau lebih event harus terjadi untuk menciptakan kejadian perantara atau top event.
-   - Ini menggambarkan alternatif dalam penyebab kegagalan, di mana kegagalan dapat disebabkan oleh salah satu dari event-event yang terkait.
-   - Simbol gerbang OR biasanya digambarkan sebagai tanda "+" atau "∨".
-
-   ![ORGateimage](/static/images/artikel/ORGateimage.jpg)
-
-   Contoh:
-
-   - OR (A, B) berarti bahwa kejadian A ATAU B harus terjadi untuk menciptakan kejadian perantara atau top event.
-
-3. **NOT Gate (Gerbang NOT)**:
-
-   - Gerbang NOT digunakan untuk menggambarkan bahwa suatu event tidak terjadi. Dalam FTA, ini digunakan untuk menggambarkan event-event yang mencegah kejadian perantara atau top event terjadi.
-   - Simbol gerbang NOT biasanya digambarkan sebagai garis melintang di atas event yang dinotasikan.
-
-   ![NOTGateimage](/static/images/artikel/NOTGateimage.jpg)
-
-   Contoh:
-
-   - NOT A berarti bahwa kejadian A tidak terjadi.
-
-Dengan menggunakan kombinasi gerbang logika ini, pohon kegagalan dalam FTA dibangun. Ini memungkinkan analis untuk menggambarkan dengan jelas bagaimana berbagai event dan elemen dalam sistem saling terkait dan bagaimana penyebab kegagalan dapat dikombinasikan. Dalam analisis FTA, rumus yang melibatkan gerbang AND, OR, dan NOT digunakan untuk menghitung probabilitas kegagalan dan menganalisis risiko dalam sistem.
-
-Dengan memahami logika Boolean dalam FTA, analis dapat membangun model yang akurat dari sistem dan memahami konsekuensi dari berbagai kombinasi kejadian. Hal ini penting dalam manajemen risiko dan perbaikan sistem.
-
-### III. Langkah-Langkah Pelaksanaan FTA
-
-Langkah-langkah pelaksanaan Failure Tree Analysis (FTA) melibatkan proses sistematis untuk membangun pohon kegagalan yang mendetail dan menyeluruh. Berikut adalah langkah-langkah umum dalam pelaksanaan FTA:
-
-1. **Identifikasi Sistem atau Proses yang Akan Dianalisis**:
-
-   - Langkah pertama adalah menentukan sistem atau proses yang akan dianalisis. Pemahaman yang baik tentang sistem ini sangat penting.
-
-2. **Definisi Top Event (Kejadian Puncak)**:
-
-   - Tentukan top event, yaitu kejadian yang menjadi fokus utama analisis. Ini biasanya merupakan kegagalan sistem yang ingin dihindari.
-
-3. **Identifikasi Event Dasar (Basic Event)**:
-
-   - Identifikasi dan daftarkan semua event dasar yang relevan yang dapat menyebabkan top event. Event dasar adalah kejadian yang tidak dapat didekomposisi lebih lanjut dalam analisis.
-
-4. **Pembangunan Pohon Kegagalan**:
-
-   - Mulailah membangun pohon kegagalan dengan top event di bagian paling atas.
-   - Gunakan gerbang logika Boolean (AND, OR, dan NOT) untuk menghubungkan event-event dasar, intermediate events, dan top event. Gambar pohon kegagalan dengan jelas.
-
-5. **Penilaian Probabilitas**:
-
-   - Penilaian probabilitas masing-masing event dalam pohon kegagalan. Ini dapat melibatkan penggunaan data historis, penilaian ahli, atau berbagai metode statistik.
-
-6. **Analisis Kritis Terhadap Pohon Kegagalan**:
-
-   - Lakukan analisis kritis terhadap pohon kegagalan yang telah dibangun. Cari jalur-jalur yang paling kritis yang mengarah ke top event.
-
-7. **Penentuan Strategi Mitigasi**:
-
-   - Berdasarkan analisis pohon kegagalan, tentukan strategi mitigasi yang sesuai. Ini bisa melibatkan perbaikan sistem, tindakan pencegahan, atau perubahan prosedur.
-
-8. **Pemantauan dan Evaluasi**:
-
-   - Setelah tindakan mitigasi diimplementasikan, penting untuk terus memantau sistem atau proses dan mengevaluasi efektivitas tindakan tersebut. Jika diperlukan, revisi pohon kegagalan.
-
-9. **Dokumentasi dan Pelaporan**:
-
-   - Semua langkah-langkah dan temuan dalam analisis FTA harus didokumentasikan dengan baik. Laporan hasil analisis ini akan menjadi referensi berharga.
-
-10. **Review dan Validasi**:
-    - Terkadang, sangat penting untuk melibatkan tim ahli atau pihak ketiga untuk mereview dan validasi analisis FTA. Ini dapat membantu memastikan kualitas analisis.
-
-Selama pelaksanaan FTA, komunikasi dan kolaborasi antara berbagai pemangku kepentingan dalam organisasi sangat penting. Analisis ini membantu organisasi mengidentifikasi dan mengelola risiko, sehingga semua pihak terlibat dalam pengambilan keputusan yang berdasarkan data dan informasi yang akurat.
-
-Langkah-langkah ini membantu organisasi memahami potensi kegagalan dalam sistem mereka, mengidentifikasi penyebab, dan mengembangkan strategi yang efektif untuk mengurangi risiko dan meningkatkan keandalan sistem.
-
-### IV. Manfaat Penerapan FTA
-
-Penerapan Failure Tree Analysis (FTA) memiliki banyak manfaat dalam berbagai konteks, terutama dalam manajemen risiko dan perbaikan sistem. Berikut adalah sejumlah manfaat utama yang dapat diperoleh melalui penerapan FTA:
-
-1. **Identifikasi Risiko Tersembunyi**: FTA membantu dalam mengidentifikasi risiko-risiko tersembunyi yang mungkin tidak terdeteksi melalui metode lain. Ini mencakup kemungkinan kegagalan yang tidak terlihat secara langsung.
-
-2. **Analisis Dampak**: FTA tidak hanya mengidentifikasi kegagalan, tetapi juga menganalisis dampaknya. Ini membantu dalam memahami konsekuensi kegagalan dan dampaknya terhadap sistem atau proses.
-
-3. **Perencanaan Tindakan Pencegahan**: Dengan memahami penyebab potensial kegagalan, FTA memungkinkan perencanaan tindakan pencegahan yang tepat. Organisasi dapat mengambil langkah-langkah proaktif untuk mengurangi risiko.
-
-4. **Pengambilan Keputusan yang Lebih Baik**: FTA memberikan landasan yang kuat untuk pengambilan keputusan yang lebih baik. Analisis ini memberikan wawasan yang mendalam tentang sistem dan membantu dalam mengukur risiko.
-
-5. **Peningkatan Keandalan Sistem**: Dengan mengidentifikasi dan mengatasi potensi kegagalan, FTA dapat membantu meningkatkan keandalan sistem. Ini sangat penting dalam industri yang memerlukan operasi yang dapat diandalkan.
-
-6. **Efisiensi Biaya**: Dengan merencanakan tindakan pencegahan yang tepat, organisasi dapat menghindari biaya yang akan dikeluarkan untuk perbaikan darurat atau kerugian yang timbul akibat kegagalan. Ini berpotensi menghemat biaya jangka panjang.
-
-7. **Peningkatan Kualitas Produk**: Dalam sektor manufaktur, FTA membantu mengidentifikasi masalah dalam produk atau proses, yang berkontribusi pada peningkatan kualitas dan mengurangi cacat.
-
-8. **Kepatuhan Regulasi**: Di berbagai industri, terdapat persyaratan regulasi ketat terkait dengan keselamatan dan keandalan sistem. FTA membantu organisasi untuk mematuhi standar ini dan menghindari potensi sanksi hukum.
-
-9. **Peningkatan Inovasi**: Dengan memahami kegagalan potensial dalam sistem saat ini, organisasi dapat bekerja untuk mengembangkan inovasi yang mengurangi risiko kegagalan di masa depan. Ini mendorong pengembangan teknologi yang lebih baik.
-
-10. **Pengurangan Risiko Keselamatan**: Dalam sektor seperti industri kimia dan energi, FTA membantu mengidentifikasi dan mengurangi risiko terkait kecelakaan dan bahaya bagi karyawan dan lingkungan.
-
-11. **Penyelidikan Kecelakaan**: FTA dapat digunakan dalam penyelidikan kecelakaan atau insiden untuk mengidentifikasi penyebab dan mencegah insiden serupa di masa depan.
-
-12. **Manajemen Proyek yang Lebih Baik**: Dalam proyek konstruksi atau pengembangan perangkat, FTA membantu dalam mengidentifikasi risiko yang dapat memengaruhi jadwal dan anggaran proyek.
-
-Penerapan FTA tidak hanya membantu dalam mengidentifikasi risiko tetapi juga dalam mengelola mereka dengan lebih efektif. Ini membuatnya menjadi alat penting dalam manajemen risiko dan perbaikan sistem di berbagai industri dan konteks.
-
-### V. Studi Kasus: Analisis Keselamatan Bearing dalam Industri Petrokimia Menggunakan Failure Tree Analysis (FTA)
-
-_Deskripsi:_
-Sebuah pabrik petrokimia besar ingin meningkatkan keselamatan dan keandalan sistem mereka dengan fokus pada bearing dalam peralatan produksi mereka. Mereka memutuskan untuk melakukan analisis risiko menggunakan FTA untuk mengidentifikasi potensi kegagalan dan mengambil langkah-langkah pencegahan yang sesuai.
-
-**Langkah-Langkah Studi Kasus:**
-
-1. **Identifikasi Top Event (Kejadian Puncak):**
-
-   - Top Event dalam analisis ini adalah "Kegagalan Bearing dalam Peralatan Produksi." Ini adalah kejadian yang perlu dihindari dengan segala cara.
-
-2. **Identifikasi Basic Event (Kejadian Dasar):**
-
-   - Tim analis mengidentifikasi semua event dasar yang mungkin menyebabkan kegagalan bearing. Ini termasuk:
-     - Overloading (Pemuatan Berlebihan)
-     - Lubrication Failure (Kegagalan Pelumas)
-     - Misalignment (Penyelarasan yang Tidak Tepat)
-     - Corrosion (Korosi)
-     - Vibration (Getaran)
-     - Human Error (Kesalahan Manusia)
-
-3. **Pembangunan Pohon Kegagalan:**
-
-   - Analis membangun pohon kegagalan yang menunjukkan bagaimana event dasar berkontribusi terhadap kejadian puncak.
-   - Contoh: Kegagalan bearing mungkin terjadi jika overloading (Event A) terjadi (AND Gate) dan terjadi lubrication failure (Event B) (AND Gate).
-
-4. **Penilaian Probabilitas:**
-
-   - Tim analis menilai probabilitas masing-masing event dalam pohon kegagalan. Ini melibatkan pengumpulan data historis, pengujian, dan konsultasi dengan ahli.
-
-5. **Analisis Kritis Terhadap Pohon Kegagalan:**
-
-   - Analis melakukan analisis kritis terhadap pohon kegagalan untuk mengidentifikasi jalur-jalur kritis yang paling mungkin menyebabkan kegagalan bearing.
-
-6. **Penentuan Strategi Mitigasi:**
-
-   - Berdasarkan analisis, tim mengembangkan strategi mitigasi yang melibatkan:
-     - Perawatan Rutin dan Penggantian Bearing
-     - Peningkatan Monitoring Getaran
-     - Pemantauan Lubrication yang Lebih Ketat
-     - Pelatihan Operator tentang Overloading Prevention
-     - Penggunaan Material Tahan Korosi
-
-7. **Implementasi dan Pemantauan:**
-
-   - Strategi mitigasi yang diusulkan diimplementasikan dalam operasi pabrik. Sistem pemantauan aktif diterapkan untuk memastikan efektivitas tindakan tersebut.
-
-8. **Evaluasi dan Revisi:**
-   - Tim terus memantau kinerja bearing dan dampak dari tindakan mitigasi. Jika diperlukan, pohon kegagalan direvisi untuk mencerminkan perubahan dalam sistem.
-
-**Manfaat Studi Kasus:**
-Melalui penerapan FTA dalam analisis risiko bearing dalam industri petrokimia, pabrik tersebut dapat mencapai manfaat berikut:
-
-- Identifikasi dan pengelolaan risiko potensial dalam bearing dan peralatan produksi.
-- Peningkatan keselamatan dan keandalan operasi pabrik.
-- Penghematan biaya yang terkait dengan kegagalan bearing dan perawatan darurat.
-- Pemenuhan standar keselamatan industri petrokimia.
-
-Studi kasus ini mencerminkan bagaimana FTA dapat digunakan untuk meningkatkan keselamatan dan keandalan dalam konteks industri yang berisiko seperti petrokimia. Itu juga menunjukkan bagaimana analisis risiko yang mendalam dan tindakan proaktif dapat mengurangi risiko kegagalan dan kerusakan.
-
-### Studi Kasus Check Sheet FTA: Analisis Risiko Bearing dalam Industri Petrokimia
-
-Dalam analisis risiko berikut, kami menggunakan metode Check Sheet FTA untuk mengidentifikasi dan mencatat peristiwa-peristiwa yang berkontribusi terhadap kegagalan bearing dalam industri petrokimia. Data ini dapat digunakan sebagai dasar untuk melakukan analisis lebih lanjut dengan metode FTA.
-
-**Tanggal Pengumpulan Data: [Tanggal]**
+**_Failure Tree Analysis (FTA) – Modul Metode dalam Ekosistem RCA–RBM_**
 
 ---
 
-| No. | Peristiwa (Event)   | Frekuensi (Jumlah Kejadian) | Lokasi   | Tanggung Jawab | Tindakan Preventif                   |
-| --- | ------------------- | --------------------------- | -------- | -------------- | ------------------------------------ |
-| 1   | Overloading         | [Frekuensi]                 | [Lokasi] | [Pegawai]      | [Tindakan Preventif yang Diterapkan] |
-| 2   | Lubrication Failure | [Frekuensi]                 | [Lokasi] | [Pegawai]      | [Tindakan Preventif yang Diterapkan] |
-| 3   | Misalignment        | [Frekuensi]                 | [Lokasi] | [Pegawai]      | [Tindakan Preventif yang Diterapkan] |
-| 4   | Corrosion           | [Frekuensi]                 | [Lokasi] | [Pegawai]      | [Tindakan Preventif yang Diterapkan] |
-| 5   | Vibration           | [Frekuensi]                 | [Lokasi] | [Pegawai]      | [Tindakan Preventif yang Diterapkan] |
-| 6   | Human Error         | [Frekuensi]                 | [Lokasi] | [Pegawai]      | [Tindakan Preventif yang Diterapkan] |
+- [1) **Prolog**](#1-prolog)
+- [2) **Pengenalan**](#2-pengenalan)
+  - [Tujuan Praktis Penerapan FTA](#tujuan-praktis-penerapan-fta)
+  - [Batasan Eksplisit Penggunaan FTA](#batasan-eksplisit-penggunaan-fta)
+- [3) **Posisi**](#3-posisi)
+  - [Posisi FTA dalam Alur RCA Berbasis RBM](#posisi-fta-dalam-alur-rca-berbasis-rbm)
+  - [Kondisi yang Cocok Menggunakan FTA](#kondisi-yang-cocok-menggunakan-fta)
+  - [Kondisi yang Tidak Cocok Menggunakan FTA](#kondisi-yang-tidak-cocok-menggunakan-fta)
+  - [Relasi FTA dengan Metode Lain (Hulu–Hilir)](#relasi-fta-dengan-metode-lain-huluhilir)
+- [4) **Stop Rule**](#4-stop-rule)
+  - [1. Top Event Telah Terekspos Menjadi Single Dominant Cause](#1-top-event-telah-terekspos-menjadi-single-dominant-cause)
+  - [2. Perluasan Pohon Tidak Lagi Mengubah Keputusan Teknis](#2-perluasan-pohon-tidak-lagi-mengubah-keputusan-teknis)
+  - [3. Risiko Telah Berada pada Level **ALARP**](#3-risiko-telah-berada-pada-level-alarp)
+  - [4. Analisis Mulai Kehilangan Integritas Teknis](#4-analisis-mulai-kehilangan-integritas-teknis)
+- [🔁 Trigger Eskalasi Metode](#-trigger-eskalasi-metode)
+- [5) **Case Study**](#5-case-study)
+  - [Kasus Tunggal – _Defensible Case_](#kasus-tunggal--defensible-case)
+  - [Alasan Pemilihan FTA](#alasan-pemilihan-fta)
+  - [Tahapan Ringkas Penerapan FTA](#tahapan-ringkas-penerapan-fta)
+  - [Keputusan Eksplisit Berbasis Stop Rule](#keputusan-eksplisit-berbasis-stop-rule)
+  - [Konsistensi dengan RBM dan Process Safety Boundary](#konsistensi-dengan-rbm-dan-process-safety-boundary)
+- [6) **Integrasi**](#6-integrasi)
+  - [Relasi FTA dengan Metode RCA Lain](#relasi-fta-dengan-metode-rca-lain)
+  - [Penegasan Prinsip Utama](#penegasan-prinsip-utama)
+  - [Prinsip Pengambilan Keputusan](#prinsip-pengambilan-keputusan)
+- [**Penutup Singkat (Opsional Modul)**](#penutup-singkat-opsional-modul)
+- [**Referensi**](#referensi)
 
 ---
 
-**Catatan:**
+### 1) **Prolog**
 
-- Frekuensi mengacu pada jumlah kejadian masing-masing peristiwa dalam rentang waktu tertentu.
-- Lokasi mengacu pada tempat di mana peristiwa tersebut terjadi dalam pabrik.
-- Tanggung Jawab mengidentifikasi orang yang bertanggung jawab terkait dengan peristiwa tersebut.
-- Tindakan Preventif mencakup langkah-langkah yang telah diambil atau akan diambil untuk mencegah kejadian serupa.
+Artikel ini disusun sebagai **modul metode Failure Tree Analysis (FTA)** dalam ekosistem **Root Cause Analysis (RCA) berbasis Risk-Based Maintenance (RBM)**. Dengan demikian, artikel ini **bukan pengantar RCA**, bukan pula panduan pemilihan metode analisis, melainkan **panduan operasional penggunaan FTA** pada konteks yang tepat.
 
-Setelah data ini terkumpul, Anda dapat menggunakan metode FTA untuk menganalisis hubungan antara peristiwa-peristiwa ini dan dampaknya terhadap kegagalan bearing dalam sistem. Data ini akan menjadi dasar untuk membangun pohon kegagalan dan mengidentifikasi jalur-jalur kritis yang memerlukan tindakan pencegahan.
+FTA **digunakan setelah proses risk framing dilakukan**, yaitu ketika risiko telah didefinisikan secara jelas dari sisi **konsekuensi, probabilitas, dan batasan process safety**. Pada tahap ini, organisasi sudah memahami bahwa permasalahan yang dihadapi bersifat **kompleks, sistemik, dan berpotensi berdampak besar**, sehingga memerlukan pendekatan analisis berbasis logika dan struktur kegagalan.
 
-### VI. Tantangan dan Hambatan dalam FTA
+Penting untuk ditegaskan bahwa **FTA bukan alat pemilihan metode RCA**. FTA adalah **alat analisis risiko sistemik**, yang berfungsi untuk memodelkan kombinasi kegagalan (single maupun multiple failures) yang dapat memicu **top event berkonsekuensi tinggi**. Penggunaan FTA tanpa risk framing yang memadai berisiko menghasilkan analisis yang panjang namun tidak berdampak pada kualitas keputusan.
 
-Penerapan Failure Tree Analysis (FTA) mungkin sangat berguna, tetapi seperti banyak metode analisis lainnya, ada sejumlah tantangan dan hambatan yang mungkin dihadapi dalam prosesnya. Berikut adalah beberapa di antaranya:
+Oleh karena itu, sebelum menggunakan modul ini, pembaca **wajib** memahami dan merujuk pada dokumen berikut:
 
-1. **Ketergantungan Data**: FTA memerlukan data yang akurat untuk menilai probabilitas kejadian. Dalam beberapa kasus, data tersebut mungkin sulit ditemukan atau tidak cukup lengkap.
+- **Artikel Induk: _Decision Framework RCA–RBM_**
+  Digunakan untuk menentukan **kapan FTA relevan**, dan kapan metode lain seperti Fishbone, FMEA, RCFA, atau Bowtie lebih tepat digunakan.
 
-2. **Kompleksitas Model**: Sistem yang sangat kompleks bisa menghasilkan pohon kegagalan yang rumit. Mengelola dan memahami model semacam itu bisa menjadi tantangan.
+- **Artikel Klasifikasi Masalah dan Risk Class**
+  Digunakan untuk memastikan bahwa permasalahan yang dianalisis berada pada **kelas risiko yang sesuai** (high consequence, low tolerance, atau process safety related), sehingga penerapan FTA bersifat **defensible secara teknis dan manajerial**.
 
-3. **Perilaku Manusia**: Dalam beberapa konteks, perilaku manusia dapat menjadi penyebab kegagalan. Menggambarkan perilaku manusia dalam FTA bisa sulit, dan seringkali itu bersifat subjektif.
-
-4. **Probabilitas Subyektif**: Menilai probabilitas kejadian kadang-kadang bersifat subjektif, dan berbagai analis mungkin memiliki pandangan yang berbeda. Ini dapat menyebabkan ketidakpastian dalam hasil.
-
-5. **Kelelahan Analis**: Membangun pohon kegagalan yang kompleks bisa memakan waktu dan energi. Analis harus berhati-hati untuk tidak membuat kesalahan atau mengabaikan aspek penting.
-
-6. **Interaksi Antara Event**: Menilai interaksi antara event dalam model FTA bisa rumit. Beberapa event mungkin memiliki dampak pada event lain, dan ini perlu diperhitungkan dengan benar.
-
-7. **Kurangnya Data Historis**: Terkadang, sistem baru atau peristiwa langka mungkin tidak memiliki data historis yang cukup untuk digunakan dalam analisis FTA.
-
-8. **Biaya dan Waktu**: Menerapkan FTA memerlukan sumber daya dalam hal biaya dan waktu. Ini mungkin menjadi hambatan bagi organisasi yang memiliki keterbatasan anggaran atau jadwal yang ketat.
-
-9. **Kesulitan dalam Membentuk Tim Ahli**: Terutama dalam analisis yang sangat khusus, menemukan orang dengan pengetahuan dan keahlian yang sesuai untuk membentuk tim FTA mungkin tidak selalu mudah.
-
-10. **Kesulitan dalam Memahami Hasil**: Hasil FTA bisa sangat teknis dan rumit, sehingga membuatnya sulit dipahami oleh semua pemangku kepentingan. Komunikasi hasil yang efektif bisa menjadi tantangan tersendiri.
-
-11. **Keterbatasan Dalam Menilai Human Error**: Kegagalan yang disebabkan oleh kesalahan manusia seringkali sulit dinilai secara akurat dalam FTA. Memahami faktor-faktor psikologis dan perilaku manusia bisa rumit.
-
-Meskipun FTA memiliki potensi untuk memberikan wawasan yang berharga dalam mengidentifikasi dan mengelola risiko, sangat penting untuk memahami dan mengatasi tantangan dan hambatan ini agar analisis ini menjadi efektif. Dalam banyak kasus, bekerja dengan tim ahli dan mempertimbangkan berbagai sumber data serta aspek-aspek manusia dan organisasi adalah kunci keberhasilan.
-
-Untuk mengatasi hambatan dalam penerapan Failure Tree Analysis (FTA), Anda dapat mengambil langkah-langkah berikut:
-
-1. **Pilih Tim Ahli yang Tepat**:
-
-   - Pastikan tim yang menerapkan FTA memiliki pengetahuan dan pengalaman yang relevan dalam analisis risiko dan pemahaman yang baik tentang sistem atau proses yang dianalisis. Mereka juga harus terbiasa dengan FTA.
-
-2. **Kumpulkan Data yang Akurat**:
-
-   - Upayakan untuk mengumpulkan data yang akurat dan lengkap terkait dengan event dan probabilitas mereka. Data historis, pengukuran aktual, dan pengalaman praktis adalah sumber data yang penting.
-
-3. **Berfokus pada Prioritas**:
-
-   - Dalam sistem yang kompleks, fokus pada event-event yang memiliki dampak besar atau probabilitas tinggi. Ini dapat membantu menyederhanakan analisis dan mengatasi kompleksitas.
-
-4. **Kolaborasi Tim**:
-
-   - Libatkan seluruh tim dalam proses analisis dan diskusi. Ini dapat membantu dalam mengatasi ketergantungan data yang subjektif dan memungkinkan diskusi untuk mencapai konsensus.
-
-5. **Gunakan Penilaian Probabilitas Kualitatif**:
-
-   - Jika data kuantitatif sulit ditemukan, pertimbangkan untuk menggunakan penilaian probabilitas kualitatif yang berdasarkan pengetahuan dan pengalaman ahli. Ini dapat memberikan gambaran kasar tentang probabilitas.
-
-6. **Pertimbangkan Faktor Manusia**:
-
-   - Untuk mengatasi kesulitan dalam menggambarkan perilaku manusia, pertimbangkan untuk melibatkan psikolog atau ahli perilaku manusia dalam tim.
-
-7. **Pelatihan Analis**:
-
-   - Pastikan anggota tim yang menjalankan analisis FTA telah mendapatkan pelatihan yang memadai dalam metodologi FTA dan penggunaan perangkat lunak terkait.
-
-8. **Komunikasi yang Jelas**:
-
-   - Komunikasikan hasil FTA dengan bahasa yang dapat dimengerti oleh semua pemangku kepentingan. Gunakan visualisasi yang efektif untuk menjelaskan pohon kegagalan dan dampaknya.
-
-9. **Revisi Berkala**:
-
-   - Perbarui pohon kegagalan secara berkala ketika data baru tersedia atau ada perubahan dalam sistem. Revisi dapat membantu menjaga relevansi analisis.
-
-10. **Pemantauan dan Evaluasi Terus-Menerus**:
-
-    - Setelah tindakan mitigasi diimplementasikan, terus memantau efektivitas mereka dan evaluasi dampaknya. Ini dapat membantu memastikan bahwa tindakan yang diambil efektif.
-
-11. **Manfaatkan Perangkat Lunak FTA**:
-
-    - Perangkat lunak khusus FTA dapat mempermudah dan mempercepat proses analisis. Manfaatkan perangkat lunak ini untuk membangun dan mengelola pohon kegagalan.
-
-12. **Dokumentasi yang Teliti**:
-    - Selalu dokumentasikan setiap langkah analisis FTA dengan teliti. Ini akan menjadi referensi yang berharga dan memudahkan pelaporan.
-
-Dengan mengambil langkah-langkah ini, Anda dapat mengatasi banyak hambatan yang mungkin muncul dalam penerapan FTA dan memastikan bahwa analisis risiko berjalan dengan baik dan efektif.
-
-### VII. FTA vs RCFA
-
-Failure Tree Analysis (FTA) dan Root Cause Failure Analysis (RCFA) adalah dua pendekatan yang berbeda dalam menganalisis penyebab kegagalan dan risiko. Berikut perbandingan antara keduanya:
-
-**Failure Tree Analysis (FTA):**
-
-1. **Tujuan Utama**: FTA bertujuan untuk mengidentifikasi semua kemungkinan jalur kegagalan yang dapat menyebabkan suatu kejadian.
-2. **Metodologi**: FTA menggunakan pohon kegagalan yang terstruktur dengan menggunakan gerbang logika seperti AND, OR, dan NOT untuk menggambarkan hubungan antara event-event.
-3. **Fokus Utama**: FTA lebih fokus pada pemodelan struktur dan interaksi antara event dalam sistem atau proses.
-4. **Keandalan dan Risiko**: Digunakan untuk mengukur risiko dengan memahami dampak dan probabilitas kejadian yang diidentifikasi.
-5. **Penerapan Umum**: Sering digunakan dalam industri untuk mengidentifikasi dan mengelola risiko dalam sistem kompleks seperti penerbangan, nuklir, atau manufaktur.
-
-**Root Cause Failure Analysis (RCFA):**
-
-1. **Tujuan Utama**: RCFA bertujuan untuk mengidentifikasi akar penyebab sebenarnya dari suatu kegagalan atau insiden.
-2. **Metodologi**: RCFA melibatkan pengumpulan bukti dan penyelidikan mendalam untuk menemukan akar masalah yang mendasarinya.
-3. **Fokus Utama**: RCFA lebih fokus pada menentukan "mengapa" kegagalan terjadi dan apa yang harus diperbaiki untuk mencegahnya.
-4. **Keandalan dan Risiko**: Digunakan untuk memahami penyebab kegagalan dan untuk merencanakan tindakan perbaikan yang spesifik.
-5. **Penerapan Umum**: Sering digunakan dalam pemeliharaan, perbaikan, dan investigasi insiden dalam berbagai sektor seperti industri, konstruksi, atau manufaktur.
-
-Sementara FTA bertujuan untuk mengidentifikasi dan mengukur risiko secara proaktif dengan melihat hubungan antara event, RCFA lebih difokuskan pada penyelidikan mendalam untuk mengidentifikasi akar penyebab masalah yang telah terjadi. Keduanya dapat saling melengkapi tergantung pada konteks dan tujuan analisisnya.
-
-Berikut adalah perbandingan antara Failure Tree Analysis (FTA) dan Root Cause Failure Analysis (RCFA) dalam bentuk tabel:
+Dengan posisi ini, modul FTA diharapkan digunakan secara **disiplin, tepat sasaran, dan selaras dengan keputusan berbasis risiko**, bukan sekadar untuk melengkapi dokumentasi analisis.
 
 ---
 
-| Aspek                     | Failure Tree Analysis (FTA)                                                                                 | Root Cause Failure Analysis (RCFA)                                                                    |
-| ------------------------- | ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
-| Tujuan Utama              | Mengidentifikasi potensi kegagalan dalam sistem dan mengukur dampaknya.                                     | Menemukan akar penyebab kegagalan yang telah terjadi dalam sistem.                                    |
-| Fokus Analisis            | Proaktif: Menganalisis potensi kegagalan yang mungkin terjadi.                                              | Reaktif: Menganalisis kegagalan yang telah terjadi.                                                   |
-| Metodologi                | Menggunakan pohon kegagalan (fault tree) untuk menggambarkan hubungan antara event dan probabilitas mereka. | Menggunakan teknik investigasi untuk mengidentifikasi akar penyebab kegagalan.                        |
-| Waktu Analisis            | Biasanya dilakukan sebelum kegagalan terjadi untuk merencanakan tindakan pencegahan.                        | Dilakukan setelah kegagalan terjadi untuk mengidentifikasi penyebab dan mengambil tindakan perbaikan. |
-| Jenis Risiko yang Diatasi | Risiko potensial atau proaktif.                                                                             | Risiko yang telah terjadi atau reaktif.                                                               |
-| Lingkup                   | Dapat digunakan dalam banyak konteks, termasuk analisis risiko keselamatan, keandalan sistem, dan lainnya.  | Biasanya digunakan dalam investigasi kegagalan spesifik dalam produk, proses, atau sistem.            |
-| Data yang Diperlukan      | Data probabilitas, hubungan event, dan karakteristik sistem.                                                | Data sejarah kegagalan yang telah terjadi, catatan insiden, dan bukti terkait.                        |
-| Penggunaan                | Prediktif: Membantu mencegah kegagalan.                                                                     | Korrectif: Membantu mengidentifikasi dan memperbaiki kegagalan yang telah terjadi.                    |
-| Output                    | Pohon kegagalan yang menggambarkan potensi kegagalan dan dampaknya.                                         | Penyebab akar dari kegagalan yang telah terjadi dan rekomendasi perbaikan.                            |
+### 2) **Pengenalan**
+
+**Failure Tree Analysis (FTA)** adalah metode analisis risiko yang bersifat **top-down dan berbasis logika (logic-based)**, digunakan untuk memodelkan **kombinasi kegagalan** pada suatu sistem yang secara kolektif dapat memicu **kejadian berkonsekuensi tinggi (top event)**. FTA tidak berangkat dari komponen yang gagal secara individual, melainkan dari **kejadian puncak yang tidak diinginkan**, kemudian ditelusuri secara sistematis ke bawah untuk memahami bagaimana berbagai kegagalan—baik tunggal maupun simultan—dapat berinteraksi dan menghasilkan kondisi tersebut.
+
+![FTAimage](/static/images/artikel/FTAimage.jpg)
+
+Dalam konteks industri petrokimia dan sistem berisiko tinggi, FTA digunakan ketika kegagalan tidak lagi bersifat linier atau sederhana, melainkan melibatkan **interaksi antar peralatan, manusia, prosedur, dan proteksi sistem**. Pendekatan ini menjadikan FTA sangat relevan untuk analisis **process safety**, sistem proteksi, dan peralatan kritikal yang memiliki **konsekuensi kegagalan tidak dapat ditoleransi**.
+
+#### Tujuan Praktis Penerapan FTA
+
+Penerapan FTA dalam modul ini diarahkan untuk tujuan yang **jelas dan terukur**, yaitu:
+
+- **Memahami jalur kegagalan (failure pathways)**
+  Mengidentifikasi bagaimana berbagai event dasar dapat berinteraksi melalui hubungan logika (AND/OR) hingga memicu top event.
+
+- **Mengidentifikasi weak link dalam sistem**
+  Menentukan titik paling rentan yang secara signifikan berkontribusi terhadap risiko, baik dari sisi teknis, operasional, maupun organisasi.
+
+- **Mendukung keputusan mitigasi risiko**
+  Menyediakan dasar analitis yang kuat untuk menentukan apakah mitigasi diperlukan, di mana harus diterapkan, dan sejauh mana intervensi teknis atau prosedural diperlukan.
+
+#### Batasan Eksplisit Penggunaan FTA
+
+Untuk mencegah kesalahan penerapan dan over-analysis, batasan berikut **harus dipahami sejak awal**:
+
+- **FTA bukan investigasi pasca-insiden**
+  Untuk kegagalan yang telah terjadi dan memerlukan pembuktian sebab fisik maupun organisatoris, metode seperti **RCFA** lebih tepat digunakan.
+
+- **FTA bukan alat mencari siapa yang salah**
+  Fokus FTA adalah pada **kegagalan sistem**, bukan individu. Analisis personal error dalam FTA hanya relevan sejauh berkontribusi terhadap jalur kegagalan sistemik.
+
+- **FTA tidak ditujukan untuk low-risk equipment**
+  Penggunaan FTA pada peralatan berisiko rendah cenderung tidak memberikan nilai tambah dan berpotensi menghabiskan sumber daya tanpa dampak keputusan yang signifikan.
+
+Dengan definisi, tujuan, dan batasan ini, FTA diposisikan sebagai **alat analisis risiko tingkat lanjut** yang harus digunakan secara selektif, disiplin, dan selalu terikat pada kerangka **Risk-Based Maintenance (RBM)** serta batasan **process safety** yang berlaku.
 
 ---
 
-Perbandingan di atas menunjukkan perbedaan antara FTA dan RCFA dalam hal tujuan, fokus, metodologi, waktu analisis, jenis risiko yang diatasi, lingkup, data yang diperlukan, penggunaan, dan output. Kedua metode ini memiliki peran yang berbeda dalam manajemen risiko dan perbaikan sistem. FTA lebih fokus pada identifikasi potensi kegagalan, sementara RCFA lebih fokus pada investigasi akar penyebab kegagalan yang telah terjadi.
+### 3) **Posisi**
 
-### VIII. FTA vs Fishbone Diagram
+#### Posisi FTA dalam Alur RCA Berbasis RBM
 
-Failure Tree Analysis (FTA) dan Fishbone Diagram, yang juga dikenal sebagai Diagram Ishikawa atau Diagram Sebab dan Akibat, adalah dua alat yang berbeda dalam analisis penyebab dan dampak. Berikut perbandingan antara keduanya:
+Dalam kerangka **Root Cause Analysis (RCA) berbasis Risk-Based Maintenance (RBM)**, **Failure Tree Analysis (FTA)** menempati posisi **analisis menengah–lanjutan**, yang digunakan **setelah risk screening dan risk framing selesai dilakukan**. Pada tahap ini, risiko telah dipahami secara memadai dari sisi **konsekuensi, probabilitas, dan toleransi risiko**, sehingga analisis dapat difokuskan pada **mekanisme kegagalan sistemik**, bukan lagi pada identifikasi masalah secara umum.
 
-**Failure Tree Analysis (FTA):**
+FTA digunakan **sebelum masuk ke tahap desain barrier atau mitigasi teknis**, dengan tujuan memastikan bahwa seluruh **jalur kegagalan yang relevan** telah dipetakan secara logis. Dengan demikian, keputusan mitigasi yang diambil—baik berupa penambahan proteksi, perubahan desain, atau penguatan prosedur—bersifat **defensible secara teknis dan berbasis risiko**, bukan sekadar reaktif.
 
-1. **Tujuan Utama**: FTA bertujuan untuk mengidentifikasi dan menganalisis jalur-jalur kegagalan yang dapat menyebabkan suatu kejadian atau insiden tertentu.
-2. **Metodologi**: FTA menggunakan pohon kegagalan yang terstruktur dengan gerbang logika seperti AND, OR, dan NOT untuk menggambarkan hubungan antara event-event penyebab kegagalan.
-3. **Fokus Utama**: FTA lebih fokus pada pemodelan struktur dan interaksi antara event penyebab kegagalan dalam sistem atau proses.
-4. **Keandalan dan Risiko**: Digunakan untuk mengukur risiko dengan memahami dampak dan probabilitas kejadian yang diidentifikasi dalam konteks kegagalan.
-5. **Penerapan Umum**: Sering digunakan dalam industri dan rekayasa untuk mengidentifikasi dan mengelola risiko dalam sistem yang kompleks seperti penerbangan, nuklir, atau manufaktur.
+Secara ringkas, urutan logisnya adalah:
 
-**Fishbone Diagram (Diagram Ishikawa atau Diagram Sebab dan Akibat):**
-
-1. **Tujuan Utama**: Fishbone Diagram bertujuan untuk mengidentifikasi penyebab dan efek dari suatu masalah atau situasi tertentu.
-2. **Metodologi**: Fishbone Diagram adalah gambaran grafis yang menggunakan garis tengah horizontal yang mewakili masalah atau efek utama, dengan "tulang ikan" (garis vertikal) yang mewakili berbagai kategori penyebab yang berkontribusi terhadap masalah tersebut.
-3. **Fokus Utama**: Fishbone Diagram fokus pada menggali akar penyebab dari suatu masalah tertentu dengan mengorganisir faktor-faktor penyebab ke dalam kategori seperti Man, Machine, Method, Material, Measurement, dan Environment (dikenal sebagai 6M).
-4. **Pencarian Solusi**: Biasanya digunakan sebagai alat awal untuk mengidentifikasi akar penyebab masalah, bukan untuk mengukur risiko. Fishbone Diagram membantu dalam mengidentifikasi penyebab masalah sehingga solusi dapat dicari.
-5. **Penerapan Umum**: Fishbone Diagram digunakan dalam berbagai konteks, termasuk manufaktur, manajemen kualitas, dan perbaikan proses untuk memahami penyebab masalah yang mempengaruhi efisiensi atau kualitas.
-
-Singkatnya, FTA berfokus pada menganalisis risiko dan dampak kegagalan dalam sistem atau proses, sementara Fishbone Diagram digunakan untuk mengidentifikasi akar penyebab masalah atau efek dalam situasi tertentu. Keduanya memiliki tujuan dan aplikasi yang berbeda sesuai dengan kebutuhan analisis yang spesifik.
-
-Berikut perbandingan antara Failure Tree Analysis (FTA) dan Fishbone Diagram dalam bentuk tabel:
-
-| Aspek                   | Failure Tree Analysis (FTA)                                                                                                                                       | Fishbone Diagram (Ishikawa)                                                                                                                           |
-| ----------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Tujuan                  | Mengidentifikasi dan menganalisis potensi kegagalan dalam sistem atau proses dan mengukur dampaknya.                                                              | Mengidentifikasi penyebab masalah atau tantangan dalam situasi tertentu.                                                                              |
-| Jenis Analisis          | Analisis risiko terfokus pada kegagalan dan dampaknya.                                                                                                            | Analisis penyebab masalah untuk pemecahan masalah.                                                                                                    |
-| Struktur Diagram        | Diagram pohon yang menggambarkan bagaimana event-event dasar dan intermediate events berkontribusi terhadap kejadian puncak.                                      | Diagram seringkali berbentuk tulang ikan, dengan "tulang" utama mewakili penyebab utama, dan "tulang" cabang adalah faktor-faktor yang berkontribusi. |
-| Hubungan Antara Faktor  | Menggunakan gerbang logika seperti AND, OR, dan NOT untuk menggambarkan hubungan antara event.                                                                    | Menggunakan diagram berhiaskan garis-garis yang menghubungkan faktor-faktor penyebab.                                                                 |
-| Pengukuran Probabilitas | Melibatkan penilaian probabilitas untuk masing-masing event dalam FTA.                                                                                            | Tidak melibatkan penilaian probabilitas, fokus pada identifikasi penyebab dan dampak.                                                                 |
-| Penggunaan Khusus       | Digunakan untuk analisis risiko, terutama dalam industri yang mengharuskan operasi yang andal dan keamanan, seperti penerbangan, industri nuklir, dan manufaktur. | Digunakan untuk pemecahan masalah, peningkatan kualitas, dan identifikasi penyebab masalah di berbagai konteks.                                       |
-| Ketergantungan Data     | Membutuhkan data risiko yang kuat dan analisis probabilitas yang mendalam.                                                                                        | Mengandalkan pada data penyebab masalah dan penyelidikan untuk mengidentifikasi faktor penyebab.                                                      |
-| Perbaikan dan Tindakan  | Berfokus pada pengembangan strategi mitigasi untuk mengurangi risiko.                                                                                             | Berfokus pada pengembangan tindakan perbaikan untuk mengatasi masalah.                                                                                |
-| Kepatuhan Regulasi      | Digunakan dalam industri yang sering tunduk pada regulasi ketat terkait keamanan dan risiko.                                                                      | Tidak selalu berkaitan dengan regulasi, tetapi dapat digunakan untuk memenuhi persyaratan kualitas dan keamanan.                                      |
-
-Perbandingan di atas menggambarkan perbedaan utama antara FTA dan Fishbone Diagram dalam tujuan, struktur, penggunaan, dan pengukuran probabilitas. Kedua alat ini dapat sangat berguna dalam konteks yang berbeda tergantung pada masalah yang dihadapi.
-
-### Perbandingan antara Failure Tree Analysis (FTA), Root Cause Failure Analysis (RCFA), dan Failure Mode and Effects Analysis (FMEA) dalam bentuk tabel:\*\*
+> **Risk Screening → Risk Framing → FTA → Barrier / Mitigasi / Eskalasi Metode**
 
 ---
 
-| Kriteria                      | Failure Tree Analysis (FTA)                                                                                 | Root Cause Failure Analysis (RCFA)                                                                   | Failure Mode and Effects Analysis (FMEA)                                                                                     |
-| ----------------------------- | ----------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
-| Tujuan Utama                  | Mengidentifikasi dan mengelola risiko dengan menggambarkan hubungan kegagalan dalam bentuk pohon kegagalan. | Mengidentifikasi akar penyebab kegagalan yang telah terjadi dan mengembangkan tindakan perbaikan.    | Mengidentifikasi potensi kegagalan dalam desain atau proses dan mengembangkan tindakan pencegahan.                           |
-| Waktu Analisis                | Biasanya digunakan sebelum terjadinya kegagalan sebagai langkah pencegahan.                                 | Digunakan setelah terjadi kegagalan untuk menganalisis penyebabnya.                                  | Biasanya digunakan selama perancangan atau perbaikan sistem/proses.                                                          |
-| Hubungan antara Event         | Menggunakan logika Boolean (AND, OR, NOT) untuk menghubungkan event dan event dasar dalam pohon kegagalan.  | Biasanya menganalisis hubungan sebab-akibat antara penyebab dan gejala kegagalan yang telah terjadi. | Biasanya menganalisis bagaimana kegagalan potensial dalam komponen atau proses dapat mempengaruhi sistem secara keseluruhan. |
-| Jenis Analisis                | Analisis probabilitas untuk menilai risiko potensial.                                                       | Identifikasi akar penyebab kegagalan yang telah terjadi.                                             | Analisis probabilitas dan dampak kegagalan dalam mendesain dan mengelola risiko.                                             |
-| Fokus                         | Menggambarkan risiko yang mungkin terjadi di masa depan.                                                    | Menganalisis kegagalan yang telah terjadi dan dampaknya.                                             | Mengidentifikasi kegagalan potensial dalam tahap perancangan atau proses.                                                    |
-| Hasil Analisis                | Pohon kegagalan yang menunjukkan hubungan antara event.                                                     | Identifikasi akar penyebab kegagalan yang telah terjadi.                                             | Daftar potensi kegagalan, kemungkinan probabilitas, dan dampaknya.                                                           |
-| Bidang Penerapan              | Umumnya digunakan dalam manajemen risiko di berbagai industri.                                              | Digunakan untuk investigasi insiden atau kegagalan yang telah terjadi.                               | Umum digunakan dalam rekayasa, desain produk, dan manajemen kualitas.                                                        |
-| Karakteristik Kegagalan       | Fokus pada kegagalan potensial yang belum terjadi.                                                          | Menganalisis kegagalan yang telah terjadi.                                                           | Fokus pada potensi kegagalan dalam tahap perancangan atau produksi.                                                          |
-| Langkah-langkah Tindak Lanjut | Tindakan pencegahan untuk mengurangi risiko kegagalan potensial.                                            | Tindakan perbaikan untuk menghindari kegagalan yang telah terjadi.                                   | Tindakan perbaikan untuk mengurangi risiko kegagalan potensial.                                                              |
+#### Kondisi yang Cocok Menggunakan FTA
+
+FTA **paling tepat digunakan** pada kondisi berikut:
+
+- **High consequence failure**
+  Kegagalan dengan dampak besar terhadap keselamatan, lingkungan, kontinuitas produksi, atau reputasi perusahaan.
+
+- **Process safety related issues**
+  Termasuk kegagalan sistem proteksi, interlock, relief system, atau skenario yang berpotensi menyebabkan kebakaran, ledakan, atau pelepasan bahan berbahaya.
+
+- **Sistem kompleks dan saling bergantung**
+  Sistem yang melibatkan banyak komponen, logika interlock, interaksi manusia–mesin, serta dependensi antar subsistem yang tidak dapat dianalisis secara linier.
+
+Pada kondisi ini, pendekatan top-down FTA memberikan nilai tambah yang signifikan dibanding metode analisis sederhana.
 
 ---
 
-Perlu dicatat bahwa meskipun ketiganya memiliki perbedaan dalam tujuan dan pendekatan, mereka seringkali dapat saling melengkapi dalam upaya manajemen risiko dan perbaikan sistem. Pilihan antara FTA, RCFA, atau FMEA akan sangat tergantung pada konteks dan tahapan di mana analisis risiko diterapkan.
+#### Kondisi yang Tidak Cocok Menggunakan FTA
+
+Sebaliknya, FTA **tidak direkomendasikan** untuk:
+
+- **Masalah single-cause**
+  Kegagalan dengan penyebab tunggal yang jelas dan langsung, yang lebih efektif dianalisis menggunakan RCFA atau metode troubleshooting dasar.
+
+- **Failure trivial atau low impact**
+  Kegagalan dengan konsekuensi rendah, baik dari sisi keselamatan maupun operasional, karena FTA berpotensi menjadi overkill tanpa dampak keputusan yang berarti.
+
+Penggunaan FTA pada kondisi ini justru berisiko menghabiskan sumber daya tanpa peningkatan kualitas keputusan.
 
 ---
 
-| **Metode Analisis Risiko**                                  | **Deskripsi**                                                                                                            | **Keuntungan**                                                                                                          | **Keterbatasan**                                                                                       |
-| ----------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
-| **FTA (Failure Tree Analysis)**                             | Metode untuk menganalisis potensi kegagalan sistem dengan membangun pohon kegagalan dari event-event dasar.              | - Mengidentifikasi hubungan kausal antara kegagalan. - Mendeteksi jalur-jalur kritis yang mempengaruhi top event.       | - Memerlukan data probabilitas yang akurat. - Rumit untuk sistem sangat kompleks.                      |
-| **RCFA (Root Cause Failure Analysis)**                      | Metode mendalam yang fokus pada akar penyebab dari kegagalan atau masalah, menggali hingga ke akar penyebab masalah.     | - Menemukan penyebab fundamental dari kegagalan atau masalah. - Mencegah kejadian serupa di masa depan.                 | - Memerlukan waktu dan sumber daya yang signifikan. - Bergantung pada kualitas tim analis.             |
-| **FMEA (Failure Modes and Effects Analysis)**               | Pendekatan sistematis untuk mengidentifikasi potensi mode kegagalan dalam produk atau proses dan mengevaluasi dampaknya. | - Mengidentifikasi potensi kegagalan sebelum terjadi. - Memprioritaskan risiko berdasarkan dampak dan probabilitas.     | - Bergantung pada kualitas data dan pengalaman analis. - Memerlukan waktu dan kerjasama tim yang baik. |
-| **Fishbone Diagram (Ishikawa or Cause-and-Effect Diagram)** | Metode grafis untuk mengidentifikasi dan memvisualisasikan penyebab potensial dari suatu masalah atau kejadian.          | - Memfasilitasi diskusi kelompok tentang penyebab masalah. - Menyajikan gambaran visual tentang faktor-faktor penyebab. | - Tidak memberikan prioritas pada penyebab atau dampak. - Tidak melibatkan perhitungan probabilitas.   |
+#### Relasi FTA dengan Metode Lain (Hulu–Hilir)
+
+Dalam ekosistem metode analisis risiko dan RCA, posisi FTA dapat diringkas sebagai berikut:
+
+- **Hulu (Before FTA):**
+
+  - Risk assessment
+  - Risk screening dan klasifikasi risk class
+
+- **FTA (Core Analysis):**
+
+  - Pemodelan jalur kegagalan
+  - Identifikasi kombinasi kegagalan kritis
+
+- **Hilir (After FTA):**
+
+  - **Bowtie Analysis** untuk pemetaan barrier dan kontrol
+  - **LOPA** untuk penilaian lapisan proteksi
+  - **Design change / engineering modification** bila risiko tidak dapat diterima
+
+Dengan pemahaman posisi ini, FTA digunakan secara **tepat konteks, tepat waktu, dan tepat tujuan**, selaras dengan prinsip **RBM dan process safety management**, serta mendukung pengambilan keputusan yang berbasis risiko nyata, bukan sekadar kelengkapan analisis.
 
 ---
 
-Catatan: Setiap metode memiliki aplikasi dan kegunaan yang berbeda-beda tergantung pada kompleksitas masalah dan kebutuhan analisis risiko yang spesifik. Pilihan metode harus didasarkan pada konteks dan tujuan analisis yang diinginkan.
+### 4) **Stop Rule**
 
-### IX. Penggunaan Fishbone Diagram (diagram sebab-akibat), RCFA (Root Cause Failure Analysis), dan FTA (Fault Tree Analysis)
+Dalam praktik industri, **Failure Tree Analysis (FTA)** sering gagal bukan karena metodenya lemah, melainkan karena **tidak ada aturan berhenti yang jelas**. Oleh karena itu, penerapan FTA **harus memiliki stop rule yang tegas**, agar analisis tetap **relevan, efisien, dan berdampak pada keputusan**.
 
-Penggunaan Fishbone Diagram (diagram sebab-akibat), RCFA (Root Cause Failure Analysis), dan FTA (Fault Tree Analysis) bergantung pada jenis masalah atau situasi yang Anda hadapi. Berikut adalah panduan umum kapan menggunakan masing-masing metode:
+FTA **WAJIB DIHENTIKAN** apabila salah satu kondisi berikut terpenuhi:
 
-1. **Fishbone Diagram (Diagram Sebab-Akibat):**
+---
 
-   - **Kapan Menggunakannya:** Gunakan Fishbone Diagram saat Anda ingin mengidentifikasi akar penyebab masalah atau menggali lebih dalam tentang berbagai faktor yang mungkin berkontribusi terhadap masalah tertentu. Ini berguna untuk masalah yang kompleks dengan banyak kemungkinan penyebab.
-   - **Contoh Penggunaan:** Identifikasi penyebab penurunan produksi dalam pabrik kimia, masalah kualitas produk yang berulang, atau peningkatan tingkat kecelakaan dalam fasilitas industri.
+#### 1. Top Event Telah Terekspos Menjadi Single Dominant Cause
 
-2. **Root Cause Failure Analysis (RCFA):**
+Apabila hasil pemodelan menunjukkan bahwa **top event pada akhirnya didominasi oleh satu penyebab utama**, baik kegagalan teknis, prosedural, maupun organisasi, maka:
 
-   - **Kapan Menggunakannya:** RCFA adalah pendekatan yang lebih mendalam untuk mengidentifikasi akar penyebab kegagalan atau masalah yang sering terjadi. Ini biasanya digunakan ketika masalah yang dihadapi memiliki dampak serius atau berulang.
-   - **Contoh Penggunaan:** Mengidentifikasi akar penyebab kegagalan peralatan kritis dalam industri petrokimia, seperti pompa, kompresor, atau alat pengukur.
+- nilai tambah FTA telah tercapai,
+- analisis tidak perlu diperluas lebih jauh,
+- **eskalasi ke RCFA menjadi langkah yang tepat**.
 
-3. **Fault Tree Analysis (FTA):**
-   - **Kapan Menggunakannya:** Gunakan FTA ketika Anda perlu menganalisis secara sistematis bagaimana kombinasi kegagalan komponen atau peristiwa dapat menghasilkan kejadian yang tidak diinginkan. Ini berguna untuk memahami hubungan sebab-akibat dalam konteks keamanan dan risiko.
-   - **Contoh Penggunaan:** Menganalisis potensi kegagalan dalam sistem keselamatan dalam operasi petrokimia, seperti sistem pemadaman kebakaran atau sistem peringatan kebocoran gas.
+Pada titik ini, pendekatan **investigatif dan evidential** RCFA lebih efektif dibandingkan perluasan fault tree yang bersifat redundant.
 
-Pemilihan metode harus didasarkan pada tingkat kompleksitas masalah dan dampaknya, serta tujuan analisis. Fishbone Diagram adalah alat yang baik untuk memulai identifikasi penyebab masalah, sementara RCFA dan FTA digunakan ketika perlu mendalami akar penyebab dan menganalisis dampak lebih rinci. Selalu penting untuk mengikuti metodologi yang sesuai dengan situasi tertentu dan memiliki tim ahli yang dapat mendukung analisis tersebut.
+---
 
-### X. Kesimpulan
+#### 2. Perluasan Pohon Tidak Lagi Mengubah Keputusan Teknis
 
-Failure Tree Analysis (FTA) adalah alat kritis dalam menganalisis risiko karena membantu mengidentifikasi potensi kegagalan, mengukur dampaknya, dan mengembangkan strategi mitigasi untuk menjaga keandalan sistem, meminimalkan risiko, dan meningkatkan keselamatan.
+FTA harus dihentikan ketika:
 
-Dalam berbagai aspek kehidupan dan pekerjaan, penerapan Failure Tree Analysis (FTA) bisa menjadi langkah cerdas. Mari pertimbangkan bagaimana FTA dapat membantu kita mengidentifikasi dan mengelola risiko dalam kendaraan, bisnis, proyek konstruksi, atau bahkan dalam kehidupan sehari-hari. Dengan FTA, kita dapat membuat keputusan yang lebih cerdas, menghindari kejadian tak terduga, dan menjaga keselamatan serta keandalan di berbagai bidang.
+- penambahan basic event atau cabang baru,
+- tidak lagi memengaruhi pilihan mitigasi,
+- tidak mengubah prioritas risiko,
+- tidak menghasilkan opsi keputusan teknis baru.
 
-### XI. Pustaka dan Referensi
+Melanjutkan analisis pada kondisi ini hanya akan menghasilkan **kompleksitas tanpa nilai keputusan** (analysis for the sake of analysis).
 
-Jika Anda ingin menjelajahi topik Failure Tree Analysis (FTA) lebih dalam, berikut adalah daftar sumber yang direkomendasikan:
+---
 
-1. **Buku "Fault Tree Analysis: A History" oleh Tony Bedford**:
+#### 3. Risiko Telah Berada pada Level **ALARP**
 
-   - Buku ini memberikan wawasan mendalam tentang sejarah dan perkembangan FTA. Ini adalah sumber yang baik untuk memahami asal usul metode ini.
+Jika berdasarkan hasil analisis:
 
-2. **"Handbook of System Safety and Security: Cyber Risk and Risk Management, Cyber Security, Adversary Modeling, Threat Analysis, Business of Safety, Functional Safety, Software Systems, and Cyber Physical Systems" oleh Edward Griffor (Editor)**:
+- probabilitas dan konsekuensi telah ditekan,
+- risiko berada pada tingkat **As Low As Reasonably Practicable (ALARP)**,
+- dan tidak ada mitigasi tambahan yang rasional secara teknis maupun ekonomis,
 
-   - Buku ini mencakup berbagai aspek sistem keamanan dan termasuk bagian tentang FTA dan analisis risiko.
+maka FTA **harus dihentikan**, dan fokus dialihkan ke **monitoring, assurance, dan governance**.
 
-3. **"System Safety Engineering and Risk Assessment: A Practical Approach" oleh Nicholas J. Bahr**:
+---
 
-   - Buku ini berfokus pada teknik dan pendekatan yang terkait dengan keamanan sistem, termasuk FTA. Ini memberikan panduan praktis untuk menerapkan FTA.
+#### 4. Analisis Mulai Kehilangan Integritas Teknis
 
-4. **Sumber Online dari Organisasi Profesional**:
+FTA harus segera dihentikan bila analisis mulai menunjukkan gejala berikut:
 
-   - Kunjungi situs web organisasi profesional seperti International System Safety Society (ISSS) dan American Society of Safety Professionals (ASSP). Mereka seringkali memiliki panduan, artikel, dan sumber daya yang berkaitan dengan FTA.
+- **spekulatif** (berbasis asumsi tanpa dukungan data atau pengalaman lapangan),
+- **tidak berbasis data** historis, engineering judgement yang sah, atau referensi teknis,
+- **tidak berdampak pada keputusan**, baik desain, operasi, maupun kebijakan.
 
-5. **Jurnal Ilmiah**:
+Kondisi ini menandakan bahwa FTA telah melampaui batas kegunaannya sebagai alat bantu keputusan.
 
-   - Cari jurnal ilmiah yang membahas topik FTA, analisis risiko, dan keamanan sistem. Jurnal seperti "Reliability Engineering & System Safety" dan "Process Safety and Environmental Protection" dapat menjadi referensi yang berharga.
+---
 
-6. **Perangkat Lunak FTA**:
+### 🔁 Trigger Eskalasi Metode
 
-   - Eksplorasi perangkat lunak khusus FTA seperti FaultTree+ dan CAFTA. Sumber daya dokumentasi dan panduan pengguna perangkat lunak ini dapat memberikan wawasan tentang cara menggunakan FTA secara praktis.
+Stop rule FTA secara langsung terkait dengan **eskalasi ke metode lain** yang lebih sesuai, sebagai berikut:
 
-7. **Kursus dan Pelatihan Online**:
+- **Eskalasi ke RCFA**
+  Dilakukan bila kegagalan **telah terjadi** dan diperlukan analisis akar penyebab berbasis bukti untuk mencegah pengulangan.
 
-   - Banyak platform pembelajaran online menawarkan kursus tentang analisis risiko, termasuk FTA. Anda dapat mendaftar dalam kursus ini untuk memperdalam pemahaman Anda.
+- **Eskalasi ke Bowtie Analysis**
+  Dilakukan bila fokus utama bergeser ke **identifikasi barrier, kontrol pencegahan, dan mitigasi konsekuensi** dari jalur kegagalan yang telah dipetakan.
 
-8. **Konsultan dan Ahli FTA**:
+- **Eskalasi ke LOPA / SIL Assessment**
+  Dilakukan bila analisis berkaitan dengan **Safety Instrumented Function (SIF)**, integritas lapisan proteksi, atau kebutuhan kuantifikasi risiko yang lebih formal.
 
-   - Jika Anda ingin mendapatkan pandangan praktis dan konsultasi langsung, Anda dapat mencari konsultan atau ahli yang memiliki pengalaman dalam menerapkan FTA dalam berbagai konteks.
+Dengan menerapkan **stop rule yang disiplin**, FTA tetap berfungsi sebagai **alat analisis risiko yang tajam dan efisien**, bukan sebagai proses yang berlarut-larut dan kehilangan relevansi terhadap keputusan teknis dan keselamatan.
 
-9. **Dokumen dan Panduan Regulasi**:
+---
 
-   - Pertimbangkan untuk merujuk pada dokumen dan panduan yang dikeluarkan oleh badan regulasi yang relevan di bidang Anda. Mereka seringkali memberikan panduan tentang praktik terbaik dan persyaratan yang harus dipenuhi dalam analisis risiko.
+### 5) **Case Study**
 
-10. **Karya Ilmiah Terbaru**:
-    - Telusuri artikel dan karya ilmiah terbaru tentang FTA di berbagai jurnal dan konferensi terkait. Ini dapat memberikan wawasan tentang perkembangan terbaru dalam metode dan aplikasi FTA.
+#### Kasus Tunggal – _Defensible Case_
 
-Pastikan untuk selalu memverifikasi sumber-sumber yang Anda temui dan pastikan bahwa informasi yang Anda peroleh dapat diandalkan dan sesuai dengan kebutuhan Anda. Sumber-sumber ini akan membantu Anda menjelajahi FTA lebih dalam dan memperluas pemahaman Anda tentang analisis risiko.
+**Sistem yang Dianalisis**
+Kasus ini berfokus pada **rotating equipment kritikal**, khususnya **bearing** pada unit proses industri petrokimia yang beroperasi secara kontinyu. Peralatan ini dikategorikan **kritikal** karena kegagalannya berpotensi menyebabkan **forced shutdown**, kerusakan lanjutan pada equipment lain, serta eskalasi ke **process safety event** (misalnya overheating, ignition source, atau loss of containment sekunder).
+
+---
+
+#### Alasan Pemilihan FTA
+
+FTA dipilih secara **sadar dan terjustifikasi**, dengan pertimbangan utama:
+
+- **Konsekuensi kegagalan tinggi**
+  Kegagalan bearing tidak hanya berdampak pada reliability, tetapi dapat memicu kondisi operasi tidak aman pada unit proses.
+
+- **Multiple interacting causes**
+  Penyebab kegagalan tidak bersifat tunggal, melainkan kombinasi dari faktor desain, operasi, pelumasan, monitoring, dan human interaction yang saling bergantung.
+
+Kondisi ini menjadikan pendekatan **top-down dan logic-based** FTA lebih tepat dibanding metode single-cause analysis.
+
+---
+
+#### Tahapan Ringkas Penerapan FTA
+
+1. **Definisi Top Event**
+   Top event didefinisikan secara spesifik sebagai:
+   **“Kegagalan bearing yang menyebabkan trip unit atau potensi eskalasi process safety.”**
+   Definisi ini menegaskan bahwa fokus analisis **melampaui sekadar kegagalan mekanis**.
+
+2. **Penyusunan Struktur AND/OR Utama**
+   Pohon kegagalan dibangun dengan memetakan hubungan logika antara event utama, seperti:
+
+   - kegagalan pelumasan,
+   - misalignment,
+   - beban berlebih,
+   - kegagalan sistem monitoring,
+   - kesalahan operasional.
+
+   Hubungan **AND/OR** digunakan untuk menunjukkan kondisi di mana kegagalan terjadi secara simultan maupun alternatif.
+
+3. **Identifikasi Jalur Dominan**
+   Dari hasil analisis, teridentifikasi satu hingga dua **jalur kegagalan dominan** yang secara signifikan berkontribusi terhadap top event, misalnya kombinasi:
+
+   - degradasi pelumasan **AND**
+   - keterlambatan deteksi kondisi abnormal.
+
+---
+
+#### Keputusan Eksplisit Berbasis Stop Rule
+
+Berdasarkan hasil FTA, diambil keputusan eksplisit sebagai berikut:
+
+- **FTA dihentikan** ketika jalur dominan telah teridentifikasi dan perluasan pohon tidak lagi mengubah opsi mitigasi.
+- Analisis **dilanjutkan ke metode lain**, yaitu:
+
+  - **Bowtie Analysis**, untuk memetakan barrier pencegahan dan mitigasi terhadap jalur kegagalan dominan.
+  - **RCFA**, apabila di kemudian hari kegagalan bearing benar-benar terjadi dan memerlukan investigasi berbasis bukti.
+
+Keputusan ini memastikan bahwa FTA tidak berkembang menjadi analisis yang berlarut-larut tanpa nilai keputusan tambahan.
+
+---
+
+#### Konsistensi dengan RBM dan Process Safety Boundary
+
+Studi kasus ini konsisten dengan prinsip:
+
+- **Risk-Based Maintenance (RBM)**
+  Fokus analisis diarahkan pada equipment dengan **risk ranking tinggi**, bukan sekadar frekuensi kegagalan.
+
+- **Process Safety Boundary**
+  Analisis berhenti pada batas yang relevan dengan keselamatan proses, dan tidak terjebak pada detail reliability murni yang tidak berdampak pada risiko keseluruhan.
+
+Dengan pendekatan ini, FTA berfungsi sebagai **alat bantu keputusan strategis** dalam pengelolaan risiko, bukan sekadar alat analisis teknis untuk meningkatkan MTBF atau availability semata.
+
+---
+
+### 6) **Integrasi**
+
+#### Relasi FTA dengan Metode RCA Lain
+
+Dalam ekosistem **RCA berbasis Risk-Based Maintenance (RBM)**, **Failure Tree Analysis (FTA)** **tidak berdiri sendiri** dan tidak dimaksudkan untuk menggantikan metode lain. Nilai FTA justru muncul ketika ia **diintegrasikan secara tepat** dengan metode analisis lain sesuai tahapan dan tujuan analisis risiko.
+
+Relasi FTA dengan metode RCA lainnya dapat dijelaskan sebagai berikut:
+
+- **Fishbone Diagram → eksplorasi awal**
+  Fishbone digunakan pada tahap awal untuk **menggali spektrum penyebab secara luas**, tanpa kuantifikasi dan tanpa struktur logika kegagalan. Output Fishbone sering menjadi **input awal** bagi FTA, khususnya untuk mengidentifikasi candidate basic events sebelum dimodelkan secara logis.
+
+- **FMEA → bottom-up failure mode analysis**
+  FMEA berangkat dari **failure mode komponen**, menilai dampaknya secara lokal dan sistemik. Hasil FMEA dapat melengkapi FTA dengan memberikan:
+
+  - daftar failure mode yang relevan,
+  - estimasi severity dan occurrence,
+  - konteks keandalan komponen.
+    Dalam praktik, FTA dan FMEA sering digunakan secara **komplementer**, bukan saling menggantikan.
+
+- **RCFA → investigasi pasca-kejadian**
+  RCFA digunakan ketika kegagalan **telah terjadi** dan diperlukan pembuktian akar penyebab berbasis fakta, data, dan bukti fisik. FTA dapat:
+
+  - memberikan hipotesis jalur kegagalan sebelum kejadian,
+  - membantu memfokuskan investigasi RCFA,
+    namun **FTA tidak menggantikan RCFA** dalam konteks investigatif.
+
+- **Bowtie Analysis → barrier management**
+  Ketika jalur kegagalan dominan telah diidentifikasi melalui FTA, Bowtie digunakan untuk:
+
+  - memetakan **barrier pencegahan dan mitigasi**,
+  - mengevaluasi efektivitas kontrol eksisting,
+  - mengidentifikasi gap pada sistem proteksi.
+    Pada tahap ini, fokus analisis bergeser dari “bagaimana kegagalan terjadi” menjadi “bagaimana kegagalan dicegah dan dikendalikan”.
+
+---
+
+#### Penegasan Prinsip Utama
+
+> **FTA adalah alat bantu keputusan, bukan pengganti risk judgement.**
+
+FTA menyediakan **struktur berpikir dan visualisasi logika kegagalan**, tetapi keputusan akhir tetap berada pada **engineering judgement, risk appetite organisasi, dan batasan process safety**. Tidak semua jalur kegagalan yang teridentifikasi harus dimitigasi secara agresif; yang diprioritaskan adalah jalur dengan **kombinasi probabilitas dan konsekuensi yang tidak dapat diterima**.
+
+---
+
+#### Prinsip Pengambilan Keputusan
+
+Seluruh keputusan yang diambil berdasarkan FTA harus memenuhi prinsip berikut:
+
+- **Tetap berbasis risiko**
+  Fokus pada pengurangan risiko nyata, bukan pada kelengkapan diagram atau kedalaman analisis semata.
+
+- **Bukan demi kelengkapan analisis**
+  Analisis yang tidak mengubah keputusan teknis, desain, atau kebijakan **tidak perlu diperdalam**.
+
+Dengan integrasi yang disiplin dan berorientasi keputusan, FTA berfungsi sebagai **komponen strategis dalam ekosistem RCA–RBM**, mendukung pengelolaan risiko yang efektif, efisien, dan selaras dengan prinsip **process safety management**.
+
+---
+
+### **Penutup Singkat (Opsional Modul)**
+
+Failure Tree Analysis (FTA) memiliki **nilai yang sangat tinggi** apabila digunakan **di tempat, waktu, dan konteks yang tepat**. Sebagai metode analisis risiko sistemik, FTA unggul dalam memodelkan **kombinasi kegagalan** yang dapat memicu kejadian berkonsekuensi besar, khususnya pada sistem kompleks dan domain **process safety**. Namun, kekuatan tersebut hanya muncul bila FTA diterapkan secara **disiplin dalam kerangka Risk-Based Maintenance (RBM)** dan pengambilan keputusan berbasis risiko.
+
+Kesalahan terbesar dalam penerapan FTA di industri umumnya bukan terletak pada metodologinya, melainkan pada **misuse**, yaitu:
+
+- **Dipakai terlalu dini**, sebelum risk framing dan klasifikasi risiko dilakukan dengan benar.
+- **Dipakai terlalu lama**, ketika analisis tidak lagi mengubah keputusan teknis atau mitigasi.
+- **Dipakai tanpa risk framing**, sehingga menghasilkan diagram kompleks namun miskin nilai keputusan.
+
+Dengan memahami batasan ini, FTA dapat berfungsi sebagai **alat bantu keputusan strategis**, bukan sekadar artefak analisis, dan tetap selaras dengan tujuan utama manajemen risiko dan keselamatan proses.
+
+---
+
+### **Referensi**
+
+1. IEC 61025: _Fault Tree Analysis (FTA)_, International Electrotechnical Commission.
+2. CCPS – AIChE, _Guidelines for Hazard Evaluation Procedures_, Center for Chemical Process Safety.
+3. CCPS – AIChE, _Guidelines for Risk Based Process Safety_.
+4. Ericson, C. A., _Fault Tree Analysis – A History_, Reliability Engineering & System Safety.
+5. Bahr, N. J., _System Safety Engineering and Risk Assessment: A Practical Approach_.
+6. ISO 31000: _Risk Management – Guidelines_.
+7. API RP 580 & API RP 581: _Risk-Based Inspection_.
+8. Smith, D. J., _Reliability, Maintainability and Risk_.
+9. Lees, F. P., _Lees’ Loss Prevention in the Process Industries_.
+
+Referensi di atas digunakan sebagai dasar konseptual dan praktik terbaik dalam penerapan FTA, khususnya pada industri berisiko tinggi seperti petrokimia dan proses kimia.
 
 ---
 

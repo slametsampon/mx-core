@@ -18,7 +18,8 @@
     "index.ts",
     "contentlayer.config.ts",
     "tailwind.config.*",
-    ".next/types/**/*.ts"
+    ".next/types/**/*.ts",
+    "docs/RCA/rca-fishbone-diagram.mdx"
   ],
   "exclude": ["node_modules", ".next"]
 }

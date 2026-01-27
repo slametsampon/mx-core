@@ -1,0 +1,397 @@
+---
+title: 8D Problem Solving dalam Kerangka RCA Berbasis Risk-Based Maintenance (RBM)
+authors: ['sam']
+date: '2026-01-27'
+tags:
+  [
+    '8d-problem-solving',
+    'root-cause-analysis',
+    'risk-based-maintenance',
+    'rbm',
+    'manajemen-pemeliharaan',
+    'governance-maintenance',
+    'continuous-improvement',
+  ]
+draft: false
+summary: Artikel ini membahas 8D Problem Solving sebagai modul metode dalam ekosistem Root Cause Analysis (RCA) berbasis Risk-Based Maintenance (RBM). Ditegaskan bahwa 8D bukan alat analisis teknis, melainkan kerangka pengendalian masalah organisasi untuk kegagalan berulang yang melibatkan lintas fungsi. 8D diposisikan pada lapisan tengah–atas RCA, berfokus pada koordinasi, governance, dan closure keputusan, dengan substansi teknis tetap diisi oleh metode lain seperti Fishbone, FTA, FMEA, atau RCFA. Artikel ini juga menetapkan stop rule yang jelas untuk mencegah over-administration, serta menunjukkan bagaimana 8D digunakan secara defensible dalam konteks industri proses berisiko.
+---
+
+**_8D Problem Solving dalam Kerangka RCA Berbasis Risk-Based Maintenance (RBM)_**
+
+---
+
+- [1) **Prolog**](#1-prolog)
+- [2) **Pengenalan**](#2-pengenalan)
+  - [2.1 **Definisi Fungsional 8D Problem Solving**](#21-definisi-fungsional-8d-problem-solving)
+  - [2.2 **Tujuan Praktis**](#22-tujuan-praktis)
+  - [2.3 **Batasan Eksplisit Metode**](#23-batasan-eksplisit-metode)
+- [3) **Posisi**](#3-posisi)
+  - [3.1 **Posisi 8D dalam Alur RCA Berbasis RBM**](#31-posisi-8d-dalam-alur-rca-berbasis-rbm)
+  - [3.2 **Kelas Masalah yang Cocok**](#32-kelas-masalah-yang-cocok)
+  - [3.3 **Kelas Masalah yang Tidak Cocok**](#33-kelas-masalah-yang-tidak-cocok)
+- [4) **Stop Rule**](#4-stop-rule)
+  - [4.1 **Kriteria 8D Harus Dihentikan atau Dialihkan**](#41-kriteria-8d-harus-dihentikan-atau-dialihkan)
+  - [4.2 **Trigger Eskalasi Metode**](#42-trigger-eskalasi-metode)
+  - [4.3 **Pencegahan Over-Administration**](#43-pencegahan-over-administration)
+- [5) **Case Study**](#5-case-study)
+  - [**Kasus Tunggal – Organisasional \& Defensible**](#kasus-tunggal--organisasional--defensible)
+  - [5.1 **Deskripsi Kasus**](#51-deskripsi-kasus)
+  - [5.2 **Alasan Memilih 8D**](#52-alasan-memilih-8d)
+  - [5.3 **Peran 8D dalam Kasus**](#53-peran-8d-dalam-kasus)
+  - [5.4 **Keputusan Stop / Lanjut**](#54-keputusan-stop--lanjut)
+- [6) **Integrasi**](#6-integrasi)
+  - [6.1 **Relasi dengan Metode RCA Lain**](#61-relasi-dengan-metode-rca-lain)
+  - [6.2 **Posisi Hulu–Hilir**](#62-posisi-huluhilir)
+- [**Penegasan Akhir**](#penegasan-akhir)
+- [**Referensi**](#referensi)
+
+---
+
+## 1) **Prolog**
+
+Artikel ini disusun sebagai **modul metode (child)** dalam ekosistem **Root Cause Analysis (RCA)** berbasis **Risk-Based Maintenance (RBM)**. Dengan demikian, ruang lingkup pembahasan difokuskan pada **cara menggunakan metode 8D secara tepat**, bukan pada pemilihan metode, pembandingan antar-metode, maupun penentuan tingkat risiko.
+
+Perlu ditegaskan sejak awal bahwa artikel ini **bukan entry point** bagi pembaca yang baru memulai RCA, **bukan alat pemilihan metode analisis**, dan **bukan pengganti decision-tree RCA berbasis risiko**. Seluruh pembahasan 8D di sini diasumsikan telah didahului oleh proses klasifikasi masalah dan penilaian risiko sesuai kerangka RBM.
+
+Dalam praktik industri, **8D Problem Solving digunakan setelah**:
+
+- masalah **lolos gerbang RCA formal**, yaitu telah dikonfirmasi relevan untuk dianalisis lebih lanjut,
+- kegagalan menunjukkan **pola berulang, sistemik, atau tidak terselesaikan** oleh corrective action teknis sederhana,
+- dampak kegagalan **meluas lintas fungsi**, melibatkan operasi, maintenance, engineering, hingga supply chain dan manajemen.
+
+Sebagai modul turunan, artikel ini merujuk langsung pada artikel induk:
+
+- _“Panduan Troubleshooting & Pemilihan Metode RCA Berbasis Risk-Based Maintenance (RBM)”_
+
+Artikel induk tersebut berfungsi sebagai **kerangka keputusan utama**, sementara modul 8D ini berfungsi sebagai **panduan operasional metode** ketika 8D telah diputuskan relevan secara risiko.
+
+Penegasan fundamental yang menjadi landasan seluruh pembahasan adalah sebagai berikut:
+
+> **8D adalah kerangka pengendalian masalah organisasi, bukan alat analisis mekanisme kegagalan fisik.**
+
+Artinya, 8D tidak dirancang untuk menggantikan analisis teknis seperti RCFA, FTA, atau FMEA. Nilai utama 8D terletak pada **pengendalian proses penyelesaian masalah**, disiplin eksekusi lintas fungsi, serta penutupan keputusan secara akuntabel dan defensible dalam konteks organisasi industri berisiko tinggi.
+
+---
+
+## 2) **Pengenalan**
+
+### 2.1 **Definisi Fungsional 8D Problem Solving**
+
+**8D Problem Solving** adalah metode pemecahan masalah terstruktur yang dibangun atas **delapan disiplin (D0–D8)**, dirancang untuk memastikan bahwa masalah berulang ditangani secara **terkendali, terkoordinasi, dan dapat dipertanggungjawabkan**.
+
+Dalam konteks industri proses dan pemeliharaan berbasis risiko, 8D **tidak diposisikan sebagai alat analisis teknis**, melainkan sebagai **kerangka manajemen masalah** yang mengatur:
+
+- **koordinasi lintas fungsi** (operasi, maintenance, engineering, supply chain),
+- **kontrol masalah berulang** agar tidak berhenti pada corrective action sementara,
+- **dokumentasi keputusan**, penetapan owner, serta bukti verifikasi efektivitas tindakan.
+
+Secara fungsional, 8D menjawab pertanyaan:
+
+> _“Bagaimana memastikan masalah yang sudah dianalisis benar-benar diselesaikan dan tidak terulang?”_
+> bukan
+> _“Apa mekanisme kegagalan fisik yang terjadi?”_
+
+---
+
+### 2.2 **Tujuan Praktis**
+
+Tujuan utama penerapan 8D dalam kerangka **RCA berbasis RBM** adalah menghentikan **repeat failure** yang **tidak terselesaikan** oleh tindakan teknis lokal atau koreksi parsial.
+
+Secara praktis, 8D bertujuan untuk menjamin bahwa:
+
+- masalah **ditangani sampai tuntas**, bukan hanya “ditambal” sementara,
+- setiap tindakan memiliki **owner yang jelas** dan batas waktu terdefinisi,
+- efektivitas solusi **diverifikasi secara objektif**, bukan diasumsikan selesai.
+
+Dengan kata lain, 8D memastikan bahwa hasil analisis RCA benar-benar **diterjemahkan menjadi tindakan organisasi** yang konsisten dan berkelanjutan.
+
+---
+
+### 2.3 **Batasan Eksplisit Metode**
+
+Agar tidak terjadi salah kaprah metodologis, perlu ditegaskan bahwa 8D **bukan**:
+
+- alat analisis logika kegagalan sistem (**Fault Tree Analysis – FTA**),
+- alat prioritisasi dan kuantifikasi risiko (**Failure Mode and Effects Analysis – FMEA**),
+- alat investigasi mekanisme kegagalan fisik (**Root Cause Failure Analysis – RCFA**).
+
+8D **tidak menghasilkan akar penyebab teknis secara mandiri**. Seluruh substansi teknis di dalam 8D **harus diisi oleh metode RCA lain** yang relevan, seperti Fishbone, 5 Whys, FTA, FMEA, atau RCFA, tergantung kelas masalah dan risiko.
+
+Dengan batasan ini, 8D berfungsi sebagai **wadah pengendalian dan penutupan masalah**, bukan sebagai sumber analisis teknis itu sendiri.
+Kesalahan paling umum dalam praktik industri adalah memperlakukan 8D seolah-olah dapat menggantikan analisis teknis—padahal perannya bersifat **governance, bukan diagnosis mekanisme kegagalan**.
+
+---
+
+## 3) **Posisi**
+
+### 3.1 **Posisi 8D dalam Alur RCA Berbasis RBM**
+
+Dalam kerangka **RCA berbasis Risk-Based Maintenance (RBM)**, **8D Problem Solving ditempatkan secara sadar dan terbatas**, bukan sebagai metode awal dan bukan pula sebagai alat analisis teknis utama.
+
+8D digunakan **setelah** terpenuhi kondisi berikut:
+
+- kegagalan telah **dinilai berdampak signifikan** terhadap operasi, biaya, jadwal, reputasi, atau ekspektasi manajemen,
+- terdapat **indikasi kuat kelemahan sistem kerja**, seperti koordinasi lintas fungsi yang tidak efektif, disiplin eksekusi yang lemah, atau ketidakkonsistenan antara perencanaan dan implementasi.
+
+Pada tahap ini, fokus RCA **bergeser** dari sekadar _“apa yang rusak”_ menjadi _“mengapa organisasi gagal mencegah terulangnya masalah tersebut”_.
+
+Secara posisi, 8D berada pada **lapisan tengah–atas RCA**, dengan karakteristik utama:
+
+- menekankan **governance masalah**,
+- memastikan **penutupan (closure)** yang terkontrol dan dapat diaudit,
+- menjembatani hasil analisis teknis dengan **keputusan dan eksekusi organisasi**.
+
+8D tidak menggantikan metode RCA lain, tetapi **mengikat dan mengawal** hasil metode tersebut agar benar-benar diterapkan.
+
+---
+
+### 3.2 **Kelas Masalah yang Cocok**
+
+8D paling efektif diterapkan pada kelas masalah dengan karakteristik berikut:
+
+- kegagalan **berulang**, meskipun corrective action teknis sudah pernah dilakukan,
+- melibatkan **lebih dari satu departemen** atau fungsi kerja,
+- berdampak nyata terhadap **KPI operasional**, kepatuhan prosedur (compliance), atau **kepercayaan manajemen** terhadap sistem pemeliharaan dan operasi.
+
+Contoh kasus yang tipikal dan defensible untuk 8D antara lain:
+
+- keterlambatan **start-up unit yang berulang** pasca pekerjaan maintenance atau TA minor,
+- **kualitas pekerjaan maintenance yang tidak konsisten** antar shift, vendor, atau periode waktu,
+- **ketidaksesuaian antara desain, SOP, dan praktik lapangan** yang tidak pernah tuntas meskipun sudah “diperbaiki”.
+
+Pada kelas masalah ini, kegagalan bukan semata persoalan teknis, melainkan **masalah sistemik organisasi** yang membutuhkan disiplin koordinasi dan pengendalian.
+
+---
+
+### 3.3 **Kelas Masalah yang Tidak Cocok**
+
+Sebaliknya, terdapat kelas masalah yang **tidak tepat** ditangani dengan 8D sebagai metode utama, antara lain:
+
+- **masalah teknis tunggal** dengan bukti kerusakan fisik yang jelas dan terdefinisi, seperti kegagalan material, keausan abnormal, atau cacat fabrikasi
+  → pada kondisi ini, **RCFA lebih tepat** untuk mengungkap mekanisme kegagalan fisik secara mendalam.
+
+- **masalah process safety murni** yang berfokus pada kegagalan barrier, jalur eskalasi bahaya, dan konsekuensi keselamatan
+  → untuk kelas ini, **Bowtie Analysis lebih relevan** karena menyediakan kerangka pengendalian risiko dan barrier management.
+
+Penggunaan 8D pada kelas masalah yang tidak tepat berisiko menimbulkan **over-administration**, memperpanjang proses tanpa menambah kualitas keputusan, serta mengaburkan kebutuhan analisis teknis yang seharusnya menjadi prioritas.
+
+---
+
+## 4) **Stop Rule**
+
+### 4.1 **Kriteria 8D Harus Dihentikan atau Dialihkan**
+
+Dalam kerangka **RCA berbasis RBM**, 8D **tidak boleh dipaksakan** untuk semua jenis temuan. Terdapat kondisi yang secara eksplisit menuntut agar 8D **dihentikan, dipersempit, atau dialihkan** ke metode lain yang lebih tepat.
+
+8D **harus dihentikan atau dipersempit** apabila selama pelaksanaannya ditemukan bahwa masalah bersifat:
+
+- **mekanisme kegagalan fisik yang spesifik**, misalnya kegagalan material, keausan abnormal, misalignment, atau degradasi komponen tertentu,
+- **membutuhkan analisis teknis mendalam**, seperti pengujian material, evaluasi metallurgi, analisis desain, atau verifikasi perhitungan engineering.
+
+Selain itu, sinyal penghentian 8D juga muncul ketika proses mulai menunjukkan gejala berikut:
+
+- diskusi bergeser menjadi **administratif dan repetitif**, tanpa penambahan pemahaman risiko atau penyebab,
+- action plan dihasilkan **tanpa akar penyebab teknis yang jelas**, sehingga berisiko hanya memindahkan masalah, bukan menyelesaikannya.
+
+Pada titik ini, melanjutkan 8D justru berpotensi menurunkan kualitas keputusan dan mengaburkan kebutuhan analisis teknis yang sebenarnya.
+
+---
+
+### 4.2 **Trigger Eskalasi Metode**
+
+Agar proses tetap defensible dan berbasis risiko, temuan dalam 8D harus digunakan sebagai **pemicu eskalasi metode**, bukan dipaksa diselesaikan di dalam kerangka 8D itu sendiri.
+
+| **Temuan dalam 8D**                            | **Metode Tambahan yang Relevan** |
+| ---------------------------------------------- | -------------------------------- |
+| Dugaan kegagalan fisik komponen                | RCFA                             |
+| Jalur kegagalan kompleks atau saling terkait   | FTA                              |
+| Risiko laten dan kebutuhan prioritisasi sistem | FMEA                             |
+| Isu barrier keselamatan dan eskalasi bahaya    | Bowtie                           |
+
+Tabel ini menegaskan bahwa **8D berperan sebagai pengarah**, bukan sebagai pengganti metode analitis. Keputusan eskalasi harus selalu mengikuti **kelas risiko dan kompleksitas kegagalan**.
+
+---
+
+### 4.3 **Pencegahan Over-Administration**
+
+Salah satu kegagalan paling umum dalam penerapan 8D di industri adalah menjadikannya **checklist birokrasi**, bukan alat pengendalian masalah.
+
+Prinsip pencegahan over-administration dalam 8D adalah:
+
+- 8D **harus dihentikan** ketika nilai tambah analitis dan pengendalian **telah tercapai**,
+- penutupan (closure) lebih penting daripada kelengkapan dokumen semata,
+- memperpanjang 8D tanpa peningkatan kualitas keputusan **tidak sejalan dengan prinsip RBM**.
+
+Dengan demikian, dalam kerangka RBM, **menghentikan 8D pada waktu yang tepat** merupakan tanda kedewasaan sistem pemecahan masalah, bukan kegagalan proses.
+
+---
+
+## 5) **Case Study**
+
+### **Kasus Tunggal – Organisasional & Defensible**
+
+Bagian ini menyajikan satu studi kasus yang **sengaja dibatasi secara lingkup**, dengan tujuan menunjukkan **posisi dan nilai tambah 8D secara defensible** dalam kerangka **RCA berbasis RBM**, bukan sebagai showcase kompleksitas teknis.
+
+---
+
+### 5.1 **Deskripsi Kasus**
+
+Sebuah unit proses mengalami **kegagalan start-up berulang** setelah pelaksanaan **Turn Around (TA) minor**. Kegagalan ini:
+
+- tidak selalu berujung pada trip unit atau kondisi darurat,
+- namun secara konsisten:
+
+  - mengganggu jadwal produksi,
+  - menyebabkan keterlambatan pencapaian kapasitas,
+  - memicu eskalasi berulang ke level manajemen.
+
+Setiap kejadian secara individual terlihat “minor”, tetapi secara kumulatif **menciptakan degradasi kepercayaan** terhadap kesiapan operasi pasca-TA.
+
+---
+
+### 5.2 **Alasan Memilih 8D**
+
+Pemilihan 8D pada kasus ini didasarkan pada karakter masalah, bukan pada tingkat kompleksitas teknisnya.
+
+Masalah dikategorikan layak 8D karena:
+
+- kegagalan **bersifat berulang**, meskipun corrective action teknis sudah pernah dilakukan,
+- melibatkan **lebih dari satu fungsi**, yaitu operasi, maintenance, dan engineering,
+- tidak dapat diselesaikan secara efektif oleh **satu fungsi saja**, tanpa koordinasi lintas disiplin.
+
+Dari perspektif RBM, tingkat risiko diklasifikasikan sebagai:
+
+- **operasional menengah**, karena tidak langsung mengancam process safety,
+- namun memiliki **potensi dampak reputasi dan biaya yang signifikan** akibat keterlambatan produksi dan perhatian manajemen yang terus-menerus.
+
+---
+
+### 5.3 **Peran 8D dalam Kasus**
+
+Dalam kasus ini, 8D digunakan **bukan untuk menemukan mekanisme kegagalan fisik**, melainkan untuk mengendalikan proses penyelesaian masalah secara organisasi.
+
+Peran utama 8D meliputi:
+
+- **membentuk tim lintas fungsi** dengan mandat dan tanggung jawab yang jelas,
+- menerapkan **tindakan pengendalian sementara (containment)** agar start-up berikutnya dapat berjalan lebih stabil,
+- memastikan bahwa **tindakan permanen** yang disepakati benar-benar:
+
+  - dijalankan,
+  - memiliki owner,
+  - dan diverifikasi efektivitasnya.
+
+Untuk pengisian substansi analisis teknis di dalam 8D, digunakan alat bantu sederhana namun terarah, yaitu:
+
+- **Fishbone Diagram** untuk eksplorasi awal penyebab lintas fungsi,
+- **5 Whys** untuk menajamkan hubungan sebab–akibat pada level operasional dan prosedural.
+
+Metode ini dipilih karena kompleksitas teknis **tidak menuntut** RCFA atau FTA pada tahap tersebut.
+
+---
+
+### 5.4 **Keputusan Stop / Lanjut**
+
+8D pada kasus ini **secara sadar dihentikan** setelah terpenuhi kondisi berikut:
+
+- tindakan permanen telah **diverifikasi efektif** melalui beberapa siklus start-up tanpa pengulangan masalah,
+- tidak ditemukan indikasi kegagalan fisik spesifik yang memerlukan eskalasi ke **RCFA**.
+
+Dengan demikian, fokus 8D ditutup pada aspek:
+
+- **governance masalah**,
+- kejelasan akuntabilitas,
+- dan **closure yang defensible** di hadapan manajemen.
+
+Penghentian 8D pada titik ini merupakan keputusan yang **selaras dengan prinsip RBM**, yaitu berhenti ketika nilai tambah tercapai, bukan ketika seluruh format metodologi dihabiskan.
+
+---
+
+## 6) **Integrasi**
+
+### 6.1 **Relasi dengan Metode RCA Lain**
+
+Dalam ekosistem **RCA berbasis Risk-Based Maintenance (RBM)**, 8D **tidak berdiri sendiri** dan **tidak pernah dimaksudkan** untuk menggantikan metode analitis teknis. Posisi 8D bersifat **integratif**, yaitu menghubungkan hasil analisis teknis dengan pengendalian penyelesaian masalah secara organisasi.
+
+Relasi praktis antar-metode dapat diringkas sebagai berikut:
+
+- **Troubleshooting awal**
+  → eksplorasi sebab menggunakan **Fishbone Diagram** atau **5 Whys**
+  → **8D** digunakan untuk mengendalikan tindak lanjut lintas fungsi.
+
+- **Pelaksanaan 8D**
+  → jika ditemukan indikasi **kompleksitas teknis yang lebih dalam**,
+  → analisis **diekspansi** ke metode yang lebih tepat:
+
+  - **FTA** untuk jalur kegagalan yang saling terkait,
+  - **RCFA** untuk mekanisme kegagalan fisik yang spesifik dan kritikal.
+
+Dengan demikian, 8D berfungsi sebagai **wadah pengendali** yang:
+
+- menerima input dari metode RCA lain,
+- memfasilitasi keputusan lintas fungsi,
+- memastikan tindakan yang dihasilkan benar-benar dijalankan dan diverifikasi.
+
+Penegasan penting yang harus dijaga adalah:
+
+> **8D bukan pengganti metode analitis teknis.**
+
+Ketika analisis teknis dibutuhkan, 8D **harus membuka ruang eskalasi**, bukan menutupnya.
+
+---
+
+### 6.2 **Posisi Hulu–Hilir**
+
+Dilihat dari alur hulu–hilir pemecahan masalah, **8D berada di posisi tengah**, menjembatani dua domain yang berbeda:
+
+- **di hulu**:
+  analisis teknis kegagalan (Fishbone, 5 Whys, FTA, FMEA, RCFA),
+
+- **di hilir**:
+  pengambilan keputusan organisasi, eksekusi tindakan, dan verifikasi efektivitas.
+
+Nilai terbesar 8D tidak terletak pada kedalaman analisis teknis, melainkan pada kemampuannya untuk memastikan bahwa:
+
+- **koordinasi lintas fungsi** berjalan efektif,
+- **disiplin eksekusi** tindakan terjaga hingga tuntas,
+- **akuntabilitas keputusan** jelas dan dapat dipertanggungjawabkan.
+
+Dalam kerangka RBM, 8D berperan sebagai **mekanisme penutup (closure mechanism)** yang memastikan hasil RCA benar-benar menghasilkan perbaikan nyata, bukan sekadar laporan analisis.
+
+---
+
+## **Penegasan Akhir**
+
+> **8D adalah alat pengendalian masalah, bukan alat penentu risiko.**
+> Dalam kerangka **Risk-Based Maintenance (RBM)**:
+>
+> - **Risiko** menentukan **perlu atau tidaknya 8D** digunakan,
+> - **Metode teknis RCA** mengisi **substansi analisis kegagalan**,
+> - **8D memastikan keputusan dijalankan, diverifikasi, dan ditutup secara benar**.
+
+Dengan penegasan ini, posisi 8D menjadi jelas dan tidak ambigu. 8D **bukan alat diagnosis teknis**, bukan pula alat kuantifikasi risiko, melainkan **mekanisme governance** untuk memastikan bahwa keputusan yang telah diambil berdasarkan analisis risiko dan teknis benar-benar dieksekusi secara disiplin, lintas fungsi, dan dapat dipertanggungjawabkan.
+
+Dalam lingkungan industri berisiko tinggi, kegagalan paling berbahaya bukan hanya kegagalan teknis, melainkan **kegagalan organisasi dalam menutup masalah yang sudah dipahami**. Di sinilah nilai utama 8D berada: menjaga agar RCA tidak berhenti sebagai analisis, tetapi berujung pada **perbaikan sistemik yang nyata**.
+
+---
+
+## **Referensi**
+
+1. **IEC 60300-3-11** — _Dependability management – Application guide – Reliability centred maintenance (RCM)_
+2. **ISO 14224** — _Petroleum, petrochemical and natural gas industries – Collection and exchange of reliability and maintenance data_
+3. **API RP 580** — _Risk-Based Inspection_
+4. **API RP 581** — _Risk-Based Inspection Technology_
+5. **AIAG** — _CQI-20: Effective Problem Solving Guide (8D Methodology)_
+6. **U.S. Department of Energy (DOE)** — _Root Cause Analysis Guidance Document_
+7. **NASA** — _Root Cause Analysis Handbook_
+8. **SMRP** — _Best Practices in Maintenance & Reliability Management_
+
+> **Catatan**: Referensi di atas digunakan sebagai kerangka konseptual dan praktik industri. Implementasi 8D, RCA, dan RBM harus selalu disesuaikan dengan **konteks risiko, regulasi, dan governance internal organisasi**.
+
+---
+
+<small>
+  **_Catatan Penyusunan_** Artikel ini disusun sebagai materi edukasi dan
+  referensi umum berdasarkan berbagai sumber pustaka, praktik lapangan, serta
+  bantuan alat penulisan. Pembaca disarankan untuk melakukan verifikasi lanjutan
+  dan penyesuaian sesuai dengan kondisi serta kebutuhan masing-masing sistem.
+</small>
