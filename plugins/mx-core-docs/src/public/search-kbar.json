@@ -1,5 +1,72 @@
 [
   {
+    "id": "management/RCA/rca-5whys",
+    "name": "5 Whys dalam Kerangka RCA Berbasis Risk-Based Maintenance (RBM)",
+    "section": "CONTENT",
+    "href": "/blog/management/RCA/rca-5whys",
+    "subtitle": "January 27, 2026",
+    "keywords": [
+      "5-whys",
+      "root-cause-analysis",
+      "risk-based-maintenance",
+      "rbm",
+      "troubleshooting",
+      "maintenance-engineering",
+      "process-safety-awareness"
+    ]
+  },
+  {
+    "id": "management/RCA/rca-8d-problem-solving",
+    "name": "8D Problem Solving dalam Kerangka RCA Berbasis Risk-Based Maintenance (RBM)",
+    "section": "CONTENT",
+    "href": "/blog/management/RCA/rca-8d-problem-solving",
+    "subtitle": "January 27, 2026",
+    "keywords": [
+      "8d-problem-solving",
+      "root-cause-analysis",
+      "risk-based-maintenance",
+      "rbm",
+      "manajemen-pemeliharaan",
+      "governance-maintenance",
+      "continuous-improvement"
+    ]
+  },
+  {
+    "id": "management/RCA/rca-bowtie",
+    "name": "Bowtie Analysis dalam Kerangka RCA Berbasis Risk-Based Maintenance (RBM)",
+    "section": "CONTENT",
+    "href": "/blog/management/RCA/rca-bowtie",
+    "subtitle": "January 27, 2026",
+    "keywords": [
+      "bowtie-analysis",
+      "risk-based-maintenance",
+      "root-cause-analysis",
+      "process-safety",
+      "barrier-management",
+      "major-accident-event",
+      "psm",
+      "industri-petrokimia"
+    ]
+  },
+  {
+    "id": "management/RCA/rca-panduan-lengkap",
+    "name": "Panduan Troubleshooting & Pemilihan Metode RCA Berbasis Risk-Based Maintenance (RBM)",
+    "section": "CONTENT",
+    "href": "/blog/management/RCA/rca-panduan-lengkap",
+    "subtitle": "January 26, 2026",
+    "keywords": [
+      "root-cause-analysis",
+      "troubleshooting-industri",
+      "risk-based-maintenance",
+      "rbm-decision-making",
+      "reliability-engineering",
+      "process-safety",
+      "maintenance-strategy",
+      "asset-integrity",
+      "engineering-best-practice"
+    ]
+  },
+  {
     "id": "management/MSH-1-maintenance-fondasi-risiko",
     "name": "Filosofi Sistem Pemeliharaan dan Fondasi Risiko",
     "section": "CONTENT",
@@ -2016,36 +2083,39 @@
   },
   {
     "id": "management/RCA/rca-fishbone-diagram",
-    "name": "Optimasi Proses dalam Industri Petrokimia Menggunakan Fishbone Diagram",
+    "name": "Fishbone Diagram sebagai Alat Eksplorasi Penyebab dalam Root Cause Analysis Berbasis RBM",
     "section": "CONTENT",
     "href": "/blog/management/RCA/rca-fishbone-diagram",
     "subtitle": "October 26, 2023",
     "keywords": [
       "fishbone-diagram",
       "diagram-ishikawa",
-      "pemeliharaan-pabrik-petrokimia",
-      "analisis-akar-masalah",
+      "root-cause-analysis",
+      "rca-modular",
+      "risk-based-maintenance",
       "troubleshooting-industri",
-      "manajemen-risiko",
-      "process-improvement",
-      "safety-environment"
+      "pemeliharaan-pabrik-petrokimia",
+      "cause-exploration",
+      "maintenance-engineering",
+      "process-safety-boundary"
     ]
   },
   {
     "id": "management/RCA/rca-fmea",
-    "name": "Mengungkap Keunggulan FMEA dalam Meningkatkan Keandalan di Industri Petrokimia",
+    "name": "Failure Mode and Effects Analysis (FMEA) dalam Kerangka RCA dan Risk-Based Maintenance",
     "section": "CONTENT",
     "href": "/blog/management/RCA/rca-fmea",
     "subtitle": "October 26, 2023",
     "keywords": [
       "fmea",
       "failure-mode-and-effects-analysis",
+      "rca-rbm",
+      "risk-based-maintenance",
       "pemeliharaan-pabrik-petrokimia",
-      "manajemen-risiko",
       "keandalan-peralatan",
-      "risk-priority-number",
-      "safety-environment",
-      "continuous-improvement"
+      "manajemen-risiko",
+      "rotating-equipment",
+      "process-safety-boundary"
     ]
   },
   {
@@ -2136,35 +2206,37 @@
   },
   {
     "id": "management/RCA/rca-fta",
-    "name": "Mengungkap Risiko Tersembunyi - Panduan Lengkap tentang Failure Tree Analysis (FTA)",
+    "name": "Failure Tree Analysis (FTA) – Modul Metode dalam Ekosistem RCA–RBM",
     "section": "CONTENT",
     "href": "/blog/management/RCA/rca-fta",
     "subtitle": "October 25, 2023",
     "keywords": [
-      "fta",
       "failure-tree-analysis",
+      "fault-tree-analysis",
       "analisis-risiko",
-      "pemeliharaan-pabrik-petrokimia",
-      "keandalan-sistem",
       "process-safety",
-      "manajemen-risiko",
+      "pemeliharaan-pabrik-petrokimia",
+      "risk-based-maintenance",
+      "rca-framework",
+      "keandalan-sistem",
       "safety-engineering"
     ]
   },
   {
     "id": "management/RCA/rca-rcfa",
-    "name": "Mengungkap Akar Masalah - Panduan Lengkap Analisis Akar Penyebab Kegagalan (RCFA)",
+    "name": "RCFA dalam Kerangka Risk-Based Maintenance - Analisis Akar Kegagalan yang Defensible",
     "section": "CONTENT",
     "href": "/blog/management/RCA/rca-rcfa",
     "subtitle": "October 25, 2023",
     "keywords": [
       "rcfa",
       "root-cause-failure-analysis",
+      "risk-based-maintenance",
+      "reliability-engineering",
       "pemeliharaan-pabrik-petrokimia",
-      "keandalan-peralatan",
       "analisis-kegagalan",
-      "safety-environment",
-      "maintenance-management",
+      "process-safety",
+      "engineering-decision",
       "continuous-improvement"
     ]
   },

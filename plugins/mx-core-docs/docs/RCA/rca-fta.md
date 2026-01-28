@@ -70,6 +70,54 @@ Oleh karena itu, sebelum menggunakan modul ini, pembaca **wajib** memahami dan m
 
 Dengan posisi ini, modul FTA diharapkan digunakan secara **disiplin, tepat sasaran, dan selaras dengan keputusan berbasis risiko**, bukan sekadar untuk melengkapi dokumentasi analisis.
 
+<ResourceBox
+  title="Korelasi internal-link modul:"
+  items={[
+    {
+      name: 'Panduan Troubleshooting & Pemilihan Metode RCA',
+      href: '/blog/Management/rca-panduan-lengkap',
+      description:
+        'Panduan Troubleshooting & Pemilihan Metode RCA Berbasis Risk-Based Maintenance (RBM)',
+    },
+    {
+      name: '5 Whys dalam Kerangka RCA',
+      href: '/blog/Management/RCA/rca-5whys',
+      description:
+        '5 Whys dalam Kerangka RCA Berbasis Risk-Based Maintenance (RBM)',
+    },
+    {
+      name: 'Fishbone Diagram',
+      href: '/blog/Management/RCA/rca-fishbone-diagram',
+      description:
+        'Optimasi Proses dalam Industri Petrokimia Menggunakan Fishbone Diagram',
+    },
+    {
+      name: 'Failure Mode and Effects Analysis (FMEA)',
+      href: '/blog/Management/RCA/rca-fmea',
+      description:
+        'Mengungkap Keunggulan FMEA dalam Meningkatkan Keandalan di Industri Petrokimia',
+    },
+    {
+      name: 'Root Cause Failure Analysis (RCFA)',
+      href: '/blog/Management/RCA/rca-rcfa',
+      description:
+        'Mengungkap Akar Masalah - Panduan Lengkap Analisis Akar Penyebab Kegagalan (RCFA)',
+    },
+    {
+      name: '8D Problem Solving dalam Kerangka RCA',
+      href: '/blog/Management/RCA/rca-8d-problem-solving',
+      description:
+        '8D Problem Solving dalam Kerangka RCA Berbasis Risk-Based Maintenance (RBM)',
+    },
+    {
+      name: 'Bowtie Analysis dalam Kerangka RCA',
+      href: '/blog/Management/RCA/rca-bowtie',
+      description:
+        'Bowtie Analysis dalam Kerangka RCA Berbasis Risk-Based Maintenance (RBM)',
+    },
+  ]}
+/>
+
 ---
 
 ### 2) **Pengenalan**

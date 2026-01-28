@@ -95,34 +95,52 @@ Oleh karena itu, dibutuhkan pendekatan troubleshooting yang **terstruktur, berba
   title="Korelasi internal-link modul:"
   items={[
     {
-      name: 'Iceberg Theory',
-      href: '/blog/Managemet/iceberg-theory',
+      name: 'Panduan Troubleshooting & Pemilihan Metode RCA',
+      href: '/blog/Management/rca-panduan-lengkap',
       description:
-        'Beyond the Surface - Pendekatan Iceberg dalam Memperkuat Keandalan Aset Industri Petrokimia',
+        'Panduan Troubleshooting & Pemilihan Metode RCA Berbasis Risk-Based Maintenance (RBM)',
+    },
+    {
+      name: '5 Whys dalam Kerangka RCA',
+      href: '/blog/Management/RCA/rca-5whys',
+      description:
+        '5 Whys dalam Kerangka RCA Berbasis Risk-Based Maintenance (RBM)',
     },
     {
       name: 'Fishbone Diagram',
-      href: '/blog/Managemet/RCA/rca-fishbone-diagram',
+      href: '/blog/Management/RCA/rca-fishbone-diagram',
       description:
         'Optimasi Proses dalam Industri Petrokimia Menggunakan Fishbone Diagram',
     },
     {
       name: 'Failure Tree Analysis (FTA)',
-      href: '/blog/Managemet/RCA/rca-fta',
+      href: '/blog/Management/RCA/rca-fta',
       description:
         'Mengungkap Risiko Tersembunyi - Panduan Lengkap tentang Failure Tree Analysis (FTA)',
     },
     {
       name: 'Failure Mode and Effects Analysis (FMEA)',
-      href: '/blog/Managemet/RCA/rca-fmea',
+      href: '/blog/Management/RCA/rca-fmea',
       description:
         'Mengungkap Keunggulan FMEA dalam Meningkatkan Keandalan di Industri Petrokimia',
     },
     {
       name: 'Root Cause Failure Analysis (RCFA)',
-      href: '/blog/Managemet/RCA/rca-rcfa',
+      href: '/blog/Management/RCA/rca-rcfa',
       description:
         'Mengungkap Akar Masalah - Panduan Lengkap Analisis Akar Penyebab Kegagalan (RCFA)',
+    },
+    {
+      name: '8D Problem Solving dalam Kerangka RCA',
+      href: '/blog/Management/RCA/rca-8d-problem-solving',
+      description:
+        '8D Problem Solving dalam Kerangka RCA Berbasis Risk-Based Maintenance (RBM)',
+    },
+    {
+      name: 'Bowtie Analysis dalam Kerangka RCA',
+      href: '/blog/Management/RCA/rca-bowtie',
+      description:
+        'Bowtie Analysis dalam Kerangka RCA Berbasis Risk-Based Maintenance (RBM)',
     },
   ]}
 />
@@ -497,7 +515,7 @@ Setiap metode diringkas berdasarkan: **tujuan utama**, **jenis masalah yang coco
   items={[
     {
       name: 'Fishbone Diagram',
-      href: '/blog/Managemet/RCA/rca-fishbone-diagram',
+      href: '/blog/Management/RCA/rca-fishbone-diagram',
       description:
         'Optimasi Proses dalam Industri Petrokimia Menggunakan Fishbone Diagram',
     },
@@ -541,7 +559,7 @@ _(Kelas Kompleksitas Sedang, Risk-Based Decision)_
   items={[
     {
       name: 'Failure Tree Analysis (FTA)',
-      href: '/blog/Managemet/RCA/rca-fta',
+      href: '/blog/Management/RCA/rca-fta',
       description:
         'Mengungkap Risiko Tersembunyi - Panduan Lengkap tentang Failure Tree Analysis (FTA)',
     },
@@ -568,7 +586,7 @@ _(Kelas Kompleksitas Sedang, Risk-Based Decision)_
   items={[
     {
       name: 'Failure Mode and Effects Analysis (FMEA)',
-      href: '/blog/Managemet/RCA/rca-fmea',
+      href: '/blog/Management/RCA/rca-fmea',
       description:
         'Mengungkap Keunggulan FMEA dalam Meningkatkan Keandalan di Industri Petrokimia',
     },
@@ -612,7 +630,7 @@ _(Kelas Kompleksitas Sedang, Risk-Based Decision)_
   items={[
     {
       name: 'Root Cause Failure Analysis (RCFA)',
-      href: '/blog/Managemet/RCA/rca-rcfa',
+      href: '/blog/Management/RCA/rca-rcfa',
       description:
         'Mengungkap Akar Masalah - Panduan Lengkap Analisis Akar Penyebab Kegagalan (RCFA)',
     },

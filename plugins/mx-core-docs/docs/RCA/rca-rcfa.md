@@ -82,6 +82,60 @@ Tanpa kerangka keputusan tersebut, RCFA berisiko digunakan secara tidak tepat—
 > RCFA digunakan **setelah** masalah dikonfirmasi layak dianalisis secara mendalam,
 > **bukan** untuk semua kegagalan, dan **bukan** sebagai alat eksplorasi awal.
 
+<ResourceBox
+  title="Korelasi internal-link modul:"
+  items={[
+    {
+      name: 'Panduan Troubleshooting & Pemilihan Metode RCA',
+      href: '/blog/Management/rca-panduan-lengkap',
+      description:
+        'Panduan Troubleshooting & Pemilihan Metode RCA Berbasis Risk-Based Maintenance (RBM)',
+    },
+    {
+      name: '5 Whys dalam Kerangka RCA',
+      href: '/blog/Management/RCA/rca-5whys',
+      description:
+        '5 Whys dalam Kerangka RCA Berbasis Risk-Based Maintenance (RBM)',
+    },
+    {
+      name: 'Fishbone Diagram',
+      href: '/blog/Management/RCA/rca-fishbone-diagram',
+      description:
+        'Optimasi Proses dalam Industri Petrokimia Menggunakan Fishbone Diagram',
+    },
+    {
+      name: 'Failure Tree Analysis (FTA)',
+      href: '/blog/Management/RCA/rca-fta',
+      description:
+        'Mengungkap Risiko Tersembunyi - Panduan Lengkap tentang Failure Tree Analysis (FTA)',
+    },
+    {
+      name: 'Failure Mode and Effects Analysis (FMEA)',
+      href: '/blog/Management/RCA/rca-fmea',
+      description:
+        'Mengungkap Keunggulan FMEA dalam Meningkatkan Keandalan di Industri Petrokimia',
+    },
+    {
+      name: 'Root Cause Failure Analysis (RCFA)',
+      href: '/blog/Management/RCA/rca-rcfa',
+      description:
+        'Mengungkap Akar Masalah - Panduan Lengkap Analisis Akar Penyebab Kegagalan (RCFA)',
+    },
+    {
+      name: '8D Problem Solving dalam Kerangka RCA',
+      href: '/blog/Management/RCA/rca-8d-problem-solving',
+      description:
+        '8D Problem Solving dalam Kerangka RCA Berbasis Risk-Based Maintenance (RBM)',
+    },
+    {
+      name: 'Bowtie Analysis dalam Kerangka RCA',
+      href: '/blog/Management/RCA/rca-bowtie',
+      description:
+        'Bowtie Analysis dalam Kerangka RCA Berbasis Risk-Based Maintenance (RBM)',
+    },
+  ]}
+/>
+
 ---
 
 ## 2) **Pengenalan**
@@ -91,6 +145,8 @@ Tanpa kerangka keputusan tersebut, RCFA berisiko digunakan secara tidak tepat—
 **Root Cause Failure Analysis (RCFA)** adalah metode investigasi kegagalan yang diterapkan **setelah suatu kejadian (post-event)** terjadi, dengan tujuan utama **mengidentifikasi mekanisme kegagalan aktual** yang menyebabkan sistem, peralatan, atau proses tidak berfungsi sebagaimana mestinya.
 
 Berbeda dengan metode eksploratif awal, RCFA bekerja dengan pendekatan **evidence-based** dan **failure-mechanism driven**, yang meliputi:
+
+![RCFA_process](/static/images/artikel/RCFA_process.jpg)
 
 - penelusuran **rantai sebab–akibat secara kronologis**,
 - identifikasi **mekanisme kegagalan fisik, operasional, atau sistemik**,
