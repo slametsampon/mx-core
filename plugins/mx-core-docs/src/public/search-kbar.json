@@ -1,5 +1,37 @@
 [
   {
+    "id": "management/budgeting",
+    "name": "Budgeting Maintenance Berbasis Risk-Based Maintenance (RBM) di Pabrik Petrokimia",
+    "section": "CONTENT",
+    "href": "/blog/management/budgeting",
+    "subtitle": "January 29, 2026",
+    "keywords": [
+      "risk-based-maintenance",
+      "maintenance-budgeting",
+      "pemeliharaan-pabrik-petrokimia",
+      "process-safety",
+      "asset-criticality",
+      "reliability-engineering",
+      "she-governance"
+    ]
+  },
+  {
+    "id": "management/MSH/MSH-4-budgeting",
+    "name": "Budgeting Maintenance Berbasis Risk-Based Maintenance (RBM) di Pabrik Petrokimia",
+    "section": "CONTENT",
+    "href": "/blog/management/MSH/MSH-4-budgeting",
+    "subtitle": "January 29, 2026",
+    "keywords": [
+      "risk-based-maintenance",
+      "maintenance-budgeting",
+      "pemeliharaan-pabrik-petrokimia",
+      "process-safety",
+      "asset-criticality",
+      "reliability-engineering",
+      "she-governance"
+    ]
+  },
+  {
     "id": "management/RCA/rca-5whys",
     "name": "5 Whys dalam Kerangka RCA Berbasis Risk-Based Maintenance (RBM)",
     "section": "CONTENT",
@@ -281,6 +313,41 @@
     ]
   },
   {
+    "id": "management/MSH/MSH-5-organization",
+    "name": "Organisasi, KPI, dan Akuntabilitas dalam Sistem Pemeliharaan",
+    "section": "CONTENT",
+    "href": "/blog/management/MSH/MSH-5-organization",
+    "subtitle": "January 25, 2026",
+    "keywords": [
+      "organisasi-pemeliharaan",
+      "job-description-dan-akuntabilitas",
+      "kpi-berbasis-peran",
+      "governance-maintenance",
+      "manajemen-aset-iso-55000",
+      "audit-dan-akuntabilitas",
+      "maintenance-management-system",
+      "risk-based-maintenance-governance"
+    ]
+  },
+  {
+    "id": "management/MSH/MSH-6-eksekusi",
+    "name": "Eksekusi, Troubleshooting, dan Sistem Pembelajaran Pemeliharaan",
+    "section": "CONTENT",
+    "href": "/blog/management/MSH/MSH-6-eksekusi",
+    "subtitle": "January 25, 2026",
+    "keywords": [
+      "eksekusi-pemeliharaan",
+      "troubleshooting-sistematis",
+      "root-cause-analysis-rca",
+      "fmea-dan-fta",
+      "first-time-fix",
+      "learning-loop-maintenance",
+      "dokumentasi-pemeliharaan",
+      "risk-based-maintenance-execution",
+      "continuous-improvement-maintenance"
+    ]
+  },
+  {
     "id": "management/MSH/MSH-6-she-compliance",
     "name": "SHE sebagai Batas Sistem dalam Pengambilan Keputusan Pemeliharaan",
     "section": "CONTENT",
@@ -304,6 +371,44 @@
     "name": "Lifecycle Aset, Turnaround, dan Continuous Improvement Sistem Pemeliharaan",
     "section": "CONTENT",
     "href": "/blog/management/MSH/MSH-7-lifecycle-ta",
+    "subtitle": "January 25, 2026",
+    "keywords": [
+      "maintenance-system-handbook",
+      "asset-lifecycle-management",
+      "turnaround-maintenance",
+      "continuous-improvement",
+      "reliability-growth",
+      "rbm-maturity",
+      "iso-55000",
+      "api-rp-580-581",
+      "long-term-maintenance-strategy",
+      "petrochemical-maintenance"
+    ]
+  },
+  {
+    "id": "management/MSH/MSH-7-she-compliance",
+    "name": "SHE sebagai Batas Sistem dalam Pengambilan Keputusan Pemeliharaan",
+    "section": "CONTENT",
+    "href": "/blog/management/MSH/MSH-7-she-compliance",
+    "subtitle": "January 25, 2026",
+    "keywords": [
+      "she-maintenance",
+      "safety-health-environment",
+      "risk-decision-boundary",
+      "esc-risk-integration",
+      "rbm-she-governance",
+      "maintenance-compliance",
+      "process-safety",
+      "asset-management-iso55000",
+      "api-rp-580-581",
+      "petrochemical-maintenance-system"
+    ]
+  },
+  {
+    "id": "management/MSH/MSH-8-lifecycle-ta",
+    "name": "Lifecycle Aset, Turnaround, dan Continuous Improvement Sistem Pemeliharaan",
+    "section": "CONTENT",
+    "href": "/blog/management/MSH/MSH-8-lifecycle-ta",
     "subtitle": "January 25, 2026",
     "keywords": [
       "maintenance-system-handbook",

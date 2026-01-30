@@ -73,7 +73,7 @@ Melalui Modul 4, organisasi pemeliharaan diposisikan sebagai **sistem kerja yang
 **Korelasi internal-link modul:**
 
 - [Modul sebelumnya: **Module 3 – RBM sebagai Strategi Praktis**](/blog/Management/MSH/MSH-3-rbm)
-- [Modul berikutnya: **Module 5 – Budgeting, Cost Control & Resource Strategy**](/blog/Management/MSH/MSH-5-eksekusi)
+- [Modul berikutnya: **Module 5 – Budgeting, Cost Control & Resource Strategy**](/blog/Management/MSH/MSH-6-eksekusi)
 
 ---
 
@@ -343,9 +343,9 @@ Dengan demikian, Modul 4 memastikan bahwa sistem pemeliharaan tidak bergantung p
 ## 🔗 Korelasi dengan Modul Lain
 
 - [**Module 3** menjelaskan _apa_ yang dilakukan melalui strategi RBM di lapangan](/blog/Management/MSH/MSH-3-rbm).
-- [**Module 4** menjelaskan _siapa_ yang bertanggung jawab atas setiap keputusan dan kinerja](/blog/Management/MSH/MSH-4-organization).
-- [**Module 5** akan menjelaskan _dengan sumber daya apa_ sistem pemeliharaan dijalankan, khususnya dari sisi anggaran dan pengendalian biaya](/blog/Management/MSH/MSH-5-eksekusi).
-- [**Module 7** akan memastikan bahwa akuntabilitas dan kinerja organisasi terus diperbaiki melalui mekanisme continuous improvement](/blog/Management/MSH/MSH-7-lifecycle-ta).
+- [**Module 4** menjelaskan _siapa_ yang bertanggung jawab atas setiap keputusan dan kinerja](/blog/Management/MSH/MSH-5-organization).
+- [**Module 5** akan menjelaskan _dengan sumber daya apa_ sistem pemeliharaan dijalankan, khususnya dari sisi anggaran dan pengendalian biaya](/blog/Management/MSH/MSH-6-eksekusi).
+- [**Module 7** akan memastikan bahwa akuntabilitas dan kinerja organisasi terus diperbaiki melalui mekanisme continuous improvement](/blog/Management/MSH/MSH-8-lifecycle-ta).
 
 ---
 

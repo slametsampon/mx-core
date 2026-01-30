@@ -54,7 +54,7 @@ Dengan fondasi tersebut, **Module 7** berfokus pada keberlanjutan sistem. Modul 
 
 **Korelasi internal-link modul:**
 
-- [Modul sebelumnya: **Module 6 – SHE as System Constraint**](/blog/Management/MSH/MSH-6-she-compliance)
+- [Modul sebelumnya: **Module 6 – SHE as System Constraint**](/blog/Management/MSH/MSH-7-she-compliance)
 - [Modul ini mengikat **seluruh Modul 0–6** ke dalam satu **siklus tertutup dan berkelanjutan**](/blog/Management/MSH/MSH-panduan-lengkap)
 
 ---
@@ -324,12 +324,12 @@ Dengan mengaitkan pemeliharaan pada **siklus hidup aset**, **Turnaround (TA)**, 
 - **Module 3** → menerjemahkan logika tersebut ke dalam strategi RBM yang operasional
   [_Module 3 – Risk-Based Maintenance sebagai Strategi Pemeliharaan Praktis_](/blog/Management/MSH/MSH-3-rbm)
 - **Module 4–5** → memastikan eksekusi yang akuntabel dan pembelajaran sistemik
-  [_Module 4 – Organisasi, KPI, dan Akuntabilitas dalam Sistem Pemeliharaan_](/blog/Management/MSH/MSH-4-organization)
-  [_Module 5 – Eksekusi, Troubleshooting, dan Sistem Pembelajaran Pemeliharaan_](/blog/Management/MSH/MSH-5-eksekusi)
+  [_Module 4 – Organisasi, KPI, dan Akuntabilitas dalam Sistem Pemeliharaan_](/blog/Management/MSH/MSH-5-organization)
+  [_Module 5 – Eksekusi, Troubleshooting, dan Sistem Pembelajaran Pemeliharaan_](/blog/Management/MSH/MSH-6-eksekusi)
 - **Module 6** → menetapkan batas SHE sebagai _hard constraint_
-  [_Module 6 – SHE sebagai Batas Sistem dalam Pengambilan Keputusan Pemeliharaan_](/blog/Management/MSH/MSH-6-she-compliance)
+  [_Module 6 – SHE sebagai Batas Sistem dalam Pengambilan Keputusan Pemeliharaan_](/blog/Management/MSH/MSH-7-she-compliance)
 - **Module 7** → menjaga seluruh sistem tetap hidup, adaptif, dan berkelanjutan
-  [_Module 7 – Lifecycle Aset, Turnaround, dan Continuous Improvement Sistem Pemeliharaan_](/blog/Management/MSH/MSH-7-lifecycle-ta)
+  [_Module 7 – Lifecycle Aset, Turnaround, dan Continuous Improvement Sistem Pemeliharaan_](/blog/Management/MSH/MSH-8-lifecycle-ta)
 
 📌 **Module 7 berfungsi sebagai penutup sekaligus pengunci seluruh sistem**, memastikan bahwa _Maintenance System Handbook_ tidak hanya menjadi dokumen referensi, tetapi kerangka kerja yang relevan dan bernilai sepanjang umur aset.
 
