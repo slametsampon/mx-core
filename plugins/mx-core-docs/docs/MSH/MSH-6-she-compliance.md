@@ -126,8 +126,8 @@ Dengan menempatkan SHE sebagai _ultimate constraint_, modul ini memastikan bahwa
 
 **Korelasi internal-link modul:**
 
-- [Modul sebelumnya: **Module 5 – Execution, Troubleshooting & Learning System**](/blog/Management/MSH/MSH-6-eksekusi)
-- [Modul berikutnya: **Module 7 – Lifecycle, Turnaround & Continuous Improvement**](/blog/Management/MSH/MSH-8-lifecycle-ta)
+- [Modul sebelumnya: **Module 5 – Execution, Troubleshooting & Learning System**](/blog/management/MSH/MSH-6-eksekusi)
+- [Modul berikutnya: **Module 7 – Lifecycle, Turnaround & Continuous Improvement**](/blog/management/MSH/MSH-8-lifecycle-ta)
 
 Modul ini menjadi **penjaga gerbang sistem**—memastikan bahwa sistem pemeliharaan yang cerdas tidak berubah menjadi sistem yang berbahaya.
 
@@ -935,11 +935,11 @@ Pendekatan ini memastikan bahwa sistem pemeliharaan tidak hanya andal secara tek
 
 ## 🔗 Korelasi dengan Modul Lain
 
-- [**Module 2** → menetapkan logika pengambilan keputusan berbasis risiko](/blog/Management/MSH/MSH-2-model-risiko)
-- [**Module 3** → menerapkan strategi pemeliharaan berbasis risiko](/blog/Management/MSH/MSH-3-rbm)
-- [**Module 5** → memastikan eksekusi pemeliharaan berlangsung aman dan menghasilkan pembelajaran](/blog/Management/MSH/MSH-6-eksekusi)
-- [**Module 6** → membatasi seluruh keputusan pemeliharaan dengan prinsip SHE](/blog/Management/MSH/MSH-7-she-compliance)
-- [**Module 7** → memastikan batas SHE ini dijaga secara konsisten sepanjang siklus hidup aset](/blog/Management/MSH/MSH-8-lifecycle-ta)
+- [**Module 2** → menetapkan logika pengambilan keputusan berbasis risiko](/blog/management/MSH/MSH-2-model-risiko)
+- [**Module 3** → menerapkan strategi pemeliharaan berbasis risiko](/blog/management/MSH/MSH-3-rbm)
+- [**Module 5** → memastikan eksekusi pemeliharaan berlangsung aman dan menghasilkan pembelajaran](/blog/management/MSH/MSH-6-eksekusi)
+- [**Module 6** → membatasi seluruh keputusan pemeliharaan dengan prinsip SHE](/blog/management/MSH/MSH-7-she-compliance)
+- [**Module 7** → memastikan batas SHE ini dijaga secara konsisten sepanjang siklus hidup aset](/blog/management/MSH/MSH-8-lifecycle-ta)
 
 ---
 

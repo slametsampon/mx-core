@@ -48,9 +48,9 @@ Oleh karena itu, Modul 1 disusun untuk menetapkan **filosofi dasar** bahwa pemel
 
 **Korelasi internal-link modul:**
 
-- [**Modul sebelumnya:** _Module 0 – Konteks Industri dan Alasan Sistem Pemeliharaan Harus Berevolusi_](/blog/Management/MSH/MSH-0-maintenance-evolusi)
+- [**Modul sebelumnya:** _Module 0 – Konteks Industri dan Alasan Sistem Pemeliharaan Harus Berevolusi_](/blog/management/MSH/MSH-0-maintenance-evolusi)
 
-- [**Modul berikutnya:** _Module 2 – Model Risiko dan Logika Pengambilan Keputusan_](/blog/Management/MSH/MSH-2-model-risiko)
+- [**Modul berikutnya:** _Module 2 – Model Risiko dan Logika Pengambilan Keputusan_](/blog/management/MSH/MSH-2-model-risiko)
 
 ---
 
@@ -168,9 +168,9 @@ Pendekatan _Risk-Based Inspection_ yang diformalkan melalui **American Petroleum
 
 ### 🔗 Korelasi dengan Modul Lain
 
-- [**Module 0** memberikan konteks _mengapa_ sistem pemeliharaan modern menjadi kebutuhan yang tidak terelakkan.](/blog/Management/MSH/MSH-0-maintenance-evolusi)
-- [**Module 2** akan menguraikan _bagaimana risiko dimodelkan dan diterjemahkan menjadi keputusan teknis dan manajerial_.](/blog/Management/MSH/MSH-2-model-risiko)
-- [**Module 3** akan menunjukkan _bagaimana filosofi risk-based thinking diwujudkan secara nyata melalui strategi RBM dan TBM yang adaptif_.](/blog/Management/MSH/MSH-3-rbm)
+- [**Module 0** memberikan konteks _mengapa_ sistem pemeliharaan modern menjadi kebutuhan yang tidak terelakkan.](/blog/management/MSH/MSH-0-maintenance-evolusi)
+- [**Module 2** akan menguraikan _bagaimana risiko dimodelkan dan diterjemahkan menjadi keputusan teknis dan manajerial_.](/blog/management/MSH/MSH-2-model-risiko)
+- [**Module 3** akan menunjukkan _bagaimana filosofi risk-based thinking diwujudkan secara nyata melalui strategi RBM dan TBM yang adaptif_.](/blog/management/MSH/MSH-3-rbm)
 
 ### 📚 Referensi Module 1
 

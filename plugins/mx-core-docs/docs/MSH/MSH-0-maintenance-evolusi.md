@@ -44,9 +44,9 @@ Oleh karena itu, Modul 0 ditempatkan untuk menjawab pertanyaan mendasar **“men
 
 **Korelasi internal-link modul:**
 
-- [**Modul berikutnya:** _Module 1 – Filosofi dan Fondasi Risiko Sistem Pemeliharaan_](/blog/Management/MSH/MSH-1-maintenance-fondasi-risiko)
+- [**Modul berikutnya:** _Module 1 – Filosofi dan Fondasi Risiko Sistem Pemeliharaan_](/blog/management/MSH/MSH-1-maintenance-fondasi-risiko)
 
-- [**Modul terkait:** _Module 7 – Lifecycle, Turnaround & Continuous Improvement_](/blog/Management/MSH/MSH-8-lifecycle-ta)
+- [**Modul terkait:** _Module 7 – Lifecycle, Turnaround & Continuous Improvement_](/blog/management/MSH/MSH-8-lifecycle-ta)
 
 ---
 
@@ -159,9 +159,9 @@ Tanpa pemahaman konteks yang dibangun dalam Modul 0 ini, pembahasan teknis dan m
 
 ### 🔗 Korelasi dengan Modul Lain
 
-- **Module 1**: Menjawab _atas dasar apa_ sistem pemeliharaan modern dibangun, termasuk filosofi dan legitimasi risk-based approach. [_Module 1 – Filosofi dan Fondasi Risiko Sistem Pemeliharaan_](/blog/Management/MSH/MSH-1-maintenance-fondasi-risiko)
-- **Module 2**: Menguraikan _bagaimana risiko diterjemahkan menjadi keputusan_ dalam sistem pemeliharaan. [_Module 2 – Model Risiko dan Logika Pengambilan Keputusan Pemeliharaan_](/blog/Management/MSH/MSH-2-model-risiko)
-- **Module 7**: Menutup keseluruhan sistem dengan _evaluasi, pembelajaran, dan perbaikan berkelanjutan_ dalam perspektif jangka panjang. [_Module 7 – Lifecycle, Turnaround & Continuous Improvement_](/blog/Management/MSH/MSH-8-lifecycle-ta)
+- **Module 1**: Menjawab _atas dasar apa_ sistem pemeliharaan modern dibangun, termasuk filosofi dan legitimasi risk-based approach. [_Module 1 – Filosofi dan Fondasi Risiko Sistem Pemeliharaan_](/blog/management/MSH/MSH-1-maintenance-fondasi-risiko)
+- **Module 2**: Menguraikan _bagaimana risiko diterjemahkan menjadi keputusan_ dalam sistem pemeliharaan. [_Module 2 – Model Risiko dan Logika Pengambilan Keputusan Pemeliharaan_](/blog/management/MSH/MSH-2-model-risiko)
+- **Module 7**: Menutup keseluruhan sistem dengan _evaluasi, pembelajaran, dan perbaikan berkelanjutan_ dalam perspektif jangka panjang. [_Module 7 – Lifecycle, Turnaround & Continuous Improvement_](/blog/management/MSH/MSH-8-lifecycle-ta)
 
 ---
 
