@@ -6,6 +6,7 @@ tags:
   [
     'maintenance-system-handbook',
     'risk-based-maintenance-rbm',
+    'maintenance-budgeting',
     'asset-management-iso-55000',
     'maintenance-strategy',
     'she-system-constraint',
@@ -54,13 +55,14 @@ Perubahan tuntutan bisnis, regulasi keselamatan dan lingkungan yang semakin keta
 
 Maintenance System Handbook (MSH) disusun sebagai respon terhadap kebutuhan tersebut—bukan untuk menggantikan standar atau metode yang ada, melainkan untuk **mengintegrasikan seluruh elemen pemeliharaan ke dalam satu kerangka sistem yang koheren, defensible, dan berorientasi risiko**.
 
-MSH disusun dalam bentuk **struktur modular yang komprehensif**, terdiri dari **8 modul utama (Module 0–7)** yang saling terhubung serta **1 panduan implementasi lengkap** sebagai pengikat keseluruhan sistem. Pendekatan modular ini dirancang agar handbook dapat digunakan secara **fleksibel namun konsisten**—baik sebagai referensi strategis manajemen, panduan operasional engineer, maupun kerangka evaluasi sistem pemeliharaan secara menyeluruh.
+MSH disusun dalam bentuk **struktur modular yang komprehensif**, terdiri dari **9 modul utama (Module 0–8)** yang saling terhubung serta **1 panduan implementasi lengkap** sebagai pengikat keseluruhan sistem. Pendekatan modular ini dirancang agar handbook dapat digunakan secara **fleksibel namun konsisten**—baik sebagai referensi strategis manajemen, panduan operasional engineer, maupun kerangka evaluasi sistem pemeliharaan secara menyeluruh.
 
 Handbook ini **tidak menawarkan satu metode pemeliharaan tunggal**, karena kompleksitas industri proses tidak pernah dapat diselesaikan dengan pendekatan linear atau solusi generik. Sebaliknya, MSH menghadirkan **kerangka sistemik end-to-end** yang mengaitkan secara eksplisit dan terstruktur:
 
 - **filosofi** pemeliharaan dan posisi strategisnya dalam bisnis,
 - **logika risiko** sebagai dasar pengambilan keputusan teknis,
 - **strategi pemeliharaan** (RBM, TBM adaptif, CBM, PdM) sebagai alat eksekusi,
+- **budgeting** Budgeting maintenance berbasis Risk-Based Maintenance (RBM),
 - **organisasi, peran, dan KPI** sebagai penjamin akuntabilitas,
 - **eksekusi, troubleshooting, dan pembelajaran sistem** sebagai penggerak peningkatan,
 - **SHE** sebagai batas keputusan yang tidak dapat dikompromikan,
@@ -78,7 +80,7 @@ Dengan struktur tersebut, MSH memposisikan pemeliharaan bukan sebagai kumpulan a
     },
     {
       name: 'Budgeting Maintenance',
-      href: '/blog/management/budgeting',
+      href: '/blog/Management/MSH-4-budgeting',
       description:
         'Budgeting Maintenance Berbasis Risk-Based Maintenance (RBM) di Pabrik Petrokimia',
     },
@@ -142,6 +144,7 @@ Maintenance System Handbook (MSH) diposisikan bukan sebagai panduan teknis parsi
 - **risk-based thinking** sebagai fondasi,
 - **Risk-Based Maintenance (RBM)** sebagai strategi seleksi metode,
 - **organisasi, KPI, dan governance** sebagai penjamin akuntabilitas,
+- **budgeting** Budgeting maintenance berbasis Risk-Based Maintenance (RBM),
 - **eksekusi, troubleshooting, dan learning loop** sebagai mesin peningkatan,
 - **SHE sebagai system constraint**,
 - serta **lifecycle asset management dan turnaround** sebagai kerangka jangka panjang.
@@ -250,7 +253,36 @@ RBM diposisikan sebagai **kerangka seleksi strategi**, bukan metode baru.
 
 ---
 
-- **Module 4 | Organisasi, KPI & Akuntabilitas**
+---
+
+- **Module 4 | Budgeting & Resource Governance (RBM)**
+
+<ResourceBox
+  title="Korelasi internal-link modul:"
+  items={[
+    {
+      name: 'Budgeting Maintenance Berbasis RBM',
+      href: '/blog/Management/MSH/MSH-4-budgeting',
+      description:
+        'Module 4 – Budgeting Maintenance Berbasis Risk-Based Maintenance (RBM)',
+    },
+    {
+      name: 'MoSCoW sebagai Alat Pengambil Keputusan',
+      href: '/blog/management/moscow',
+      description:
+        'Dari Perencanaan hingga Eksekusi - MoSCoW sebagai Alat Pengambil Keputusan',
+    },
+  ]}
+/>
+
+Menempatkan **anggaran sebagai konsekuensi langsung dari keputusan risiko dan strategi pemeliharaan**.  
+Module ini mengunci _risk barrier cost_, membedakan biaya mandatory dan optimizable, serta menjadi jembatan antara RBM dan governance organisasi.
+
+👉 Output utama: **komitmen sumber daya yang selaras dengan risk appetite perusahaan**.
+
+---
+
+- **Module 5 | Organisasi, KPI & Akuntabilitas**
 
 <ResourceBox
   title="Korelasi internal-link modul:"
@@ -259,7 +291,7 @@ RBM diposisikan sebagai **kerangka seleksi strategi**, bukan metode baru.
       name: 'Organisasi, KPI, dan Akuntabilitas',
       href: '/blog/Management/MSH/MSH-5-organization',
       description:
-        'Module 4 – Organisasi, KPI, dan Akuntabilitas dalam Sistem Pemeliharaan',
+        'Module 5 – Organisasi, KPI, dan Akuntabilitas dalam Sistem Pemeliharaan',
     },
   ]}
 />
@@ -274,7 +306,7 @@ Menegaskan bahwa sistem hanya bekerja jika ada:
 
 ---
 
-- **Module 5 | Eksekusi, Troubleshooting & Learning**
+- **Module 6 | Eksekusi, Troubleshooting & Learning**
 
 <ResourceBox
   title="Korelasi internal-link modul:"
@@ -283,7 +315,7 @@ Menegaskan bahwa sistem hanya bekerja jika ada:
       name: 'Eksekusi, Troubleshooting, dan Sistem Pembelajaran',
       href: '/blog/Management/MSH/MSH-6-eksekusi',
       description:
-        'Module 5 – Eksekusi, Troubleshooting, dan Sistem Pembelajaran Pemeliharaan',
+        'Module 6 – Eksekusi, Troubleshooting, dan Sistem Pembelajaran Pemeliharaan',
     },
     {
       name: 'Panduan Troubleshooting & Pemilihan Metode RCA',
@@ -309,7 +341,7 @@ Memastikan setiap gangguan menghasilkan **pembelajaran sistem**, melalui:
 
 ---
 
-- **Module 6 | SHE sebagai System Constraint**
+- **Module 7 | SHE sebagai System Constraint**
 
 <ResourceBox
   title="Korelasi internal-link modul:"
@@ -318,7 +350,7 @@ Memastikan setiap gangguan menghasilkan **pembelajaran sistem**, melalui:
       name: 'SHE sebagai Batas Sistem dalam Pengambilan Keputusan',
       href: '/blog/Management/MSH/MSH-7-she-compliance',
       description:
-        'Module 6 – SHE sebagai Batas Sistem dalam Pengambilan Keputusan Pemeliharaan',
+        'Module 7 – SHE sebagai Batas Sistem dalam Pengambilan Keputusan Pemeliharaan',
     },
   ]}
 />
@@ -330,7 +362,7 @@ Tidak ada efisiensi, optimasi biaya, atau inovasi yang sah jika melewati batas k
 
 ---
 
-- **Module 7 | Lifecycle, Turnaround & Continuous Improvement**
+- **Module 8 | Lifecycle, Turnaround & Continuous Improvement**
 
 <ResourceBox
   title="Korelasi internal-link modul:"
@@ -339,7 +371,7 @@ Tidak ada efisiensi, optimasi biaya, atau inovasi yang sah jika melewati batas k
       name: 'Lifecycle Aset',
       href: '/blog/Management/MSH/MSH-8-lifecycle-ta',
       description:
-        'Module 7 – Lifecycle Aset, Turnaround, dan Continuous Improvement Sistem Pemeliharaan',
+        'Module 8 – Lifecycle Aset, Turnaround, dan Continuous Improvement Sistem Pemeliharaan',
     },
   ]}
 />
@@ -386,12 +418,22 @@ Memastikan MSH dipahami **sebagai satu sistem utuh**, bukan kumpulan modul terpi
 **Target audiens:**
 Manajemen, superintendent, engineer senior
 
-**Modul yang dibaca:**
-
-- **Module 0** – Konteks & urgensi perubahan
-  [_Module 0 – Konteks Industri dan Alasan Sistem Pemeliharaan Harus Berevolusi_](/blog/Management/MSH/MSH-0-maintenance-evolusi)
-- **Module 1** – Filosofi sistem maintenance
-  [_Module 1 – Filosofi dan Fondasi Risiko Sistem Pemeliharaan_](/blog/Management/MSH/MSH-1-maintenance-fondasi-risiko)
+<ResourceBox
+  title="Modul yang dibaca:"
+  items={[
+    {
+      name: 'Alasan Sistem Pemeliharaan Harus Berevolusi',
+      href: '/blog/Management/MSH/MSH-0-maintenance-evolusi',
+      description:
+        'Module 0 – Konteks Industri dan Alasan Sistem Pemeliharaan Harus Berevolusi',
+    },
+    {
+      name: 'Fondasi Risiko Sistem Pemeliharaan',
+      href: '/blog/Management/MSH/MSH-1-maintenance-fondasi-risiko',
+      description: 'Module 1 – Filosofi dan Fondasi Risiko Sistem Pemeliharaan',
+    },
+  ]}
+/>
 
 **Fokus pemahaman:**
 
@@ -411,10 +453,17 @@ Manajemen, superintendent, engineer senior
 **Target audiens:**
 Engineer, supervisor, superintendent
 
-**Modul yang dibaca:**
-
-- **Module 2** – Risk model & decision logic
-  [_Module 2 – Model Risiko dan Logika Pengambilan Keputusan Pemeliharaan_](/blog/Management/MSH/MSH-2-model-risiko)
+<ResourceBox
+  title="Modul yang dibaca:"
+  items={[
+    {
+      name: 'Model Risiko dan Logika Pengambilan Keputusan',
+      href: '/blog/Management/MSH/MSH-2-model-risiko',
+      description:
+        'Module 2 – Model Risiko dan Logika Pengambilan Keputusan Pemeliharaan',
+    },
+  ]}
+/>
 
 **Fokus pemahaman:**
 
@@ -434,10 +483,17 @@ Engineer, supervisor, superintendent
 **Target audiens:**
 Maintenance team inti
 
-**Modul yang dibaca:**
-
-- **Module 3** – RBM sebagai strategi praktis
-  [_Module 3 – Risk-Based Maintenance sebagai Strategi Pemeliharaan Praktis_](/blog/Management/MSH/MSH-3-rbm)
+<ResourceBox
+  title="Modul yang dibaca:"
+  items={[
+    {
+      name: 'Risk-Based Maintenance',
+      href: '/blog/Management/MSH/MSH-3-rbm',
+      description:
+        'Module 3 – Risk-Based Maintenance sebagai Strategi Pemeliharaan Praktis',
+    },
+  ]}
+/>
 
 **Fokus pemahaman:**
 
@@ -452,15 +508,54 @@ Maintenance team inti
 
 ---
 
-- **Tahap 4 — Organisasi & Akuntabilitas**
+---
+
+- **Tahap 4 — Budgeting & Komitmen Sumber Daya (Decision Consequence Layer)**
+
+**Target audiens:**
+Maintenance manager, engineering manager, finance partner
+
+<ResourceBox
+  title="Modul yang dibaca:"
+  items={[
+    {
+      name: 'Budgeting Maintenance Berbasis RBM',
+      href: '/blog/Management/MSH/MSH-4-budgeting',
+      description:
+        'Module 4 – Budgeting Maintenance Berbasis Risk-Based Maintenance (RBM)',
+    },
+  ]}
+/>
+
+**Fokus pemahaman:**
+
+- Budget sebagai output keputusan risiko
+- Perbedaan _mandatory risk barrier cost_ vs biaya yang dapat dioptimasi
+- Konsekuensi organisasi jika budget tidak selaras dengan risk appetite
+
+📌 **Output yang diharapkan:**
+
+- Diskusi anggaran berbasis risiko, bukan histori
+- RBM tidak runtuh saat cost pressure
+
+---
+
+- **Tahap 5 — Organisasi & Akuntabilitas**
 
 **Target audiens:**
 Manajemen, HR teknis, supervisor
 
-**Modul yang dibaca:**
-
-- **Module 4** – Organization, KPI & accountability
-  [_Module 4 – Organisasi, KPI, dan Akuntabilitas dalam Sistem Pemeliharaan_](/blog/Management/MSH/MSH-5-organization)
+<ResourceBox
+  title="Modul yang dibaca:"
+  items={[
+    {
+      name: 'Organisasi, KPI, dan Akuntabilitas',
+      href: '/blog/Management/MSH/MSH-5-organization',
+      description:
+        'Module 5 – Organisasi, KPI, dan Akuntabilitas dalam Sistem Pemeliharaan',
+    },
+  ]}
+/>
 
 **Fokus pemahaman:**
 
@@ -474,15 +569,22 @@ Manajemen, HR teknis, supervisor
 
 ---
 
-- **Tahap 5 — Eksekusi & Pembelajaran**
+- **Tahap 6 — Eksekusi & Pembelajaran**
 
 **Target audiens:**
 Seluruh level maintenance
 
-**Modul yang dibaca:**
-
-- **Module 5** – Execution, troubleshooting & learning
-  [_Module 5 – Eksekusi, Troubleshooting, dan Sistem Pembelajaran Pemeliharaan_](/blog/Management/MSH/MSH-6-eksekusi)
+<ResourceBox
+  title="Modul yang dibaca:"
+  items={[
+    {
+      name: 'Eksekusi, Troubleshooting, dan Sistem Pembelajaran',
+      href: '/blog/Management/MSH/MSH-6-eksekusi',
+      description:
+        'Module 6 – Eksekusi, Troubleshooting, dan Sistem Pembelajaran Pemeliharaan',
+    },
+  ]}
+/>
 
 **Fokus pemahaman:**
 
@@ -497,17 +599,28 @@ Seluruh level maintenance
 
 ---
 
-- **Tahap 6 — Batas SHE & Keberlanjutan**
+- **Tahap 7 — Batas SHE & Keberlanjutan**
 
 **Target audiens:**
 Semua level, wajib untuk leader
 
-**Modul yang dibaca:**
-
-- **Module 6** – SHE sebagai system constraint
-  [_Module 6 – SHE sebagai Batas Sistem dalam Pengambilan Keputusan Pemeliharaan_](/blog/Management/MSH/MSH-7-she-compliance)
-- **Module 7** – Lifecycle & continuous improvement
-  [_Module 7 – Lifecycle Aset, Turnaround, dan Continuous Improvement Sistem Pemeliharaan_](/blog/Management/MSH/MSH-8-lifecycle-ta)
+<ResourceBox
+  title="Modul yang dibaca:"
+  items={[
+    {
+      name: 'SHE sebagai Batas Sistem dalam Pengambilan Keputusan',
+      href: '/blog/Management/MSH/MSH-7-she-compliance',
+      description:
+        'Module 7 – SHE sebagai Batas Sistem dalam Pengambilan Keputusan Pemeliharaan',
+    },
+    {
+      name: 'Lifecycle Aset',
+      href: '/blog/Management/MSH/MSH-8-lifecycle-ta',
+      description:
+        'Module 8 – Lifecycle Aset, Turnaround, dan Continuous Improvement Sistem Pemeliharaan',
+    },
+  ]}
+/>
 
 **Fokus pemahaman:**
 
@@ -665,15 +778,16 @@ Assessment dibangun berdasarkan **seluruh modul Maintenance System Handbook (Mod
 
 * Dimensi Penilaian Utama
 
-| Dimensi                         | Cakupan   |
-| ------------------------------- | --------- |
-| **Filosofi & Governance**       | Modul 0–1 |
-| **Risk & Decision Logic**       | Modul 2   |
-| **Strategi Pemeliharaan (RBM)** | Modul 3   |
-| **Organisasi & KPI**            | Modul 4   |
-| **Eksekusi & Learning**         | Modul 5   |
-| **SHE sebagai Constraint**      | Modul 6   |
-| **Lifecycle & Improvement**     | Modul 7   |
+| Dimensi                             | Cakupan   |
+| ----------------------------------- | --------- |
+| **Filosofi & Governance**           | Modul 0–1 |
+| **Risk & Decision Logic**           | Modul 2   |
+| **Strategi Pemeliharaan (RBM)**     | Modul 3   |
+| **Budgeting & Resource Governance** | Modul 4   |
+| **Organisasi & KPI**                | Modul 5   |
+| **Eksekusi & Learning**             | Modul 6   |
+| **SHE sebagai Constraint**          | Modul 7   |
+| **Lifecycle & Improvement**         | Modul 8   |
 
 ---
 
@@ -736,7 +850,23 @@ Tidak semua plant _harus_ berada di Level 5, tetapi **tidak boleh stagnan**.
 
 ---
 
-- 🔹 4. Modul 4: Organisasi, KPI & Akuntabilitas
+- 🔹 4. Modul 4: Budgeting & Resource Governance
+
+**Pertanyaan Kunci:**
+
+- Apakah anggaran maintenance diturunkan dari klasifikasi risiko aset?
+- Apakah terdapat pemisahan jelas antara biaya mandatory dan optimizable?
+- Apakah corrective menjadi alarm sistem, bukan strategi?
+
+**Indikator:**
+
+- Risk-linked budget line item
+- Locked budget untuk safety & compliance
+- Redistribusi budget berbasis risk class
+
+---
+
+- 🔹 5. Modul 5: Organisasi, KPI & Akuntabilitas
 
 **Pertanyaan Kunci:**
 
@@ -750,7 +880,7 @@ Tidak semua plant _harus_ berada di Level 5, tetapi **tidak boleh stagnan**.
 
 ---
 
-- 🔹 5. Modul 5: Eksekusi, RCA & Learning Loop
+- 🔹 6. Modul 6: Eksekusi, RCA & Learning Loop
 
 **Pertanyaan Kunci:**
 
@@ -764,7 +894,7 @@ Tidak semua plant _harus_ berada di Level 5, tetapi **tidak boleh stagnan**.
 
 ---
 
-- 🔹 6. Modul 6: SHE sebagai System Constraint
+- 🔹 7. Modul 7: SHE sebagai System Constraint
 
 **Pertanyaan Kunci:**
 
@@ -778,7 +908,7 @@ Tidak semua plant _harus_ berada di Level 5, tetapi **tidak boleh stagnan**.
 
 ---
 
-- 🔹 7. Modul 7: Lifecycle, TA & Continuous Improvement
+- 🔹 8. Modul 8: Lifecycle, TA & Continuous Improvement
 
 **Pertanyaan Kunci:**
 
