@@ -15,7 +15,7 @@ tags:
     'continuous-improvement-maintenance',
   ]
 draft: false
-summary: Module 5 menempatkan eksekusi pemeliharaan, troubleshooting, dan pembelajaran organisasi sebagai inti keandalan sistem jangka panjang. Modul ini menegaskan bahwa kualitas sistem maintenance tidak ditentukan oleh strategi di atas kertas, tetapi oleh disiplin eksekusi di lapangan dan kemampuan organisasi menghentikan kegagalan berulang. Melalui troubleshooting yang sistematis, penerapan RCA, FMEA, dan FTA, serta penguatan indikator first-time fix, setiap gangguan diubah menjadi sumber pembelajaran. Dokumentasi diposisikan sebagai aset teknis dan memori organisasi, sementara learning loop memastikan hasil analisa memperbarui strategi RBM dan interval pemeliharaan. Dengan pendekatan ini, organisasi bergerak dari pola reaktif menuju sistem pemeliharaan preventif, adaptif, dan stabil.
+summary: Module 6 menempatkan eksekusi pemeliharaan, troubleshooting, dan pembelajaran organisasi sebagai inti keandalan sistem jangka panjang. Modul ini menegaskan bahwa kualitas sistem maintenance tidak ditentukan oleh strategi di atas kertas, tetapi oleh disiplin eksekusi di lapangan dan kemampuan organisasi menghentikan kegagalan berulang. Melalui troubleshooting yang sistematis, penerapan RCA, FMEA, dan FTA, serta penguatan indikator first-time fix, setiap gangguan diubah menjadi sumber pembelajaran. Dokumentasi diposisikan sebagai aset teknis dan memori organisasi, sementara learning loop memastikan hasil analisa memperbarui strategi RBM dan interval pemeliharaan. Dengan pendekatan ini, organisasi bergerak dari pola reaktif menuju sistem pemeliharaan preventif, adaptif, dan stabil.
 ---
 
 **_Eksekusi, Troubleshooting, dan Sistem Pembelajaran Pemeliharaan_**
@@ -23,36 +23,36 @@ summary: Module 5 menempatkan eksekusi pemeliharaan, troubleshooting, dan pembel
 ---
 
 - [📌 Prolog Modul](#-prolog-modul)
-- [5.1 Eksekusi Pemeliharaan sebagai Titik Kritis Sistem](#51-eksekusi-pemeliharaan-sebagai-titik-kritis-sistem)
-- [5.2 Troubleshooting sebagai Proses Sistematis (Bukan Insting)](#52-troubleshooting-sebagai-proses-sistematis-bukan-insting)
+- [6.1 Eksekusi Pemeliharaan sebagai Titik Kritis Sistem](#61-eksekusi-pemeliharaan-sebagai-titik-kritis-sistem)
+- [6.2 Troubleshooting sebagai Proses Sistematis (Bukan Insting)](#62-troubleshooting-sebagai-proses-sistematis-bukan-insting)
   - [Tahapan Troubleshooting Sistematis](#tahapan-troubleshooting-sistematis)
-- [5.3 Root Cause Analysis (RCA): Menghentikan Masalah di Akarnya](#53-root-cause-analysis-rca-menghentikan-masalah-di-akarnya)
+- [6.3 Root Cause Analysis (RCA): Menghentikan Masalah di Akarnya](#63-root-cause-analysis-rca-menghentikan-masalah-di-akarnya)
   - [Tujuan dan Prinsip RCA](#tujuan-dan-prinsip-rca)
   - [Kapan RCA Wajib Dilakukan](#kapan-rca-wajib-dilakukan)
   - [Peran Engineer dan Supervisor dalam RCA](#peran-engineer-dan-supervisor-dalam-rca)
   - [RCA sebagai Kewajiban Sistem](#rca-sebagai-kewajiban-sistem)
-- [5.4 FMEA dan FTA sebagai Alat Pencegahan Kegagalan](#54-fmea-dan-fta-sebagai-alat-pencegahan-kegagalan)
+- [6.4 FMEA dan FTA sebagai Alat Pencegahan Kegagalan](#64-fmea-dan-fta-sebagai-alat-pencegahan-kegagalan)
   - [FMEA: Mengantisipasi Kegagalan Sejak Dini](#fmea-mengantisipasi-kegagalan-sejak-dini)
   - [FTA: Memahami Jalur Penyebab Kegagalan Kritis](#fta-memahami-jalur-penyebab-kegagalan-kritis)
   - [Integrasi dalam Sistem Pemeliharaan](#integrasi-dalam-sistem-pemeliharaan)
-- [5.5 First-Time Fix sebagai Indikator Kematangan Eksekusi](#55-first-time-fix-sebagai-indikator-kematangan-eksekusi)
+- [6.5 First-Time Fix sebagai Indikator Kematangan Eksekusi](#65-first-time-fix-sebagai-indikator-kematangan-eksekusi)
   - [Definisi First-Time Fix](#definisi-first-time-fix)
   - [Faktor Penentu First-Time Fix](#faktor-penentu-first-time-fix)
   - [First-Time Fix dalam Kerangka KPI](#first-time-fix-dalam-kerangka-kpi)
-- [5.6 Dokumentasi Pemeliharaan sebagai Aset Teknis](#56-dokumentasi-pemeliharaan-sebagai-aset-teknis)
+- [6.6 Dokumentasi Pemeliharaan sebagai Aset Teknis](#66-dokumentasi-pemeliharaan-sebagai-aset-teknis)
   - [Dokumentasi sebagai Histori dan Basis Evaluasi](#dokumentasi-sebagai-histori-dan-basis-evaluasi)
   - [Dokumentasi sebagai Referensi Troubleshooting](#dokumentasi-sebagai-referensi-troubleshooting)
   - [Integrasi dengan Sistem dan Fungsi Lain](#integrasi-dengan-sistem-dan-fungsi-lain)
-- [5.7 Learning Loop: Dari Gangguan ke Perbaikan Sistem](#57-learning-loop-dari-gangguan-ke-perbaikan-sistem)
+- [6.7 Learning Loop: Dari Gangguan ke Perbaikan Sistem](#67-learning-loop-dari-gangguan-ke-perbaikan-sistem)
   - [Konsep Learning Loop dalam Pemeliharaan](#konsep-learning-loop-dalam-pemeliharaan)
   - [Integrasi Learning Loop dengan Sistem Pemeliharaan](#integrasi-learning-loop-dengan-sistem-pemeliharaan)
   - [Learning Loop sebagai Penggerak Sistem Hidup](#learning-loop-sebagai-penggerak-sistem-hidup)
-- [5.8 Troubleshooting sebagai Sistem Pembelajaran Tim](#58-troubleshooting-sebagai-sistem-pembelajaran-tim)
+- [6.8 Troubleshooting sebagai Sistem Pembelajaran Tim](#68-troubleshooting-sebagai-sistem-pembelajaran-tim)
   - [Transfer Pengetahuan Antar Shift](#transfer-pengetahuan-antar-shift)
   - [Pembelajaran Lintas Jabatan](#pembelajaran-lintas-jabatan)
   - [Troubleshooting sebagai Materi Training Internal](#troubleshooting-sebagai-materi-training-internal)
-- [🧠 Kesimpulan Module 5](#-kesimpulan-module-5)
-- [📚 Referensi Module 5](#-referensi-module-5)
+- [🧠 Kesimpulan Module 6](#-kesimpulan-module-6)
+- [📚 Referensi Module 6](#-referensi-module-6)
 
 ---
 
@@ -65,7 +65,7 @@ Modul ini merupakan bagian dari **Maintenance System Handbook (MSH)** yang secar
 Pada titik ini, sistem pemeliharaan telah memiliki **arah strategis** dan **struktur akuntabilitas** yang jelas.
 
 - **Module 3** telah menjelaskan _strategi Risk-Based Maintenance (RBM) dan bagaimana strategi tersebut diterapkan secara praktis_,
-- **Module 4** telah memastikan _siapa yang bertanggung jawab atas setiap keputusan, kinerja, dan biaya_.
+- **Module 5** telah memastikan _siapa yang bertanggung jawab atas setiap keputusan, kinerja, dan biaya_.
 
 Namun, tanpa mekanisme yang memastikan bahwa setiap gangguan menghasilkan pembelajaran, sistem pemeliharaan akan tetap terjebak pada pola **reaktif**—memperbaiki kerusakan yang sama berulang kali tanpa peningkatan keandalan yang nyata. Oleh karena itu, **Module 5** berfokus pada penguatan titik terlemah sekaligus paling menentukan dalam sistem pemeliharaan, yaitu **eksekusi, troubleshooting, dan pembelajaran organisasi**.
 
@@ -84,20 +84,20 @@ Dalam modul ini, **troubleshooting, analisa akar masalah, dan dokumentasi** dipo
       name: 'Organisasi, KPI, dan Akuntabilitas',
       href: '/blog/management/MSH/MSH-5-organization',
       description:
-        'Module 4 – Organisasi, KPI, dan Akuntabilitas dalam Sistem Pemeliharaan',
+        'Module 5 – Organisasi, KPI, dan Akuntabilitas dalam Sistem Pemeliharaan',
     },
     {
       name: 'SHE sebagai Batas Sistem dalam Pengambilan Keputusan',
       href: '/blog/management/MSH/MSH-7-she-compliance',
       description:
-        'Module 6 – SHE sebagai Batas Sistem dalam Pengambilan Keputusan Pemeliharaan',
+        'Module 7 – SHE sebagai Batas Sistem dalam Pengambilan Keputusan Pemeliharaan',
     },
   ]}
 />
 
 ---
 
-## 5.1 Eksekusi Pemeliharaan sebagai Titik Kritis Sistem
+## 6.1 Eksekusi Pemeliharaan sebagai Titik Kritis Sistem
 
 Sub-bab ini menegaskan bahwa **kualitas nyata sistem pemeliharaan ditentukan pada tahap eksekusi**, bukan pada kelengkapan dokumen strategi atau kecanggihan metode analisis. Strategi RBM, struktur organisasi, dan KPI hanya akan memberikan nilai jika **diterjemahkan secara konsisten dan disiplin di lapangan**.
 
@@ -123,7 +123,7 @@ Dalam kerangka **Maintenance System Handbook**, eksekusi diposisikan sebagai **v
 
 ---
 
-## 5.2 Troubleshooting sebagai Proses Sistematis (Bukan Insting)
+## 6.2 Troubleshooting sebagai Proses Sistematis (Bukan Insting)
 
 Sub-bab ini menegaskan bahwa **troubleshooting dalam sistem pemeliharaan modern harus diperlakukan sebagai proses sistematis**, bukan sebagai aktivitas berbasis insting atau pengalaman individual semata. Pola _trial-and-error_ yang tidak terstruktur memang dapat menyelesaikan masalah sesaat, namun hampir selalu menyisakan **risiko kegagalan berulang** karena akar permasalahan tidak diidentifikasi secara utuh.
 
@@ -151,7 +151,7 @@ Dalam kerangka **Maintenance System Handbook**, troubleshooting diposisikan seba
 
 ---
 
-## 5.3 Root Cause Analysis (RCA): Menghentikan Masalah di Akarnya
+## 6.3 Root Cause Analysis (RCA): Menghentikan Masalah di Akarnya
 
 Sub-bab ini menempatkan **Root Cause Analysis (RCA)** sebagai mekanisme utama untuk **menghentikan kegagalan berulang (recurrence)** dalam sistem pemeliharaan. RCA bukan sekadar alat analisis pascakejadian, melainkan **kewajiban sistem** ketika gangguan menunjukkan pola berulang, berdampak signifikan terhadap keselamatan, lingkungan, atau kontinuitas operasi.
 
@@ -186,7 +186,7 @@ Dalam kerangka **Maintenance System Handbook**, RCA diperlakukan sebagai **kewaj
 
 ---
 
-## 5.4 FMEA dan FTA sebagai Alat Pencegahan Kegagalan
+## 6.4 FMEA dan FTA sebagai Alat Pencegahan Kegagalan
 
 Sub-bab ini menggeser orientasi pemeliharaan dari pendekatan **reaktif (_after failure_)** menuju **pencegahan terstruktur (_before failure_)** melalui pemanfaatan **Failure Mode and Effects Analysis (FMEA)** dan **Fault Tree Analysis (FTA)**. Kedua metode ini tidak berdiri sendiri, melainkan berfungsi sebagai **alat analisis pendukung** dalam sistem pengambilan keputusan berbasis risiko.
 
@@ -223,7 +223,7 @@ Penerapan FMEA dan FTA memperkuat **decision logic berbasis risiko (Module 2)** 
 
 ---
 
-## 5.5 First-Time Fix sebagai Indikator Kematangan Eksekusi
+## 6.5 First-Time Fix sebagai Indikator Kematangan Eksekusi
 
 Sub-bab ini menempatkan **first-time fix (FTF)** sebagai **indikator kunci kematangan eksekusi pemeliharaan**, bukan sebagai hasil kebetulan atau kemampuan individu semata. Dalam sistem pemeliharaan modern, FTF mencerminkan **kualitas sistem secara keseluruhan**, mulai dari perencanaan hingga kompetensi eksekutor.
 
@@ -265,7 +265,7 @@ Dengan menjadikan first-time fix sebagai **target sistem**, organisasi pemelihar
 
 ---
 
-## 5.6 Dokumentasi Pemeliharaan sebagai Aset Teknis
+## 6.6 Dokumentasi Pemeliharaan sebagai Aset Teknis
 
 Sub-bab ini menegaskan bahwa **dokumentasi pemeliharaan merupakan aset teknis strategis**, bukan kewajiban administratif semata. Dalam sistem pemeliharaan modern, dokumentasi berfungsi sebagai **memori organisasi** yang menjaga kesinambungan pengetahuan teknis lintas waktu, personel, dan generasi.
 
@@ -296,7 +296,7 @@ Tanpa dokumentasi yang disiplin dan terstruktur, organisasi pemeliharaan akan **
 
 ---
 
-## 5.7 Learning Loop: Dari Gangguan ke Perbaikan Sistem
+## 6.7 Learning Loop: Dari Gangguan ke Perbaikan Sistem
 
 Sub-bab ini menegaskan bahwa **keandalan sistem pemeliharaan tidak ditentukan oleh ketiadaan gangguan**, melainkan oleh **kemampuan organisasi belajar dari setiap gangguan yang terjadi**. Dalam kerangka _Maintenance System Handbook_, mekanisme tersebut diwujudkan melalui **learning loop** yang terstruktur dan berulang.
 
@@ -338,7 +338,7 @@ Dengan demikian, learning loop menjadi **jembatan antara pengalaman lapangan dan
 
 ---
 
-## 5.8 Troubleshooting sebagai Sistem Pembelajaran Tim
+## 6.8 Troubleshooting sebagai Sistem Pembelajaran Tim
 
 Sub-bab ini menempatkan **troubleshooting** bukan sekadar sebagai aktivitas teknis penyelesaian masalah, melainkan sebagai **mekanisme pembelajaran kolektif** yang memperkuat stabilitas dan kematangan organisasi pemeliharaan. Dalam sistem pemeliharaan modern, nilai troubleshooting tidak berhenti pada alat kembali beroperasi, tetapi pada **pengetahuan yang diwariskan dan disistematiskan**.
 
@@ -375,13 +375,13 @@ Organisasi yang mampu mengubah troubleshooting menjadi **sistem pembelajaran tim
 
 ---
 
-## 🧠 Kesimpulan Module 5
+## 🧠 Kesimpulan Module 6
 
 Modul 5 menegaskan bahwa **keandalan pemeliharaan tidak diukur dari kecepatan memperbaiki gangguan**, melainkan dari **kemampuan sistem mencegah terulangnya masalah yang sama**. Dalam konteks ini, pemeliharaan yang matang adalah pemeliharaan yang **belajar secara sistematis** dari setiap kegagalan.
 
 Melalui eksekusi yang disiplin, troubleshooting yang terstruktur, penerapan RCA sebagai kewajiban sistem, serta dukungan FMEA dan FTA sebagai alat pencegahan, organisasi pemeliharaan mampu mengubah gangguan menjadi **sumber peningkatan berkelanjutan**. Dokumentasi yang rapi dan learning loop yang aktif memastikan bahwa pengetahuan teknis tidak hilang, melainkan terakumulasi sebagai aset organisasi.
 
-Dengan demikian, Module 5 menjadi penghubung penting antara **strategi (Module 3)** dan **akuntabilitas (Module 4)**, sekaligus fondasi menuju sistem pemeliharaan yang **preventif, adaptif, dan berkelanjutan**.
+Dengan demikian, Module 6 menjadi penghubung penting antara **strategi (Module 3)** dan **akuntabilitas (Module 4)**, sekaligus fondasi menuju sistem pemeliharaan yang **preventif, adaptif, dan berkelanjutan**.
 
 ---
 
@@ -404,32 +404,32 @@ Dengan demikian, Module 5 menjadi penghubung penting antara **strategi (Module 3
       name: 'Organisasi, KPI, dan Akuntabilitas',
       href: '/blog/management/MSH/MSH-5-organization',
       description:
-        'Module 4 – Organisasi, KPI, dan Akuntabilitas dalam Sistem Pemeliharaan',
+        'Module 5 – Organisasi, KPI, dan Akuntabilitas dalam Sistem Pemeliharaan',
     },
     {
       name: 'Eksekusi, Troubleshooting, dan Sistem Pembelajaran',
       href: '/blog/management/MSH/MSH-6-eksekusi',
       description:
-        'Module 5 – Eksekusi, Troubleshooting, dan Sistem Pembelajaran Pemeliharaan',
+        'Module 6 – Eksekusi, Troubleshooting, dan Sistem Pembelajaran Pemeliharaan',
     },
     {
       name: 'SHE sebagai Batas Sistem dalam Pengambilan Keputusan',
       href: '/blog/management/MSH/MSH-7-she-compliance',
       description:
-        'Module 6 – SHE sebagai Batas Sistem dalam Pengambilan Keputusan Pemeliharaan',
+        'Module 7 – SHE sebagai Batas Sistem dalam Pengambilan Keputusan Pemeliharaan',
     },
     {
       name: 'Lifecycle Aset',
       href: '/blog/management/MSH/MSH-8-lifecycle-ta',
       description:
-        'Module 7 – Lifecycle Aset, Turnaround, dan Continuous Improvement Sistem Pemeliharaan',
+        'Module 8 – Lifecycle Aset, Turnaround, dan Continuous Improvement Sistem Pemeliharaan',
     },
   ]}
 />
 
 ---
 
-## 📚 Referensi Module 5
+## 📚 Referensi Module 6
 
 1. **Artikel 2**
    _Efisiensi dan Keandalan dalam Manajemen Pemeliharaan_ – Bab Troubleshooting, KPI, dan Dokumentasi

@@ -27,10 +27,17 @@ summary: Modul 3 menempatkan Risk-Based Maintenance (RBM) sebagai strategi pemel
 - [3.2 RBM sebagai Kerangka Seleksi Strategi Pemeliharaan](#32-rbm-sebagai-kerangka-seleksi-strategi-pemeliharaan)
 - [3.3 Preventive–Adaptive TBM: Evolusi TBM Tradisional](#33-preventiveadaptive-tbm-evolusi-tbm-tradisional)
 - [3.4 Implementasi RBM di PT PON: Langkah Operasional Nyata](#34-implementasi-rbm-di-pt-pon-langkah-operasional-nyata)
-- [3.5 Tiering Aset dan Pola Evaluasi Berlapis](#35-tiering-aset-dan-pola-evaluasi-berlapis)
-- [3.6 _Evaluation Loop_: RBM sebagai Sistem Hidup](#36-evaluation-loop-rbm-sebagai-sistem-hidup)
-- [3.7 Perencanaan Pemeliharaan Berbasis 5M](#37-perencanaan-pemeliharaan-berbasis-5m)
-- [3.8 RBM sebagai Sistem Training dan Disiplin Operasional](#38-rbm-sebagai-sistem-training-dan-disiplin-operasional)
+- [3.5 Posisi Risk-Based Inspection (RBI) dalam Kerangka RBM](#35-posisi-risk-based-inspection-rbi-dalam-kerangka-rbm)
+- [3.6 Tiering Aset dan Pola Evaluasi Berlapis](#36-tiering-aset-dan-pola-evaluasi-berlapis)
+- [3.7 _Evaluation Loop_: RBM sebagai Sistem Hidup](#37-evaluation-loop-rbm-sebagai-sistem-hidup)
+- [3.8 Perencanaan Pemeliharaan Berbasis 5M + 1E](#38-perencanaan-pemeliharaan-berbasis-5m--1e)
+  - [**Man (Sumber Daya Manusia)**](#man-sumber-daya-manusia)
+  - [**Machine / Tools (Peralatan dan Akses)**](#machine--tools-peralatan-dan-akses)
+  - [**Money (Anggaran)**](#money-anggaran)
+  - [**Method (Metode dan Prosedur)**](#method-metode-dan-prosedur)
+  - [**Material (Suku Cadang dan Consumable)**](#material-suku-cadang-dan-consumable)
+  - [**1E — Environment (Batas Sistem dan Konsekuensi Lingkungan)**](#1e--environment-batas-sistem-dan-konsekuensi-lingkungan)
+- [3.9 RBM sebagai Sistem Training dan Disiplin Operasional](#39-rbm-sebagai-sistem-training-dan-disiplin-operasional)
 - [🧠 Kesimpulan Module 3](#-kesimpulan-module-3)
 - [📚 Referensi Module 3](#-referensi-module-3)
 
@@ -64,10 +71,16 @@ Sebagai tulang punggung pembahasan, Modul 3 menggunakan **studi kasus nyata PT P
         'Module 2 – Model Risiko dan Logika Pengambilan Keputusan Pemeliharaan',
     },
     {
-      name: 'Organisasi, KPI, dan Akuntabilitas',
-      href: '/blog/management/MSH/MSH-5-organization',
+      name: 'Budgeting Maintenance',
+      href: '/blog/management/MSH/MSH-4-budgeting',
       description:
-        'Module 4 – Organisasi, KPI, dan Akuntabilitas dalam Sistem Pemeliharaan',
+        'Module 4 – Budgeting Maintenance Berbasis Risk-Based Maintenance (RBM) di Pabrik Petrokimia',
+    },
+    {
+      name: 'Strategi Manpower',
+      href: '/blog/management/MSH/MSH-manpower',
+      description:
+        'Strategi Manpower dalam Ekosistem Risk-Based Maintenance (RBM)',
     },
   ]}
 />
@@ -150,7 +163,37 @@ Tidak ada RBM tanpa **data aset yang rapi, konsisten, dan dapat ditelusuri**. Ku
 
 ---
 
-## 3.5 Tiering Aset dan Pola Evaluasi Berlapis
+## 3.5 Posisi Risk-Based Inspection (RBI) dalam Kerangka RBM
+
+Dalam kerangka **Risk-Based Maintenance (RBM)** yang diterapkan di PT Petro Oxo Nusantara, perlu ditegaskan bahwa **inspection berbasis risiko telah menjadi bagian inheren dari sistem**, meskipun tidak dibentuk sebagai program **Risk-Based Inspection (RBI) formal** yang terpisah sebagaimana didefinisikan dalam API RP 580. Pendekatan ini diambil secara sadar dan pragmatis, dengan tujuan menjaga keterlaksanaan di lapangan tanpa kehilangan disiplin pengendalian risiko.
+
+Fungsi **Risk-Based Inspection (RBI)** di PT PON dijalankan secara **embedded** melalui mekanisme **grading ESC**, **klasifikasi kritikalitas aset**, serta **tiering aset dan evaluasi berlapis**. Diferensiasi frekuensi inspeksi, kedalaman pemeriksaan, dan fokus evaluasi ditentukan berdasarkan **konsekuensi kegagalan dan dampaknya terhadap keselamatan, lingkungan, dan kontinuitas operasi**, bukan berdasarkan interval generik atau keseragaman perlakuan aset.
+
+Dengan pendekatan ini, **RBI tidak berdiri sebagai sistem terpisah**, melainkan berfungsi sebagai **inspection strategy di dalam RBM**, yang secara langsung terhubung dengan pengambilan keputusan pemeliharaan, alokasi sumber daya, dan _evaluation loop_. Model ini memastikan bahwa inspeksi berkontribusi nyata terhadap pengendalian risiko sistem, sekaligus menghindari kompleksitas administratif yang tidak proporsional dengan konteks operasional plant.
+
+📌 **Penegasan penting:**
+Dalam konteks RBM PT PON, **RBI dipahami sebagai fungsi, bukan sebagai label program**. Selama inspeksi diarahkan oleh risiko, dibedakan berdasarkan konsekuensi, dan dievaluasi secara berkala dalam _learning loop_, maka prinsip RBI telah dijalankan secara sah, konsisten, dan dapat dipertanggungjawabkan.
+
+---
+
+> 🧩 Diagram Konseptual
+
+Diagram sederhana berikut menegaskan posisi RBI secara struktural tanpa mengganggu arsitektur RBM yang telah dibangun.
+
+```
+RBM (System Level)
+│
+├── Maintenance Strategy Selection
+│
+├── Inspection Strategy
+│     └── RBI (embedded, ESC-based)
+│
+└── Evaluation & Learning Loop
+```
+
+---
+
+## 3.6 Tiering Aset dan Pola Evaluasi Berlapis
 
 Dalam implementasi RBM di lapangan, muncul pertanyaan praktis yang sangat relevan: _“Semua aset penting, tetapi mana yang harus diawasi setiap hari?”_ Pertanyaan ini tidak dapat dijawab dengan pendekatan seragam, karena **tingkat risiko dan konsekuensi kegagalan tiap aset berbeda secara signifikan**. Untuk menjawab kebutuhan tersebut, PT Petro Oxo Nusantara menerapkan **tiering aset** sebagai mekanisme pengaturan fokus dan intensitas evaluasi.
 
@@ -170,7 +213,7 @@ Pendekatan tiering memastikan bahwa **fokus engineer dan supervisor tidak terpec
 
 ---
 
-## 3.6 _Evaluation Loop_: RBM sebagai Sistem Hidup
+## 3.7 _Evaluation Loop_: RBM sebagai Sistem Hidup
 
 Salah satu pembeda utama antara RBM yang matang dan RBM yang hanya berhenti sebagai dokumen adalah keberadaan **evaluation loop yang berjalan secara disiplin**. Dalam konteks ini, RBM diperlakukan sebagai **sistem hidup (_living system_)**, bukan sebagai konfigurasi statis yang ditetapkan sekali lalu dibiarkan berjalan tanpa koreksi.
 
@@ -189,31 +232,59 @@ RBM **bukan sistem statis**, melainkan **_learning system_** yang terus berkemba
 
 ---
 
-## 3.7 Perencanaan Pemeliharaan Berbasis 5M
+## 3.8 Perencanaan Pemeliharaan Berbasis 5M + 1E
 
-Keberhasilan implementasi **Risk-Based Maintenance (RBM)** pada akhirnya ditentukan oleh kesiapan **sistem pendukung eksekusi**. Dalam praktik lapangan, banyak inisiatif RBM gagal bukan karena kerangka konseptualnya keliru, melainkan karena **perencanaan sumber daya tidak selaras dengan tingkat risiko yang dihadapi**. Untuk itu, PT Petro Oxo Nusantara menerapkan pendekatan **5M (Man, Machine/Tools, Money, Method, Material)** sebagai fondasi perencanaan pemeliharaan berbasis risiko.
+Keberhasilan implementasi **Risk-Based Maintenance (RBM)** pada akhirnya ditentukan oleh kesiapan **sistem pendukung eksekusi**. Dalam praktik lapangan, banyak inisiatif RBM gagal bukan karena kerangka konseptualnya keliru, melainkan karena **perencanaan sumber daya tidak selaras dengan tingkat risiko yang dihadapi**. Untuk itu, PT Petro Oxo Nusantara menerapkan pendekatan **5M + 1E (Man, Machine/Tools, Money, Method, Material, dan Environment)** sebagai fondasi perencanaan pemeliharaan berbasis risiko.
 
-**Man (Sumber Daya Manusia)**
-RBM menuntut **kompetensi yang sebanding dengan tingkat kritikalitas aset**. Aset berisiko tinggi memerlukan personel dengan kualifikasi, pengalaman, dan kewenangan yang memadai. Selain jumlah personel, aspek pelatihan dan sertifikasi menjadi krusial agar keputusan teknis dan hasil inspeksi dapat dipertanggungjawabkan.
-
-**Machine / Tools (Peralatan dan Akses)**
-Perencanaan harus memastikan ketersediaan **special tools**, instrumen condition monitoring, serta akses kerja yang aman dan memadai. Tanpa alat yang tepat, inspeksi mendalam dan deteksi dini degradasi tidak dapat dilakukan secara efektif, terlepas dari seberapa baik analisa risikonya.
-
-**Money (Anggaran)**
-RBM mengarahkan anggaran secara **berbasis risiko**, bukan dibagi rata. Aset kritis memperoleh porsi anggaran yang lebih besar untuk inspeksi, monitoring, dan pencegahan, sementara aset dengan dampak kegagalan rendah dikelola secara lebih efisien. Pendekatan ini memastikan bahwa biaya pemeliharaan benar-benar digunakan untuk **mengurangi eksposur risiko terbesar**.
-
-**Method (Metode dan Prosedur)**
-Setiap aktivitas pemeliharaan harus didukung oleh **SOP dan metode inspeksi** yang sesuai dengan tingkat risiko. Metode yang digunakan pada aset kritis harus lebih ketat, terstandar, dan terdokumentasi, sehingga hasilnya konsisten dan dapat diaudit.
-
-**Material (Suku Cadang dan Consumable)**
-Ketersediaan **spare part kritis dan consumable** harus direncanakan berdasarkan klasifikasi risiko dan konsekuensi kegagalan. Keterlambatan material pada aset kritis dapat memperpanjang downtime dan memperbesar kerugian, sehingga perencanaan logistik menjadi bagian integral dari RBM.
-
-📌 **Penegasan:**
-RBM tidak gagal karena konsepnya, tetapi karena **5M tidak siap**. Tanpa keselarasan antara risiko, strategi, dan perencanaan sumber daya, RBM akan kehilangan daya eksekusinya dan kembali tereduksi menjadi dokumen konseptual tanpa dampak nyata di lapangan.
+Pendekatan ini menegaskan bahwa perencanaan pemeliharaan **tidak bersifat netral**, melainkan diturunkan langsung dari **klasifikasi risiko berbasis ESC (Environmental, Safety, Continuous running)**. Dengan demikian, seluruh elemen perencanaan tidak hanya diarahkan untuk menjaga keandalan dan kontinuitas operasi, tetapi juga untuk **mencegah dan membatasi konsekuensi keselamatan serta dampak lingkungan** yang dapat timbul akibat kegagalan aset.
 
 ---
 
-## 3.8 RBM sebagai Sistem Training dan Disiplin Operasional
+### **Man (Sumber Daya Manusia)**
+
+RBM menuntut **kompetensi yang sebanding dengan tingkat kritikalitas aset**. Aset berisiko tinggi memerlukan personel dengan kualifikasi, pengalaman, dan kewenangan yang memadai. Selain jumlah personel, aspek pelatihan dan sertifikasi menjadi krusial agar keputusan teknis, hasil inspeksi, serta respons terhadap kondisi abnormal dapat dipertanggungjawabkan, termasuk dalam konteks **penanganan potensi risiko keselamatan dan lingkungan**.
+
+---
+
+### **Machine / Tools (Peralatan dan Akses)**
+
+Perencanaan harus memastikan ketersediaan **special tools**, instrumen condition monitoring, serta akses kerja yang aman dan memadai. Tanpa alat yang tepat, inspeksi mendalam dan deteksi dini degradasi tidak dapat dilakukan secara efektif, terlepas dari seberapa baik analisa risikonya. Pada aset dengan potensi loss of containment, peralatan pendukung seperti **leak detection, secondary containment, dan alat mitigasi darurat** menjadi bagian dari kebutuhan minimum.
+
+---
+
+### **Money (Anggaran)**
+
+RBM mengarahkan anggaran secara **berbasis risiko**, bukan dibagi rata. Aset kritis memperoleh porsi anggaran yang lebih besar untuk inspeksi, monitoring, dan pencegahan, sementara aset dengan dampak kegagalan rendah dikelola secara lebih efisien. Pendekatan ini memastikan bahwa biaya pemeliharaan benar-benar digunakan untuk **mengurangi eksposur risiko terbesar**, termasuk biaya pencegahan insiden keselamatan dan dampak lingkungan yang berpotensi menimbulkan kerugian jangka panjang.
+
+---
+
+### **Method (Metode dan Prosedur)**
+
+Setiap aktivitas pemeliharaan harus didukung oleh **SOP dan metode inspeksi** yang sesuai dengan tingkat risiko. Metode yang digunakan pada aset kritis harus lebih ketat, terstandar, dan terdokumentasi, sehingga hasilnya konsisten dan dapat diaudit. Dalam RBM, metode kerja juga berfungsi sebagai **barrier administratif**, yang secara eksplisit memasukkan pengendalian risiko keselamatan dan lingkungan sebagai bagian dari prosedur teknis.
+
+---
+
+### **Material (Suku Cadang dan Consumable)**
+
+Ketersediaan **spare part kritis dan consumable** harus direncanakan berdasarkan klasifikasi risiko dan konsekuensi kegagalan. Keterlambatan material pada aset kritis dapat memperpanjang downtime dan memperbesar kerugian. Selain itu, aspek **kecocokan material terhadap fluida proses dan potensi dampak lingkungan** menjadi pertimbangan penting dalam pemilihan dan penyimpanan material.
+
+---
+
+### **1E — Environment (Batas Sistem dan Konsekuensi Lingkungan)**
+
+Elemen **Environment (E)** diposisikan sebagai **batas sistem (_system constraint_)** dalam perencanaan RBM, bukan sekadar variabel tambahan. Dalam konteks industri proses berisiko tinggi, kegagalan aset tidak hanya berdampak pada keselamatan dan kontinuitas operasi, tetapi juga dapat menimbulkan **dampak lingkungan yang luas, tertunda, dan bersifat non-linear**.
+
+Oleh karena itu, perencanaan pemeliharaan di PT Petro Oxo Nusantara secara eksplisit mempertimbangkan **konsekuensi lingkungan** dalam setiap keputusan 5M. Aset dengan potensi pelepasan bahan berbahaya, pencemaran tanah atau air, serta emisi tidak terkendali memperoleh perlakuan khusus dalam hal kompetensi personel, metode inspeksi, kesiapan peralatan mitigasi, alokasi anggaran, dan ketersediaan material pendukung. Dengan menempatkan Environment sebagai elemen tersendiri, RBM memastikan bahwa **keandalan operasional tidak pernah dicapai dengan mengorbankan perlindungan lingkungan**, dan seluruh keputusan tetap berada dalam batas penerimaan risiko organisasi.
+
+---
+
+📌 **Penegasan:**
+
+RBM tidak gagal karena konsepnya, tetapi karena **5M + 1E tidak siap**. Tanpa keselarasan antara risiko berbasis ESC, strategi pemeliharaan, dan perencanaan sumber daya yang mencakup aspek lingkungan sebagai batas sistem, RBM akan kehilangan daya eksekusinya dan tereduksi menjadi dokumen konseptual tanpa dampak nyata di lapangan.
+
+---
+
+## 3.9 RBM sebagai Sistem Training dan Disiplin Operasional
 
 Selain berfungsi sebagai strategi pemeliharaan, **Risk-Based Maintenance (RBM)** memiliki peran penting sebagai **kerangka training internal dan pembentuk disiplin operasional**. RBM menyediakan struktur berpikir yang konsisten tentang _mengapa_ suatu aset diperlakukan dengan cara tertentu, sehingga pembelajaran tidak berhenti pada prosedur, tetapi mencakup **logika risiko di balik setiap keputusan pemeliharaan**.
 
