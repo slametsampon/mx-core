@@ -53,6 +53,7 @@ summary: Artikel ini menyajikan panduan teknis tentang penerapan sistem tiering 
   - [**7.1 Tantangan Umum**](#71-tantangan-umum)
   - [**7.2 Solusi dan Tips Implementasi**](#72-solusi-dan-tips-implementasi)
 - [**VIII. KESIMPULAN**](#viii-kesimpulan)
+- [🔒 **Catatan Editorial — Penyempurnaan Opsional (High-Level)**](#-catatan-editorial--penyempurnaan-opsional-high-level)
 - [**IX. REFERENSI TEKNIS**](#ix-referensi-teknis)
   - [**1. Standar Internasional**](#1-standar-internasional)
   - [**2. Literatur Ilmiah**](#2-literatur-ilmiah)
@@ -74,6 +75,24 @@ Seiring dengan semakin luasnya penerapan **Risk-Based Maintenance (RBM)**, pende
 Tantangan utama bagi insinyur perencana adalah bagaimana menyusun rencana kerja yang efisien dan responsif terhadap aset yang berbeda-beda dari segi kritikalitas. Tanpa sistem klasifikasi yang terstruktur, pemeliharaan berisiko menjadi terlalu reaktif, boros sumber daya, atau sebaliknya—menimbulkan kegagalan laten akibat kurangnya fokus pada aset berisiko tinggi.
 
 Artikel ini bertujuan untuk menyajikan **panduan menyeluruh dan aplikatif** mengenai penerapan sistem _tiering_ dalam manajemen pemeliharaan berbasis risiko, mulai dari konsep dasar, faktor penentu, implementasi dalam skala industri petrokimia, hingga template teknis yang dapat digunakan langsung oleh para perencana pemeliharaan. Penekanan diberikan pada bagaimana _tiering_ dapat memperkuat efektivitas strategi RBM secara operasional, serta mendukung perencanaan inspeksi, alokasi sumber daya, dan penyusunan strategi pemeliharaan jangka menengah-panjang yang lebih terarah.
+
+<ResourceBox
+title="Korelasi internal-link modul:"
+items={[
+{
+name: 'Risk-Based Maintenance',
+href: '/blog/management/MSH/MSH-3-rbm',
+description:
+'Module 3 – Risk-Based Maintenance sebagai Strategi Pemeliharaan Praktis',
+},
+{
+name: 'Maintenance System Handbook (MSH)',
+href: '/blog/management/MSH/MSH-panduan-lengkap',
+description:
+'Dari Risk-Based Thinking ke Reliability-Driven Organization - Panduan Lengkap Maintenance System Handbook',
+},
+]}
+/>
 
 ---
 
@@ -532,6 +551,88 @@ Oleh karena itu, disarankan agar sistem _tiering_:
 - **Diintegrasikan ke sistem CMMS**, sehingga mendukung otomatisasi notifikasi dan pelaporan teknis.
 
 Dengan penerapan yang tepat, _tiering_ akan terus berfungsi sebagai fondasi pengambilan keputusan strategis dalam sistem pemeliharaan modern berbasis risiko dan dampak operasional nyata.
+
+Baik. Berikut saya berikan **redaksi FINAL**, siap **copy–paste**, dengan gaya **LOCKED / governance-note** yang konsisten dengan artikel RBM–RCA Anda sebelumnya, **tanpa mengganggu alur teknis utama**.
+
+---
+
+### 🔒 **Catatan Editorial — Penyempurnaan Opsional (High-Level)**
+
+> **Bagian ini bersifat opsional dan tidak wajib diterapkan.**
+> Direkomendasikan **hanya jika sistem Tier ingin dinaikkan ke level _rujukan utama Maintenance System Handbook (MSH) / RBM nasional_**, atau digunakan sebagai **baseline kebijakan lintas plant**.
+
+- **1. Stop Rule Tiering (Batas Penggunaan Tier)**
+
+Sistem **Tier TIDAK BOLEH digunakan** sebagai alat keputusan tunggal apabila:
+
+- kegagalan peralatan menyentuh **process safety boundary**, seperti:
+
+  - potensi fatality,
+  - pelepasan bahan berbahaya skala besar,
+  - eskalasi kejadian domino antar unit proses;
+
+- konsekuensi kegagalan **tidak dapat diterima secara SHE**, meskipun probabilitas kegagalan rendah;
+- keputusan menyangkut **desain proteksi, barrier keselamatan, atau integrity management**.
+
+🔁 **Eskalasi Wajib**
+Dalam kondisi tersebut, Tier **harus dihentikan** dan dialihkan ke metode formal berikut:
+
+- **RBI (API RP 580/581)** → untuk penilaian risiko berbasis PoF × CoF,
+- **FTA** → untuk analisis logika kegagalan sistem kompleks,
+- **Bowtie Analysis** → untuk pengendalian risiko berbasis barrier dan consequence management.
+
+> **Prinsip kunci:** > _Tier adalah alat perencanaan, bukan alat penentu keselamatan proses._
+
+---
+
+- **2. Diagram Konseptual Penguatan Tier dalam RBM**
+
+Untuk mencegah penyalahgunaan konseptual, sistem Tier **harus dipahami sebagai bagian dari alur keputusan**, bukan tujuan akhir.
+
+**Urutan logika yang benar:**
+
+```
+Risk Understanding
+        ↓
+Tier Classification
+        ↓
+Maintenance Strategy
+(TBM / CBM / RBI / TA)
+        ↓
+Execution & Work Order
+```
+
+- **Risk** → menentukan konteks dan batas keputusan
+- **Tier** → menyederhanakan prioritas operasional
+- **Strategy** → memilih metode pemeliharaan yang tepat
+- **Execution** → realisasi dalam WO, inspeksi, dan TA
+
+Tier **tidak boleh melompati tahap risk understanding**.
+
+---
+
+- **3. Anti-Misuse Clause (Larangan Penyalahgunaan Tier)**
+
+Untuk menjaga integritas sistem RBM, **Tier DILARANG digunakan untuk**:
+
+- justifikasi **pemotongan anggaran pemeliharaan secara sepihak** tanpa evaluasi risiko;
+- menurunkan prioritas **safety-critical asset** hanya karena frekuensi gangguan rendah;
+- menggantikan **engineering judgement** dan diskusi lintas fungsi;
+- menyederhanakan risiko kompleks menjadi sekadar label Tier.
+
+> **Penegasan:** > _Tier adalah alat bantu keputusan, bukan alat legitimasi keputusan yang salah._
+
+---
+
+- **Catatan Penutup Editorial**
+
+Dengan penambahan batasan ini, sistem Tier akan:
+
+- tetap **selaras dengan prinsip RBM dan process safety**,
+- terlindungi dari misuse organisasional,
+- dan berfungsi sebagai **tactical enabler**, bukan _risk shortcut_.
+
+Bagian ini **secara sengaja diposisikan sebagai editorial safeguard**, bukan prosedur teknis, untuk memastikan Tier digunakan **secara bertanggung jawab dan profesional**.
 
 ---
 
