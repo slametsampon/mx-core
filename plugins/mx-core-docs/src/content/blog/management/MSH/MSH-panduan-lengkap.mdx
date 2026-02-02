@@ -44,6 +44,10 @@ summary: Maintenance System Handbook (MSH) merupakan kerangka terpadu yang menem
   - [📋 Contoh Format Assessment (Ringkas)](#-contoh-format-assessment-ringkas)
   - [🛠️ Output yang Diharapkan](#️-output-yang-diharapkan)
   - [🧠 Prinsip Penutup](#-prinsip-penutup)
+  - [**📌 Artikel Pendukung MSH (Execution \& Human System Extension)**](#-artikel-pendukung-msh-execution--human-system-extension)
+    - [🧩 **1. Strategi Manpower dalam Ekosistem Risk-Based Maintenance (RBM)**](#-1-strategi-manpower-dalam-ekosistem-risk-based-maintenance-rbm)
+    - [🧩 **2. Job Description Berbasis Risiko dalam Ekosistem RBM**](#-2-job-description-berbasis-risiko-dalam-ekosistem-rbm)
+    - [🧩 **3. Instruksi Kerja (IK/WI) Berbasis Risiko dalam Ekosistem RBM**](#-3-instruksi-kerja-ikwi-berbasis-risiko-dalam-ekosistem-rbm)
 
 ---
 
@@ -976,6 +980,137 @@ Dengan **MSH Maturity Assessment Tool**, organisasi memiliki:
 - cermin objektif sistem pemeliharaan,
 - bahasa bersama lintas fungsi,
 - dan dasar kuat untuk keputusan strategis jangka panjang.
+
+---
+
+### **📌 Artikel Pendukung MSH (Execution & Human System Extension)**
+
+Maintenance System Handbook (MSH) dirancang sebagai **kerangka sistem pengambilan keputusan pemeliharaan end-to-end**. Namun, agar sistem ini **benar-benar hidup dan bekerja di lapangan**, MSH secara sadar didukung oleh sejumlah **artikel implementatif pendamping** yang berfungsi sebagai **lapisan eksekusi manusia dan organisasi**.
+
+Artikel-artikel ini **bukan modul inti**, namun **tidak terpisahkan** dari MSH karena mereka menjawab pertanyaan yang tidak selalu dapat diselesaikan oleh handbook konseptual:
+
+> **“Bagaimana keputusan berbasis risiko benar-benar dijalankan oleh manusia, struktur organisasi, dan instruksi kerja di lapangan?”**
+
+Artikel pendukung ini membentuk apa yang disebut sebagai **Execution Integrity Layer** dalam ekosistem MSH.
+
+---
+
+#### 🧩 **1. Strategi Manpower dalam Ekosistem Risk-Based Maintenance (RBM)**
+
+<ResourceBox
+  title="Korelasi internal-link modul:"
+  items={[
+    {
+      name: 'Strategi Manpower',
+      href: '/blog/management/MSH/MSH-manpower',
+      description:
+        'Strategi Manpower dalam Ekosistem Risk-Based Maintenance (RBM)',
+    },
+  ]}
+/>
+
+Artikel ini berfungsi sebagai **human consequence layer** dari MSH, yang secara langsung melengkapi:
+
+- **Module 3 – Risk-Based Maintenance (RBM)**
+- **Module 5 – Organization, KPI & Accountability**
+
+Dalam artikel ini, manpower **tidak diperlakukan sebagai sumber daya generik**, melainkan sebagai **active risk control** yang secara langsung mempengaruhi:
+
+- probabilitas kegagalan,
+- efektivitas eskalasi,
+- dan kemampuan sistem membatasi konsekuensi kegagalan (ESC).
+
+📌 **Posisi dalam sistem:**
+
+- RBM menetapkan **apa risiko yang diterima**
+- Strategi manpower memastikan **apakah risiko tersebut dapat dikendalikan secara nyata oleh manusia yang menjalankannya**
+
+Tanpa desain manpower berbasis risiko, RBM akan berhenti sebagai **sistem yang dideklarasikan**, bukan sistem yang dijalankan.
+
+🔗 _Direkomendasikan dibaca setelah:_
+**MSH-3 (RBM)** dan sebelum **MSH-5 (Organization & Accountability)**
+
+---
+
+#### 🧩 **2. Job Description Berbasis Risiko dalam Ekosistem RBM**
+
+<ResourceBox
+  title="Korelasi internal-link modul:"
+  items={[
+    {
+      name: 'Job Description',
+      href: '/blog/management/MSH/MSH-jobdesc',
+      description:
+        'Job Description Berbasis Risiko dalam Ekosistem Risk-Based Maintenance (RBM)',
+    },
+  ]}
+/>
+
+Artikel ini merupakan **implementative reference** yang mengunci RBM ke dalam **struktur jabatan nyata**, bukan sekadar struktur organisasi formal.
+
+Artikel ini menjawab kegagalan klasik sistem pemeliharaan:
+
+> RBM ada di dokumen, tetapi **tidak hidup di level jabatan dan kewenangan nyata**.
+
+Job Description berbasis risiko menetapkan secara eksplisit:
+
+- siapa **berhak mengambil keputusan pada level risiko tertentu**,
+- siapa **wajib melakukan eskalasi atau stop-work**,
+- dan siapa **memegang risiko residual**.
+
+📌 **Posisi dalam sistem:**
+
+- **MSH-3** → menetapkan logika keputusan risiko
+- **MSH-manpower** → menetapkan manusia sebagai active barrier
+- **MSH-jobdesc** → **mengunci keputusan RBM ke dalam peran, otoritas, dan tanggung jawab jabatan**
+
+Tanpa JobDesc berbasis risiko, governance RBM akan runtuh pada saat terjadi tekanan produksi atau konflik kepentingan.
+
+🔗 _Direkomendasikan dibaca setelah:_
+**MSH-3 (RBM)** dan **MSH-manpower**
+
+---
+
+#### 🧩 **3. Instruksi Kerja (IK/WI) Berbasis Risiko dalam Ekosistem RBM**
+
+<ResourceBox
+  title="Korelasi internal-link modul:"
+  items={[
+    {
+      name: 'Instruksi Kerja (IK/WI)',
+      href: '/blog/management/MSH/MSH-ik-wi',
+      description:
+        'Instruksi Kerja (IK/WI) Berbasis Risiko dalam Ekosistem Risk-Based Maintenance (RBM)',
+    },
+  ]}
+/>
+
+Artikel ini merupakan **lapisan eksekusi terakhir (final execution lock)** dalam ekosistem MSH.
+
+IK/WI diposisikan bukan sebagai dokumen administratif, melainkan sebagai:
+
+> **risk execution layer** — tempat seluruh asumsi risiko diuji secara nyata di lapangan.
+
+Hubungan sistemik yang dikunci secara eksplisit adalah:
+
+> **RBM → Job Description (berbasis risiko) → IK/WI**
+
+IK/WI memastikan bahwa:
+
+- batas keputusan risiko tidak dilanggar,
+- risk trigger dikenali di lapangan,
+- eskalasi dan stop-work **bukan opsi**, tetapi kewajiban sistem.
+
+📌 **Posisi dalam sistem:**
+
+- Jika RBM adalah _decision logic_,
+- JobDesc adalah _decision authority_,
+- maka IK/WI adalah **decision enforcement mechanism**.
+
+Tanpa IK/WI berbasis risiko, RBM akan gagal **bukan di level konsep**, tetapi di titik paling kritis: **eksekusi nyata**.
+
+🔗 _Direkomendasikan dibaca setelah:_
+**MSH-3 (RBM)**, **MSH-manpower**, dan **MSH-jobdesc**
 
 ---
 
