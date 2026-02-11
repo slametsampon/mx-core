@@ -19,6 +19,26 @@
     ]
   },
   {
+    "id": "maintenance/process-control-pid",
+    "name": "Industrial Process Control & PID Tuning",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/process-control-pid",
+    "subtitle": "February 11, 2026",
+    "keywords": [
+      "process-control",
+      "pid-tuning",
+      "industrial-automation",
+      "control-loop",
+      "process-dynamics",
+      "cascade-control",
+      "ratio-control",
+      "feedforward-control",
+      "plant-reliability",
+      "process-safety",
+      "pemeliharaan-pabrik-petrokimia"
+    ]
+  },
+  {
     "id": "maintenance/lifecycle-aset",
     "name": "Aset Life Cycle di Industri Petrokimia",
     "section": "CONTENT",
