@@ -1,24 +1,5 @@
 [
   {
-    "id": "maintenance/cpm-industrial",
-    "name": "Critical Path Method (CPM) - Strategi Pengendalian Jadwal Aktivitas di Industri Petrokimia",
-    "section": "CONTENT",
-    "href": "/blog/maintenance/cpm-industrial",
-    "subtitle": "March 4, 2026",
-    "keywords": [
-      "tam",
-      "turn-around",
-      "management",
-      "cpm",
-      "critical-path-method",
-      "ta-planning",
-      "shutdown-management",
-      "project-scheduling",
-      "petrochemical",
-      "maintenance-planning"
-    ]
-  },
-  {
     "id": "maintenance/process-control-pid",
     "name": "Industrial Process Control & PID Tuning",
     "section": "CONTENT",
@@ -36,6 +17,25 @@
       "plant-reliability",
       "process-safety",
       "pemeliharaan-pabrik-petrokimia"
+    ]
+  },
+  {
+    "id": "maintenance/cpm-industrial",
+    "name": "Critical Path Method (CPM) - Strategi Pengendalian Jadwal Aktivitas di Industri Petrokimia",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/cpm-industrial",
+    "subtitle": "February 4, 2026",
+    "keywords": [
+      "tam",
+      "turn-around",
+      "management",
+      "cpm",
+      "critical-path-method",
+      "ta-planning",
+      "shutdown-management",
+      "project-scheduling",
+      "petrochemical",
+      "maintenance-planning"
     ]
   },
   {

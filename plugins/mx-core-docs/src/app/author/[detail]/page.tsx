@@ -8,6 +8,7 @@ import { allAuthors, allBlogs } from '../../../../.contentlayer/generated';
 import authorData from 'app/author-data.json';
 import { genPageMetadata } from 'app/seo';
 import CardAuthor from '@/components/CardAuthor';
+import { MDXLayoutRenderer } from 'pliny/mdx-components';
 
 export async function generateMetadata({
   params,
@@ -44,9 +45,9 @@ export default function AuthorPage({ params }: { params: { detail: string } }) {
     sortPosts(
       allBlogs.filter(
         (post) =>
-          post.authors && post.authors.map((t) => slug(t)).includes(detail)
-      )
-    )
+          post.authors && post.authors.map((t) => slug(t)).includes(detail),
+      ),
+    ),
   );
 
   const authorResult = allAuthors.find((p) => p.slug === detail);
@@ -63,6 +64,11 @@ export default function AuthorPage({ params }: { params: { detail: string } }) {
   return (
     <>
       <CardAuthor author={authorResult} />
+
+      <div className="prose mt-8 max-w-none dark:prose-invert">
+        <MDXLayoutRenderer code={authorResult.body.code} components={{}} />
+      </div>
+
       <ListLayout posts={filteredPosts} title={title} />
     </>
   );
