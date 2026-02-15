@@ -1,3 +1,22 @@
+# LEVEL 1 – JUNIOR MECHANICAL (0–2 Tahun)
+
+## 🔵 BULAN 1 – Safety & Basic Rotating Equipment
+
+Total: 4 Outline Artikel
+Semua sudah mengandung:
+
+- System Context & Cross-discipline interaction
+- Diagram Literacy (P&ID / pump cross-section / piping flow path)
+- Structured troubleshooting
+- Safety reinforcement
+- Data & trend awareness
+- API reference awareness
+
+Referensi utama:
+American Petroleum Institute – API 610
+
+---
+
 - [LEVEL 1 – JUNIOR MECHANICAL (0–2 Tahun)](#level-1--junior-mechanical-02-tahun)
   - [🔵 BULAN 1 – Safety \& Basic Rotating Equipment](#-bulan-1--safety--basic-rotating-equipment)
 - [📘 ARTIKEL 1](#-artikel-1)
@@ -47,25 +66,6 @@
   - [Data Awareness](#data-awareness)
 - [📊 ALIGNMENT TERHADAP 5 OUTCOME (Mechanical Junior)](#-alignment-terhadap-5-outcome-mechanical-junior)
 - [🎯 Evaluasi Template 2.0 pada Mechanical](#-evaluasi-template-20-pada-mechanical)
-
----
-
-# LEVEL 1 – JUNIOR MECHANICAL (0–2 Tahun)
-
-## 🔵 BULAN 1 – Safety & Basic Rotating Equipment
-
-Total: 4 Outline Artikel
-Semua sudah mengandung:
-
-- System Context & Cross-discipline interaction
-- Diagram Literacy (P&ID / pump cross-section / piping flow path)
-- Structured troubleshooting
-- Safety reinforcement
-- Data & trend awareness
-- API reference awareness
-
-Referensi utama:
-American Petroleum Institute – API 610
 
 ---
 

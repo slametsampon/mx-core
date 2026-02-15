@@ -1,12 +1,19 @@
-# 🔵 BULAN 1 – FUNDAMENTAL ELECTRICAL SAFETY & MOTOR BASIC
+# TEKNISI JUNIOR E&I
 
-(Level 1 – Junior ELINS)
+## 🔵 BULAN 9 – Shutdown Preparation
+
+Fokus bulan ini:
+
+- Awareness persiapan teknis sebelum shutdown
+- Integrasi Electrical–Instrumentation–Control
+- Risk discipline sebelum pekerjaan besar
 
 ---
 
-- [🔵 BULAN 1 – FUNDAMENTAL ELECTRICAL SAFETY \& MOTOR BASIC](#-bulan-1--fundamental-electrical-safety--motor-basic)
+- [TEKNISI JUNIOR E\&I](#teknisi-junior-ei)
+  - [🔵 BULAN 9 – Shutdown Preparation](#-bulan-9--shutdown-preparation)
 - [📘 ARTIKEL 1](#-artikel-1)
-  - [Motor LV Trip Saat Start – Investigasi Sistematis Berbasis Diagram \& Data](#motor-lv-trip-saat-start--investigasi-sistematis-berbasis-diagram--data)
+  - [Temuan Umum Saat Pre-Shutdown Inspection – Identifikasi Awal Sebelum Unit Dimatikan](#temuan-umum-saat-pre-shutdown-inspection--identifikasi-awal-sebelum-unit-dimatikan)
   - [1️⃣ Informasi Umum](#1️⃣-informasi-umum)
   - [2️⃣ Learning Objective](#2️⃣-learning-objective)
   - [3️⃣ System Context \& Criticality](#3️⃣-system-context--criticality)
@@ -24,31 +31,41 @@
   - [1️⃣5️⃣ Discussion Question](#1️⃣5️⃣-discussion-question)
   - [1️⃣6️⃣ Key Takeaway](#1️⃣6️⃣-key-takeaway)
 - [📘 ARTIKEL 2](#-artikel-2)
-  - [MCC Breaker Trip – Overload vs Short Circuit Analysis](#mcc-breaker-trip--overload-vs-short-circuit-analysis)
+  - [Penyusunan Checklist Shutdown E\&I – Struktur \& Prioritas](#penyusunan-checklist-shutdown-ei--struktur--prioritas)
+  - [1️⃣ Informasi Umum](#1️⃣-informasi-umum-1)
+  - [2️⃣ Learning Objective](#2️⃣-learning-objective-1)
+  - [3️⃣ System Context](#3️⃣-system-context)
+  - [4️⃣ Diagram Literacy](#4️⃣-diagram-literacy)
+  - [5️⃣ Struktur Checklist Dasar](#5️⃣-struktur-checklist-dasar)
+  - [6️⃣ Risk Classification](#6️⃣-risk-classification)
+  - [7️⃣ Documentation Requirement](#7️⃣-documentation-requirement)
+  - [1️⃣4️⃣ Competency Mapping](#1️⃣4️⃣-competency-mapping-1)
 - [📘 ARTIKEL 3](#-artikel-3)
-  - [Checklist Inspeksi Harian MCC \& Panel Distribusi Berbasis Risk](#checklist-inspeksi-harian-mcc--panel-distribusi-berbasis-risk)
-- [📘 ARTIKEL 4](#-artikel-4)
-  - [Dasar Proteksi Listrik \& ANSI Relay Code (50/51/27/59) dalam Konteks Sistem](#dasar-proteksi-listrik--ansi-relay-code-50512759-dalam-konteks-sistem)
-- [📊 ALIGNMENT TERHADAP 5 OUTCOME](#-alignment-terhadap-5-outcome)
+  - [Risk Assessment Dasar (JSA) untuk Pekerjaan Shutdown](#risk-assessment-dasar-jsa-untuk-pekerjaan-shutdown)
+  - [1️⃣ Informasi Umum](#1️⃣-informasi-umum-2)
+  - [2️⃣ Learning Objective](#2️⃣-learning-objective-2)
+  - [3️⃣ System Context](#3️⃣-system-context-1)
+  - [4️⃣ Diagram Literacy](#4️⃣-diagram-literacy-1)
+  - [5️⃣ Basic Theory – JSA Structure](#5️⃣-basic-theory--jsa-structure)
+  - [6️⃣ Contoh Hazard E\&I Shutdown](#6️⃣-contoh-hazard-ei-shutdown)
+  - [7️⃣ Risk Awareness](#7️⃣-risk-awareness)
+  - [1️⃣4️⃣ Competency Mapping](#1️⃣4️⃣-competency-mapping-2)
+- [📊 ALIGNMENT DENGAN OUTCOME JUNIOR](#-alignment-dengan-outcome-junior)
 
 ---
 
 # 📘 ARTIKEL 1
 
-## Motor LV Trip Saat Start – Investigasi Sistematis Berbasis Diagram & Data
+## Temuan Umum Saat Pre-Shutdown Inspection – Identifikasi Awal Sebelum Unit Dimatikan
 
 ---
 
 ## 1️⃣ Informasi Umum
 
-Disiplin: Electrical
+Disiplin: Electrical & Instrumentation
 Level: Junior
-Kategori: Troubleshooting
-Equipment: Motor LV 75 kW – Pump Service
-Referensi:
-
-- NFPA
-- IEEE
+Kategori: Troubleshooting Case (Pre-Shutdown)
+Equipment: MCC, Transformer, Field Instrument, Control Valve, Analyzer
 
 ---
 
@@ -56,48 +73,58 @@ Referensi:
 
 Setelah membaca artikel ini, teknisi mampu:
 
-- Mengidentifikasi minimal 5 penyebab motor trip saat start
-- Membaca jalur motor pada Single Line Diagram (SLD)
-- Menjelaskan hubungan mechanical binding terhadap arus start
+- Mengidentifikasi temuan umum saat pre-shutdown inspection
+- Mengklasifikasikan temuan: critical vs non-critical
+- Membaca SLD, loop diagram, dan P&ID untuk menentukan scope kerja
 
 ---
 
 ## 3️⃣ System Context & Criticality
 
-Motor → Menggerakkan pump → Mengontrol flow → Mempengaruhi control valve → Mempengaruhi pressure transmitter → Bisa memicu interlock low flow.
+Shutdown adalah momen:
 
-Kegagalan motor dapat menyebabkan:
+- Isolasi energi
+- Pembongkaran equipment
+- Testing safety system
+- Major maintenance
 
-- Flow drop
-- Process upset
-- Trip downstream unit
+Kesalahan identifikasi awal dapat menyebabkan:
 
-👉 Menguatkan pemahaman interaksi Electrical–Instrument–Control.
+- Overrun schedule
+- Safety incident
+- Rework setelah startup
+
+Interaksi lintas disiplin:
+Electrical isolation ↔ Instrument isolation ↔ Mechanical opening ↔ Safety permit.
 
 ---
 
 ## 4️⃣ Diagram Literacy Section (WAJIB)
 
-Analisa berbasis SLD:
+Teknisi harus mampu membaca:
 
-- Incoming feeder → MCC → Breaker → Overload relay → Motor
-- Titik proteksi: ANSI 50/51
-- Titik isolasi: MCC breaker
+- Single Line Diagram (untuk isolasi feeder)
+- Loop Diagram (untuk isolasi signal & power)
+- P&ID (untuk valve & tapping point)
 
-Teknisi harus mampu menunjukkan:
+Wajib mampu menunjukkan:
 
-- Posisi proteksi
-- Titik ukur ampere
-- Jalur supply
+- Titik isolasi energi
+- Titik bypass
+- Titik drain & vent
 
 ---
 
 ## 5️⃣ Background & Failure Scenario
 
-Motor 75 kW trip 3 detik setelah start.
-Ampere naik hingga 6x FLA.
-Tegangan drop 8%.
-Tidak ada bunyi abnormal.
+Saat pre-shutdown inspection ditemukan:
+
+- MCC termination panas
+- Impulse line corrosion
+- Valve positioner response lambat
+- Analyzer sampling filter hampir tersumbat
+
+Namun belum ada alarm aktif.
 
 ---
 
@@ -105,16 +132,13 @@ Tidak ada bunyi abnormal.
 
 Terlihat:
 
-- Trip alarm di DCS
+- Discoloration pada busbar joint
+- Leakage kecil di impulse fitting
 
 Terukur:
 
-- Arus inrush tinggi
-- Tegangan drop sesaat
-
-Asumsi operator:
-
-- “Motor rusak”
+- Thermography hotspot
+- Response time valve > normal
 
 ---
 
@@ -122,54 +146,54 @@ Asumsi operator:
 
 Electrical:
 
-- Undervoltage
-- Shorted winding
-
-Mechanical:
-
-- Pump jammed
-- Impeller fouling
+- Loose termination
+- Overload intermittent
 
 Instrument:
 
-- False current reading
+- Aging tubing
+- Drift transmitter
+
+Mechanical:
+
+- Packing wear
+- Vibration impact
 
 Human:
 
-- Setting overload terlalu rendah
+- PM interval tidak disiplin
 
 ---
 
 ## 8️⃣ Step-by-Step Investigation
 
-1. Verifikasi overload setting
-2. Cek SLD untuk upstream feeder load
-3. Cek coupling free rotation
-4. Ukur IR motor
-5. Verifikasi voltage drop saat start
+1. Dokumentasikan temuan visual
+2. Validasi dengan pengukuran (thermal, vibration, IR test)
+3. Tentukan prioritas perbaikan
+4. Update shutdown scope list
+5. Koordinasi dengan planner
 
 Decision logic:
-Electrical diverifikasi sebelum membuka mechanical.
+Prioritaskan item yang berdampak ke safety & startup reliability.
 
 ---
 
 ## 9️⃣ Root Cause & Contributing Factor
 
-Root Cause:
-Impeller fouling menyebabkan locked rotor condition.
+Sebagian besar temuan berasal dari:
 
-Contributing:
-Suction strainer tidak dibersihkan periodik.
+- PM interval tidak optimal
+- Tidak ada trend review sebelum shutdown
 
 ---
 
 ## 🔟 Reference Standard & Gap Analysis
 
-Menurut IEEE:
-Setting overload harus 115–125% FLA.
+Best practice industri:
+Pre-shutdown inspection minimal 2–4 minggu sebelum shutdown.
 
 Gap:
-Setting ditemukan terlalu rendah (105%).
+Belum ada checklist formal pre-shutdown E&I.
 
 ---
 
@@ -177,148 +201,239 @@ Setting ditemukan terlalu rendah (105%).
 
 Immediate:
 
-- Bersihkan impeller
+- Masukkan temuan ke shutdown scope
 
 Permanent:
 
-- Review PM suction line
+- Buat pre-shutdown inspection program rutin
 
 Monitoring:
 
-- Trend arus start tiap bulan
+- Track jumlah temuan per shutdown
 
 ---
 
 ## 1️⃣2️⃣ Risk & Safety Reflection
 
-- Arc flash risk saat buka panel
-- Wajib LOTO
-- Gunakan PPE sesuai NFPA 70E
+- Pastikan tidak membuka equipment sebelum isolasi energi
+- Hindari pekerjaan tambahan tanpa risk review
 
 ---
 
 ## 1️⃣3️⃣ Data Interpretation & Trend Awareness
 
-Parameter monitoring:
+Analisa:
 
-- Starting current
-- Voltage drop
-- Running ampere
-
-Early warning:
-Ampere naik perlahan dalam 2 minggu sebelum trip.
+- Hotspot trend 6 bulan terakhir
+- Alarm frequency
+- Valve response time trend
 
 ---
 
 ## 1️⃣4️⃣ Competency Mapping
 
-Motor troubleshooting:
-W → Target I
-
-Diagram reading:
-A → W
+Pre-shutdown awareness: W → I
+Scope identification: A → W
 
 ---
 
 ## 1️⃣5️⃣ Discussion Question
 
-1. Mengapa arus tinggi tidak selalu berarti short circuit?
-2. Apa risiko reset berulang?
-3. Apa hubungan fouling dengan arus listrik?
+1. Mengapa temuan kecil sebelum shutdown bisa menjadi besar saat startup?
+2. Bagaimana menentukan prioritas pekerjaan?
+3. Apa risiko pekerjaan tambahan tanpa perencanaan?
 
 ---
 
 ## 1️⃣6️⃣ Key Takeaway
 
-- Gunakan data sebelum asumsi
-- Periksa mechanical sebelum menyalahkan electrical
-- SLD adalah alat investigasi utama
+- Shutdown dimulai jauh sebelum unit dimatikan
+- Dokumentasi temuan sangat penting
+- Data trend adalah dasar penentuan scope
 
 ---
 
 # 📘 ARTIKEL 2
 
-## MCC Breaker Trip – Overload vs Short Circuit Analysis
+## Penyusunan Checklist Shutdown E&I – Struktur & Prioritas
 
-Fokus tambahan:
+---
 
-- Membaca kurva trip
-- Memahami selective coordination
-- Interaksi upstream–downstream protection
+## 1️⃣ Informasi Umum
 
-Tambahan penting pada versi ini:
+Disiplin: Electrical & Instrumentation
+Level: Junior
+Kategori: Preventive / Planning
 
-Diagram Literacy:
+---
 
-- Interpretasi feeder coordination di SLD
+## 2️⃣ Learning Objective
 
-System Interaction:
+- Menyusun checklist shutdown dasar
+- Mengelompokkan pekerjaan Electrical vs Instrument
+- Memahami dependensi pekerjaan lintas disiplin
 
-- Jika breaker upstream trip → multiple equipment shutdown
+---
 
-Trend Awareness:
+## 3️⃣ System Context
 
-- Repeated near-trip event sebelum failure
+Shutdown melibatkan:
+
+- Isolasi energi
+- Pembongkaran & inspeksi
+- Testing & commissioning
+
+Tanpa checklist:
+
+- Risiko item terlewat
+- Startup delay
+
+---
+
+## 4️⃣ Diagram Literacy
+
+- Identifikasi feeder pada SLD untuk isolasi
+- Identifikasi loop kritis pada C&E
+
+---
+
+## 5️⃣ Struktur Checklist Dasar
+
+Electrical:
+
+- IR test motor
+- Termination tightening
+- Thermography
+
+Instrumentation:
+
+- Calibration critical transmitter
+- Stroke test control valve
+- Proof test SIS
+
+Control:
+
+- Backup PLC/DCS
+- Alarm review
+
+---
+
+## 6️⃣ Risk Classification
+
+Tandai setiap item:
+
+- Safety critical
+- Reliability critical
+- Improvement
+
+---
+
+## 7️⃣ Documentation Requirement
+
+Checklist harus mencakup:
+
+- Equipment tag
+- Scope
+- PIC
+- Status
+
+---
+
+## 1️⃣4️⃣ Competency Mapping
+
+Shutdown checklist preparation: A → W
 
 ---
 
 # 📘 ARTIKEL 3
 
-## Checklist Inspeksi Harian MCC & Panel Distribusi Berbasis Risk
-
-Tambahan versi 2.0:
-
-System Context:
-
-- Panel overheating dapat memicu trip instrument power supply
-
-Diagram Literacy:
-
-- Identifikasi busbar & feeder path
-
-Data Section:
-
-- Thermal scanning trend
-
-Risk:
-
-- Loose termination → arc flash potential
-
-Outcome yang diperkuat:
-Inspeksi mandiri & safety awareness.
+## Risk Assessment Dasar (JSA) untuk Pekerjaan Shutdown
 
 ---
 
-# 📘 ARTIKEL 4
+## 1️⃣ Informasi Umum
 
-## Dasar Proteksi Listrik & ANSI Relay Code (50/51/27/59) dalam Konteks Sistem
-
-Tambahan versi 2.0:
-
-System Context:
-
-- Undervoltage dapat menyebabkan false instrument reading
-
-Diagram Literacy:
-
-- Identifikasi relay location pada SLD
-
-Failure Scenario:
-
-- Plant load tinggi → undervoltage → motor trip → low flow interlock
-
-Trend Awareness:
-
-- Voltage trending pada peak load
+Disiplin: E&I
+Level: Junior
+Kategori: Basic Theory & Safety
 
 ---
 
-# 📊 ALIGNMENT TERHADAP 5 OUTCOME
+## 2️⃣ Learning Objective
 
-| Outcome                    | Status               |
-| -------------------------- | -------------------- |
-| Troubleshooting sistematis | ✔ Kuat               |
-| Membaca SLD & diagram      | ✔ Ada section wajib  |
-| Safety awareness           | ✔ Dedicated section  |
-| Inspeksi mandiri           | ✔ Artikel 3          |
-| Interaksi E–I–C            | ✔ Ada System Context |
+- Menjelaskan konsep dasar JSA
+- Mengidentifikasi hazard pekerjaan E&I
+- Mengusulkan kontrol risiko sederhana
+
+---
+
+## 3️⃣ System Context
+
+Shutdown meningkatkan:
+
+- Jumlah pekerjaan simultan
+- Paparan energi berbahaya
+- Potensi konflik pekerjaan
+
+---
+
+## 4️⃣ Diagram Literacy
+
+- Identifikasi titik energi pada SLD
+- Identifikasi titik tekanan pada P&ID
+
+---
+
+## 5️⃣ Basic Theory – JSA Structure
+
+1. Identifikasi pekerjaan
+2. Identifikasi bahaya
+3. Penilaian risiko
+4. Tindakan pengendalian
+
+---
+
+## 6️⃣ Contoh Hazard E&I Shutdown
+
+Electrical:
+
+- Arc flash
+
+Instrument:
+
+- Gas release
+
+Mechanical:
+
+- Stored pressure
+
+Human:
+
+- Miscommunication
+
+---
+
+## 7️⃣ Risk Awareness
+
+Tanpa JSA:
+
+- Bypass safety system
+- LOTO tidak lengkap
+
+---
+
+## 1️⃣4️⃣ Competency Mapping
+
+Risk assessment awareness: A → W
+
+---
+
+# 📊 ALIGNMENT DENGAN OUTCOME JUNIOR
+
+| Outcome                    | Status   |
+| -------------------------- | -------- |
+| Troubleshooting sistematis | ✔        |
+| Membaca SLD, P&ID, C&E     | ✔        |
+| Safety awareness           | ✔ (kuat) |
+| Preventive & planning      | ✔        |
+| Interaksi lintas disiplin  | ✔        |

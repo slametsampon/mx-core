@@ -1,12 +1,19 @@
-# 🔵 BULAN 1 – FUNDAMENTAL ELECTRICAL SAFETY & MOTOR BASIC
+# TEKNISI JUNIOR E&I
 
-(Level 1 – Junior ELINS)
+## 🔵 BULAN 11 – Rotating Equipment Instrumentation
+
+Fokus bulan ini:
+
+- Interface Mechanical–Instrumentation
+- Machinery protection awareness
+- Data-based troubleshooting (vibration & temperature)
 
 ---
 
-- [🔵 BULAN 1 – FUNDAMENTAL ELECTRICAL SAFETY \& MOTOR BASIC](#-bulan-1--fundamental-electrical-safety--motor-basic)
+- [TEKNISI JUNIOR E\&I](#teknisi-junior-ei)
+  - [🔵 BULAN 11 – Rotating Equipment Instrumentation](#-bulan-11--rotating-equipment-instrumentation)
 - [📘 ARTIKEL 1](#-artikel-1)
-  - [Motor LV Trip Saat Start – Investigasi Sistematis Berbasis Diagram \& Data](#motor-lv-trip-saat-start--investigasi-sistematis-berbasis-diagram--data)
+  - [Vibration Transmitter Abnormal Reading – Sensor Fault atau Machinery Problem?](#vibration-transmitter-abnormal-reading--sensor-fault-atau-machinery-problem)
   - [1️⃣ Informasi Umum](#1️⃣-informasi-umum)
   - [2️⃣ Learning Objective](#2️⃣-learning-objective)
   - [3️⃣ System Context \& Criticality](#3️⃣-system-context--criticality)
@@ -24,31 +31,54 @@
   - [1️⃣5️⃣ Discussion Question](#1️⃣5️⃣-discussion-question)
   - [1️⃣6️⃣ Key Takeaway](#1️⃣6️⃣-key-takeaway)
 - [📘 ARTIKEL 2](#-artikel-2)
-  - [MCC Breaker Trip – Overload vs Short Circuit Analysis](#mcc-breaker-trip--overload-vs-short-circuit-analysis)
+  - [Bearing Temperature Spike – Gangguan Proses, Sensor, atau Lubrikasi?](#bearing-temperature-spike--gangguan-proses-sensor-atau-lubrikasi)
+  - [1️⃣ Informasi Umum](#1️⃣-informasi-umum-1)
+  - [2️⃣ Learning Objective](#2️⃣-learning-objective-1)
+  - [3️⃣ System Context](#3️⃣-system-context)
+  - [4️⃣ Diagram Literacy](#4️⃣-diagram-literacy)
+  - [5️⃣ Failure Scenario](#5️⃣-failure-scenario)
+  - [6️⃣ Possible Causes](#6️⃣-possible-causes)
+  - [7️⃣ Investigation](#7️⃣-investigation)
+  - [8️⃣ Root Cause](#8️⃣-root-cause)
+  - [9️⃣ Risk](#9️⃣-risk)
+  - [1️⃣3️⃣ Trend Awareness](#1️⃣3️⃣-trend-awareness)
+  - [1️⃣4️⃣ Competency Mapping](#1️⃣4️⃣-competency-mapping-1)
 - [📘 ARTIKEL 3](#-artikel-3)
-  - [Checklist Inspeksi Harian MCC \& Panel Distribusi Berbasis Risk](#checklist-inspeksi-harian-mcc--panel-distribusi-berbasis-risk)
+  - [Inspection Vibration Probe \& RTD Wiring – Preventive untuk Machinery Protection](#inspection-vibration-probe--rtd-wiring--preventive-untuk-machinery-protection)
+  - [1️⃣ Informasi Umum](#1️⃣-informasi-umum-2)
+  - [2️⃣ Learning Objective](#2️⃣-learning-objective-2)
+  - [3️⃣ System Context](#3️⃣-system-context-1)
+  - [4️⃣ Diagram Literacy](#4️⃣-diagram-literacy-1)
+  - [5️⃣ Inspection Checklist](#5️⃣-inspection-checklist)
+  - [6️⃣ Risk](#6️⃣-risk)
+  - [7️⃣ Documentation](#7️⃣-documentation)
+  - [1️⃣4️⃣ Competency Mapping](#1️⃣4️⃣-competency-mapping-2)
 - [📘 ARTIKEL 4](#-artikel-4)
-  - [Dasar Proteksi Listrik \& ANSI Relay Code (50/51/27/59) dalam Konteks Sistem](#dasar-proteksi-listrik--ansi-relay-code-50512759-dalam-konteks-sistem)
-- [📊 ALIGNMENT TERHADAP 5 OUTCOME](#-alignment-terhadap-5-outcome)
+  - [Basic Machinery Protection System – Konsep Alarm \& Trip pada Rotating Equipment](#basic-machinery-protection-system--konsep-alarm--trip-pada-rotating-equipment)
+  - [1️⃣ Informasi Umum](#1️⃣-informasi-umum-3)
+  - [2️⃣ Learning Objective](#2️⃣-learning-objective-3)
+  - [3️⃣ System Context](#3️⃣-system-context-2)
+  - [4️⃣ Diagram Literacy](#4️⃣-diagram-literacy-2)
+  - [5️⃣ Basic Theory](#5️⃣-basic-theory)
+  - [6️⃣ Failure Illustration](#6️⃣-failure-illustration)
+  - [7️⃣ Risk Awareness](#7️⃣-risk-awareness)
+  - [1️⃣4️⃣ Competency Mapping](#1️⃣4️⃣-competency-mapping-3)
+- [📊 ALIGNMENT DENGAN OUTCOME JUNIOR](#-alignment-dengan-outcome-junior)
 
 ---
 
 # 📘 ARTIKEL 1
 
-## Motor LV Trip Saat Start – Investigasi Sistematis Berbasis Diagram & Data
+## Vibration Transmitter Abnormal Reading – Sensor Fault atau Machinery Problem?
 
 ---
 
 ## 1️⃣ Informasi Umum
 
-Disiplin: Electrical
+Disiplin: Instrumentation (Machinery Monitoring)
 Level: Junior
 Kategori: Troubleshooting
-Equipment: Motor LV 75 kW – Pump Service
-Referensi:
-
-- NFPA
-- IEEE
+Equipment: Vibration Transmitter (4–20 mA) – Pump / Motor
 
 ---
 
@@ -56,48 +86,47 @@ Referensi:
 
 Setelah membaca artikel ini, teknisi mampu:
 
-- Mengidentifikasi minimal 5 penyebab motor trip saat start
-- Membaca jalur motor pada Single Line Diagram (SLD)
-- Menjelaskan hubungan mechanical binding terhadap arus start
+- Mengidentifikasi penyebab abnormal reading vibration transmitter
+- Membaca jalur signal dari sensor ke DCS
+- Membedakan indikasi sensor fault vs mechanical vibration nyata
 
 ---
 
 ## 3️⃣ System Context & Criticality
 
-Motor → Menggerakkan pump → Mengontrol flow → Mempengaruhi control valve → Mempengaruhi pressure transmitter → Bisa memicu interlock low flow.
+Rotating Equipment → Vibration Sensor → PLC/DCS → Alarm / Trip
 
-Kegagalan motor dapat menyebabkan:
+Jika vibration tinggi:
 
-- Flow drop
-- Process upset
-- Trip downstream unit
+- Bearing damage
+- Seal failure
+- Shaft misalignment
+- Potensi shutdown
 
-👉 Menguatkan pemahaman interaksi Electrical–Instrument–Control.
+Interaksi lintas disiplin:
+Mechanical condition ↔ Sensor ↔ Control system.
 
 ---
 
 ## 4️⃣ Diagram Literacy Section (WAJIB)
 
-Analisa berbasis SLD:
+Menggunakan:
 
-- Incoming feeder → MCC → Breaker → Overload relay → Motor
-- Titik proteksi: ANSI 50/51
-- Titik isolasi: MCC breaker
+- Basic vibration probe installation diagram
+- Loop diagram (Sensor → Transmitter → AI Module → DCS)
 
 Teknisi harus mampu menunjukkan:
 
-- Posisi proteksi
-- Titik ukur ampere
-- Jalur supply
+- Titik mounting sensor
+- Jalur kabel shield
+- Lokasi power supply
 
 ---
 
 ## 5️⃣ Background & Failure Scenario
 
-Motor 75 kW trip 3 detik setelah start.
-Ampere naik hingga 6x FLA.
-Tegangan drop 8%.
-Tidak ada bunyi abnormal.
+DCS menunjukkan vibration naik dari 2 mm/s menjadi 8 mm/s.
+Secara fisik mesin tidak terdengar abnormal.
 
 ---
 
@@ -105,71 +134,73 @@ Tidak ada bunyi abnormal.
 
 Terlihat:
 
-- Trip alarm di DCS
+- Alarm vibration high
 
 Terukur:
 
-- Arus inrush tinggi
-- Tegangan drop sesaat
+- Arus 4–20 mA naik mendekati 18 mA
+- Tidak ada perubahan suhu bearing
 
-Asumsi operator:
+Asumsi awal:
 
-- “Motor rusak”
+- Bearing rusak
 
 ---
 
 ## 7️⃣ Possible Causes (Structured)
 
-Electrical:
-
-- Undervoltage
-- Shorted winding
-
 Mechanical:
 
-- Pump jammed
-- Impeller fouling
+- Misalignment
+- Unbalance
+- Bearing defect
 
 Instrument:
 
-- False current reading
+- Sensor loose mounting
+- Calibration drift
+- Cable shield open
+
+Electrical:
+
+- Noise interference
 
 Human:
 
-- Setting overload terlalu rendah
+- Range scaling salah
 
 ---
 
 ## 8️⃣ Step-by-Step Investigation
 
-1. Verifikasi overload setting
-2. Cek SLD untuk upstream feeder load
-3. Cek coupling free rotation
-4. Ukur IR motor
-5. Verifikasi voltage drop saat start
+1. Verifikasi kondisi fisik mesin
+2. Periksa mounting bolt sensor
+3. Cek shielding & grounding
+4. Bandingkan dengan portable vibration meter
+5. Verifikasi scaling di DCS
 
 Decision logic:
-Electrical diverifikasi sebelum membuka mechanical.
+Validasi sensor sebelum menyimpulkan kerusakan mekanis.
 
 ---
 
 ## 9️⃣ Root Cause & Contributing Factor
 
-Root Cause:
-Impeller fouling menyebabkan locked rotor condition.
+Root cause:
+Sensor mounting longgar menyebabkan over-reading.
 
 Contributing:
-Suction strainer tidak dibersihkan periodik.
+Tidak ada torque check pada sensor saat PM.
 
 ---
 
 ## 🔟 Reference Standard & Gap Analysis
 
-Menurut IEEE:
-Setting overload harus 115–125% FLA.
+Best practice:
+Sensor vibration harus rigid mounting untuk akurasi.
 
 Gap:
-Setting ditemukan terlalu rendah (105%).
+Tidak ada checklist torque mounting probe.
 
 ---
 
@@ -177,148 +208,300 @@ Setting ditemukan terlalu rendah (105%).
 
 Immediate:
 
-- Bersihkan impeller
+- Re-tighten mounting
 
 Permanent:
 
-- Review PM suction line
+- Tambahkan torque check pada PM
 
 Monitoring:
 
-- Trend arus start tiap bulan
+- Trend vibration sebelum & sesudah perbaikan
 
 ---
 
 ## 1️⃣2️⃣ Risk & Safety Reflection
 
-- Arc flash risk saat buka panel
-- Wajib LOTO
-- Gunakan PPE sesuai NFPA 70E
+- Jangan mendekati rotating shaft tanpa guard
+- LOTO jika perlu membuka cover
 
 ---
 
 ## 1️⃣3️⃣ Data Interpretation & Trend Awareness
 
-Parameter monitoring:
+Bandingkan:
 
-- Starting current
-- Voltage drop
-- Running ampere
+- Trend vibration vs load
+- Trend vibration vs temperature
 
 Early warning:
-Ampere naik perlahan dalam 2 minggu sebelum trip.
+Kenaikan bertahap berbeda dengan lonjakan tiba-tiba (sensor issue).
 
 ---
 
 ## 1️⃣4️⃣ Competency Mapping
 
-Motor troubleshooting:
-W → Target I
-
-Diagram reading:
-A → W
+Vibration troubleshooting: W → I
+Mechanical–instrument interaction: A → W
 
 ---
 
 ## 1️⃣5️⃣ Discussion Question
 
-1. Mengapa arus tinggi tidak selalu berarti short circuit?
-2. Apa risiko reset berulang?
-3. Apa hubungan fouling dengan arus listrik?
+1. Bagaimana membedakan sensor fault vs unbalance?
+2. Mengapa mounting rigidity penting?
+3. Apa risiko false high vibration?
 
 ---
 
 ## 1️⃣6️⃣ Key Takeaway
 
-- Gunakan data sebelum asumsi
-- Periksa mechanical sebelum menyalahkan electrical
-- SLD adalah alat investigasi utama
+- Jangan langsung bongkar bearing
+- Validasi sensor & wiring dahulu
+- Trend adalah alat utama diagnosis
 
 ---
 
 # 📘 ARTIKEL 2
 
-## MCC Breaker Trip – Overload vs Short Circuit Analysis
+## Bearing Temperature Spike – Gangguan Proses, Sensor, atau Lubrikasi?
 
-Fokus tambahan:
+---
 
-- Membaca kurva trip
-- Memahami selective coordination
-- Interaksi upstream–downstream protection
+## 1️⃣ Informasi Umum
 
-Tambahan penting pada versi ini:
+Disiplin: Instrumentation & Mechanical Interface
+Level: Junior
+Kategori: Troubleshooting
+Equipment: RTD Bearing Temperature – Motor / Pump
 
-Diagram Literacy:
+---
 
-- Interpretasi feeder coordination di SLD
+## 2️⃣ Learning Objective
 
-System Interaction:
+- Mengidentifikasi penyebab lonjakan suhu bearing
+- Membaca loop wiring RTD
+- Membedakan overheat nyata vs sensor error
 
-- Jika breaker upstream trip → multiple equipment shutdown
+---
 
-Trend Awareness:
+## 3️⃣ System Context
 
-- Repeated near-trip event sebelum failure
+Bearing → RTD → PLC/DCS → Alarm / Trip
+
+Temperature spike dapat menyebabkan:
+
+- Automatic trip
+- Equipment damage
+
+---
+
+## 4️⃣ Diagram Literacy
+
+- RTD 3-wire wiring diagram
+- Jalur sinyal ke AI module
+
+---
+
+## 5️⃣ Failure Scenario
+
+Suhu bearing naik tiba-tiba dari 70°C ke 120°C dalam 1 menit.
+
+---
+
+## 6️⃣ Possible Causes
+
+Mechanical:
+
+- Lubrikasi kurang
+- Bearing defect
+
+Instrument:
+
+- Open circuit RTD
+- Loose terminal
+
+Electrical:
+
+- Noise interference
+
+Human:
+
+- Salah reconnect saat maintenance
+
+---
+
+## 7️⃣ Investigation
+
+1. Verifikasi suhu dengan handheld thermometer
+2. Periksa wiring continuity RTD
+3. Cek resistance sensor
+4. Periksa kondisi grease
+
+---
+
+## 8️⃣ Root Cause
+
+Terminal RTD longgar menyebabkan pembacaan tidak stabil.
+
+---
+
+## 9️⃣ Risk
+
+False spike dapat memicu trip tidak perlu.
+
+---
+
+## 1️⃣3️⃣ Trend Awareness
+
+Bandingkan:
+
+- Trend gradual vs spike instan
+- Suhu vs load mesin
+
+---
+
+## 1️⃣4️⃣ Competency Mapping
+
+RTD troubleshooting: W → I
 
 ---
 
 # 📘 ARTIKEL 3
 
-## Checklist Inspeksi Harian MCC & Panel Distribusi Berbasis Risk
+## Inspection Vibration Probe & RTD Wiring – Preventive untuk Machinery Protection
 
-Tambahan versi 2.0:
+---
 
-System Context:
+## 1️⃣ Informasi Umum
 
-- Panel overheating dapat memicu trip instrument power supply
+Disiplin: Instrumentation
+Level: Junior
+Kategori: Preventive
 
-Diagram Literacy:
+---
 
-- Identifikasi busbar & feeder path
+## 2️⃣ Learning Objective
 
-Data Section:
+- Melakukan inspeksi fisik probe vibration
+- Memeriksa integritas wiring RTD
+- Mengidentifikasi tanda kerusakan dini
 
-- Thermal scanning trend
+---
 
-Risk:
+## 3️⃣ System Context
 
-- Loose termination → arc flash potential
+Machinery protection system bergantung pada sensor akurat.
 
-Outcome yang diperkuat:
-Inspeksi mandiri & safety awareness.
+---
+
+## 4️⃣ Diagram Literacy
+
+- Lokasi sensor pada bearing housing
+- Jalur cable routing
+
+---
+
+## 5️⃣ Inspection Checklist
+
+1. Mounting bolt tightness
+2. Cable damage
+3. Shield continuity
+4. Terminal torque
+5. Junction box condition
+
+---
+
+## 6️⃣ Risk
+
+Rotating hazard saat inspeksi
+Panel energized hazard
+
+---
+
+## 7️⃣ Documentation
+
+Catat:
+
+- Nilai baseline vibration
+- Nilai baseline temperature
+
+---
+
+## 1️⃣4️⃣ Competency Mapping
+
+Inspection skill: W → I
 
 ---
 
 # 📘 ARTIKEL 4
 
-## Dasar Proteksi Listrik & ANSI Relay Code (50/51/27/59) dalam Konteks Sistem
-
-Tambahan versi 2.0:
-
-System Context:
-
-- Undervoltage dapat menyebabkan false instrument reading
-
-Diagram Literacy:
-
-- Identifikasi relay location pada SLD
-
-Failure Scenario:
-
-- Plant load tinggi → undervoltage → motor trip → low flow interlock
-
-Trend Awareness:
-
-- Voltage trending pada peak load
+## Basic Machinery Protection System – Konsep Alarm & Trip pada Rotating Equipment
 
 ---
 
-# 📊 ALIGNMENT TERHADAP 5 OUTCOME
+## 1️⃣ Informasi Umum
 
-| Outcome                    | Status               |
-| -------------------------- | -------------------- |
-| Troubleshooting sistematis | ✔ Kuat               |
-| Membaca SLD & diagram      | ✔ Ada section wajib  |
-| Safety awareness           | ✔ Dedicated section  |
-| Inspeksi mandiri           | ✔ Artikel 3          |
-| Interaksi E–I–C            | ✔ Ada System Context |
+Disiplin: Instrumentation & Control
+Level: Junior
+Kategori: Basic Theory
+
+---
+
+## 2️⃣ Learning Objective
+
+- Menjelaskan konsep alarm vs trip
+- Memahami perbedaan monitoring dan protection
+- Menjelaskan peran sensor dalam machinery protection
+
+---
+
+## 3️⃣ System Context
+
+Vibration & Temperature → Protection Relay / PLC → Trip Motor
+
+---
+
+## 4️⃣ Diagram Literacy
+
+- Basic protection block diagram
+- Sensor → Logic → Trip relay
+
+---
+
+## 5️⃣ Basic Theory
+
+- Setpoint alarm
+- Trip delay
+- Fail-safe principle
+
+---
+
+## 6️⃣ Failure Illustration
+
+Alarm diabaikan → akhirnya trip terjadi.
+
+---
+
+## 7️⃣ Risk Awareness
+
+Setting terlalu sensitif → nuisance trip
+Setting terlalu tinggi → equipment damage
+
+---
+
+## 1️⃣4️⃣ Competency Mapping
+
+Machinery protection awareness: A → W
+
+---
+
+# 📊 ALIGNMENT DENGAN OUTCOME JUNIOR
+
+| Outcome                                 | Status |
+| --------------------------------------- | ------ |
+| Troubleshooting sistematis              | ✔      |
+| Membaca loop & protection diagram       | ✔      |
+| Safety awareness                        | ✔      |
+| Preventive & inspeksi                   | ✔      |
+| Interaksi Mechanical–Instrument–Control | ✔      |

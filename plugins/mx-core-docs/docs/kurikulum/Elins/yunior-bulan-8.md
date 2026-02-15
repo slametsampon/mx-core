@@ -1,12 +1,16 @@
-# 🔵 BULAN 1 – FUNDAMENTAL ELECTRICAL SAFETY & MOTOR BASIC
+# TEKNISI JUNIOR E&I
 
-(Level 1 – Junior ELINS)
+## 🔵 BULAN 8 – Safety Instrumented System (SIS) Awareness
+
+Referensi utama:
+International Electrotechnical Commission – IEC 61511 (Functional Safety – Process Industry)
 
 ---
 
-- [🔵 BULAN 1 – FUNDAMENTAL ELECTRICAL SAFETY \& MOTOR BASIC](#-bulan-1--fundamental-electrical-safety--motor-basic)
+- [TEKNISI JUNIOR E\&I](#teknisi-junior-ei)
+  - [🔵 BULAN 8 – Safety Instrumented System (SIS) Awareness](#-bulan-8--safety-instrumented-system-sis-awareness)
 - [📘 ARTIKEL 1](#-artikel-1)
-  - [Motor LV Trip Saat Start – Investigasi Sistematis Berbasis Diagram \& Data](#motor-lv-trip-saat-start--investigasi-sistematis-berbasis-diagram--data)
+  - [ESD Valve Gagal Close Saat Test – Investigasi dari Logic hingga Actuator](#esd-valve-gagal-close-saat-test--investigasi-dari-logic-hingga-actuator)
   - [1️⃣ Informasi Umum](#1️⃣-informasi-umum)
   - [2️⃣ Learning Objective](#2️⃣-learning-objective)
   - [3️⃣ System Context \& Criticality](#3️⃣-system-context--criticality)
@@ -24,31 +28,55 @@
   - [1️⃣5️⃣ Discussion Question](#1️⃣5️⃣-discussion-question)
   - [1️⃣6️⃣ Key Takeaway](#1️⃣6️⃣-key-takeaway)
 - [📘 ARTIKEL 2](#-artikel-2)
-  - [MCC Breaker Trip – Overload vs Short Circuit Analysis](#mcc-breaker-trip--overload-vs-short-circuit-analysis)
+  - [False Trip pada Safety Loop – Sensor Fault atau Logic Issue?](#false-trip-pada-safety-loop--sensor-fault-atau-logic-issue)
+  - [1️⃣ Informasi Umum](#1️⃣-informasi-umum-1)
+  - [2️⃣ Learning Objective](#2️⃣-learning-objective-1)
+  - [3️⃣ System Context](#3️⃣-system-context)
+  - [4️⃣ Diagram Literacy](#4️⃣-diagram-literacy)
+  - [5️⃣ Failure Scenario](#5️⃣-failure-scenario)
+  - [6️⃣ Possible Causes](#6️⃣-possible-causes)
+  - [7️⃣ Investigation](#7️⃣-investigation)
+  - [8️⃣ Root Cause](#8️⃣-root-cause)
+  - [9️⃣ Risk](#9️⃣-risk)
+  - [1️⃣3️⃣ Trend Awareness](#1️⃣3️⃣-trend-awareness)
+  - [1️⃣4️⃣ Competency Mapping](#1️⃣4️⃣-competency-mapping-1)
 - [📘 ARTIKEL 3](#-artikel-3)
-  - [Checklist Inspeksi Harian MCC \& Panel Distribusi Berbasis Risk](#checklist-inspeksi-harian-mcc--panel-distribusi-berbasis-risk)
+  - [Proof Test Awareness \& Dokumentasi Sesuai IEC 61511](#proof-test-awareness--dokumentasi-sesuai-iec-61511)
+  - [1️⃣ Informasi Umum](#1️⃣-informasi-umum-2)
+  - [2️⃣ Learning Objective](#2️⃣-learning-objective-2)
+  - [3️⃣ System Context](#3️⃣-system-context-1)
+  - [4️⃣ Diagram Literacy](#4️⃣-diagram-literacy-1)
+  - [5️⃣ Procedure Outline (Awareness)](#5️⃣-procedure-outline-awareness)
+  - [6️⃣ Documentation Requirement](#6️⃣-documentation-requirement)
+  - [7️⃣ Risk](#7️⃣-risk)
+  - [1️⃣4️⃣ Competency Mapping](#1️⃣4️⃣-competency-mapping-2)
 - [📘 ARTIKEL 4](#-artikel-4)
-  - [Dasar Proteksi Listrik \& ANSI Relay Code (50/51/27/59) dalam Konteks Sistem](#dasar-proteksi-listrik--ansi-relay-code-50512759-dalam-konteks-sistem)
-- [📊 ALIGNMENT TERHADAP 5 OUTCOME](#-alignment-terhadap-5-outcome)
+  - [Perbedaan BPCS vs SIS \& Konsep Dasar SIL](#perbedaan-bpcs-vs-sis--konsep-dasar-sil)
+  - [1️⃣ Informasi Umum](#1️⃣-informasi-umum-3)
+  - [2️⃣ Learning Objective](#2️⃣-learning-objective-3)
+  - [3️⃣ System Context](#3️⃣-system-context-2)
+  - [4️⃣ Diagram Literacy](#4️⃣-diagram-literacy-2)
+  - [5️⃣ Basic Theory](#5️⃣-basic-theory)
+  - [6️⃣ Failure Illustration](#6️⃣-failure-illustration)
+  - [7️⃣ Risk Awareness](#7️⃣-risk-awareness)
+  - [1️⃣4️⃣ Competency Mapping](#1️⃣4️⃣-competency-mapping-3)
+- [📊 ALIGNMENT DENGAN OUTCOME JUNIOR](#-alignment-dengan-outcome-junior)
 
 ---
 
 # 📘 ARTIKEL 1
 
-## Motor LV Trip Saat Start – Investigasi Sistematis Berbasis Diagram & Data
+## ESD Valve Gagal Close Saat Test – Investigasi dari Logic hingga Actuator
 
 ---
 
 ## 1️⃣ Informasi Umum
 
-Disiplin: Electrical
+Disiplin: Instrumentation & Control (SIS)
 Level: Junior
 Kategori: Troubleshooting
-Equipment: Motor LV 75 kW – Pump Service
-Referensi:
-
-- NFPA
-- IEEE
+Equipment: ESD Valve + Logic Solver + Field Device
+Referensi: IEC 61511 awareness
 
 ---
 
@@ -56,48 +84,46 @@ Referensi:
 
 Setelah membaca artikel ini, teknisi mampu:
 
-- Mengidentifikasi minimal 5 penyebab motor trip saat start
-- Membaca jalur motor pada Single Line Diagram (SLD)
-- Menjelaskan hubungan mechanical binding terhadap arus start
+- Mengidentifikasi penyebab ESD valve gagal close saat test
+- Membaca Cause & Effect diagram dasar
+- Memahami interaksi antara logic solver dan final element
 
 ---
 
 ## 3️⃣ System Context & Criticality
 
-Motor → Menggerakkan pump → Mengontrol flow → Mempengaruhi control valve → Mempengaruhi pressure transmitter → Bisa memicu interlock low flow.
+Process Parameter → SIS Logic Solver → ESD Valve → Risk Mitigation
 
-Kegagalan motor dapat menyebabkan:
+Jika ESD valve gagal close:
 
-- Flow drop
-- Process upset
-- Trip downstream unit
+- Fungsi proteksi tidak berjalan
+- Potensi major accident hazard
 
-👉 Menguatkan pemahaman interaksi Electrical–Instrument–Control.
+Interaksi lintas disiplin:
+Sensor (instrument) → Logic (SIS) → Actuator (mechanical) → Proses.
 
 ---
 
 ## 4️⃣ Diagram Literacy Section (WAJIB)
 
-Analisa berbasis SLD:
+Menggunakan:
 
-- Incoming feeder → MCC → Breaker → Overload relay → Motor
-- Titik proteksi: ANSI 50/51
-- Titik isolasi: MCC breaker
+- Cause & Effect Diagram
+- Loop diagram ESD valve
+- Pneumatic supply path
 
 Teknisi harus mampu menunjukkan:
 
-- Posisi proteksi
-- Titik ukur ampere
-- Jalur supply
+- Sumber trigger trip
+- Jalur sinyal ke logic solver
+- Jalur udara ke actuator
 
 ---
 
 ## 5️⃣ Background & Failure Scenario
 
-Motor 75 kW trip 3 detik setelah start.
-Ampere naik hingga 6x FLA.
-Tegangan drop 8%.
-Tidak ada bunyi abnormal.
+Saat proof test, ESD valve tidak bergerak meskipun trip command aktif.
+DCS menunjukkan “Trip Active”.
 
 ---
 
@@ -105,71 +131,71 @@ Tidak ada bunyi abnormal.
 
 Terlihat:
 
-- Trip alarm di DCS
+- Solenoid valve tidak mengeluarkan udara
 
 Terukur:
 
-- Arus inrush tinggi
-- Tegangan drop sesaat
+- Output logic berubah
+- Air pressure normal di header
 
-Asumsi operator:
+Asumsi awal:
 
-- “Motor rusak”
+- Valve macet
 
 ---
 
 ## 7️⃣ Possible Causes (Structured)
 
-Electrical:
+Instrument:
 
-- Undervoltage
-- Shorted winding
+- Solenoid valve coil failure
+- Wiring open circuit
+
+Control:
+
+- Output card failure
 
 Mechanical:
 
-- Pump jammed
-- Impeller fouling
-
-Instrument:
-
-- False current reading
+- Actuator diaphragm bocor
+- Stem jam
 
 Human:
 
-- Setting overload terlalu rendah
+- Bypass belum dikembalikan normal
 
 ---
 
 ## 8️⃣ Step-by-Step Investigation
 
-1. Verifikasi overload setting
-2. Cek SLD untuk upstream feeder load
-3. Cek coupling free rotation
-4. Ukur IR motor
-5. Verifikasi voltage drop saat start
+1. Verifikasi status bypass di panel SIS
+2. Cek output voltage ke solenoid
+3. Cek resistance coil
+4. Cek air supply lokal
+5. Lakukan manual stroke test
 
 Decision logic:
-Electrical diverifikasi sebelum membuka mechanical.
+Validasi logic output sebelum membongkar actuator.
 
 ---
 
 ## 9️⃣ Root Cause & Contributing Factor
 
-Root Cause:
-Impeller fouling menyebabkan locked rotor condition.
+Root cause:
+Solenoid valve coil open circuit.
 
 Contributing:
-Suction strainer tidak dibersihkan periodik.
+Tidak ada inspeksi coil resistance periodik.
 
 ---
 
 ## 🔟 Reference Standard & Gap Analysis
 
-Menurut IEEE:
-Setting overload harus 115–125% FLA.
+IEC 61511:
+Final element reliability sangat krusial untuk Safety Function.
 
 Gap:
-Setting ditemukan terlalu rendah (105%).
+Proof test tidak mencakup pengecekan electrical coil resistance.
 
 ---
 
@@ -177,148 +203,301 @@ Setting ditemukan terlalu rendah (105%).
 
 Immediate:
 
-- Bersihkan impeller
+- Ganti solenoid coil
 
 Permanent:
 
-- Review PM suction line
+- Tambahkan coil resistance check dalam proof test
 
 Monitoring:
 
-- Trend arus start tiap bulan
+- Catat response time valve setiap test
 
 ---
 
 ## 1️⃣2️⃣ Risk & Safety Reflection
 
-- Arc flash risk saat buka panel
-- Wajib LOTO
-- Gunakan PPE sesuai NFPA 70E
+- Jangan bypass SIS tanpa izin formal
+- Wajib permit & komunikasi dengan operasi
+- Pastikan sistem dalam kondisi aman sebelum test
 
 ---
 
 ## 1️⃣3️⃣ Data Interpretation & Trend Awareness
 
-Parameter monitoring:
+Bandingkan:
 
-- Starting current
-- Voltage drop
-- Running ampere
+- Response time historis vs saat ini
+- Frekuensi kegagalan solenoid sebelumnya
 
 Early warning:
-Ampere naik perlahan dalam 2 minggu sebelum trip.
+Response time meningkat sebelum gagal total.
 
 ---
 
 ## 1️⃣4️⃣ Competency Mapping
 
-Motor troubleshooting:
-W → Target I
-
-Diagram reading:
-A → W
+SIS troubleshooting: W → I
+Cause & Effect reading: A → W
 
 ---
 
 ## 1️⃣5️⃣ Discussion Question
 
-1. Mengapa arus tinggi tidak selalu berarti short circuit?
-2. Apa risiko reset berulang?
-3. Apa hubungan fouling dengan arus listrik?
+1. Mengapa bypass berbahaya jika tidak dikontrol?
+2. Apa dampak satu solenoid gagal pada fungsi SIL?
+3. Mengapa proof test harus terdokumentasi?
 
 ---
 
 ## 1️⃣6️⃣ Key Takeaway
 
-- Gunakan data sebelum asumsi
-- Periksa mechanical sebelum menyalahkan electrical
-- SLD adalah alat investigasi utama
+- SIS adalah lapisan proteksi terakhir
+- Validasi logic & output sebelum membongkar mekanis
+- Dokumentasi test sama pentingnya dengan test itu sendiri
 
 ---
 
 # 📘 ARTIKEL 2
 
-## MCC Breaker Trip – Overload vs Short Circuit Analysis
+## False Trip pada Safety Loop – Sensor Fault atau Logic Issue?
 
-Fokus tambahan:
+---
 
-- Membaca kurva trip
-- Memahami selective coordination
-- Interaksi upstream–downstream protection
+## 1️⃣ Informasi Umum
 
-Tambahan penting pada versi ini:
+Disiplin: Instrumentation & Control (SIS)
+Level: Junior
+Kategori: Troubleshooting
 
-Diagram Literacy:
+---
 
-- Interpretasi feeder coordination di SLD
+## 2️⃣ Learning Objective
 
-System Interaction:
+- Mengidentifikasi penyebab false trip
+- Membaca voting configuration dasar (1oo1, 1oo2)
+- Membedakan sensor drift vs genuine trip
 
-- Jika breaker upstream trip → multiple equipment shutdown
+---
 
-Trend Awareness:
+## 3️⃣ System Context
 
-- Repeated near-trip event sebelum failure
+Process Parameter → Sensor → Logic Solver → Trip
+
+False trip menyebabkan:
+
+- Production loss
+- Operator distrust terhadap sistem safety
+
+---
+
+## 4️⃣ Diagram Literacy
+
+- Voting logic sederhana
+- Jalur input sensor ke logic solver
+
+---
+
+## 5️⃣ Failure Scenario
+
+Plant trip akibat high pressure alarm, namun field gauge normal.
+
+---
+
+## 6️⃣ Possible Causes
+
+Instrument:
+
+- Sensor drift
+- Wiring loose
+
+Control:
+
+- Logic configuration error
+
+Human:
+
+- Maintenance bypass tidak dilepas
+
+---
+
+## 7️⃣ Investigation
+
+1. Cross-check field gauge
+2. Review historian trend
+3. Cek sensor calibration
+4. Verifikasi logic configuration
+
+---
+
+## 8️⃣ Root Cause
+
+Pressure transmitter drift akibat impulse line blockage.
+
+---
+
+## 9️⃣ Risk
+
+Repeated false trip → operator mengabaikan alarm nyata.
+
+---
+
+## 1️⃣3️⃣ Trend Awareness
+
+Analisa:
+
+- Frekuensi trip per bulan
+- Sensor drift pattern
+
+---
+
+## 1️⃣4️⃣ Competency Mapping
+
+Safety loop analysis: W → I
 
 ---
 
 # 📘 ARTIKEL 3
 
-## Checklist Inspeksi Harian MCC & Panel Distribusi Berbasis Risk
+## Proof Test Awareness & Dokumentasi Sesuai IEC 61511
 
-Tambahan versi 2.0:
+---
 
-System Context:
+## 1️⃣ Informasi Umum
 
-- Panel overheating dapat memicu trip instrument power supply
+Disiplin: Instrumentation (SIS)
+Level: Junior
+Kategori: Preventive
 
-Diagram Literacy:
+Referensi:
+International Electrotechnical Commission – IEC 61511
 
-- Identifikasi busbar & feeder path
+---
 
-Data Section:
+## 2️⃣ Learning Objective
 
-- Thermal scanning trend
+- Menjelaskan tujuan proof test
+- Memahami interval proof test
+- Melakukan dokumentasi hasil test
 
-Risk:
+---
 
-- Loose termination → arc flash potential
+## 3️⃣ System Context
 
-Outcome yang diperkuat:
-Inspeksi mandiri & safety awareness.
+Proof test memastikan Safety Instrumented Function tetap andal.
+
+---
+
+## 4️⃣ Diagram Literacy
+
+- Identify sensor–logic–final element dalam satu SIF
+
+---
+
+## 5️⃣ Procedure Outline (Awareness)
+
+1. Persiapan & komunikasi operasi
+2. Bypass sesuai prosedur
+3. Simulasi trip
+4. Verifikasi valve close
+5. Restore system
+
+---
+
+## 6️⃣ Documentation Requirement
+
+- Test date
+- Result
+- Response time
+- Anomaly
+
+---
+
+## 7️⃣ Risk
+
+Sistem tidak direstore → kehilangan proteksi.
+
+---
+
+## 1️⃣4️⃣ Competency Mapping
+
+Proof test execution: W → I
 
 ---
 
 # 📘 ARTIKEL 4
 
-## Dasar Proteksi Listrik & ANSI Relay Code (50/51/27/59) dalam Konteks Sistem
-
-Tambahan versi 2.0:
-
-System Context:
-
-- Undervoltage dapat menyebabkan false instrument reading
-
-Diagram Literacy:
-
-- Identifikasi relay location pada SLD
-
-Failure Scenario:
-
-- Plant load tinggi → undervoltage → motor trip → low flow interlock
-
-Trend Awareness:
-
-- Voltage trending pada peak load
+## Perbedaan BPCS vs SIS & Konsep Dasar SIL
 
 ---
 
-# 📊 ALIGNMENT TERHADAP 5 OUTCOME
+## 1️⃣ Informasi Umum
 
-| Outcome                    | Status               |
-| -------------------------- | -------------------- |
-| Troubleshooting sistematis | ✔ Kuat               |
-| Membaca SLD & diagram      | ✔ Ada section wajib  |
-| Safety awareness           | ✔ Dedicated section  |
-| Inspeksi mandiri           | ✔ Artikel 3          |
-| Interaksi E–I–C            | ✔ Ada System Context |
+Disiplin: Control
+Level: Junior
+Kategori: Basic Theory
+
+Referensi:
+International Electrotechnical Commission – IEC 61511
+
+---
+
+## 2️⃣ Learning Objective
+
+- Menjelaskan perbedaan BPCS dan SIS
+- Memahami konsep SIL secara dasar
+- Mengerti mengapa redundancy penting
+
+---
+
+## 3️⃣ System Context
+
+BPCS = Control
+SIS = Protection
+
+Keduanya bekerja independen.
+
+---
+
+## 4️⃣ Diagram Literacy
+
+- Diagram sederhana BPCS vs SIS architecture
+- Jalur sensor terpisah
+
+---
+
+## 5️⃣ Basic Theory
+
+- SIL = Risk Reduction Level
+- Voting logic sederhana
+- Independence requirement
+
+---
+
+## 6️⃣ Failure Illustration
+
+Jika BPCS gagal → SIS harus tetap bekerja.
+
+---
+
+## 7️⃣ Risk Awareness
+
+Menggabungkan BPCS & SIS tanpa independensi meningkatkan risiko.
+
+---
+
+## 1️⃣4️⃣ Competency Mapping
+
+SIL awareness: A → W
+
+---
+
+# 📊 ALIGNMENT DENGAN OUTCOME JUNIOR
+
+| Outcome                                 | Status   |
+| --------------------------------------- | -------- |
+| Troubleshooting sistematis              | ✔        |
+| Membaca C&E & loop                      | ✔        |
+| Safety awareness                        | ✔ (kuat) |
+| Preventive & dokumentasi                | ✔        |
+| Interaksi Instrument–Control–Mechanical | ✔        |

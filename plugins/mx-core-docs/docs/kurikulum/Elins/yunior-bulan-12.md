@@ -1,12 +1,20 @@
-# 🔵 BULAN 1 – FUNDAMENTAL ELECTRICAL SAFETY & MOTOR BASIC
+# TEKNISI JUNIOR E&I
 
-(Level 1 – Junior ELINS)
+## 🔵 BULAN 12 – Integrated Case Study & Review
+
+Fokus bulan ini:
+
+- Integrasi Electrical–Instrumentation–Control
+- Pola pikir sistem (system thinking)
+- Penguatan troubleshooting sistematis
+- Evaluasi efektivitas PM
 
 ---
 
-- [🔵 BULAN 1 – FUNDAMENTAL ELECTRICAL SAFETY \& MOTOR BASIC](#-bulan-1--fundamental-electrical-safety--motor-basic)
+- [TEKNISI JUNIOR E\&I](#teknisi-junior-ei)
+  - [🔵 BULAN 12 – Integrated Case Study \& Review](#-bulan-12--integrated-case-study--review)
 - [📘 ARTIKEL 1](#-artikel-1)
-  - [Motor LV Trip Saat Start – Investigasi Sistematis Berbasis Diagram \& Data](#motor-lv-trip-saat-start--investigasi-sistematis-berbasis-diagram--data)
+  - [Major Integrated Case: Motor Trip → Valve Malfunction → Plant Upset](#major-integrated-case-motor-trip--valve-malfunction--plant-upset)
   - [1️⃣ Informasi Umum](#1️⃣-informasi-umum)
   - [2️⃣ Learning Objective](#2️⃣-learning-objective)
   - [3️⃣ System Context \& Criticality](#3️⃣-system-context--criticality)
@@ -24,31 +32,42 @@
   - [1️⃣5️⃣ Discussion Question](#1️⃣5️⃣-discussion-question)
   - [1️⃣6️⃣ Key Takeaway](#1️⃣6️⃣-key-takeaway)
 - [📘 ARTIKEL 2](#-artikel-2)
-  - [MCC Breaker Trip – Overload vs Short Circuit Analysis](#mcc-breaker-trip--overload-vs-short-circuit-analysis)
+  - [Review Efektivitas PM Program – Time Based atau Condition Based?](#review-efektivitas-pm-program--time-based-atau-condition-based)
+  - [1️⃣ Informasi Umum](#1️⃣-informasi-umum-1)
+  - [2️⃣ Learning Objective](#2️⃣-learning-objective-1)
+  - [3️⃣ System Context](#3️⃣-system-context)
+  - [4️⃣ Diagram Literacy](#4️⃣-diagram-literacy)
+  - [5️⃣ Review Framework](#5️⃣-review-framework)
+  - [6️⃣ Gap Analysis](#6️⃣-gap-analysis)
+  - [7️⃣ Improvement Proposal](#7️⃣-improvement-proposal)
+  - [1️⃣4️⃣ Competency Mapping](#1️⃣4️⃣-competency-mapping-1)
 - [📘 ARTIKEL 3](#-artikel-3)
-  - [Checklist Inspeksi Harian MCC \& Panel Distribusi Berbasis Risk](#checklist-inspeksi-harian-mcc--panel-distribusi-berbasis-risk)
-- [📘 ARTIKEL 4](#-artikel-4)
-  - [Dasar Proteksi Listrik \& ANSI Relay Code (50/51/27/59) dalam Konteks Sistem](#dasar-proteksi-listrik--ansi-relay-code-50512759-dalam-konteks-sistem)
-- [📊 ALIGNMENT TERHADAP 5 OUTCOME](#-alignment-terhadap-5-outcome)
+  - [Root Cause Analysis (5 Why \& Fishbone) – Dasar untuk Teknisi Junior](#root-cause-analysis-5-why--fishbone--dasar-untuk-teknisi-junior)
+  - [1️⃣ Informasi Umum](#1️⃣-informasi-umum-2)
+  - [2️⃣ Learning Objective](#2️⃣-learning-objective-2)
+  - [3️⃣ System Context](#3️⃣-system-context-1)
+  - [4️⃣ Diagram Literacy](#4️⃣-diagram-literacy-1)
+  - [5️⃣ Basic Theory](#5️⃣-basic-theory)
+  - [6️⃣ Case Illustration](#6️⃣-case-illustration)
+  - [7️⃣ Risk Awareness](#7️⃣-risk-awareness)
+  - [1️⃣4️⃣ Competency Mapping](#1️⃣4️⃣-competency-mapping-2)
+- [📊 FINAL ALIGNMENT – 12 BULAN JUNIOR E\&I](#-final-alignment--12-bulan-junior-ei)
+- [🎯 HASIL AKHIR 1 TAHUN – JUNIOR E\&I](#-hasil-akhir-1-tahun--junior-ei)
 
 ---
 
 # 📘 ARTIKEL 1
 
-## Motor LV Trip Saat Start – Investigasi Sistematis Berbasis Diagram & Data
+## Major Integrated Case: Motor Trip → Valve Malfunction → Plant Upset
 
 ---
 
 ## 1️⃣ Informasi Umum
 
-Disiplin: Electrical
+Disiplin: Electrical, Instrumentation & Control (Integrated Case)
 Level: Junior
-Kategori: Troubleshooting
-Equipment: Motor LV 75 kW – Pump Service
-Referensi:
-
-- NFPA
-- IEEE
+Kategori: Major Case Study
+Equipment: Motor Pump, Control Valve, PLC/DCS, Protection Relay
 
 ---
 
@@ -56,48 +75,54 @@ Referensi:
 
 Setelah membaca artikel ini, teknisi mampu:
 
-- Mengidentifikasi minimal 5 penyebab motor trip saat start
-- Membaca jalur motor pada Single Line Diagram (SLD)
-- Menjelaskan hubungan mechanical binding terhadap arus start
+- Menelusuri kejadian secara sistematis lintas disiplin
+- Membaca SLD, Loop Diagram, dan Cause & Effect secara terintegrasi
+- Mengidentifikasi root cause teknis dan contributing factor sistemik
 
 ---
 
 ## 3️⃣ System Context & Criticality
 
-Motor → Menggerakkan pump → Mengontrol flow → Mempengaruhi control valve → Mempengaruhi pressure transmitter → Bisa memicu interlock low flow.
+Motor → Pump → Flow → Control Valve → Process Pressure → Interlock
 
-Kegagalan motor dapat menyebabkan:
+Kejadian awal kecil dapat berkembang menjadi:
 
-- Flow drop
-- Process upset
-- Trip downstream unit
+- Trip motor
+- Control valve tidak stabil
+- Pressure spike
+- Unit upset
 
-👉 Menguatkan pemahaman interaksi Electrical–Instrument–Control.
+Kasus ini menguji pemahaman sistem secara menyeluruh.
 
 ---
 
 ## 4️⃣ Diagram Literacy Section (WAJIB)
 
-Analisa berbasis SLD:
+Teknisi harus mampu membaca:
 
-- Incoming feeder → MCC → Breaker → Overload relay → Motor
-- Titik proteksi: ANSI 50/51
-- Titik isolasi: MCC breaker
+- Single Line Diagram (Motor feeder & protection)
+- Loop Diagram (Flow transmitter & control valve)
+- Cause & Effect (Interlock logic)
 
-Teknisi harus mampu menunjukkan:
+Harus mampu menunjukkan:
 
-- Posisi proteksi
-- Titik ukur ampere
-- Jalur supply
+- Titik trip motor
+- Jalur sinyal flow transmitter
+- Interlock yang aktif
 
 ---
 
 ## 5️⃣ Background & Failure Scenario
 
-Motor 75 kW trip 3 detik setelah start.
-Ampere naik hingga 6x FLA.
-Tegangan drop 8%.
-Tidak ada bunyi abnormal.
+Urutan kejadian:
+
+1. Motor trip akibat overload
+2. Flow turun drastis
+3. Control valve membuka penuh
+4. Pressure downstream naik
+5. High pressure alarm aktif
+
+Plant mengalami upset selama 30 menit.
 
 ---
 
@@ -105,16 +130,18 @@ Tidak ada bunyi abnormal.
 
 Terlihat:
 
-- Trip alarm di DCS
+- Motor trip alarm
+- Valve position 100%
+- Flow low
 
 Terukur:
 
-- Arus inrush tinggi
-- Tegangan drop sesaat
+- Arus motor naik sebelum trip
+- Vibration sedikit meningkat
 
-Asumsi operator:
+Asumsi awal:
 
-- “Motor rusak”
+- Motor rusak
 
 ---
 
@@ -122,54 +149,60 @@ Asumsi operator:
 
 Electrical:
 
-- Undervoltage
-- Shorted winding
+- Overload setting terlalu rendah
+- Voltage unbalance
 
 Mechanical:
 
-- Pump jammed
-- Impeller fouling
+- Pump overload akibat blockage
 
 Instrument:
 
-- False current reading
+- Flow transmitter error
+
+Control:
+
+- PID tuning agresif
 
 Human:
 
-- Setting overload terlalu rendah
+- PM tidak dilakukan tepat waktu
 
 ---
 
 ## 8️⃣ Step-by-Step Investigation
 
-1. Verifikasi overload setting
-2. Cek SLD untuk upstream feeder load
-3. Cek coupling free rotation
-4. Ukur IR motor
-5. Verifikasi voltage drop saat start
+1. Review timeline event log
+2. Analisa arus motor sebelum trip
+3. Cek vibration & bearing temperature
+4. Verifikasi kondisi valve
+5. Review histori PM
 
 Decision logic:
-Electrical diverifikasi sebelum membuka mechanical.
+Mulai dari trigger pertama (motor trip), bukan dari efek akhir.
 
 ---
 
 ## 9️⃣ Root Cause & Contributing Factor
 
-Root Cause:
-Impeller fouling menyebabkan locked rotor condition.
+Root cause:
+Pump suction partially blocked → motor overload → trip.
 
-Contributing:
-Suction strainer tidak dibersihkan periodik.
+Contributing factor:
+Tidak ada inspeksi suction strainer periodik.
+
+System factor:
+Tidak ada monitoring trend arus untuk early warning.
 
 ---
 
 ## 🔟 Reference Standard & Gap Analysis
 
-Menurut IEEE:
-Setting overload harus 115–125% FLA.
+Best practice industri:
+Trend monitoring & predictive maintenance harus aktif untuk rotating critical.
 
 Gap:
-Setting ditemukan terlalu rendah (105%).
+PM hanya bersifat time-based tanpa data review.
 
 ---
 
@@ -177,148 +210,213 @@ Setting ditemukan terlalu rendah (105%).
 
 Immediate:
 
-- Bersihkan impeller
+- Bersihkan suction line
 
 Permanent:
 
-- Review PM suction line
+- Tambahkan trend arus & vibration review bulanan
+- Update PM checklist
 
-Monitoring:
+System improvement:
 
-- Trend arus start tiap bulan
+- Buat alarm early overload warning
 
 ---
 
 ## 1️⃣2️⃣ Risk & Safety Reflection
 
-- Arc flash risk saat buka panel
-- Wajib LOTO
-- Gunakan PPE sesuai NFPA 70E
+- Jangan reset trip tanpa investigasi
+- Hindari bypass interlock tanpa izin formal
 
 ---
 
 ## 1️⃣3️⃣ Data Interpretation & Trend Awareness
 
-Parameter monitoring:
+Analisa:
 
-- Starting current
-- Voltage drop
-- Running ampere
+- Arus naik gradual 10 hari sebelum trip
+- Vibration naik 15%
 
-Early warning:
-Ampere naik perlahan dalam 2 minggu sebelum trip.
+Early warning terlewat karena tidak dianalisa.
 
 ---
 
 ## 1️⃣4️⃣ Competency Mapping
 
-Motor troubleshooting:
-W → Target I
-
-Diagram reading:
-A → W
+Integrated troubleshooting: W → I
+System thinking: A → W
 
 ---
 
 ## 1️⃣5️⃣ Discussion Question
 
-1. Mengapa arus tinggi tidak selalu berarti short circuit?
-2. Apa risiko reset berulang?
-3. Apa hubungan fouling dengan arus listrik?
+1. Mengapa fokus pada event pertama penting?
+2. Apa yang bisa mencegah kejadian ini?
+3. Bagaimana peran trend dalam pencegahan?
 
 ---
 
 ## 1️⃣6️⃣ Key Takeaway
 
-- Gunakan data sebelum asumsi
-- Periksa mechanical sebelum menyalahkan electrical
-- SLD adalah alat investigasi utama
+- Semua sistem saling terhubung
+- Efek sering bukan penyebab
+- Data historis adalah kunci pencegahan
 
 ---
 
 # 📘 ARTIKEL 2
 
-## MCC Breaker Trip – Overload vs Short Circuit Analysis
+## Review Efektivitas PM Program – Time Based atau Condition Based?
 
-Fokus tambahan:
+---
 
-- Membaca kurva trip
-- Memahami selective coordination
-- Interaksi upstream–downstream protection
+## 1️⃣ Informasi Umum
 
-Tambahan penting pada versi ini:
+Disiplin: E&I
+Level: Junior
+Kategori: Preventive & Review
 
-Diagram Literacy:
+---
 
-- Interpretasi feeder coordination di SLD
+## 2️⃣ Learning Objective
 
-System Interaction:
+- Menilai efektivitas PM saat ini
+- Mengidentifikasi gap dalam program PM
+- Mengusulkan perbaikan sederhana berbasis data
 
-- Jika breaker upstream trip → multiple equipment shutdown
+---
 
-Trend Awareness:
+## 3️⃣ System Context
 
-- Repeated near-trip event sebelum failure
+PM tidak efektif → Failure berulang → Downtime meningkat.
+
+---
+
+## 4️⃣ Diagram Literacy
+
+- Identifikasi equipment critical pada SLD & P&ID
+
+---
+
+## 5️⃣ Review Framework
+
+1. Jumlah breakdown per tahun
+2. Temuan berulang
+3. Trend parameter tidak dianalisa
+4. Item PM tidak relevan
+
+---
+
+## 6️⃣ Gap Analysis
+
+Time-based tanpa data trend menyebabkan missed early warning.
+
+---
+
+## 7️⃣ Improvement Proposal
+
+- Tambah trend review meeting bulanan
+- Update checklist berdasarkan failure history
+
+---
+
+## 1️⃣4️⃣ Competency Mapping
+
+PM evaluation awareness: A → W
 
 ---
 
 # 📘 ARTIKEL 3
 
-## Checklist Inspeksi Harian MCC & Panel Distribusi Berbasis Risk
-
-Tambahan versi 2.0:
-
-System Context:
-
-- Panel overheating dapat memicu trip instrument power supply
-
-Diagram Literacy:
-
-- Identifikasi busbar & feeder path
-
-Data Section:
-
-- Thermal scanning trend
-
-Risk:
-
-- Loose termination → arc flash potential
-
-Outcome yang diperkuat:
-Inspeksi mandiri & safety awareness.
+## Root Cause Analysis (5 Why & Fishbone) – Dasar untuk Teknisi Junior
 
 ---
 
-# 📘 ARTIKEL 4
+## 1️⃣ Informasi Umum
 
-## Dasar Proteksi Listrik & ANSI Relay Code (50/51/27/59) dalam Konteks Sistem
-
-Tambahan versi 2.0:
-
-System Context:
-
-- Undervoltage dapat menyebabkan false instrument reading
-
-Diagram Literacy:
-
-- Identifikasi relay location pada SLD
-
-Failure Scenario:
-
-- Plant load tinggi → undervoltage → motor trip → low flow interlock
-
-Trend Awareness:
-
-- Voltage trending pada peak load
+Disiplin: E&I
+Level: Junior
+Kategori: Basic Theory
 
 ---
 
-# 📊 ALIGNMENT TERHADAP 5 OUTCOME
+## 2️⃣ Learning Objective
 
-| Outcome                    | Status               |
-| -------------------------- | -------------------- |
-| Troubleshooting sistematis | ✔ Kuat               |
-| Membaca SLD & diagram      | ✔ Ada section wajib  |
-| Safety awareness           | ✔ Dedicated section  |
-| Inspeksi mandiri           | ✔ Artikel 3          |
-| Interaksi E–I–C            | ✔ Ada System Context |
+- Menjelaskan metode 5 Why
+- Menyusun fishbone sederhana
+- Menghindari kesimpulan prematur
+
+---
+
+## 3️⃣ System Context
+
+Tanpa RCA:
+
+- Masalah berulang
+- Solusi hanya bersifat sementara
+
+---
+
+## 4️⃣ Diagram Literacy
+
+- Fishbone diagram (Man, Machine, Method, Material, Environment)
+
+---
+
+## 5️⃣ Basic Theory
+
+5 Why:
+
+- Menggali hingga akar masalah sistemik
+
+Fishbone:
+
+- Mengelompokkan faktor penyebab
+
+---
+
+## 6️⃣ Case Illustration
+
+Motor trip → Kenapa?
+Overload → Kenapa?
+Pump overload → Kenapa?
+Suction blocked → Kenapa?
+Tidak ada inspeksi rutin.
+
+---
+
+## 7️⃣ Risk Awareness
+
+Kesimpulan cepat tanpa data menyebabkan tindakan salah.
+
+---
+
+## 1️⃣4️⃣ Competency Mapping
+
+RCA awareness: A → W
+
+---
+
+# 📊 FINAL ALIGNMENT – 12 BULAN JUNIOR E&I
+
+| Outcome                                 | Status         |
+| --------------------------------------- | -------------- |
+| Troubleshooting sistematis              | ✔ Kuat         |
+| Membaca SLD / Loop / C&E                | ✔ Konsisten    |
+| Safety awareness                        | ✔ Terintegrasi |
+| Preventive & inspeksi mandiri           | ✔              |
+| Interaksi Electrical–Instrument–Control | ✔ Sangat kuat  |
+
+---
+
+# 🎯 HASIL AKHIR 1 TAHUN – JUNIOR E&I
+
+Setelah 12 bulan:
+
+Teknisi mampu:
+
+- Melakukan troubleshooting dasar secara sistematis
+- Membaca diagram utama plant
+- Memahami interaksi lintas disiplin
+- Melakukan inspeksi rutin dengan disiplin
+- Berpartisipasi dalam RCA sederhana

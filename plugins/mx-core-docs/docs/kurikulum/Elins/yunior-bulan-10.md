@@ -1,12 +1,16 @@
-# 🔵 BULAN 1 – FUNDAMENTAL ELECTRICAL SAFETY & MOTOR BASIC
+# TEKNISI JUNIOR E&I
 
-(Level 1 – Junior ELINS)
+## 🔵 BULAN 10 – Cable & Grounding System
+
+Referensi utama:
+IEEE – IEEE 80 (Grounding System Guide)
 
 ---
 
-- [🔵 BULAN 1 – FUNDAMENTAL ELECTRICAL SAFETY \& MOTOR BASIC](#-bulan-1--fundamental-electrical-safety--motor-basic)
+- [TEKNISI JUNIOR E\&I](#teknisi-junior-ei)
+  - [🔵 BULAN 10 – Cable \& Grounding System](#-bulan-10--cable--grounding-system)
 - [📘 ARTIKEL 1](#-artikel-1)
-  - [Motor LV Trip Saat Start – Investigasi Sistematis Berbasis Diagram \& Data](#motor-lv-trip-saat-start--investigasi-sistematis-berbasis-diagram--data)
+  - [Ground Fault pada Motor Feeder – Investigasi dari Insulation hingga Earthing System](#ground-fault-pada-motor-feeder--investigasi-dari-insulation-hingga-earthing-system)
   - [1️⃣ Informasi Umum](#1️⃣-informasi-umum)
   - [2️⃣ Learning Objective](#2️⃣-learning-objective)
   - [3️⃣ System Context \& Criticality](#3️⃣-system-context--criticality)
@@ -24,18 +28,45 @@
   - [1️⃣5️⃣ Discussion Question](#1️⃣5️⃣-discussion-question)
   - [1️⃣6️⃣ Key Takeaway](#1️⃣6️⃣-key-takeaway)
 - [📘 ARTIKEL 2](#-artikel-2)
-  - [MCC Breaker Trip – Overload vs Short Circuit Analysis](#mcc-breaker-trip--overload-vs-short-circuit-analysis)
+  - [Signal Noise pada Analog Instrument – Masalah Ground Loop atau Shielding?](#signal-noise-pada-analog-instrument--masalah-ground-loop-atau-shielding)
+  - [1️⃣ Informasi Umum](#1️⃣-informasi-umum-1)
+  - [2️⃣ Learning Objective](#2️⃣-learning-objective-1)
+  - [3️⃣ System Context](#3️⃣-system-context)
+  - [4️⃣ Diagram Literacy](#4️⃣-diagram-literacy)
+  - [5️⃣ Failure Scenario](#5️⃣-failure-scenario)
+  - [6️⃣ Possible Causes](#6️⃣-possible-causes)
+  - [7️⃣ Investigation](#7️⃣-investigation)
+  - [8️⃣ Root Cause](#8️⃣-root-cause)
+  - [9️⃣ Risk](#9️⃣-risk)
+  - [1️⃣3️⃣ Trend Awareness](#1️⃣3️⃣-trend-awareness)
+  - [1️⃣4️⃣ Competency Mapping](#1️⃣4️⃣-competency-mapping-1)
 - [📘 ARTIKEL 3](#-artikel-3)
-  - [Checklist Inspeksi Harian MCC \& Panel Distribusi Berbasis Risk](#checklist-inspeksi-harian-mcc--panel-distribusi-berbasis-risk)
+  - [Inspection Cable Gland \& Termination – Preventive untuk Keandalan Sistem](#inspection-cable-gland--termination--preventive-untuk-keandalan-sistem)
+  - [1️⃣ Informasi Umum](#1️⃣-informasi-umum-2)
+  - [2️⃣ Learning Objective](#2️⃣-learning-objective-2)
+  - [3️⃣ System Context](#3️⃣-system-context-1)
+  - [4️⃣ Diagram Literacy](#4️⃣-diagram-literacy-1)
+  - [5️⃣ Inspection Checklist](#5️⃣-inspection-checklist)
+  - [6️⃣ Risk](#6️⃣-risk)
+  - [7️⃣ Data \& Documentation](#7️⃣-data--documentation)
+  - [1️⃣4️⃣ Competency Mapping](#1️⃣4️⃣-competency-mapping-2)
 - [📘 ARTIKEL 4](#-artikel-4)
-  - [Dasar Proteksi Listrik \& ANSI Relay Code (50/51/27/59) dalam Konteks Sistem](#dasar-proteksi-listrik--ansi-relay-code-50512759-dalam-konteks-sistem)
-- [📊 ALIGNMENT TERHADAP 5 OUTCOME](#-alignment-terhadap-5-outcome)
+  - [Earthing \& Bonding System Basic – Prinsip Proteksi Keselamatan](#earthing--bonding-system-basic--prinsip-proteksi-keselamatan)
+  - [1️⃣ Informasi Umum](#1️⃣-informasi-umum-3)
+  - [2️⃣ Learning Objective](#2️⃣-learning-objective-3)
+  - [3️⃣ System Context](#3️⃣-system-context-2)
+  - [4️⃣ Diagram Literacy](#4️⃣-diagram-literacy-2)
+  - [5️⃣ Basic Theory](#5️⃣-basic-theory)
+  - [6️⃣ Failure Illustration](#6️⃣-failure-illustration)
+  - [7️⃣ Risk Awareness](#7️⃣-risk-awareness)
+  - [1️⃣4️⃣ Competency Mapping](#1️⃣4️⃣-competency-mapping-3)
+- [📊 ALIGNMENT DENGAN OUTCOME JUNIOR](#-alignment-dengan-outcome-junior)
 
 ---
 
 # 📘 ARTIKEL 1
 
-## Motor LV Trip Saat Start – Investigasi Sistematis Berbasis Diagram & Data
+## Ground Fault pada Motor Feeder – Investigasi dari Insulation hingga Earthing System
 
 ---
 
@@ -44,11 +75,8 @@
 Disiplin: Electrical
 Level: Junior
 Kategori: Troubleshooting
-Equipment: Motor LV 75 kW – Pump Service
-Referensi:
-
-- NFPA
-- IEEE
+Equipment: Motor LV Feeder – MCC – Grounding System
+Referensi: IEEE 80 awareness
 
 ---
 
@@ -56,48 +84,47 @@ Referensi:
 
 Setelah membaca artikel ini, teknisi mampu:
 
-- Mengidentifikasi minimal 5 penyebab motor trip saat start
-- Membaca jalur motor pada Single Line Diagram (SLD)
-- Menjelaskan hubungan mechanical binding terhadap arus start
+- Mengidentifikasi penyebab ground fault pada motor feeder
+- Membaca Single Line Diagram untuk jalur feeder
+- Memahami hubungan insulation failure dengan sistem grounding
 
 ---
 
 ## 3️⃣ System Context & Criticality
 
-Motor → Menggerakkan pump → Mengontrol flow → Mempengaruhi control valve → Mempengaruhi pressure transmitter → Bisa memicu interlock low flow.
+Transformer → MCC → Motor Feeder → Motor
 
-Kegagalan motor dapat menyebabkan:
+Ground fault dapat menyebabkan:
 
-- Flow drop
-- Process upset
-- Trip downstream unit
+- Trip feeder
+- Arc flash risk
+- Damage winding
+- Plant interruption
 
-👉 Menguatkan pemahaman interaksi Electrical–Instrument–Control.
+Interaksi lintas disiplin:
+Insulation degradation (motor) ↔ Cable damage ↔ Protection relay ↔ Grounding grid.
 
 ---
 
 ## 4️⃣ Diagram Literacy Section (WAJIB)
 
-Analisa berbasis SLD:
+Menggunakan:
 
-- Incoming feeder → MCC → Breaker → Overload relay → Motor
-- Titik proteksi: ANSI 50/51
-- Titik isolasi: MCC breaker
+- Single Line Diagram (Feeder path)
+- Basic earthing diagram (neutral grounding, body grounding)
 
 Teknisi harus mampu menunjukkan:
 
-- Posisi proteksi
-- Titik ukur ampere
-- Jalur supply
+- Jalur arus gangguan
+- Titik grounding motor body
+- Lokasi CT / relay proteksi
 
 ---
 
 ## 5️⃣ Background & Failure Scenario
 
-Motor 75 kW trip 3 detik setelah start.
-Ampere naik hingga 6x FLA.
-Tegangan drop 8%.
-Tidak ada bunyi abnormal.
+Motor feeder trip dengan indikasi ground fault.
+IR test menunjukkan nilai rendah pada salah satu fasa.
 
 ---
 
@@ -105,16 +132,16 @@ Tidak ada bunyi abnormal.
 
 Terlihat:
 
-- Trip alarm di DCS
+- Breaker trip dengan ground fault indication
 
 Terukur:
 
-- Arus inrush tinggi
-- Tegangan drop sesaat
+- IR fasa R ke ground rendah
+- Cable temperature normal
 
-Asumsi operator:
+Asumsi awal:
 
-- “Motor rusak”
+- Motor winding short
 
 ---
 
@@ -122,54 +149,53 @@ Asumsi operator:
 
 Electrical:
 
-- Undervoltage
-- Shorted winding
+- Insulation breakdown motor
+- Cable sheath damage
 
 Mechanical:
 
-- Pump jammed
-- Impeller fouling
-
-Instrument:
-
-- False current reading
+- Vibration merusak cable support
 
 Human:
 
-- Setting overload terlalu rendah
+- Cable gland tidak sealing sempurna
+
+Environmental:
+
+- Moisture ingress
 
 ---
 
 ## 8️⃣ Step-by-Step Investigation
 
-1. Verifikasi overload setting
-2. Cek SLD untuk upstream feeder load
-3. Cek coupling free rotation
-4. Ukur IR motor
-5. Verifikasi voltage drop saat start
+1. Isolasi feeder sesuai LOTO
+2. Lakukan IR test pada motor & cable terpisah
+3. Visual inspection cable tray
+4. Periksa gland & sealing
+5. Verifikasi continuity grounding conductor
 
 Decision logic:
-Electrical diverifikasi sebelum membuka mechanical.
+Pisahkan motor dan cable untuk isolasi sumber fault.
 
 ---
 
 ## 9️⃣ Root Cause & Contributing Factor
 
-Root Cause:
-Impeller fouling menyebabkan locked rotor condition.
+Root cause:
+Moisture masuk melalui cable gland yang tidak rapat.
 
 Contributing:
-Suction strainer tidak dibersihkan periodik.
+Inspection gland tidak masuk PM rutin.
 
 ---
 
 ## 🔟 Reference Standard & Gap Analysis
 
-Menurut IEEE:
-Setting overload harus 115–125% FLA.
+IEEE 80 principle:
+Grounding system harus menjamin arus fault mengalir aman ke tanah.
 
 Gap:
-Setting ditemukan terlalu rendah (105%).
+Ground resistance tidak pernah diuji periodik.
 
 ---
 
@@ -177,148 +203,310 @@ Setting ditemukan terlalu rendah (105%).
 
 Immediate:
 
-- Bersihkan impeller
+- Ganti gland & keringkan cable
 
 Permanent:
 
-- Review PM suction line
+- Tambahkan gland inspection checklist
 
 Monitoring:
 
-- Trend arus start tiap bulan
+- IR trend tiap shutdown
 
 ---
 
 ## 1️⃣2️⃣ Risk & Safety Reflection
 
-- Arc flash risk saat buka panel
-- Wajib LOTO
-- Gunakan PPE sesuai NFPA 70E
+- Arc flash hazard
+- Jangan lakukan megger tanpa isolasi lengkap
+- Gunakan PPE sesuai level energi
 
 ---
 
 ## 1️⃣3️⃣ Data Interpretation & Trend Awareness
 
-Parameter monitoring:
+Bandingkan:
 
-- Starting current
-- Voltage drop
-- Running ampere
+- IR tahun lalu vs sekarang
+- Lingkungan lembab vs kering
 
 Early warning:
-Ampere naik perlahan dalam 2 minggu sebelum trip.
+IR menurun perlahan sebelum trip.
 
 ---
 
 ## 1️⃣4️⃣ Competency Mapping
 
-Motor troubleshooting:
-W → Target I
-
-Diagram reading:
-A → W
+Ground fault troubleshooting: W → I
+SLD reading: A → W
 
 ---
 
 ## 1️⃣5️⃣ Discussion Question
 
-1. Mengapa arus tinggi tidak selalu berarti short circuit?
-2. Apa risiko reset berulang?
-3. Apa hubungan fouling dengan arus listrik?
+1. Mengapa grounding penting saat terjadi fault?
+2. Apa risiko jika grounding tidak baik?
+3. Mengapa moisture sering menjadi penyebab utama?
 
 ---
 
 ## 1️⃣6️⃣ Key Takeaway
 
-- Gunakan data sebelum asumsi
-- Periksa mechanical sebelum menyalahkan electrical
-- SLD adalah alat investigasi utama
+- Pisahkan motor dan cable saat investigasi
+- Gland & sealing adalah titik kritis
+- Grounding system menentukan keselamatan
 
 ---
 
 # 📘 ARTIKEL 2
 
-## MCC Breaker Trip – Overload vs Short Circuit Analysis
+## Signal Noise pada Analog Instrument – Masalah Ground Loop atau Shielding?
 
-Fokus tambahan:
+---
 
-- Membaca kurva trip
-- Memahami selective coordination
-- Interaksi upstream–downstream protection
+## 1️⃣ Informasi Umum
 
-Tambahan penting pada versi ini:
+Disiplin: Instrumentation
+Level: Junior
+Kategori: Troubleshooting
 
-Diagram Literacy:
+---
 
-- Interpretasi feeder coordination di SLD
+## 2️⃣ Learning Objective
 
-System Interaction:
+- Mengidentifikasi penyebab noise pada 4–20 mA
+- Membaca loop wiring diagram
+- Memahami konsep single point grounding
 
-- Jika breaker upstream trip → multiple equipment shutdown
+---
 
-Trend Awareness:
+## 3️⃣ System Context
 
-- Repeated near-trip event sebelum failure
+Transmitter → Cable → Marshalling → AI Module → DCS
+
+Signal noise menyebabkan:
+
+- Fluktuasi PV
+- Hunting control valve
+- False alarm
+
+---
+
+## 4️⃣ Diagram Literacy
+
+- Loop 2-wire transmitter
+- Shield grounding point
+
+Teknisi harus mampu menunjukkan:
+
+- Titik grounding shield
+- Jalur power & signal
+
+---
+
+## 5️⃣ Failure Scenario
+
+Trend menunjukkan fluktuasi ±1 mA tanpa perubahan proses.
+
+---
+
+## 6️⃣ Possible Causes
+
+Electrical:
+
+- Ground loop
+- Shield grounding di dua sisi
+
+Mechanical:
+
+- Cable dekat power cable
+
+Human:
+
+- Salah terminasi shield
+
+---
+
+## 7️⃣ Investigation
+
+1. Periksa grounding shield (satu sisi saja)
+2. Cek jarak cable power vs signal
+3. Ukur ripple dengan multimeter
+4. Lakukan temporary isolation test
+
+---
+
+## 8️⃣ Root Cause
+
+Shield di-ground di dua sisi menyebabkan ground loop.
+
+---
+
+## 9️⃣ Risk
+
+Noise dapat memicu false trip.
+
+---
+
+## 1️⃣3️⃣ Trend Awareness
+
+Bandingkan:
+
+- Noise sebelum & sesudah perbaikan
+- Jam beban tinggi vs rendah
+
+---
+
+## 1️⃣4️⃣ Competency Mapping
+
+Loop noise troubleshooting: W → I
 
 ---
 
 # 📘 ARTIKEL 3
 
-## Checklist Inspeksi Harian MCC & Panel Distribusi Berbasis Risk
+## Inspection Cable Gland & Termination – Preventive untuk Keandalan Sistem
 
-Tambahan versi 2.0:
+---
 
-System Context:
+## 1️⃣ Informasi Umum
 
-- Panel overheating dapat memicu trip instrument power supply
+Disiplin: Electrical & Instrumentation
+Level: Junior
+Kategori: Preventive
 
-Diagram Literacy:
+Referensi:
+IEEE – IEEE 80 awareness
 
-- Identifikasi busbar & feeder path
+---
 
-Data Section:
+## 2️⃣ Learning Objective
 
-- Thermal scanning trend
+- Mengidentifikasi tanda gland rusak
+- Memahami pentingnya torque termination
+- Menjelaskan risiko loose connection
 
-Risk:
+---
 
-- Loose termination → arc flash potential
+## 3️⃣ System Context
 
-Outcome yang diperkuat:
-Inspeksi mandiri & safety awareness.
+Loose termination → Hotspot → Fault → Shutdown.
+
+---
+
+## 4️⃣ Diagram Literacy
+
+- Identifikasi termination pada MCC & JB
+- Jalur grounding conductor
+
+---
+
+## 5️⃣ Inspection Checklist
+
+1. Visual crack pada gland
+2. Seal ring condition
+3. Torque terminal
+4. Shield continuity
+5. Label clarity
+
+---
+
+## 6️⃣ Risk
+
+- Panel energized saat inspeksi
+- Arc flash hazard
+
+---
+
+## 7️⃣ Data & Documentation
+
+Catat:
+
+- Panel name
+- Temperature hotspot
+- Tindakan koreksi
+
+---
+
+## 1️⃣4️⃣ Competency Mapping
+
+Termination inspection: W → I
 
 ---
 
 # 📘 ARTIKEL 4
 
-## Dasar Proteksi Listrik & ANSI Relay Code (50/51/27/59) dalam Konteks Sistem
-
-Tambahan versi 2.0:
-
-System Context:
-
-- Undervoltage dapat menyebabkan false instrument reading
-
-Diagram Literacy:
-
-- Identifikasi relay location pada SLD
-
-Failure Scenario:
-
-- Plant load tinggi → undervoltage → motor trip → low flow interlock
-
-Trend Awareness:
-
-- Voltage trending pada peak load
+## Earthing & Bonding System Basic – Prinsip Proteksi Keselamatan
 
 ---
 
-# 📊 ALIGNMENT TERHADAP 5 OUTCOME
+## 1️⃣ Informasi Umum
 
-| Outcome                    | Status               |
-| -------------------------- | -------------------- |
-| Troubleshooting sistematis | ✔ Kuat               |
-| Membaca SLD & diagram      | ✔ Ada section wajib  |
-| Safety awareness           | ✔ Dedicated section  |
-| Inspeksi mandiri           | ✔ Artikel 3          |
-| Interaksi E–I–C            | ✔ Ada System Context |
+Disiplin: Electrical
+Level: Junior
+Kategori: Basic Theory
+
+Referensi:
+IEEE – IEEE 80
+
+---
+
+## 2️⃣ Learning Objective
+
+- Menjelaskan fungsi earthing & bonding
+- Memahami perbedaan system grounding vs equipment grounding
+- Menjelaskan konsep step & touch potential (awareness)
+
+---
+
+## 3️⃣ System Context
+
+Grounding grid → Proteksi manusia & equipment saat fault.
+
+---
+
+## 4️⃣ Diagram Literacy
+
+- Basic grounding grid
+- Bonding motor frame ke earth
+
+---
+
+## 5️⃣ Basic Theory
+
+- Fault current path
+- Single point grounding principle
+- Ground resistance concept
+
+---
+
+## 6️⃣ Failure Illustration
+
+Grounding buruk → tegangan sentuh berbahaya.
+
+---
+
+## 7️⃣ Risk Awareness
+
+Tanpa grounding baik:
+
+- Shock hazard
+- Protection tidak bekerja optimal
+
+---
+
+## 1️⃣4️⃣ Competency Mapping
+
+Grounding awareness: A → W
+
+---
+
+# 📊 ALIGNMENT DENGAN OUTCOME JUNIOR
+
+| Outcome                         | Status   |
+| ------------------------------- | -------- |
+| Troubleshooting sistematis      | ✔        |
+| Membaca SLD & loop              | ✔        |
+| Safety awareness                | ✔ (kuat) |
+| Preventive & inspeksi           | ✔        |
+| Interaksi Electrical–Instrument | ✔        |

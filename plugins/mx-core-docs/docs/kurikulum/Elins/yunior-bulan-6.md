@@ -1,12 +1,16 @@
-# 🔵 BULAN 1 – FUNDAMENTAL ELECTRICAL SAFETY & MOTOR BASIC
+# TEKNISI JUNIOR E&I
 
-(Level 1 – Junior ELINS)
+## 🔵 BULAN 6 – Transformer & Power Distribution
+
+Referensi utama:
+IEEE – IEEE C57 (Transformer Guide)
 
 ---
 
-- [🔵 BULAN 1 – FUNDAMENTAL ELECTRICAL SAFETY \& MOTOR BASIC](#-bulan-1--fundamental-electrical-safety--motor-basic)
+- [TEKNISI JUNIOR E\&I](#teknisi-junior-ei)
+  - [🔵 BULAN 6 – Transformer \& Power Distribution](#-bulan-6--transformer--power-distribution)
 - [📘 ARTIKEL 1](#-artikel-1)
-  - [Motor LV Trip Saat Start – Investigasi Sistematis Berbasis Diagram \& Data](#motor-lv-trip-saat-start--investigasi-sistematis-berbasis-diagram--data)
+  - [Transformer Overheating Alarm – Investigasi Beban, Pendinginan, atau Fault Internal?](#transformer-overheating-alarm--investigasi-beban-pendinginan-atau-fault-internal)
   - [1️⃣ Informasi Umum](#1️⃣-informasi-umum)
   - [2️⃣ Learning Objective](#2️⃣-learning-objective)
   - [3️⃣ System Context \& Criticality](#3️⃣-system-context--criticality)
@@ -24,18 +28,44 @@
   - [1️⃣5️⃣ Discussion Question](#1️⃣5️⃣-discussion-question)
   - [1️⃣6️⃣ Key Takeaway](#1️⃣6️⃣-key-takeaway)
 - [📘 ARTIKEL 2](#-artikel-2)
-  - [MCC Breaker Trip – Overload vs Short Circuit Analysis](#mcc-breaker-trip--overload-vs-short-circuit-analysis)
+  - [Unbalance Voltage pada Panel Distribusi – Dampaknya ke Motor \& Equipment](#unbalance-voltage-pada-panel-distribusi--dampaknya-ke-motor--equipment)
+  - [1️⃣ Informasi Umum](#1️⃣-informasi-umum-1)
+  - [2️⃣ Learning Objective](#2️⃣-learning-objective-1)
+  - [3️⃣ System Context](#3️⃣-system-context)
+  - [4️⃣ Diagram Literacy](#4️⃣-diagram-literacy)
+  - [5️⃣ Failure Scenario](#5️⃣-failure-scenario)
+  - [6️⃣ Possible Causes](#6️⃣-possible-causes)
+  - [7️⃣ Investigation](#7️⃣-investigation)
+  - [8️⃣ Root Cause](#8️⃣-root-cause)
+  - [9️⃣ Risk](#9️⃣-risk)
+  - [1️⃣3️⃣ Trend Awareness](#1️⃣3️⃣-trend-awareness)
+  - [1️⃣4️⃣ Competency Mapping](#1️⃣4️⃣-competency-mapping-1)
 - [📘 ARTIKEL 3](#-artikel-3)
-  - [Checklist Inspeksi Harian MCC \& Panel Distribusi Berbasis Risk](#checklist-inspeksi-harian-mcc--panel-distribusi-berbasis-risk)
+  - [Visual Inspection \& Thermography Awareness pada Transformer \& Panel](#visual-inspection--thermography-awareness-pada-transformer--panel)
+  - [1️⃣ Informasi Umum](#1️⃣-informasi-umum-2)
+  - [2️⃣ Learning Objective](#2️⃣-learning-objective-2)
+  - [3️⃣ System Context](#3️⃣-system-context-1)
+  - [4️⃣ Diagram Literacy](#4️⃣-diagram-literacy-1)
+  - [5️⃣ Inspection Checklist](#5️⃣-inspection-checklist)
+  - [6️⃣ Risk](#6️⃣-risk)
+  - [7️⃣ Data \& Documentation](#7️⃣-data--documentation)
+  - [1️⃣4️⃣ Competency Mapping](#1️⃣4️⃣-competency-mapping-2)
 - [📘 ARTIKEL 4](#-artikel-4)
-  - [Dasar Proteksi Listrik \& ANSI Relay Code (50/51/27/59) dalam Konteks Sistem](#dasar-proteksi-listrik--ansi-relay-code-50512759-dalam-konteks-sistem)
-- [📊 ALIGNMENT TERHADAP 5 OUTCOME](#-alignment-terhadap-5-outcome)
+  - [Basic Transformer Operation \& Protection Concept](#basic-transformer-operation--protection-concept)
+  - [1️⃣ Informasi Umum](#1️⃣-informasi-umum-3)
+  - [2️⃣ Learning Objective](#2️⃣-learning-objective-3)
+  - [3️⃣ System Context](#3️⃣-system-context-2)
+  - [4️⃣ Diagram Literacy](#4️⃣-diagram-literacy-2)
+  - [5️⃣ Failure Illustration](#5️⃣-failure-illustration)
+  - [6️⃣ Risk Awareness](#6️⃣-risk-awareness)
+  - [1️⃣4️⃣ Competency Mapping](#1️⃣4️⃣-competency-mapping-3)
+- [📊 ALIGNMENT DENGAN OUTCOME JUNIOR](#-alignment-dengan-outcome-junior)
 
 ---
 
 # 📘 ARTIKEL 1
 
-## Motor LV Trip Saat Start – Investigasi Sistematis Berbasis Diagram & Data
+## Transformer Overheating Alarm – Investigasi Beban, Pendinginan, atau Fault Internal?
 
 ---
 
@@ -44,11 +74,8 @@
 Disiplin: Electrical
 Level: Junior
 Kategori: Troubleshooting
-Equipment: Motor LV 75 kW – Pump Service
-Referensi:
-
-- NFPA
-- IEEE
+Equipment: Power Transformer 20 kV / 400 V (Oil Immersed)
+Referensi: IEEE C57 – Transformer Loading & Temperature Guide
 
 ---
 
@@ -56,48 +83,48 @@ Referensi:
 
 Setelah membaca artikel ini, teknisi mampu:
 
-- Mengidentifikasi minimal 5 penyebab motor trip saat start
-- Membaca jalur motor pada Single Line Diagram (SLD)
-- Menjelaskan hubungan mechanical binding terhadap arus start
+- Mengidentifikasi minimal 5 penyebab transformer overheating
+- Membaca jalur transformer pada Single Line Diagram (SLD)
+- Membedakan overheating akibat overload vs masalah pendinginan
 
 ---
 
 ## 3️⃣ System Context & Criticality
 
-Motor → Menggerakkan pump → Mengontrol flow → Mempengaruhi control valve → Mempengaruhi pressure transmitter → Bisa memicu interlock low flow.
+Incoming MV → Transformer → LV Switchboard → MCC → Motor & Instrument Load
 
-Kegagalan motor dapat menyebabkan:
+Overheating dapat menyebabkan:
 
-- Flow drop
-- Process upset
-- Trip downstream unit
+- Oil degradation
+- Insulation aging
+- Trip upstream protection
+- Plant shutdown total
 
-👉 Menguatkan pemahaman interaksi Electrical–Instrument–Control.
+Interaksi lintas disiplin:
+Beban motor ↑ → Arus LV ↑ → Temperatur trafo ↑ → Alarm DCS.
 
 ---
 
 ## 4️⃣ Diagram Literacy Section (WAJIB)
 
-Analisa berbasis SLD:
+Menggunakan:
 
-- Incoming feeder → MCC → Breaker → Overload relay → Motor
-- Titik proteksi: ANSI 50/51
-- Titik isolasi: MCC breaker
+- Single Line Diagram (MV feeder → Transformer → LV bus)
+- Indikasi lokasi temperature sensor (OTI / WTI)
 
 Teknisi harus mampu menunjukkan:
 
-- Posisi proteksi
-- Titik ukur ampere
-- Jalur supply
+- Posisi proteksi trafo
+- Jalur beban terbesar
+- Titik pengukuran temperatur
 
 ---
 
 ## 5️⃣ Background & Failure Scenario
 
-Motor 75 kW trip 3 detik setelah start.
-Ampere naik hingga 6x FLA.
-Tegangan drop 8%.
-Tidak ada bunyi abnormal.
+Alarm OTI menunjukkan 95°C (normal <85°C).
+Beban LV 92% rated capacity.
+Ambient temperature tinggi.
 
 ---
 
@@ -105,16 +132,17 @@ Tidak ada bunyi abnormal.
 
 Terlihat:
 
-- Trip alarm di DCS
+- Radiator panas
+- Cooling fan tidak beroperasi
 
 Terukur:
 
-- Arus inrush tinggi
-- Tegangan drop sesaat
+- Arus mendekati rating
+- Tegangan normal
 
-Asumsi operator:
+Asumsi awal:
 
-- “Motor rusak”
+- Transformer rusak internal
 
 ---
 
@@ -122,54 +150,54 @@ Asumsi operator:
 
 Electrical:
 
-- Undervoltage
-- Shorted winding
+- Overload
+- Voltage unbalance
 
 Mechanical:
 
-- Pump jammed
-- Impeller fouling
+- Cooling fan failure
+- Radiator blocked
 
 Instrument:
 
-- False current reading
+- Faulty temperature sensor
 
 Human:
 
-- Setting overload terlalu rendah
+- Beban tambahan tanpa evaluasi kapasitas
 
 ---
 
 ## 8️⃣ Step-by-Step Investigation
 
-1. Verifikasi overload setting
-2. Cek SLD untuk upstream feeder load
-3. Cek coupling free rotation
-4. Ukur IR motor
-5. Verifikasi voltage drop saat start
+1. Verifikasi beban total LV
+2. Cek status cooling fan & control circuit
+3. Cek oil level & kondisi visual
+4. Bandingkan OTI vs WTI
+5. Review histori beban harian
 
 Decision logic:
-Electrical diverifikasi sebelum membuka mechanical.
+Validasi cooling system sebelum menyimpulkan fault internal.
 
 ---
 
 ## 9️⃣ Root Cause & Contributing Factor
 
-Root Cause:
-Impeller fouling menyebabkan locked rotor condition.
+Root cause:
+Cooling fan tidak aktif akibat MCB auxiliary trip.
 
 Contributing:
-Suction strainer tidak dibersihkan periodik.
+Tidak ada inspeksi fan rutin.
 
 ---
 
 ## 🔟 Reference Standard & Gap Analysis
 
-Menurut IEEE:
-Setting overload harus 115–125% FLA.
+IEEE C57 guidance:
+Operating temperature harus dalam limit desain untuk menjaga insulation life.
 
 Gap:
-Setting ditemukan terlalu rendah (105%).
+Fan inspection tidak masuk checklist preventive.
 
 ---
 
@@ -177,148 +205,286 @@ Setting ditemukan terlalu rendah (105%).
 
 Immediate:
 
-- Bersihkan impeller
+- Reset/repair fan circuit
 
 Permanent:
 
-- Review PM suction line
+- Tambahkan fan operational check pada PM
 
 Monitoring:
 
-- Trend arus start tiap bulan
+- Trend temperature vs load
 
 ---
 
 ## 1️⃣2️⃣ Risk & Safety Reflection
 
-- Arc flash risk saat buka panel
-- Wajib LOTO
-- Gunakan PPE sesuai NFPA 70E
+- Risiko arc flash pada panel LV
+- Risiko oil spill jika overheating ekstrem
+- Wajib PPE & LOTO sebelum inspeksi internal
 
 ---
 
 ## 1️⃣3️⃣ Data Interpretation & Trend Awareness
 
-Parameter monitoring:
+Bandingkan:
 
-- Starting current
-- Voltage drop
-- Running ampere
+- Trend load vs temperature
+- Peak load hour vs ambient temperature
 
 Early warning:
-Ampere naik perlahan dalam 2 minggu sebelum trip.
+Temperature naik gradual 1 minggu sebelum alarm.
 
 ---
 
 ## 1️⃣4️⃣ Competency Mapping
 
-Motor troubleshooting:
-W → Target I
-
-Diagram reading:
-A → W
+Transformer troubleshooting: W → I
+SLD reading: A → W
 
 ---
 
 ## 1️⃣5️⃣ Discussion Question
 
-1. Mengapa arus tinggi tidak selalu berarti short circuit?
-2. Apa risiko reset berulang?
-3. Apa hubungan fouling dengan arus listrik?
+1. Mengapa overload 90% bisa tetap aman tetapi suhu tinggi?
+2. Apa dampak jangka panjang suhu tinggi pada insulation?
+3. Bagaimana membedakan sensor error vs overheating nyata?
 
 ---
 
 ## 1️⃣6️⃣ Key Takeaway
 
-- Gunakan data sebelum asumsi
-- Periksa mechanical sebelum menyalahkan electrical
-- SLD adalah alat investigasi utama
+- Pendinginan sama pentingnya dengan beban
+- Gunakan trend sebelum menyimpulkan fault internal
+- IEEE C57 menjadi referensi batas operasi
 
 ---
 
 # 📘 ARTIKEL 2
 
-## MCC Breaker Trip – Overload vs Short Circuit Analysis
+## Unbalance Voltage pada Panel Distribusi – Dampaknya ke Motor & Equipment
 
-Fokus tambahan:
+---
 
-- Membaca kurva trip
-- Memahami selective coordination
-- Interaksi upstream–downstream protection
+## 1️⃣ Informasi Umum
 
-Tambahan penting pada versi ini:
+Disiplin: Electrical
+Level: Junior
+Kategori: Troubleshooting
 
-Diagram Literacy:
+---
 
-- Interpretasi feeder coordination di SLD
+## 2️⃣ Learning Objective
 
-System Interaction:
+- Menghitung persentase voltage unbalance
+- Memahami dampak unbalance terhadap motor
+- Membaca SLD panel distribusi
 
-- Jika breaker upstream trip → multiple equipment shutdown
+---
 
-Trend Awareness:
+## 3️⃣ System Context
 
-- Repeated near-trip event sebelum failure
+Panel LV → Motor & Load → Arus tidak seimbang → Heating pada motor.
+
+---
+
+## 4️⃣ Diagram Literacy
+
+- Distribusi 3 fasa dari transformer ke panel
+- Identifikasi feeder beban besar
+
+---
+
+## 5️⃣ Failure Scenario
+
+Tegangan:
+R = 400 V
+S = 390 V
+T = 410 V
+
+Motor overheating terjadi di beberapa unit.
+
+---
+
+## 6️⃣ Possible Causes
+
+Electrical:
+
+- Single phase load dominan
+- Loose connection
+
+Mechanical:
+
+- Tidak relevan (dibedakan dari overheating mekanis)
+
+Human:
+
+- Penambahan load tidak seimbang
+
+---
+
+## 7️⃣ Investigation
+
+1. Hitung % voltage unbalance
+2. Periksa koneksi busbar
+3. Identifikasi distribusi beban per fasa
+4. Cek arus tiap fasa
+
+---
+
+## 8️⃣ Root Cause
+
+Distribusi beban tidak merata antar fasa.
+
+---
+
+## 9️⃣ Risk
+
+Voltage unbalance 3–5% dapat meningkatkan arus hingga 20%.
+
+---
+
+## 1️⃣3️⃣ Trend Awareness
+
+Pantau:
+
+- Voltage per fasa
+- Arus per fasa
+
+---
+
+## 1️⃣4️⃣ Competency Mapping
+
+Power distribution awareness: W → I
 
 ---
 
 # 📘 ARTIKEL 3
 
-## Checklist Inspeksi Harian MCC & Panel Distribusi Berbasis Risk
+## Visual Inspection & Thermography Awareness pada Transformer & Panel
 
-Tambahan versi 2.0:
+---
 
-System Context:
+## 1️⃣ Informasi Umum
 
-- Panel overheating dapat memicu trip instrument power supply
+Disiplin: Electrical
+Level: Junior
+Kategori: Preventive
 
-Diagram Literacy:
+Referensi: IEEE C57 awareness
 
-- Identifikasi busbar & feeder path
+---
 
-Data Section:
+## 2️⃣ Learning Objective
 
-- Thermal scanning trend
+- Mengidentifikasi hotspot secara visual
+- Memahami dasar thermography
 
-Risk:
+---
 
-- Loose termination → arc flash potential
+## 3️⃣ System Context
 
-Outcome yang diperkuat:
-Inspeksi mandiri & safety awareness.
+Loose termination → Hotspot → Failure → Shutdown.
+
+---
+
+## 4️⃣ Diagram Literacy
+
+- Identifikasi titik sambungan kritis pada SLD
+
+---
+
+## 5️⃣ Inspection Checklist
+
+1. Oil leakage
+2. Discoloration
+3. Abnormal sound
+4. Thermography scan point
+5. Busbar joint temperature
+
+---
+
+## 6️⃣ Risk
+
+- Arc flash saat membuka panel
+- Jangan buka panel tanpa izin
+
+---
+
+## 7️⃣ Data & Documentation
+
+Bandingkan thermal image tahun ini vs sebelumnya.
+
+---
+
+## 1️⃣4️⃣ Competency Mapping
+
+Inspection skill: W → I
 
 ---
 
 # 📘 ARTIKEL 4
 
-## Dasar Proteksi Listrik & ANSI Relay Code (50/51/27/59) dalam Konteks Sistem
-
-Tambahan versi 2.0:
-
-System Context:
-
-- Undervoltage dapat menyebabkan false instrument reading
-
-Diagram Literacy:
-
-- Identifikasi relay location pada SLD
-
-Failure Scenario:
-
-- Plant load tinggi → undervoltage → motor trip → low flow interlock
-
-Trend Awareness:
-
-- Voltage trending pada peak load
+## Basic Transformer Operation & Protection Concept
 
 ---
 
-# 📊 ALIGNMENT TERHADAP 5 OUTCOME
+## 1️⃣ Informasi Umum
 
-| Outcome                    | Status               |
-| -------------------------- | -------------------- |
-| Troubleshooting sistematis | ✔ Kuat               |
-| Membaca SLD & diagram      | ✔ Ada section wajib  |
-| Safety awareness           | ✔ Dedicated section  |
-| Inspeksi mandiri           | ✔ Artikel 3          |
-| Interaksi E–I–C            | ✔ Ada System Context |
+Disiplin: Electrical
+Level: Junior
+Kategori: Basic Theory
+
+Referensi:
+IEEE – IEEE C57
+
+---
+
+## 2️⃣ Learning Objective
+
+- Menjelaskan prinsip induksi elektromagnetik
+- Memahami fungsi OTI, WTI, dan protection relay dasar
+- Memahami hubungan beban vs temperature
+
+---
+
+## 3️⃣ System Context
+
+Transformer sebagai pusat distribusi energi plant.
+
+---
+
+## 4️⃣ Diagram Literacy
+
+- Core & winding basic diagram
+- Posisi relay proteksi
+
+---
+
+## 5️⃣ Failure Illustration
+
+Overload jangka panjang → insulation aging → short circuit.
+
+---
+
+## 6️⃣ Risk Awareness
+
+Overheating berulang mempercepat aging insulation.
+
+---
+
+## 1️⃣4️⃣ Competency Mapping
+
+Transformer theory: A → W
+
+---
+
+# 📊 ALIGNMENT DENGAN OUTCOME JUNIOR
+
+| Outcome                     | Status |
+| --------------------------- | ------ |
+| Troubleshooting sistematis  | ✔      |
+| Membaca SLD                 | ✔      |
+| Safety awareness            | ✔      |
+| Preventive & inspeksi       | ✔      |
+| Interaksi beban–motor–trafo | ✔      |

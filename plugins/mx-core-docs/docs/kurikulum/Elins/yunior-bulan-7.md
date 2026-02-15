@@ -1,12 +1,18 @@
-# 🔵 BULAN 1 – FUNDAMENTAL ELECTRICAL SAFETY & MOTOR BASIC
+## 🔵 BULAN 7 – Analyzer & Sampling System Basic
 
-(Level 1 – Junior ELINS)
+Fokus:
+
+- Field analyzer reliability
+- Sampling system awareness
+- Interaksi proses–instrument–control
+
+Referensi praktik umum instrumentasi industri mengacu pada:
+International Electrotechnical Commission
 
 ---
 
-- [🔵 BULAN 1 – FUNDAMENTAL ELECTRICAL SAFETY \& MOTOR BASIC](#-bulan-1--fundamental-electrical-safety--motor-basic)
-- [📘 ARTIKEL 1](#-artikel-1)
-  - [Motor LV Trip Saat Start – Investigasi Sistematis Berbasis Diagram \& Data](#motor-lv-trip-saat-start--investigasi-sistematis-berbasis-diagram--data)
+- [� ARTIKEL 1](#-artikel-1)
+  - [Gas Analyzer Reading Drifting – Investigasi dari Sampling Line hingga Analyzer Cell](#gas-analyzer-reading-drifting--investigasi-dari-sampling-line-hingga-analyzer-cell)
   - [1️⃣ Informasi Umum](#1️⃣-informasi-umum)
   - [2️⃣ Learning Objective](#2️⃣-learning-objective)
   - [3️⃣ System Context \& Criticality](#3️⃣-system-context--criticality)
@@ -24,31 +30,54 @@
   - [1️⃣5️⃣ Discussion Question](#1️⃣5️⃣-discussion-question)
   - [1️⃣6️⃣ Key Takeaway](#1️⃣6️⃣-key-takeaway)
 - [📘 ARTIKEL 2](#-artikel-2)
-  - [MCC Breaker Trip – Overload vs Short Circuit Analysis](#mcc-breaker-trip--overload-vs-short-circuit-analysis)
+  - [Moisture Analyzer False Alarm – Gangguan Sensor atau Kondensasi?](#moisture-analyzer-false-alarm--gangguan-sensor-atau-kondensasi)
+  - [1️⃣ Informasi Umum](#1️⃣-informasi-umum-1)
+  - [2️⃣ Learning Objective](#2️⃣-learning-objective-1)
+  - [3️⃣ System Context](#3️⃣-system-context)
+  - [4️⃣ Diagram Literacy](#4️⃣-diagram-literacy)
+  - [5️⃣ Failure Scenario](#5️⃣-failure-scenario)
+  - [6️⃣ Possible Causes](#6️⃣-possible-causes)
+  - [7️⃣ Investigation](#7️⃣-investigation)
+  - [8️⃣ Root Cause](#8️⃣-root-cause)
+  - [9️⃣ Risk](#9️⃣-risk)
+  - [1️⃣3️⃣ Trend Awareness](#1️⃣3️⃣-trend-awareness)
+  - [1️⃣4️⃣ Competency Mapping](#1️⃣4️⃣-competency-mapping-1)
 - [📘 ARTIKEL 3](#-artikel-3)
-  - [Checklist Inspeksi Harian MCC \& Panel Distribusi Berbasis Risk](#checklist-inspeksi-harian-mcc--panel-distribusi-berbasis-risk)
+  - [Cleaning \& Maintenance Sampling Line – Preventive untuk Reliability Analyzer](#cleaning--maintenance-sampling-line--preventive-untuk-reliability-analyzer)
+  - [1️⃣ Informasi Umum](#1️⃣-informasi-umum-2)
+  - [2️⃣ Learning Objective](#2️⃣-learning-objective-2)
+  - [3️⃣ System Context](#3️⃣-system-context-1)
+  - [4️⃣ Diagram Literacy](#4️⃣-diagram-literacy-1)
+  - [5️⃣ Preventive Checklist](#5️⃣-preventive-checklist)
+  - [6️⃣ Risk](#6️⃣-risk)
+  - [7️⃣ Data \& Documentation](#7️⃣-data--documentation)
+  - [1️⃣4️⃣ Competency Mapping](#1️⃣4️⃣-competency-mapping-2)
 - [📘 ARTIKEL 4](#-artikel-4)
-  - [Dasar Proteksi Listrik \& ANSI Relay Code (50/51/27/59) dalam Konteks Sistem](#dasar-proteksi-listrik--ansi-relay-code-50512759-dalam-konteks-sistem)
-- [📊 ALIGNMENT TERHADAP 5 OUTCOME](#-alignment-terhadap-5-outcome)
+  - [Prinsip Kerja Gas Analyzer \& Basic Gas Chromatograph (GC)](#prinsip-kerja-gas-analyzer--basic-gas-chromatograph-gc)
+  - [1️⃣ Informasi Umum](#1️⃣-informasi-umum-3)
+  - [2️⃣ Learning Objective](#2️⃣-learning-objective-3)
+  - [3️⃣ System Context](#3️⃣-system-context-2)
+  - [4️⃣ Diagram Literacy](#4️⃣-diagram-literacy-2)
+  - [5️⃣ Basic Theory](#5️⃣-basic-theory)
+  - [6️⃣ Failure Illustration](#6️⃣-failure-illustration)
+  - [7️⃣ Risk Awareness](#7️⃣-risk-awareness)
+  - [1️⃣4️⃣ Competency Mapping](#1️⃣4️⃣-competency-mapping-3)
+- [📊 ALIGNMENT DENGAN OUTCOME JUNIOR](#-alignment-dengan-outcome-junior)
 
 ---
 
 # 📘 ARTIKEL 1
 
-## Motor LV Trip Saat Start – Investigasi Sistematis Berbasis Diagram & Data
+## Gas Analyzer Reading Drifting – Investigasi dari Sampling Line hingga Analyzer Cell
 
 ---
 
 ## 1️⃣ Informasi Umum
 
-Disiplin: Electrical
+Disiplin: Instrumentation (Analyzer)
 Level: Junior
 Kategori: Troubleshooting
-Equipment: Motor LV 75 kW – Pump Service
-Referensi:
-
-- NFPA
-- IEEE
+Equipment: Online Gas Analyzer (Process Analyzer)
 
 ---
 
@@ -56,48 +85,47 @@ Referensi:
 
 Setelah membaca artikel ini, teknisi mampu:
 
-- Mengidentifikasi minimal 5 penyebab motor trip saat start
-- Membaca jalur motor pada Single Line Diagram (SLD)
-- Menjelaskan hubungan mechanical binding terhadap arus start
+- Mengidentifikasi minimal 5 penyebab drift pada gas analyzer
+- Membaca diagram sampling system dasar
+- Membedakan drift akibat analyzer vs akibat sampling system
 
 ---
 
 ## 3️⃣ System Context & Criticality
 
-Motor → Menggerakkan pump → Mengontrol flow → Mempengaruhi control valve → Mempengaruhi pressure transmitter → Bisa memicu interlock low flow.
+Process Line → Sample Tap → Conditioning System → Analyzer → DCS → Control / Alarm
 
-Kegagalan motor dapat menyebabkan:
+Drifting dapat menyebabkan:
 
-- Flow drop
-- Process upset
-- Trip downstream unit
+- Quality deviation
+- False composition reading
+- Salah keputusan operasi
 
-👉 Menguatkan pemahaman interaksi Electrical–Instrument–Control.
+Interaksi lintas disiplin:
+Sampling (mechanical) ↔ Analyzer (instrument) ↔ DCS (control).
 
 ---
 
 ## 4️⃣ Diagram Literacy Section (WAJIB)
 
-Analisa berbasis SLD:
+Menggunakan:
 
-- Incoming feeder → MCC → Breaker → Overload relay → Motor
-- Titik proteksi: ANSI 50/51
-- Titik isolasi: MCC breaker
+- Simplified sampling system diagram
+  (Probe → Filter → Regulator → Flowmeter → Analyzer Cell → Vent)
+- Loop signal analyzer ke DCS (4–20 mA / digital)
 
 Teknisi harus mampu menunjukkan:
 
-- Posisi proteksi
-- Titik ukur ampere
-- Jalur supply
+- Titik pressure regulation
+- Titik filtration
+- Jalur sinyal ke DCS
 
 ---
 
 ## 5️⃣ Background & Failure Scenario
 
-Motor 75 kW trip 3 detik setelah start.
-Ampere naik hingga 6x FLA.
-Tegangan drop 8%.
-Tidak ada bunyi abnormal.
+Gas analyzer menunjukkan komposisi O₂ naik perlahan 1–2% dalam 3 hari.
+Proses secara aktual stabil.
 
 ---
 
@@ -105,71 +133,71 @@ Tidak ada bunyi abnormal.
 
 Terlihat:
 
-- Trip alarm di DCS
+- Trend naik gradual
 
 Terukur:
 
-- Arus inrush tinggi
-- Tegangan drop sesaat
+- Sample flow tidak stabil
+- Filter differential pressure meningkat
 
-Asumsi operator:
+Asumsi awal:
 
-- “Motor rusak”
+- Analyzer cell rusak
 
 ---
 
 ## 7️⃣ Possible Causes (Structured)
 
-Electrical:
-
-- Undervoltage
-- Shorted winding
-
 Mechanical:
 
-- Pump jammed
-- Impeller fouling
+- Sampling line partially blocked
+- Leakage pada fitting
 
 Instrument:
 
-- False current reading
+- Analyzer sensor aging
+- Calibration drift
+
+Electrical:
+
+- Signal noise
 
 Human:
 
-- Setting overload terlalu rendah
+- Tidak dilakukan zero/span check periodik
 
 ---
 
 ## 8️⃣ Step-by-Step Investigation
 
-1. Verifikasi overload setting
-2. Cek SLD untuk upstream feeder load
-3. Cek coupling free rotation
-4. Ukur IR motor
-5. Verifikasi voltage drop saat start
+1. Verifikasi kondisi proses aktual
+2. Cek flow sampling
+3. Periksa filter & moisture trap
+4. Lakukan zero check
+5. Bandingkan reading dengan portable analyzer
 
 Decision logic:
-Electrical diverifikasi sebelum membuka mechanical.
+Validasi sampling sebelum mengganti analyzer cell.
 
 ---
 
 ## 9️⃣ Root Cause & Contributing Factor
 
-Root Cause:
-Impeller fouling menyebabkan locked rotor condition.
+Root cause:
+Filter sampling tersumbat menyebabkan pressure drop & reading bias.
 
 Contributing:
-Suction strainer tidak dibersihkan periodik.
+PM filter replacement tidak sesuai interval.
 
 ---
 
 ## 🔟 Reference Standard & Gap Analysis
 
-Menurut IEEE:
-Setting overload harus 115–125% FLA.
+Best practice:
+Sampling harus representatif & stabil sebelum analisa.
 
 Gap:
-Setting ditemukan terlalu rendah (105%).
+Tidak ada monitoring differential pressure filter.
 
 ---
 
@@ -177,148 +205,295 @@ Setting ditemukan terlalu rendah (105%).
 
 Immediate:
 
-- Bersihkan impeller
+- Ganti filter
 
 Permanent:
 
-- Review PM suction line
+- Tambahkan monitoring DP filter
 
 Monitoring:
 
-- Trend arus start tiap bulan
+- Trend analyzer vs reference portable
 
 ---
 
 ## 1️⃣2️⃣ Risk & Safety Reflection
 
-- Arc flash risk saat buka panel
-- Wajib LOTO
-- Gunakan PPE sesuai NFPA 70E
+- Risiko gas berbahaya saat membuka sampling line
+- Wajib purge & depressurize
+- Gunakan gas detector portable
 
 ---
 
 ## 1️⃣3️⃣ Data Interpretation & Trend Awareness
 
-Parameter monitoring:
+Bandingkan:
 
-- Starting current
-- Voltage drop
-- Running ampere
+- Analyzer trend vs process parameter
+- Sample flow vs reading
 
 Early warning:
-Ampere naik perlahan dalam 2 minggu sebelum trip.
+Flow sample mulai tidak stabil sebelum drift terlihat.
 
 ---
 
 ## 1️⃣4️⃣ Competency Mapping
 
-Motor troubleshooting:
-W → Target I
-
-Diagram reading:
-A → W
+Analyzer troubleshooting: W → I
+Sampling system awareness: A → W
 
 ---
 
 ## 1️⃣5️⃣ Discussion Question
 
-1. Mengapa arus tinggi tidak selalu berarti short circuit?
-2. Apa risiko reset berulang?
-3. Apa hubungan fouling dengan arus listrik?
+1. Mengapa sampling lebih sering menjadi sumber masalah?
+2. Apa dampak drift kecil terhadap kualitas produk?
+3. Mengapa zero check penting sebelum mengganti cell?
 
 ---
 
 ## 1️⃣6️⃣ Key Takeaway
 
-- Gunakan data sebelum asumsi
-- Periksa mechanical sebelum menyalahkan electrical
-- SLD adalah alat investigasi utama
+- 70% masalah analyzer ada di sampling system
+- Validasi sampling sebelum menyalahkan analyzer
+- Trend gradual lebih berbahaya dari alarm instan
 
 ---
 
 # 📘 ARTIKEL 2
 
-## MCC Breaker Trip – Overload vs Short Circuit Analysis
+## Moisture Analyzer False Alarm – Gangguan Sensor atau Kondensasi?
 
-Fokus tambahan:
+---
 
-- Membaca kurva trip
-- Memahami selective coordination
-- Interaksi upstream–downstream protection
+## 1️⃣ Informasi Umum
 
-Tambahan penting pada versi ini:
+Disiplin: Instrumentation (Analyzer)
+Level: Junior
+Kategori: Troubleshooting
 
-Diagram Literacy:
+---
 
-- Interpretasi feeder coordination di SLD
+## 2️⃣ Learning Objective
 
-System Interaction:
+- Mengidentifikasi penyebab false high moisture alarm
+- Membaca jalur sampling moisture analyzer
+- Memahami efek kondensasi pada sensor
 
-- Jika breaker upstream trip → multiple equipment shutdown
+---
 
-Trend Awareness:
+## 3️⃣ System Context
 
-- Repeated near-trip event sebelum failure
+Moisture analyzer → Alarm → Protection interlock → Equipment trip.
+
+False alarm dapat menyebabkan:
+
+- Shutdown tidak perlu
+- Kerugian produksi
+
+---
+
+## 4️⃣ Diagram Literacy
+
+- Sampling line heater
+- Moisture analyzer cell
+- Signal output ke DCS
+
+---
+
+## 5️⃣ Failure Scenario
+
+Moisture reading tiba-tiba naik tinggi setelah hujan deras.
+
+---
+
+## 6️⃣ Possible Causes
+
+Mechanical:
+
+- Kondensasi pada sampling line
+- Heater sampling mati
+
+Instrument:
+
+- Sensor contamination
+
+Electrical:
+
+- Power supply fluctuation
+
+---
+
+## 7️⃣ Investigation
+
+1. Cek heater sampling
+2. Cek suhu line
+3. Cek supply air purge
+4. Lakukan zero gas verification
+
+---
+
+## 8️⃣ Root Cause
+
+Sampling line heater off → kondensasi → reading tinggi palsu.
+
+---
+
+## 9️⃣ Risk
+
+False trip unit akibat moisture alarm.
+
+---
+
+## 1️⃣3️⃣ Trend Awareness
+
+Bandingkan:
+
+- Ambient humidity vs analyzer reading
+- Heater current vs waktu
+
+---
+
+## 1️⃣4️⃣ Competency Mapping
+
+Sampling diagnostic skill: W → I
 
 ---
 
 # 📘 ARTIKEL 3
 
-## Checklist Inspeksi Harian MCC & Panel Distribusi Berbasis Risk
+## Cleaning & Maintenance Sampling Line – Preventive untuk Reliability Analyzer
 
-Tambahan versi 2.0:
+---
 
-System Context:
+## 1️⃣ Informasi Umum
 
-- Panel overheating dapat memicu trip instrument power supply
+Disiplin: Instrumentation
+Level: Junior
+Kategori: Preventive
 
-Diagram Literacy:
+---
 
-- Identifikasi busbar & feeder path
+## 2️⃣ Learning Objective
 
-Data Section:
+- Menjelaskan pentingnya sampling representatif
+- Melakukan inspeksi & cleaning basic
 
-- Thermal scanning trend
+---
 
-Risk:
+## 3️⃣ System Context
 
-- Loose termination → arc flash potential
+Sampling buruk → analyzer error → process decision salah.
 
-Outcome yang diperkuat:
-Inspeksi mandiri & safety awareness.
+---
+
+## 4️⃣ Diagram Literacy
+
+- Jalur sampling lengkap
+- Titik drain & purge
+
+---
+
+## 5️⃣ Preventive Checklist
+
+1. Periksa filter
+2. Cek leak fitting
+3. Verifikasi heater operation
+4. Periksa flowmeter
+5. Dokumentasi kondisi line
+
+---
+
+## 6️⃣ Risk
+
+Gas release saat membuka fitting.
+Wajib isolasi & purge.
+
+---
+
+## 7️⃣ Data & Documentation
+
+Catat:
+
+- Flow rate
+- Differential pressure filter
+- Kondisi visual
+
+---
+
+## 1️⃣4️⃣ Competency Mapping
+
+Preventive analyzer: W → I
 
 ---
 
 # 📘 ARTIKEL 4
 
-## Dasar Proteksi Listrik & ANSI Relay Code (50/51/27/59) dalam Konteks Sistem
-
-Tambahan versi 2.0:
-
-System Context:
-
-- Undervoltage dapat menyebabkan false instrument reading
-
-Diagram Literacy:
-
-- Identifikasi relay location pada SLD
-
-Failure Scenario:
-
-- Plant load tinggi → undervoltage → motor trip → low flow interlock
-
-Trend Awareness:
-
-- Voltage trending pada peak load
+## Prinsip Kerja Gas Analyzer & Basic Gas Chromatograph (GC)
 
 ---
 
-# 📊 ALIGNMENT TERHADAP 5 OUTCOME
+## 1️⃣ Informasi Umum
 
-| Outcome                    | Status               |
-| -------------------------- | -------------------- |
-| Troubleshooting sistematis | ✔ Kuat               |
-| Membaca SLD & diagram      | ✔ Ada section wajib  |
-| Safety awareness           | ✔ Dedicated section  |
-| Inspeksi mandiri           | ✔ Artikel 3          |
-| Interaksi E–I–C            | ✔ Ada System Context |
+Disiplin: Instrumentation
+Level: Junior
+Kategori: Basic Theory
+
+---
+
+## 2️⃣ Learning Objective
+
+- Menjelaskan prinsip dasar pengukuran komposisi gas
+- Memahami konsep carrier gas pada GC
+- Mengerti mengapa sampling harus stabil
+
+---
+
+## 3️⃣ System Context
+
+Analyzer → DCS → Control / Quality Monitoring.
+
+---
+
+## 4️⃣ Diagram Literacy
+
+- Basic GC flow path (Sample injection → Column → Detector → Vent)
+- Signal output ke DCS
+
+---
+
+## 5️⃣ Basic Theory
+
+- Separation berdasarkan waktu retensi
+- Peran temperature control
+- Importance of stable flow
+
+---
+
+## 6️⃣ Failure Illustration
+
+Flow carrier gas tidak stabil → peak shifting → composition error.
+
+---
+
+## 7️⃣ Risk Awareness
+
+Misinterpretasi data dapat menyebabkan keputusan operasi salah.
+
+---
+
+## 1️⃣4️⃣ Competency Mapping
+
+Analyzer theory: A → W
+
+---
+
+# 📊 ALIGNMENT DENGAN OUTCOME JUNIOR
+
+| Outcome                              | Status |
+| ------------------------------------ | ------ |
+| Troubleshooting sistematis           | ✔      |
+| Membaca diagram sampling & loop      | ✔      |
+| Safety awareness                     | ✔      |
+| Preventive & inspeksi                | ✔      |
+| Interaksi Process–Instrument–Control | ✔      |
