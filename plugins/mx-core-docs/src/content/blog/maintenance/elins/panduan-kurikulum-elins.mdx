@@ -1,0 +1,743 @@
+---
+title: Panduan Lengkap Kurikulum & Matriks Kompetensi - Teknisi Electrical, Instrumentation & Control (E&I) – Industri Petrokimia
+authors: ['sam']
+date: '2026-02-15'
+tags:
+  [
+    'kurikulum-teknisi-ei',
+    'kompetensi-awie',
+    'pemeliharaan-pabrik-petrokimia',
+    'electrical-instrumentation-control',
+    'reliability-engineering',
+    'functional-safety-iec61511',
+    'nfpa-ieee-api-standard',
+  ]
+draft: false
+summary: Kurikulum ini merupakan panduan terstruktur untuk pengembangan teknisi Electrical, Instrumentation & Control (E&I) di industri petrokimia, mencakup level Junior, Intermediate, dan Senior. Setiap level dirancang dengan progresi kompetensi yang jelas, mulai dari eksekusi pekerjaan berbasis SOP hingga penguasaan strategi reliability dan manajemen risiko aset. Integrasi roadmap pembelajaran bulanan dengan matriks kompetensi A/W/I/E memungkinkan evaluasi objektif, penyusunan Individual Development Plan (IDP), serta perencanaan suksesi teknis. Materi mengacu pada standar internasional seperti IEEE, NFPA, IEC, API, dan praktik alarm management industri, sehingga mendukung peningkatan keselamatan, keandalan sistem, dan kesiapan audit pada lingkungan plant yang safety-critical.
+---
+
+# 📘 Panduan Lengkap Kurikulum & Matriks Kompetensi
+
+**_Teknisi Electrical, Instrumentation & Control (E&I) – Industri Petrokimia_**
+
+---
+
+- [📘 Panduan Lengkap Kurikulum \& Matriks Kompetensi](#-panduan-lengkap-kurikulum--matriks-kompetensi)
+  - [1️⃣ Executive Summary](#1️⃣-executive-summary)
+- [🔷 STRUKTUR BESAR ROADMAP](#-struktur-besar-roadmap)
+  - [Evolusi Pola Pikir](#evolusi-pola-pikir)
+- [🔷 LEVEL 1 – JUNIOR (0–2/3 Tahun)](#-level-1--junior-023-tahun)
+  - [Filosofi Level Junior](#filosofi-level-junior)
+  - [🔵 BULAN 1 – Fundamental Electrical Safety \& Motor Basic](#-bulan-1--fundamental-electrical-safety--motor-basic)
+  - [🔵 BULAN 2 – Induction Motor \& Alignment Awareness](#-bulan-2--induction-motor--alignment-awareness)
+  - [🔵 BULAN 3 – Basic Instrumentation](#-bulan-3--basic-instrumentation)
+  - [🔵 BULAN 4 – Control Valve \& Pneumatic](#-bulan-4--control-valve--pneumatic)
+  - [🔵 BULAN 5 – PLC \& DCS Basic](#-bulan-5--plc--dcs-basic)
+  - [🔵 BULAN 6 – Transformer \& Distribution](#-bulan-6--transformer--distribution)
+  - [🔵 BULAN 7 – Analyzer \& Sampling](#-bulan-7--analyzer--sampling)
+  - [🔵 BULAN 8 – SIS Awareness](#-bulan-8--sis-awareness)
+  - [🔵 BULAN 9 – Shutdown Preparation](#-bulan-9--shutdown-preparation)
+  - [🔵 BULAN 10 – Cable \& Grounding](#-bulan-10--cable--grounding)
+  - [🔵 BULAN 11 – Rotating Equipment Instrument](#-bulan-11--rotating-equipment-instrument)
+  - [🔵 BULAN 12 – Integrated Case](#-bulan-12--integrated-case)
+  - [🎯 Outcome Junior](#-outcome-junior)
+- [🔷 LEVEL 2 – INTERMEDIATE (2–5 Tahun)](#-level-2--intermediate-25-tahun)
+  - [Filosofi Level Intermediate](#filosofi-level-intermediate)
+  - [🔵 BULAN 1 – Advanced Motor \& Drive](#-bulan-1--advanced-motor--drive)
+  - [🔵 BULAN 2 – Protection \& Coordination](#-bulan-2--protection--coordination)
+  - [🔵 BULAN 3 – Advanced Instrument Diagnostics](#-bulan-3--advanced-instrument-diagnostics)
+  - [🔵 BULAN 4 – Control Valve Failure Analysis](#-bulan-4--control-valve-failure-analysis)
+  - [🔵 BULAN 5 – DCS / PLC Advanced](#-bulan-5--dcs--plc-advanced)
+  - [🔵 BULAN 6 – Analyzer Reliability](#-bulan-6--analyzer-reliability)
+  - [🔵 BULAN 7 – Reliability Engineering](#-bulan-7--reliability-engineering)
+  - [🔵 BULAN 8 – Shutdown \& TA Planning](#-bulan-8--shutdown--ta-planning)
+  - [🔵 BULAN 9 – Electrical RCA](#-bulan-9--electrical-rca)
+  - [🔵 BULAN 10 – Safety System Deep Dive](#-bulan-10--safety-system-deep-dive)
+  - [🔵 BULAN 11 – Energy Efficiency](#-bulan-11--energy-efficiency)
+  - [🔵 BULAN 12 – Integrated Major Trip Study](#-bulan-12--integrated-major-trip-study)
+  - [🎯 Outcome Intermediate](#-outcome-intermediate)
+- [🔷 LEVEL 3 – SENIOR (5–10 Tahun+)](#-level-3--senior-510-tahun)
+  - [Filosofi Senior](#filosofi-senior)
+  - [🔴 BULAN 1 – Asset Integrity Strategy](#-bulan-1--asset-integrity-strategy)
+  - [🔴 BULAN 2 – Power System Expansion](#-bulan-2--power-system-expansion)
+  - [🔴 BULAN 3 – SIS Lifecycle](#-bulan-3--sis-lifecycle)
+  - [🔴 BULAN 4 – Failure Investigation Leadership](#-bulan-4--failure-investigation-leadership)
+  - [🔴 BULAN 5 – EPC \& Project](#-bulan-5--epc--project)
+  - [🔴 BULAN 6 – OT Cybersecurity](#-bulan-6--ot-cybersecurity)
+  - [🔴 BULAN 7 – Reliability Data Analytics](#-bulan-7--reliability-data-analytics)
+  - [🔴 BULAN 8 – Cost Optimization](#-bulan-8--cost-optimization)
+  - [🔴 BULAN 9 – Regulatory Readiness](#-bulan-9--regulatory-readiness)
+  - [🔴 BULAN 10 – Availability Program](#-bulan-10--availability-program)
+  - [🔴 BULAN 11 – Mentoring](#-bulan-11--mentoring)
+  - [🔴 BULAN 12 – 5-Year Reliability Plan](#-bulan-12--5-year-reliability-plan)
+- [🔷 MATRiks KOMPETENSI A/W/I/E](#-matriks-kompetensi-awie)
+  - [Definisi Level](#definisi-level)
+- [📘 Electrical – Relay Coordination](#-electrical--relay-coordination)
+  - [A](#a)
+  - [W](#w)
+  - [I](#i)
+  - [E](#e)
+- [📘 Power System \& Motor](#-power-system--motor)
+- [📘 Transformer \& Distribution](#-transformer--distribution)
+- [📘 Instrumentation – Alarm Management](#-instrumentation--alarm-management)
+  - [A](#a-1)
+  - [W](#w-1)
+  - [I](#i-1)
+  - [E](#e-1)
+- [📘 Field Instrument](#-field-instrument)
+- [📘 DCS / PLC / SIS](#-dcs--plc--sis)
+- [🔷 Cara Menggunakan Kurikulum \& Matriks](#-cara-menggunakan-kurikulum--matriks)
+  - [1️⃣ Assessment Awal](#1️⃣-assessment-awal)
+  - [2️⃣ Tentukan Gap](#2️⃣-tentukan-gap)
+  - [3️⃣ Buat IDP](#3️⃣-buat-idp)
+  - [4️⃣ Evaluasi 6 Bulanan](#4️⃣-evaluasi-6-bulanan)
+- [🎯 Manfaat Sistem Ini](#-manfaat-sistem-ini)
+- [⏳ Roadmap Waktu](#-roadmap-waktu)
+- [🧭 Penutup Strategis](#-penutup-strategis)
+
+---
+
+## 1️⃣ Executive Summary
+
+Dokumen ini merupakan panduan komprehensif pengembangan teknisi Electrical, Instrumentation & Control (E&I) yang mencakup roadmap kompetensi tiga level (Junior–Intermediate–Senior), kerangka evaluasi berbasis A/W/I/E, serta acuan standar internasional yang relevan untuk industri petrokimia.
+
+Tujuan utama panduan ini adalah membangun sistem pengembangan teknisi E&I yang terstruktur, objektif, dan berbasis risiko, sesuai dengan karakteristik plant petrokimia yang kompleks, berenergi tinggi, dan bersifat safety-critical.
+
+Pendekatan ini dirancang untuk memastikan bahwa:
+
+- Kompetensi berkembang secara sistematis dan terukur
+- Evaluasi promosi berbasis kapabilitas teknis, bukan senioritas
+- Praktik kerja selaras dengan standar internasional seperti IEEE, NFPA, International Electrotechnical Commission (IEC), serta prinsip functional safety dan praktik API
+
+<ResourceBox
+  title="Korelasi internal-link modul:"
+  items={[
+    {
+      name: 'Maintenance System Handbook (MSH)',
+      href: '/blog/management/MSH/MSH-panduan-lengkap',
+      description:
+        'Dari Risk-Based Thinking ke Reliability-Driven Organization - Panduan Lengkap Maintenance System Handbook',
+    },
+    {
+      name: 'Sistem Risk-Based Inventory (RBInv)',
+      href: '/blog/management/RBInv/RBInv-panduan-lengkap',
+      description:
+        'Buku Panduan - Sistem Risk-Based Inventory (RBInv) dalam Risk-Based Maintenance (RBM)',
+    },
+    {
+      name: 'Pemilihan Metode RCA',
+      href: '/blog/management/RCA/rca-panduan-lengkap',
+      description:
+        'Panduan Troubleshooting & Pemilihan Metode RCA Berbasis Risk-Based Maintenance (RBM)',
+    },
+  ]}
+/>
+
+---
+
+# 🔷 STRUKTUR BESAR ROADMAP
+
+## Evolusi Pola Pikir
+
+| Level        | Fokus Utama | Pola Pikir                  |
+| ------------ | ----------- | --------------------------- |
+| Junior       | Eksekusi    | Mengikuti prosedur          |
+| Intermediate | Analisa     | Memahami sistem             |
+| Senior       | Strategi    | Mengendalikan risiko & aset |
+
+---
+
+# 🔷 LEVEL 1 – JUNIOR (0–2/3 Tahun)
+
+## Filosofi Level Junior
+
+Komposisi Materi:
+
+- 60% Troubleshooting Praktis
+- 25% Preventive Maintenance
+- 15% Basic Theory & Standard Awareness
+
+Target:
+
+- Bisa bekerja mandiri pada pekerjaan rutin
+- Mengikuti SOP dengan disiplin
+- Memahami risiko dasar electrical & instrument
+- Safety awareness sesuai **NFPA** dan IEEE practice
+
+---
+
+## 🔵 BULAN 1 – Fundamental Electrical Safety & Motor Basic
+
+**Troubleshooting**
+
+- Motor LV trip saat start
+- MCC breaker trip (overload vs short circuit)
+
+**Preventive**
+
+- Checklist inspeksi MCC & panel distribusi
+
+**Basic Theory**
+
+- ANSI relay code (50/51/27/59)
+
+Referensi:
+
+- NFPA
+- IEEE
+
+<ResourceBox
+  title="Artikel terkait :"
+  items={[
+    {
+      name: 'Motor LV Trip Saat Start',
+      href: '/blog/maintenance/elins/kurikulum/artikel-01-motor-lv-trip',
+      description:
+        'Motor LV Trip Saat Start – Investigasi Sistematis Berbasis Diagram & Data',
+    },
+    {
+      name: 'MCC Breaker Trip',
+      href: '/blog/maintenance/elins/kurikulum/artikel-02-mcc-breaker-trip',
+      description: 'MCC Breaker Trip – Overload vs Short Circuit Analysis',
+    },
+    {
+      name: 'Checklist Inspeksi MCC',
+      href: '/blog/maintenance/elins/kurikulum/artikel-03-checklist-mcc',
+      description:
+        'Checklist Inspeksi Harian MCC & Panel Distribusi Berbasis Risk',
+    },
+    {
+      name: 'Dasar Proteksi Listrik',
+      href: '/blog/maintenance/elins/kurikulum/artikel-04-dasar-proteksi-listrik',
+      description:
+        'Dasar Proteksi Listrik & ANSI Relay Code (50/51/27/59) dalam Konteks Sistem',
+    },
+  ]}
+  note="Artikel-artikel di atas merupakan bagian dari serial peningkatan kompetensi Electrical & Instrumentation yang dirancang untuk diikuti secara berurutan guna membangun pemahaman sistematis dan bertahap. Meskipun demikian, setiap artikel tetap dapat digunakan sebagai referensi mandiri sesuai kebutuhan teknis di lapangan. Pembaca tetap disarankan melakukan verifikasi lanjutan dan penyesuaian sesuai standar perusahaan serta regulasi keselamatan yang berlaku."
+/>
+
+---
+
+## 🔵 BULAN 2 – Induction Motor & Alignment Awareness
+
+**Troubleshooting**
+
+- Motor overheating (electrical vs mechanical)
+- Vibrasi tinggi setelah coupling replacement
+
+**Preventive**
+
+- IR & PI test sesuai **IEEE 43**
+
+**Basic Theory**
+
+- Prinsip kerja motor induksi 3 fasa
+
+---
+
+## 🔵 BULAN 3 – Basic Instrumentation
+
+**Troubleshooting**
+
+- Pressure transmitter tidak stabil
+- Temperature error pasca shutdown
+
+**Preventive**
+
+- Kalibrasi bench vs loop
+
+**Basic Theory**
+
+- 4–20 mA & loop wiring
+
+Referensi:
+
+- IEC practice
+
+---
+
+## 🔵 BULAN 4 – Control Valve & Pneumatic
+
+- Valve hunting
+- Valve tidak 100%
+- ISO 8573 air quality awareness
+- Prinsip kerja actuator
+
+---
+
+## 🔵 BULAN 5 – PLC & DCS Basic
+
+- PLC lost communication
+- Analog mismatch
+- Backup awareness
+- PLC vs DCS
+
+---
+
+## 🔵 BULAN 6 – Transformer & Distribution
+
+- Overheating alarm
+- Voltage unbalance
+- Thermography awareness
+- IEEE C57 basic awareness
+
+---
+
+## 🔵 BULAN 7 – Analyzer & Sampling
+
+- Gas analyzer drift
+- Moisture analyzer false alarm
+- Sampling line cleaning
+- GC basic principle
+
+---
+
+## 🔵 BULAN 8 – SIS Awareness
+
+- ESD valve gagal close
+- False trip
+- Proof test awareness
+- SIL concept
+
+Referensi:
+
+- IEC 61511
+
+---
+
+## 🔵 BULAN 9 – Shutdown Preparation
+
+- Pre-shutdown inspection case
+- Checklist shutdown
+- JSA basic awareness
+
+---
+
+## 🔵 BULAN 10 – Cable & Grounding
+
+- Ground fault
+- Signal noise
+- IEEE 80 awareness
+- Earthing basic
+
+---
+
+## 🔵 BULAN 11 – Rotating Equipment Instrument
+
+- Vibration transmitter abnormal
+- Bearing temp spike
+- Machinery protection basic
+
+---
+
+## 🔵 BULAN 12 – Integrated Case
+
+Motor trip → valve malfunction → plant upset
+
+- Root Cause (5 Why & Fishbone)
+
+---
+
+## 🎯 Outcome Junior
+
+Teknisi mampu:
+
+- Membaca SLD & loop diagram
+- Troubleshoot sistematis
+- Melaksanakan PM rutin
+- Memahami interaksi Electrical–Instrument–Control
+
+---
+
+# 🔷 LEVEL 2 – INTERMEDIATE (2–5 Tahun)
+
+## Filosofi Level Intermediate
+
+Fokus berubah dari eksekusi menjadi:
+
+> Analisa kegagalan & pencegahan berulang
+
+Komposisi:
+
+- 50% Advanced Troubleshooting
+- 25% Reliability
+- 15% Standard & Compliance
+- 10% Documentation & Coordination
+
+---
+
+## 🔵 BULAN 1 – Advanced Motor & Drive
+
+- Harmonic impact
+- Bearing fluting
+- MCSA
+- IEEE 519 awareness
+
+Case:
+Repeated bearing failure pada pump critical
+
+---
+
+## 🔵 BULAN 2 – Protection & Coordination
+
+- Relay coordination
+- Selective tripping
+- Arc flash interpretation (NFPA 70E)
+- IEEE 242 awareness
+
+---
+
+## 🔵 BULAN 3 – Advanced Instrument Diagnostics
+
+- Smart transmitter diagnostics
+- Impulse line review
+- SIL practical awareness (IEC 61511)
+
+---
+
+## 🔵 BULAN 4 – Control Valve Failure Analysis
+
+- Cavitation pattern
+- Valve sizing awareness
+- Actuator failure root cause
+
+---
+
+## 🔵 BULAN 5 – DCS / PLC Advanced
+
+- Interlock matrix
+- Cause & effect
+- Redundancy failure
+
+---
+
+## 🔵 BULAN 6 – Analyzer Reliability
+
+- Sample redesign
+- GC repeatability
+- False trip reduction
+
+---
+
+## 🔵 BULAN 7 – Reliability Engineering
+
+- MTBF / MTTR
+- Criticality ranking
+- FMEA basic
+
+---
+
+## 🔵 BULAN 8 – Shutdown & TA Planning
+
+- Scope definition
+- Manpower estimation
+- Spare forecasting
+- RBI awareness (API 580)
+
+---
+
+## 🔵 BULAN 9 – Electrical RCA
+
+- Fault tree
+- Event timeline
+- Trip data interpretation
+
+---
+
+## 🔵 BULAN 10 – Safety System Deep Dive
+
+- Proof test optimization
+- Common cause failure
+- Spurious trip reduction
+
+---
+
+## 🔵 BULAN 11 – Energy Efficiency
+
+- Motor loading
+- PF correction
+- Utility interface
+
+---
+
+## 🔵 BULAN 12 – Integrated Major Trip Study
+
+Cross-discipline investigation.
+
+---
+
+## 🎯 Outcome Intermediate
+
+✔ Memimpin troubleshooting
+✔ Analisa trend historian
+✔ Memberi rekomendasi teknis
+✔ Terlibat decision making
+
+---
+
+# 🔷 LEVEL 3 – SENIOR (5–10 Tahun+)
+
+## Filosofi Senior
+
+Fokus:
+
+- Asset Strategy
+- Risk Control
+- Compliance
+- Technical Authority
+
+---
+
+## 🔴 BULAN 1 – Asset Integrity Strategy
+
+- RCM
+- RBI
+- Lifecycle costing
+- API 580 awareness
+
+---
+
+## 🔴 BULAN 2 – Power System Expansion
+
+- Load growth
+- Substation strategy
+- Protection redesign
+
+---
+
+## 🔴 BULAN 3 – SIS Lifecycle
+
+- SIL reassessment
+- MOC
+- Functional safety audit
+
+---
+
+## 🔴 BULAN 4 – Failure Investigation Leadership
+
+- RCA workshop
+- Evidence preservation
+- Compliance coordination
+
+---
+
+## 🔴 BULAN 5 – EPC & Project
+
+- Technical bid evaluation
+- FAT/SAT
+- ITP review
+
+---
+
+## 🔴 BULAN 6 – OT Cybersecurity
+
+- Segmentation
+- Risk mapping
+- Incident response
+
+---
+
+## 🔴 BULAN 7 – Reliability Data Analytics
+
+- Historian trend
+- Predictive maintenance
+- CBM strategy
+
+---
+
+## 🔴 BULAN 8 – Cost Optimization
+
+- OPEX vs CAPEX
+- Spare optimization
+- Vendor evaluation
+
+---
+
+## 🔴 BULAN 9 – Regulatory Readiness
+
+- Compliance review
+- Gap analysis
+- Audit preparation
+
+---
+
+## 🔴 BULAN 10 – Availability Program
+
+- Production loss analysis
+- Bottleneck mapping
+
+---
+
+## 🔴 BULAN 11 – Mentoring
+
+- Coaching junior
+- Knowledge retention
+- Lesson learned system
+
+---
+
+## 🔴 BULAN 12 – 5-Year Reliability Plan
+
+- Asset roadmap
+- Risk register
+- Upgrade strategy
+
+---
+
+# 🔷 MATRiks KOMPETENSI A/W/I/E
+
+## Definisi Level
+
+| Level | Arti              |
+| ----- | ----------------- |
+| A     | Awareness         |
+| W     | Working Knowledge |
+| I     | Independent       |
+| E     | Expert            |
+
+---
+
+# 📘 Electrical – Relay Coordination
+
+### A
+
+- Tahu fungsi relay
+- Mengerti selective tripping
+
+### W
+
+- Baca TCC
+- Verifikasi setting
+
+### I
+
+- Analisa event log
+- Identifikasi miscoordination
+
+### E
+
+- Tentukan filosofi proteksi
+- Approve setting final
+
+---
+
+# 📘 Power System & Motor
+
+| Skill                | Junior | Intermediate | Senior |
+| -------------------- | ------ | ------------ | ------ |
+| IR & PI (IEEE 43)    | W      | I            | E      |
+| MCC inspection       | W      | I            | E      |
+| Relay coordination   | A      | W            | E      |
+| Arc flash (NFPA 70E) | W      | I            | E      |
+| Harmonic (IEEE 519)  | A      | W            | E      |
+
+---
+
+# 📘 Transformer & Distribution
+
+| Skill               | Junior | Intermediate | Senior |
+| ------------------- | ------ | ------------ | ------ |
+| DGA interpretation  | A      | I            | E      |
+| Load flow awareness | A      | W            | E      |
+| Substation planning | -      | A            | E      |
+
+---
+
+# 📘 Instrumentation – Alarm Management
+
+Mengacu pada prinsip **EEMUA** 191.
+
+### A
+
+- Tahu nuisance alarm
+
+### W
+
+- Identifikasi alarm flooding
+
+### I
+
+- Analisa frequency
+- Usulkan deadband
+
+### E
+
+- Tentukan alarm philosophy
+
+---
+
+# 📘 Field Instrument
+
+| Skill                   | Junior | Intermediate | Senior |
+| ----------------------- | ------ | ------------ | ------ |
+| Calibration             | W      | I            | E      |
+| 4–20 mA troubleshooting | W      | I            | E      |
+| SIL awareness           | A      | W            | E      |
+| IEC 61511 awareness     | A      | W            | E      |
+
+---
+
+# 📘 DCS / PLC / SIS
+
+| Skill                    | Junior | Intermediate | Senior |
+| ------------------------ | ------ | ------------ | ------ |
+| Loop checking            | W      | I            | E      |
+| Interlock interpretation | A      | I            | E      |
+| SIS proof test           | W      | I            | E      |
+| Functional safety audit  | -      | A            | E      |
+| OT cybersecurity         | A      | W            | E      |
+
+---
+
+# 🔷 Cara Menggunakan Kurikulum & Matriks
+
+## 1️⃣ Assessment Awal
+
+- Evaluasi setiap teknisi
+- Tandai A/W/I/E
+
+## 2️⃣ Tentukan Gap
+
+Bandingkan dengan target level.
+
+## 3️⃣ Buat IDP
+
+- Artikel bulanan
+- OJT
+- Mentoring
+
+## 4️⃣ Evaluasi 6 Bulanan
+
+Jika 70% skill naik satu level → layak promosi.
+
+---
+
+# 🎯 Manfaat Sistem Ini
+
+✔ Objektif untuk promosi
+✔ Mendukung audit kompetensi
+✔ Mengurangi subjektivitas
+✔ Mendukung succession planning
+✔ Selaras dengan safety-critical environment petrokimia
+
+---
+
+# ⏳ Roadmap Waktu
+
+Jika dijalankan disiplin:
+
+- 2 tahun → Junior solid
+- 3–5 tahun → Intermediate kuat
+- 5–7 tahun → Senior siap memimpin
+
+---
+
+# 🧭 Penutup Strategis
+
+Kurikulum tanpa matriks kompetensi menghasilkan pembelajaran yang tidak terukur.
+Matriks tanpa roadmap menghasilkan stagnasi.
+
+Ketika keduanya disatukan:
+
+> Organisasi tidak hanya melatih teknisi,
+> tetapi membangun _technical authority_ yang mampu mengendalikan risiko, menjaga reliability, dan melindungi integritas aset plant petrokimia.

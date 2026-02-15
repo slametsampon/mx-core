@@ -54,6 +54,22 @@
     ]
   },
   {
+    "id": "maintenance/elins/panduan-kurikulum-elins",
+    "name": "Panduan Lengkap Kurikulum & Matriks Kompetensi - Teknisi Electrical, Instrumentation & Control (E&I) – Industri Petrokimia",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/elins/panduan-kurikulum-elins",
+    "subtitle": "February 15, 2026",
+    "keywords": [
+      "kurikulum-teknisi-ei",
+      "kompetensi-awie",
+      "pemeliharaan-pabrik-petrokimia",
+      "electrical-instrumentation-control",
+      "reliability-engineering",
+      "functional-safety-iec61511",
+      "nfpa-ieee-api-standard"
+    ]
+  },
+  {
     "id": "maintenance/mechanical/kurikulum/artikel-01-pompa-tidak-discharge",
     "name": "Pompa Tidak Discharge Setelah Start – Investigasi Sistematis Berbasis P&ID",
     "section": "CONTENT",
@@ -99,6 +115,22 @@
       "rotating-equipment",
       "mechanical-junior",
       "pemeliharaan-pabrik-petrokimia"
+    ]
+  },
+  {
+    "id": "maintenance/mechanical/panduan-kurikulum-mechanical",
+    "name": "Panduan Lengkap Kurikulum & Matriks Kompetensi – Teknisi Mechanical – Industri Petrokimia",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/mechanical/panduan-kurikulum-mechanical",
+    "subtitle": "February 15, 2026",
+    "keywords": [
+      "kurikulum-teknisi-mechanical",
+      "kompetensi-awie",
+      "pemeliharaan-pabrik-petrokimia",
+      "rotating-equipment",
+      "asset-integrity-api",
+      "reliability-engineering",
+      "turnaround-management"
     ]
   },
   {
