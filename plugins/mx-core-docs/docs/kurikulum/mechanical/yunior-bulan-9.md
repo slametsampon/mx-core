@@ -11,7 +11,7 @@ Fokus bulan ini:
 ---
 
 - [🔵 BULAN 9 – Shutdown Preparation](#-bulan-9--shutdown-preparation)
-- [📘 ARTIKEL 1](#-artikel-1)
+- [📘 ARTIKEL 27](#-artikel-27)
   - [Pre-TAR Checklist – Mengapa 70% Keberhasilan Shutdown Ditentukan Sebelum Unit Dimatikan?](#pre-tar-checklist--mengapa-70-keberhasilan-shutdown-ditentukan-sebelum-unit-dimatikan)
   - [1️⃣ Informasi Umum](#1️⃣-informasi-umum)
   - [2️⃣ Learning Objective (Measurable \& Skill-Based)](#2️⃣-learning-objective-measurable--skill-based)
@@ -29,7 +29,7 @@ Fokus bulan ini:
   - [1️⃣4️⃣ Competency Mapping](#1️⃣4️⃣-competency-mapping)
   - [1️⃣5️⃣ Discussion Question](#1️⃣5️⃣-discussion-question)
   - [1️⃣6️⃣ Key Takeaway](#1️⃣6️⃣-key-takeaway)
-- [📘 ARTIKEL 2](#-artikel-2)
+- [📘 ARTIKEL 28](#-artikel-28)
   - [Gasket \& Bolt Preparation – Menghindari Rework Saat TAR](#gasket--bolt-preparation--menghindari-rework-saat-tar)
   - [1️⃣ Informasi Umum](#1️⃣-informasi-umum-1)
   - [2️⃣ Learning Objective](#2️⃣-learning-objective)
@@ -45,13 +45,13 @@ Fokus bulan ini:
   - [1️⃣2️⃣ Risk Reflection](#1️⃣2️⃣-risk-reflection)
   - [1️⃣3️⃣ Data Awareness](#1️⃣3️⃣-data-awareness)
   - [1️⃣4️⃣ Competency Mapping](#1️⃣4️⃣-competency-mapping-1)
-- [📘 ARTIKEL 3](#-artikel-3)
+- [📘 ARTIKEL 29](#-artikel-29)
   - [Spare Readiness – Menghindari Downtime karena Part Tidak Siap](#spare-readiness--menghindari-downtime-karena-part-tidak-siap)
 - [📊 ALIGNMENT DENGAN OUTPUT JUNIOR MECHANICAL](#-alignment-dengan-output-junior-mechanical)
 
 ---
 
-# 📘 ARTIKEL 1
+# 📘 ARTIKEL 27
 
 ## Pre-TAR Checklist – Mengapa 70% Keberhasilan Shutdown Ditentukan Sebelum Unit Dimatikan?
 
@@ -270,7 +270,7 @@ Target Setelah Artikel: W
 
 ---
 
-# 📘 ARTIKEL 2
+# 📘 ARTIKEL 28
 
 ## Gasket & Bolt Preparation – Menghindari Rework Saat TAR
 
@@ -392,7 +392,7 @@ Material verification: A → W
 
 ---
 
-# 📘 ARTIKEL 3
+# 📘 ARTIKEL 29
 
 ## Spare Readiness – Menghindari Downtime karena Part Tidak Siap
 

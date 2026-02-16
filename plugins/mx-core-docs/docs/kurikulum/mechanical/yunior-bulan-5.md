@@ -8,7 +8,7 @@ American Petroleum Institute – API 618 (Reciprocating Compressor Awareness)
 ---
 
 - [🔵 BULAN 5 – Reciprocating Compressor Basic](#-bulan-5--reciprocating-compressor-basic)
-- [📘 ARTIKEL 1](#-artikel-1)
+- [📘 ARTIKEL 15](#-artikel-15)
   - [Compressor Discharge Temperature Tinggi – Masalah Valve, Clearance, atau Cooling?](#compressor-discharge-temperature-tinggi--masalah-valve-clearance-atau-cooling)
   - [1️⃣ Informasi Umum](#1️⃣-informasi-umum)
   - [2️⃣ Learning Objective (Measurable \& Skill-Based)](#2️⃣-learning-objective-measurable--skill-based)
@@ -26,7 +26,7 @@ American Petroleum Institute – API 618 (Reciprocating Compressor Awareness)
   - [1️⃣4️⃣ Competency Mapping](#1️⃣4️⃣-competency-mapping)
   - [1️⃣5️⃣ Discussion Question (Toolbox Use)](#1️⃣5️⃣-discussion-question-toolbox-use)
   - [1️⃣6️⃣ Key Takeaway (Max 7 Bullet)](#1️⃣6️⃣-key-takeaway-max-7-bullet)
-- [📘 ARTIKEL 2](#-artikel-2)
+- [📘 ARTIKEL 16](#-artikel-16)
   - [Valve Failure Symptoms – Bagaimana Mendeteksi Sebelum Rusak Total?](#valve-failure-symptoms--bagaimana-mendeteksi-sebelum-rusak-total)
   - [1️⃣ Informasi Umum](#1️⃣-informasi-umum-1)
   - [2️⃣ Learning Objective](#2️⃣-learning-objective)
@@ -42,13 +42,13 @@ American Petroleum Institute – API 618 (Reciprocating Compressor Awareness)
   - [1️⃣2️⃣ Risk Reflection](#1️⃣2️⃣-risk-reflection)
   - [1️⃣3️⃣ Data Awareness](#1️⃣3️⃣-data-awareness)
   - [1️⃣4️⃣ Competency Mapping](#1️⃣4️⃣-competency-mapping-1)
-- [📘 ARTIKEL 3](#-artikel-3)
+- [📘 ARTIKEL 17](#-artikel-17)
   - [Clearance Measurement Awareness – Mengapa Clearance Penting pada Reciprocating Compressor?](#clearance-measurement-awareness--mengapa-clearance-penting-pada-reciprocating-compressor)
 - [📊 ALIGNMENT DENGAN OUTPUT JUNIOR MECHANICAL](#-alignment-dengan-output-junior-mechanical)
 
 ---
 
-# 📘 ARTIKEL 1
+# 📘 ARTIKEL 15
 
 ## Compressor Discharge Temperature Tinggi – Masalah Valve, Clearance, atau Cooling?
 
@@ -266,7 +266,7 @@ Target Setelah Artikel: Menuju I
 
 ---
 
-# 📘 ARTIKEL 2
+# 📘 ARTIKEL 16
 
 ## Valve Failure Symptoms – Bagaimana Mendeteksi Sebelum Rusak Total?
 
@@ -401,7 +401,7 @@ Valve symptom recognition: W → I
 
 ---
 
-# 📘 ARTIKEL 3
+# 📘 ARTIKEL 17
 
 ## Clearance Measurement Awareness – Mengapa Clearance Penting pada Reciprocating Compressor?
 

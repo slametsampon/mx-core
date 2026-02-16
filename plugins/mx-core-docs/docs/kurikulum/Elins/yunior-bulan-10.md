@@ -9,7 +9,7 @@ IEEE – IEEE 80 (Grounding System Guide)
 
 - [TEKNISI JUNIOR E\&I](#teknisi-junior-ei)
   - [🔵 BULAN 10 – Cable \& Grounding System](#-bulan-10--cable--grounding-system)
-- [📘 ARTIKEL 1](#-artikel-1)
+- [📘 ARTIKEL 36](#-artikel-36)
   - [Ground Fault pada Motor Feeder – Investigasi dari Insulation hingga Earthing System](#ground-fault-pada-motor-feeder--investigasi-dari-insulation-hingga-earthing-system)
   - [1️⃣ Informasi Umum](#1️⃣-informasi-umum)
   - [2️⃣ Learning Objective](#2️⃣-learning-objective)
@@ -27,7 +27,7 @@ IEEE – IEEE 80 (Grounding System Guide)
   - [1️⃣4️⃣ Competency Mapping](#1️⃣4️⃣-competency-mapping)
   - [1️⃣5️⃣ Discussion Question](#1️⃣5️⃣-discussion-question)
   - [1️⃣6️⃣ Key Takeaway](#1️⃣6️⃣-key-takeaway)
-- [📘 ARTIKEL 2](#-artikel-2)
+- [📘 ARTIKEL 37](#-artikel-37)
   - [Signal Noise pada Analog Instrument – Masalah Ground Loop atau Shielding?](#signal-noise-pada-analog-instrument--masalah-ground-loop-atau-shielding)
   - [1️⃣ Informasi Umum](#1️⃣-informasi-umum-1)
   - [2️⃣ Learning Objective](#2️⃣-learning-objective-1)
@@ -40,7 +40,7 @@ IEEE – IEEE 80 (Grounding System Guide)
   - [9️⃣ Risk](#9️⃣-risk)
   - [1️⃣3️⃣ Trend Awareness](#1️⃣3️⃣-trend-awareness)
   - [1️⃣4️⃣ Competency Mapping](#1️⃣4️⃣-competency-mapping-1)
-- [📘 ARTIKEL 3](#-artikel-3)
+- [📘 ARTIKEL 38](#-artikel-38)
   - [Inspection Cable Gland \& Termination – Preventive untuk Keandalan Sistem](#inspection-cable-gland--termination--preventive-untuk-keandalan-sistem)
   - [1️⃣ Informasi Umum](#1️⃣-informasi-umum-2)
   - [2️⃣ Learning Objective](#2️⃣-learning-objective-2)
@@ -50,7 +50,7 @@ IEEE – IEEE 80 (Grounding System Guide)
   - [6️⃣ Risk](#6️⃣-risk)
   - [7️⃣ Data \& Documentation](#7️⃣-data--documentation)
   - [1️⃣4️⃣ Competency Mapping](#1️⃣4️⃣-competency-mapping-2)
-- [📘 ARTIKEL 4](#-artikel-4)
+- [📘 ARTIKEL 39](#-artikel-39)
   - [Earthing \& Bonding System Basic – Prinsip Proteksi Keselamatan](#earthing--bonding-system-basic--prinsip-proteksi-keselamatan)
   - [1️⃣ Informasi Umum](#1️⃣-informasi-umum-3)
   - [2️⃣ Learning Objective](#2️⃣-learning-objective-3)
@@ -64,7 +64,7 @@ IEEE – IEEE 80 (Grounding System Guide)
 
 ---
 
-# 📘 ARTIKEL 1
+# 📘 ARTIKEL 36
 
 ## Ground Fault pada Motor Feeder – Investigasi dari Insulation hingga Earthing System
 
@@ -258,7 +258,7 @@ SLD reading: A → W
 
 ---
 
-# 📘 ARTIKEL 2
+# 📘 ARTIKEL 37
 
 ## Signal Noise pada Analog Instrument – Masalah Ground Loop atau Shielding?
 
@@ -363,7 +363,7 @@ Loop noise troubleshooting: W → I
 
 ---
 
-# 📘 ARTIKEL 3
+# 📘 ARTIKEL 38
 
 ## Inspection Cable Gland & Termination – Preventive untuk Keandalan Sistem
 
@@ -434,7 +434,7 @@ Termination inspection: W → I
 
 ---
 
-# 📘 ARTIKEL 4
+# 📘 ARTIKEL 39
 
 ## Earthing & Bonding System Basic – Prinsip Proteksi Keselamatan
 

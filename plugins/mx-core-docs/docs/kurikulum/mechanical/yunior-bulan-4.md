@@ -11,7 +11,7 @@ Fokus:
 ---
 
 - [🔵 BULAN 4 – Bearing \& Lubrication](#-bulan-4--bearing--lubrication)
-- [📘 ARTIKEL 1](#-artikel-1)
+- [📘 ARTIKEL 12](#-artikel-12)
   - [Bearing Overheating – Masalah Lubrikasi, Misalignment, atau Overload?](#bearing-overheating--masalah-lubrikasi-misalignment-atau-overload)
   - [1️⃣ Informasi Umum](#1️⃣-informasi-umum)
   - [2️⃣ Learning Objective (Measurable \& Skill-Based)](#2️⃣-learning-objective-measurable--skill-based)
@@ -29,7 +29,7 @@ Fokus:
   - [1️⃣4️⃣ Competency Mapping](#1️⃣4️⃣-competency-mapping)
   - [1️⃣5️⃣ Discussion Question (Toolbox Use)](#1️⃣5️⃣-discussion-question-toolbox-use)
   - [1️⃣6️⃣ Key Takeaway (Max 7 Bullet)](#1️⃣6️⃣-key-takeaway-max-7-bullet)
-- [📘 ARTIKEL 2](#-artikel-2)
+- [📘 ARTIKEL 13](#-artikel-13)
   - [Grease Over-Lubrication Case – Silent Damage yang Sering Terjadi](#grease-over-lubrication-case--silent-damage-yang-sering-terjadi)
   - [1️⃣ Informasi Umum](#1️⃣-informasi-umum-1)
   - [2️⃣ Learning Objective](#2️⃣-learning-objective)
@@ -45,7 +45,7 @@ Fokus:
   - [1️⃣2️⃣ Risk \& Safety Reflection](#1️⃣2️⃣-risk--safety-reflection-1)
   - [1️⃣3️⃣ Data Awareness](#1️⃣3️⃣-data-awareness)
   - [1️⃣4️⃣ Competency Mapping](#1️⃣4️⃣-competency-mapping-1)
-- [📘 ARTIKEL 3](#-artikel-3)
+- [📘 ARTIKEL 14](#-artikel-14)
   - [Grease Interval Calculation Basic \& Oil Level Inspection](#grease-interval-calculation-basic--oil-level-inspection)
     - [Grease Interval Basic](#grease-interval-basic)
     - [Oil Level Inspection](#oil-level-inspection)
@@ -53,7 +53,7 @@ Fokus:
 
 ---
 
-# 📘 ARTIKEL 1
+# 📘 ARTIKEL 12
 
 ## Bearing Overheating – Masalah Lubrikasi, Misalignment, atau Overload?
 
@@ -275,7 +275,7 @@ Target Setelah Artikel: Menuju I
 
 ---
 
-# 📘 ARTIKEL 2
+# 📘 ARTIKEL 13
 
 ## Grease Over-Lubrication Case – Silent Damage yang Sering Terjadi
 
@@ -400,7 +400,7 @@ Lubrication discipline: W → I
 
 ---
 
-# 📘 ARTIKEL 3
+# 📘 ARTIKEL 14
 
 ## Grease Interval Calculation Basic & Oil Level Inspection
 

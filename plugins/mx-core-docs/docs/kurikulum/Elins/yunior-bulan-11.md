@@ -12,7 +12,7 @@ Fokus bulan ini:
 
 - [TEKNISI JUNIOR E\&I](#teknisi-junior-ei)
   - [🔵 BULAN 11 – Rotating Equipment Instrumentation](#-bulan-11--rotating-equipment-instrumentation)
-- [📘 ARTIKEL 1](#-artikel-1)
+- [📘 ARTIKEL 40](#-artikel-40)
   - [Vibration Transmitter Abnormal Reading – Sensor Fault atau Machinery Problem?](#vibration-transmitter-abnormal-reading--sensor-fault-atau-machinery-problem)
   - [1️⃣ Informasi Umum](#1️⃣-informasi-umum)
   - [2️⃣ Learning Objective](#2️⃣-learning-objective)
@@ -30,7 +30,7 @@ Fokus bulan ini:
   - [1️⃣4️⃣ Competency Mapping](#1️⃣4️⃣-competency-mapping)
   - [1️⃣5️⃣ Discussion Question](#1️⃣5️⃣-discussion-question)
   - [1️⃣6️⃣ Key Takeaway](#1️⃣6️⃣-key-takeaway)
-- [📘 ARTIKEL 2](#-artikel-2)
+- [📘 ARTIKEL 41](#-artikel-41)
   - [Bearing Temperature Spike – Gangguan Proses, Sensor, atau Lubrikasi?](#bearing-temperature-spike--gangguan-proses-sensor-atau-lubrikasi)
   - [1️⃣ Informasi Umum](#1️⃣-informasi-umum-1)
   - [2️⃣ Learning Objective](#2️⃣-learning-objective-1)
@@ -43,7 +43,7 @@ Fokus bulan ini:
   - [9️⃣ Risk](#9️⃣-risk)
   - [1️⃣3️⃣ Trend Awareness](#1️⃣3️⃣-trend-awareness)
   - [1️⃣4️⃣ Competency Mapping](#1️⃣4️⃣-competency-mapping-1)
-- [📘 ARTIKEL 3](#-artikel-3)
+- [📘 ARTIKEL 42](#-artikel-42)
   - [Inspection Vibration Probe \& RTD Wiring – Preventive untuk Machinery Protection](#inspection-vibration-probe--rtd-wiring--preventive-untuk-machinery-protection)
   - [1️⃣ Informasi Umum](#1️⃣-informasi-umum-2)
   - [2️⃣ Learning Objective](#2️⃣-learning-objective-2)
@@ -53,7 +53,7 @@ Fokus bulan ini:
   - [6️⃣ Risk](#6️⃣-risk)
   - [7️⃣ Documentation](#7️⃣-documentation)
   - [1️⃣4️⃣ Competency Mapping](#1️⃣4️⃣-competency-mapping-2)
-- [📘 ARTIKEL 4](#-artikel-4)
+- [📘 ARTIKEL 43](#-artikel-43)
   - [Basic Machinery Protection System – Konsep Alarm \& Trip pada Rotating Equipment](#basic-machinery-protection-system--konsep-alarm--trip-pada-rotating-equipment)
   - [1️⃣ Informasi Umum](#1️⃣-informasi-umum-3)
   - [2️⃣ Learning Objective](#2️⃣-learning-objective-3)
@@ -67,7 +67,7 @@ Fokus bulan ini:
 
 ---
 
-# 📘 ARTIKEL 1
+# 📘 ARTIKEL 40
 
 ## Vibration Transmitter Abnormal Reading – Sensor Fault atau Machinery Problem?
 
@@ -262,7 +262,7 @@ Mechanical–instrument interaction: A → W
 
 ---
 
-# 📘 ARTIKEL 2
+# 📘 ARTIKEL 41
 
 ## Bearing Temperature Spike – Gangguan Proses, Sensor, atau Lubrikasi?
 
@@ -367,7 +367,7 @@ RTD troubleshooting: W → I
 
 ---
 
-# 📘 ARTIKEL 3
+# 📘 ARTIKEL 42
 
 ## Inspection Vibration Probe & RTD Wiring – Preventive untuk Machinery Protection
 
@@ -434,7 +434,7 @@ Inspection skill: W → I
 
 ---
 
-# 📘 ARTIKEL 4
+# 📘 ARTIKEL 43
 
 ## Basic Machinery Protection System – Konsep Alarm & Trip pada Rotating Equipment
 

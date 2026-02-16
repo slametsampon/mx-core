@@ -11,7 +11,7 @@ Fokus:
 ---
 
 - [🔵 BULAN 10 – Vibration Basic Awareness](#-bulan-10--vibration-basic-awareness)
-- [📘 ARTIKEL 1](#-artikel-1)
+- [📘 ARTIKEL 30](#-artikel-30)
   - [Unbalance vs Misalignment – Bagaimana Membedakan dari Gejala Vibrasi?](#unbalance-vs-misalignment--bagaimana-membedakan-dari-gejala-vibrasi)
   - [1️⃣ Informasi Umum](#1️⃣-informasi-umum)
   - [2️⃣ Learning Objective (Measurable \& Skill-Based)](#2️⃣-learning-objective-measurable--skill-based)
@@ -29,7 +29,7 @@ Fokus:
   - [1️⃣4️⃣ Competency Mapping](#1️⃣4️⃣-competency-mapping)
   - [1️⃣5️⃣ Discussion Question](#1️⃣5️⃣-discussion-question)
   - [1️⃣6️⃣ Key Takeaway](#1️⃣6️⃣-key-takeaway)
-- [📘 ARTIKEL 2](#-artikel-2)
+- [📘 ARTIKEL 31](#-artikel-31)
   - [Basic Vibration Terminology – Bahasa Dasar yang Harus Dipahami Teknisi](#basic-vibration-terminology--bahasa-dasar-yang-harus-dipahami-teknisi)
   - [1️⃣ Informasi Umum](#1️⃣-informasi-umum-1)
   - [2️⃣ Learning Objective](#2️⃣-learning-objective)
@@ -51,7 +51,7 @@ Fokus:
 
 ---
 
-# 📘 ARTIKEL 1
+# 📘 ARTIKEL 30
 
 ## Unbalance vs Misalignment – Bagaimana Membedakan dari Gejala Vibrasi?
 
@@ -268,7 +268,7 @@ Target Setelah Artikel: W
 
 ---
 
-# 📘 ARTIKEL 2
+# 📘 ARTIKEL 31
 
 ## Basic Vibration Terminology – Bahasa Dasar yang Harus Dipahami Teknisi
 

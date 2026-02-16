@@ -8,7 +8,7 @@ ASME – ASME B31.3 (Process Piping Awareness)
 ---
 
 - [🔵 BULAN 7 – Piping \& Flange](#-bulan-7--piping--flange)
-- [📘 ARTIKEL 1](#-artikel-1)
+- [📘 ARTIKEL 21](#-artikel-21)
   - [Flange Leakage Setelah Startup – Torque Tidak Merata atau Gasket Damage?](#flange-leakage-setelah-startup--torque-tidak-merata-atau-gasket-damage)
   - [1️⃣ Informasi Umum](#1️⃣-informasi-umum)
   - [2️⃣ Learning Objective (Measurable \& Skill-Based)](#2️⃣-learning-objective-measurable--skill-based)
@@ -26,7 +26,7 @@ ASME – ASME B31.3 (Process Piping Awareness)
   - [1️⃣4️⃣ Competency Mapping](#1️⃣4️⃣-competency-mapping)
   - [1️⃣5️⃣ Discussion Question](#1️⃣5️⃣-discussion-question)
   - [1️⃣6️⃣ Key Takeaway](#1️⃣6️⃣-key-takeaway)
-- [📘 ARTIKEL 2](#-artikel-2)
+- [📘 ARTIKEL 22](#-artikel-22)
   - [Gasket Failure Case – Salah Material atau Salah Instalasi?](#gasket-failure-case--salah-material-atau-salah-instalasi)
   - [1️⃣ Informasi Umum](#1️⃣-informasi-umum-1)
   - [2️⃣ Learning Objective](#2️⃣-learning-objective)
@@ -42,13 +42,13 @@ ASME – ASME B31.3 (Process Piping Awareness)
   - [1️⃣2️⃣ Risk Reflection](#1️⃣2️⃣-risk-reflection)
   - [1️⃣3️⃣ Data Awareness](#1️⃣3️⃣-data-awareness)
   - [1️⃣4️⃣ Competency Mapping](#1️⃣4️⃣-competency-mapping-1)
-- [📘 ARTIKEL 3](#-artikel-3)
+- [📘 ARTIKEL 23](#-artikel-23)
   - [Bolt Tightening Sequence Awareness – Mengapa Pola \& Tahapan Penting?](#bolt-tightening-sequence-awareness--mengapa-pola--tahapan-penting)
 - [📊 ALIGNMENT DENGAN OUTPUT JUNIOR MECHANICAL](#-alignment-dengan-output-junior-mechanical)
 
 ---
 
-# 📘 ARTIKEL 1
+# 📘 ARTIKEL 21
 
 ## Flange Leakage Setelah Startup – Torque Tidak Merata atau Gasket Damage?
 
@@ -266,7 +266,7 @@ Target Setelah Artikel: Menuju I
 
 ---
 
-# 📘 ARTIKEL 2
+# 📘 ARTIKEL 22
 
 ## Gasket Failure Case – Salah Material atau Salah Instalasi?
 
@@ -404,7 +404,7 @@ Gasket diagnosis: W → I
 
 ---
 
-# 📘 ARTIKEL 3
+# 📘 ARTIKEL 23
 
 ## Bolt Tightening Sequence Awareness – Mengapa Pola & Tahapan Penting?
 

@@ -11,7 +11,7 @@ International Electrotechnical Commission
 
 ---
 
-- [� ARTIKEL 1](#-artikel-1)
+- [📘 ARTIKEL 25](#-artikel-25)
   - [Gas Analyzer Reading Drifting – Investigasi dari Sampling Line hingga Analyzer Cell](#gas-analyzer-reading-drifting--investigasi-dari-sampling-line-hingga-analyzer-cell)
   - [1️⃣ Informasi Umum](#1️⃣-informasi-umum)
   - [2️⃣ Learning Objective](#2️⃣-learning-objective)
@@ -29,7 +29,7 @@ International Electrotechnical Commission
   - [1️⃣4️⃣ Competency Mapping](#1️⃣4️⃣-competency-mapping)
   - [1️⃣5️⃣ Discussion Question](#1️⃣5️⃣-discussion-question)
   - [1️⃣6️⃣ Key Takeaway](#1️⃣6️⃣-key-takeaway)
-- [📘 ARTIKEL 2](#-artikel-2)
+- [📘 ARTIKEL 26](#-artikel-26)
   - [Moisture Analyzer False Alarm – Gangguan Sensor atau Kondensasi?](#moisture-analyzer-false-alarm--gangguan-sensor-atau-kondensasi)
   - [1️⃣ Informasi Umum](#1️⃣-informasi-umum-1)
   - [2️⃣ Learning Objective](#2️⃣-learning-objective-1)
@@ -42,7 +42,7 @@ International Electrotechnical Commission
   - [9️⃣ Risk](#9️⃣-risk)
   - [1️⃣3️⃣ Trend Awareness](#1️⃣3️⃣-trend-awareness)
   - [1️⃣4️⃣ Competency Mapping](#1️⃣4️⃣-competency-mapping-1)
-- [📘 ARTIKEL 3](#-artikel-3)
+- [📘 ARTIKEL 27](#-artikel-27)
   - [Cleaning \& Maintenance Sampling Line – Preventive untuk Reliability Analyzer](#cleaning--maintenance-sampling-line--preventive-untuk-reliability-analyzer)
   - [1️⃣ Informasi Umum](#1️⃣-informasi-umum-2)
   - [2️⃣ Learning Objective](#2️⃣-learning-objective-2)
@@ -52,7 +52,7 @@ International Electrotechnical Commission
   - [6️⃣ Risk](#6️⃣-risk)
   - [7️⃣ Data \& Documentation](#7️⃣-data--documentation)
   - [1️⃣4️⃣ Competency Mapping](#1️⃣4️⃣-competency-mapping-2)
-- [📘 ARTIKEL 4](#-artikel-4)
+- [📘 ARTIKEL 28](#-artikel-28)
   - [Prinsip Kerja Gas Analyzer \& Basic Gas Chromatograph (GC)](#prinsip-kerja-gas-analyzer--basic-gas-chromatograph-gc)
   - [1️⃣ Informasi Umum](#1️⃣-informasi-umum-3)
   - [2️⃣ Learning Objective](#2️⃣-learning-objective-3)
@@ -66,7 +66,7 @@ International Electrotechnical Commission
 
 ---
 
-# 📘 ARTIKEL 1
+# 📘 ARTIKEL 25
 
 ## Gas Analyzer Reading Drifting – Investigasi dari Sampling Line hingga Analyzer Cell
 
@@ -260,7 +260,7 @@ Sampling system awareness: A → W
 
 ---
 
-# 📘 ARTIKEL 2
+# 📘 ARTIKEL 26
 
 ## Moisture Analyzer False Alarm – Gangguan Sensor atau Kondensasi?
 
@@ -360,7 +360,7 @@ Sampling diagnostic skill: W → I
 
 ---
 
-# 📘 ARTIKEL 3
+# 📘 ARTIKEL 27
 
 ## Cleaning & Maintenance Sampling Line – Preventive untuk Reliability Analyzer
 
@@ -427,7 +427,7 @@ Preventive analyzer: W → I
 
 ---
 
-# 📘 ARTIKEL 4
+# 📘 ARTIKEL 28
 
 ## Prinsip Kerja Gas Analyzer & Basic Gas Chromatograph (GC)
 

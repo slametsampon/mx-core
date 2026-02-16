@@ -8,7 +8,7 @@ American Petroleum Institute – API 682 (Mechanical Seal Awareness)
 ---
 
 - [🔵 BULAN 3 – Mechanical Seal Basic](#-bulan-3--mechanical-seal-basic)
-- [📘 ARTIKEL 1](#-artikel-1)
+- [📘 ARTIKEL 9](#-artikel-9)
   - [Seal Leakage Setelah Start-Up – Instalasi Salah atau Kondisi Operasi?](#seal-leakage-setelah-start-up--instalasi-salah-atau-kondisi-operasi)
   - [1️⃣ Informasi Umum](#1️⃣-informasi-umum)
   - [2️⃣ Learning Objective (Measurable \& Skill-Based)](#2️⃣-learning-objective-measurable--skill-based)
@@ -26,7 +26,7 @@ American Petroleum Institute – API 682 (Mechanical Seal Awareness)
   - [1️⃣4️⃣ Competency Mapping](#1️⃣4️⃣-competency-mapping)
   - [1️⃣5️⃣ Discussion Question (Toolbox Use)](#1️⃣5️⃣-discussion-question-toolbox-use)
   - [1️⃣6️⃣ Key Takeaway (Max 7 Bullet)](#1️⃣6️⃣-key-takeaway-max-7-bullet)
-- [📘 ARTIKEL 2](#-artikel-2)
+- [📘 ARTIKEL 10](#-artikel-10)
   - [Dry Running Damage – Mengapa Seal Bisa Rusak dalam Hitungan Menit?](#dry-running-damage--mengapa-seal-bisa-rusak-dalam-hitungan-menit)
   - [1️⃣ Informasi Umum](#1️⃣-informasi-umum-1)
   - [2️⃣ Learning Objective](#2️⃣-learning-objective)
@@ -44,13 +44,13 @@ American Petroleum Institute – API 682 (Mechanical Seal Awareness)
   - [1️⃣4️⃣ Competency Mapping](#1️⃣4️⃣-competency-mapping-1)
   - [1️⃣5️⃣ Discussion Question](#1️⃣5️⃣-discussion-question)
   - [1️⃣6️⃣ Key Takeaway](#1️⃣6️⃣-key-takeaway)
-- [📘 ARTIKEL 3](#-artikel-3)
+- [📘 ARTIKEL 11](#-artikel-11)
   - [Flushing Plan Basic \& Seal Pot Inspection](#flushing-plan-basic--seal-pot-inspection)
 - [📊 ALIGNMENT DENGAN OUTPUT JUNIOR MECHANICAL](#-alignment-dengan-output-junior-mechanical)
 
 ---
 
-# 📘 ARTIKEL 1
+# 📘 ARTIKEL 9
 
 ## Seal Leakage Setelah Start-Up – Instalasi Salah atau Kondisi Operasi?
 
@@ -270,7 +270,7 @@ Target Setelah Artikel: Menuju I
 
 ---
 
-# 📘 ARTIKEL 2
+# 📘 ARTIKEL 10
 
 ## Dry Running Damage – Mengapa Seal Bisa Rusak dalam Hitungan Menit?
 
@@ -428,7 +428,7 @@ Seal failure analysis: W → I
 
 ---
 
-# 📘 ARTIKEL 3
+# 📘 ARTIKEL 11
 
 ## Flushing Plan Basic & Seal Pot Inspection
 

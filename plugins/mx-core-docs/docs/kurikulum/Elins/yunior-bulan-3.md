@@ -9,7 +9,7 @@ International Electrotechnical Commission
 
 - [TEKNISI JUNIOR E\&I](#teknisi-junior-ei)
   - [🔵 BULAN 3 – Basic Instrumentation (Pressure \& Temperature)](#-bulan-3--basic-instrumentation-pressure--temperature)
-- [📘 ARTIKEL 1](#-artikel-1)
+- [📘 ARTIKEL 9](#-artikel-9)
   - [Pressure Transmitter Reading Tidak Stabil – Investigasi dari Impulse Line hingga AI Channel](#pressure-transmitter-reading-tidak-stabil--investigasi-dari-impulse-line-hingga-ai-channel)
   - [1️⃣ Informasi Umum](#1️⃣-informasi-umum)
   - [2️⃣ Learning Objective](#2️⃣-learning-objective)
@@ -27,7 +27,7 @@ International Electrotechnical Commission
   - [1️⃣4️⃣ Competency Mapping](#1️⃣4️⃣-competency-mapping)
   - [1️⃣5️⃣ Discussion Question](#1️⃣5️⃣-discussion-question)
   - [1️⃣6️⃣ Key Takeaway](#1️⃣6️⃣-key-takeaway)
-- [📘 ARTIKEL 2](#-artikel-2)
+- [📘 ARTIKEL 10](#-artikel-10)
   - [Temperature Transmitter Error Setelah Shutdown – Investigasi Wiring \& Sensor](#temperature-transmitter-error-setelah-shutdown--investigasi-wiring--sensor)
   - [1️⃣ Informasi Umum](#1️⃣-informasi-umum-1)
   - [2️⃣ Learning Objective](#2️⃣-learning-objective-1)
@@ -39,7 +39,7 @@ International Electrotechnical Commission
   - [8️⃣ Root Cause](#8️⃣-root-cause)
   - [9️⃣ Risk](#9️⃣-risk)
   - [1️⃣3️⃣ Trend Awareness](#1️⃣3️⃣-trend-awareness)
-- [📘 ARTIKEL 3](#-artikel-3)
+- [📘 ARTIKEL 11](#-artikel-11)
   - [Praktik Kalibrasi Transmitter – Bench Test vs Loop Test](#praktik-kalibrasi-transmitter--bench-test-vs-loop-test)
   - [1️⃣ Informasi Umum](#1️⃣-informasi-umum-2)
   - [2️⃣ Learning Objective](#2️⃣-learning-objective-2)
@@ -49,7 +49,7 @@ International Electrotechnical Commission
   - [6️⃣ Risk](#6️⃣-risk)
   - [7️⃣ Data \& Documentation](#7️⃣-data--documentation)
   - [1️⃣4️⃣ Competency Mapping](#1️⃣4️⃣-competency-mapping-1)
-- [📘 ARTIKEL 4](#-artikel-4)
+- [📘 ARTIKEL 12](#-artikel-12)
   - [Konsep 4–20 mA \& Loop Wiring dalam Sistem Kontrol](#konsep-420-ma--loop-wiring-dalam-sistem-kontrol)
   - [1️⃣ Informasi Umum](#1️⃣-informasi-umum-3)
   - [2️⃣ Learning Objective](#2️⃣-learning-objective-3)
@@ -62,7 +62,7 @@ International Electrotechnical Commission
 
 ---
 
-# 📘 ARTIKEL 1
+# 📘 ARTIKEL 9
 
 ## Pressure Transmitter Reading Tidak Stabil – Investigasi dari Impulse Line hingga AI Channel
 
@@ -257,7 +257,7 @@ P&ID reading: A → W
 
 ---
 
-# 📘 ARTIKEL 2
+# 📘 ARTIKEL 10
 
 ## Temperature Transmitter Error Setelah Shutdown – Investigasi Wiring & Sensor
 
@@ -342,7 +342,7 @@ Bandingkan trend sebelum shutdown vs sesudah restart.
 
 ---
 
-# 📘 ARTIKEL 3
+# 📘 ARTIKEL 11
 
 ## Praktik Kalibrasi Transmitter – Bench Test vs Loop Test
 
@@ -416,7 +416,7 @@ Calibration skill: W → Target I
 
 ---
 
-# 📘 ARTIKEL 4
+# 📘 ARTIKEL 12
 
 ## Konsep 4–20 mA & Loop Wiring dalam Sistem Kontrol
 

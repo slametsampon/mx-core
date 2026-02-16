@@ -11,7 +11,7 @@ Fokus:
 ---
 
 - [🔵 BULAN 8 – Valve Mechanical](#-bulan-8--valve-mechanical)
-- [📘 ARTIKEL 1](#-artikel-1)
+- [📘 ARTIKEL 24](#-artikel-24)
   - [Gate Valve Tidak Bisa Full Close – Masalah Internal atau Operasi?](#gate-valve-tidak-bisa-full-close--masalah-internal-atau-operasi)
   - [1️⃣ Informasi Umum](#1️⃣-informasi-umum)
   - [2️⃣ Learning Objective (Measurable \& Skill-Based)](#2️⃣-learning-objective-measurable--skill-based)
@@ -29,7 +29,7 @@ Fokus:
   - [1️⃣4️⃣ Competency Mapping](#1️⃣4️⃣-competency-mapping)
   - [1️⃣5️⃣ Discussion Question](#1️⃣5️⃣-discussion-question)
   - [1️⃣6️⃣ Key Takeaway](#1️⃣6️⃣-key-takeaway)
-- [📘 ARTIKEL 2](#-artikel-2)
+- [📘 ARTIKEL 25](#-artikel-25)
   - [Stuck Valve Case – Korosi, Over-Torque, atau Packing Problem?](#stuck-valve-case--korosi-over-torque-atau-packing-problem)
   - [1️⃣ Informasi Umum](#1️⃣-informasi-umum-1)
   - [2️⃣ Learning Objective](#2️⃣-learning-objective)
@@ -45,13 +45,13 @@ Fokus:
   - [1️⃣2️⃣ Risk Reflection](#1️⃣2️⃣-risk-reflection)
   - [1️⃣3️⃣ Data Awareness](#1️⃣3️⃣-data-awareness)
   - [1️⃣4️⃣ Competency Mapping](#1️⃣4️⃣-competency-mapping-1)
-- [📘 ARTIKEL 3](#-artikel-3)
+- [📘 ARTIKEL 26](#-artikel-26)
   - [Manual Valve Greasing \& Inspection – Preventive untuk Reliability](#manual-valve-greasing--inspection--preventive-untuk-reliability)
 - [📊 ALIGNMENT DENGAN OUTPUT JUNIOR MECHANICAL](#-alignment-dengan-output-junior-mechanical)
 
 ---
 
-# 📘 ARTIKEL 1
+# 📘 ARTIKEL 24
 
 ## Gate Valve Tidak Bisa Full Close – Masalah Internal atau Operasi?
 
@@ -267,7 +267,7 @@ Target Setelah Artikel: Menuju I
 
 ---
 
-# 📘 ARTIKEL 2
+# 📘 ARTIKEL 25
 
 ## Stuck Valve Case – Korosi, Over-Torque, atau Packing Problem?
 
@@ -404,7 +404,7 @@ Valve mechanical awareness: W → I
 
 ---
 
-# 📘 ARTIKEL 3
+# 📘 ARTIKEL 26
 
 ## Manual Valve Greasing & Inspection – Preventive untuk Reliability
 

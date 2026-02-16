@@ -9,7 +9,7 @@ International Electrotechnical Commission – IEC 61511 (Functional Safety – P
 
 - [TEKNISI JUNIOR E\&I](#teknisi-junior-ei)
   - [🔵 BULAN 8 – Safety Instrumented System (SIS) Awareness](#-bulan-8--safety-instrumented-system-sis-awareness)
-- [📘 ARTIKEL 1](#-artikel-1)
+- [📘 ARTIKEL 29](#-artikel-29)
   - [ESD Valve Gagal Close Saat Test – Investigasi dari Logic hingga Actuator](#esd-valve-gagal-close-saat-test--investigasi-dari-logic-hingga-actuator)
   - [1️⃣ Informasi Umum](#1️⃣-informasi-umum)
   - [2️⃣ Learning Objective](#2️⃣-learning-objective)
@@ -27,7 +27,7 @@ International Electrotechnical Commission – IEC 61511 (Functional Safety – P
   - [1️⃣4️⃣ Competency Mapping](#1️⃣4️⃣-competency-mapping)
   - [1️⃣5️⃣ Discussion Question](#1️⃣5️⃣-discussion-question)
   - [1️⃣6️⃣ Key Takeaway](#1️⃣6️⃣-key-takeaway)
-- [📘 ARTIKEL 2](#-artikel-2)
+- [📘 ARTIKEL 30](#-artikel-30)
   - [False Trip pada Safety Loop – Sensor Fault atau Logic Issue?](#false-trip-pada-safety-loop--sensor-fault-atau-logic-issue)
   - [1️⃣ Informasi Umum](#1️⃣-informasi-umum-1)
   - [2️⃣ Learning Objective](#2️⃣-learning-objective-1)
@@ -40,7 +40,7 @@ International Electrotechnical Commission – IEC 61511 (Functional Safety – P
   - [9️⃣ Risk](#9️⃣-risk)
   - [1️⃣3️⃣ Trend Awareness](#1️⃣3️⃣-trend-awareness)
   - [1️⃣4️⃣ Competency Mapping](#1️⃣4️⃣-competency-mapping-1)
-- [📘 ARTIKEL 3](#-artikel-3)
+- [📘 ARTIKEL 31](#-artikel-31)
   - [Proof Test Awareness \& Dokumentasi Sesuai IEC 61511](#proof-test-awareness--dokumentasi-sesuai-iec-61511)
   - [1️⃣ Informasi Umum](#1️⃣-informasi-umum-2)
   - [2️⃣ Learning Objective](#2️⃣-learning-objective-2)
@@ -50,7 +50,7 @@ International Electrotechnical Commission – IEC 61511 (Functional Safety – P
   - [6️⃣ Documentation Requirement](#6️⃣-documentation-requirement)
   - [7️⃣ Risk](#7️⃣-risk)
   - [1️⃣4️⃣ Competency Mapping](#1️⃣4️⃣-competency-mapping-2)
-- [📘 ARTIKEL 4](#-artikel-4)
+- [📘 ARTIKEL 32](#-artikel-32)
   - [Perbedaan BPCS vs SIS \& Konsep Dasar SIL](#perbedaan-bpcs-vs-sis--konsep-dasar-sil)
   - [1️⃣ Informasi Umum](#1️⃣-informasi-umum-3)
   - [2️⃣ Learning Objective](#2️⃣-learning-objective-3)
@@ -64,7 +64,7 @@ International Electrotechnical Commission – IEC 61511 (Functional Safety – P
 
 ---
 
-# 📘 ARTIKEL 1
+# 📘 ARTIKEL 29
 
 ## ESD Valve Gagal Close Saat Test – Investigasi dari Logic hingga Actuator
 
@@ -258,7 +258,7 @@ Cause & Effect reading: A → W
 
 ---
 
-# 📘 ARTIKEL 2
+# 📘 ARTIKEL 30
 
 ## False Trip pada Safety Loop – Sensor Fault atau Logic Issue?
 
@@ -357,7 +357,7 @@ Safety loop analysis: W → I
 
 ---
 
-# 📘 ARTIKEL 3
+# 📘 ARTIKEL 31
 
 ## Proof Test Awareness & Dokumentasi Sesuai IEC 61511
 
@@ -425,7 +425,7 @@ Proof test execution: W → I
 
 ---
 
-# 📘 ARTIKEL 4
+# 📘 ARTIKEL 32
 
 ## Perbedaan BPCS vs SIS & Konsep Dasar SIL
 

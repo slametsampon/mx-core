@@ -9,7 +9,7 @@ IEEE – IEEE C57 (Transformer Guide)
 
 - [TEKNISI JUNIOR E\&I](#teknisi-junior-ei)
   - [🔵 BULAN 6 – Transformer \& Power Distribution](#-bulan-6--transformer--power-distribution)
-- [📘 ARTIKEL 1](#-artikel-1)
+- [📘 ARTIKEL 21](#-artikel-21)
   - [Transformer Overheating Alarm – Investigasi Beban, Pendinginan, atau Fault Internal?](#transformer-overheating-alarm--investigasi-beban-pendinginan-atau-fault-internal)
   - [1️⃣ Informasi Umum](#1️⃣-informasi-umum)
   - [2️⃣ Learning Objective](#2️⃣-learning-objective)
@@ -27,7 +27,7 @@ IEEE – IEEE C57 (Transformer Guide)
   - [1️⃣4️⃣ Competency Mapping](#1️⃣4️⃣-competency-mapping)
   - [1️⃣5️⃣ Discussion Question](#1️⃣5️⃣-discussion-question)
   - [1️⃣6️⃣ Key Takeaway](#1️⃣6️⃣-key-takeaway)
-- [📘 ARTIKEL 2](#-artikel-2)
+- [📘 ARTIKEL 22](#-artikel-22)
   - [Unbalance Voltage pada Panel Distribusi – Dampaknya ke Motor \& Equipment](#unbalance-voltage-pada-panel-distribusi--dampaknya-ke-motor--equipment)
   - [1️⃣ Informasi Umum](#1️⃣-informasi-umum-1)
   - [2️⃣ Learning Objective](#2️⃣-learning-objective-1)
@@ -40,7 +40,7 @@ IEEE – IEEE C57 (Transformer Guide)
   - [9️⃣ Risk](#9️⃣-risk)
   - [1️⃣3️⃣ Trend Awareness](#1️⃣3️⃣-trend-awareness)
   - [1️⃣4️⃣ Competency Mapping](#1️⃣4️⃣-competency-mapping-1)
-- [📘 ARTIKEL 3](#-artikel-3)
+- [📘 ARTIKEL 23](#-artikel-23)
   - [Visual Inspection \& Thermography Awareness pada Transformer \& Panel](#visual-inspection--thermography-awareness-pada-transformer--panel)
   - [1️⃣ Informasi Umum](#1️⃣-informasi-umum-2)
   - [2️⃣ Learning Objective](#2️⃣-learning-objective-2)
@@ -50,7 +50,7 @@ IEEE – IEEE C57 (Transformer Guide)
   - [6️⃣ Risk](#6️⃣-risk)
   - [7️⃣ Data \& Documentation](#7️⃣-data--documentation)
   - [1️⃣4️⃣ Competency Mapping](#1️⃣4️⃣-competency-mapping-2)
-- [📘 ARTIKEL 4](#-artikel-4)
+- [📘 ARTIKEL 24](#-artikel-24)
   - [Basic Transformer Operation \& Protection Concept](#basic-transformer-operation--protection-concept)
   - [1️⃣ Informasi Umum](#1️⃣-informasi-umum-3)
   - [2️⃣ Learning Objective](#2️⃣-learning-objective-3)
@@ -63,7 +63,7 @@ IEEE – IEEE C57 (Transformer Guide)
 
 ---
 
-# 📘 ARTIKEL 1
+# 📘 ARTIKEL 21
 
 ## Transformer Overheating Alarm – Investigasi Beban, Pendinginan, atau Fault Internal?
 
@@ -260,7 +260,7 @@ SLD reading: A → W
 
 ---
 
-# 📘 ARTIKEL 2
+# 📘 ARTIKEL 22
 
 ## Unbalance Voltage pada Panel Distribusi – Dampaknya ke Motor & Equipment
 
@@ -359,7 +359,7 @@ Power distribution awareness: W → I
 
 ---
 
-# 📘 ARTIKEL 3
+# 📘 ARTIKEL 23
 
 ## Visual Inspection & Thermography Awareness pada Transformer & Panel
 
@@ -423,7 +423,7 @@ Inspection skill: W → I
 
 ---
 
-# 📘 ARTIKEL 4
+# 📘 ARTIKEL 24
 
 ## Basic Transformer Operation & Protection Concept
 

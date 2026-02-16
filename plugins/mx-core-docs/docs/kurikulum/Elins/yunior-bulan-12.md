@@ -13,7 +13,7 @@ Fokus bulan ini:
 
 - [TEKNISI JUNIOR E\&I](#teknisi-junior-ei)
   - [🔵 BULAN 12 – Integrated Case Study \& Review](#-bulan-12--integrated-case-study--review)
-- [📘 ARTIKEL 1](#-artikel-1)
+- [📘 ARTIKEL 44](#-artikel-44)
   - [Major Integrated Case: Motor Trip → Valve Malfunction → Plant Upset](#major-integrated-case-motor-trip--valve-malfunction--plant-upset)
   - [1️⃣ Informasi Umum](#1️⃣-informasi-umum)
   - [2️⃣ Learning Objective](#2️⃣-learning-objective)
@@ -31,7 +31,7 @@ Fokus bulan ini:
   - [1️⃣4️⃣ Competency Mapping](#1️⃣4️⃣-competency-mapping)
   - [1️⃣5️⃣ Discussion Question](#1️⃣5️⃣-discussion-question)
   - [1️⃣6️⃣ Key Takeaway](#1️⃣6️⃣-key-takeaway)
-- [📘 ARTIKEL 2](#-artikel-2)
+- [📘 ARTIKEL 45](#-artikel-45)
   - [Review Efektivitas PM Program – Time Based atau Condition Based?](#review-efektivitas-pm-program--time-based-atau-condition-based)
   - [1️⃣ Informasi Umum](#1️⃣-informasi-umum-1)
   - [2️⃣ Learning Objective](#2️⃣-learning-objective-1)
@@ -41,7 +41,7 @@ Fokus bulan ini:
   - [6️⃣ Gap Analysis](#6️⃣-gap-analysis)
   - [7️⃣ Improvement Proposal](#7️⃣-improvement-proposal)
   - [1️⃣4️⃣ Competency Mapping](#1️⃣4️⃣-competency-mapping-1)
-- [📘 ARTIKEL 3](#-artikel-3)
+- [📘 ARTIKEL 46](#-artikel-46)
   - [Root Cause Analysis (5 Why \& Fishbone) – Dasar untuk Teknisi Junior](#root-cause-analysis-5-why--fishbone--dasar-untuk-teknisi-junior)
   - [1️⃣ Informasi Umum](#1️⃣-informasi-umum-2)
   - [2️⃣ Learning Objective](#2️⃣-learning-objective-2)
@@ -56,7 +56,7 @@ Fokus bulan ini:
 
 ---
 
-# 📘 ARTIKEL 1
+# 📘 ARTIKEL 44
 
 ## Major Integrated Case: Motor Trip → Valve Malfunction → Plant Upset
 
@@ -264,7 +264,7 @@ System thinking: A → W
 
 ---
 
-# 📘 ARTIKEL 2
+# 📘 ARTIKEL 45
 
 ## Review Efektivitas PM Program – Time Based atau Condition Based?
 
@@ -326,7 +326,7 @@ PM evaluation awareness: A → W
 
 ---
 
-# 📘 ARTIKEL 3
+# 📘 ARTIKEL 46
 
 ## Root Cause Analysis (5 Why & Fishbone) – Dasar untuk Teknisi Junior
 

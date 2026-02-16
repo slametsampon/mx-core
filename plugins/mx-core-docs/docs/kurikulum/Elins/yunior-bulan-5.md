@@ -5,7 +5,7 @@
 ---
 
 - [🔵 BULAN 5 – PLC \& DCS Basic Awareness](#-bulan-5--plc--dcs-basic-awareness)
-- [📘 ARTIKEL 1](#-artikel-1)
+- [📘 ARTIKEL 17](#-artikel-17)
   - [PLC Kehilangan Komunikasi dengan Field Device – Investigasi Berbasis Loop \& Network Path](#plc-kehilangan-komunikasi-dengan-field-device--investigasi-berbasis-loop--network-path)
   - [1️⃣ Informasi Umum](#1️⃣-informasi-umum)
   - [2️⃣ Learning Objective](#2️⃣-learning-objective)
@@ -23,16 +23,16 @@
   - [1️⃣4️⃣ Competency Mapping](#1️⃣4️⃣-competency-mapping)
   - [1️⃣5️⃣ Discussion Question](#1️⃣5️⃣-discussion-question)
   - [1️⃣6️⃣ Key Takeaway](#1️⃣6️⃣-key-takeaway)
-- [📘 ARTIKEL 2](#-artikel-2)
+- [📘 ARTIKEL 18](#-artikel-18)
   - [Analog Input Reading Tidak Sesuai di DCS – Validasi Field hingga Logic](#analog-input-reading-tidak-sesuai-di-dcs--validasi-field-hingga-logic)
-- [📘 ARTIKEL 3](#-artikel-3)
+- [📘 ARTIKEL 19](#-artikel-19)
   - [Backup \& Restore PLC Program – Awareness untuk Junior](#backup--restore-plc-program--awareness-untuk-junior)
   - [1️⃣ Informasi Umum](#1️⃣-informasi-umum-1)
   - [Learning Objective](#learning-objective)
   - [System Context](#system-context)
   - [Diagram Literacy](#diagram-literacy)
   - [Risk Section](#risk-section)
-- [📘 ARTIKEL 4](#-artikel-4)
+- [📘 ARTIKEL 20](#-artikel-20)
   - [Perbedaan PLC vs DCS \& Konsep Redundancy Dasar](#perbedaan-plc-vs-dcs--konsep-redundancy-dasar)
   - [System Context](#system-context-1)
   - [Diagram Literacy](#diagram-literacy-1)
@@ -54,7 +54,7 @@ Semua sudah mengandung:
 
 ---
 
-# 📘 ARTIKEL 1
+# 📘 ARTIKEL 17
 
 ## PLC Kehilangan Komunikasi dengan Field Device – Investigasi Berbasis Loop & Network Path
 
@@ -260,7 +260,7 @@ A → W
 
 ---
 
-# 📘 ARTIKEL 2
+# 📘 ARTIKEL 18
 
 ## Analog Input Reading Tidak Sesuai di DCS – Validasi Field hingga Logic
 
@@ -288,7 +288,7 @@ Troubleshooting berbasis data & sistem.
 
 ---
 
-# 📘 ARTIKEL 3
+# 📘 ARTIKEL 19
 
 ## Backup & Restore PLC Program – Awareness untuk Junior
 
@@ -346,7 +346,7 @@ Safety + system awareness.
 
 ---
 
-# 📘 ARTIKEL 4
+# 📘 ARTIKEL 20
 
 ## Perbedaan PLC vs DCS & Konsep Redundancy Dasar
 

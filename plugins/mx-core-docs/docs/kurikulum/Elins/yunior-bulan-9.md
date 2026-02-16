@@ -12,7 +12,7 @@ Fokus bulan ini:
 
 - [TEKNISI JUNIOR E\&I](#teknisi-junior-ei)
   - [🔵 BULAN 9 – Shutdown Preparation](#-bulan-9--shutdown-preparation)
-- [📘 ARTIKEL 1](#-artikel-1)
+- [📘 ARTIKEL 33](#-artikel-33)
   - [Temuan Umum Saat Pre-Shutdown Inspection – Identifikasi Awal Sebelum Unit Dimatikan](#temuan-umum-saat-pre-shutdown-inspection--identifikasi-awal-sebelum-unit-dimatikan)
   - [1️⃣ Informasi Umum](#1️⃣-informasi-umum)
   - [2️⃣ Learning Objective](#2️⃣-learning-objective)
@@ -30,7 +30,7 @@ Fokus bulan ini:
   - [1️⃣4️⃣ Competency Mapping](#1️⃣4️⃣-competency-mapping)
   - [1️⃣5️⃣ Discussion Question](#1️⃣5️⃣-discussion-question)
   - [1️⃣6️⃣ Key Takeaway](#1️⃣6️⃣-key-takeaway)
-- [📘 ARTIKEL 2](#-artikel-2)
+- [📘 ARTIKEL 34](#-artikel-34)
   - [Penyusunan Checklist Shutdown E\&I – Struktur \& Prioritas](#penyusunan-checklist-shutdown-ei--struktur--prioritas)
   - [1️⃣ Informasi Umum](#1️⃣-informasi-umum-1)
   - [2️⃣ Learning Objective](#2️⃣-learning-objective-1)
@@ -40,7 +40,7 @@ Fokus bulan ini:
   - [6️⃣ Risk Classification](#6️⃣-risk-classification)
   - [7️⃣ Documentation Requirement](#7️⃣-documentation-requirement)
   - [1️⃣4️⃣ Competency Mapping](#1️⃣4️⃣-competency-mapping-1)
-- [📘 ARTIKEL 3](#-artikel-3)
+- [📘 ARTIKEL 35](#-artikel-35)
   - [Risk Assessment Dasar (JSA) untuk Pekerjaan Shutdown](#risk-assessment-dasar-jsa-untuk-pekerjaan-shutdown)
   - [1️⃣ Informasi Umum](#1️⃣-informasi-umum-2)
   - [2️⃣ Learning Objective](#2️⃣-learning-objective-2)
@@ -54,7 +54,7 @@ Fokus bulan ini:
 
 ---
 
-# 📘 ARTIKEL 1
+# 📘 ARTIKEL 33
 
 ## Temuan Umum Saat Pre-Shutdown Inspection – Identifikasi Awal Sebelum Unit Dimatikan
 
@@ -253,7 +253,7 @@ Scope identification: A → W
 
 ---
 
-# 📘 ARTIKEL 2
+# 📘 ARTIKEL 34
 
 ## Penyusunan Checklist Shutdown E&I – Struktur & Prioritas
 
@@ -345,7 +345,7 @@ Shutdown checklist preparation: A → W
 
 ---
 
-# 📘 ARTIKEL 3
+# 📘 ARTIKEL 35
 
 ## Risk Assessment Dasar (JSA) untuk Pekerjaan Shutdown
 

@@ -8,7 +8,7 @@ Referensi praktik air instrument mengacu pada ISO 8573 (air quality awareness).
 
 - [TEKNISI JUNIOR E\&I](#teknisi-junior-ei)
   - [🔵 BULAN 4 – Control Valve \& Pneumatic System](#-bulan-4--control-valve--pneumatic-system)
-- [📘 ARTIKEL 1](#-artikel-1)
+- [📘 ARTIKEL 13](#-artikel-13)
   - [Control Valve Hunting Saat Beban Naik – Analisa Loop vs Valve Problem](#control-valve-hunting-saat-beban-naik--analisa-loop-vs-valve-problem)
   - [1️⃣ Informasi Umum](#1️⃣-informasi-umum)
   - [2️⃣ Learning Objective](#2️⃣-learning-objective)
@@ -26,7 +26,7 @@ Referensi praktik air instrument mengacu pada ISO 8573 (air quality awareness).
   - [1️⃣4️⃣ Competency Mapping](#1️⃣4️⃣-competency-mapping)
   - [1️⃣5️⃣ Discussion Question](#1️⃣5️⃣-discussion-question)
   - [1️⃣6️⃣ Key Takeaway](#1️⃣6️⃣-key-takeaway)
-- [📘 ARTIKEL 2](#-artikel-2)
+- [📘 ARTIKEL 14](#-artikel-14)
   - [Control Valve Tidak Mencapai Posisi 100% – Analisa Signal, Air Supply, dan Travel Limit](#control-valve-tidak-mencapai-posisi-100--analisa-signal-air-supply-dan-travel-limit)
   - [1️⃣ Informasi Umum](#1️⃣-informasi-umum-1)
   - [2️⃣ Learning Objective](#2️⃣-learning-objective-1)
@@ -38,7 +38,7 @@ Referensi praktik air instrument mengacu pada ISO 8573 (air quality awareness).
   - [8️⃣ Root Cause](#8️⃣-root-cause)
   - [9️⃣ Risk](#9️⃣-risk)
   - [1️⃣3️⃣ Trend Awareness](#1️⃣3️⃣-trend-awareness)
-- [📘 ARTIKEL 3](#-artikel-3)
+- [📘 ARTIKEL 15](#-artikel-15)
   - [Air Quality Requirement (ISO 8573 Awareness) \& Dampaknya pada Control Valve](#air-quality-requirement-iso-8573-awareness--dampaknya-pada-control-valve)
   - [1️⃣ Informasi Umum](#1️⃣-informasi-umum-2)
   - [2️⃣ Learning Objective](#2️⃣-learning-objective-2)
@@ -48,7 +48,7 @@ Referensi praktik air instrument mengacu pada ISO 8573 (air quality awareness).
   - [6️⃣ Risk](#6️⃣-risk)
   - [7️⃣ Monitoring](#7️⃣-monitoring)
   - [1️⃣4️⃣ Competency Mapping](#1️⃣4️⃣-competency-mapping-1)
-- [📘 ARTIKEL 4](#-artikel-4)
+- [📘 ARTIKEL 16](#-artikel-16)
   - [Positioner Calibration Basic \& Prinsip Kerja Control Valve](#positioner-calibration-basic--prinsip-kerja-control-valve)
   - [1️⃣ Informasi Umum](#1️⃣-informasi-umum-3)
   - [2️⃣ Learning Objective](#2️⃣-learning-objective-3)
@@ -62,7 +62,7 @@ Referensi praktik air instrument mengacu pada ISO 8573 (air quality awareness).
 
 ---
 
-# 📘 ARTIKEL 1
+# 📘 ARTIKEL 13
 
 ## Control Valve Hunting Saat Beban Naik – Analisa Loop vs Valve Problem
 
@@ -260,7 +260,7 @@ Valve mechanical awareness: A → W
 
 ---
 
-# 📘 ARTIKEL 2
+# 📘 ARTIKEL 14
 
 ## Control Valve Tidak Mencapai Posisi 100% – Analisa Signal, Air Supply, dan Travel Limit
 
@@ -353,7 +353,7 @@ Bandingkan:
 
 ---
 
-# 📘 ARTIKEL 3
+# 📘 ARTIKEL 15
 
 ## Air Quality Requirement (ISO 8573 Awareness) & Dampaknya pada Control Valve
 
@@ -413,7 +413,7 @@ Air system awareness: A → W
 
 ---
 
-# 📘 ARTIKEL 4
+# 📘 ARTIKEL 16
 
 ## Positioner Calibration Basic & Prinsip Kerja Control Valve
 
