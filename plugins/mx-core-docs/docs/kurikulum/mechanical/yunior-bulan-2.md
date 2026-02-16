@@ -5,7 +5,7 @@
 ---
 
 - [🔵 BULAN 2 – Alignment \& Coupling](#-bulan-2--alignment--coupling)
-- [📘 ARTIKEL 1](#-artikel-1)
+- [📘 ARTIKEL 5](#-artikel-5)
   - [Vibrasi Tinggi Setelah Maintenance – Misalignment atau Unbalance?](#vibrasi-tinggi-setelah-maintenance--misalignment-atau-unbalance)
   - [1️⃣ Informasi Umum](#1️⃣-informasi-umum)
   - [2️⃣ Learning Objective (Measurable \& Skill-Based)](#2️⃣-learning-objective-measurable--skill-based)
@@ -23,7 +23,7 @@
   - [1️⃣4️⃣ Competency Mapping](#1️⃣4️⃣-competency-mapping)
   - [1️⃣5️⃣ Discussion Question (Toolbox Use)](#1️⃣5️⃣-discussion-question-toolbox-use)
   - [1️⃣6️⃣ Key Takeaway (Max 7 Bullet)](#1️⃣6️⃣-key-takeaway-max-7-bullet)
-- [📘 ARTIKEL 2](#-artikel-2)
+- [📘 ARTIKEL 6](#-artikel-6)
   - [Bearing Cepat Rusak – Apakah Alignment yang Salah?](#bearing-cepat-rusak--apakah-alignment-yang-salah)
   - [1️⃣ Informasi Umum](#1️⃣-informasi-umum-1)
   - [2️⃣ Learning Objective](#2️⃣-learning-objective)
@@ -41,15 +41,15 @@
   - [1️⃣4️⃣ Competency Mapping](#1️⃣4️⃣-competency-mapping-1)
   - [1️⃣5️⃣ Discussion Question](#1️⃣5️⃣-discussion-question)
   - [1️⃣6️⃣ Key Takeaway](#1️⃣6️⃣-key-takeaway)
-- [📘 ARTIKEL 3](#-artikel-3)
+- [📘 ARTIKEL 7](#-artikel-7)
   - [Soft Foot Checking \& Dial vs Laser Alignment Basic](#soft-foot-checking--dial-vs-laser-alignment-basic)
-- [📘 ARTIKEL 4](#-artikel-4)
+- [📘 ARTIKEL 8](#-artikel-8)
   - [Thermal Growth Awareness – Mengapa Alignment Cold ≠ Alignment Hot](#thermal-growth-awareness--mengapa-alignment-cold--alignment-hot)
 - [📊 ALIGNMENT DENGAN OUTPUT JUNIOR MECHANICAL](#-alignment-dengan-output-junior-mechanical)
 
 ---
 
-# 📘 ARTIKEL 1
+# 📘 ARTIKEL 5
 
 ## Vibrasi Tinggi Setelah Maintenance – Misalignment atau Unbalance?
 
@@ -272,7 +272,7 @@ Target Setelah Artikel: Menuju I
 
 ---
 
-# 📘 ARTIKEL 2
+# 📘 ARTIKEL 6
 
 ## Bearing Cepat Rusak – Apakah Alignment yang Salah?
 
@@ -437,7 +437,7 @@ Bearing analysis: W → I
 
 ---
 
-# 📘 ARTIKEL 3
+# 📘 ARTIKEL 7
 
 ## Soft Foot Checking & Dial vs Laser Alignment Basic
 
@@ -452,7 +452,7 @@ Struktur mengikuti 16 section yang sama, fokus pada:
 
 ---
 
-# 📘 ARTIKEL 4
+# 📘 ARTIKEL 8
 
 ## Thermal Growth Awareness – Mengapa Alignment Cold ≠ Alignment Hot
 

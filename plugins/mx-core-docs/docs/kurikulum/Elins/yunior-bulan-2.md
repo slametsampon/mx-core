@@ -9,7 +9,7 @@ IEEE – IEEE 43 (Insulation Resistance & PI)
 
 - [TEKNISI JUNIOR E\&I](#teknisi-junior-ei)
   - [🔵 BULAN 2 – Induction Motor \& Alignment Awareness](#-bulan-2--induction-motor--alignment-awareness)
-- [📘 ARTIKEL 1](#-artikel-1)
+- [📘 ARTIKEL 5](#-artikel-5)
   - [Motor Overheating – Electrical atau Mechanical? Investigasi Berbasis Data \& Diagram](#motor-overheating--electrical-atau-mechanical-investigasi-berbasis-data--diagram)
   - [1️⃣ Informasi Umum](#1️⃣-informasi-umum)
   - [2️⃣ Learning Objective](#2️⃣-learning-objective)
@@ -27,7 +27,7 @@ IEEE – IEEE 43 (Insulation Resistance & PI)
   - [1️⃣4️⃣ Competency Mapping](#1️⃣4️⃣-competency-mapping)
   - [1️⃣5️⃣ Discussion Question](#1️⃣5️⃣-discussion-question)
   - [1️⃣6️⃣ Key Takeaway](#1️⃣6️⃣-key-takeaway)
-- [📘 ARTIKEL 2](#-artikel-2)
+- [📘 ARTIKEL 6](#-artikel-6)
   - [Vibrasi Tinggi Setelah Coupling Replacement – Electrical atau Alignment Issue?](#vibrasi-tinggi-setelah-coupling-replacement--electrical-atau-alignment-issue)
   - [1️⃣ Informasi Umum](#1️⃣-informasi-umum-1)
   - [2️⃣ Learning Objective](#2️⃣-learning-objective-1)
@@ -40,7 +40,7 @@ IEEE – IEEE 43 (Insulation Resistance & PI)
   - [9️⃣ Risk](#9️⃣-risk)
   - [1️⃣3️⃣ Data Awareness](#1️⃣3️⃣-data-awareness)
   - [1️⃣4️⃣ Competency Mapping](#1️⃣4️⃣-competency-mapping-1)
-- [📘 ARTIKEL 3](#-artikel-3)
+- [📘 ARTIKEL 7](#-artikel-7)
   - [Insulation Resistance Test \& Polarization Index (PI) – Praktik Sesuai IEEE 43](#insulation-resistance-test--polarization-index-pi--praktik-sesuai-ieee-43)
   - [1️⃣ Informasi Umum](#1️⃣-informasi-umum-2)
   - [2️⃣ Learning Objective](#2️⃣-learning-objective-2)
@@ -51,7 +51,7 @@ IEEE – IEEE 43 (Insulation Resistance & PI)
   - [7️⃣ Risk](#7️⃣-risk)
   - [8️⃣ Data \& Trend](#8️⃣-data--trend)
   - [9️⃣ Competency Mapping](#9️⃣-competency-mapping)
-- [📘 ARTIKEL 4](#-artikel-4)
+- [📘 ARTIKEL 8](#-artikel-8)
   - [Prinsip Kerja Motor Induksi 3 Fasa \& Hubungannya dengan Beban Mekanis](#prinsip-kerja-motor-induksi-3-fasa--hubungannya-dengan-beban-mekanis)
   - [1️⃣ Informasi Umum](#1️⃣-informasi-umum-3)
   - [2️⃣ Learning Objective](#2️⃣-learning-objective-3)
@@ -64,7 +64,7 @@ IEEE – IEEE 43 (Insulation Resistance & PI)
 
 ---
 
-# 📘 ARTIKEL 1
+# 📘 ARTIKEL 5
 
 ## Motor Overheating – Electrical atau Mechanical? Investigasi Berbasis Data & Diagram
 
@@ -264,7 +264,7 @@ Mechanical interaction awareness: A → W
 
 ---
 
-# 📘 ARTIKEL 2
+# 📘 ARTIKEL 6
 
 ## Vibrasi Tinggi Setelah Coupling Replacement – Electrical atau Alignment Issue?
 
@@ -358,7 +358,7 @@ Alignment skill: W → Target I
 
 ---
 
-# 📘 ARTIKEL 3
+# 📘 ARTIKEL 7
 
 ## Insulation Resistance Test & Polarization Index (PI) – Praktik Sesuai IEEE 43
 
@@ -432,7 +432,7 @@ IR test: W → Target I
 
 ---
 
-# 📘 ARTIKEL 4
+# 📘 ARTIKEL 8
 
 ## Prinsip Kerja Motor Induksi 3 Fasa & Hubungannya dengan Beban Mekanis
 

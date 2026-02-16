@@ -1,0 +1,814 @@
+---
+title: Vibrasi Tinggi Setelah Maintenance – Misalignment atau Unbalance?
+authors: ['sam']
+date: '2026-02-16'
+tags:
+  [
+    'shaft-alignment',
+    'centrifugal-pump-reliability',
+    'vibration-analysis-basic',
+    'api-610-awareness',
+    'preventive-maintenance-mechanical',
+    'junior-mechanical-upgrade',
+  ]
+draft: false
+summary: Artikel ini membahas investigasi sistematis terhadap kenaikan vibrasi pasca maintenance pada pompa sentrifugal yang terkopel motor, dengan fokus pada pembedaan antara misalignment dan unbalance. Pendekatan dilakukan melalui analisis data aktual, verifikasi instrumentasi, pengujian soft foot, serta pemeriksaan alignment menggunakan dial indicator sesuai toleransi API 610. Artikel menekankan pentingnya membaca diagram, memahami interaksi sistem mekanikal–elektrikal–instrumentasi, serta melakukan gap analysis terhadap praktik lapangan. Aspek keselamatan seperti rotating hazard dan prosedur LOTO turut dibahas. Hasil akhir menunjukkan bahwa angular misalignment akibat tidak dilakukan re-alignment pasca penggantian coupling menjadi akar masalah utama.
+---
+
+# 📘 ARTIKEL 5: Vibrasi Tinggi Setelah Maintenance – Misalignment atau Unbalance?
+
+---
+
+- [📘 ARTIKEL 5: Vibrasi Tinggi Setelah Maintenance – Misalignment atau Unbalance?](#-artikel-5-vibrasi-tinggi-setelah-maintenance--misalignment-atau-unbalance)
+  - [1️⃣ Informasi Umum](#1️⃣-informasi-umum)
+    - [🔎 Konteks Teknis Singkat](#-konteks-teknis-singkat)
+  - [2️⃣ Learning Objective (Measurable \& Skill-Based)](#2️⃣-learning-objective-measurable--skill-based)
+    - [**LO1 – Mengidentifikasi penyebab vibrasi pasca maintenance secara berbasis data**](#lo1--mengidentifikasi-penyebab-vibrasi-pasca-maintenance-secara-berbasis-data)
+    - [**LO2 – Melakukan pengecekan alignment dasar menggunakan dial indicator**](#lo2--melakukan-pengecekan-alignment-dasar-menggunakan-dial-indicator)
+    - [**LO3 – Menjelaskan risiko keselamatan akibat misalignment**](#lo3--menjelaskan-risiko-keselamatan-akibat-misalignment)
+  - [3️⃣ System Context \& Criticality](#3️⃣-system-context--criticality)
+    - [🔹 Posisi Equipment dalam Sistem](#-posisi-equipment-dalam-sistem)
+    - [🔹 Dampak Jika Terjadi Misalignment](#-dampak-jika-terjadi-misalignment)
+    - [🔹 Interaksi Lintas Disiplin (E–I–C)](#-interaksi-lintas-disiplin-eic)
+    - [🔹 Tingkat Criticality dalam Operasi](#-tingkat-criticality-dalam-operasi)
+  - [4️⃣ Diagram Literacy Section (WAJIB)](#4️⃣-diagram-literacy-section-wajib)
+    - [A. Posisi Motor dan Pump](#a-posisi-motor-dan-pump)
+    - [B. Jalur Power dari Motor (SLD Awareness)](#b-jalur-power-dari-motor-sld-awareness)
+    - [C. Posisi Coupling \& Shaft Alignment Reference](#c-posisi-coupling--shaft-alignment-reference)
+    - [D. Konsep Geometri Misalignment](#d-konsep-geometri-misalignment)
+  - [5️⃣ Background \& Failure Scenario](#5️⃣-background--failure-scenario)
+    - [Kronologi Kejadian](#kronologi-kejadian)
+    - [Analisis Awal Berdasarkan Data](#analisis-awal-berdasarkan-data)
+  - [6️⃣ Symptom \& Initial Finding](#6️⃣-symptom--initial-finding)
+    - [A. Yang Terlihat (Visual \& Fisik)](#a-yang-terlihat-visual--fisik)
+    - [B. Yang Terukur (Instrument Data)](#b-yang-terukur-instrument-data)
+    - [C. Asumsi Awal Operator](#c-asumsi-awal-operator)
+    - [Insight Teknis Awal](#insight-teknis-awal)
+  - [7️⃣ Possible Causes (Structured Hypothesis)](#7️⃣-possible-causes-structured-hypothesis)
+    - [A. Mechanical](#a-mechanical)
+    - [B. Electrical](#b-electrical)
+    - [C. Instrument](#c-instrument)
+    - [D. Human Error](#d-human-error)
+  - [8️⃣ Step-by-Step Investigation Flow](#8️⃣-step-by-step-investigation-flow)
+    - [1) Verifikasi Kondisi Vibration Instrument (Eliminasi C – Instrument)](#1-verifikasi-kondisi-vibration-instrument-eliminasi-c--instrument)
+    - [2) Periksa Torque Bolt Motor Foot (Indikasi Soft Foot \& Distortion)](#2-periksa-torque-bolt-motor-foot-indikasi-soft-foot--distortion)
+    - [3) Lakukan Soft Foot Test (Konfirmasi/Eliminasi Soft Foot)](#3-lakukan-soft-foot-test-konfirmasieliminasi-soft-foot)
+    - [4) Lakukan Dial Alignment Check (Konfirmasi A – Mechanical Misalignment)](#4-lakukan-dial-alignment-check-konfirmasi-a--mechanical-misalignment)
+    - [5) Bandingkan dengan Tolerance API (Validasi terhadap standar)](#5-bandingkan-dengan-tolerance-api-validasi-terhadap-standar)
+    - [Decision Point (WAJIB)](#decision-point-wajib)
+  - [9️⃣ Root Cause \& Contributing Factor](#9️⃣-root-cause--contributing-factor)
+    - [Root Cause (Teknis)](#root-cause-teknis)
+    - [Contributing Factor (Sistem / Human)](#contributing-factor-sistem--human)
+  - [🔟 Reference to Standard \& Gap Analysis](#-reference-to-standard--gap-analysis)
+    - [🔹 Rujukan Standar](#-rujukan-standar)
+    - [🔹 Apa yang Seharusnya (According to Standard Practice)](#-apa-yang-seharusnya-according-to-standard-practice)
+    - [🔹 Kondisi Aktual di Lapangan](#-kondisi-aktual-di-lapangan)
+    - [🔹 Gap Analysis](#-gap-analysis)
+  - [1️⃣1️⃣ Corrective \& Preventive Action](#1️⃣1️⃣-corrective--preventive-action)
+    - [🔹 Immediate Action](#-immediate-action)
+    - [🔹 Permanent Fix](#-permanent-fix)
+    - [🔹 System Improvement](#-system-improvement)
+    - [🔹 Monitoring Plan](#-monitoring-plan)
+  - [1️⃣2️⃣ Risk \& Safety Reflection](#1️⃣2️⃣-risk--safety-reflection)
+    - [🔹 Potensi Bahaya](#-potensi-bahaya)
+    - [🔹 Permit dan Pengendalian Risiko](#-permit-dan-pengendalian-risiko)
+    - [🔹 Refleksi Keselamatan](#-refleksi-keselamatan)
+  - [1️⃣3️⃣ Data Interpretation \& Trend Awareness](#1️⃣3️⃣-data-interpretation--trend-awareness)
+    - [🔹 Parameter yang Dipantau](#-parameter-yang-dipantau)
+    - [🔹 Analisis Korelasi Data](#-analisis-korelasi-data)
+    - [🔹 Early Warning Indicator](#-early-warning-indicator)
+  - [1️⃣4️⃣ Competency Mapping](#1️⃣4️⃣-competency-mapping)
+  - [1️⃣5️⃣ Discussion Question (Toolbox Use)](#1️⃣5️⃣-discussion-question-toolbox-use)
+  - [1️⃣6️⃣ Key Takeaway](#1️⃣6️⃣-key-takeaway)
+
+---
+
+## 1️⃣ Informasi Umum
+
+1. **Judul:** Vibrasi Tinggi Setelah Maintenance – Investigasi Alignment
+
+2. **Disiplin:** Mechanical
+
+3. **Level:** Junior
+
+4. **Kategori:** Troubleshooting
+
+5. **Equipment / System Terkait:**
+
+   - Centrifugal Pump
+   - Electric Motor
+   - Flexible Coupling
+   - Baseplate & Foundation System
+
+6. **Referensi Standar:**
+
+   - API 610 – Alignment Tolerance & Reliability Requirement
+   - API 686 – Machinery Installation & Alignment Practice (awareness)
+
+<ResourceBox
+  title="Artikel terkait :"
+  items={[
+    {
+      name: 'Panduan Lengkap Kurikulum & Matriks Kompetensi',
+      href: '/blog/maintenance/mechanical/panduan-kurikulum-mechanical',
+      description:
+        'Panduan Lengkap Kurikulum & Matriks Kompetensi – Teknisi Mechanical – Industri Petrokimia',
+    },
+    {
+      name: 'Bearing Cepat Rusak',
+      href: '/blog/maintenance/mechanical/kurikulum/artikel-06-bearing-cepat-rusak',
+      description: 'Bearing Cepat Rusak – Apakah Alignment yang Salah?',
+    },
+    {
+      name: 'Soft Foot Checking',
+      href: '/blog/maintenance/mechanical/kurikulum/artikel-07-soft-foot',
+      description: 'Soft Foot Checking & Dial vs Laser Alignment Basic',
+    },
+    {
+      name: 'Thermal Growth Awareness',
+      href: '/blog/maintenance/mechanical/kurikulum/artikel-08-thermal-growth',
+      description:
+        'Thermal Growth Awareness – Mengapa Alignment Cold ≠ Alignment Hot',
+    },
+  ]}
+  note="Artikel-artikel di atas merupakan bagian dari serial peningkatan kompetensi Electrical & Instrumentation yang dirancang untuk diikuti secara berurutan guna membangun pemahaman sistematis dan bertahap. Meskipun demikian, setiap artikel tetap dapat digunakan sebagai referensi mandiri sesuai kebutuhan teknis di lapangan. Pembaca tetap disarankan melakukan verifikasi lanjutan dan penyesuaian sesuai standar perusahaan serta regulasi keselamatan yang berlaku."
+/>
+
+---
+
+### 🔎 Konteks Teknis Singkat
+
+Artikel ini membahas fenomena kenaikan vibrasi setelah pekerjaan maintenance pada unit pompa sentrifugal yang dikopel langsung dengan motor listrik. Fokus utama adalah membedakan apakah penyebab utama berasal dari **misalignment** atau **rotor unbalance**, serta bagaimana pendekatan investigasi dilakukan secara sistematis dan berbasis standar industri.
+
+Unit pompa dalam konteks industri petrokimia sering berada pada layanan fluida proses yang bersifat kritikal. Oleh karena itu, deviasi kecil pada alignment dapat berdampak pada reliability, keselamatan, dan kontinuitas produksi.
+
+---
+
+## 2️⃣ Learning Objective (Measurable & Skill-Based)
+
+Setelah membaca artikel ini, teknisi mampu:
+
+### **LO1 – Mengidentifikasi penyebab vibrasi pasca maintenance secara berbasis data**
+
+Teknisi mampu:
+
+- Membandingkan data vibrasi sebelum dan sesudah pekerjaan maintenance
+- Membedakan indikasi **misalignment** vs **unbalance** berdasarkan pola vibrasi (radial vs axial, perubahan setelah tightening bolt)
+- Mengeliminasi asumsi awal yang tidak berbasis pengukuran
+
+Indikator keberhasilan:
+Teknisi dapat menyusun minimal 3 hipotesis teknis sebelum melakukan pembongkaran.
+
+---
+
+### **LO2 – Melakukan pengecekan alignment dasar menggunakan dial indicator**
+
+Teknisi mampu:
+
+- Memasang dial indicator secara rigid pada coupling hub
+- Melakukan pengukuran angular dan parallel misalignment
+- Menginterpretasikan hasil pengukuran dalam satuan mm atau mil
+- Membandingkan hasil dengan toleransi yang direkomendasikan oleh API 610
+
+Indikator keberhasilan:
+Hasil pengukuran alignment dapat didokumentasikan dan dikoreksi dengan shim adjustment yang tepat.
+
+---
+
+### **LO3 – Menjelaskan risiko keselamatan akibat misalignment**
+
+Teknisi mampu menjelaskan bahwa misalignment bukan hanya isu vibrasi, tetapi juga:
+
+- Meningkatkan beban radial dan axial pada bearing
+- Mempercepat kerusakan mechanical seal
+- Menyebabkan overheating dan potensi kebocoran fluida proses
+- Meningkatkan risiko rotating hazard saat inspeksi
+
+Indikator keberhasilan:
+Teknisi mampu menghubungkan misalignment dengan potensi konsekuensi sistem dan keselamatan kerja.
+
+---
+
+## 3️⃣ System Context & Criticality
+
+### 🔹 Posisi Equipment dalam Sistem
+
+Rangkaian energi dan proses:
+
+Motor listrik → Flexible coupling → Shaft pompa → Impeller → Flow fluida → Stabilitas tekanan & proses
+
+Pompa sentrifugal dalam layanan hidrokarbon atau utilitas proses merupakan equipment kritikal. Gangguan kecil pada alignment dapat berdampak sistemik.
+
+---
+
+### 🔹 Dampak Jika Terjadi Misalignment
+
+Jika terjadi misalignment:
+
+- Beban radial dan axial pada bearing meningkat signifikan
+- Mechanical seal mengalami stress tidak merata
+- Temperatur bearing meningkat
+- Vibrasi melebihi batas operasional
+- Potensi shutdown unit akibat proteksi getaran atau overcurrent
+
+Misalignment sering muncul setelah pekerjaan coupling replacement atau pembongkaran motor.
+
+---
+
+### 🔹 Interaksi Lintas Disiplin (E–I–C)
+
+Kegagalan mekanikal tidak berdiri sendiri.
+
+Mechanical misalignment
+→ Vibrasi meningkat
+→ Sensor vibration mengirim sinyal alarm
+→ Control system menghasilkan trip logic
+→ Motor trip (Electrical protection)
+
+Dengan demikian, satu kesalahan alignment dapat memicu rangkaian kejadian lintas disiplin yang berujung pada gangguan produksi.
+
+---
+
+### 🔹 Tingkat Criticality dalam Operasi
+
+Pada pompa proses utama:
+
+- Downtime berdampak pada kehilangan produksi
+- Restart berulang meningkatkan fatigue equipment
+- Risiko kebocoran meningkat pada layanan fluida mudah terbakar
+
+Karena itu, alignment bukan sekadar pekerjaan mekanikal rutin, melainkan bagian dari sistem reliability dan process safety.
+
+---
+
+## 4️⃣ Diagram Literacy Section (WAJIB)
+
+Section ini memastikan teknisi tidak hanya “mengukur”, tetapi memahami sistem secara visual dan struktural.
+
+---
+
+### A. Posisi Motor dan Pump
+
+![Image](https://www.researchgate.net/publication/221907641/figure/fig4/AS%3A667853111980033%401536239998256/Motor-pump-with-extended-coupling-between-motor-and-pump-The-accelerometers-are-placed.png)
+
+![Image](https://www.northridgepumps.com/upload/editor/19111809551802595.jpg)
+
+Pada P&ID, teknisi harus mampu:
+
+- Mengidentifikasi simbol **pompa sentrifugal**
+- Mengidentifikasi simbol **motor listrik**
+- Menentukan arah aliran fluida
+- Memahami apakah pompa berada pada layanan proses utama atau utility
+
+Tujuan pembacaan P&ID:
+
+- Mengetahui dampak jika pompa trip
+- Memahami interaksi dengan control valve dan transmitter
+- Menilai criticality terhadap kestabilan tekanan/flow
+
+---
+
+### B. Jalur Power dari Motor (SLD Awareness)
+
+![Image](https://storage.googleapis.com/production-bigrock-v1-0-1/511/1189511/LeXNjP71/b6ab7520d07b45098f5156381cdd423f)
+
+![Image](https://www.ia.omron.com/support/guide/65/img/intro_10.gif)
+
+Teknisi harus memahami:
+
+- Motor disuplai dari MCC
+- Proteksi overload dan short circuit
+- Hubungan antara kenaikan arus akibat misalignment dengan proteksi motor
+
+Pemahaman ini penting karena:
+
+Misalignment → Beban mekanis naik → Arus motor naik → Potensi trip proteksi.
+
+---
+
+### C. Posisi Coupling & Shaft Alignment Reference
+
+![Image](https://media.licdn.com/dms/image/v2/D5612AQGLSAOlOwgqeg/article-cover_image-shrink_600_2000/article-cover_image-shrink_600_2000/0/1727787463507?e=2147483647&t=nlJMCeSMnPCHMeY22pQxWzD2Zh8oS-sH5fFiENczsZU&v=beta)
+
+![Image](https://www.researchgate.net/publication/2238048/figure/fig1/AS%3A279952906833925%401443757382515/Examples-of-a-offset-parallel-misalignment-and-b-angular-misalignment.png)
+
+![Image](https://www.globalpumps.com.au/hs-fs/hubfs/Pump%20shaft%20alignment%20Global%20Pumps%201.jpg?height=376&name=Pump+shaft+alignment+Global+Pumps+1.jpg&width=390)
+
+![Image](https://cdn2.hubspot.net/hubfs/715354/Screenshot%202018-11-16%2016.10.29.png)
+
+Teknisi wajib mampu menunjukkan:
+
+- Titik pemasangan dial indicator (rim & face method)
+- Sumbu centerline motor dan pump
+- Posisi shim di bawah motor foot
+- Area potensial soft foot
+
+---
+
+### D. Konsep Geometri Misalignment
+
+Dua jenis utama misalignment:
+
+1. **Angular Misalignment**
+   Poros membentuk sudut satu sama lain.
+
+2. **Parallel (Offset) Misalignment**
+   Poros sejajar tetapi tidak segaris.
+
+Soft foot dapat menyebabkan kedua jenis misalignment muncul kembali setelah bolt dikencangkan.
+
+👉 Tanpa pemahaman diagram ini, investigasi akan bersifat trial-and-error.
+
+---
+
+## 5️⃣ Background & Failure Scenario
+
+### Kronologi Kejadian
+
+Selama shutdown terencana, dilakukan:
+
+- Penggantian coupling element
+- Pembukaan coupling guard
+- Pelepasan sebagian motor foot untuk akses pekerjaan
+
+Setelah startup:
+
+- Vibrasi meningkat dari **2.5 mm/s** menjadi **6.8 mm/s**
+- Temperatur bearing naik **10°C**
+- Tidak ada perubahan beban proses
+- Flow dan pressure tetap dalam range normal
+
+Tidak ada indikasi cavitation atau perubahan kondisi fluida.
+
+---
+
+### Analisis Awal Berdasarkan Data
+
+Karakteristik yang mencurigakan:
+
+- Kenaikan vibrasi terjadi setelah pekerjaan mekanikal
+- Tidak ada perubahan parameter proses
+- Kenaikan temperatur mengikuti kenaikan vibrasi
+
+Ini mengarah pada dugaan awal masalah mekanikal, bukan proses.
+
+---
+
+## 6️⃣ Symptom & Initial Finding
+
+### A. Yang Terlihat (Visual & Fisik)
+
+- Getaran terasa pada baseplate
+- Coupling housing terasa bergetar
+- Noise meningkat dibanding kondisi normal
+
+---
+
+### B. Yang Terukur (Instrument Data)
+
+- Vibrasi radial meningkat signifikan
+- Axial vibration sedikit meningkat
+- Arus motor naik ±5%
+- Temperatur bearing naik bertahap
+
+---
+
+### C. Asumsi Awal Operator
+
+Operator menduga:
+
+- Impeller mengalami unbalance
+- Kemungkinan rotor terkontaminasi
+
+Namun, asumsi ini belum berbasis investigasi alignment.
+
+---
+
+### Insight Teknis Awal
+
+Unbalance biasanya:
+
+- Dominan radial vibration
+- Tidak selalu meningkatkan axial load signifikan
+- Tidak selalu muncul setelah pekerjaan coupling saja
+
+Sedangkan misalignment:
+
+- Sering muncul pasca pekerjaan maintenance
+- Meningkatkan radial dan axial vibration
+- Menyebabkan kenaikan temperatur bearing
+
+Tahap berikutnya adalah membuktikan hipotesis secara sistematis, bukan berdasarkan asumsi.
+
+---
+
+## 7️⃣ Possible Causes (Structured Hypothesis)
+
+Untuk mencegah bias “langsung menyalahkan impeller”, hipotesis dikelompokkan lintas disiplin. Setiap hipotesis harus bisa **dibuktikan atau dieliminasi** dengan data/inspeksi.
+
+---
+
+### A. Mechanical
+
+1. **Angular Misalignment**
+
+   - **Mekanisme:** centerline motor dan pump membentuk sudut.
+   - **Dampak khas:** axial load naik, bearing & seal stress, temperatur bearing naik, vibrasi bisa radial + axial.
+   - **Pemicu umum:** coupling dibuka/dipasang ulang tanpa realignment, perubahan shim, bolt tightening sequence.
+
+2. **Parallel (Offset) Misalignment**
+
+   - **Mekanisme:** poros sejajar tetapi offset (tidak segaris).
+   - **Dampak khas:** vibrasi radial dominan, coupling wear, bearing load meningkat.
+
+3. **Soft Foot**
+
+   - **Mekanisme:** salah satu kaki motor tidak “duduk” rata; saat bolt dikencangkan, frame terdistorsi → alignment berubah.
+   - **Dampak khas:** alignment reading tidak stabil, vibrasi naik setelah tightening, rework alignment berulang.
+
+4. **Bent Shaft / Runout Abnormal**
+
+   - **Mekanisme:** shaft melengkung atau runout tinggi (motor/pump).
+   - **Dampak khas:** vibrasi persisten meskipun alignment sudah dalam toleransi, indikasi runout pada dial.
+
+---
+
+### B. Electrical
+
+1. **Motor Unbalance / Rotor Issue**
+
+   - **Mekanisme:** unbalance rotor motor atau masalah rotor bar.
+   - **Dampak khas:** vibrasi radial dominan (1× RPM), arus motor dapat naik, namun tidak selalu terkait langsung dengan pekerjaan coupling element.
+
+---
+
+### C. Instrument
+
+1. **Sensor Vibration Tidak Rigid / Mounting Problem**
+
+   - **Mekanisme:** transducer/accelerometer longgar, base magnet tidak kuat, stud mounting tidak sesuai.
+   - **Dampak khas:** pembacaan vibrasi “anomali”, tidak konsisten antar titik, perubahan besar tanpa korelasi fisik.
+
+---
+
+### D. Human Error
+
+1. **Alignment Tidak Dilakukan Ulang Setelah Coupling Dipasang**
+
+   - **Mekanisme:** coupling element dianggap “plug-and-play” tanpa realignment final.
+   - **Dampak khas:** kenaikan vibrasi tepat setelah startup pasca maintenance, tidak ada record alignment post-job, tidak ada sign-off checklist.
+
+---
+
+## 8️⃣ Step-by-Step Investigation Flow
+
+Flow berikut mengutamakan prinsip: **verifikasi data → eliminasi hipotesis cepat → verifikasi mekanis → konfirmasi root cause**, dengan keputusan jelas sebelum pembongkaran besar.
+
+---
+
+### 1) Verifikasi Kondisi Vibration Instrument (Eliminasi C – Instrument)
+
+**Tujuan:** memastikan data vibrasi valid.
+**Langkah:**
+
+- Pastikan sensor rigid (stud/magnet kuat), kabel tidak loose, konektor baik.
+- Bandingkan pembacaan di **titik yang sama** menggunakan alat handheld vs online (jika ada).
+- Cross-check trend: apakah kenaikan vibrasi konsisten pada beberapa titik (DE/NDE motor dan pump).
+
+**Kriteria eliminasi:**
+
+- Jika pembacaan tidak repeatable / berbeda ekstrem antar metode → perbaiki mounting dulu.
+
+---
+
+### 2) Periksa Torque Bolt Motor Foot (Indikasi Soft Foot & Distortion)
+
+**Tujuan:** mendeteksi perubahan struktur akibat tightening.
+**Langkah:**
+
+- Verifikasi torque mengikuti prosedur (urutan dan nilai).
+- Amati: apakah vibrasi berubah ketika bolt dikencangkan bertahap (jika kondisi memungkinkan saat off-line).
+- Inspeksi shim stack: bersih, rata, tidak “berundak”.
+
+**Indikasi kuat soft foot:**
+
+- Setelah tightening, alignment/vibrasi berubah signifikan.
+
+---
+
+### 3) Lakukan Soft Foot Test (Konfirmasi/Eliminasi Soft Foot)
+
+**Tujuan:** memastikan base motor “flat” sebelum alignment.
+**Metode umum (ringkas):**
+
+- Longgarkan satu foot bolt → ukur gap/perubahan (feeler gauge atau dial movement).
+- Ulangi untuk 4 foot motor.
+- Koreksi dengan shim sesuai kebutuhan sampai perubahan minimal.
+
+**Kriteria penerimaan (praktik baik):**
+
+- Soft foot berada dalam batas kecil (awareness: API 686 biasa dijadikan rujukan praktik instalasi).
+
+---
+
+### 4) Lakukan Dial Alignment Check (Konfirmasi A – Mechanical Misalignment)
+
+**Tujuan:** mengukur angular dan parallel misalignment secara kuantitatif.
+**Langkah:**
+
+- Pasang dial indicator rigid pada coupling hub.
+- Lakukan pengukuran sesuai metode (rim/face atau reverse dial).
+- Catat hasil dan lakukan koreksi shim (vertical) serta pergeseran (horizontal).
+- Ulangi hingga stabil.
+
+**Catatan penting:**
+
+- Jika hasil alignment “bagus” tetapi setelah bolt tightening berubah → kembali ke soft foot / baseplate issue.
+
+---
+
+### 5) Bandingkan dengan Tolerance API (Validasi terhadap standar)
+
+**Tujuan:** memastikan hasil memenuhi batas yang dipersyaratkan untuk reliability.
+**Langkah:**
+
+- Bandingkan hasil akhir dengan toleransi alignment yang dianut site (awareness: API 610 sebagai rujukan untuk layanan kritikal).
+- Pastikan ada **record** (before–after) dan sign-off.
+
+---
+
+### Decision Point (WAJIB)
+
+**Alignment diverifikasi sebelum membuka casing pump.**
+
+Alasan teknis:
+
+- Membuka casing pump adalah aktivitas invasif, risiko tinggi, dan sering tidak perlu jika sumber masalah adalah alignment/soft foot.
+- Prinsip troubleshooting: eliminasi penyebab paling umum pasca-maintenance terlebih dahulu.
+
+---
+
+## 9️⃣ Root Cause & Contributing Factor
+
+### Root Cause (Teknis)
+
+**Angular misalignment melebihi toleransi.**
+Konsekuensi langsung yang konsisten dengan data kasus:
+
+- Vibrasi naik signifikan setelah pekerjaan coupling
+- Temperatur bearing meningkat
+- Arus motor sedikit naik (beban mekanis meningkat)
+
+---
+
+### Contributing Factor (Sistem / Human)
+
+**Tidak dilakukan re-alignment setelah coupling replacement.**
+Bentuk gap praktik yang sering terjadi:
+
+- Tidak ada alignment log post-maintenance
+- Tidak ada checklist sign-off “alignment completed”
+- Soft foot tidak diuji sebelum alignment final
+
+---
+
+## 🔟 Reference to Standard & Gap Analysis
+
+Evaluasi terhadap standar industri diperlukan agar keputusan teknis tidak bersifat subjektif.
+
+### 🔹 Rujukan Standar
+
+Alignment pada pompa sentrifugal layanan proses kritikal umumnya mengacu pada:
+
+- API 610 – mensyaratkan alignment dalam batas toleransi tertentu pada kondisi cold alignment.
+- API 686 – memberikan praktik terbaik instalasi dan alignment termasuk soft foot check dan prosedur tightening.
+
+### 🔹 Apa yang Seharusnya (According to Standard Practice)
+
+1. Alignment dilakukan setelah setiap pembongkaran coupling.
+2. Soft foot dieliminasi sebelum alignment final.
+3. Hasil alignment didokumentasikan.
+4. Thermal growth dipertimbangkan pada unit dengan temperatur operasi signifikan.
+5. Alignment diverifikasi ulang setelah bolt final tightening.
+
+---
+
+### 🔹 Kondisi Aktual di Lapangan
+
+- Tidak ada dokumentasi alignment pasca penggantian coupling.
+- Soft foot test tidak tercatat.
+- Alignment dilakukan sebelum final bolt tightening.
+- Tidak ada evaluasi thermal growth.
+
+---
+
+### 🔹 Gap Analysis
+
+| Item                     | Seharusnya                | Aktual                | Gap    |
+| ------------------------ | ------------------------- | --------------------- | ------ |
+| Post-maintenance check   | Alignment wajib           | Tidak dilakukan       | Tinggi |
+| Soft foot verification   | Mandatory sebelum align   | Tidak diuji           | Tinggi |
+| Dokumentasi              | Alignment log tersedia    | Tidak ada record      | Tinggi |
+| Thermal growth awareness | Dipertimbangkan pada cold | Tidak dipertimbangkan | Sedang |
+
+Kesimpulan gap:
+Masalah bukan pada kerusakan komponen, melainkan pada **ketidakpatuhan terhadap praktik alignment standar**.
+
+---
+
+## 1️⃣1️⃣ Corrective & Preventive Action
+
+Tindakan dibagi menjadi empat level agar solusi tidak berhenti pada “perbaikan sesaat”.
+
+---
+
+### 🔹 Immediate Action
+
+- Lakukan realignment menggunakan dial indicator.
+- Eliminasi soft foot sebelum final setting.
+- Verifikasi hasil dalam batas toleransi standar.
+- Lakukan startup dan monitoring awal 24–48 jam.
+
+---
+
+### 🔹 Permanent Fix
+
+- Wajib alignment setiap kali coupling dibuka atau motor digeser.
+- Soft foot check menjadi langkah wajib sebelum alignment final.
+- Terapkan urutan torque bolt standar.
+
+---
+
+### 🔹 System Improvement
+
+- Tambahkan kolom “Soft Foot Check” pada alignment sheet.
+- Alignment wajib sign-off oleh supervisor.
+- Data baseline alignment disimpan sebagai referensi.
+- Integrasikan alignment check dalam SOP Turnaround.
+
+---
+
+### 🔹 Monitoring Plan
+
+- Review vibrasi pada 24 jam, 72 jam, dan 1 minggu pasca startup.
+- Bandingkan dengan baseline sebelum maintenance.
+- Monitor bearing temperature dan arus motor.
+
+Tujuan monitoring: memastikan tidak terjadi relapse akibat frame distortion atau settling.
+
+---
+
+## 1️⃣2️⃣ Risk & Safety Reflection
+
+Alignment bukan hanya isu reliability, tetapi juga keselamatan kerja.
+
+---
+
+### 🔹 Potensi Bahaya
+
+1. **Rotating Hazard**
+   Risiko tinggi saat guard coupling dibuka.
+
+2. **Pinch Point**
+   Area coupling dan shim dapat menjepit tangan.
+
+3. **Hot Surface**
+   Housing bearing dan casing pompa dapat bersuhu tinggi.
+
+4. **Stored Energy Risk**
+   Tegangan listrik dan energi mekanis tersimpan pada motor.
+
+---
+
+### 🔹 Permit dan Pengendalian Risiko
+
+- Mechanical Work Permit
+- Prosedur LOTO motor
+- Verifikasi zero energy sebelum bekerja
+- Penggunaan PPE sesuai standar site
+
+---
+
+### 🔹 Refleksi Keselamatan
+
+Misalignment yang tidak terkoreksi dapat menyebabkan:
+
+- Overheating bearing
+- Seal leak
+- Potensi kebocoran fluida proses
+- Potensi eskalasi pada layanan hidrokarbon
+
+Dengan demikian, alignment bukan hanya pekerjaan mekanikal rutin, tetapi bagian dari pengendalian risiko sistem dan integritas operasi unit.
+
+---
+
+## 1️⃣3️⃣ Data Interpretation & Trend Awareness
+
+Troubleshooting yang matang tidak berhenti pada “vibrasi tinggi”, tetapi berlanjut pada pemahaman pola dan tren.
+
+---
+
+### 🔹 Parameter yang Dipantau
+
+1. **Vibration Trend**
+
+   - Radial vibration (DE & NDE motor/pump)
+   - Axial vibration
+   - 1× RPM dominance (indikasi misalignment/unbalance)
+
+2. **Bearing Temperature**
+
+   - Perbandingan sebelum & sesudah maintenance
+   - Kenaikan bertahap vs lonjakan tiba-tiba
+
+3. **Arus Motor**
+
+   - Perubahan kecil namun konsisten
+   - Korelasi dengan kenaikan beban mekanis
+
+---
+
+### 🔹 Analisis Korelasi Data
+
+| Parameter  | Pola pada Kasus Ini             | Interpretasi            |
+| ---------- | ------------------------------- | ----------------------- |
+| Vibrasi    | Naik signifikan setelah startup | Indikasi mekanikal      |
+| Temperatur | Naik bertahap                   | Bearing load meningkat  |
+| Arus Motor | Sedikit naik                    | Beban mekanis bertambah |
+
+Jika unbalance murni:
+
+- Biasanya dominan radial vibration
+- Tidak selalu meningkatkan axial load signifikan
+
+Jika misalignment:
+
+- Radial + axial meningkat
+- Temperatur bearing naik
+- Arus motor cenderung meningkat
+
+---
+
+### 🔹 Early Warning Indicator
+
+Indikator dini yang sering terabaikan:
+
+- Kenaikan gradual vibration setelah maintenance
+- Alignment reading berubah setelah bolt final tightening
+- Temperatur bearing naik tanpa perubahan beban proses
+
+Trend awareness mendorong pendekatan proaktif sebelum terjadi failure sekunder.
+
+---
+
+## 1️⃣4️⃣ Competency Mapping
+
+Artikel ini dirancang untuk meningkatkan level kompetensi secara terukur.
+
+| Skill Area          | Level Saat Ini | Target Setelah Artikel |
+| ------------------- | -------------- | ---------------------- |
+| Shaft Alignment     | W (Awareness)  | I (Intermediate)       |
+| Root Cause Logic    | W              | I                      |
+| Data Interpretation | W              | I                      |
+| Safety Awareness    | W              | I                      |
+
+**Makna Upgrade Kompetensi:**
+
+- Dari sekadar “bisa mengukur” → menjadi “bisa menganalisis”.
+- Dari sekadar “mengikuti instruksi” → menjadi “memahami konsekuensi sistem”.
+
+---
+
+## 1️⃣5️⃣ Discussion Question (Toolbox Use)
+
+1. Mengapa vibrasi sering muncul setelah maintenance meskipun komponen baru dipasang?
+2. Apa konsekuensi jangka panjang jika alignment sedikit di luar tolerance tetapi masih dianggap “aman”?
+3. Mengapa alignment harus diverifikasi sebelum startup, bukan setelah vibrasi muncul?
+
+Tujuan diskusi:
+Mendorong pola pikir preventif, bukan reaktif.
+
+---
+
+## 1️⃣6️⃣ Key Takeaway
+
+- Misalignment adalah penyebab umum vibrasi pasca maintenance.
+- Alignment wajib dilakukan setiap kali coupling dibuka atau motor digeser.
+- Soft foot harus dieliminasi sebelum alignment final.
+- Data vibrasi harus dibandingkan sebelum dan sesudah pekerjaan.
+- Kenaikan temperatur dan arus motor adalah indikator beban mekanis meningkat.
+- Thermal growth harus dipertimbangkan pada unit proses.
+- Alignment yang benar adalah fondasi reliability dan keselamatan sistem.
+
+---
+
+<small>
+  **_Catatan Penyusunan_** Artikel ini merupakan bagian dari serial peningkatan
+  kompetensi yang dirancang untuk diikuti secara berurutan guna membangun
+  pemahaman sistematis dan bertahap. Meskipun demikian, setiap artikel tetap
+  dapat dibaca secara terpisah sebagai referensi mandiri sesuai kebutuhan
+  pembaca. Materi disusun berdasarkan berbagai sumber pustaka teknis, praktik
+  lapangan industri, serta dukungan alat bantu penulisan. Pembaca disarankan
+  melakukan verifikasi lanjutan dan penyesuaian teknis sesuai dengan standar
+  perusahaan, kondisi aktual peralatan, serta regulasi keselamatan yang berlaku.
+</small>

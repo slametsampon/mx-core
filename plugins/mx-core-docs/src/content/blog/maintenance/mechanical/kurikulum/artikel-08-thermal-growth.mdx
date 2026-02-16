@@ -1,0 +1,652 @@
+---
+title: Thermal Growth Awareness – Mengapa Alignment Cold ≠ Alignment Hot
+authors: ['sam']
+date: '2026-02-16'
+tags:
+  [
+    'thermal-growth-awareness',
+    'alignment-cold-vs-hot',
+    'api-686-installation-guideline',
+    'centrifugal-pump-reliability',
+    'mechanical-preventive-basic',
+    'shaft-centerline-shift',
+  ]
+draft: false
+summary: Artikel ini menjelaskan mengapa alignment dalam kondisi cold tidak selalu merepresentasikan kondisi operasi hot akibat fenomena ekspansi termal. Dengan pendekatan berbasis kasus, teknisi diarahkan untuk memahami pergeseran centerline shaft, menghitung estimasi thermal growth menggunakan ΔL = α × L × ΔT, serta menentukan kebutuhan offset saat cold alignment. Pembahasan dikaitkan dengan praktik instalasi sesuai API 686 dan pertimbangan alignment pada API 610. Artikel menekankan dampak terhadap vibrasi axial, bearing load, dan risiko kebocoran fluida proses, sehingga membangun kesadaran reliability dan keselamatan operasi sejak tahap alignment awal.
+---
+
+# 📘 ARTIKEL 8: Thermal Growth Awareness – Mengapa Alignment Cold ≠ Alignment Hot
+
+---
+
+- [📘 ARTIKEL 8: Thermal Growth Awareness – Mengapa Alignment Cold ≠ Alignment Hot](#-artikel-8-thermal-growth-awareness--mengapa-alignment-cold--alignment-hot)
+  - [1️⃣ Informasi Umum](#1️⃣-informasi-umum)
+  - [2️⃣ Learning Objective (Measurable \& Skill-Based)](#2️⃣-learning-objective-measurable--skill-based)
+  - [3️⃣ System Context \& Criticality](#3️⃣-system-context--criticality)
+    - [Wajib Menjawab:](#wajib-menjawab)
+  - [4️⃣ Diagram Literacy Section (WAJIB)](#4️⃣-diagram-literacy-section-wajib)
+    - [A. Perbedaan Posisi Centerline: Cold vs Hot](#a-perbedaan-posisi-centerline-cold-vs-hot)
+    - [B. Arah Pertumbuhan Vertikal Akibat Ekspansi](#b-arah-pertumbuhan-vertikal-akibat-ekspansi)
+    - [C. Jalur Energi \& Gaya Mekanis](#c-jalur-energi--gaya-mekanis)
+    - [D. Titik Proteksi \& Isolasi](#d-titik-proteksi--isolasi)
+  - [5️⃣ Background \& Failure Scenario](#5️⃣-background--failure-scenario)
+  - [6️⃣ Symptom \& Initial Finding](#6️⃣-symptom--initial-finding)
+    - [Terlihat:](#terlihat)
+    - [Terukur:](#terukur)
+    - [Asumsi Operator:](#asumsi-operator)
+  - [7️⃣ Possible Causes (Structured Hypothesis)](#7️⃣-possible-causes-structured-hypothesis)
+    - [A. Electrical](#a-electrical)
+    - [B. Mechanical](#b-mechanical)
+    - [C. Instrument](#c-instrument)
+    - [D. Human Error](#d-human-error)
+  - [8️⃣ Step-by-Step Investigation Flow](#8️⃣-step-by-step-investigation-flow)
+    - [1. Data Dikumpulkan](#1-data-dikumpulkan)
+    - [2. Eliminasi Hipotesis Non-Mekanis](#2-eliminasi-hipotesis-non-mekanis)
+    - [3. Perhitungan Thermal Growth](#3-perhitungan-thermal-growth)
+    - [4. Verifikasi Alignment Cold](#4-verifikasi-alignment-cold)
+    - [5. Konfirmasi Pergeseran Centerline](#5-konfirmasi-pergeseran-centerline)
+    - [Decision Point:](#decision-point)
+  - [9️⃣ Root Cause \& Contributing Factor](#9️⃣-root-cause--contributing-factor)
+    - [Root Cause Teknis](#root-cause-teknis)
+    - [Contributing Factor (Human / System)](#contributing-factor-human--system)
+  - [🔟 Reference to Standard \& Gap Analysis](#-reference-to-standard--gap-analysis)
+    - [🔹 Rujukan Standar](#-rujukan-standar)
+    - [🔹 Kondisi Aktual pada Kasus](#-kondisi-aktual-pada-kasus)
+    - [🔹 Gap Analysis](#-gap-analysis)
+  - [1️⃣1️⃣ Corrective \& Preventive Action](#1️⃣1️⃣-corrective--preventive-action)
+    - [🔹 Immediate Action](#-immediate-action)
+    - [🔹 Permanent Fix](#-permanent-fix)
+    - [🔹 System Improvement](#-system-improvement)
+    - [🔹 Monitoring Plan](#-monitoring-plan)
+  - [1️⃣2️⃣ Risk \& Safety Reflection](#1️⃣2️⃣-risk--safety-reflection)
+    - [🔹 Potensi Bahaya](#-potensi-bahaya)
+    - [🔹 Permit \& Pengendalian Risiko](#-permit--pengendalian-risiko)
+  - [1️⃣3️⃣ Data Interpretation \& Trend Awareness](#1️⃣3️⃣-data-interpretation--trend-awareness)
+    - [🔹 Parameter yang Dipantau](#-parameter-yang-dipantau)
+    - [🔹 Trend Pencegahan](#-trend-pencegahan)
+    - [🔹 Early Warning Indicator](#-early-warning-indicator)
+  - [1️⃣4️⃣ Competency Mapping](#1️⃣4️⃣-competency-mapping)
+  - [1️⃣5️⃣ Discussion Question (Toolbox Use)](#1️⃣5️⃣-discussion-question-toolbox-use)
+  - [1️⃣6️⃣ Key Takeaway](#1️⃣6️⃣-key-takeaway)
+
+---
+
+## 1️⃣ Informasi Umum
+
+1. **Judul Artikel:** Thermal Growth Awareness – Mengapa Alignment Cold ≠ Alignment Hot
+
+2. **Disiplin:** Mechanical
+
+3. **Level:** Junior
+
+4. **Kategori:** Preventive / Reliability
+
+5. **Equipment / System Terkait:**
+
+   - Centrifugal Pump
+   - Electric Motor
+   - Flexible Coupling & Shaft Assembly
+   - Baseplate & Foundation System
+
+6. **Referensi Standar:**
+
+   - API 610 – Pertimbangan alignment untuk pompa proses industri
+   - API 686 – Pedoman instalasi dan kompensasi thermal growth
+   - ASME – Prinsip dasar ekspansi termal material (awareness engineering concept)
+
+Artikel ini berada dalam jalur peningkatan kompetensi alignment, melengkapi pembahasan soft foot dan metode pengukuran alignment dengan pemahaman fenomena fisika yang memengaruhi kondisi operasi aktual.
+
+<ResourceBox
+  title="Artikel terkait :"
+  items={[
+    {
+      name: 'Panduan Lengkap Kurikulum & Matriks Kompetensi',
+      href: '/blog/maintenance/mechanical/panduan-kurikulum-mechanical',
+      description:
+        'Panduan Lengkap Kurikulum & Matriks Kompetensi – Teknisi Mechanical – Industri Petrokimia',
+    },
+    {
+      name: 'Vibrasi Tinggi Setelah Maintenance',
+      href: '/blog/maintenance/mechanical/kurikulum/artikel-05-vibrasi-tinggi',
+      description:
+        'Vibrasi Tinggi Setelah Maintenance – Misalignment atau Unbalance?',
+    },
+    {
+      name: 'Bearing Cepat Rusak',
+      href: '/blog/maintenance/mechanical/kurikulum/artikel-06-bearing-cepat-rusak',
+      description: 'Bearing Cepat Rusak – Apakah Alignment yang Salah?',
+    },
+    {
+      name: 'Soft Foot Checking',
+      href: '/blog/maintenance/mechanical/kurikulum/artikel-07-soft-foot',
+      description: 'Soft Foot Checking & Dial vs Laser Alignment Basic',
+    },
+  ]}
+  note="Artikel-artikel di atas merupakan bagian dari serial peningkatan kompetensi Electrical & Instrumentation yang dirancang untuk diikuti secara berurutan guna membangun pemahaman sistematis dan bertahap. Meskipun demikian, setiap artikel tetap dapat digunakan sebagai referensi mandiri sesuai kebutuhan teknis di lapangan. Pembaca tetap disarankan melakukan verifikasi lanjutan dan penyesuaian sesuai standar perusahaan serta regulasi keselamatan yang berlaku."
+/>
+
+---
+
+## 2️⃣ Learning Objective (Measurable & Skill-Based)
+
+Setelah membaca artikel ini, teknisi mampu:
+
+- **LO1 –** Menjelaskan secara teknis konsep ekspansi termal dan bagaimana perubahan temperatur memengaruhi centerline shaft.
+- **LO2 –** Menghitung estimasi perubahan dimensi (ΔL) akibat thermal growth menggunakan parameter panjang efektif dan koefisien ekspansi material.
+- **LO3 –** Menjelaskan risiko keselamatan dan reliability apabila cold alignment dilakukan tanpa mempertimbangkan kondisi hot running.
+
+⚠ LO3 memenuhi aspek sistem dan keselamatan operasi.
+
+---
+
+## 3️⃣ System Context & Criticality
+
+### Wajib Menjawab:
+
+**1. Equipment berada di mana dalam sistem?**
+Motor dan pompa berada pada jalur utama penggerak fluida proses. Unit ini berfungsi menjaga kontinuitas aliran pada sistem produksi.
+
+**2. Apa dampaknya jika gagal?**
+Jika alignment berubah saat kondisi hot running:
+
+- Vibrasi meningkat (terutama axial)
+- Beban bearing meningkat
+- Seal failure
+- Potensi shutdown unit proses
+- Kerugian produksi dan risiko keselamatan
+
+**3. Interaksi lintas disiplin:**
+
+Thermal growth (Mechanical)
+→ Perubahan centerline shaft
+→ Vibrasi meningkat (Instrumentation detection)
+→ Alarm/trip logic aktif (Control system)
+→ Motor overload (Electrical impact)
+
+Fenomena thermal growth sering tidak terlihat saat cold alignment, tetapi muncul nyata setelah unit mencapai temperatur operasi stabil.
+
+Pemahaman konteks sistem ini memastikan teknisi tidak hanya melakukan alignment secara geometris, tetapi juga mempertimbangkan kondisi operasi aktual sebagai bagian dari reliability thinking.
+
+---
+
+## 4️⃣ Diagram Literacy Section (WAJIB)
+
+![Image](https://media.licdn.com/dms/image/v2/C5612AQECnrr0sjrngw/article-cover_image-shrink_600_2000/article-cover_image-shrink_600_2000/0/1520129795136?e=2147483647&t=gFiJ2HRk0iggNjLRfmFNdcBVxbZzTg2iTBYwhZnKV8M&v=beta)
+
+![Image](https://easylaser.com/Files/Images/Blog/2021/thermal-growth/Thermal_growth_compressor_motor.gif)
+
+Section ini wajib dipahami sebagai fondasi sebelum masuk analisis kasus.
+
+### A. Perbedaan Posisi Centerline: Cold vs Hot
+
+Pada kondisi **cold alignment**, centerline motor dan pompa disetel sejajar pada temperatur lingkungan (±30°C).
+
+Saat operasi mencapai 150–180°C, casing pompa dan shaft mengalami ekspansi termal. Akibatnya:
+
+- Centerline pompa naik (vertical growth).
+- Motor relatif lebih dingin → growth lebih kecil.
+- Terjadi angular misalignment saat hot running.
+
+Secara geometris, alignment yang “perfect” saat cold dapat berubah menjadi misalignment saat hot.
+
+---
+
+### B. Arah Pertumbuhan Vertikal Akibat Ekspansi
+
+Ekspansi termal mengikuti rumus dasar:
+
+$$
+\Delta L = \alpha \times L \times \Delta T
+$$
+
+Dimana:
+
+- α = koefisien ekspansi material (steel ≈ 11–13 × 10⁻⁶ /°C)
+- L = panjang efektif (misalnya tinggi centerline 400 mm)
+- ΔT = perubahan temperatur
+
+Contoh estimasi:
+Jika ΔT = 150°C dan L = 400 mm:
+
+ΔL ≈ 0.66 – 0.78 mm
+
+Artinya centerline dapat bergeser hampir 0.7 mm saat hot.
+
+Nilai ini jauh lebih besar dari toleransi alignment normal (Kurang dar 0.05–0.1 mm).
+
+---
+
+### C. Jalur Energi & Gaya Mekanis
+
+Motor → Coupling → Shaft → Bearing → Seal → Impeller → Fluida Proses
+
+Jika centerline bergeser:
+
+- Gaya radial & axial meningkat
+- Bearing menerima beban tambahan
+- Seal mengalami eccentric loading
+
+---
+
+### D. Titik Proteksi & Isolasi
+
+**Titik Proteksi:**
+
+- Vibration sensor (radial & axial)
+- Motor overload relay
+- Temperature sensor bearing
+
+**Titik Isolasi Energi:**
+
+- MCC breaker
+- LOTO motor
+- Mechanical isolation (valve suction/discharge)
+
+Pemahaman diagram ini menjamin teknisi dapat:
+
+- Menjelaskan mengapa alignment berubah saat hot.
+- Mengidentifikasi titik proteksi yang mendeteksi deviasi.
+- Memahami hubungan antara fenomena fisika dan sistem proteksi.
+
+---
+
+## 5️⃣ Background & Failure Scenario
+
+Kasus aktual pada unit pompa proses suhu tinggi:
+
+- Alignment dilakukan pada kondisi ambient 30°C.
+- Tidak dilakukan perhitungan thermal growth.
+- Temperatur casing pompa saat steady state: 180°C.
+- Setelah 2 minggu operasi:
+
+  - Vibrasi meningkat dari 2.0 mm/s menjadi 5.8 mm/s.
+  - Axial vibration meningkat signifikan.
+  - Bearing temperature naik 10°C.
+  - Tidak ada perubahan beban proses.
+
+Waktu kejadian: ±14 hari setelah startup.
+
+Fakta penting:
+Alignment record cold menunjukkan nilai dalam toleransi API.
+
+---
+
+## 6️⃣ Symptom & Initial Finding
+
+### Terlihat:
+
+- Tidak ada indikasi soft foot.
+- Baseplate stabil.
+- Tidak ada indikasi coupling damage visual.
+
+### Terukur:
+
+- Axial vibration meningkat setelah temperatur stabil.
+- Bearing temperature naik 8–12°C.
+- Arus motor sedikit meningkat (beban mekanis naik).
+
+### Asumsi Operator:
+
+- Bearing defect.
+- Coupling wear.
+- Grease degradation.
+
+Namun tidak ada bukti kerusakan bearing pada inspeksi awal.
+
+---
+
+Tujuan section ini:
+
+Melatih teknisi untuk tidak langsung menyimpulkan kerusakan komponen, tetapi mempertimbangkan perubahan geometri akibat thermal growth sebagai faktor sistemik.
+
+---
+
+## 7️⃣ Possible Causes (Structured Hypothesis)
+
+Pendekatan analisis harus tetap lintas disiplin untuk menghindari bias teknis.
+
+---
+
+### A. Electrical
+
+- Motor overheating akibat ventilasi tidak optimal.
+- Overcurrent akibat peningkatan beban mekanis.
+- Rotor eccentricity yang memengaruhi kesejajaran shaft.
+
+Evaluasi: Jika arus motor meningkat proporsional dengan vibrasi axial, maka kemungkinan beban mekanis meningkat akibat misalignment.
+
+---
+
+### B. Mechanical
+
+- Thermal growth tidak dikompensasi saat cold alignment.
+- Angular misalignment muncul saat kondisi hot running.
+- Differential expansion antara pompa (lebih panas) dan motor (lebih dingin).
+- Expansion pada casing dan shaft tidak seragam.
+
+Ini merupakan hipotesis utama yang harus diverifikasi melalui perhitungan.
+
+---
+
+### C. Instrument
+
+- Sensor vibrasi mengalami drift akibat temperatur tinggi.
+- Mounting sensor tidak rigid sehingga reading bias.
+- Noise sinyal akibat interferensi lingkungan panas.
+
+Hipotesis ini harus dieliminasi melalui cross-check sensor dan trending data.
+
+---
+
+### D. Human Error
+
+- Tidak mempertimbangkan offset cold alignment.
+- Tidak melakukan estimasi ΔL sebelum alignment.
+- Tidak ada review engineering sebelum startup.
+
+---
+
+Pendekatan structured hypothesis ini memastikan teknisi tidak langsung menyimpulkan kerusakan bearing tanpa validasi sistemik.
+
+---
+
+## 8️⃣ Step-by-Step Investigation Flow
+
+Struktur investigasi mengikuti prinsip eliminasi berbasis data.
+
+---
+
+### 1. Data Dikumpulkan
+
+- Temperatur casing pompa dan motor saat steady state.
+- Temperatur bearing.
+- Data vibrasi radial dan axial.
+- Arus motor.
+
+Tujuan: memastikan korelasi antara temperatur dan peningkatan vibrasi.
+
+---
+
+### 2. Eliminasi Hipotesis Non-Mekanis
+
+- Verifikasi akurasi sensor vibrasi.
+- Bandingkan data sensor portable vs online.
+- Cek ventilasi motor.
+
+Jika sensor valid dan motor normal, lanjut ke analisis mekanikal.
+
+---
+
+### 3. Perhitungan Thermal Growth
+
+Gunakan rumus:
+
+$$
+\Delta L = \alpha \times L \times \Delta T
+$$
+
+Contoh:
+
+- α baja karbon ≈ 12 × 10⁻⁶ /°C
+- L centerline height = 400 mm
+- ΔT = 150°C
+
+ΔL ≈ 0.72 mm
+
+Bandingkan dengan toleransi alignment (Kurang Dari 0.05–0.1 mm).
+
+Selisih ini signifikan.
+
+---
+
+### 4. Verifikasi Alignment Cold
+
+- Shutdown unit.
+- Lakukan pengecekan alignment kembali dalam kondisi dingin.
+- Bandingkan dengan data sebelum startup.
+
+Jika cold alignment masih dalam toleransi, indikasi kuat bahwa pergeseran terjadi saat hot.
+
+---
+
+### 5. Konfirmasi Pergeseran Centerline
+
+- Estimasikan pergeseran akibat growth.
+- Korelasikan dengan kenaikan axial vibration.
+- Validasi dengan pola vibrasi (axial dominan).
+
+---
+
+### Decision Point:
+
+Perhitungan thermal growth harus dilakukan sebelum mengganti bearing.
+
+Mengganti bearing tanpa mengoreksi offset hanya akan menyebabkan kegagalan berulang.
+
+---
+
+## 9️⃣ Root Cause & Contributing Factor
+
+### Root Cause Teknis
+
+Tidak adanya offset pada cold alignment untuk mengkompensasi thermal growth pompa pada temperatur operasi 180°C.
+
+Akibatnya, centerline pompa naik saat hot running dan menyebabkan angular misalignment signifikan.
+
+---
+
+### Contributing Factor (Human / System)
+
+- Kurangnya awareness teknisi mengenai ekspansi termal.
+- SOP alignment tidak mencantumkan perhitungan growth.
+- Tidak ada review engineering untuk unit suhu tinggi.
+- Fokus pada toleransi cold alignment tanpa mempertimbangkan kondisi operasi.
+
+---
+
+Section ini menegaskan bahwa masalah bukan pada kerusakan komponen, melainkan pada kegagalan mempertimbangkan fenomena fisika dasar dalam proses alignment.
+
+---
+
+## 🔟 Reference to Standard & Gap Analysis
+
+Evaluasi alignment pada unit temperatur tinggi tidak boleh hanya berbasis toleransi geometris cold condition, tetapi harus mengacu pada praktik instalasi mesin berputar.
+
+### 🔹 Rujukan Standar
+
+Mengacu pada API 686:
+
+- Thermal growth wajib dipertimbangkan pada mesin dengan temperatur operasi signifikan.
+- Cold alignment harus diberikan **offset** berdasarkan estimasi ekspansi aktual.
+- Perhitungan growth harus terdokumentasi sebagai bagian dari alignment record.
+
+Sementara API 610 menekankan bahwa alignment harus mempertimbangkan kondisi operasi aktual untuk menjaga reliability pompa proses.
+
+---
+
+### 🔹 Kondisi Aktual pada Kasus
+
+- Alignment dilakukan hanya berdasarkan toleransi cold.
+- Tidak ada perhitungan ΔL terdokumentasi.
+- Tidak ada offset alignment pada sisi motor.
+
+---
+
+### 🔹 Gap Analysis
+
+| Aspek                      | Best Practice (Standar) | Aktual           | Gap    |
+| -------------------------- | ----------------------- | ---------------- | ------ |
+| Perhitungan thermal growth | Wajib untuk unit hot    | Tidak ada        | Tinggi |
+| Offset cold alignment      | Berdasarkan ΔL          | Tidak diterapkan | Tinggi |
+| Dokumentasi alignment      | Tercatat lengkap        | Tidak lengkap    | Sedang |
+
+Kesimpulan:
+Masalah bukan pada metode alignment, tetapi pada tidak diterapkannya kompensasi thermal growth sesuai pedoman instalasi.
+
+---
+
+## 1️⃣1️⃣ Corrective & Preventive Action
+
+Pendekatan koreksi harus menghilangkan penyebab dan memperkuat sistem pengendalian.
+
+---
+
+### 🔹 Immediate Action
+
+- Hitung estimasi thermal growth aktual menggunakan parameter temperatur operasi.
+- Sesuaikan cold alignment dengan offset yang sesuai.
+- Verifikasi alignment ulang setelah final tightening.
+
+---
+
+### 🔹 Permanent Fix
+
+- Revisi SOP alignment untuk unit suhu tinggi.
+- Wajibkan perhitungan ΔL sebelum sign-off alignment.
+- Tetapkan toleransi offset berdasarkan klasifikasi temperatur unit.
+
+---
+
+### 🔹 System Improvement
+
+- Tambahkan kolom “Thermal Growth Compensation” pada alignment sheet.
+- Simpan baseline cold dan hot condition alignment sebagai referensi historis.
+- Integrasikan review engineering sebelum startup untuk unit temperatur >120°C.
+
+---
+
+### 🔹 Monitoring Plan
+
+- Pantau axial vibration selama 72 jam pertama operasi.
+- Evaluasi korelasi temperatur casing dengan vibrasi.
+- Bandingkan data sebelum dan sesudah offset correction.
+
+Tujuan monitoring: memastikan alignment stabil saat unit mencapai temperatur steady state.
+
+---
+
+## 1️⃣2️⃣ Risk & Safety Reflection
+
+Thermal growth yang diabaikan tidak hanya berdampak pada reliability, tetapi juga keselamatan operasi.
+
+---
+
+### 🔹 Potensi Bahaya
+
+1. **Hot Surface Hazard**
+   Casing pompa 180°C berpotensi menyebabkan luka bakar.
+
+2. **Seal Failure akibat Misalignment Hot**
+   Angular misalignment saat hot dapat meningkatkan seal wear → kebocoran fluida proses.
+
+3. **Potensi Kebocoran Hidrokarbon**
+   Kebocoran fluida mudah terbakar meningkatkan risiko kebakaran.
+
+Dalam konteks keselamatan instalasi fluida mudah terbakar, prinsip pengendalian risiko sebagaimana dibahas dalam NFPA 30 menjadi relevan sebagai awareness.
+
+---
+
+### 🔹 Permit & Pengendalian Risiko
+
+- Mechanical Work Permit
+- Prosedur LOTO motor
+- Hot surface awareness & PPE sesuai site
+- Verifikasi zero energy sebelum pekerjaan alignment
+
+---
+
+Thermal growth yang tidak diperhitungkan dapat mengarah pada kegagalan seal, kebocoran fluida, dan eskalasi risiko kebakaran. Oleh karena itu, kompensasi thermal growth merupakan bagian dari integritas sistem, bukan sekadar praktik alignment tambahan.
+
+---
+
+## 1️⃣3️⃣ Data Interpretation & Trend Awareness
+
+Thermal growth tidak selalu terlihat secara visual, tetapi dapat dideteksi melalui pola data operasi. Pendekatan interpretasi data harus berbasis korelasi antar parameter, bukan hanya nilai absolut.
+
+---
+
+### 🔹 Parameter yang Dipantau
+
+1. **Axial Vibration vs Temperatur Casing**
+
+   - Kenaikan axial vibration seiring peningkatan temperatur casing menunjukkan kemungkinan differential expansion.
+   - Pola linier antara ΔT dan axial vibration merupakan indikasi kuat pergeseran centerline.
+
+2. **Bearing Temperature vs Load**
+
+   - Kenaikan temperatur bearing tanpa perubahan load proses menunjukkan tambahan beban mekanis.
+   - Jika temperatur bearing turun saat shutdown (cooling), indikasi pengaruh thermal growth semakin kuat.
+
+---
+
+### 🔹 Trend Pencegahan
+
+Pola khas thermal growth:
+
+- Vibrasi meningkat bertahap saat temperatur naik menuju steady state.
+- Stabil kembali saat unit shutdown dan mendingin.
+- Tidak ada perubahan signifikan pada beban proses atau kondisi fluida.
+
+Pola ini membedakan thermal misalignment dari kerusakan bearing permanen.
+
+---
+
+### 🔹 Early Warning Indicator
+
+- Perbedaan alignment cold vs hot > **0.1 mm**.
+- Axial vibration meningkat >30% setelah temperatur stabil.
+- Bearing temperature naik tanpa indikasi pelumasan abnormal.
+
+Pendekatan berbasis trend ini mendorong proactive maintenance sebelum terjadi kegagalan sekunder.
+
+---
+
+## 1️⃣4️⃣ Competency Mapping
+
+Artikel ini bertujuan meningkatkan pemahaman teknisi dari sekadar eksekutor alignment menjadi analis kondisi operasi.
+
+| Skill Area               | Level Saat Ini | Target |
+| ------------------------ | -------------- | ------ |
+| Thermal Growth Concept   | W              | I      |
+| Alignment Offset Logic   | W              | I      |
+| Vibration Interpretation | W              | I      |
+
+**Makna Upgrade:**
+
+- Dari mengetahui istilah thermal growth → mampu menghitung dan mengkompensasi.
+- Dari membaca vibrasi → mampu mengaitkan dengan fenomena fisika dan temperatur.
+
+---
+
+## 1️⃣5️⃣ Discussion Question (Toolbox Use)
+
+1. Mengapa alignment cold tidak selalu mewakili kondisi operasi meskipun berada dalam toleransi?
+2. Bagaimana menghitung estimasi thermal growth secara sederhana menggunakan parameter temperatur dan panjang efektif?
+3. Apa risiko jangka panjang jika thermal growth diabaikan pada pompa temperatur tinggi terhadap bearing, seal, dan keselamatan sistem?
+
+Pertanyaan ini dirancang untuk mendorong diskusi lintas disiplin (Mechanical–Instrument–Safety).
+
+---
+
+## 1️⃣6️⃣ Key Takeaway
+
+- Alignment cold ≠ alignment hot.
+- Thermal growth menggeser centerline shaft secara signifikan.
+- Offset alignment diperlukan pada unit temperatur tinggi.
+- Axial vibration sering meningkat akibat differential expansion.
+- Perhitungan sederhana ΔL dapat mencegah kegagalan mahal.
+- Thermal awareness merupakan bagian dari reliability engineering.
+- Preventive mindset mengurangi rework, downtime, dan risiko kebocoran proses.
+
+---
+
+<small>
+  **_Catatan Penyusunan_** Artikel ini merupakan bagian dari serial peningkatan
+  kompetensi yang dirancang untuk diikuti secara berurutan guna membangun
+  pemahaman sistematis dan bertahap. Meskipun demikian, setiap artikel tetap
+  dapat dibaca secara terpisah sebagai referensi mandiri sesuai kebutuhan
+  pembaca. Materi disusun berdasarkan berbagai sumber pustaka teknis, praktik
+  lapangan industri, serta dukungan alat bantu penulisan. Pembaca disarankan
+  melakukan verifikasi lanjutan dan penyesuaian teknis sesuai dengan standar
+  perusahaan, kondisi aktual peralatan, serta regulasi keselamatan yang berlaku.
+</small>
