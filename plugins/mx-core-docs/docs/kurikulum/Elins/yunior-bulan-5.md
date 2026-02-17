@@ -43,16 +43,6 @@
 
 ---
 
-Total: 4 Outline Artikel
-Semua sudah mengandung:
-
-- System Context
-- Diagram Literacy (Loop / Network / Cause & Effect)
-- Cross-discipline interaction
-- Safety awareness
-- Data & trend interpretation
-
----
 
 # 📘 ARTIKEL 17
 

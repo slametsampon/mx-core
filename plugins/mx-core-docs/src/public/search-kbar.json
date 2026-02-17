@@ -32,6 +32,74 @@
     ]
   },
   {
+    "id": "maintenance/elins/kurikulum/artikel-17-plc-komunikasi",
+    "name": "PLC Kehilangan Komunikasi dengan Field Device",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/elins/kurikulum/artikel-17-plc-komunikasi",
+    "subtitle": "February 17, 2026",
+    "keywords": [
+      "plc-troubleshooting",
+      "siemens-simatic",
+      "honeywell-experion-pks",
+      "loop-diagnostic",
+      "remote-io-communication",
+      "instrumentation-control",
+      "process-stability",
+      "layered-investigation"
+    ]
+  },
+  {
+    "id": "maintenance/elins/kurikulum/artikel-18-analog-input-reading",
+    "name": "Analog Input Reading Tidak Sesuai di DCS – Validasi Field hingga Logic",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/elins/kurikulum/artikel-18-analog-input-reading",
+    "subtitle": "February 17, 2026",
+    "keywords": [
+      "analog-input-validation",
+      "siemens-simatic-scaling",
+      "honeywell-experion-configuration",
+      "4-20ma-loop",
+      "double-scaling-error",
+      "instrumentation-control",
+      "process-quality-stability",
+      "data-driven-troubleshooting"
+    ]
+  },
+  {
+    "id": "maintenance/elins/kurikulum/artikel-19-backup-restore-plc",
+    "name": "Backup & Restore PLC Program – Awareness untuk Junior",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/elins/kurikulum/artikel-19-backup-restore-plc",
+    "subtitle": "February 17, 2026",
+    "keywords": [
+      "plc-backup-restore",
+      "siemens-simatic-version-control",
+      "honeywell-experion-interface",
+      "iec-61131-awareness",
+      "logic-change-management",
+      "interlock-protection-system",
+      "control-system-integrity",
+      "preventive-maintenance-control"
+    ]
+  },
+  {
+    "id": "maintenance/elins/kurikulum/artikel-20-dcs-plc-redudancy",
+    "name": "Perbedaan PLC vs DCS & Konsep Redundancy Dasar",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/elins/kurikulum/artikel-20-dcs-plc-redudancy",
+    "subtitle": "February 17, 2026",
+    "keywords": [
+      "plc-vs-dcs-architecture",
+      "siemens-simatic",
+      "honeywell-experion-pks",
+      "control-system-redundancy",
+      "single-point-of-failure",
+      "iec-61511-awareness",
+      "process-safety-control",
+      "system-level-thinking"
+    ]
+  },
+  {
     "id": "maintenance/mechanical/kurikulum/artikel-09-seal-leakage",
     "name": "Seal Leakage Setelah Start-Up – Instalasi Salah atau Kondisi Operasi?",
     "section": "CONTENT",
@@ -127,6 +195,74 @@
       "preventive-maintenance-reliability",
       "api-610-awareness",
       "pump-maintenance",
+      "pemeliharaan-pabrik-petrokimia"
+    ]
+  },
+  {
+    "id": "maintenance/mechanical/kurikulum/artikel-15-compressor-discharge",
+    "name": "Compressor Discharge Temperature Tinggi – Valve, Clearance, Cooling, atau Stage Interaction?",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/mechanical/kurikulum/artikel-15-compressor-discharge",
+    "subtitle": "February 17, 2026",
+    "keywords": [
+      "dual-stage-compressor",
+      "reciprocating-compressor-troubleshooting",
+      "pressure-ratio-analysis",
+      "intercooler-performance",
+      "valve-leakage-diagnosis",
+      "overheating-risk-hydrocarbon",
+      "api-618-awareness",
+      "pemeliharaan-pabrik-petrokimia"
+    ]
+  },
+  {
+    "id": "maintenance/mechanical/kurikulum/artikel-16-valve-failure-symptoms",
+    "name": "Valve Failure Symptoms – Bagaimana Mendeteksi Sebelum Rusak Total?",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/mechanical/kurikulum/artikel-16-valve-failure-symptoms",
+    "subtitle": "February 17, 2026",
+    "keywords": [
+      "valve-failure-symptoms",
+      "dual-stage-compressor",
+      "reciprocating-compressor-troubleshooting",
+      "pressure-pulsation-analysis",
+      "api-618-awareness",
+      "hydrocarbon-safety-risk",
+      "predictive-maintenance",
+      "pemeliharaan-pabrik-petrokimia"
+    ]
+  },
+  {
+    "id": "maintenance/mechanical/kurikulum/artikel-17-clearance-measurement",
+    "name": "Clearance Measurement Awareness – Mengapa Clearance Penting pada Reciprocating Compressor?",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/mechanical/kurikulum/artikel-17-clearance-measurement",
+    "subtitle": "February 17, 2026",
+    "keywords": [
+      "clearance-volume",
+      "dual-stage-compressor",
+      "reciprocating-compressor-maintenance",
+      "volumetric-efficiency-analysis",
+      "feeler-gauge-measurement",
+      "api-618-awareness",
+      "preventive-maintenance",
+      "pemeliharaan-pabrik-petrokimia"
+    ]
+  },
+  {
+    "id": "maintenance/mechanical/kurikulum/artikel-18-interstage-interaction",
+    "name": "Stage Interaction & Intercooler Awareness pada Dual-Stage Reciprocating Compressor",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/mechanical/kurikulum/artikel-18-interstage-interaction",
+    "subtitle": "February 17, 2026",
+    "keywords": [
+      "dual-stage-compressor",
+      "intercooler-performance",
+      "stage-interaction-analysis",
+      "pressure-ratio-imbalance",
+      "api-618-awareness",
+      "nfpa-30-safety",
+      "hydrocarbon-overheating-risk",
       "pemeliharaan-pabrik-petrokimia"
     ]
   },

@@ -1,0 +1,633 @@
+---
+title: Analog Input Reading Tidak Sesuai di DCS – Validasi Field hingga Logic
+authors: ['sam']
+date: '2026-02-17'
+tags:
+  [
+    'analog-input-validation',
+    'siemens-simatic-scaling',
+    'honeywell-experion-configuration',
+    '4-20ma-loop',
+    'double-scaling-error',
+    'instrumentation-control',
+    'process-quality-stability',
+    'data-driven-troubleshooting',
+  ]
+draft: false
+summary: Artikel ini membahas ketidaksesuaian pembacaan analog input pada sistem terintegrasi PLC Siemens dan Honeywell Experion PKS melalui pendekatan validasi berlapis dari field hingga logic. Analisis mencakup konversi 4–20 mA menjadi raw value dan engineering unit, evaluasi scaling di PLC, serta verifikasi konfigurasi LRV/URV di DCS. Studi kasus menunjukkan deviasi sistematis akibat mismatch range di Experion, bukan kerusakan transmitter. Penekanan diberikan pada pentingnya cross-validation, pencegahan double scaling, penggunaan historian sebagai alat diagnosis, serta disiplin commissioning dan MOC. Artikel ini memperkuat pola pikir troubleshooting berbasis data, bukan asumsi.
+---
+
+# 📘 ARTIKEL 18: Analog Input Reading Tidak Sesuai di DCS – Validasi Field hingga Logic
+
+---
+
+- [📘 ARTIKEL 18: Analog Input Reading Tidak Sesuai di DCS – Validasi Field hingga Logic](#-artikel-18-analog-input-reading-tidak-sesuai-di-dcs--validasi-field-hingga-logic)
+  - [1️⃣ Informasi Umum](#1️⃣-informasi-umum)
+  - [2️⃣ Learning Objective](#2️⃣-learning-objective)
+  - [3️⃣ System Context \& Criticality](#3️⃣-system-context--criticality)
+  - [4️⃣ Diagram Literacy Section (WAJIB)](#4️⃣-diagram-literacy-section-wajib)
+    - [A. Loop Diagram (Field Layer)](#a-loop-diagram-field-layer)
+    - [B. PLC Scaling Logic (Siemens Context)](#b-plc-scaling-logic-siemens-context)
+    - [C. DCS Display Layer (Experion)](#c-dcs-display-layer-experion)
+  - [5️⃣ Background \& Failure Scenario](#5️⃣-background--failure-scenario)
+  - [6️⃣ Symptom \& Initial Finding](#6️⃣-symptom--initial-finding)
+    - [Terlihat](#terlihat)
+    - [Terukur](#terukur)
+    - [Asumsi Awal](#asumsi-awal)
+  - [7️⃣ Possible Causes](#7️⃣-possible-causes)
+    - [Field Layer](#field-layer)
+    - [PLC Layer (Siemens)](#plc-layer-siemens)
+    - [DCS Layer (Experion)](#dcs-layer-experion)
+    - [Human Factor](#human-factor)
+  - [8️⃣ Step-by-Step Investigation](#8️⃣-step-by-step-investigation)
+    - [STEP 1 – Validasi Field](#step-1--validasi-field)
+    - [STEP 2 – Validasi PLC (Siemens)](#step-2--validasi-plc-siemens)
+    - [STEP 3 – Validasi DCS (Experion)](#step-3--validasi-dcs-experion)
+    - [STEP 4 – Cross-Validation](#step-4--cross-validation)
+    - [Decision Logic](#decision-logic)
+  - [9️⃣ Root Cause \& Contributing Factor](#9️⃣-root-cause--contributing-factor)
+    - [Root Cause](#root-cause)
+    - [Contributing Factor](#contributing-factor)
+  - [🔟 Reference Standard \& Gap Analysis](#-reference-standard--gap-analysis)
+    - [Referensi](#referensi)
+    - [Gap yang Ditemukan](#gap-yang-ditemukan)
+  - [1️⃣1️⃣ Corrective \& Preventive Action](#1️⃣1️⃣-corrective--preventive-action)
+    - [Immediate](#immediate)
+    - [Permanent](#permanent)
+    - [Monitoring](#monitoring)
+  - [1️⃣2️⃣ Risk \& Safety Reflection](#1️⃣2️⃣-risk--safety-reflection)
+    - [Risiko Teknis](#risiko-teknis)
+    - [Risiko Ekonomi](#risiko-ekonomi)
+    - [Insight](#insight)
+  - [1️⃣3️⃣ Data Interpretation \& Trend Awareness](#1️⃣3️⃣-data-interpretation--trend-awareness)
+    - [Analisa Historian](#analisa-historian)
+    - [Interpretasi](#interpretasi)
+    - [Insight](#insight-1)
+  - [1️⃣4️⃣ Competency Mapping](#1️⃣4️⃣-competency-mapping)
+  - [1️⃣5️⃣ Discussion Question](#1️⃣5️⃣-discussion-question)
+  - [1️⃣6️⃣ Key Takeaway](#1️⃣6️⃣-key-takeaway)
+
+---
+
+## 1️⃣ Informasi Umum
+
+Disiplin: Instrumentation & Control
+Level: Junior ELINS
+Kategori: Troubleshooting Sistematis
+
+Equipment yang digunakan dalam konteks aktual plant:
+
+- PLC: Siemens SIMATIC (S7-1500 / S7-400)
+- DCS: Honeywell Experion PKS
+- Field Device: Flow Transmitter 4–20 mA
+- AI Module: ET200 / Analog Input Module
+
+Referensi teknis yang menjadi dasar praktik:
+
+- IEC 61131 (PLC Programming)
+- IEC 60381 (Analog Signal Standard 4–20 mA)
+- Vendor documentation Siemens SIMATIC
+- Honeywell Experion PKS System Manual
+
+Artikel ini difokuskan pada validasi pembacaan analog input secara berlapis untuk memastikan konsistensi nilai dari lapangan hingga tampilan DCS.
+
+<ResourceBox
+  title="Artikel terkait :"
+  items={[
+    {
+      name: 'Panduan Lengkap Kurikulum & Matriks Kompetensi',
+      href: '/blog/maintenance/elins/panduan-kurikulum-elins',
+      description:
+        'Panduan Lengkap Kurikulum & Matriks Kompetensi - Teknisi Electrical, Instrumentation & Control (E&I) – Industri Petrokimia',
+    },
+    {
+      name: 'PLC Kehilangan Komunikasi',
+      href: '/blog/maintenance/elins/kurikulum/artikel-17-plc-komunikasi',
+      description: 'PLC Kehilangan Komunikasi dengan Field Device',
+    },
+    {
+      name: 'Backup & Restore PLC Program',
+      href: '/blog/maintenance/elins/kurikulum/artikel-19-backup-restore-plc',
+      description: 'Backup & Restore PLC Program – Awareness untuk Junior',
+    },
+    {
+      name: 'Perbedaan PLC vs DCS & Konsep Redundancy Dasar',
+      href: '/blog/maintenance/elins/kurikulum/artikel-20-dcs-plc-redudancy',
+      description: 'Perbedaan PLC vs DCS & Konsep Redundancy Dasar',
+    },
+  ]}
+  note="Artikel-artikel di atas merupakan bagian dari serial peningkatan kompetensi Electrical & Instrumentation yang dirancang untuk diikuti secara berurutan guna membangun pemahaman sistematis dan bertahap. Meskipun demikian, setiap artikel tetap dapat digunakan sebagai referensi mandiri sesuai kebutuhan teknis di lapangan. Pembaca tetap disarankan melakukan verifikasi lanjutan dan penyesuaian sesuai standar perusahaan serta regulasi keselamatan yang berlaku."
+/>
+
+---
+
+## 2️⃣ Learning Objective
+
+Setelah membaca artikel ini, teknisi mampu:
+
+- Menjelaskan alur konversi sinyal 4–20 mA menjadi raw value dan engineering unit
+- Mengidentifikasi minimal 4 penyebab pembacaan AI tidak akurat
+- Melakukan validasi lintas layer (Field → PLC → DCS) secara sistematis
+- Membedakan error scaling (konfigurasi) dengan error sensor (instrument)
+
+Tujuan utama adalah membangun pemahaman bahwa akurasi analog input tidak hanya ditentukan oleh transmitter, tetapi oleh keseluruhan rantai konversi sinyal.
+
+---
+
+## 3️⃣ System Context & Criticality
+
+Flow Transmitter
+→ 4–20 mA
+→ AI Module Siemens (ET200)
+→ PLC Scaling Block
+→ Communication
+→ Honeywell Experion PKS
+→ Control Valve
+→ Quality Product
+
+Alur ini menunjukkan bahwa nilai yang ditampilkan di DCS adalah hasil dari beberapa tahap konversi dan konfigurasi.
+
+Jika pembacaan salah:
+
+- Control valve membuka atau menutup tidak sesuai kebutuhan proses
+- Ratio control terganggu
+- Produk menjadi off-spec
+- Konsumsi energi meningkat
+- Potensi upset unit meningkat
+
+Implikasi teknis:
+
+Deviasi analog sekecil 10% dapat menyebabkan kesalahan kontrol yang signifikan dalam sistem continuous process.
+
+👉 Analog error kecil dapat berdampak besar pada kualitas produk dan stabilitas proses.
+
+---
+
+## 4️⃣ Diagram Literacy Section (WAJIB)
+
+### A. Loop Diagram (Field Layer)
+
+![Image](https://www.hgsind.com/sites/default/files/content_images/currentloop_fig3.jpg)
+
+![Image](https://cdn.automationforum.co/uploads/2023/10/loop-diagram-1-1024x617.jpg)
+
+![Image](https://img.viox.com/system-hierarchy-diagram-showing-electrical-distribution-flow-from-field-devices-through-junction-boxes-for-wiring-consolidation-marshalling-panels-for-signal-organization-and-routing-to-system-cabinets-for-control-and-power-distribution.webp)
+
+![Image](https://cdn.automationforum.co/uploads/2023/10/cab1-scaled.jpg)
+
+Pada layer field, teknisi wajib mampu menelusuri jalur arus 4–20 mA secara menyeluruh.
+
+Identifikasi teknis yang harus dipahami:
+
+- Sumber 24VDC supply (instrument power supply panel)
+- Jalur arus dari transmitter menuju AI module
+- Terminal marshalling sebagai titik interkoneksi
+- Nomor channel AI module (misal: ET200 AI Channel – IW address tertentu)
+
+Kesalahan paling umum terjadi pada:
+
+- Loose terminal
+- Reverse polarity
+- Shared return yang tidak sesuai desain
+
+Loop harus dipahami sebagai sistem tertutup yang kontinu, bukan sekadar dua kabel.
+
+---
+
+### B. PLC Scaling Logic (Siemens Context)
+
+![Image](https://support.industry.siemens.com/cs/images/39334504/39334504_STEP7_V105_Analogwert_skalieren_1.png)
+
+![Image](https://media.licdn.com/dms/image/v2/D4E22AQFe_VZ54lHc4g/feedshare-shrink_800/B4EZqkNxQdKgAk-/0/1763691665940?e=2147483647&t=E0E0J7j2c7oqOIFRL3QQWJYBAWtjBDiuURCSatj12n8&v=beta)
+
+![Image](https://support.industry.siemens.com/dokumentation/MDMImage.img?Language=en-US&docVersionId=76347744523&imageFileName=75898147467_DV_resource.Stream%40PNG-de-DE.png)
+
+![Image](https://support.industry.siemens.com/cs/images/109802476/109802252_Bild1.png)
+
+Pada PLC Siemens SIMATIC, sinyal 4–20 mA dikonversi menjadi raw value digital.
+
+Fakta penting:
+
+- Raw value Siemens tipikal: 0–27648
+- 4 mA ≈ 0
+- 20 mA ≈ 27648
+- Nilai kemudian dikonversi menjadi engineering unit melalui FC/FB scaling
+
+Parameter kritis:
+
+- LRV (Lower Range Value)
+- URV (Upper Range Value)
+- Gain & Offset
+
+Kesalahan scaling sering terjadi akibat:
+
+- Salah input range
+- Double scaling
+- Modifikasi tanpa dokumentasi
+
+---
+
+### C. DCS Display Layer (Experion)
+
+![Image](https://honeywell.scene7.com/is/image/Honeywell65/pmt-hps-operator-stations-image)
+
+![Image](https://orion-technical.com/media/keomkh22/determine-lrv-urv-dp-level-wetleg-to-lp.png)
+
+![Image](https://image.slidesharecdn.com/experionhs-141031224139-conversion-gate01/75/Honeywell-Experion-HS-68-2048.jpg)
+
+![Image](https://image.slidesharecdn.com/experionhs-141031224139-conversion-gate01/75/Honeywell-Experion-HS-2-2048.jpg)
+
+Pada layer Honeywell Experion PKS, teknisi harus mampu membaca:
+
+- LRV/URV di konfigurasi point
+- Engineering unit
+- Alarm limit (HI, LO, HH, LL)
+- PV Quality (Good / Bad / Uncertain)
+- Historian trend
+
+Perbedaan kecil antara PLC engineering value dan DCS display sering disebabkan oleh konfigurasi DCS, bukan oleh transmitter.
+
+---
+
+## 5️⃣ Background & Failure Scenario
+
+Operator melaporkan kondisi berikut:
+
+- Flow terbaca 35 m³/h di DCS
+- Field gauge menunjukkan ±25 m³/h
+- Control valve opening tinggi
+- Product viscosity berubah
+
+Tidak ada alarm fault.
+Tidak ada channel error.
+PV terlihat stabil.
+
+Kondisi ini mengindikasikan deviasi sistematis, bukan noise atau signal loss.
+
+Implikasi teknis:
+
+Perbedaan 10 m³/h pada sistem ratio atau flow control dapat menyebabkan:
+
+- Control valve over-actuation
+- Ketidakseimbangan material balance
+- Produk off-spec
+- Konsumsi energi meningkat
+
+Kasus ini menjadi dasar analisis bahwa analog reading error tanpa alarm sering lebih berbahaya dibanding fault yang jelas terlihat.
+
+---
+
+## 6️⃣ Symptom & Initial Finding
+
+### Terlihat
+
+- PV pada Honeywell Experion PKS stabil, tanpa noise atau spike
+- Tidak terdapat channel fault pada AI module
+- Tidak ada alarm hardware atau communication error
+
+Artinya, sistem secara struktural terlihat sehat.
+
+---
+
+### Terukur
+
+- Loop current terukur 12 mA
+- Pada PLC Siemens SIMATIC, raw value konsisten (≈ 13824 ≈ 50%)
+- PLC engineering value menunjukkan ±25 m³/h
+- DCS menampilkan 35 m³/h
+
+Interpretasi teknis awal:
+
+Sinyal fisik dan konversi PLC normal, tetapi nilai yang tampil di DCS tidak sesuai.
+
+---
+
+### Asumsi Awal
+
+“Transmitter drift.”
+
+Namun asumsi ini belum tervalidasi karena:
+
+- Arus 12 mA konsisten dengan 50% range
+- Raw value PLC tidak menunjukkan anomali
+
+Kesimpulan sementara:
+Transmitter kemungkinan besar dalam kondisi normal.
+
+---
+
+## 7️⃣ Possible Causes
+
+Analisis dilakukan secara berlapis sesuai arsitektur sistem.
+
+---
+
+### Field Layer
+
+- Transmitter drift (sensor aging)
+- Range transmitter tidak sesuai desain
+- Impulse line partially blocked
+
+---
+
+### PLC Layer (Siemens)
+
+- Scaling block salah parameter (LRV/URV mismatch)
+- Raw value offset akibat konfigurasi channel
+- Double scaling (PLC sudah scaling, DCS scaling ulang)
+
+---
+
+### DCS Layer (Experion)
+
+- LRV/URV mismatch pada konfigurasi point
+- Kesalahan unit conversion
+- Tag mapping salah
+
+---
+
+### Human Factor
+
+- Salah input range saat commissioning
+- Modifikasi logic tanpa update konfigurasi DCS
+- Tidak ada dokumentasi perubahan
+
+Kesalahan konfigurasi sering lebih dominan dibanding kegagalan hardware.
+
+---
+
+## 8️⃣ Step-by-Step Investigation
+
+### STEP 1 – Validasi Field
+
+- Ukur loop current
+- Simulasikan 4 mA dan 20 mA menggunakan calibrator
+- Cocokkan respons dengan datasheet transmitter
+
+Jika 12 mA ≈ 50% range, maka transmitter bekerja sesuai spesifikasi.
+
+---
+
+### STEP 2 – Validasi PLC (Siemens)
+
+- Buka TIA Portal
+- Periksa raw value (misal 13824 ≈ 50%)
+- Periksa FC/FB scaling block
+- Verifikasi LRV/URV sesuai transmitter
+
+Periksa juga:
+
+- Offset parameter
+- Gain modification
+- Adanya scaling tambahan
+
+Jika PLC engineering value sesuai field, maka PLC layer tervalidasi.
+
+---
+
+### STEP 3 – Validasi DCS (Experion)
+
+- Buka point configuration di Experion
+- Bandingkan LRV/URV dengan PLC
+- Pastikan tidak terjadi double scaling
+- Bandingkan historian vs live display
+
+Jika live value berbeda dari PLC value, kemungkinan besar terjadi konfigurasi error di DCS.
+
+---
+
+### STEP 4 – Cross-Validation
+
+| Layer                 | Nilai   |
+| --------------------- | ------- |
+| Field gauge           | 25 m³/h |
+| Loop current          | 12 mA   |
+| PLC engineering value | 25 m³/h |
+| DCS display           | 35 m³/h |
+
+Interpretasi:
+
+PLC konsisten dengan field.
+DCS menyimpang.
+
+Kesimpulan: error berada pada konfigurasi Experion.
+
+---
+
+### Decision Logic
+
+Urutan validasi wajib:
+
+Field → Raw Value → Engineering PLC → Engineering DCS
+
+Pendekatan ini mencegah penggantian transmitter yang tidak perlu.
+
+---
+
+## 9️⃣ Root Cause & Contributing Factor
+
+### Root Cause
+
+LRV/URV di Honeywell Experion PKS tidak sesuai dengan transmitter.
+
+Transmitter range: 0–100 m³/h
+DCS dikonfigurasi: 0–80 m³/h
+
+Akibatnya, nilai ditampilkan lebih tinggi dari kondisi aktual.
+
+---
+
+### Contributing Factor
+
+- Tidak ada cross-check commissioning sheet
+- Tidak tersedia scaling validation checklist
+- Tidak dilakukan verifikasi lintas layer saat perubahan konfigurasi
+
+Kesalahan sistematis seperti ini sering terjadi pada tahap commissioning atau modifikasi tanpa prosedur validasi yang ketat.
+
+---
+
+## 🔟 Reference Standard & Gap Analysis
+
+### Referensi
+
+Investigasi dan koreksi konfigurasi harus mengacu pada standar berikut:
+
+- IEC 60381 (Standard Signal Range 4–20 mA)
+- IEC 61131 (Programmable Logic Controller Standard)
+- Vendor manual Siemens SIMATIC
+- Vendor system documentation Honeywell Experion PKS
+
+Standar tersebut menekankan konsistensi antara:
+
+- Range transmitter (LRV/URV)
+- Raw value conversion di PLC
+- Engineering unit di DCS
+
+---
+
+### Gap yang Ditemukan
+
+Dari hasil investigasi, ditemukan kelemahan sistemik:
+
+- Tidak tersedia dokumentasi range master sebagai referensi tunggal
+- Tidak ada prosedur validasi scaling lintas platform (Field–PLC–DCS)
+- Commissioning checklist tidak mencakup verifikasi engineering unit konsistensi
+
+Kegagalan bukan pada hardware, melainkan pada kontrol konfigurasi dan dokumentasi teknis.
+
+---
+
+## 1️⃣1️⃣ Corrective & Preventive Action
+
+### Immediate
+
+- Koreksi parameter LRV/URV pada konfigurasi Experion PKS
+- Verifikasi respons 4 mA dan 20 mA setelah perubahan
+- Konfirmasi bahwa nilai DCS kembali konsisten dengan PLC dan field gauge
+
+Tujuan immediate action adalah mengembalikan akurasi kontrol proses.
+
+---
+
+### Permanent
+
+- Buat master scaling sheet sebagai referensi tunggal resmi
+- Implementasikan SOP validasi berlapis: Field → PLC → DCS
+- Wajib audit scaling setiap terjadi Management of Change (MOC)
+
+Pendekatan ini memastikan integritas konfigurasi tetap terjaga setelah modifikasi.
+
+---
+
+### Monitoring
+
+- Bandingkan nilai historian dengan manual gauge secara periodik (misal mingguan)
+- Tetapkan tolerance deviation alert untuk mendeteksi deviasi sistematis
+
+Monitoring proaktif mencegah kesalahan konfigurasi berulang.
+
+---
+
+## 1️⃣2️⃣ Risk & Safety Reflection
+
+### Risiko Teknis
+
+- Control valve membuka berlebihan akibat nilai flow salah
+- Ratio control terganggu
+- Reactor atau unit proses mengalami upset
+
+---
+
+### Risiko Ekonomi
+
+- Produk menjadi off-spec
+- Biaya reprocessing meningkat
+- Konsumsi energi tidak efisien
+
+---
+
+### Insight
+
+Analog error tanpa alarm lebih berbahaya dibanding fault yang jelas terlihat, karena sistem tetap berjalan dalam kondisi salah tanpa indikasi gangguan.
+
+---
+
+## 1️⃣3️⃣ Data Interpretation & Trend Awareness
+
+Analisis dilakukan menggunakan historian pada Honeywell Experion PKS.
+
+### Analisa Historian
+
+Ditemukan pola berikut:
+
+- PV meningkat perlahan selama 2 minggu terakhir
+- Tidak terdapat spike atau noise acak
+- Deviasi konstan sekitar 10 m³/h dibanding field gauge
+
+Karakteristik deviasi:
+
+- Stabil
+- Linear
+- Tidak fluktuatif
+
+---
+
+### Interpretasi
+
+Deviasi konstan tanpa spike mengindikasikan:
+
+- Error sistematis (scaling mismatch)
+- Bukan noise
+- Bukan sensor drift acak
+- Bukan gangguan wiring intermittent
+
+Jika sensor drift, pola biasanya gradual tetapi tidak linear terhadap raw value konversi.
+
+Kesimpulan teknis:
+
+Error berasal dari konfigurasi range atau konversi unit, bukan dari transmitter.
+
+---
+
+### Insight
+
+Data historian adalah alat validasi utama dalam troubleshooting analog.
+
+Snapshot measurement hanya menunjukkan kondisi sesaat.
+Trend jangka menengah menunjukkan pola sistemik.
+
+---
+
+## 1️⃣4️⃣ Competency Mapping
+
+| Skill Area                  | Level Saat Ini | Target |
+| --------------------------- | -------------- | ------ |
+| Loop validation             | W              | I      |
+| PLC scaling literacy        | A              | W      |
+| DCS configuration awareness | A              | W      |
+| Cross-layer troubleshooting | A              | W      |
+| Data interpretation         | W              | I      |
+
+Fokus pengembangan:
+
+- Meningkatkan kemampuan membaca pola historis
+- Meningkatkan akurasi validasi lintas platform
+- Mengurangi keputusan berbasis asumsi
+
+---
+
+## 1️⃣5️⃣ Discussion Question
+
+1. Mengapa scaling error lebih berbahaya dibanding sensor fault?
+2. Bagaimana mendeteksi double scaling secara sistematis?
+3. Mengapa historian menjadi referensi utama dalam validasi analog?
+4. Pada layer mana kesalahan commissioning paling sering terjadi?
+5. Mengapa deviasi kecil dapat berdampak besar pada kualitas produk?
+
+Pertanyaan ini dirancang untuk memperkuat pola pikir analitis.
+
+---
+
+## 1️⃣6️⃣ Key Takeaway
+
+- Analog input harus divalidasi lintas layer
+- Raw value lebih penting dibanding display value
+- Double scaling harus dihindari
+- Historian adalah alat diagnosis sistematis
+- Error konfigurasi lebih umum dibanding kerusakan hardware
+- Konsistensi Field–PLC–DCS wajib dijaga
+- Troubleshooting berbasis data mencegah kesalahan diagnosis
+
+---
+
+<small>
+  **_Catatan Penyusunan_** Artikel ini merupakan bagian dari serial peningkatan
+  kompetensi yang dirancang untuk diikuti secara berurutan guna membangun
+  pemahaman sistematis dan bertahap. Meskipun demikian, setiap artikel tetap
+  dapat dibaca secara terpisah sebagai referensi mandiri sesuai kebutuhan
+  pembaca. Materi disusun berdasarkan berbagai sumber pustaka teknis, praktik
+  lapangan industri, serta dukungan alat bantu penulisan. Pembaca disarankan
+  melakukan verifikasi lanjutan dan penyesuaian teknis sesuai dengan standar
+  perusahaan, kondisi aktual peralatan, serta regulasi keselamatan yang berlaku.
+</small>
