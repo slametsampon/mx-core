@@ -10,7 +10,7 @@ ASME – ASME Section VIII (Pressure Vessel Awareness)
 ---
 
 - [🔵 BULAN 6 – Heat Exchanger \& Static Equipment](#-bulan-6--heat-exchanger--static-equipment)
-- [📘 ARTIKEL 18](#-artikel-18)
+- [📘 ARTIKEL 19](#-artikel-19)
   - [Fouling pada Heat Exchanger – Dampak pada Performance \& Overload System](#fouling-pada-heat-exchanger--dampak-pada-performance--overload-system)
   - [1️⃣ Informasi Umum](#1️⃣-informasi-umum)
   - [2️⃣ Learning Objective (Measurable \& Skill-Based)](#2️⃣-learning-objective-measurable--skill-based)
@@ -28,7 +28,7 @@ ASME – ASME Section VIII (Pressure Vessel Awareness)
   - [1️⃣4️⃣ Competency Mapping](#1️⃣4️⃣-competency-mapping)
   - [1️⃣5️⃣ Discussion Question](#1️⃣5️⃣-discussion-question)
   - [1️⃣6️⃣ Key Takeaway](#1️⃣6️⃣-key-takeaway)
-- [📘 ARTIKEL 19](#-artikel-19)
+- [📘 ARTIKEL 20](#-artikel-20)
   - [Tube Leakage Symptom – Bagaimana Mendeteksi Sebelum Failure Besar?](#tube-leakage-symptom--bagaimana-mendeteksi-sebelum-failure-besar)
   - [1️⃣ Informasi Umum](#1️⃣-informasi-umum-1)
   - [2️⃣ Learning Objective](#2️⃣-learning-objective)
@@ -44,13 +44,13 @@ ASME – ASME Section VIII (Pressure Vessel Awareness)
   - [1️⃣2️⃣ Risk Reflection](#1️⃣2️⃣-risk-reflection)
   - [1️⃣3️⃣ Data Awareness](#1️⃣3️⃣-data-awareness)
   - [1️⃣4️⃣ Competency Mapping](#1️⃣4️⃣-competency-mapping-1)
-- [📘 ARTIKEL 20](#-artikel-20)
+- [📘 ARTIKEL 21](#-artikel-21)
   - [Visual Inspection During Shutdown – Static Equipment Awareness](#visual-inspection-during-shutdown--static-equipment-awareness)
 - [📊 ALIGNMENT DENGAN OUTPUT JUNIOR MECHANICAL](#-alignment-dengan-output-junior-mechanical)
 
 ---
 
-# 📘 ARTIKEL 18
+# 📘 ARTIKEL 19
 
 ## Fouling pada Heat Exchanger – Dampak pada Performance & Overload System
 
@@ -266,7 +266,7 @@ Target Setelah Artikel: Menuju I
 
 ---
 
-# 📘 ARTIKEL 19
+# 📘 ARTIKEL 20
 
 ## Tube Leakage Symptom – Bagaimana Mendeteksi Sebelum Failure Besar?
 
@@ -406,7 +406,7 @@ Static equipment diagnosis: W → I
 
 ---
 
-# 📘 ARTIKEL 20
+# 📘 ARTIKEL 21
 
 ## Visual Inspection During Shutdown – Static Equipment Awareness
 
