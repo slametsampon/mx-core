@@ -45,6 +45,54 @@
     ]
   },
   {
+    "id": "maintenance/elins/kurikulum/artikel-30-false-trip",
+    "name": "False Trip pada Safety Loop – Sensor Fault atau Logic Issue?",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/elins/kurikulum/artikel-30-false-trip",
+    "subtitle": "February 19, 2026",
+    "keywords": [
+      "SIS",
+      "False-Trip",
+      "Impulse-Line",
+      "Voting-Logic-1oo2",
+      "Pressure-Transmitter",
+      "Functional-Safety",
+      "Spurious-Trip-Analysis"
+    ]
+  },
+  {
+    "id": "maintenance/elins/kurikulum/artikel-31-proof-test",
+    "name": "Proof Test Awareness & Dokumentasi Sesuai IEC 61511",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/elins/kurikulum/artikel-31-proof-test",
+    "subtitle": "February 19, 2026",
+    "keywords": [
+      "SIS",
+      "Proof-Test",
+      "IEC-61511",
+      "Response-Time",
+      "SIL-Integrity",
+      "Functional-Safety",
+      "Safety-Documentation"
+    ]
+  },
+  {
+    "id": "maintenance/elins/kurikulum/artikel-32-konsep-dasar-sil",
+    "name": "Perbedaan BPCS vs SIS & Konsep Dasar SIL",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/elins/kurikulum/artikel-32-konsep-dasar-sil",
+    "subtitle": "February 19, 2026",
+    "keywords": [
+      "BPCS-vs-SIS",
+      "SIL",
+      "Functional-Safety",
+      "IEC-61511",
+      "Redundancy-1oo2",
+      "Safety-Architecture",
+      "Layer-of-Protection"
+    ]
+  },
+  {
     "id": "maintenance/mechanical/kurikulum/artikel-22-flange-leakage",
     "name": "Flange Leakage Setelah Startup – Torque Tidak Merata atau Gasket Damage?",
     "section": "CONTENT",
@@ -96,6 +144,54 @@
       "preventive-engineering",
       "loss-of-containment",
       "mechanical-awareness"
+    ]
+  },
+  {
+    "id": "maintenance/mechanical/kurikulum/artikel-25-gate-valve-full-cloce",
+    "name": "Gate Valve Tidak Bisa Full Close – Masalah Internal atau Operasi?",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/mechanical/kurikulum/artikel-25-gate-valve-full-cloce",
+    "subtitle": "February 19, 2026",
+    "keywords": [
+      "mechanical",
+      "gate-valve",
+      "troubleshooting",
+      "isolation-verification",
+      "process-safety",
+      "root-cause-analysis",
+      "reliability-maintenance"
+    ]
+  },
+  {
+    "id": "maintenance/mechanical/kurikulum/artikel-26-stuck-valve",
+    "name": "Stuck Valve Case – Korosi, Over-Torque, atau Packing Problem?",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/mechanical/kurikulum/artikel-26-stuck-valve",
+    "subtitle": "February 19, 2026",
+    "keywords": [
+      "mechanical",
+      "manual-valve",
+      "packing-friction",
+      "over-torque-risk",
+      "isolation-safety",
+      "root-cause-analysis",
+      "reliability-practice"
+    ]
+  },
+  {
+    "id": "maintenance/mechanical/kurikulum/artikel-27-manual-valve-greasing",
+    "name": "Manual Valve Greasing & Inspection – Preventive untuk Reliability",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/mechanical/kurikulum/artikel-27-manual-valve-greasing",
+    "subtitle": "February 19, 2026",
+    "keywords": [
+      "mechanical",
+      "manual-valve-maintenance",
+      "preventive-maintenance",
+      "valve-greasing",
+      "isolation-reliability",
+      "process-safety",
+      "condition-monitoring"
     ]
   },
   {
@@ -183,6 +279,22 @@
       "process-analyzer-reliability",
       "quality-control-system",
       "gc-troubleshooting"
+    ]
+  },
+  {
+    "id": "maintenance/elins/kurikulum/artikel-29-esd-valve-gagal-close",
+    "name": "ESD Valve Gagal Close Saat Test – Investigasi dari Logic hingga Actuator",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/elins/kurikulum/artikel-29-esd-valve-gagal-close",
+    "subtitle": "February 18, 2026",
+    "keywords": [
+      "SIS",
+      "ESD-Valve",
+      "Solenoid-Failure",
+      "Proof-Test",
+      "Functional-Safety",
+      "IEC-61511",
+      "Safety-Loop-Troubleshooting"
     ]
   },
   {

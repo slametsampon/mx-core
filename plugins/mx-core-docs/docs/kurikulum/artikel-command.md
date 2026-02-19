@@ -1,8 +1,8 @@
-Berikut outline artikel yang anda harus anda ikuti 100% tanpa bereser:
+Berikut outline artikel yang anda harus anda ikuti 100% tanpa bergeser:
 
 ---
 
-<<<<< Outline artikel >>>>
+<<<<< Gantilah dengan Outline artikel >>>>
 
 ---
 
