@@ -1,10 +1,109 @@
 [
   {
+    "id": "maintenance/elins/kurikulum/artikel-25-gas-analyzer-reading",
+    "name": "Gas Analyzer Reading Drifting – Investigasi dari Sampling Line hingga Analyzer Cell",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/elins/kurikulum/artikel-25-gas-analyzer-reading",
+    "subtitle": "February 19, 2026",
+    "keywords": [
+      "gas-analyzer",
+      "sampling-system-drift",
+      "instrument-troubleshooting",
+      "process-reliability",
+      "analyzer-maintenance",
+      "safety-awareness"
+    ]
+  },
+  {
+    "id": "maintenance/elins/kurikulum/artikel-26-moisture-analyzer",
+    "name": "Moisture Analyzer False Alarm – Gangguan Sensor atau Kondensasi?",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/elins/kurikulum/artikel-26-moisture-analyzer",
+    "subtitle": "February 19, 2026",
+    "keywords": [
+      "moisture-analyzer",
+      "sampling-heater-failure",
+      "false-alarm-troubleshooting",
+      "process-safety-interlock",
+      "instrument-reliability",
+      "condensation-risk"
+    ]
+  },
+  {
+    "id": "maintenance/elins/kurikulum/artikel-27-analyzer-samling-line",
+    "name": "Cleaning & Maintenance Sampling Line – Preventive untuk Reliability Analyzer",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/elins/kurikulum/artikel-27-analyzer-samling-line",
+    "subtitle": "February 19, 2026",
+    "keywords": [
+      "sampling-line-maintenance",
+      "analyzer-reliability-preventive",
+      "filter-differential-pressure",
+      "process-analyzer-system",
+      "instrument-safety-awareness",
+      "preventive-maintenance-discipline"
+    ]
+  },
+  {
+    "id": "maintenance/mechanical/kurikulum/artikel-22-flange-leakage",
+    "name": "Flange Leakage Setelah Startup – Torque Tidak Merata atau Gasket Damage?",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/mechanical/kurikulum/artikel-22-flange-leakage",
+    "subtitle": "February 19, 2026",
+    "keywords": [
+      "flange-leakage",
+      "bolt-torque",
+      "gasket-integrity",
+      "thermal-expansion",
+      "ASME-B31.3",
+      "process-piping",
+      "loss-of-containment",
+      "startup-failure",
+      "mechanical-troubleshooting"
+    ]
+  },
+  {
+    "id": "maintenance/mechanical/kurikulum/artikel-23-gasket-failure",
+    "name": "Gasket Failure Case – Salah Material atau Salah Instalasi?",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/mechanical/kurikulum/artikel-23-gasket-failure",
+    "subtitle": "February 19, 2026",
+    "keywords": [
+      "gasket-failure",
+      "under-torque",
+      "seating-stress",
+      "ASME-B31.3",
+      "flange-joint",
+      "pressure-surge",
+      "loss-of-containment",
+      "mechanical-troubleshooting",
+      "thermal-cycle"
+    ]
+  },
+  {
+    "id": "maintenance/mechanical/kurikulum/artikel-24-bolt-tightening",
+    "name": "Bolt Tightening Sequence Awareness – Mengapa Pola & Tahapan Penting?",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/mechanical/kurikulum/artikel-24-bolt-tightening",
+    "subtitle": "February 19, 2026",
+    "keywords": [
+      "bolt-tightening",
+      "star-pattern",
+      "multi-step-torque",
+      "seating-stress",
+      "ASME-B31.3",
+      "flange-integrity",
+      "preventive-engineering",
+      "loss-of-containment",
+      "mechanical-awareness"
+    ]
+  },
+  {
     "id": "maintenance/elins/kurikulum/artikel-21-transformer-overheating",
     "name": "Transformer Overheating Alarm – Investigasi Beban, Pendinginan, atau Fault Internal?",
     "section": "CONTENT",
     "href": "/blog/maintenance/elins/kurikulum/artikel-21-transformer-overheating",
-    "subtitle": "February 19, 2026",
+    "subtitle": "February 18, 2026",
     "keywords": [
       "transformer-overheating",
       "ieee-c57",
@@ -22,7 +121,7 @@
     "name": "Unbalance Voltage pada Panel Distribusi – Dampaknya ke Motor & Equipment",
     "section": "CONTENT",
     "href": "/blog/maintenance/elins/kurikulum/artikel-22-unbalance-voltage",
-    "subtitle": "February 19, 2026",
+    "subtitle": "February 18, 2026",
     "keywords": [
       "voltage-unbalance",
       "nema-mg1",
@@ -40,7 +139,7 @@
     "name": "Visual Inspection & Thermography Awareness pada Transformer & Panel",
     "section": "CONTENT",
     "href": "/blog/maintenance/elins/kurikulum/artikel-23-transformer-inspection",
-    "subtitle": "February 19, 2026",
+    "subtitle": "February 18, 2026",
     "keywords": [
       "thermography-inspection",
       "busbar-hotspot",
@@ -58,7 +157,7 @@
     "name": "Basic Transformer Operation & Protection Concept",
     "section": "CONTENT",
     "href": "/blog/maintenance/elins/kurikulum/artikel-24-transformer-operation",
-    "subtitle": "February 19, 2026",
+    "subtitle": "February 18, 2026",
     "keywords": [
       "transformer-basic-operation",
       "ieee-c57",
@@ -72,11 +171,26 @@
     ]
   },
   {
+    "id": "maintenance/elins/kurikulum/artikel-28-gas-analyzer-basic",
+    "name": "Prinsip Kerja Gas Analyzer & Basic Gas Chromatograph (GC)",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/elins/kurikulum/artikel-28-gas-analyzer-basic",
+    "subtitle": "February 18, 2026",
+    "keywords": [
+      "gas-chromatograph-basic",
+      "carrier-gas-stability",
+      "retention-time-shift",
+      "process-analyzer-reliability",
+      "quality-control-system",
+      "gc-troubleshooting"
+    ]
+  },
+  {
     "id": "maintenance/mechanical/kurikulum/artikel-19-fouling-heat-exchanger",
     "name": "Fouling pada Heat Exchanger – Dampak pada Performance & Overload System",
     "section": "CONTENT",
     "href": "/blog/maintenance/mechanical/kurikulum/artikel-19-fouling-heat-exchanger",
-    "subtitle": "February 19, 2026",
+    "subtitle": "February 18, 2026",
     "keywords": [
       "heat-exchanger",
       "fouling-analysis",
@@ -93,7 +207,7 @@
     "name": "Tube Leakage Symptom – Bagaimana Mendeteksi Sebelum Failure Besar?",
     "section": "CONTENT",
     "href": "/blog/maintenance/mechanical/kurikulum/artikel-20-tube-leakage-sympton",
-    "subtitle": "February 19, 2026",
+    "subtitle": "February 18, 2026",
     "keywords": [
       "tube-leakage-detection",
       "shell-and-tube-heat-exchanger",
@@ -111,7 +225,7 @@
     "name": "Visual Inspection During Shutdown – Static Equipment Awareness",
     "section": "CONTENT",
     "href": "/blog/maintenance/mechanical/kurikulum/artikel-21-visual-inspection-ta",
-    "subtitle": "February 19, 2026",
+    "subtitle": "February 18, 2026",
     "keywords": [
       "visual-inspection-static-equipment",
       "pressure-vessel-inspection",
