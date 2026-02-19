@@ -45,6 +45,22 @@
     ]
   },
   {
+    "id": "maintenance/elins/kurikulum/artikel-29-esd-valve-gagal-close",
+    "name": "ESD Valve Gagal Close Saat Test – Investigasi dari Logic hingga Actuator",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/elins/kurikulum/artikel-29-esd-valve-gagal-close",
+    "subtitle": "February 19, 2026",
+    "keywords": [
+      "SIS",
+      "ESD-Valve",
+      "Solenoid-Failure",
+      "Proof-Test",
+      "Functional-Safety",
+      "IEC-61511",
+      "Safety-Loop-Troubleshooting"
+    ]
+  },
+  {
     "id": "maintenance/elins/kurikulum/artikel-30-false-trip",
     "name": "False Trip pada Safety Loop – Sensor Fault atau Logic Issue?",
     "section": "CONTENT",
@@ -279,22 +295,6 @@
       "process-analyzer-reliability",
       "quality-control-system",
       "gc-troubleshooting"
-    ]
-  },
-  {
-    "id": "maintenance/elins/kurikulum/artikel-29-esd-valve-gagal-close",
-    "name": "ESD Valve Gagal Close Saat Test – Investigasi dari Logic hingga Actuator",
-    "section": "CONTENT",
-    "href": "/blog/maintenance/elins/kurikulum/artikel-29-esd-valve-gagal-close",
-    "subtitle": "February 18, 2026",
-    "keywords": [
-      "SIS",
-      "ESD-Valve",
-      "Solenoid-Failure",
-      "Proof-Test",
-      "Functional-Safety",
-      "IEC-61511",
-      "Safety-Loop-Troubleshooting"
     ]
   },
   {
@@ -1007,6 +1007,33 @@
       "ieee-protection-practice",
       "industrial-reliability",
       "pemeliharaan-pabrik-petrokimia"
+    ]
+  },
+  {
+    "id": "pkl/JAI-CM-030GE-RH",
+    "name": "Camera JAI CM-030GE-RH",
+    "section": "CONTENT",
+    "href": "/blog/pkl/JAI-CM-030GE-RH",
+    "subtitle": "February 13, 2026",
+    "keywords": [
+      "Camera",
+      "Remote-Head",
+      "pkl"
+    ]
+  },
+  {
+    "id": "pkl/PLC-Beckhoff-Artikel",
+    "name": "Arsitektur dan Implementasi Beckhoff CX9020 Sebagai Kontroler PLC Industri",
+    "section": "CONTENT",
+    "href": "/blog/pkl/PLC-Beckhoff-Artikel",
+    "subtitle": "February 13, 2026",
+    "keywords": [
+      "PLC",
+      "beckhoff",
+      "TwinCAT",
+      "otomasi",
+      "industri",
+      "pkl"
     ]
   },
   {

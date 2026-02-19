@@ -1,0 +1,17 @@
+<img 
+  src="https://i.imgur.com/TBuVJ5O.png"
+  alt="Spesifikasi CX9020"
+  width="600"
+/>
+
+---
+name: Yus Putri Arum Segar
+avatar: https://i.imgur.com/TBuVJ5O.png
+occupation: Instrumentation Engineering Student
+company: Institut Teknologi Sepuluh Nopember
+email: yusputrias@gmail.com
+linkedin: www.linkedin.com/in/yus-putri-arum-segar-98a400247
+bio: Mahasiswa Teknik Instrumentasi di Institut Teknologi Sepuluh Nopember (ITS) dengan pengalaman dalam perancangan sistem, analisis teknik, dan penyusunan dokumentasi teknis. Memiliki kemampuan dalam interpretasi P&ID, pengelolaan data instrumen, serta analisis proses, dengan pemahaman pada bidang otomasi, sistem kontrol, dan standar industri. Aktif terlibat dalam penelitian, inovasi, dan pengembangan teknologi, termasuk proyek yang didanai, pendaftaran hak kekayaan intelektual, publikasi konferensi, serta kompetisi teknik internasional. Memiliki kemampuan analitis, komunikasi, dan kolaborasi yang baik, dengan minat kuat pada perencanaan teknik, optimasi sistem, dan proyek berbasis inovasi.
+---
+
+Mahasiswa Teknik Instrumentasi di Institut Teknologi Sepuluh Nopember (ITS) dengan pengalaman dalam perancangan sistem, analisis teknik, dan penyusunan dokumentasi teknis. Memiliki kemampuan dalam interpretasi P&ID, pengelolaan data instrumen, serta analisis proses, dengan pemahaman pada bidang otomasi, sistem kontrol, dan standar industri. Aktif terlibat dalam penelitian, inovasi, dan pengembangan teknologi, termasuk proyek yang didanai, pendaftaran hak kekayaan intelektual, publikasi konferensi, serta kompetisi teknik internasional. Memiliki kemampuan analitis, komunikasi, dan kolaborasi yang baik, dengan minat kuat pada perencanaan teknik, optimasi sistem, dan proyek berbasis inovasi.

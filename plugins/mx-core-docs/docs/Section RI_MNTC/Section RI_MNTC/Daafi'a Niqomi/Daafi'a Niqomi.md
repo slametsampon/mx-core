@@ -1,0 +1,16 @@
+<img
+  src="https://i.imgur.com/c61FbBI.jpeg"
+  alt="Camera JAI CM-030GE-RH_"
+  width="500"
+/>
+
+---
+name: Daafi'a Niqomi
+occupation: Mahasiswa Teknik Instrumentasi 
+company: Institut Teknologi Sepuluh Nopember (ITS)
+email: daafialhabsyi12@gmail.com
+linkedin: www.linkedin.com/in/daafianiqomi 
+bio: Mahasiswa Teknik Instrumentasi di Institut Teknologi Sepuluh Nopember (ITS). Saya memiliki pengalaman dalam perancangan teknik menggunakan AutoCAD serta pengembangan aplikasi menggunakan Visual Studio. Saya juga memiliki kemampuan dalam mengembangkan sistem monitoring berbasis IoT yang terintegrasi dengan Firebase, sehingga memungkinkan akuisisi data secara real-time, penyimpanan berbasis cloud, serta visualisasi jarak jauh melalui platform web maupun mobile. Aktif dalam organisasi kemahasiswaan yang berfokus pada kajian dan aksi sosial, saya memiliki pengalaman dalam analisis isu, penyusunan kajian strategis. Selain itu, saya telah mengikuti berbagai kompetisi Karya Tulis Ilmiah (KTI) yang memperkuat kemampuan riset, penulisan ilmiah, dan berpikir kritis. Saya terbiasa bekerja dalam tim, memiliki kemampuan komunikasi yang baik, serta mampu mengelola waktu secara efektif di tengah tanggung jawab akademik dan organisasi.
+---
+
+Mahasiswa Teknik Instrumentasi di Institut Teknologi Sepuluh Nopember (ITS). Saya memiliki pengalaman dalam perancangan teknik menggunakan AutoCAD serta pengembangan aplikasi menggunakan Visual Studio. Saya juga memiliki kemampuan dalam mengembangkan sistem monitoring berbasis IoT yang terintegrasi dengan Firebase, sehingga memungkinkan akuisisi data secara real-time, penyimpanan berbasis cloud, serta visualisasi jarak jauh melalui platform web maupun mobile. Aktif dalam organisasi kemahasiswaan yang berfokus pada kajian dan aksi sosial, saya memiliki pengalaman dalam analisis isu, penyusunan kajian strategis. Selain itu, saya telah mengikuti berbagai kompetisi Karya Tulis Ilmiah (KTI) yang memperkuat kemampuan riset, penulisan ilmiah, dan berpikir kritis. Saya terbiasa bekerja dalam tim, memiliki kemampuan komunikasi yang baik, serta mampu mengelola waktu secara efektif di tengah tanggung jawab akademik dan organisasi.
