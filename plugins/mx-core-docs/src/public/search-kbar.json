@@ -1,5 +1,24 @@
 [
   {
+    "id": "maintenance/mechanical/replacement-liner-piston-C-412",
+    "name": "PROSEDUR PENGGANTIAN LINER COMPRESSOR C-412",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/mechanical/replacement-liner-piston-C-412",
+    "subtitle": "February 20, 2026",
+    "keywords": [
+      "RBM",
+      "IK-WI",
+      "rotating-equipment",
+      "reciprocating-compressor",
+      "liner-replacement",
+      "risk-gate",
+      "stop-work",
+      "escalation-boundary",
+      "mechanical-integrity",
+      "process-safety"
+    ]
+  },
+  {
     "id": "maintenance/elins/kurikulum/artikel-25-gas-analyzer-reading",
     "name": "Gas Analyzer Reading Drifting – Investigasi dari Sampling Line hingga Analyzer Cell",
     "section": "CONTENT",
@@ -1016,8 +1035,8 @@
     "href": "/blog/pkl/JAI-CM-030GE-RH",
     "subtitle": "February 13, 2026",
     "keywords": [
-      "Camera",
-      "Remote-Head",
+      "camera",
+      "remote-head",
       "pkl"
     ]
   },
@@ -1030,7 +1049,7 @@
     "keywords": [
       "PLC",
       "beckhoff",
-      "TwinCAT",
+      "twincat",
       "otomasi",
       "industri",
       "pkl"
