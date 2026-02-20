@@ -1,5 +1,101 @@
 [
   {
+    "id": "maintenance/elins/kurikulum/artikel-33-temuan-pre-ta",
+    "name": "Temuan Umum Saat Pre-Shutdown Inspection – Identifikasi Awal Sebelum Unit Dimatikan",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/elins/kurikulum/artikel-33-temuan-pre-ta",
+    "subtitle": "February 20, 2026",
+    "keywords": [
+      "pre-shutdown-inspection",
+      "electrical-instrumentation",
+      "shutdown-preparation",
+      "arc-flash-risk",
+      "loss-of-containment",
+      "diagram-literacy",
+      "reliability-awareness"
+    ]
+  },
+  {
+    "id": "maintenance/elins/kurikulum/artikel-34-checklist-ta",
+    "name": "Penyusunan Checklist Shutdown E&I – Struktur & Prioritas",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/elins/kurikulum/artikel-34-checklist-ta",
+    "subtitle": "February 20, 2026",
+    "keywords": [
+      "shutdown-checklist",
+      "electrical-instrumentation",
+      "SIS-proof-test",
+      "startup-reliability",
+      "arc-flash-risk",
+      "risk-ranking",
+      "system-based-maintenance"
+    ]
+  },
+  {
+    "id": "maintenance/elins/kurikulum/artikel-35-dasar-jsa",
+    "name": "Risk Assessment Dasar (JSA) untuk Pekerjaan Shutdown",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/elins/kurikulum/artikel-35-dasar-jsa",
+    "subtitle": "February 20, 2026",
+    "keywords": [
+      "JSA-shutdown",
+      "zero-energy-verification",
+      "arc-flash-risk",
+      "loss-of-containment",
+      "electrical-instrumentation",
+      "LOTO-safety",
+      "diagram-based-risk"
+    ]
+  },
+  {
+    "id": "maintenance/mechanical/kurikulum/artikel-28-pre-tar-checklist",
+    "name": "Pre-TAR Checklist – Mengapa 70% Keberhasilan Shutdown Ditentukan Sebelum Unit Dimatikan?",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/mechanical/kurikulum/artikel-28-pre-tar-checklist",
+    "subtitle": "February 20, 2026",
+    "keywords": [
+      "shutdown-preparation",
+      "pre-TAR-checklist",
+      "mechanical-planning",
+      "system-interaction",
+      "loss-of-containment",
+      "reliability-awareness",
+      "industrial-safety"
+    ]
+  },
+  {
+    "id": "maintenance/mechanical/kurikulum/artikel-29-gasket-bolt-preparation",
+    "name": "Gasket & Bolt Preparation – Menghindari Rework Saat TAR",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/mechanical/kurikulum/artikel-29-gasket-bolt-preparation",
+    "subtitle": "February 20, 2026",
+    "keywords": [
+      "flange-integrity",
+      "gasket-bolt-preload",
+      "pressure-boundary",
+      "loss-of-containment",
+      "shutdown-reliability",
+      "mechanical-verification",
+      "process-safety"
+    ]
+  },
+  {
+    "id": "maintenance/mechanical/kurikulum/artikel-30-spare-readiness",
+    "name": "Spare Readiness – Menghindari Downtime karena Part Tidak Siap",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/mechanical/kurikulum/artikel-30-spare-readiness",
+    "subtitle": "February 20, 2026",
+    "keywords": [
+      "spare-readiness",
+      "critical-spare-management",
+      "shutdown-planning",
+      "bearing-preservation",
+      "reliability-system",
+      "downtime-prevention",
+      "process-safety"
+    ]
+  },
+  {
     "id": "maintenance/mechanical/replacement-liner-piston-C-412",
     "name": "PROSEDUR PENGGANTIAN LINER COMPRESSOR C-412",
     "section": "CONTENT",
