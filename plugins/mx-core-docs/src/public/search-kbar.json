@@ -1,5 +1,99 @@
 [
   {
+    "id": "maintenance/elins/kurikulum/artikel-36-ground-fault-feeder",
+    "name": "Ground Fault pada Motor Feeder – Investigasi dari Insulation hingga Earthing System",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/elins/kurikulum/artikel-36-ground-fault-feeder",
+    "subtitle": "February 21, 2026",
+    "keywords": [
+      "ground-fault",
+      "motor-feeder",
+      "insulation-testing",
+      "earthing-system",
+      "relay-protection",
+      "arc-flash-risk",
+      "troubleshooting-lv"
+    ]
+  },
+  {
+    "id": "maintenance/elins/kurikulum/artikel-37-signal-noise-ai",
+    "name": "Signal Noise pada Analog Instrument – Masalah Ground Loop atau Shielding?",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/elins/kurikulum/artikel-37-signal-noise-ai",
+    "subtitle": "February 21, 2026",
+    "keywords": [
+      "signal-noise",
+      "4-20mA-loop",
+      "ground-loop",
+      "shielding",
+      "instrumentation-troubleshooting",
+      "control-system-stability",
+      "single-point-grounding"
+    ]
+  },
+  {
+    "id": "maintenance/elins/kurikulum/artikel-38-inspection-cable-gland",
+    "name": "Inspection Cable Gland & Termination – Preventive untuk Keandalan Sistem",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/elins/kurikulum/artikel-38-inspection-cable-gland",
+    "subtitle": "February 21, 2026",
+    "keywords": [
+      "cable-gland",
+      "termination-torque",
+      "preventive-maintenance",
+      "grounding-continuity",
+      "arc-flash-risk",
+      "reliability-system"
+    ]
+  },
+  {
+    "id": "maintenance/elins/kurikulum/artikel-39-earthing-bonding",
+    "name": "Earthing & Bonding System Basic – Prinsip Proteksi Keselamatan",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/elins/kurikulum/artikel-39-earthing-bonding",
+    "subtitle": "February 21, 2026",
+    "keywords": [
+      "earthing-system",
+      "bonding-protection",
+      "ground-resistance",
+      "step-touch-potential",
+      "electrical-safety",
+      "fault-current-path"
+    ]
+  },
+  {
+    "id": "maintenance/mechanical/kurikulum/artikel-31-unbalance-misalignment",
+    "name": "Unbalance vs Misalignment – Bagaimana Membedakan dari Gejala Vibrasi?",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/mechanical/kurikulum/artikel-31-unbalance-misalignment",
+    "subtitle": "February 21, 2026",
+    "keywords": [
+      "vibration-analysis",
+      "unbalance-misalignment",
+      "shaft-alignment",
+      "rotating-equipment",
+      "reliability-awareness",
+      "mechanical-troubleshooting",
+      "asset-integrity"
+    ]
+  },
+  {
+    "id": "maintenance/mechanical/kurikulum/artikel-32-vibration-terminology",
+    "name": "Basic Vibration Terminology – Bahasa Dasar yang Harus Dipahami Teknisi",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/mechanical/kurikulum/artikel-32-vibration-terminology",
+    "subtitle": "February 21, 2026",
+    "keywords": [
+      "vibration-terminology",
+      "rotating-equipment",
+      "frequency-analysis",
+      "reliability-awareness",
+      "mechanical-diagnostics",
+      "condition-monitoring",
+      "asset-integrity"
+    ]
+  },
+  {
     "id": "maintenance/elins/kurikulum/artikel-33-temuan-pre-ta",
     "name": "Temuan Umum Saat Pre-Shutdown Inspection – Identifikasi Awal Sebelum Unit Dimatikan",
     "section": "CONTENT",
