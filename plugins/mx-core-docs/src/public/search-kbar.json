@@ -1,5 +1,26 @@
 [
   {
+    "id": "safety/lopa-bpcs-sis-sif",
+    "name": "Dari Hazard ke Implementasi - Peran LOPA dalam Menentukan BPCS, SIS, SIF, dan SIL pada Pabrik Petrokimia",
+    "section": "CONTENT",
+    "href": "/blog/safety/lopa-bpcs-sis-sif",
+    "subtitle": "February 26, 2026",
+    "keywords": [
+      "process-safety",
+      "functional-safety",
+      "LOPA",
+      "HAZOP",
+      "SIL-SIF-SIS",
+      "BPCS-DCS-PLC",
+      "petrochemical-plant",
+      "safety-architecture",
+      "proof-testing",
+      "MOC-management-of-change",
+      "IEC-61511",
+      "IEC-62443"
+    ]
+  },
+  {
     "id": "maintenance/elins/kurikulum/artikel-36-ground-fault-feeder",
     "name": "Ground Fault pada Motor Feeder – Investigasi dari Insulation hingga Earthing System",
     "section": "CONTENT",
