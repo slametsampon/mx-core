@@ -1,0 +1,1133 @@
+---
+title: Major Integrated Case - Motor Trip → Valve Malfunction → Plant Upset
+authors: ['sam']
+date: '2026-02-27'
+tags:
+  [
+    'integrated-troubleshooting',
+    'motor-trip-analysis',
+    'preventive-maintenance-gap',
+    'system-thinking-ei',
+    'trend-monitoring-reliability',
+    'industrial-safety-awareness',
+  ]
+draft: false
+summary: Artikel ini membahas studi kasus terintegrasi kegagalan motor yang memicu gangguan valve dan upset proses. Analisis dimulai dari event pertama (motor trip) dengan pendekatan sistematis berbasis data arus, vibration, dan event log. Investigasi lintas disiplin menunjukkan akar masalah berasal dari suction strainer yang tersumbat, bukan kerusakan motor. Kegagalan preventive maintenance berbasis waktu tanpa analisa tren menjadi faktor sistemik utama. Artikel menekankan pentingnya diagram literacy (SLD, Loop, Cause & Effect), monitoring parameter kritikal, serta refleksi risiko keselamatan seperti overpressure dan arc flash. Pendekatan ini memperkuat system thinking, reliability awareness, dan troubleshooting terstruktur pada teknisi junior E&I.
+---
+
+# 📘 **_ARTIKEL 44: Major Integrated Case: Motor Trip → Valve Malfunction → Plant Upset_**
+
+---
+
+- [📘 **_ARTIKEL 44: Major Integrated Case: Motor Trip → Valve Malfunction → Plant Upset_**](#-artikel-44-major-integrated-case-motor-trip--valve-malfunction--plant-upset)
+- [1️⃣ Informasi Umum](#1️⃣-informasi-umum)
+  - [1. **Judul Artikel**](#1-judul-artikel)
+  - [2. **Disiplin**](#2-disiplin)
+  - [3. **Level**](#3-level)
+  - [4. **Kategori**](#4-kategori)
+  - [5. **Equipment / System Terkait**](#5-equipment--system-terkait)
+  - [6. **Referensi Standar**](#6-referensi-standar)
+- [2️⃣ Learning Objective (Measurable \& Skill-Based)](#2️⃣-learning-objective-measurable--skill-based)
+  - [✅ **LO1 – Technical Skill**](#-lo1--technical-skill)
+  - [✅ **LO2 – Analytical Skill**](#-lo2--analytical-skill)
+  - [✅ **LO3 – System \& Safety Skill**](#-lo3--system--safety-skill)
+- [3️⃣ System Context \& Criticality](#3️⃣-system-context--criticality)
+  - [🔹 Posisi dalam Sistem](#-posisi-dalam-sistem)
+  - [🔹 Dampak Jika Gagal](#-dampak-jika-gagal)
+  - [🔹 Interaksi Lintas Disiplin](#-interaksi-lintas-disiplin)
+- [4️⃣ Diagram Literacy Section (WAJIB)](#4️⃣-diagram-literacy-section-wajib)
+  - [A. Single Line Diagram (SLD)](#a-single-line-diagram-sld)
+    - [🔍 Yang Harus Mampu Diidentifikasi Teknisi](#-yang-harus-mampu-diidentifikasi-teknisi)
+    - [🔎 Jalur Energi](#-jalur-energi)
+    - [🎯 Titik Proteksi](#-titik-proteksi)
+    - [⚠ Titik Isolasi](#-titik-isolasi)
+  - [B. Loop Diagram](#b-loop-diagram)
+    - [🔍 Jalur Sinyal](#-jalur-sinyal)
+    - [🎯 Titik Penting yang Harus Diperiksa](#-titik-penting-yang-harus-diperiksa)
+  - [C. Cause \& Effect Matrix](#c-cause--effect-matrix)
+    - [🔍 Logika Interlock yang Relevan](#-logika-interlock-yang-relevan)
+    - [🎯 Pemahaman Sistemik](#-pemahaman-sistemik)
+  - [🔎 Integrasi Tiga Diagram](#-integrasi-tiga-diagram)
+  - [🎯 Kompetensi yang Diuji pada Bab Ini](#-kompetensi-yang-diuji-pada-bab-ini)
+- [5️⃣ Background \& Failure Scenario](#5️⃣-background--failure-scenario)
+  - [🔹 Kronologi Aktual](#-kronologi-aktual)
+    - [Urutan Event Berdasarkan Event Log DCS](#urutan-event-berdasarkan-event-log-dcs)
+  - [🔹 Data Parameter](#-data-parameter)
+    - [🔎 Analisis Awal dari Data](#-analisis-awal-dari-data)
+- [6️⃣ Symptom \& Initial Finding](#6️⃣-symptom--initial-finding)
+  - [🔹 Terlihat](#-terlihat)
+  - [🔹 Terukur](#-terukur)
+  - [🔹 Diasumsikan Operator](#-diasumsikan-operator)
+- [7️⃣ Possible Causes (Structured Hypothesis)](#7️⃣-possible-causes-structured-hypothesis)
+  - [A. Electrical](#a-electrical)
+  - [B. Mechanical](#b-mechanical)
+  - [C. Instrument](#c-instrument)
+  - [D. Control](#d-control)
+  - [E. Human / System](#e-human--system)
+  - [🔎 Penyempitan Hipotesis](#-penyempitan-hipotesis)
+- [8️⃣ Step-by-Step Investigation Flow](#8️⃣-step-by-step-investigation-flow)
+  - [🔹 Langkah 1 – Review Timeline \& Event Log](#-langkah-1--review-timeline--event-log)
+  - [🔹 Langkah 2 – Analisa Trend Arus 30 Hari](#-langkah-2--analisa-trend-arus-30-hari)
+  - [🔹 Langkah 3 – Analisa Vibration \& Bearing Temperature](#-langkah-3--analisa-vibration--bearing-temperature)
+  - [🔹 Langkah 4 – Verifikasi Fisik Suction Line](#-langkah-4--verifikasi-fisik-suction-line)
+  - [🔹 Langkah 5 – Review Histori PM](#-langkah-5--review-histori-pm)
+  - [🔹 Decision Point](#-decision-point)
+- [9️⃣ Root Cause \& Contributing Factor](#9️⃣-root-cause--contributing-factor)
+  - [🔹 Root Cause Teknis](#-root-cause-teknis)
+  - [🔹 Contributing Factor](#-contributing-factor)
+  - [🔹 System Factor](#-system-factor)
+    - [🔎 Pembelajaran Penting](#-pembelajaran-penting)
+- [🔟 Reference to Standard \& Gap Analysis](#-reference-to-standard--gap-analysis)
+  - [🔹 Standar Mengharuskan](#-standar-mengharuskan)
+    - [API 610](#api-610)
+    - [IEEE 242](#ieee-242)
+    - [IEC 60034](#iec-60034)
+    - [Best Practice Reliability](#best-practice-reliability)
+  - [🔹 Gap yang Ditemukan](#-gap-yang-ditemukan)
+    - [🔎 Analisa Gap Singkat](#-analisa-gap-singkat)
+- [1️⃣1️⃣ Corrective \& Preventive Action](#1️⃣1️⃣-corrective--preventive-action)
+  - [🔹 Immediate Action](#-immediate-action)
+  - [🔹 Permanent Fix](#-permanent-fix)
+  - [🔹 System Improvement](#-system-improvement)
+  - [🔹 Monitoring Plan](#-monitoring-plan)
+- [1️⃣2️⃣ Risk \& Safety Reflection](#1️⃣2️⃣-risk--safety-reflection)
+  - [🔹 Potensi Bahaya](#-potensi-bahaya)
+  - [🔹 Refleksi Safety](#-refleksi-safety)
+- [1️⃣3️⃣ Data Interpretation \& Trend Awareness](#1️⃣3️⃣-data-interpretation--trend-awareness)
+  - [🔹 Parameter yang Harus Dipantau](#-parameter-yang-harus-dipantau)
+  - [🔹 Early Warning Indicator](#-early-warning-indicator)
+  - [🔎 Interpretasi Trend](#-interpretasi-trend)
+- [1️⃣4️⃣ Competency Mapping](#1️⃣4️⃣-competency-mapping)
+- [1️⃣5️⃣ Discussion Question (Toolbox Use)](#1️⃣5️⃣-discussion-question-toolbox-use)
+- [1️⃣6️⃣ Key Takeaway](#1️⃣6️⃣-key-takeaway)
+
+---
+
+# 1️⃣ Informasi Umum
+
+### 1. **Judul Artikel**
+
+**Major Integrated Case: Motor Trip → Valve Malfunction → Plant Upset**
+
+Artikel ini merupakan studi kasus terintegrasi lintas disiplin Electrical–Instrumentation–Control yang dirancang untuk melatih pola pikir sistematis dan berbasis data pada teknisi junior.
+
+---
+
+### 2. **Disiplin**
+
+Electrical – Instrumentation – Control (Integrated Case)
+
+Kasus ini tidak dapat diselesaikan dengan pendekatan satu disiplin saja. Analisis harus dilakukan dengan memahami interaksi:
+
+- Sistem tenaga listrik (motor & proteksi)
+- Sistem mekanik (pump & suction line)
+- Sistem instrumentasi (flow transmitter & valve positioner)
+- Sistem kontrol (PID & interlock logic)
+
+---
+
+### 3. **Level**
+
+Junior
+
+Fokus pada:
+
+- Melatih berpikir sistemik
+- Menghindari kesimpulan prematur
+- Menggunakan data sebagai dasar keputusan
+
+---
+
+### 4. **Kategori**
+
+- Troubleshooting
+- System Interaction
+- Reliability
+
+Artikel ini dirancang untuk memperkuat kemampuan troubleshooting berbasis root cause dan bukan symptom.
+
+---
+
+### 5. **Equipment / System Terkait**
+
+Kasus ini melibatkan:
+
+- **Motor Induksi 3 Phase**
+- **Centrifugal Pump**
+- **Suction Strainer**
+- **Flow Transmitter**
+- **Control Valve**
+- **PLC/DCS**
+- **Protection Relay (Overload)**
+
+Semua komponen tersebut membentuk satu rantai sistem proses yang saling bergantung.
+
+---
+
+### 6. **Referensi Standar**
+
+Artikel ini mengacu pada prinsip dan best practice dari:
+
+- **IEC 60034** – Rotating Electrical Machines
+- **IEEE 242** – Protection Coordination
+- **API 610** – Centrifugal Pump for Petroleum Industry
+- **ISA S5.1** – Instrumentation Identification
+- **NFPA 70** – Electrical Safety in Industrial Installation
+
+Standar digunakan bukan sekadar referensi, tetapi sebagai dasar evaluasi gap terhadap praktik aktual.
+
+<ResourceBox
+  title="Artikel terkait :"
+  items={[
+    {
+      name: 'Panduan Lengkap Kurikulum & Matriks Kompetensi',
+      href: '/blog/maintenance/elins/panduan-kurikulum-elins',
+      description:
+        'Panduan Lengkap Kurikulum & Matriks Kompetensi - Teknisi Electrical, Instrumentation & Control (E&I) – Industri Petrokimia',
+    },
+    {
+      name: 'Major Integrated Case',
+      href: '/blog/maintenance/elins/kurikulum/artikel-44-motor-trip',
+      description:
+        'Major Integrated Case - Motor Trip → Valve Malfunction → Plant Upset',
+    },
+    {
+      name: 'Review Efektivitas PM Program',
+      href: '/blog/maintenance/elins/kurikulum/artikel-45-review-pm',
+      description:
+        'Review Efektivitas PM Program – Time Based atau Condition Based?',
+    },
+  ]}
+  note="Artikel-artikel di atas merupakan bagian dari serial peningkatan kompetensi Electrical & Instrumentation yang dirancang untuk diikuti secara berurutan guna membangun pemahaman sistematis dan bertahap. Meskipun demikian, setiap artikel tetap dapat digunakan sebagai referensi mandiri sesuai kebutuhan teknis di lapangan. Pembaca tetap disarankan melakukan verifikasi lanjutan dan penyesuaian sesuai standar perusahaan serta regulasi keselamatan yang berlaku."
+/>
+
+---
+
+# 2️⃣ Learning Objective (Measurable & Skill-Based)
+
+Setelah membaca dan memahami artikel ini, teknisi mampu:
+
+### ✅ **LO1 – Technical Skill**
+
+Menelusuri kronologi trip motor menggunakan:
+
+- Data arus (% FLA)
+- Trend vibration
+- Event log DCS
+- Alarm sequence
+
+Teknisi tidak lagi bergantung pada “perasaan” atau asumsi awal.
+
+---
+
+### ✅ **LO2 – Analytical Skill**
+
+Mengeliminasi hipotesis lintas disiplin secara sistematis:
+
+- Electrical
+- Mechanical
+- Instrument
+- Control
+- Human/System
+
+Pendekatan ini mencegah bias disiplin (misalnya langsung menyalahkan motor).
+
+---
+
+### ✅ **LO3 – System & Safety Skill**
+
+Menjelaskan:
+
+- Interaksi motor → pump → flow → valve → pressure → interlock
+- Risiko jika interlock di-bypass
+- Dampak sistemik dari kegagalan kecil
+
+⚠ LO3 memastikan pemahaman sistem & safety, bukan hanya teknis komponen.
+
+---
+
+# 3️⃣ System Context & Criticality
+
+---
+
+## 🔹 Posisi dalam Sistem
+
+Rantai sistem proses:
+
+**Motor → Pump → Flow → Control Valve → Process Pressure → Interlock → Unit Stability**
+
+Motor bukan sekadar penggerak.
+Ia adalah sumber energi mekanik untuk menjaga kestabilan flow.
+
+Jika motor berhenti:
+
+- Flow hilang
+- Valve bereaksi ekstrem
+- Pressure berubah
+- Interlock dapat aktif
+- Unit dapat upset
+
+Gangguan kecil dapat berkembang menjadi gangguan sistemik.
+
+---
+
+## 🔹 Dampak Jika Gagal
+
+Jika sistem ini gagal, potensi dampaknya:
+
+- Loss of flow
+- Pressure spike downstream
+- Process instability
+- Trip unit
+- Potensi overpressure
+- Potensi pelepasan fluida berbahaya
+
+Dalam plant petrokimia, kegagalan seperti ini dapat berdampak pada:
+
+- Safety (SHE)
+- Reliability
+- Produksi
+- Biaya operasional
+
+---
+
+## 🔹 Interaksi Lintas Disiplin
+
+| Disiplin   | Peran dalam Kasus                                  |
+| ---------- | -------------------------------------------------- |
+| Electrical | Proteksi motor, suplai energi, koordinasi overload |
+| Mechanical | Kondisi pump, suction blockage, bearing            |
+| Instrument | Akurasi flow transmitter & valve position          |
+| Control    | Respons PID dan logika interlock                   |
+
+Kasus ini membuktikan bahwa:
+
+> Tidak ada kegagalan yang berdiri sendiri dalam sistem proses.
+
+👉 Section ini memperkuat Outcome System Interaction (E–I–C Integration).
+
+---
+
+# 4️⃣ Diagram Literacy Section (WAJIB)
+
+Section ini adalah inti kemampuan teknisi E&I.
+Tanpa kemampuan membaca diagram, troubleshooting akan selalu bersifat reaktif dan spekulatif.
+
+Kasus ini harus dianalisis melalui **tiga jenis diagram utama**:
+
+- Single Line Diagram (Electrical)
+- Loop Diagram (Instrumentation)
+- Cause & Effect Matrix (Control Logic)
+
+---
+
+## A. Single Line Diagram (SLD)
+
+SLD menunjukkan jalur energi listrik dari sumber hingga motor.
+
+![Image](https://storage.googleapis.com/production-bigrock-v1-0-1/511/1189511/LeXNjP71/b6ab7520d07b45098f5156381cdd423f)
+
+![Image](https://media.licdn.com/dms/image/v2/D4D22AQHXtx_YkyN5Uw/feedshare-shrink_800/B4DZlZdYxjGsAg-/0/1758142501709?e=2147483647&t=IHrrVMvQK4V2hXcz6FWKg5yiUZzpBre4LFuPEnv92gU&v=beta)
+
+### 🔍 Yang Harus Mampu Diidentifikasi Teknisi
+
+1. Incoming feeder dari MCC
+2. Circuit breaker / MCCB
+3. Contactor
+4. Overload relay
+5. Kabel ke motor
+6. Titik trip feedback ke DCS
+
+---
+
+### 🔎 Jalur Energi
+
+Sumber → MCC → Breaker → Contactor → Overload Relay → Motor
+
+Jika overload relay aktif:
+
+- Contactor membuka
+- Motor kehilangan suplai
+- Trip signal dikirim ke DCS
+
+---
+
+### 🎯 Titik Proteksi
+
+- MCCB (Short circuit protection)
+- Overload relay (Thermal protection)
+- Ground fault (jika tersedia)
+
+Teknisi harus mampu menjawab:
+
+> Apakah trip terjadi karena proteksi bekerja normal atau karena setting tidak tepat?
+
+---
+
+### ⚠ Titik Isolasi
+
+- Isolator lokal motor
+- MCC bucket isolation
+- LOTO point
+
+Ini penting dalam konteks NFPA 70 dan keselamatan kerja saat inspeksi.
+
+---
+
+## B. Loop Diagram
+
+Loop diagram menggambarkan jalur sinyal instrument dari sensor hingga actuator.
+
+![Image](https://control.com/uploads/textbooks/intro_09.jpg)
+
+![Image](https://cdn.forumautomation.com/original/2X/c/ca94eac0d2b31b0c362b99e246a5c501d2537a8b.png)
+
+---
+
+### 🔍 Jalur Sinyal
+
+Flow Transmitter (FT)
+→ 4–20 mA
+→ AI DCS
+→ PID Controller
+→ AO 4–20 mA
+→ Control Valve Actuator
+→ Position Feedback
+
+---
+
+### 🎯 Titik Penting yang Harus Diperiksa
+
+- Range transmitter
+- Scaling di DCS
+- Output PID (%)
+- Valve actual position vs command
+
+Dalam kasus ini:
+
+Motor trip → Flow = 0
+PID membaca flow rendah → Valve membuka 100%
+
+Tanpa membaca loop diagram, teknisi bisa salah menyimpulkan bahwa valve rusak, padahal valve hanya merespons logika kontrol.
+
+---
+
+## C. Cause & Effect Matrix
+
+Cause & Effect menunjukkan hubungan antara event dan respons sistem.
+
+![Image](https://cdn.sanity.io/images/oq9f4n1v/production/b6a4e58afc06ac03cca387606f19d587a08bca7c-960x489.webp?auto=format&dpr=1&fit=clip&h=912&q=100&w=1792)
+
+![Image](https://cdn.automationforum.co/uploads/2025/06/Explore-how-permissive-logic-and-trip-interlocks-ensure-safe-equipment-operation-in-DCS-PLC-and-SIS-based-automation-systems.-6-1024x624.jpg)
+
+---
+
+### 🔍 Logika Interlock yang Relevan
+
+| Cause         | Effect         |
+| ------------- | -------------- |
+| Motor Trip    | Flow = 0       |
+| Flow Low      | Valve membuka  |
+| High Pressure | Alarm aktif    |
+| Extreme High  | Interlock Trip |
+
+---
+
+### 🎯 Pemahaman Sistemik
+
+Teknisi harus mampu menjawab:
+
+1. Apakah valve malfunction atau hanya mengikuti logika?
+2. Apakah pressure spike adalah penyebab atau akibat?
+3. Event mana yang terjadi pertama kali?
+
+Urutan kronologis sangat penting dalam membaca cause & effect.
+
+---
+
+## 🔎 Integrasi Tiga Diagram
+
+Kasus ini tidak dapat dipahami jika hanya melihat satu diagram saja.
+
+- SLD menjelaskan **kenapa motor trip**
+- Loop Diagram menjelaskan **kenapa valve membuka**
+- Cause & Effect menjelaskan **kenapa alarm pressure muncul**
+
+Ketiganya membentuk satu alur logis:
+
+Motor Trip
+↓
+Flow Drop
+↓
+PID Open Valve
+↓
+Pressure Spike
+↓
+Alarm
+
+---
+
+## 🎯 Kompetensi yang Diuji pada Bab Ini
+
+Teknisi Junior harus mampu:
+
+- Membaca jalur energi
+- Membaca jalur sinyal
+- Memahami hubungan sebab–akibat sistem
+- Menentukan event pertama secara logis
+
+Tanpa kemampuan ini, troubleshooting akan selalu menyalahkan komponen terakhir yang terlihat.
+
+---
+
+# 5️⃣ Background & Failure Scenario
+
+Section ini harus berbasis **data aktual**, bukan narasi asumsi.
+
+---
+
+## 🔹 Kronologi Aktual
+
+**Tanggal kejadian:** 14 Mei
+**Waktu:** 02:13 WIB
+**Durasi upset:** ±30 menit
+**Unit:** Transfer pump to downstream reactor feed line
+
+### Urutan Event Berdasarkan Event Log DCS
+
+| Waktu    | Event                          |
+| -------- | ------------------------------ |
+| 02:12:31 | Motor current 108% FLA         |
+| 02:12:55 | Motor current 112% FLA         |
+| 02:13:07 | Motor overload alarm           |
+| 02:13:09 | Motor trip                     |
+| 02:13:10 | Flow transmitter reading 0     |
+| 02:13:12 | Control valve open 100%        |
+| 02:13:18 | High pressure alarm downstream |
+
+Urutan waktu ini menjadi dasar analisis kronologis.
+
+---
+
+## 🔹 Data Parameter
+
+Sebelum kejadian (trend 10 hari terakhir):
+
+- Arus motor meningkat gradual dari 92% → 105% → 110% FLA
+- Vibration naik ±15% dari baseline
+- Bearing temperature naik 5–7°C
+- Flow stabil namun sedikit menurun
+
+Saat kejadian:
+
+- Arus mencapai 115% FLA
+- Overload relay trip
+- Flow drop ke 0
+- Valve command 100% open
+
+---
+
+### 🔎 Analisis Awal dari Data
+
+Poin penting:
+
+1. Arus naik gradual → bukan short circuit mendadak
+2. Tidak ada voltage unbalance
+3. Tidak ada harmonic spike
+4. Tidak ada alarm bearing overtemperature
+
+Ini mengarah pada indikasi **overload mekanis**, bukan gangguan listrik murni.
+
+---
+
+# 6️⃣ Symptom & Initial Finding
+
+Section ini melatih teknisi untuk memisahkan **fakta, data, dan asumsi**.
+
+---
+
+## 🔹 Terlihat
+
+- Motor trip alarm di DCS
+- Valve posisi 100% open
+- Flow reading = 0
+- High pressure alarm downstream
+
+Operator melihat efek terakhir dan cenderung menyalahkan valve.
+
+---
+
+## 🔹 Terukur
+
+Berdasarkan histori data:
+
+- Arus naik sebelum trip
+- Vibration meningkat gradual
+- Tidak ada voltage drop
+- Tidak ada fault ground
+
+Data menunjukkan motor bekerja lebih berat dari biasanya sebelum trip.
+
+---
+
+## 🔹 Diasumsikan Operator
+
+- “Motor rusak.”
+- “Valve malfunction.”
+- “Relay sensitif.”
+
+Inilah kesalahan umum troubleshooting:
+Fokus pada komponen terakhir yang terlihat.
+
+Tujuan section ini adalah membangun disiplin berpikir:
+
+> Apa yang terlihat ≠ Apa yang menyebabkan.
+
+---
+
+# 7️⃣ Possible Causes (Structured Hypothesis)
+
+Hipotesis harus lintas disiplin.
+
+Tidak boleh langsung menyimpulkan satu penyebab.
+
+---
+
+## A. Electrical
+
+Kemungkinan gangguan kelistrikan:
+
+- Setting overload relay terlalu rendah
+- Voltage unbalance antar phase
+- Loose termination
+- Harmonic distortion
+
+Namun data menunjukkan:
+
+- Tidak ada unbalance
+- Tidak ada short circuit
+- Overload bekerja sesuai setting
+
+Electrical mulai dieliminasi.
+
+---
+
+## B. Mechanical
+
+Kemungkinan gangguan mekanik:
+
+- Suction strainer tersumbat
+- Pump cavitation
+- Bearing friction meningkat
+- Impeller damage
+- Alignment shifting
+
+Data mendukung hipotesis ini karena:
+
+- Arus meningkat gradual
+- Vibration naik
+- Beban motor meningkat perlahan
+
+Mechanical menjadi kandidat kuat.
+
+---
+
+## C. Instrument
+
+Kemungkinan kesalahan instrument:
+
+- Flow transmitter drift
+- Scaling error di DCS
+- Positioner tidak akurat
+
+Namun:
+
+- Arus motor benar-benar naik
+- Trip terjadi di MCC
+- Flow drop terjadi setelah motor trip
+
+Instrument bukan trigger utama.
+
+---
+
+## D. Control
+
+Kemungkinan kesalahan kontrol:
+
+- PID terlalu agresif
+- Valve hunting
+- Interlock logic salah
+
+Namun:
+Valve membuka karena flow drop, bukan sebelum motor trip.
+
+Control adalah efek, bukan penyebab.
+
+---
+
+## E. Human / System
+
+Faktor sistemik:
+
+- Tidak ada inspeksi suction strainer rutin
+- Tidak ada review trend arus
+- PM bersifat time-based saja
+- Tidak ada early warning threshold
+
+Ini membuka kemungkinan root cause sistemik, bukan hanya teknis.
+
+---
+
+## 🔎 Penyempitan Hipotesis
+
+Dari 5 kelompok:
+
+- Electrical → kemungkinan rendah
+- Instrument → kemungkinan rendah
+- Control → kemungkinan rendah
+- Mechanical → kemungkinan tinggi
+- Human/System → sangat mungkin berkontribusi
+
+Struktur ini memaksa teknisi berpikir sistematis dan tidak bias.
+
+---
+
+Pada tahap ini, kita sudah memiliki:
+
+✔ Kronologi berbasis data
+✔ Pemisahan fakta dan asumsi
+✔ Hipotesis terstruktur lintas disiplin
+
+---
+
+# 8️⃣ Step-by-Step Investigation Flow
+
+Investigasi dilakukan dengan prinsip:
+
+> Mulai dari trigger pertama, bukan dari efek terakhir.
+
+---
+
+## 🔹 Langkah 1 – Review Timeline & Event Log
+
+Tujuan:
+
+- Memastikan urutan kejadian
+- Menghindari bias interpretasi
+
+Dari DCS event log:
+
+1. Arus naik
+2. Overload alarm
+3. Motor trip
+4. Flow drop
+5. Valve open 100%
+6. High pressure alarm
+
+Kesimpulan awal:
+Motor trip adalah event pertama.
+
+---
+
+## 🔹 Langkah 2 – Analisa Trend Arus 30 Hari
+
+Parameter diperiksa:
+
+- % FLA motor
+- Trend kenaikan arus
+- Stabilitas beban
+
+Temuan:
+
+- Arus naik gradual selama ±10 hari
+- Tidak ada spike tiba-tiba
+- Pola kenaikan konsisten
+
+Interpretasi:
+Overload terjadi akibat beban mekanis meningkat perlahan.
+
+---
+
+## 🔹 Langkah 3 – Analisa Vibration & Bearing Temperature
+
+Parameter:
+
+- Overall vibration (mm/s)
+- Axial vs radial
+- Bearing temperature
+
+Temuan:
+
+- Vibration naik 15%
+- Temperatur bearing naik ringan (tidak kritikal)
+- Tidak ada indikasi misalignment ekstrem
+
+Interpretasi:
+Beban meningkat tetapi belum merusak bearing secara langsung.
+
+---
+
+## 🔹 Langkah 4 – Verifikasi Fisik Suction Line
+
+Dilakukan inspeksi lapangan:
+
+- Buka suction strainer
+- Periksa adanya debris
+- Cek kemungkinan blockage
+
+Temuan aktual:
+
+- Strainer tertutup debris ±40%
+- Aliran masuk pump terganggu
+- Pump bekerja lebih keras untuk mempertahankan flow
+
+Inilah titik kritis investigasi.
+
+---
+
+## 🔹 Langkah 5 – Review Histori PM
+
+Ditinjau:
+
+- Checklist PM
+- Jadwal inspeksi suction
+- Catatan temuan sebelumnya
+
+Temuan:
+
+- Tidak ada item inspeksi suction strainer
+- PM bersifat general inspection
+- Tidak ada review trend arus
+
+Ini mengindikasikan gap sistemik.
+
+---
+
+## 🔹 Decision Point
+
+Mengapa investigasi dimulai dari motor trip?
+
+Karena:
+
+- Motor trip adalah trigger
+- Valve open adalah respons
+- Pressure spike adalah efek lanjutan
+
+Jika investigasi dimulai dari pressure spike, teknisi bisa salah fokus pada valve atau control tuning.
+
+Pendekatan sistematis mencegah salah arah.
+
+---
+
+# 9️⃣ Root Cause & Contributing Factor
+
+Section ini memisahkan:
+
+- Root cause teknis
+- Contributing factor
+- System factor
+
+---
+
+## 🔹 Root Cause Teknis
+
+Suction strainer partially blocked
+→ Pump suction restriction
+→ Pump bekerja lebih berat
+→ Arus motor naik
+→ Overload relay trip
+
+Motor tidak rusak.
+Proteksi bekerja sesuai desain.
+
+---
+
+## 🔹 Contributing Factor
+
+- Tidak ada inspeksi suction periodik
+- Tidak ada monitoring beban pompa
+- Tidak ada alarm early overload
+
+Failure bukan mendadak, tetapi akumulatif.
+
+---
+
+## 🔹 System Factor
+
+- PM hanya berbasis waktu (time-based)
+- Tidak ada review trend arus & vibration
+- Tidak ada criticality ranking equipment
+
+Masalah sebenarnya bukan hanya debris,
+tetapi sistem pemeliharaan yang tidak berbasis data.
+
+---
+
+### 🔎 Pembelajaran Penting
+
+Jika hanya membersihkan strainer tanpa memperbaiki sistem monitoring,
+kejadian akan berulang.
+
+RCA harus mencapai level sistem.
+
+---
+
+# 🔟 Reference to Standard & Gap Analysis
+
+Standar digunakan untuk menilai apakah praktik saat ini sesuai best practice industri.
+
+---
+
+## 🔹 Standar Mengharuskan
+
+### API 610
+
+- Monitoring kondisi pompa critical
+- Evaluasi beban & performance
+
+### IEEE 242
+
+- Proteksi harus selektif & terkoordinasi
+- Overload tidak boleh di-set sembarangan
+
+### IEC 60034
+
+- Motor tidak boleh beroperasi terus-menerus di atas FLA
+
+### Best Practice Reliability
+
+- Trend analysis untuk equipment critical
+- Early warning threshold
+
+---
+
+## 🔹 Gap yang Ditemukan
+
+1. Tidak ada alarm pre-overload (misal 105% FLA)
+2. Tidak ada review trend rutin
+3. Tidak ada inspeksi suction sebagai item PM
+4. Tidak ada meeting reliability review
+
+Proteksi bekerja benar.
+Sistem pemeliharaan yang gagal mencegah.
+
+---
+
+### 🔎 Analisa Gap Singkat
+
+| Area             | Kondisi Aktual | Best Practice   | Gap |
+| ---------------- | -------------- | --------------- | --- |
+| Monitoring arus  | Tidak direview | Trend mingguan  | Ada |
+| Inspeksi suction | Tidak ada      | Risk-based      | Ada |
+| Early warning    | Tidak ada      | Threshold alarm | Ada |
+
+---
+
+Pada tahap ini kita sudah menyelesaikan:
+
+✔ Investigasi sistematis
+✔ Identifikasi root cause
+✔ Identifikasi contributing factor
+✔ Analisa gap terhadap standar
+
+---
+
+Baik, kita lanjutkan hingga selesai sesuai outline terkunci.
+
+---
+
+# 1️⃣1️⃣ Corrective & Preventive Action
+
+Tindakan dibagi menjadi empat level agar tidak berhenti pada perbaikan sementara.
+
+---
+
+## 🔹 Immediate Action
+
+Dilakukan segera setelah root cause teridentifikasi:
+
+- Membersihkan suction strainer
+- Flushing suction line
+- Verifikasi alignment pump
+- Cek ulang vibration setelah restart
+- Verifikasi setting overload relay sesuai nameplate motor
+
+Tujuan:
+Mengembalikan sistem ke kondisi operasi normal secara aman.
+
+---
+
+## 🔹 Permanent Fix
+
+Agar kejadian tidak berulang:
+
+- Menambahkan inspeksi suction strainer ke dalam checklist PM
+- Menentukan interval inspeksi berbasis criticality
+- Menambahkan parameter beban pompa dalam form inspeksi rutin
+- Review koordinasi setting overload sesuai IEEE 242
+
+Fokusnya adalah menghilangkan penyebab teknis langsung.
+
+---
+
+## 🔹 System Improvement
+
+Perbaikan sistem pemeliharaan:
+
+- Tambahkan alarm early overload di 105% FLA
+- Implement trend review meeting bulanan
+- Buat critical equipment list
+- Integrasikan data arus dan vibration dalam dashboard reliability
+
+Tujuan:
+Mencegah kejadian serupa melalui pendekatan berbasis data.
+
+---
+
+## 🔹 Monitoring Plan
+
+Agar tidak kembali menjadi reactive maintenance:
+
+- Review trend arus motor setiap minggu
+- Review vibration setiap bulan
+- Audit efektivitas PM setiap 6 bulan
+- Evaluasi KPI breakdown per kuartal
+
+Monitoring bukan hanya mengumpulkan data, tetapi membaca dan menindaklanjuti.
+
+---
+
+# 1️⃣2️⃣ Risk & Safety Reflection
+
+Kegagalan teknis kecil dapat berkembang menjadi risiko keselamatan serius.
+
+---
+
+## 🔹 Potensi Bahaya
+
+1. Overpressure downstream
+2. Relief valve lifting
+3. Rotating equipment hazard
+4. Arc flash saat inspeksi MCC
+5. Restart tanpa investigasi memadai
+
+Dalam konteks NFPA 70 dan praktik keselamatan industri:
+
+- Motor feeder harus diperlakukan sebagai area berisiko arc flash
+- MCC inspection wajib mengikuti prosedur LOTO
+
+---
+
+## 🔹 Refleksi Safety
+
+Beberapa pelajaran penting:
+
+- Jangan reset trip tanpa memahami penyebab
+- Jangan bypass interlock tanpa permit formal
+- Jangan menaikkan setting overload untuk “menghindari trip”
+- Jangan menganggap alarm sebagai gangguan biasa
+
+Trip adalah proteksi, bukan masalah.
+
+Proteksi yang sering trip biasanya menandakan ada masalah sistemik.
+
+---
+
+# 1️⃣3️⃣ Data Interpretation & Trend Awareness
+
+Kegagalan ini sebenarnya sudah memberi sinyal 10 hari sebelumnya.
+
+---
+
+## 🔹 Parameter yang Harus Dipantau
+
+- Arus motor (% FLA)
+- Vibration (mm/s)
+- Bearing temperature
+- Flow stability
+- Valve position fluctuation
+
+Data harus dianalisa, bukan hanya disimpan.
+
+---
+
+## 🔹 Early Warning Indicator
+
+Beberapa indikator yang seharusnya memicu investigasi:
+
+- Arus naik >5% dalam 1 minggu
+- Vibration naik konsisten 10–15%
+- Flow menurun gradual tanpa perubahan beban proses
+- Valve opening meningkat tanpa perubahan setpoint
+
+Jika threshold sederhana ini diterapkan,
+motor trip kemungkinan besar dapat dicegah.
+
+---
+
+## 🔎 Interpretasi Trend
+
+Pola kenaikan gradual menunjukkan:
+
+- Beban mekanis meningkat perlahan
+- Tidak ada gangguan listrik mendadak
+- Tidak ada kegagalan bearing instan
+
+Artinya:
+Failure bersifat progresif, bukan catastrophic.
+
+Missed opportunity terjadi karena trend tidak dibaca.
+
+---
+
+# 1️⃣4️⃣ Competency Mapping
+
+| Skill Area                  | Level Awal | Target Setelah Artikel |
+| --------------------------- | ---------- | ---------------------- |
+| Troubleshooting terstruktur | W          | I                      |
+| Diagram literacy            | W          | I                      |
+| System thinking             | A          | W                      |
+| Data trend awareness        | A          | W                      |
+| Safety reflection           | A          | W                      |
+
+Artikel ini mendorong teknisi naik dari sekadar “bisa memperbaiki” menjadi “bisa mencegah”.
+
+---
+
+# 1️⃣5️⃣ Discussion Question (Toolbox Use)
+
+Gunakan pertanyaan berikut untuk diskusi toolbox meeting:
+
+1. Mengapa investigasi harus dimulai dari event pertama, bukan efek terakhir?
+2. Jika suction strainer rutin diperiksa, apakah motor trip dapat dicegah?
+3. Apa risiko jangka panjang jika overload relay dinaikkan setting-nya?
+4. Apakah valve benar-benar malfunction dalam kasus ini?
+5. Bagaimana sistem monitoring bisa diperbaiki dengan biaya minimal?
+
+Tujuan diskusi:
+Membangun pola pikir sistem, bukan menyalahkan komponen.
+
+---
+
+# 1️⃣6️⃣ Key Takeaway
+
+- Efek sering bukan penyebab.
+- Data historis lebih kuat daripada asumsi.
+- Motor–Pump–Valve adalah satu sistem terintegrasi.
+- Trend adalah early warning terbaik.
+- PM tanpa review data = blind maintenance.
+- Interlock adalah proteksi, bukan musuh produksi.
+- RCA harus lintas disiplin dan berbasis sistem.
+
+---
+
+<small>
+  **_Catatan Penyusunan_** Artikel ini merupakan bagian dari serial peningkatan
+  kompetensi yang dirancang untuk diikuti secara berurutan guna membangun
+  pemahaman sistematis dan bertahap. Meskipun demikian, setiap artikel tetap
+  dapat dibaca secara terpisah sebagai referensi mandiri sesuai kebutuhan
+  pembaca. Materi disusun berdasarkan berbagai sumber pustaka teknis, praktik
+  lapangan industri, serta dukungan alat bantu penulisan. Pembaca disarankan
+  melakukan verifikasi lanjutan dan penyesuaian teknis sesuai dengan standar
+  perusahaan, kondisi aktual peralatan, serta regulasi keselamatan yang berlaku.
+</small>

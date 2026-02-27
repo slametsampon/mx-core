@@ -5,7 +5,7 @@
 ---
 
 - [🔵 BULAN 12 – Integrated Case Study](#-bulan-12--integrated-case-study)
-- [📘 ARTIKEL UTAMA](#-artikel-utama)
+- [📘 ARTIKEL 35](#-artikel-35)
   - [Pump Failure → Seal Leak → Bearing Damage](#pump-failure--seal-leak--bearing-damage)
     - [(Integrated Mechanical Case – System Thinking Exercise)](#integrated-mechanical-case--system-thinking-exercise)
   - [1️⃣ Informasi Umum](#1️⃣-informasi-umum)
@@ -29,7 +29,7 @@
 
 ---
 
-# 📘 ARTIKEL UTAMA
+# 📘 ARTIKEL 35
 
 ## Pump Failure → Seal Leak → Bearing Damage
 

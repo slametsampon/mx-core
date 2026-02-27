@@ -1,0 +1,997 @@
+---
+title: Review Efektivitas PM Program – Time Based atau Condition Based?
+authors: ['sam']
+date: '2026-02-27'
+tags:
+  [
+    'preventive-maintenance-review',
+    'condition-based-monitoring',
+    'root-cause-analysis',
+    'reliability-thinking-ei',
+    'system-improvement-maintenance',
+    'industrial-safety-awareness',
+  ]
+draft: false
+summary: Artikel ini menekankan pentingnya evaluasi efektivitas program Preventive Maintenance (PM) dengan membandingkan pendekatan time-based dan condition-based. Studi menunjukkan bahwa PM rutin tanpa analisis tren dan criticality ranking dapat menyebabkan kegagalan berulang serta risiko keselamatan. Artikel mengajarkan teknisi membaca SLD, P&ID, dan tren DCS untuk mengidentifikasi gap antara checklist dan data aktual. Artikel 46 memperkuat kemampuan Root Cause Analysis (RCA) menggunakan metode 5 Why dan fishbone agar investigasi tidak berhenti pada symptom. Kedua artikel membangun pola pikir reliability berbasis data, sistem, dan keselamatan, serta mendorong perbaikan berkelanjutan dalam manajemen pemeliharaan industri.
+---
+
+# 📘 **_ARTIKEL 45: Review Efektivitas PM Program – Time Based atau Condition Based?_**
+
+---
+
+- [📘 **_ARTIKEL 45: Review Efektivitas PM Program – Time Based atau Condition Based?_**](#-artikel-45-review-efektivitas-pm-program--time-based-atau-condition-based)
+- [1️⃣ Informasi Umum](#1️⃣-informasi-umum)
+  - [1. **Judul Artikel**](#1-judul-artikel)
+  - [2. **Disiplin**](#2-disiplin)
+  - [3. **Level**](#3-level)
+  - [4. **Kategori**](#4-kategori)
+  - [5. **Equipment / System Terkait**](#5-equipment--system-terkait)
+  - [6. **Referensi Standar**](#6-referensi-standar)
+- [2️⃣ Learning Objective (Measurable \& Skill-Based)](#2️⃣-learning-objective-measurable--skill-based)
+  - [✅ **LO1 – Technical Skill**](#-lo1--technical-skill)
+  - [✅ **LO2 – Analytical Skill**](#-lo2--analytical-skill)
+  - [✅ **LO3 – System \& Safety Skill**](#-lo3--system--safety-skill)
+- [3️⃣ System Context \& Criticality](#3️⃣-system-context--criticality)
+  - [🔹 Hubungan Sistemik](#-hubungan-sistemik)
+  - [🔹 Interaksi Sistem](#-interaksi-sistem)
+  - [🔹 Criticality Awareness](#-criticality-awareness)
+  - [🔹 Risiko Jika PM Tidak Berbasis Data](#-risiko-jika-pm-tidak-berbasis-data)
+- [4️⃣ Diagram Literacy Section (WAJIB)](#4️⃣-diagram-literacy-section-wajib)
+  - [A. Membaca SLD](#a-membaca-sld)
+    - [🔍 Yang Harus Diperiksa Saat Review PM](#-yang-harus-diperiksa-saat-review-pm)
+    - [🔎 Evaluasi Efektivitas PM Berdasarkan SLD](#-evaluasi-efektivitas-pm-berdasarkan-sld)
+  - [B. Membaca P\&ID](#b-membaca-pid)
+    - [🔍 Yang Harus Diidentifikasi](#-yang-harus-diidentifikasi)
+    - [🔎 Evaluasi Efektivitas PM Berdasarkan P\&ID](#-evaluasi-efektivitas-pm-berdasarkan-pid)
+  - [C. Membaca Trend Display DCS](#c-membaca-trend-display-dcs)
+    - [🔍 Parameter yang Harus Masuk Review PM](#-parameter-yang-harus-masuk-review-pm)
+    - [🔎 Indikasi PM Tidak Efektif](#-indikasi-pm-tidak-efektif)
+  - [🎯 Integrasi SLD – P\&ID – Trend](#-integrasi-sld--pid--trend)
+  - [🔎 Kompetensi yang Diuji](#-kompetensi-yang-diuji)
+- [5️⃣ Background \& Failure Scenario](#5️⃣-background--failure-scenario)
+  - [🔹 Data Breakdown Tahunan](#-data-breakdown-tahunan)
+  - [🔹 Pola yang Terlihat](#-pola-yang-terlihat)
+  - [🔹 Pertanyaan Awal](#-pertanyaan-awal)
+- [6️⃣ Symptom \& Initial Finding](#6️⃣-symptom--initial-finding)
+  - [🔹 Terlihat](#-terlihat)
+  - [🔹 Terukur](#-terukur)
+  - [🔹 Diasumsikan](#-diasumsikan)
+- [7️⃣ Possible Causes (Structured Hypothesis)](#7️⃣-possible-causes-structured-hypothesis)
+  - [A. Electrical](#a-electrical)
+  - [B. Mechanical](#b-mechanical)
+  - [C. Instrument](#c-instrument)
+  - [D. System](#d-system)
+  - [E. Human](#e-human)
+  - [🔎 Penyempitan Hipotesis](#-penyempitan-hipotesis)
+- [8️⃣ Step-by-Step Investigation Flow](#8️⃣-step-by-step-investigation-flow)
+  - [🔹 Langkah 1 – Kumpulkan Data Breakdown 1 Tahun](#-langkah-1--kumpulkan-data-breakdown-1-tahun)
+  - [🔹 Langkah 2 – Cocokkan dengan Jadwal PM](#-langkah-2--cocokkan-dengan-jadwal-pm)
+  - [🔹 Langkah 3 – Analisa Parameter Trend Sebelum Failure](#-langkah-3--analisa-parameter-trend-sebelum-failure)
+  - [🔹 Langkah 4 – Identifikasi Equipment Berulang](#-langkah-4--identifikasi-equipment-berulang)
+  - [🔹 Langkah 5 – Evaluasi Item Checklist PM](#-langkah-5--evaluasi-item-checklist-pm)
+  - [🔹 Decision Point](#-decision-point)
+- [9️⃣ Root Cause \& Contributing Factor](#9️⃣-root-cause--contributing-factor)
+  - [🔹 Root Cause Sistemik](#-root-cause-sistemik)
+  - [🔹 Contributing Factor](#-contributing-factor)
+  - [🔎 Analisis Sistemik](#-analisis-sistemik)
+- [🔟 Reference to Standard \& Gap Analysis](#-reference-to-standard--gap-analysis)
+  - [🔹 Standar Reliability Modern Mengarah ke:](#-standar-reliability-modern-mengarah-ke)
+    - [ISO 14224](#iso-14224)
+    - [API 580](#api-580)
+    - [IEEE 3007](#ieee-3007)
+  - [🔹 Gap yang Teridentifikasi](#-gap-yang-teridentifikasi)
+  - [🔎 Inti Gap](#-inti-gap)
+- [1️⃣1️⃣ Corrective \& Preventive Action](#1️⃣1️⃣-corrective--preventive-action)
+  - [🔹 Immediate](#-immediate)
+  - [🔹 Permanent](#-permanent)
+  - [🔹 System Improvement](#-system-improvement)
+  - [🔹 Monitoring Plan](#-monitoring-plan)
+- [1️⃣2️⃣ Risk \& Safety Reflection](#1️⃣2️⃣-risk--safety-reflection)
+  - [🔹 Risiko PM Tidak Efektif](#-risiko-pm-tidak-efektif)
+  - [🔹 Safety Implication](#-safety-implication)
+- [1️⃣3️⃣ Data Interpretation \& Trend Awareness](#1️⃣3️⃣-data-interpretation--trend-awareness)
+  - [🔹 Parameter yang Wajib Dipantau](#-parameter-yang-wajib-dipantau)
+  - [🔹 Early Warning Indicator](#-early-warning-indicator)
+  - [🔎 Perubahan Pola Pikir](#-perubahan-pola-pikir)
+- [1️⃣4️⃣ Competency Mapping](#1️⃣4️⃣-competency-mapping)
+- [1️⃣5️⃣ Discussion Question (Toolbox Use)](#1️⃣5️⃣-discussion-question-toolbox-use)
+- [1️⃣6️⃣ Key Takeaway](#1️⃣6️⃣-key-takeaway)
+
+---
+
+# 1️⃣ Informasi Umum
+
+### 1. **Judul Artikel**
+
+**Review Efektivitas PM Program – Time Based atau Condition Based?**
+
+Artikel ini membahas evaluasi efektivitas program Preventive Maintenance (PM) di lingkungan industri proses, khususnya pada sistem Electrical & Instrumentation. Fokus utama adalah membandingkan pendekatan **time-based maintenance** dengan **condition-based maintenance**, serta mengidentifikasi gap yang menyebabkan kegagalan berulang.
+
+---
+
+### 2. **Disiplin**
+
+Electrical & Instrumentation
+
+Evaluasi PM tidak hanya menyentuh inspeksi fisik, tetapi juga:
+
+- Proteksi motor dan sistem tenaga
+- Kalibrasi instrument
+- Monitoring parameter proses
+- Integrasi data dalam DCS
+
+---
+
+### 3. **Level**
+
+Junior
+
+Artikel ini dirancang untuk:
+
+- Membangun awareness terhadap efektivitas PM
+- Melatih berpikir berbasis data
+- Menghindari “ritual maintenance” tanpa analisa
+
+---
+
+### 4. **Kategori**
+
+- Preventive
+- Reliability
+- System Improvement
+
+Artikel ini tidak membahas cara memperbaiki alat, tetapi cara memperbaiki sistem pemeliharaan.
+
+---
+
+### 5. **Equipment / System Terkait**
+
+- Motor LV & MV
+- Control Valve
+- Transmitter (Pressure / Flow / Temperature)
+- Protection Relay
+- PLC/DCS Monitoring System
+
+Equipment ini sering memiliki PM rutin, tetapi tetap mengalami breakdown.
+
+---
+
+### 6. **Referensi Standar**
+
+Artikel ini mengacu pada:
+
+- **ISO 14224** – Reliability Data Collection
+- **IEC 60364** – Electrical Installation
+- **IEEE 3007** – Maintenance of Industrial Power Systems
+- **API 580** – Risk-Based Inspection
+
+Standar ini menekankan pentingnya pendekatan berbasis risiko dan data, bukan sekadar interval waktu.
+
+<ResourceBox
+  title="Artikel terkait :"
+  items={[
+    {
+      name: 'Panduan Lengkap Kurikulum & Matriks Kompetensi',
+      href: '/blog/maintenance/elins/panduan-kurikulum-elins',
+      description:
+        'Panduan Lengkap Kurikulum & Matriks Kompetensi - Teknisi Electrical, Instrumentation & Control (E&I) – Industri Petrokimia',
+    },
+    {
+      name: 'Major Integrated Case',
+      href: '/blog/maintenance/elins/kurikulum/artikel-44-motor-trip',
+      description:
+        'Major Integrated Case - Motor Trip → Valve Malfunction → Plant Upset',
+    },
+  ]}
+  note="Artikel-artikel di atas merupakan bagian dari serial peningkatan kompetensi Electrical & Instrumentation yang dirancang untuk diikuti secara berurutan guna membangun pemahaman sistematis dan bertahap. Meskipun demikian, setiap artikel tetap dapat digunakan sebagai referensi mandiri sesuai kebutuhan teknis di lapangan. Pembaca tetap disarankan melakukan verifikasi lanjutan dan penyesuaian sesuai standar perusahaan serta regulasi keselamatan yang berlaku."
+/>
+
+---
+
+# 2️⃣ Learning Objective (Measurable & Skill-Based)
+
+Setelah membaca artikel ini, teknisi mampu:
+
+### ✅ **LO1 – Technical Skill**
+
+Menghitung frekuensi breakdown dalam satu tahun dan membandingkannya dengan jadwal PM yang dilakukan.
+
+Contoh:
+Jika motor trip 6 kali dalam 1 tahun padahal PM dilakukan setiap bulan, maka perlu evaluasi efektivitasnya.
+
+---
+
+### ✅ **LO2 – Analytical Skill**
+
+Mengidentifikasi gap antara:
+
+- Checklist PM
+- Failure history
+- Data trend parameter
+
+Teknisi tidak lagi sekadar “menyelesaikan checklist”, tetapi menganalisa relevansi item PM terhadap penyebab kegagalan.
+
+---
+
+### ✅ **LO3 – System & Safety Skill**
+
+Menjelaskan risiko apabila PM tidak mempertimbangkan:
+
+- Data trend arus
+- Vibration
+- Drift instrument
+- Criticality equipment
+
+PM yang salah dapat menciptakan rasa aman palsu dan meningkatkan risiko safety.
+
+⚠ LO3 memastikan pembahasan tidak hanya teknis, tetapi juga sistem & keselamatan.
+
+---
+
+# 3️⃣ System Context & Criticality
+
+PM bukan aktivitas terpisah.
+PM adalah bagian dari sistem reliability plant.
+
+---
+
+## 🔹 Hubungan Sistemik
+
+PM tidak efektif
+↓
+Failure berulang
+↓
+Downtime meningkat
+↓
+Produksi terganggu
+↓
+Tekanan operasi berubah
+↓
+Risiko keselamatan meningkat
+
+---
+
+## 🔹 Interaksi Sistem
+
+Contoh nyata:
+
+Motor → Trip
+↓
+Flow hilang
+↓
+Valve ekstrem
+↓
+Process upset
+
+Jika PM tidak menyentuh akar penyebab, maka kejadian serupa akan berulang.
+
+---
+
+## 🔹 Criticality Awareness
+
+Tidak semua equipment memiliki tingkat risiko yang sama.
+
+Equipment critical biasanya memiliki:
+
+- Dampak langsung pada proses
+- Potensi safety impact
+- Biaya downtime tinggi
+- Interaksi lintas disiplin
+
+Tanpa criticality ranking, PM cenderung bersifat generik.
+
+---
+
+## 🔹 Risiko Jika PM Tidak Berbasis Data
+
+1. Repetitive failure
+2. Missed early warning
+3. Over-maintenance (biaya tinggi)
+4. Under-maintenance (failure tak terduga)
+5. False sense of security
+
+PM harus menjawab pertanyaan:
+
+> Apakah aktivitas yang dilakukan benar-benar mencegah kegagalan?
+
+---
+
+# 4️⃣ Diagram Literacy Section (WAJIB)
+
+Evaluasi efektivitas PM tidak bisa dilakukan hanya dengan melihat checklist.
+Teknisi harus mampu membaca **diagram dan data sistem** untuk menentukan apakah PM benar-benar menyentuh parameter kritikal.
+
+Section ini menguji tiga kemampuan:
+
+- Membaca jalur energi (SLD)
+- Membaca jalur proses (P&ID)
+- Membaca perilaku dinamis sistem (Trend DCS)
+
+---
+
+## A. Membaca SLD
+
+Single Line Diagram (SLD) membantu menentukan **equipment electrical yang critical** dan titik proteksinya.
+
+![Image](https://storage.googleapis.com/production-bigrock-v1-0-1/511/1189511/LeXNjP71/b6ab7520d07b45098f5156381cdd423f)
+
+![Image](https://imgv2-2-f.scribdassets.com/img/document/97118926/original/310551caf9/1?v=1)
+
+### 🔍 Yang Harus Diperiksa Saat Review PM
+
+1. Motor mana yang termasuk feeder critical?
+2. Apakah overload relay disetting sesuai FLA?
+3. Apakah ada proteksi ground fault?
+4. Apakah ada histori trip pada feeder tersebut?
+
+---
+
+### 🔎 Evaluasi Efektivitas PM Berdasarkan SLD
+
+Jika motor overload trip 6 kali dalam setahun:
+
+- Apakah PM hanya berupa visual inspection?
+- Apakah arus motor pernah diukur saat beban penuh?
+- Apakah setting proteksi pernah diverifikasi ulang?
+
+SLD membantu teknisi memahami:
+
+> PM electrical tidak cukup hanya “membersihkan panel”.
+
+---
+
+## B. Membaca P&ID
+
+P&ID menunjukkan hubungan antar equipment dalam sistem proses.
+
+![Image](https://www.researchgate.net/publication/364148392/figure/fig2/AS%3A11431281242335201%401715433642952/Process-diagram-V1-feed-pump-relief-valve-V3-low-pressure-feed-flow-control-valve.tif)
+
+![Image](https://images.squarespace-cdn.com/content/v1/5e7135caec915516f2aaf65b/42ecf5e2-019a-4ae0-8ad0-45ed72c28f3d/Automation%2BDrawings%2B101%2B%2816%29.png)
+
+### 🔍 Yang Harus Diidentifikasi
+
+1. Pump mana yang mempengaruhi unit utama?
+2. Valve mana yang berhubungan langsung dengan tekanan critical?
+3. Transmitter mana yang menjadi input interlock?
+
+---
+
+### 🔎 Evaluasi Efektivitas PM Berdasarkan P&ID
+
+Jika valve hunting terjadi 3 kali dalam setahun:
+
+- Apakah valve tersebut berada di jalur critical?
+- Apakah valve position feedback dianalisa?
+- Apakah PID tuning pernah direview?
+
+P&ID membantu teknisi menentukan:
+
+> Equipment mana yang seharusnya mendapat PM berbasis risiko.
+
+Tanpa membaca P&ID, semua equipment diperlakukan sama.
+
+---
+
+## C. Membaca Trend Display DCS
+
+Trend DCS adalah jembatan antara time-based dan condition-based maintenance.
+
+![Image](https://static-01.extrica.com/articles/15126/15126-img12.jpg)
+
+![Image](https://www.researchgate.net/publication/305297663/figure/fig3/AS%3A796864026775552%401566998597225/Good-and-bad-motor-vibration-plot-in-time-domain.png)
+
+---
+
+### 🔍 Parameter yang Harus Masuk Review PM
+
+- Arus motor (% FLA)
+- Vibration pump
+- Drift transmitter
+- Valve position fluctuation
+- Alarm frequency
+
+---
+
+### 🔎 Indikasi PM Tidak Efektif
+
+- Trend menunjukkan kenaikan gradual sebelum failure
+- Alarm berulang tetapi tidak dianalisa
+- Parameter tidak pernah dievaluasi saat PM dilakukan
+
+Condition-based maintenance dimulai dari:
+
+> Membaca trend, bukan hanya mengikuti kalender.
+
+---
+
+## 🎯 Integrasi SLD – P&ID – Trend
+
+| Diagram   | Fungsi dalam Evaluasi PM             |
+| --------- | ------------------------------------ |
+| SLD       | Menentukan proteksi & beban motor    |
+| P&ID      | Menentukan equipment critical        |
+| Trend DCS | Menentukan perilaku aktual equipment |
+
+Jika ketiganya tidak digunakan dalam review PM,
+maka PM hanya menjadi aktivitas administratif.
+
+---
+
+## 🔎 Kompetensi yang Diuji
+
+Teknisi Junior harus mampu:
+
+- Mengidentifikasi motor critical dari SLD
+- Menentukan equipment berisiko dari P&ID
+- Membaca pola kegagalan dari trend
+
+Tanpa kemampuan ini,
+PM tidak akan pernah berkembang dari time-based menjadi condition-based.
+
+---
+
+# 5️⃣ Background & Failure Scenario
+
+Evaluasi efektivitas PM dilakukan berdasarkan data aktual 1 tahun terakhir.
+
+### 🔹 Data Breakdown Tahunan
+
+Dalam periode 12 bulan:
+
+- **6 kali motor overload trip**
+- **3 kali control valve hunting**
+- **2 kali transmitter drift signifikan**
+
+Semua equipment tersebut memiliki PM rutin berbasis waktu:
+
+- Motor: inspeksi bulanan
+- Valve: inspeksi 3 bulanan
+- Transmitter: kalibrasi 6 bulanan
+
+Namun failure tetap terjadi.
+
+---
+
+### 🔹 Pola yang Terlihat
+
+- Motor overload terjadi rata-rata setiap 2 bulan
+- Valve hunting muncul setelah motor restart
+- Drift transmitter terdeteksi saat alarm muncul, bukan saat PM
+
+Artinya:
+
+> PM dilakukan, tetapi tidak mencegah kegagalan.
+
+---
+
+### 🔹 Pertanyaan Awal
+
+1. Apakah item checklist menyentuh parameter penyebab failure?
+2. Apakah ada evaluasi tren sebelum breakdown?
+3. Apakah equipment critical diperlakukan berbeda?
+
+Background ini menunjukkan adanya potensi **inefektivitas sistem PM**, bukan sekadar kegagalan teknis.
+
+---
+
+# 6️⃣ Symptom & Initial Finding
+
+Tujuan section ini adalah memisahkan persepsi dengan data.
+
+---
+
+## 🔹 Terlihat
+
+- Breakdown tetap berulang
+- Semua form PM lengkap dan ditandatangani
+- Tidak ada temuan besar dalam inspeksi rutin
+
+Secara administratif, PM terlihat “berjalan baik”.
+
+---
+
+## 🔹 Terukur
+
+Namun dari sisi data:
+
+- Tidak ada review trend arus motor
+- Tidak ada review vibration
+- Tidak ada analisa histori alarm
+- Tidak ada perbandingan failure vs jadwal PM
+
+Data menunjukkan:
+
+PM dilakukan sebagai rutinitas, bukan sebagai alat pencegahan.
+
+---
+
+## 🔹 Diasumsikan
+
+Beberapa asumsi umum:
+
+- “PM sudah dilakukan, berarti sistem aman.”
+- “Breakdown adalah hal wajar.”
+- “Kalau sudah dicek visual, berarti cukup.”
+
+Inilah jebakan utama time-based maintenance tanpa analisa efektivitas.
+
+---
+
+# 7️⃣ Possible Causes (Structured Hypothesis)
+
+Hipotesis disusun lintas disiplin dan sistem.
+
+---
+
+## A. Electrical
+
+Kemungkinan:
+
+- PM hanya berupa visual inspection panel
+- Tidak ada pengukuran beban aktual
+- Setting proteksi tidak diverifikasi ulang
+
+Evaluasi:
+Electrical maintenance mungkin bersifat administratif.
+
+---
+
+## B. Mechanical
+
+Kemungkinan:
+
+- Tidak ada vibration trend review
+- Inspeksi hanya melihat kebocoran atau suara abnormal
+- Tidak ada evaluasi beban aktual pompa
+
+Evaluasi:
+Mechanical parameter tidak dianalisa berbasis data.
+
+---
+
+## C. Instrument
+
+Kemungkinan:
+
+- Kalibrasi dilakukan, tetapi drift historis tidak dianalisa
+- Tidak ada analisa valve position fluctuation
+- Tidak ada review PID stability
+
+Evaluasi:
+Instrument maintenance bersifat periodik, bukan berbasis performa.
+
+---
+
+## D. System
+
+Kemungkinan:
+
+- Tidak ada criticality ranking
+- Semua equipment diperlakukan sama
+- Tidak ada reliability meeting
+
+Evaluasi:
+PM tidak berbasis risiko.
+
+---
+
+## E. Human
+
+Kemungkinan:
+
+- Checklist copy–paste tahunan
+- Tidak ada evaluasi efektivitas
+- Fokus pada penyelesaian pekerjaan, bukan pencegahan
+
+Evaluasi:
+Budaya maintenance masih reaktif.
+
+---
+
+## 🔎 Penyempitan Hipotesis
+
+Dari kelima kelompok:
+
+- Bukan karena PM tidak dilakukan
+- Tetapi karena PM tidak berbasis data dan risiko
+
+Hipotesis utama mengarah pada:
+
+> Sistem PM time-based tanpa analisa tren dan criticality.
+
+---
+
+# 8️⃣ Step-by-Step Investigation Flow
+
+Evaluasi efektivitas PM dilakukan secara sistematis, bukan berdasarkan opini.
+
+---
+
+## 🔹 Langkah 1 – Kumpulkan Data Breakdown 1 Tahun
+
+Data dikumpulkan dari:
+
+- Historian DCS
+- Log trip motor
+- Alarm summary report
+- CMMS (work order history)
+
+Tujuan:
+Menentukan pola kegagalan, bukan kejadian tunggal.
+
+---
+
+## 🔹 Langkah 2 – Cocokkan dengan Jadwal PM
+
+Bandingkan:
+
+- Tanggal breakdown
+- Tanggal PM terakhir
+- Item checklist yang dilakukan
+
+Pertanyaan kunci:
+
+Apakah failure terjadi sebelum atau sesudah PM?
+
+Jika breakdown terjadi 2 minggu setelah PM, maka:
+
+> PM mungkin tidak menyentuh parameter penyebab kegagalan.
+
+---
+
+## 🔹 Langkah 3 – Analisa Parameter Trend Sebelum Failure
+
+Periksa 30 hari sebelum setiap breakdown:
+
+- Arus motor (% FLA)
+- Vibration trend
+- Drift transmitter
+- Valve position fluctuation
+
+Temuan umum:
+
+- Ada kenaikan gradual parameter
+- Tidak ada alarm threshold early warning
+- Tidak ada tindakan preventif sebelum trip
+
+Ini menunjukkan missed opportunity.
+
+---
+
+## 🔹 Langkah 4 – Identifikasi Equipment Berulang
+
+Dari data tahunan:
+
+- Motor A trip 4 kali
+- Motor B trip 2 kali
+- Valve X hunting 3 kali
+
+Equipment ini termasuk kategori “repeat offender”.
+
+Seharusnya masuk dalam daftar critical.
+
+---
+
+## 🔹 Langkah 5 – Evaluasi Item Checklist PM
+
+Checklist dibandingkan dengan penyebab failure.
+
+Contoh:
+
+Failure: Motor overload
+Checklist PM:
+✔ Bersihkan panel
+✔ Periksa kabel
+✔ Periksa kekencangan baut
+
+Tidak ada item:
+
+- Review trend arus
+- Evaluasi beban pompa
+- Analisa vibration
+
+Ini menunjukkan mismatch antara PM dan failure mode.
+
+---
+
+## 🔹 Decision Point
+
+Pertanyaan kritis:
+
+> Apakah PM menyentuh parameter penyebab failure?
+
+Jika tidak, maka PM bersifat administratif, bukan preventif.
+
+---
+
+# 9️⃣ Root Cause & Contributing Factor
+
+Evaluasi menunjukkan bahwa kegagalan bukan disebabkan oleh tidak adanya PM, tetapi oleh pendekatan yang kurang tepat.
+
+---
+
+## 🔹 Root Cause Sistemik
+
+PM bersifat time-based tanpa analisa data trend.
+
+Maintenance dilakukan berdasarkan kalender, bukan kondisi aktual equipment.
+
+---
+
+## 🔹 Contributing Factor
+
+- Tidak ada review reliability meeting
+- Tidak ada criticality ranking
+- Tidak ada evaluasi KPI breakdown
+- Tidak ada alarm early warning threshold
+
+Budaya maintenance masih berorientasi pada penyelesaian pekerjaan, bukan pencegahan kegagalan.
+
+---
+
+## 🔎 Analisis Sistemik
+
+Time-based maintenance cocok untuk:
+
+- Komponen dengan umur pasti (misalnya filter, belt)
+
+Namun untuk rotating equipment dan instrument critical:
+
+- Perubahan kondisi terjadi gradual
+- Data trend lebih relevan daripada interval waktu tetap
+
+Tanpa condition-based thinking, kegagalan berulang akan terus terjadi.
+
+---
+
+# 🔟 Reference to Standard & Gap Analysis
+
+Standar modern reliability tidak lagi murni time-based.
+
+---
+
+## 🔹 Standar Reliability Modern Mengarah ke:
+
+### ISO 14224
+
+- Pengumpulan data kegagalan untuk analisa reliability
+
+### API 580
+
+- Risk-Based Inspection
+- Prioritas berdasarkan risiko
+
+### IEEE 3007
+
+- Maintenance berbasis kondisi untuk sistem tenaga
+
+---
+
+## 🔹 Gap yang Teridentifikasi
+
+| Area                | Kondisi Aktual       | Best Practice             | Gap |
+| ------------------- | -------------------- | ------------------------- | --- |
+| Monitoring trend    | Tidak rutin direview | Trend review berkala      | Ada |
+| Criticality ranking | Tidak ada            | Risk-based prioritization | Ada |
+| KPI breakdown       | Tidak dianalisa      | Evaluasi periodik         | Ada |
+| Alarm threshold     | Tidak ada            | Early warning setting     | Ada |
+
+---
+
+## 🔎 Inti Gap
+
+- PM dilakukan
+- Data tersedia
+- Tetapi data tidak digunakan
+
+Ini adalah gap terbesar dalam banyak sistem maintenance.
+
+---
+
+Dengan ini kita telah menyelesaikan:
+
+✔ Investigasi sistematis
+✔ Identifikasi root cause sistemik
+✔ Gap terhadap standar industri
+
+---
+
+# 1️⃣1️⃣ Corrective & Preventive Action
+
+Perbaikan harus dibagi menjadi empat level agar tidak berhenti pada “perbaikan dokumen”, tetapi benar-benar mengubah sistem.
+
+---
+
+## 🔹 Immediate
+
+Langkah cepat yang dapat dilakukan dalam 1–4 minggu:
+
+- Identifikasi **5 equipment dengan frekuensi breakdown tertinggi**
+- Review histori 3–6 bulan terakhir
+- Tandai equipment tersebut sebagai _temporary critical_
+- Lakukan review trend manual (arus, vibration, drift, alarm frequency)
+
+Tujuan:
+Mendapat gambaran cepat equipment mana yang paling bermasalah.
+
+---
+
+## 🔹 Permanent
+
+Perbaikan struktural pada program PM:
+
+- Tambahkan **trend review bulanan** sebagai item wajib
+- Update checklist PM berdasarkan failure mode aktual
+- Tambahkan kolom “Analisa Trend” dalam form PM
+- Integrasikan data DCS dan CMMS
+
+Checklist harus berubah dari:
+
+✔ Visual inspection
+Menjadi:
+✔ Visual + Measurement + Trend review
+
+---
+
+## 🔹 System Improvement
+
+Perbaikan sistem pemeliharaan:
+
+- Implement **simple criticality matrix** (High–Medium–Low)
+- Prioritaskan monitoring untuk equipment High
+- Buat dashboard KPI breakdown per equipment
+- Lakukan reliability meeting per bulan
+
+Tujuan utama:
+Menggeser PM dari time-based menuju **risk & condition-based thinking**.
+
+---
+
+## 🔹 Monitoring Plan
+
+Agar perubahan tidak kembali ke pola lama:
+
+- Review KPI breakdown setiap 3 bulan
+- Audit checklist PM setiap 6 bulan
+- Evaluasi alarm threshold setiap 6 bulan
+- Evaluasi criticality ranking tahunan
+
+Monitoring tidak boleh menjadi rutinitas administratif.
+Harus menghasilkan tindakan.
+
+---
+
+# 1️⃣2️⃣ Risk & Safety Reflection
+
+PM yang tidak efektif bukan hanya masalah reliability, tetapi juga masalah keselamatan.
+
+---
+
+## 🔹 Risiko PM Tidak Efektif
+
+1. Equipment critical gagal tiba-tiba
+2. Arc flash akibat fault mendadak
+3. Overpressure akibat valve failure
+4. Trip unit yang berpotensi memicu flaring
+5. Human error akibat tekanan operasi mendadak
+
+---
+
+## 🔹 Safety Implication
+
+Time-based PM tanpa analisa trend menciptakan:
+
+- False sense of security
+- Ketergantungan pada proteksi sebagai “penyelamat terakhir”
+- Reaktif terhadap alarm, bukan proaktif
+
+Dalam sistem industri proses:
+
+> Preventive yang salah bisa sama berbahayanya dengan tidak melakukan preventive sama sekali.
+
+---
+
+# 1️⃣3️⃣ Data Interpretation & Trend Awareness
+
+Section ini adalah jembatan menuju condition-based maintenance.
+
+---
+
+## 🔹 Parameter yang Wajib Dipantau
+
+Untuk Electrical:
+
+- Arus motor (% FLA)
+- Voltage balance
+- Trip frequency
+
+Untuk Mechanical:
+
+- Vibration trend
+- Bearing temperature
+
+Untuk Instrument:
+
+- Drift transmitter
+- Valve position fluctuation
+- Alarm frequency
+
+---
+
+## 🔹 Early Warning Indicator
+
+Beberapa indikator sederhana:
+
+- Kenaikan arus >5% dalam 2 minggu
+- Vibration naik >10% dari baseline
+- Valve sering bergerak ekstrem tanpa perubahan setpoint
+- Alarm minor muncul berulang
+
+Jika indikator ini dibaca sebelum breakdown:
+
+Failure dapat dicegah.
+
+---
+
+## 🔎 Perubahan Pola Pikir
+
+Time-based:
+“Kapan terakhir diperiksa?”
+
+Condition-based:
+“Bagaimana kondisi aktual equipment hari ini?”
+
+Perubahan ini adalah inti reliability modern.
+
+---
+
+# 1️⃣4️⃣ Competency Mapping
+
+| Skill Area            | Level Awal | Target |
+| --------------------- | ---------- | ------ |
+| PM awareness          | A          | W      |
+| Data review           | A          | W      |
+| Reliability thinking  | A          | W      |
+| Criticality awareness | A          | W      |
+
+Artikel ini mendorong teknisi dari sekadar pelaksana PM menjadi evaluator sistem PM.
+
+---
+
+# 1️⃣5️⃣ Discussion Question (Toolbox Use)
+
+Gunakan pertanyaan berikut dalam diskusi tim:
+
+1. Mengapa time-based PM bisa gagal mencegah breakdown?
+2. Parameter apa yang paling sering terlewat dalam review PM?
+3. Bagaimana cara sederhana menentukan equipment critical?
+4. Apakah semua equipment perlu diperlakukan sama?
+5. Bagaimana kita tahu bahwa PM kita benar-benar efektif?
+
+Tujuan diskusi:
+Mengubah budaya dari checklist-oriented menjadi data-oriented.
+
+---
+
+# 1️⃣6️⃣ Key Takeaway
+
+- PM rutin ≠ PM efektif
+- Data lebih penting daripada checklist
+- Breakdown berulang adalah sinyal sistem
+- Trend review wajib untuk equipment critical
+- Reliability harus berbasis risiko
+- PM harus adaptif terhadap kondisi aktual
+- Safety bergantung pada kualitas preventive
+
+---
+
+<small>
+  **_Catatan Penyusunan_** Artikel ini merupakan bagian dari serial peningkatan
+  kompetensi yang dirancang untuk diikuti secara berurutan guna membangun
+  pemahaman sistematis dan bertahap. Meskipun demikian, setiap artikel tetap
+  dapat dibaca secara terpisah sebagai referensi mandiri sesuai kebutuhan
+  pembaca. Materi disusun berdasarkan berbagai sumber pustaka teknis, praktik
+  lapangan industri, serta dukungan alat bantu penulisan. Pembaca disarankan
+  melakukan verifikasi lanjutan dan penyesuaian teknis sesuai dengan standar
+  perusahaan, kondisi aktual peralatan, serta regulasi keselamatan yang berlaku.
+</small>

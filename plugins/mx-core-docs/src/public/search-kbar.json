@@ -64,6 +64,36 @@
     ]
   },
   {
+    "id": "maintenance/elins/kurikulum/artikel-44-motor-trip",
+    "name": "Major Integrated Case - Motor Trip → Valve Malfunction → Plant Upset",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/elins/kurikulum/artikel-44-motor-trip",
+    "subtitle": "February 27, 2026",
+    "keywords": [
+      "integrated-troubleshooting",
+      "motor-trip-analysis",
+      "preventive-maintenance-gap",
+      "system-thinking-ei",
+      "trend-monitoring-reliability",
+      "industrial-safety-awareness"
+    ]
+  },
+  {
+    "id": "maintenance/elins/kurikulum/artikel-45-review-pm",
+    "name": "Review Efektivitas PM Program – Time Based atau Condition Based?",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/elins/kurikulum/artikel-45-review-pm",
+    "subtitle": "February 27, 2026",
+    "keywords": [
+      "preventive-maintenance-review",
+      "condition-based-monitoring",
+      "root-cause-analysis",
+      "reliability-thinking-ei",
+      "system-improvement-maintenance",
+      "industrial-safety-awareness"
+    ]
+  },
+  {
     "id": "maintenance/mechanical/kurikulum/artikel-33-oil-contamination",
     "name": "Oil Contamination Case – Air, Partikel, atau Degradasi Kimia?",
     "section": "CONTENT",
@@ -93,6 +123,23 @@
       "three-body-abrasion",
       "preventive-maintenance",
       "junior-mechanical"
+    ]
+  },
+  {
+    "id": "maintenance/mechanical/kurikulum/artikel-35-pump-seal-leakage",
+    "name": "Pump Failure → Seal Leak → Bearing Damage",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/mechanical/kurikulum/artikel-35-pump-seal-leakage",
+    "subtitle": "February 27, 2026",
+    "keywords": [
+      "centrifugal-pump",
+      "mechanical-seal",
+      "bearing-failure",
+      "alignment-misalignment",
+      "vibration-analysis",
+      "api-610-api-682",
+      "integrated-troubleshooting",
+      "junior-mechanical-training"
     ]
   },
   {
