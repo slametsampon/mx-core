@@ -1,5 +1,101 @@
 [
   {
+    "id": "maintenance/elins/kurikulum/artikel-40-vibration-transmitter-abnormal",
+    "name": "Vibration Transmitter Abnormal Reading – Sensor Fault atau Machinery Problem?",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/elins/kurikulum/artikel-40-vibration-transmitter-abnormal",
+    "subtitle": "February 27, 2026",
+    "keywords": [
+      "vibration-monitoring",
+      "machinery-protection",
+      "4-20mA-loop",
+      "instrument-troubleshooting",
+      "mechanical-instrument-interface",
+      "API-670-awareness",
+      "rotating-equipment-reliability"
+    ]
+  },
+  {
+    "id": "maintenance/elins/kurikulum/artikel-41-bearing-temparature-spike",
+    "name": "Bearing Temperature Spike – Gangguan Proses, Sensor, atau Lubrikasi?",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/elins/kurikulum/artikel-41-bearing-temparature-spike",
+    "subtitle": "February 27, 2026",
+    "keywords": [
+      "bearing-temperature",
+      "RTD-3wire",
+      "machinery-protection",
+      "instrument-troubleshooting",
+      "mechanical-instrument-interface",
+      "API-670-awareness",
+      "rotating-equipment-reliability"
+    ]
+  },
+  {
+    "id": "maintenance/elins/kurikulum/artikel-42-inspection-vibration-probe",
+    "name": "Inspection Vibration Probe & RTD Wiring – Preventive untuk Machinery Protection",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/elins/kurikulum/artikel-42-inspection-vibration-probe",
+    "subtitle": "February 27, 2026",
+    "keywords": [
+      "machinery-protection",
+      "vibration-probe",
+      "RTD-wiring",
+      "preventive-maintenance",
+      "instrument-integrity",
+      "API-670-awareness",
+      "rotating-equipment-reliability"
+    ]
+  },
+  {
+    "id": "maintenance/elins/kurikulum/artikel-43-basic-machinery-protection",
+    "name": "Basic Machinery Protection System – Konsep Alarm & Trip pada Rotating Equipment",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/elins/kurikulum/artikel-43-basic-machinery-protection",
+    "subtitle": "February 27, 2026",
+    "keywords": [
+      "machinery-protection",
+      "alarm-vs-trip",
+      "rotating-equipment",
+      "API-670-awareness",
+      "protection-logic",
+      "vibration-monitoring",
+      "process-safety"
+    ]
+  },
+  {
+    "id": "maintenance/mechanical/kurikulum/artikel-33-oil-contamination",
+    "name": "Oil Contamination Case – Air, Partikel, atau Degradasi Kimia?",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/mechanical/kurikulum/artikel-33-oil-contamination",
+    "subtitle": "February 27, 2026",
+    "keywords": [
+      "lubrication-system",
+      "oil-contamination",
+      "breather-failure",
+      "bearing-failure-mechanism",
+      "root-cause-analysis",
+      "rotating-equipment",
+      "junior-mechanical"
+    ]
+  },
+  {
+    "id": "maintenance/mechanical/kurikulum/artikel-34-oil-sampling",
+    "name": "Oil Sampling Awareness – Mengapa Analisa Oil Lebih Murah dari Mengganti Bearing?",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/mechanical/kurikulum/artikel-34-oil-sampling",
+    "subtitle": "February 27, 2026",
+    "keywords": [
+      "oil-sampling",
+      "condition-based-maintenance",
+      "bearing-reliability",
+      "lubrication-monitoring",
+      "three-body-abrasion",
+      "preventive-maintenance",
+      "junior-mechanical"
+    ]
+  },
+  {
     "id": "safety/lopa-bpcs-sis-sif",
     "name": "Dari Hazard ke Implementasi - Peran LOPA dalam Menentukan BPCS, SIS, SIF, dan SIL pada Pabrik Petrokimia",
     "section": "CONTENT",

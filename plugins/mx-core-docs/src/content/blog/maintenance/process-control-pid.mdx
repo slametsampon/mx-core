@@ -62,6 +62,12 @@ _Fondasi Stabilitas Operasi, Reliability, dan Process Safety di Pabrik Petrokimi
   - [**5.3 Stability First Philosophy**](#53-stability-first-philosophy)
   - [**5.4 Tanda Loop Terlalu Agresif**](#54-tanda-loop-terlalu-agresif)
   - [**5.5 Tanda Loop Terlalu Lambat**](#55-tanda-loop-terlalu-lambat)
+  - [📋 **5.6 CHECK-SHEET INDUSTRIAL PID TUNING**](#-56-check-sheet-industrial-pid-tuning)
+    - [Bagian A — Persiapan Sebelum Tuning (Pre-Tuning Safety Gate)](#bagian-a--persiapan-sebelum-tuning-pre-tuning-safety-gate)
+    - [Bagian B — Check-Sheet Saat Pelaksanaan Tuning](#bagian-b--check-sheet-saat-pelaksanaan-tuning)
+    - [Bagian C — Check-Sheet Pasca Tuning](#bagian-c--check-sheet-pasca-tuning)
+    - [Insight Kritis yang Sering Terlupakan](#insight-kritis-yang-sering-terlupakan)
+    - [Prinsip Final yang Layak Dicetak dan Ditempel](#prinsip-final-yang-layak-dicetak-dan-ditempel)
 - [**BAB VI — Advanced Control Architectures**](#bab-vi--advanced-control-architectures)
   - [**6.1 Cascade Control — Speed Hierarchy**](#61-cascade-control--speed-hierarchy)
   - [**6.2 Ratio Control — Menjaga Proporsi Kritis**](#62-ratio-control--menjaga-proporsi-kritis)
@@ -1786,6 +1792,198 @@ Ia mengingatkan bahwa control loop hidup dalam dunia nyata yang penuh keterbatas
 > **Tuning yang baik bukan tentang mencapai grafik paling cepat — tetapi tentang menjaga proses tetap stabil dalam jangka panjang.**
 
 Dengan prinsip-prinsip ini, engineer tidak lagi sekadar “menyetel parameter”, tetapi mulai **mengelola perilaku sistem**.
+
+---
+
+## 📋 **5.6 CHECK-SHEET INDUSTRIAL PID TUNING**
+
+### Bagian A — Persiapan Sebelum Tuning (Pre-Tuning Safety Gate)
+
+> Tujuan: memastikan tuning dilakukan pada kondisi aman dan representatif.
+
+---
+
+✔ A1. Validasi Kondisi Operasi
+
+| Item                                        | Verifikasi | Status      |
+| ------------------------------------------- | ---------- | ----------- |
+| Beban operasi stabil ≥ 30–60 menit          | ☐          | ☐ OK / ☐ NO |
+| Tidak ada upset upstream/downstream         | ☐          | ☐ OK / ☐ NO |
+| Utility (steam, air, cooling water) stabil  | ☐          | ☐ OK / ☐ NO |
+| Tidak dalam fase startup/shutdown           | ☐          | ☐ OK / ☐ NO |
+| Tidak ada maintenance aktif di area terkait | ☐          | ☐ OK / ☐ NO |
+
+⚠️ Jika salah satu NO → tunda tuning.
+
+---
+
+✔ A2. Validasi Instrumentasi
+
+| Item                             | Pemeriksaan | Status      |
+| -------------------------------- | ----------- | ----------- |
+| PV trend bersih (noise wajar)    | ☐           | ☐ OK / ☐ NO |
+| Transmitter kalibrasi valid      | ☐           | ☐ OK / ☐ NO |
+| Tidak ada alarm instrument aktif | ☐           | ☐ OK / ☐ NO |
+| Response time sensor normal      | ☐           | ☐ OK / ☐ NO |
+
+---
+
+✔ A3. Validasi Final Control Element (FCE)
+
+| Item                          | Pemeriksaan | Status      |
+| ----------------------------- | ----------- | ----------- |
+| Tidak ada stiction terdeteksi | ☐           | ☐ OK / ☐ NO |
+| Valve stroke test normal      | ☐           | ☐ OK / ☐ NO |
+| Air supply stabil             | ☐           | ☐ OK / ☐ NO |
+| Position feedback akurat      | ☐           | ☐ OK / ☐ NO |
+
+> Jika valve tidak sehat → jangan tuning.
+
+---
+
+✔ A4. Risk & Safety Coordination
+
+| Item                           | Verifikasi | Status      |
+| ------------------------------ | ---------- | ----------- |
+| Operator diinformasikan        | ☐          | ☐ OK / ☐ NO |
+| Batas aman proses dikonfirmasi | ☐          | ☐ OK / ☐ NO |
+| Alarm limit diketahui          | ☐          | ☐ OK / ☐ NO |
+| SIS setpoint dipahami          | ☐          | ☐ OK / ☐ NO |
+
+Tujuan:
+
+> Menghindari tuning yang tidak sengaja mendekatkan proses ke trip limit.
+
+---
+
+### Bagian B — Check-Sheet Saat Pelaksanaan Tuning
+
+> Tujuan: menjaga tuning tetap terkendali dan tidak memicu upset.
+
+---
+
+✔ B1. Eksekusi Bertahap
+
+☐ Perubahan parameter dilakukan bertahap
+☐ Hanya satu parameter diubah dalam satu waktu
+☐ Waktu observasi cukup sebelum perubahan berikutnya
+☐ Semua perubahan dicatat (log tuning)
+
+Prinsip penting:
+
+> Jangan ubah Kp, Ti, Td secara bersamaan.
+
+---
+
+✔ B2. Monitoring Real-Time
+
+Selama tuning, pantau:
+
+| Variabel       | Observasi          |
+| -------------- | ------------------ |
+| PV trend       | stabil / oscillate |
+| OP trend       | smooth / jitter    |
+| Valve position | hunting / smooth   |
+| Alarm          | muncul / tidak     |
+| Energy load    | spike / stabil     |
+
+Jika terjadi:
+
+- oscillation meningkat
+- alarm mendekati limit
+- valve bergerak ekstrem
+
+→ Kembalikan parameter ke setting sebelumnya.
+
+---
+
+✔ B3. Batas Aman Selama Tuning
+
+Tetapkan batas berikut sebelum mulai:
+
+- PV tidak boleh melewati \_\_\_ % dari design limit
+- OP tidak boleh > \_\_\_ % terlalu lama
+- Pressure tidak boleh mendekati PSV setpoint
+
+Tuning tanpa batas aman adalah praktik berisiko.
+
+---
+
+### Bagian C — Check-Sheet Pasca Tuning
+
+> Tujuan: memastikan tuning benar-benar meningkatkan stabilitas.
+
+---
+
+✔ C1. Verifikasi Kinerja Disturbance
+
+☐ Disturbance kecil teredam dalam waktu wajar
+☐ Tidak ada slow oscillation
+☐ Overshoot minimal
+
+---
+
+✔ C2. Verifikasi Mechanical Impact
+
+☐ Valve tidak hunting
+☐ Tidak ada micro-cycling berlebihan
+☐ Actuator movement normal
+
+---
+
+✔ C3. Verifikasi Operasional
+
+☐ Operator nyaman dengan auto mode
+☐ Tidak ada alarm baru muncul
+☐ Tidak ada peningkatan energi signifikan
+
+---
+
+✔ C4. Observasi 24 Jam
+
+Rekomendasi praktik terbaik:
+
+> Amati loop minimal satu shift penuh sebelum menyatakan tuning selesai.
+
+Beberapa instabilitas hanya muncul saat:
+
+- beban berubah
+- ambient bergeser
+- feed berubah
+
+---
+
+> Ringkasan Praktis — Three-Phase Control Discipline
+
+| Fase           | Fokus                             |
+| -------------- | --------------------------------- |
+| Sebelum tuning | Eliminasi penyebab non-kontrol    |
+| Saat tuning    | Kendali perubahan & observasi     |
+| Setelah tuning | Validasi stabilitas & reliability |
+
+---
+
+### Insight Kritis yang Sering Terlupakan
+
+Banyak upset yang terjadi saat tuning bukan karena PID buruk, tetapi karena:
+
+- tuning dilakukan tanpa koordinasi
+- batas aman tidak ditetapkan
+- parameter diubah terlalu cepat
+- kondisi plant tidak representatif
+
+Tuning yang tidak disiplin dapat:
+
+- memicu alarm flooding
+- mendekatkan ke trip
+- mengganggu unit lain
+- menurunkan kepercayaan operator
+
+---
+
+### Prinsip Final yang Layak Dicetak dan Ditempel
+
+> **Tuning yang baik adalah proses terkontrol.** > **Tuning yang tergesa-gesa adalah sumber upset baru.**
 
 ---
 

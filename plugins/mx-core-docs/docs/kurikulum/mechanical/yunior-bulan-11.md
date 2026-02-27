@@ -11,7 +11,7 @@ Fokus:
 ---
 
 - [🔵 BULAN 11 – Lubrication System](#-bulan-11--lubrication-system)
-- [📘 ARTIKEL 32](#-artikel-32)
+- [📘 ARTIKEL 33](#-artikel-33)
   - [Oil Contamination Case – Air, Partikel, atau Degradasi Kimia?](#oil-contamination-case--air-partikel-atau-degradasi-kimia)
   - [1️⃣ Informasi Umum](#1️⃣-informasi-umum)
   - [2️⃣ Learning Objective (Measurable \& Skill-Based)](#2️⃣-learning-objective-measurable--skill-based)
@@ -29,7 +29,7 @@ Fokus:
   - [1️⃣4️⃣ Competency Mapping](#1️⃣4️⃣-competency-mapping)
   - [1️⃣5️⃣ Discussion Question](#1️⃣5️⃣-discussion-question)
   - [1️⃣6️⃣ Key Takeaway](#1️⃣6️⃣-key-takeaway)
-- [📘 ARTIKEL 33](#-artikel-33)
+- [📘 ARTIKEL 34](#-artikel-34)
   - [Oil Sampling Awareness – Mengapa Analisa Oil Lebih Murah dari Mengganti Bearing?](#oil-sampling-awareness--mengapa-analisa-oil-lebih-murah-dari-mengganti-bearing)
   - [1️⃣ Informasi Umum](#1️⃣-informasi-umum-1)
   - [2️⃣ Learning Objective](#2️⃣-learning-objective)
@@ -51,7 +51,7 @@ Fokus:
 
 ---
 
-# 📘 ARTIKEL 32
+# 📘 ARTIKEL 33
 
 ## Oil Contamination Case – Air, Partikel, atau Degradasi Kimia?
 
@@ -267,7 +267,7 @@ Target Setelah Artikel: Menuju I
 
 ---
 
-# 📘 ARTIKEL 33
+# 📘 ARTIKEL 34
 
 ## Oil Sampling Awareness – Mengapa Analisa Oil Lebih Murah dari Mengganti Bearing?
 
