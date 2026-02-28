@@ -1,0 +1,764 @@
+---
+title: Soft Foot Checking & Dial vs Laser Alignment Basic
+authors: ['sam']
+date: '2026-02-16'
+tags:
+  [
+    'soft-foot-checking',
+    'dial-vs-laser-alignment',
+    'pump-installation-best-practice',
+    'api-686-awareness',
+    'mechanical-reliability-basic',
+    'preventive-maintenance-rotating-equipment',
+  ]
+draft: false
+summary: Artikel ini membahas soft foot sebagai penyebab tersembunyi perubahan alignment dan kenaikan vibrasi pada pompa sentrifugal sebelum startup. Pendekatan preventif dilakukan melalui pengukuran gap foot, koreksi shim berbasis data, serta verifikasi alignment menggunakan dial indicator dan laser alignment. Investigasi dikaitkan dengan praktik instalasi yang merujuk pada API 686 dan toleransi alignment sesuai API 610. Artikel menekankan pentingnya eliminasi soft foot sebelum alignment final, dokumentasi verifikasi, serta monitoring pasca-startup. Aspek keselamatan, risiko frame distortion, dan potensi kebocoran hidrokarbon juga dibahas sebagai bagian dari integritas sistem dan reliability.
+---
+
+# 📘 ARTIKEL 7: Soft Foot Checking & Dial vs Laser Alignment Basic
+
+---
+
+- [📘 ARTIKEL 7: Soft Foot Checking \& Dial vs Laser Alignment Basic](#-artikel-7-soft-foot-checking--dial-vs-laser-alignment-basic)
+  - [1️⃣ Informasi Umum](#1️⃣-informasi-umum)
+  - [2️⃣ Learning Objective (Measurable \& Skill-Based)](#2️⃣-learning-objective-measurable--skill-based)
+    - [**LO1 – Melakukan pengecekan soft foot secara sistematis**](#lo1--melakukan-pengecekan-soft-foot-secara-sistematis)
+    - [**LO2 – Menghitung dan menerapkan shim correction yang tepat**](#lo2--menghitung-dan-menerapkan-shim-correction-yang-tepat)
+    - [**LO3 – Menjelaskan risiko keselamatan dan reliability akibat soft foot**](#lo3--menjelaskan-risiko-keselamatan-dan-reliability-akibat-soft-foot)
+  - [3️⃣ System Context \& Criticality](#3️⃣-system-context--criticality)
+    - [🔹 Rantai Mekanis Sistem](#-rantai-mekanis-sistem)
+    - [🔹 Dampak Jika Soft Foot Tidak Dikoreksi](#-dampak-jika-soft-foot-tidak-dikoreksi)
+    - [🔹 Interaksi Lintas Disiplin (E–I–C)](#-interaksi-lintas-disiplin-eic)
+    - [🔹 Tingkat Criticality](#-tingkat-criticality)
+  - [4️⃣ Diagram Literacy Section (WAJIB)](#4️⃣-diagram-literacy-section-wajib)
+    - [A. Layout Mechanical Assembly](#a-layout-mechanical-assembly)
+    - [B. P\&ID Awareness](#b-pid-awareness)
+    - [C. Alignment Measurement Reference](#c-alignment-measurement-reference)
+  - [5️⃣ Background \& Failure Scenario](#5️⃣-background--failure-scenario)
+    - [🔹 Kondisi Sebelum Startup](#-kondisi-sebelum-startup)
+    - [🔹 Data Teknis Aktual](#-data-teknis-aktual)
+  - [6️⃣ Symptom \& Initial Finding](#6️⃣-symptom--initial-finding)
+    - [A. Terlihat (Visual)](#a-terlihat-visual)
+    - [B. Terukur (Instrument \& Dial Reading)](#b-terukur-instrument--dial-reading)
+    - [C. Asumsi Awal Teknisi](#c-asumsi-awal-teknisi)
+    - [🔎 Tujuan Investigasi](#-tujuan-investigasi)
+  - [7️⃣ Possible Causes (Structured Hypothesis)](#7️⃣-possible-causes-structured-hypothesis)
+    - [A. Mechanical](#a-mechanical)
+    - [B. Electrical](#b-electrical)
+    - [C. Instrument](#c-instrument)
+    - [D. Human Error](#d-human-error)
+  - [8️⃣ Step-by-Step Investigation Flow](#8️⃣-step-by-step-investigation-flow)
+    - [1️⃣ Longgarkan Bolt Satu per Satu → Ukur Perubahan Dial](#1️⃣-longgarkan-bolt-satu-per-satu--ukur-perubahan-dial)
+    - [2️⃣ Identifikasi Foot dengan Perubahan Terbesar](#2️⃣-identifikasi-foot-dengan-perubahan-terbesar)
+    - [3️⃣ Ukur Gap Menggunakan Feeler Gauge](#3️⃣-ukur-gap-menggunakan-feeler-gauge)
+    - [4️⃣ Hitung Shim Correction](#4️⃣-hitung-shim-correction)
+    - [5️⃣ Pasang Shim → Kencangkan Bolt → Ulangi Pengukuran](#5️⃣-pasang-shim--kencangkan-bolt--ulangi-pengukuran)
+    - [6️⃣ Setelah Soft Foot \< Tolerance → Lakukan Alignment Final](#6️⃣-setelah-soft-foot--tolerance--lakukan-alignment-final)
+    - [🔎 Decision Point](#-decision-point)
+  - [9️⃣ Root Cause \& Contributing Factor](#9️⃣-root-cause--contributing-factor)
+    - [🔹 Root Cause Teknis](#-root-cause-teknis)
+    - [🔹 Contributing Factor](#-contributing-factor)
+  - [🔟 Reference to Standard \& Gap Analysis](#-reference-to-standard--gap-analysis)
+    - [🔹 Rujukan Standar](#-rujukan-standar)
+    - [🔹 Kondisi Aktual pada Kasus](#-kondisi-aktual-pada-kasus)
+    - [🔹 Gap Analysis](#-gap-analysis)
+  - [1️⃣1️⃣ Corrective \& Preventive Action](#1️⃣1️⃣-corrective--preventive-action)
+    - [🔹 Immediate Action](#-immediate-action)
+    - [🔹 Permanent Fix](#-permanent-fix)
+    - [🔹 System Improvement](#-system-improvement)
+    - [🔹 Monitoring Plan](#-monitoring-plan)
+  - [1️⃣2️⃣ Risk \& Safety Reflection](#1️⃣2️⃣-risk--safety-reflection)
+    - [🔹 Potensi Bahaya](#-potensi-bahaya)
+    - [🔹 Pengendalian Risiko](#-pengendalian-risiko)
+  - [1️⃣3️⃣ Data Interpretation \& Trend Awareness](#1️⃣3️⃣-data-interpretation--trend-awareness)
+    - [🔹 Parameter yang Dipantau](#-parameter-yang-dipantau)
+    - [🔹 Analisis Pola (Trend Awareness)](#-analisis-pola-trend-awareness)
+    - [🔹 Early Warning Indicator](#-early-warning-indicator)
+  - [1️⃣4️⃣ Competency Mapping](#1️⃣4️⃣-competency-mapping)
+    - [🔹 Makna Upgrade Kompetensi](#-makna-upgrade-kompetensi)
+  - [1️⃣5️⃣ Discussion Question (Toolbox Use)](#1️⃣5️⃣-discussion-question-toolbox-use)
+  - [1️⃣6️⃣ Key Takeaway](#1️⃣6️⃣-key-takeaway)
+
+---
+
+## 1️⃣ Informasi Umum
+
+1. **Judul:** Soft Foot Checking & Dial vs Laser Alignment Basic
+
+2. **Disiplin:** Mechanical
+
+3. **Level:** Junior
+
+4. **Kategori:** Preventive
+
+5. **Equipment / System Terkait:**
+
+   - Centrifugal Pump
+   - Electric Motor
+   - Baseplate & Foundation System
+   - Flexible Coupling
+   - Shim & Anchor Bolt Assembly
+
+6. **Referensi Standar (Awareness):**
+
+   - API 610 – Persyaratan alignment untuk pompa layanan industri minyak dan petrokimia.
+   - API 686 – Pedoman instalasi dan alignment mesin berputar, termasuk verifikasi soft foot.
+   - ISO 1940 – Standar kualitas keseimbangan rotor (awareness dalam konteks diferensiasi misalignment vs unbalance).
+
+Artikel ini merupakan bagian dari serial peningkatan kompetensi teknisi mekanikal, dengan fokus pada pencegahan kegagalan akibat soft foot sebelum alignment final dilakukan.
+
+<ResourceBox
+  title="Artikel terkait :"
+  items={[
+    {
+      name: 'Panduan Lengkap Kurikulum & Matriks Kompetensi',
+      href: '/blog/maintenance/mechanical/panduan-kurikulum-mechanical',
+      description:
+        'Panduan Lengkap Kurikulum & Matriks Kompetensi – Teknisi Mechanical – Industri Petrokimia',
+    },
+    {
+      name: 'Vibrasi Tinggi Setelah Maintenance',
+      href: '/blog/maintenance/mechanical/kurikulum/yunior/artikel-05-vibrasi-tinggi',
+      description:
+        'Vibrasi Tinggi Setelah Maintenance – Misalignment atau Unbalance?',
+    },
+    {
+      name: 'Bearing Cepat Rusak',
+      href: '/blog/maintenance/mechanical/kurikulum/yunior/artikel-06-bearing-cepat-rusak',
+      description: 'Bearing Cepat Rusak – Apakah Alignment yang Salah?',
+    },
+    {
+      name: 'Thermal Growth Awareness',
+      href: '/blog/maintenance/mechanical/kurikulum/yunior/artikel-08-thermal-growth',
+      description:
+        'Thermal Growth Awareness – Mengapa Alignment Cold ≠ Alignment Hot',
+    },
+  ]}
+  note="Artikel-artikel di atas merupakan bagian dari serial peningkatan kompetensi Electrical & Instrumentation yang dirancang untuk diikuti secara berurutan guna membangun pemahaman sistematis dan bertahap. Meskipun demikian, setiap artikel tetap dapat digunakan sebagai referensi mandiri sesuai kebutuhan teknis di lapangan. Pembaca tetap disarankan melakukan verifikasi lanjutan dan penyesuaian sesuai standar perusahaan serta regulasi keselamatan yang berlaku."
+/>
+
+---
+
+## 2️⃣ Learning Objective (Measurable & Skill-Based)
+
+Setelah mempelajari artikel ini, teknisi mampu:
+
+### **LO1 – Melakukan pengecekan soft foot secara sistematis**
+
+- Menggunakan feeler gauge untuk mengukur gap pada motor foot.
+- Menggunakan dial indicator untuk mendeteksi perubahan reading saat bolt dikencangkan.
+- Mengidentifikasi jenis soft foot (parallel gap, angular, squishy foot).
+
+---
+
+### **LO2 – Menghitung dan menerapkan shim correction yang tepat**
+
+- Menghitung kebutuhan shim berdasarkan gap terukur.
+- Menentukan penambahan atau pengurangan shim pada posisi yang benar.
+- Memastikan shim stack bersih, rata, dan tidak berlebihan.
+
+---
+
+### **LO3 – Menjelaskan risiko keselamatan dan reliability akibat soft foot**
+
+Teknisi mampu menjelaskan bahwa soft foot yang tidak dikoreksi dapat menyebabkan:
+
+- Distorsi frame motor.
+- Perubahan alignment setelah tightening.
+- Kenaikan vibrasi dan temperatur bearing.
+- Potensi rotating hazard dan premature bearing/seal failure.
+
+⚠ LO3 menguatkan hubungan antara pekerjaan alignment dan integritas sistem keseluruhan.
+
+---
+
+## 3️⃣ System Context & Criticality
+
+### 🔹 Rantai Mekanis Sistem
+
+Motor
+→ Baseplate
+→ Shim
+→ Foundation
+→ Alignment
+→ Coupling
+→ Shaft
+→ Bearing
+→ Seal
+→ Process Stability
+
+Soft foot terjadi di level paling dasar (motor–baseplate), namun dampaknya merambat hingga ke sistem proses.
+
+---
+
+### 🔹 Dampak Jika Soft Foot Tidak Dikoreksi
+
+1. Frame motor mengalami stress dan distorsi.
+2. Alignment berubah saat bolt dikencangkan.
+3. Vibrasi meningkat setelah startup.
+4. Bearing dan seal mengalami premature failure.
+5. Rework alignment berulang dan downtime meningkat.
+
+---
+
+### 🔹 Interaksi Lintas Disiplin (E–I–C)
+
+Mechanical soft foot
+→ Vibrasi meningkat
+→ Sensor vibration memberikan alarm (Instrumentation)
+→ Arus motor meningkat akibat beban mekanis (Electrical)
+→ Potensi trip proteksi
+
+Dengan demikian, soft foot bukan hanya isu mekanikal lokal, tetapi dapat memicu gangguan lintas disiplin.
+
+---
+
+### 🔹 Tingkat Criticality
+
+Pada pompa layanan proses utama:
+
+- Alignment yang berubah setelah tightening sering tidak terdeteksi sebelum startup.
+- Vibrasi awal yang meningkat dapat berkembang menjadi kegagalan sekunder.
+- Potensi kebocoran fluida proses meningkat jika seal terpengaruh.
+
+Soft foot sering menjadi akar masalah tersembunyi sebelum alignment dilakukan, sehingga eliminasi soft foot adalah fondasi reliability alignment yang benar.
+
+---
+
+## 4️⃣ Diagram Literacy Section (WAJIB)
+
+Section ini memastikan teknisi memahami hubungan geometri, gaya, dan titik ukur sebelum melakukan koreksi.
+
+---
+
+### A. Layout Mechanical Assembly
+
+![Image](https://imgv2-2-f.scribdassets.com/img/document/698191600/original/c65c1e6277/1?v=1)
+
+![Image](https://cms.media.wilo.com/cdnpic/wilo743316/10263080/wilo743316_1140x_1.jpg)
+
+![Image](https://www.northridgepumps.com/upload/editor/19111108201917890.png)
+
+Teknisi harus mampu mengidentifikasi:
+
+- **Empat titik motor foot** (front left, front right, rear left, rear right).
+- Posisi shim di antara motor foot dan baseplate.
+- Centerline coupling sebagai referensi alignment.
+- Hubungan anchor bolt dengan distribusi beban.
+
+Poin penting:
+
+- Soft foot terjadi ketika salah satu foot tidak duduk rata.
+- Distorsi frame muncul saat bolt dikencangkan.
+- Centerline shaft berubah akibat deformasi struktur.
+
+---
+
+### B. P&ID Awareness
+
+![Image](https://images.openai.com/static-rsc-3/ZE6ttqE6rozeLgX91tGpTJTm9gTFeqyrj_r-DF9LXlQySCsyQEFljP-j2oWCpZU1uCx11o3d4gxjRO_ZxMOvsZ8vzzbXaSuikQ73UkN8dGc?purpose=fullsize&v=1)
+
+![Image](https://imgv2-2-f.scribdassets.com/img/document/119272480/original/aea7b5cd0e/1?v=1)
+
+![Image](https://www.researchgate.net/publication/332611188/figure/fig3/AS%3A11431281153521353%401682478090847/Test-bench-for-pump-as-turbine-1-3-motor-2-air-compressor-4-pressure-transmitter.tif)
+
+Teknisi harus memahami:
+
+- Posisi pompa dalam sistem proses.
+- Apakah pompa berada pada layanan kritikal.
+- Dampak shutdown terhadap tekanan dan flow sistem.
+
+Jika pompa shutdown akibat vibrasi tinggi:
+
+- Flow terganggu.
+- Pressure upstream/downstream berubah.
+- Potensi interlock aktif.
+
+Alignment yang tidak stabil berpotensi memicu gangguan proses.
+
+---
+
+### C. Alignment Measurement Reference
+
+![Image](https://media.licdn.com/dms/image/v2/D5612AQG4nBiUPWmLMQ/article-cover_image-shrink_600_2000/article-cover_image-shrink_600_2000/0/1735962532223?e=2147483647&t=t265P3R6gwenvMfxqfVmOeqKaI_XtG3meUT-hJ3aGbA&v=beta)
+
+![Image](https://cdn.skfmediahub.skf.com/api/public/0901d1968092b9a8/png_highpreview_800/0901d1968092b9a8_png_highpreview_800.png)
+
+![Image](https://www.researchgate.net/publication/2238048/figure/fig1/AS%3A279952906833925%401443757382515/Examples-of-a-offset-parallel-misalignment-and-b-angular-misalignment.png)
+
+![Image](https://www.researchgate.net/publication/342188040/figure/fig1/AS%3A905667175014400%401592939289398/Types-of-misalignment-shaft.png)
+
+Teknisi wajib mampu menunjukkan:
+
+- Titik pemasangan dial indicator pada coupling hub.
+- Posisi sensor laser alignment pada kedua shaft.
+- Arah koreksi untuk angular dan parallel misalignment.
+- Foot mana yang menunjukkan gap terbesar saat bolt dilonggarkan.
+
+Hal yang harus dipahami:
+
+- Jika reading berubah saat bolt dikencangkan → indikasi soft foot.
+- Koreksi shim dilakukan pada foot dengan gap terukur.
+- Alignment final hanya dilakukan setelah soft foot dieliminasi.
+
+👉 Section ini menjamin pemahaman geometri alignment dan distribusi gaya secara visual.
+
+---
+
+## 5️⃣ Background & Failure Scenario
+
+### 🔹 Kondisi Sebelum Startup
+
+Pada tahap preventive maintenance:
+
+- Dilakukan alignment sebelum startup.
+- Hasil awal alignment terlihat dalam batas toleransi.
+
+Namun setelah final tightening:
+
+- Reading berubah **0.15 mm**.
+- Vibrasi awal startup meningkat menjadi **5.5 mm/s** (baseline sebelumnya 2.2 mm/s).
+
+---
+
+### 🔹 Data Teknis Aktual
+
+- Gap terukur pada foot belakang kiri: **0.25 mm**.
+- Motor power: **75 kW**.
+- Coupling: **Flexible grid type**.
+
+Karakteristik kasus:
+
+- Tidak ada perubahan proses.
+- Perubahan terjadi setelah pengencangan bolt.
+- Vibrasi meningkat segera setelah startup.
+
+Indikasi kuat bahwa masalah berasal dari struktur dasar (soft foot), bukan rotor.
+
+---
+
+## 6️⃣ Symptom & Initial Finding
+
+### A. Terlihat (Visual)
+
+- Salah satu foot tidak menempel penuh pada baseplate.
+- Shim terlihat tidak rata dan tidak seragam.
+- Ada kemungkinan shim stack terlalu tinggi atau kotor.
+
+---
+
+### B. Terukur (Instrument & Dial Reading)
+
+- Dial reading berubah saat bolt dikencangkan.
+- Vibrasi dominan radial.
+- Axial vibration relatif stabil.
+
+---
+
+### C. Asumsi Awal Teknisi
+
+- Alignment belum presisi.
+- Kemungkinan rotor unbalance.
+- Dugaan kesalahan pada setting dial.
+
+Namun perubahan reading saat tightening menunjukkan indikasi struktural, bukan hanya alignment geometri.
+
+---
+
+### 🔎 Tujuan Investigasi
+
+Memisahkan antara:
+
+- **Alignment error murni**, dan
+- **Structural soft foot yang menyebabkan alignment berubah setelah tightening.**
+
+Soft foot harus dieliminasi sebelum alignment final dinyatakan valid.
+
+---
+
+## 7️⃣ Possible Causes (Structured Hypothesis)
+
+Pendekatan analitis harus dimulai dengan klasifikasi penyebab lintas disiplin untuk mencegah bias investigasi.
+
+---
+
+### A. Mechanical
+
+1. **Soft Foot (Parallel Gap)**
+
+   - Salah satu motor foot tidak menempel penuh pada baseplate.
+   - Saat bolt dikencangkan, frame motor terdistorsi.
+   - Alignment berubah meskipun awalnya dalam toleransi.
+
+2. **Bent Baseplate**
+
+   - Baseplate mengalami deformasi akibat instalasi tidak rata atau settling foundation.
+   - Foot tampak rata, tetapi centerline tetap berubah setelah tightening.
+
+3. **Uneven Shim Stack**
+
+   - Shim tidak rata, kotor, atau terlalu banyak lapisan.
+   - Ketebalan tidak seragam menyebabkan distribusi beban tidak merata.
+
+4. **Grouting Tidak Rata**
+
+   - Foundation tidak homogen.
+   - Permukaan baseplate mengalami lokal stress saat bolt dikencangkan.
+
+---
+
+### B. Electrical
+
+1. **Motor Shaft Run-Out**
+
+   - Deviasi geometrik pada shaft motor.
+   - Biasanya menghasilkan vibrasi konsisten, bukan perubahan reading saat bolt tightening.
+   - Diverifikasi menggunakan dial test indicator pada shaft.
+
+---
+
+### C. Instrument
+
+1. **Dial Indicator Mounting Tidak Rigid**
+
+   - Magnetic base tidak stabil.
+   - Bracket flexing saat pengukuran.
+   - Memberikan reading tidak repeatable.
+
+---
+
+### D. Human Error
+
+1. **Tidak Melakukan Soft Foot Check Sebelum Alignment**
+
+   - Alignment dilakukan langsung tanpa verifikasi foot contact.
+   - Reading alignment dianggap valid meskipun struktur belum stabil.
+
+2. **Shim Tidak Dibersihkan**
+
+   - Adanya kotoran, burr, atau karat.
+   - Ketebalan efektif shim berubah saat dikencangkan.
+
+---
+
+Hipotesis paling kuat pada kasus ini mengarah ke soft foot karena perubahan reading terjadi saat tightening bolt.
+
+---
+
+## 8️⃣ Step-by-Step Investigation Flow
+
+Investigasi dilakukan secara berurutan untuk memastikan eliminasi penyebab struktural sebelum alignment final.
+
+---
+
+### 1️⃣ Longgarkan Bolt Satu per Satu → Ukur Perubahan Dial
+
+- Longgarkan satu motor foot bolt.
+- Amati perubahan dial reading.
+- Catat perubahan terbesar.
+
+Tujuan: mengidentifikasi foot yang mengalami gap.
+
+---
+
+### 2️⃣ Identifikasi Foot dengan Perubahan Terbesar
+
+- Foot dengan perubahan reading signifikan menunjukkan potensi soft foot.
+- Biasanya terjadi pada salah satu rear foot.
+
+---
+
+### 3️⃣ Ukur Gap Menggunakan Feeler Gauge
+
+- Sisipkan feeler gauge pada foot yang dicurigai.
+- Catat gap aktual (misalnya 0.25 mm pada kasus ini).
+
+---
+
+### 4️⃣ Hitung Shim Correction
+
+- Tambahkan shim sesuai gap terukur.
+- Pastikan shim bersih dan rata.
+- Hindari stack berlebihan.
+
+---
+
+### 5️⃣ Pasang Shim → Kencangkan Bolt → Ulangi Pengukuran
+
+- Kencangkan sesuai torque sequence.
+- Pastikan perubahan dial minimal.
+- Ulangi hingga perubahan < toleransi praktik.
+
+---
+
+### 6️⃣ Setelah Soft Foot < Tolerance → Lakukan Alignment Final
+
+- Alignment dilakukan menggunakan dial atau laser.
+- Verifikasi ulang setelah final tightening.
+
+---
+
+### 🔎 Decision Point
+
+**Soft foot harus dieliminasi sebelum alignment final dilakukan.**
+
+Tanpa eliminasi soft foot:
+
+- Alignment reading akan berubah setelah tightening.
+- Rework akan berulang.
+- Vibrasi tetap tinggi meskipun alignment awal terlihat benar.
+
+---
+
+## 9️⃣ Root Cause & Contributing Factor
+
+### 🔹 Root Cause Teknis
+
+Soft foot sebesar **0.25 mm** menyebabkan distorsi frame motor saat bolt dikencangkan.
+
+Akibatnya:
+
+- Centerline berubah.
+- Alignment awal tidak lagi valid.
+- Vibrasi meningkat setelah startup.
+
+---
+
+### 🔹 Contributing Factor
+
+1. Tidak adanya prosedur wajib soft foot check sebelum alignment.
+2. Tekanan waktu pekerjaan menyebabkan tahapan verifikasi dilewati.
+3. Tidak ada dokumentasi perubahan reading setelah tightening.
+
+Kesimpulan teknis:
+
+Masalah bukan pada presisi alignment awal, tetapi pada struktur dasar yang tidak stabil akibat soft foot yang tidak dikoreksi.
+
+---
+
+## 🔟 Reference to Standard & Gap Analysis
+
+Evaluasi terhadap praktik alignment harus dikaitkan dengan standar instalasi mesin berputar agar keputusan teknis tidak bersifat subjektif.
+
+### 🔹 Rujukan Standar
+
+Soft foot dan alignment instalasi umumnya merujuk pada:
+
+- API 686 – mensyaratkan verifikasi soft foot sebelum alignment final serta kontrol kualitas shim.
+- API 610 – mensyaratkan alignment dalam batas toleransi untuk menjamin reliability pompa layanan industri.
+
+Menurut praktik yang dianjurkan:
+
+- Soft foot harus < **0.05 mm** sebelum alignment final dilakukan.
+- Shim harus bersih, rata, tidak berkarat, dan tidak memiliki stack height berlebihan.
+- Alignment diverifikasi kembali setelah final bolt tightening.
+
+---
+
+### 🔹 Kondisi Aktual pada Kasus
+
+- Soft foot terukur **0.25 mm** (di atas batas praktik baik).
+- Tidak ada dokumentasi soft foot check.
+- Alignment dilakukan tanpa checklist verifikasi sebelum sign-off.
+
+---
+
+### 🔹 Gap Analysis
+
+| Aspek                  | Seharusnya (Best Practice) | Aktual         | Gap    |
+| ---------------------- | -------------------------- | -------------- | ------ |
+| Soft foot tolerance    | < 0.05 mm                  | 0.25 mm        | Tinggi |
+| Dokumentasi verifikasi | Tercatat & tersimpan       | Tidak ada      | Tinggi |
+| Checklist alignment    | Mandatory sebelum sign-off | Tidak tersedia | Tinggi |
+
+Kesimpulan:
+Masalah bukan pada metode alignment, melainkan pada kegagalan verifikasi kondisi dasar sebelum alignment dilakukan.
+
+---
+
+## 1️⃣1️⃣ Corrective & Preventive Action
+
+Pendekatan solusi harus menghilangkan penyebab struktural dan memperkuat sistem kontrol.
+
+---
+
+### 🔹 Immediate Action
+
+- Koreksi shim berdasarkan gap aktual (0.25 mm).
+- Pastikan shim bersih dan rata.
+- Ulangi alignment setelah soft foot dalam batas toleransi.
+- Verifikasi ulang setelah final tightening.
+
+---
+
+### 🔹 Permanent Fix
+
+- Terapkan prosedur **mandatory soft foot check** sebelum alignment.
+- Masukkan langkah soft foot dalam SOP maintenance dan turnaround.
+- Wajibkan verifikasi supervisor sebelum unit dinyatakan siap operasi.
+
+---
+
+### 🔹 System Improvement
+
+- Tambahkan kolom “Soft Foot Check” pada alignment log sheet.
+- Simpan baseline alignment dan soft foot data sebagai referensi historis.
+- Integrasikan verifikasi alignment dalam proses commissioning internal.
+
+---
+
+### 🔹 Monitoring Plan
+
+- Review vibrasi 24–48 jam setelah startup.
+- Bandingkan dengan baseline sebelum maintenance.
+- Pantau bearing temperature dan arus motor untuk korelasi beban mekanis.
+
+Tujuan monitoring: memastikan frame distortion tidak muncul kembali setelah settling.
+
+---
+
+## 1️⃣2️⃣ Risk & Safety Reflection
+
+Alignment dan koreksi shim melibatkan risiko mekanis yang signifikan.
+
+---
+
+### 🔹 Potensi Bahaya
+
+1. **Rotating Hazard**
+   Risiko tinggi jika guard dilepas tanpa isolasi energi.
+
+2. **Pinch Point**
+   Area antara foot dan baseplate dapat menjepit tangan saat penempatan shim.
+
+3. **Cedera Akibat Handling Shim**
+   Shim tipis dapat menyebabkan luka sayat.
+
+4. **Risiko Kebocoran Fluida Proses**
+   Soft foot yang tidak dikoreksi dapat menyebabkan vibrasi tinggi → seal leak → potensi kebocoran hidrokarbon.
+
+---
+
+### 🔹 Pengendalian Risiko
+
+- Mechanical Work Permit.
+- Prosedur LOTO motor sebelum pekerjaan.
+- Verifikasi zero energy state.
+- Gunakan sarung tangan dan PPE sesuai standar site.
+- Perhatikan ruang kerja sempit (confined space awareness).
+
+Dalam konteks fluida mudah terbakar, vibrasi berlebih yang menyebabkan kegagalan seal dapat berujung pada insiden serius. Prinsip keselamatan penyimpanan dan penanganan cairan mudah terbakar sebagaimana dibahas dalam NFPA 30 menjadi pengingat bahwa alignment yang benar berkontribusi langsung pada pengendalian risiko kebakaran.
+
+---
+
+Soft foot bukan sekadar deviasi mekanikal kecil, melainkan faktor struktural yang memengaruhi integritas sistem, reliability, dan keselamatan operasi.
+
+---
+
+## 1️⃣3️⃣ Data Interpretation & Trend Awareness
+
+Pendekatan preventif tidak berhenti pada koreksi shim dan alignment final, tetapi dilanjutkan dengan interpretasi data pasca-startup untuk memastikan stabilitas sistem.
+
+---
+
+### 🔹 Parameter yang Dipantau
+
+1. **Vibrasi Radial & Axial**
+
+   - Radial vibration mengindikasikan deviasi centerline atau unbalance.
+   - Axial vibration sensitif terhadap angular misalignment atau residual soft foot.
+
+2. **Bearing Temperature**
+
+   - Kenaikan bertahap menunjukkan beban mekanis meningkat.
+   - Lonjakan cepat dapat mengindikasikan pelumasan atau friction abnormal.
+
+3. **Arus Motor**
+
+   - Perubahan kecil namun konsisten dapat menunjukkan peningkatan beban mekanis akibat alignment tidak stabil.
+
+---
+
+### 🔹 Analisis Pola (Trend Awareness)
+
+Beberapa pola khas yang perlu diperhatikan:
+
+- Vibrasi meningkat segera setelah bolt tightening → indikasi distorsi frame.
+- Alignment reading berubah setelah beberapa jam operasi → indikasi settling atau residual stress pada baseplate.
+- Axial vibration tetap rendah setelah koreksi shim → soft foot telah tereliminasi.
+
+Jika vibrasi meningkat kembali tanpa perubahan proses, evaluasi ulang kondisi foot dan torque bolt.
+
+---
+
+### 🔹 Early Warning Indicator
+
+- Perubahan alignment > **0.1 mm** setelah final tightening.
+- Axial vibration meningkat walaupun alignment awal dalam toleransi.
+- Perbedaan reading sebelum dan sesudah operasi awal.
+
+Indikator ini harus menjadi alarm dini sebelum terjadi premature bearing failure.
+
+---
+
+## 1️⃣4️⃣ Competency Mapping
+
+Artikel ini dirancang untuk meningkatkan kemampuan teknisi secara bertahap dan terukur.
+
+| Skill Area                | Level Saat Ini | Target Setelah Artikel |
+| ------------------------- | -------------- | ---------------------- |
+| Soft Foot Identification  | W              | I                      |
+| Shim Calculation          | W              | I                      |
+| Dial Alignment Basic      | W              | I                      |
+| Laser Alignment Awareness | A              | W                      |
+
+(W = Awareness, I = Intermediate)
+
+---
+
+### 🔹 Makna Upgrade Kompetensi
+
+Dari level Awareness:
+
+- Mengetahui istilah soft foot dan alignment.
+
+Menuju level Intermediate:
+
+- Mampu mengukur, menganalisis, dan mengoreksi soft foot.
+- Memahami perbedaan teknis dial vs laser alignment.
+- Mengaitkan alignment dengan reliability dan keselamatan sistem.
+
+---
+
+## 1️⃣5️⃣ Discussion Question (Toolbox Use)
+
+1. Mengapa alignment tidak boleh dilakukan sebelum soft foot dieliminasi, meskipun hasil awal terlihat dalam toleransi?
+2. Apa perbedaan prinsip pengukuran dan akurasi antara dial alignment dan laser alignment?
+3. Apa konsekuensi jangka panjang jika soft foot 0.2 mm dibiarkan pada pompa layanan proses?
+
+Tujuan diskusi: membangun pola pikir sistemik dan preventif.
+
+---
+
+## 1️⃣6️⃣ Key Takeaway
+
+- Soft foot adalah penyebab tersembunyi vibrasi tinggi.
+- Soft foot check wajib dilakukan sebelum alignment final.
+- Shim correction harus berbasis pengukuran aktual, bukan estimasi.
+- Dial alignment membantu memahami geometri dan distribusi beban.
+- Laser alignment meningkatkan presisi dan efisiensi pekerjaan.
+- Thermal growth harus dipertimbangkan pada setting akhir.
+- Pendekatan preventif mengurangi rework, downtime, dan risiko kegagalan sekunder.
+
+---
+
+<small>
+  **_Catatan Penyusunan_** Artikel ini merupakan bagian dari serial peningkatan
+  kompetensi yang dirancang untuk diikuti secara berurutan guna membangun
+  pemahaman sistematis dan bertahap. Meskipun demikian, setiap artikel tetap
+  dapat dibaca secara terpisah sebagai referensi mandiri sesuai kebutuhan
+  pembaca. Materi disusun berdasarkan berbagai sumber pustaka teknis, praktik
+  lapangan industri, serta dukungan alat bantu penulisan. Pembaca disarankan
+  melakukan verifikasi lanjutan dan penyesuaian teknis sesuai dengan standar
+  perusahaan, kondisi aktual peralatan, serta regulasi keselamatan yang berlaku.
+</small>

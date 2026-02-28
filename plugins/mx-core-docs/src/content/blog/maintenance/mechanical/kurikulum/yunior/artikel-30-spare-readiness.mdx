@@ -1,0 +1,848 @@
+---
+title: Spare Readiness – Menghindari Downtime karena Part Tidak Siap
+authors: ['sam']
+date: '2026-02-20'
+tags:
+  [
+    'spare-readiness',
+    'critical-spare-management',
+    'shutdown-planning',
+    'bearing-preservation',
+    'reliability-system',
+    'downtime-prevention',
+    'process-safety',
+  ]
+draft: false
+summary: Artikel ini menekankan bahwa spare readiness bukan hanya ketersediaan di SAP, tetapi kesiapan fisik, kesesuaian spesifikasi, dan kondisi preservation. Spare kritikal seperti bearing, mechanical seal, gasket, dan bolt harus diverifikasi sebelum shutdown untuk mencegah downtime berkepanjangan. Korosi, shelf life terlewati, atau kesalahan identifikasi part dapat menyebabkan early failure saat startup. Analisis harus menghubungkan root physical mechanism (misalnya pitting pada bearing) dengan beban operasi dan konsekuensi sistem seperti repeat shutdown dan risiko kebakaran. Integrasi Mechanical–Planning–Warehouse serta audit preservation berkala menjadi barrier utama untuk menjaga reliability dan keselamatan operasi.
+---
+
+# 📘 ARTIKEL 30: Spare Readiness – Menghindari Downtime karena Part Tidak Siap
+
+---
+
+- [📘 ARTIKEL 30: Spare Readiness – Menghindari Downtime karena Part Tidak Siap](#-artikel-30-spare-readiness--menghindari-downtime-karena-part-tidak-siap)
+  - [1️⃣ Informasi Umum](#1️⃣-informasi-umum)
+  - [2️⃣ Learning Objective (Measurable \& Skill-Based)](#2️⃣-learning-objective-measurable--skill-based)
+  - [3️⃣ System Context \& Criticality](#3️⃣-system-context--criticality)
+    - [Interaksi Sistem](#interaksi-sistem)
+    - [Criticality Perspective](#criticality-perspective)
+  - [4️⃣ Diagram Literacy Section (WAJIB)](#4️⃣-diagram-literacy-section-wajib)
+    - [A. Critical Spare dalam Sistem Rotating Equipment](#a-critical-spare-dalam-sistem-rotating-equipment)
+    - [Mekanisme Jika Spare Tidak Siap](#mekanisme-jika-spare-tidak-siap)
+    - [B. Preservation \& Storage Condition](#b-preservation--storage-condition)
+    - [Mekanisme Risiko Jika Preservation Buruk](#mekanisme-risiko-jika-preservation-buruk)
+  - [5️⃣ Background \& Failure Scenario](#5️⃣-background--failure-scenario)
+    - [Kondisi Sebelum Shutdown](#kondisi-sebelum-shutdown)
+    - [Temuan Saat Eksekusi Shutdown](#temuan-saat-eksekusi-shutdown)
+    - [Dampak Sistem](#dampak-sistem)
+  - [6️⃣ Symptom \& Initial Finding](#6️⃣-symptom--initial-finding)
+    - [Apa yang Terlihat (Visual)](#apa-yang-terlihat-visual)
+    - [Apa yang Terukur (Data)](#apa-yang-terukur-data)
+    - [Apa yang Diasumsikan](#apa-yang-diasumsikan)
+  - [7️⃣ Possible Causes (Structured Hypothesis)](#7️⃣-possible-causes-structured-hypothesis)
+    - [A. Mechanical](#a-mechanical)
+    - [B. System / Planning](#b-system--planning)
+    - [C. Human](#c-human)
+    - [D. Safety](#d-safety)
+  - [8️⃣ Step-by-Step Investigation Flow](#8️⃣-step-by-step-investigation-flow)
+    - [1️⃣ Identifikasi Critical Equipment](#1️⃣-identifikasi-critical-equipment)
+    - [2️⃣ Tentukan Critical Spare List](#2️⃣-tentukan-critical-spare-list)
+    - [3️⃣ Verifikasi Fisik Spare](#3️⃣-verifikasi-fisik-spare)
+    - [4️⃣ Cek Preservation Record](#4️⃣-cek-preservation-record)
+    - [5️⃣ Evaluasi Lead Time](#5️⃣-evaluasi-lead-time)
+    - [6️⃣ Konfirmasi Root Cause](#6️⃣-konfirmasi-root-cause)
+  - [9️⃣ Root Cause \& Contributing Factor](#9️⃣-root-cause--contributing-factor)
+    - [Root Physical Mechanism](#root-physical-mechanism)
+    - [Load / Stress Condition](#load--stress-condition)
+    - [Operational Trigger](#operational-trigger)
+    - [System Consequence](#system-consequence)
+    - [Root Cause Teknis](#root-cause-teknis)
+    - [Contributing Factor](#contributing-factor)
+  - [🔟 Reference to Standard \& Gap Analysis](#-reference-to-standard--gap-analysis)
+    - [Menurut API 610 (Awareness)](#menurut-api-610-awareness)
+    - [Menurut API 686 (Awareness)](#menurut-api-686-awareness)
+    - [Apa yang Seharusnya (Best Practice)](#apa-yang-seharusnya-best-practice)
+    - [Gap yang Terjadi](#gap-yang-terjadi)
+  - [1️⃣1️⃣ Corrective \& Preventive Action](#1️⃣1️⃣-corrective--preventive-action)
+    - [**Immediate Action (Jangka Pendek)**](#immediate-action-jangka-pendek)
+    - [**Permanent Fix (Perbaikan Teknis Berkelanjutan)**](#permanent-fix-perbaikan-teknis-berkelanjutan)
+    - [**System Improvement (Integrasi Lintas Fungsi)**](#system-improvement-integrasi-lintas-fungsi)
+    - [**Monitoring Plan**](#monitoring-plan)
+  - [1️⃣2️⃣ Risk \& Safety Reflection](#1️⃣2️⃣-risk--safety-reflection)
+    - [Potensi Bahaya Teknis](#potensi-bahaya-teknis)
+    - [Risiko Saat Handling Spare](#risiko-saat-handling-spare)
+    - [Kontrol Keselamatan](#kontrol-keselamatan)
+  - [1️⃣3️⃣ Data Interpretation \& Trend Awareness](#1️⃣3️⃣-data-interpretation--trend-awareness)
+    - [Parameter yang Perlu Dipantau](#parameter-yang-perlu-dipantau)
+    - [Analisa MTBF vs Lead Time](#analisa-mtbf-vs-lead-time)
+    - [Mekanisme Repeat Failure](#mekanisme-repeat-failure)
+    - [Early Warning Indicator](#early-warning-indicator)
+  - [1️⃣4️⃣ Competency Mapping](#1️⃣4️⃣-competency-mapping)
+    - [Outcome Kompetensi](#outcome-kompetensi)
+  - [1️⃣5️⃣ Discussion Question (Toolbox Use)](#1️⃣5️⃣-discussion-question-toolbox-use)
+  - [1️⃣6️⃣ Key Takeaway (Max 7 Bullet)](#1️⃣6️⃣-key-takeaway-max-7-bullet)
+
+---
+
+## 1️⃣ Informasi Umum
+
+1. **Judul Artikel**: Spare Readiness – Integrasi Critical Spare, Lead Time, dan Preservation untuk Menjamin Keberhasilan Shutdown
+
+2. **Disiplin**: Mechanical (Interaksi: Planning – Warehouse – Reliability – Safety)
+
+3. **Level**: Junior (A → W)
+
+4. **Kategori**: Preventive / Planning / Reliability
+
+5. **Equipment / System Terkait**:
+
+   - Centrifugal Pump (bearing, mechanical seal)
+   - Reciprocating Compressor (valve plate, piston ring)
+   - Heat Exchanger (gasket, stud bolt)
+   - Critical Piping Component
+
+6. **Referensi Standar (Awareness Level)**:
+
+   - API 610 – Spare philosophy untuk rotating equipment
+   - API 686 – Installation, handling & storage awareness
+   - ASME B31.3 – Pressure component integrity
+
+Artikel ini membahas bahwa spare part bukan sekadar item inventori, tetapi bagian dari sistem reliability.
+Spare yang “ada di SAP” belum tentu siap dipasang secara teknis maupun aman secara operasional.
+
+Pada level Junior, kompetensi yang dibangun adalah kemampuan melakukan verifikasi fisik dan memahami konsekuensi sistem jika spare tidak siap.
+
+<ResourceBox
+  title="Artikel terkait :"
+  items={[
+    {
+      name: 'Panduan Lengkap Kurikulum & Matriks Kompetensi',
+      href: '/blog/maintenance/mechanical/panduan-kurikulum-mechanical',
+      description:
+        'Panduan Lengkap Kurikulum & Matriks Kompetensi – Teknisi Mechanical – Industri Petrokimia',
+    },
+    {
+      name: 'Pre-TAR Checklist',
+      href: '/blog/maintenance/mechanical/kurikulum/yunior/artikel-28-pre-tar-checklist',
+      description:
+        'Pre-TAR Checklist – Mengapa 70% Keberhasilan Shutdown Ditentukan Sebelum Unit Dimatikan?',
+    },
+    {
+      name: 'Gasket & Bolt Preparation',
+      href: '/blog/maintenance/mechanical/kurikulum/yunior/artikel-29-gasket-bolt-preparation',
+      description: 'Gasket & Bolt Preparation – Menghindari Rework Saat TAR',
+    },
+  ]}
+  note="Artikel-artikel di atas merupakan bagian dari serial peningkatan kompetensi Electrical & Instrumentation yang dirancang untuk diikuti secara berurutan guna membangun pemahaman sistematis dan bertahap. Meskipun demikian, setiap artikel tetap dapat digunakan sebagai referensi mandiri sesuai kebutuhan teknis di lapangan. Pembaca tetap disarankan melakukan verifikasi lanjutan dan penyesuaian sesuai standar perusahaan serta regulasi keselamatan yang berlaku."
+/>
+
+---
+
+## 2️⃣ Learning Objective (Measurable & Skill-Based)
+
+Setelah membaca artikel ini, teknisi mampu:
+
+- **LO1 – Mengidentifikasi spare part kritikal berdasarkan konsekuensi kegagalan dan histori kerusakan.**
+  Mampu membedakan antara spare fast moving dan spare high consequence.
+
+- **LO2 – Melakukan verifikasi fisik spare (dimensi, kondisi, material marking) sebelum shutdown.**
+  Tidak hanya mengandalkan status “available” di sistem.
+
+- **LO3 – Mengidentifikasi risiko keselamatan dan produksi akibat spare yang tidak siap atau terdegradasi saat disimpan.**
+  Termasuk risiko early failure, overheating, atau Loss of Containment.
+
+⚠ LO3 memastikan integrasi reliability & safety.
+
+---
+
+## 3️⃣ System Context & Criticality
+
+Rantai sistem ketika equipment gagal:
+
+Failure Equipment
+→ Need Replacement Part
+→ Spare Tidak Siap
+→ Downtime Memanjang
+→ Production Loss
+→ Tekanan percepatan startup
+→ Risiko instalasi terburu-buru meningkat
+
+Spare readiness bukan hanya tentang jumlah stok, tetapi tentang:
+
+- Ketersediaan fisik
+- Kondisi layak pakai
+- Kesesuaian spesifikasi design
+- Preservation yang benar
+
+---
+
+### Interaksi Sistem
+
+- **Mechanical** membutuhkan spare untuk reassembly.
+- **Warehouse** bertanggung jawab atas penyimpanan & kondisi.
+- **Planner** memasukkan spare dalam scope shutdown.
+- **Reliability** menentukan criticality berdasarkan MTBF & consequence of failure.
+
+Jika bearing pompa utama tidak tersedia atau rusak:
+
+- Pump tidak bisa dirakit kembali.
+- Unit tidak bisa start.
+- Shutdown window terlewat.
+- Startup dilakukan terburu-buru.
+- Risiko repeat failure meningkat.
+
+---
+
+### Criticality Perspective
+
+Contoh:
+
+- Bearing pompa hydrocarbon utama → High consequence failure.
+- Gasket water utility → Lower consequence.
+
+Jika MTBF bearing = 18 bulan
+Dan lead time OEM = 3 minggu
+Maka spare harus tersedia sebelum shutdown.
+
+Tanpa pendekatan ini, shutdown berubah menjadi reaktif dan berisiko.
+
+---
+
+## 4️⃣ Diagram Literacy Section (WAJIB)
+
+Spare readiness tidak bisa dilepaskan dari pemahaman posisi komponen dalam sistem.
+Teknisi harus mampu mengidentifikasi **komponen mana yang benar-benar kritikal** dan bagaimana kondisi penyimpanan mempengaruhi keandalannya.
+
+---
+
+### A. Critical Spare dalam Sistem Rotating Equipment
+
+![Image](https://media.licdn.com/dms/image/v2/D5622AQEUpSw2xgtOww/feedshare-shrink_800/B56ZeJOHHMGoAk-/0/1750353868844?e=2147483647&t=VAn7jrC3xtUv63xOOlXDymBjOuvegC2RueWEI7A0pbk&v=beta)
+
+![Image](https://static.aesseal.com/content-image/news/pump-and-seal-cross-section.jpg)
+
+![Image](https://www.da-rong.com.tw/upload_files/exploded-view/4inch-exploded-view-1.jpg)
+
+![Image](https://imgv2-1-f.scribdassets.com/img/document/237893873/original/31595abf83/1?v=1)
+
+Dari gambar potongan dan exploded view, teknisi harus mampu mengidentifikasi:
+
+1. **Bearing (DE / NDE)**
+
+   - Menahan radial dan axial load.
+   - Kegagalan → vibrasi tinggi → overheating → potensi ignition source.
+
+2. **Mechanical Seal**
+
+   - Menjaga agar fluida proses tidak bocor ke atmosfer.
+   - Kegagalan → hydrocarbon leak → fire hazard.
+
+3. **Gasket & O-ring**
+
+   - Sealing statis pada casing dan nozzle.
+   - Salah spesifikasi → leak saat startup.
+
+4. **Stud Bolt & Key Component**
+
+   - Menjaga clamp load pada casing atau flange.
+
+---
+
+### Mekanisme Jika Spare Tidak Siap
+
+Contoh bearing terkorosi ringan saat disimpan:
+
+Root physical mechanism:
+Korosi mikro pada race → pitting.
+
+Load/stress condition:
+Radial load saat startup.
+
+Operational trigger:
+Pump dioperasikan kembali setelah shutdown.
+
+System consequence:
+Early vibration spike → repeat shutdown → potensi overheating.
+
+Tanpa identifikasi spare kritikal, prioritas stok menjadi salah arah.
+
+---
+
+### B. Preservation & Storage Condition
+
+![Image](https://www.kaydonbearings.com/images/whitepapers/Corrosion/Kaydon-CorrosionWP.png)
+
+![Image](https://cdn.prod.website-files.com/673367b40deaa539d5d4f516/6859c2b6972dfd2cba923661_stanseals_assembly_quality.webp)
+
+![Image](https://www.crcindustries.com/media/wysiwyg/Media/rusted-bolt-removal.webp)
+
+![Image](https://cdn.shopify.com/s/files/1/0620/4037/5480/files/bolt-corrosion-sunshine-coast.jpg?v=1675731029)
+
+Teknisi harus memahami prinsip preservation:
+
+1. **Bearing**
+
+   - Dilapisi anti-corrosion oil.
+   - Disimpan dalam kemasan tertutup.
+   - Tidak terkena kelembaban tinggi.
+
+2. **Mechanical Seal**
+
+   - Disimpan dalam box asli.
+   - Tidak terkena debu.
+   - Shelf life diperhatikan.
+
+3. **Bolt & Stud**
+
+   - Ulir tidak terpapar air.
+   - Tidak ada karat atau deformasi.
+
+4. **Gasket**
+
+   - Tidak disimpan horizontal jika tipe tertentu.
+   - Tidak tertekan atau terlipat.
+
+---
+
+### Mekanisme Risiko Jika Preservation Buruk
+
+Root mechanism:
+Korosi atau kontaminasi selama penyimpanan.
+
+Load condition:
+Komponen menerima beban saat startup.
+
+Trigger:
+Instalasi spare tanpa inspeksi ulang.
+
+Consequence:
+Early failure → downtime → potensi Loss of Containment.
+
+---
+
+Kesimpulan Bab 4:
+
+Spare readiness bukan hanya jumlah stok, tetapi kesiapan teknis komponen untuk menerima beban operasi.
+Teknisi Junior harus mampu menghubungkan gambar komponen dengan fungsi dan risiko kegagalannya.
+
+---
+
+## 5️⃣ Background & Failure Scenario
+
+Shutdown dilakukan pada unit pompa transfer hydrocarbon utama.
+
+### Kondisi Sebelum Shutdown
+
+- Sistem SAP menunjukkan bearing DE & NDE tersedia.
+- Mechanical seal tercatat “in stock”.
+- Gasket casing tersedia sesuai part number.
+
+Shutdown dijadwalkan 5 hari.
+
+---
+
+### Temuan Saat Eksekusi Shutdown
+
+Hari ke-2:
+
+- Bearing dibuka dari kemasan → ditemukan korosi ringan pada race.
+- Mechanical seal melewati shelf life rekomendasi OEM.
+- Gasket casing mengalami deformasi akibat penyimpanan horizontal terlalu lama.
+
+Karena bearing tidak layak pakai:
+
+- Re-order ke OEM.
+- Lead time: 21 hari.
+- Shutdown diperpanjang 36 jam dengan solusi sementara (gunakan spare dari unit lain).
+
+---
+
+### Dampak Sistem
+
+- Produksi tertunda.
+- Planner melakukan reschedule pekerjaan lain.
+- Electrical & Instrument team idle menunggu reassembly.
+- Risiko startup terburu-buru meningkat.
+
+Kasus ini menunjukkan bahwa spare “available” tidak sama dengan spare “ready”.
+
+---
+
+## 6️⃣ Symptom & Initial Finding
+
+### Apa yang Terlihat (Visual)
+
+- Korosi pada bearing race.
+- Seal face terkontaminasi debu.
+- Bolt thread menunjukkan tanda oksidasi ringan.
+
+### Apa yang Terukur (Data)
+
+- Lead time bearing OEM: 21 hari.
+- Tidak ada catatan preservation inspection 6 bulan terakhir.
+- Tidak ada log pengecekan shelf life seal.
+
+### Apa yang Diasumsikan
+
+- Vendor lambat mengirim.
+- SAP tidak update.
+- Warehouse kurang rapi.
+
+⚠ Investigasi harus memisahkan:
+
+Masalah vendor
+vs
+Masalah sistem preservation & verifikasi internal.
+
+---
+
+## 7️⃣ Possible Causes (Structured Hypothesis)
+
+Analisa dilakukan lintas aspek agar tidak hanya menyalahkan satu fungsi.
+
+---
+
+### A. Mechanical
+
+- Spare tidak dipreservasi sesuai rekomendasi OEM.
+- Tidak ada inspeksi fisik sebelum shutdown.
+- Tidak ada pemeriksaan korosi atau kontaminasi.
+
+Potensi mekanisme:
+Korosi mikro pada bearing → pitting → early failure saat menerima beban.
+
+---
+
+### B. System / Planning
+
+- Critical spare list tidak berbasis risk & consequence.
+- Lead time tidak dimasukkan dalam shutdown planning.
+- SAP menunjukkan “available” tanpa verifikasi fisik.
+- Tidak ada pre-TAR spare readiness meeting.
+
+---
+
+### C. Human
+
+- Tidak ada physical check sebelum TAR.
+- Salah identifikasi part number.
+- Menganggap spare yang lama disimpan masih layak pakai.
+
+---
+
+### D. Safety
+
+- Handling spare berat tanpa lifting plan.
+- Bearing besar diangkat manual tanpa alat bantu.
+- Risiko crush injury saat memindahkan casing spare.
+
+---
+
+Tujuan Bab 7:
+
+Memastikan seluruh kemungkinan penyebab dipetakan sebelum menyimpulkan bahwa “spare tidak siap”.
+
+Fokusnya adalah menghubungkan kondisi penyimpanan, beban operasi, dan konsekuensi sistem secara menyeluruh.
+
+---
+
+## 8️⃣ Step-by-Step Investigation Flow
+
+Investigasi spare readiness harus dilakukan terstruktur agar tidak berhenti pada temuan “bearing berkarat”. Fokusnya adalah memastikan sistem pengendalian spare berjalan.
+
+---
+
+### 1️⃣ Identifikasi Critical Equipment
+
+- Tentukan equipment mana yang memiliki **high consequence of failure** (misalnya pompa hydrocarbon utama).
+- Evaluasi MTBF vs dampak produksi & safety.
+- Konfirmasi apakah equipment tersebut termasuk dalam kategori critical asset.
+
+**Decision Point:**
+Jika equipment termasuk critical, maka spare readiness wajib diverifikasi lebih awal (≥1 bulan sebelum shutdown).
+
+---
+
+### 2️⃣ Tentukan Critical Spare List
+
+Susun daftar spare kritikal berdasarkan:
+
+- Bearing (DE / NDE)
+- Mechanical seal
+- Gasket casing & nozzle
+- Stud bolt
+- Wear part khusus (valve plate, piston ring)
+
+Bandingkan daftar ini dengan data SAP dan histori penggunaan.
+
+---
+
+### 3️⃣ Verifikasi Fisik Spare
+
+Lakukan inspeksi langsung di warehouse:
+
+- Kondisi visual (korosi, deformasi, kontaminasi)
+- Dimensi & part number
+- Material marking
+- Thread condition pada bolt
+- Shelf life pada seal
+
+⚠ Jangan hanya mengandalkan status “available”.
+
+---
+
+### 4️⃣ Cek Preservation Record
+
+- Tanggal inspeksi terakhir.
+- Apakah ada re-application anti-corrosion oil pada bearing.
+- Apakah kelembaban storage dikontrol.
+- Apakah ada checklist preservation berkala.
+
+Jika tidak ada catatan → indikasi sistem preservation lemah.
+
+---
+
+### 5️⃣ Evaluasi Lead Time
+
+- Konfirmasi lead time OEM aktual (misalnya 21 hari).
+- Bandingkan dengan durasi shutdown window.
+- Evaluasi apakah ada vendor alternatif.
+
+Jika MTBF lebih pendek dari lead time → spare wajib tersedia onsite.
+
+---
+
+### 6️⃣ Konfirmasi Root Cause
+
+Data menunjukkan:
+
+- Tidak ada preservation inspection rutin.
+- Tidak ada physical verification sebelum shutdown.
+- SAP dianggap sebagai satu-satunya referensi.
+
+Maka kegagalan bukan pada vendor, tetapi pada sistem kontrol spare internal.
+
+---
+
+**Decision Point Utama:**
+Spare kritikal harus diverifikasi minimal 1 bulan sebelum shutdown untuk menghindari perpanjangan downtime.
+
+---
+
+## 9️⃣ Root Cause & Contributing Factor
+
+### Root Physical Mechanism
+
+Korosi pada bearing selama penyimpanan
+→ Terbentuk pitting pada race
+→ Saat menerima radial load, pitting menjadi titik konsentrasi tegangan
+→ Inisiasi retak mikro
+→ Vibrasi meningkat
+→ Early failure.
+
+---
+
+### Load / Stress Condition
+
+- Bearing menerima radial & axial load saat startup.
+- Kecepatan rotasi tinggi meningkatkan stress siklik.
+- Pelumasan belum stabil pada detik awal startup.
+
+---
+
+### Operational Trigger
+
+Startup setelah shutdown, dengan bearing yang sebenarnya sudah terdegradasi selama penyimpanan.
+
+---
+
+### System Consequence
+
+- Vibrasi meningkat cepat.
+- Potensi overheating.
+- Repeat shutdown.
+- Risiko ignition jika temperatur naik signifikan.
+
+---
+
+### Root Cause Teknis
+
+Tidak ada sistem preservation dan physical verification spare sebelum shutdown.
+
+---
+
+### Contributing Factor
+
+- Ketergantungan penuh pada data SAP.
+- Tidak ada ownership jelas untuk inspeksi spare.
+- Tidak ada integrasi antara reliability dan warehouse.
+- Tidak ada review lead time vs MTBF.
+
+Masalah utama berada pada kelemahan sistem manajemen spare.
+
+---
+
+## 🔟 Reference to Standard & Gap Analysis
+
+### Menurut API 610 (Awareness)
+
+- Critical rotating equipment harus memiliki spare strategy yang jelas.
+- Spare kritikal harus tersedia untuk equipment dengan dampak produksi tinggi.
+
+### Menurut API 686 (Awareness)
+
+- Penyimpanan dan preservation komponen harus mengikuti rekomendasi OEM.
+- Komponen harus diperiksa sebelum instalasi setelah periode penyimpanan lama.
+
+---
+
+### Apa yang Seharusnya (Best Practice)
+
+- Daftar critical spare berbasis consequence of failure.
+- Preservation checklist berkala (misalnya setiap 3–6 bulan).
+- Verifikasi fisik spare sebelum shutdown dimulai.
+- Evaluasi lead time sebagai bagian dari planning.
+
+---
+
+### Gap yang Terjadi
+
+- Tidak ada daftar critical spare berbasis risk.
+- Tidak ada preservation inspection checklist formal.
+- Tidak ada pengecekan shelf life seal.
+- Tidak ada audit fisik sebelum shutdown.
+
+---
+
+Kesimpulan Bab 10:
+
+Standar industri telah memberikan panduan tentang spare philosophy dan preservation.
+Kegagalan terjadi karena sistem pengendalian internal tidak dijalankan secara disiplin dan terintegrasi.
+
+---
+
+## 1️⃣1️⃣ Corrective & Preventive Action
+
+Perbaikan harus mencakup aspek teknis, sistem, dan pengendalian jangka panjang agar spare readiness menjadi bagian dari reliability system.
+
+---
+
+### **Immediate Action (Jangka Pendek)**
+
+- Lakukan inspeksi ulang seluruh spare kritikal di warehouse.
+- Pisahkan spare yang terkorosi, terkontaminasi, atau melewati shelf life.
+- Terapkan re-preservation pada bearing (re-oiling sesuai rekomendasi OEM).
+- Update status SAP berdasarkan kondisi fisik aktual.
+
+Tujuan: memastikan hanya spare layak pakai yang masuk ke scope shutdown.
+
+---
+
+### **Permanent Fix (Perbaikan Teknis Berkelanjutan)**
+
+- Susun **Critical Spare List berbasis consequence of failure**.
+- Terapkan preservation checklist berkala (misalnya setiap 3–6 bulan).
+- Tetapkan aturan shelf life monitoring untuk seal & elastomer.
+- Tetapkan area storage terkontrol kelembaban untuk bearing & seal.
+
+Tujuan: mencegah degradasi spare selama penyimpanan.
+
+---
+
+### **System Improvement (Integrasi Lintas Fungsi)**
+
+- Integrasikan SAP dengan hasil audit fisik spare (bukan hanya kuantitas).
+- Tambahkan mandatory pre-TAR spare verification meeting.
+- Tetapkan ownership jelas (Mechanical/Reliability) untuk spare inspection.
+- Bandingkan MTBF equipment dengan lead time spare sebagai bagian dari planning.
+
+Tujuan: menghilangkan silo antara warehouse dan reliability.
+
+---
+
+### **Monitoring Plan**
+
+Parameter yang harus dipantau:
+
+- % Shutdown delay akibat spare issue.
+- Jumlah spare terkorosi saat inspeksi berkala.
+- Emergency order frequency.
+- Rasio MTBF vs lead time OEM.
+
+Jika KPI tidak membaik → sistem spare readiness belum efektif.
+
+---
+
+## 1️⃣2️⃣ Risk & Safety Reflection
+
+Spare yang tidak siap bukan hanya masalah downtime, tetapi juga masalah keselamatan.
+
+---
+
+### Potensi Bahaya Teknis
+
+1️⃣ **Bearing Rusak → Overheating → Ignition Source**
+Root mechanism: pitting berkembang menjadi spalling saat menerima beban.
+Trigger: startup.
+Consequence: kenaikan temperatur → potensi ignition jika dekat hydrocarbon.
+
+2️⃣ **Mechanical Seal Melewati Shelf Life → Leak**
+Root mechanism: elastomer mengeras atau retak.
+Consequence: hydrocarbon release → fire hazard.
+
+3️⃣ **Bolt Berkarat → Clamp Load Tidak Stabil**
+Consequence: flange leak saat pressure naik.
+
+---
+
+### Risiko Saat Handling Spare
+
+- Komponen berat (>25 kg) dipindahkan tanpa lifting plan → crush injury.
+- Bearing besar terjatuh → kerusakan internal tidak terlihat.
+- Pallet tidak stabil → risiko jatuh.
+
+---
+
+### Kontrol Keselamatan
+
+- Gunakan lifting plan untuk spare berat.
+- Gunakan sarung tangan anti-cut saat handling bolt.
+- Simpan spare pada rack yang stabil dan tidak over-stack.
+- Pastikan area warehouse bebas kelembaban berlebih.
+
+Spare readiness yang buruk dapat meningkatkan risiko mechanical failure sekaligus injury personel.
+
+---
+
+## 1️⃣3️⃣ Data Interpretation & Trend Awareness
+
+Spare management harus berbasis data, bukan reaksi terhadap kegagalan.
+
+---
+
+### Parameter yang Perlu Dipantau
+
+- Frekuensi penggunaan spare per tahun.
+- Failure rate bearing & seal.
+- Lead time aktual vendor.
+- Jumlah emergency order.
+
+---
+
+### Analisa MTBF vs Lead Time
+
+Jika:
+
+MTBF bearing = 14 bulan
+Lead time OEM = 3 minggu
+
+Maka spare wajib tersedia onsite.
+
+Jika:
+
+MTBF < Lead time
+
+Artinya risiko downtime tinggi jika spare tidak tersedia.
+
+---
+
+### Mekanisme Repeat Failure
+
+Jika spare sering digunakan sebelum jadwal overhaul:
+
+Root mechanism: kemungkinan root cause belum terselesaikan.
+Load condition: beban operasi tetap tinggi.
+Trigger: startup berikutnya.
+Consequence: recurring failure → pemborosan spare.
+
+---
+
+### Early Warning Indicator
+
+- Spare sering digunakan sebelum interval overhaul.
+- Banyak emergency purchase mendekati shutdown.
+- Preservation checklist sering tidak lengkap.
+- Seal shelf life sering terlewat.
+
+Jika indikator ini muncul, maka shutdown berikutnya berisiko mengalami delay.
+
+---
+
+Kesimpulan Bab 13:
+
+Trend awareness mengubah spare management dari administratif menjadi reliability-driven system.
+Tanpa data, spare readiness hanya menjadi aktivitas gudang, bukan bagian dari proteksi operasional.
+
+---
+
+## 1️⃣4️⃣ Competency Mapping
+
+**Skill Area:** Spare Readiness & Preservation Awareness (Mechanical – Planning – Warehouse Interaction)
+
+| Aspek Kompetensi            | Level Saat Ini (A – Assist) | Target Setelah Artikel (W – Working)                |
+| --------------------------- | --------------------------- | --------------------------------------------------- |
+| Identifikasi spare kritikal | Mengikuti daftar existing   | Mampu menentukan berdasarkan consequence of failure |
+| Verifikasi fisik spare      | Membantu inspeksi           | Mampu inspeksi mandiri & laporkan temuan            |
+| Awareness preservation      | Tahu secara umum            | Mampu cek kondisi & shelf life                      |
+| Analisa MTBF vs lead time   | Belum memahami              | Mampu jelaskan kebutuhan stok berdasarkan data      |
+
+### Outcome Kompetensi
+
+Setelah artikel ini, teknisi Junior diharapkan:
+
+- Tidak hanya mengambil spare dari gudang, tetapi memverifikasi kelayakan teknisnya.
+- Memahami bahwa spare adalah bagian dari sistem reliability.
+- Mampu menolak penggunaan spare yang tidak layak meskipun tercatat “available”.
+
+Transisi A → W terjadi ketika teknisi mampu melakukan verifikasi spare sebelum shutdown tanpa harus diinstruksikan.
+
+---
+
+## 1️⃣5️⃣ Discussion Question (Toolbox Use)
+
+Gunakan pertanyaan berikut sebelum shutdown:
+
+1. Mengapa spare yang tersedia di SAP belum tentu siap dipasang secara teknis?
+2. Bagaimana menentukan spare mana yang termasuk “critical” dalam unit kita?
+3. Apa risiko sistem jika bearing terkorosi tetap dipasang karena tekanan waktu shutdown?
+4. Apakah kita sudah membandingkan MTBF equipment dengan lead time spare?
+
+Tujuan diskusi:
+
+- Menguatkan kesadaran bahwa spare readiness adalah bagian dari proteksi sistem.
+- Mengurangi keputusan terburu-buru saat shutdown.
+
+---
+
+## 1️⃣6️⃣ Key Takeaway (Max 7 Bullet)
+
+- Spare readiness adalah bagian dari reliability system, bukan hanya fungsi gudang.
+- Status “available” di SAP tidak menjamin kondisi fisik layak pakai.
+- Bearing, seal, gasket, dan bolt termasuk spare kritikal untuk rotating equipment.
+- Preservation yang buruk dapat menyebabkan early failure saat startup.
+- Lead time harus dibandingkan dengan MTBF untuk menentukan strategi stok.
+- Verifikasi spare wajib dilakukan sebelum shutdown dimulai.
+- Spare yang tidak siap dapat memperpanjang downtime dan meningkatkan risiko keselamatan.
+
+---
+
+📌 **Penutup Sistemik**
+
+Spare bukan hanya komponen pengganti.
+Ia adalah bagian dari barrier reliability dan keselamatan proses.
+
+Jika spare diverifikasi lebih awal, shutdown berjalan terkendali.
+Jika spare diabaikan hingga hari pembongkaran, konsekuensinya muncul dalam bentuk downtime, repeat failure, dan potensi risiko keselamatan.
+
+---
+
+<small>
+  **_Catatan Penyusunan_** Artikel ini merupakan bagian dari serial peningkatan
+  kompetensi yang dirancang untuk diikuti secara berurutan guna membangun
+  pemahaman sistematis dan bertahap. Meskipun demikian, setiap artikel tetap
+  dapat dibaca secara terpisah sebagai referensi mandiri sesuai kebutuhan
+  pembaca. Materi disusun berdasarkan berbagai sumber pustaka teknis, praktik
+  lapangan industri, serta dukungan alat bantu penulisan. Pembaca disarankan
+  melakukan verifikasi lanjutan dan penyesuaian teknis sesuai dengan standar
+  perusahaan, kondisi aktual peralatan, serta regulasi keselamatan yang berlaku.
+</small>

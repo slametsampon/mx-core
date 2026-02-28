@@ -1,13 +1,14 @@
 {
-  "sam": 230,
+  "sam": 308,
   "fan": 2,
   "deb": 1,
   "amd": 1,
   "chd": 2,
-  "amr": 5,
+  "amr": 4,
   "zpo": 1,
   "mra": 1,
   "dfn": 1,
   "ypa": 1,
-  "adp": 3
+  "adp": 3,
+  "default": 3
 }

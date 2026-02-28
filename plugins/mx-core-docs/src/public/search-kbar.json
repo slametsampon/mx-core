@@ -94,6 +94,100 @@
     ]
   },
   {
+    "id": "maintenance/elins/kurikulum/yunior/artikel-40-vibration-transmitter-abnormal",
+    "name": "Vibration Transmitter Abnormal Reading – Sensor Fault atau Machinery Problem?",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/elins/kurikulum/yunior/artikel-40-vibration-transmitter-abnormal",
+    "subtitle": "February 27, 2026",
+    "keywords": [
+      "vibration-monitoring",
+      "machinery-protection",
+      "4-20mA-loop",
+      "instrument-troubleshooting",
+      "mechanical-instrument-interface",
+      "API-670-awareness",
+      "rotating-equipment-reliability"
+    ]
+  },
+  {
+    "id": "maintenance/elins/kurikulum/yunior/artikel-41-bearing-temparature-spike",
+    "name": "Bearing Temperature Spike – Gangguan Proses, Sensor, atau Lubrikasi?",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/elins/kurikulum/yunior/artikel-41-bearing-temparature-spike",
+    "subtitle": "February 27, 2026",
+    "keywords": [
+      "bearing-temperature",
+      "RTD-3wire",
+      "machinery-protection",
+      "instrument-troubleshooting",
+      "mechanical-instrument-interface",
+      "API-670-awareness",
+      "rotating-equipment-reliability"
+    ]
+  },
+  {
+    "id": "maintenance/elins/kurikulum/yunior/artikel-42-inspection-vibration-probe",
+    "name": "Inspection Vibration Probe & RTD Wiring – Preventive untuk Machinery Protection",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/elins/kurikulum/yunior/artikel-42-inspection-vibration-probe",
+    "subtitle": "February 27, 2026",
+    "keywords": [
+      "machinery-protection",
+      "vibration-probe",
+      "RTD-wiring",
+      "preventive-maintenance",
+      "instrument-integrity",
+      "API-670-awareness",
+      "rotating-equipment-reliability"
+    ]
+  },
+  {
+    "id": "maintenance/elins/kurikulum/yunior/artikel-43-basic-machinery-protection",
+    "name": "Basic Machinery Protection System – Konsep Alarm & Trip pada Rotating Equipment",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/elins/kurikulum/yunior/artikel-43-basic-machinery-protection",
+    "subtitle": "February 27, 2026",
+    "keywords": [
+      "machinery-protection",
+      "alarm-vs-trip",
+      "rotating-equipment",
+      "API-670-awareness",
+      "protection-logic",
+      "vibration-monitoring",
+      "process-safety"
+    ]
+  },
+  {
+    "id": "maintenance/elins/kurikulum/yunior/artikel-44-motor-trip",
+    "name": "Major Integrated Case - Motor Trip → Valve Malfunction → Plant Upset",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/elins/kurikulum/yunior/artikel-44-motor-trip",
+    "subtitle": "February 27, 2026",
+    "keywords": [
+      "integrated-troubleshooting",
+      "motor-trip-analysis",
+      "preventive-maintenance-gap",
+      "system-thinking-ei",
+      "trend-monitoring-reliability",
+      "industrial-safety-awareness"
+    ]
+  },
+  {
+    "id": "maintenance/elins/kurikulum/yunior/artikel-45-review-pm",
+    "name": "Review Efektivitas PM Program – Time Based atau Condition Based?",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/elins/kurikulum/yunior/artikel-45-review-pm",
+    "subtitle": "February 27, 2026",
+    "keywords": [
+      "preventive-maintenance-review",
+      "condition-based-monitoring",
+      "root-cause-analysis",
+      "reliability-thinking-ei",
+      "system-improvement-maintenance",
+      "industrial-safety-awareness"
+    ]
+  },
+  {
     "id": "maintenance/mechanical/kurikulum/artikel-33-oil-contamination",
     "name": "Oil Contamination Case – Air, Partikel, atau Degradasi Kimia?",
     "section": "CONTENT",
@@ -130,6 +224,55 @@
     "name": "Pump Failure → Seal Leak → Bearing Damage",
     "section": "CONTENT",
     "href": "/blog/maintenance/mechanical/kurikulum/artikel-35-pump-seal-leakage",
+    "subtitle": "February 27, 2026",
+    "keywords": [
+      "centrifugal-pump",
+      "mechanical-seal",
+      "bearing-failure",
+      "alignment-misalignment",
+      "vibration-analysis",
+      "api-610-api-682",
+      "integrated-troubleshooting",
+      "junior-mechanical-training"
+    ]
+  },
+  {
+    "id": "maintenance/mechanical/kurikulum/yunior/artikel-33-oil-contamination",
+    "name": "Oil Contamination Case – Air, Partikel, atau Degradasi Kimia?",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/mechanical/kurikulum/yunior/artikel-33-oil-contamination",
+    "subtitle": "February 27, 2026",
+    "keywords": [
+      "lubrication-system",
+      "oil-contamination",
+      "breather-failure",
+      "bearing-failure-mechanism",
+      "root-cause-analysis",
+      "rotating-equipment",
+      "junior-mechanical"
+    ]
+  },
+  {
+    "id": "maintenance/mechanical/kurikulum/yunior/artikel-34-oil-sampling",
+    "name": "Oil Sampling Awareness – Mengapa Analisa Oil Lebih Murah dari Mengganti Bearing?",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/mechanical/kurikulum/yunior/artikel-34-oil-sampling",
+    "subtitle": "February 27, 2026",
+    "keywords": [
+      "oil-sampling",
+      "condition-based-maintenance",
+      "bearing-reliability",
+      "lubrication-monitoring",
+      "three-body-abrasion",
+      "preventive-maintenance",
+      "junior-mechanical"
+    ]
+  },
+  {
+    "id": "maintenance/mechanical/kurikulum/yunior/artikel-35-pump-seal-leakage",
+    "name": "Pump Failure → Seal Leak → Bearing Damage",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/mechanical/kurikulum/yunior/artikel-35-pump-seal-leakage",
     "subtitle": "February 27, 2026",
     "keywords": [
       "centrifugal-pump",
@@ -226,6 +369,68 @@
     ]
   },
   {
+    "id": "maintenance/elins/kurikulum/yunior/artikel-36-ground-fault-feeder",
+    "name": "Ground Fault pada Motor Feeder – Investigasi dari Insulation hingga Earthing System",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/elins/kurikulum/yunior/artikel-36-ground-fault-feeder",
+    "subtitle": "February 21, 2026",
+    "keywords": [
+      "ground-fault",
+      "motor-feeder",
+      "insulation-testing",
+      "earthing-system",
+      "relay-protection",
+      "arc-flash-risk",
+      "troubleshooting-lv"
+    ]
+  },
+  {
+    "id": "maintenance/elins/kurikulum/yunior/artikel-37-signal-noise-ai",
+    "name": "Signal Noise pada Analog Instrument – Masalah Ground Loop atau Shielding?",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/elins/kurikulum/yunior/artikel-37-signal-noise-ai",
+    "subtitle": "February 21, 2026",
+    "keywords": [
+      "signal-noise",
+      "4-20mA-loop",
+      "ground-loop",
+      "shielding",
+      "instrumentation-troubleshooting",
+      "control-system-stability",
+      "single-point-grounding"
+    ]
+  },
+  {
+    "id": "maintenance/elins/kurikulum/yunior/artikel-38-inspection-cable-gland",
+    "name": "Inspection Cable Gland & Termination – Preventive untuk Keandalan Sistem",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/elins/kurikulum/yunior/artikel-38-inspection-cable-gland",
+    "subtitle": "February 21, 2026",
+    "keywords": [
+      "cable-gland",
+      "termination-torque",
+      "preventive-maintenance",
+      "grounding-continuity",
+      "arc-flash-risk",
+      "reliability-system"
+    ]
+  },
+  {
+    "id": "maintenance/elins/kurikulum/yunior/artikel-39-earthing-bonding",
+    "name": "Earthing & Bonding System Basic – Prinsip Proteksi Keselamatan",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/elins/kurikulum/yunior/artikel-39-earthing-bonding",
+    "subtitle": "February 21, 2026",
+    "keywords": [
+      "earthing-system",
+      "bonding-protection",
+      "ground-resistance",
+      "step-touch-potential",
+      "electrical-safety",
+      "fault-current-path"
+    ]
+  },
+  {
     "id": "maintenance/mechanical/kurikulum/artikel-31-unbalance-misalignment",
     "name": "Unbalance vs Misalignment – Bagaimana Membedakan dari Gejala Vibrasi?",
     "section": "CONTENT",
@@ -246,6 +451,38 @@
     "name": "Basic Vibration Terminology – Bahasa Dasar yang Harus Dipahami Teknisi",
     "section": "CONTENT",
     "href": "/blog/maintenance/mechanical/kurikulum/artikel-32-vibration-terminology",
+    "subtitle": "February 21, 2026",
+    "keywords": [
+      "vibration-terminology",
+      "rotating-equipment",
+      "frequency-analysis",
+      "reliability-awareness",
+      "mechanical-diagnostics",
+      "condition-monitoring",
+      "asset-integrity"
+    ]
+  },
+  {
+    "id": "maintenance/mechanical/kurikulum/yunior/artikel-31-unbalance-misalignment",
+    "name": "Unbalance vs Misalignment – Bagaimana Membedakan dari Gejala Vibrasi?",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/mechanical/kurikulum/yunior/artikel-31-unbalance-misalignment",
+    "subtitle": "February 21, 2026",
+    "keywords": [
+      "vibration-analysis",
+      "unbalance-misalignment",
+      "shaft-alignment",
+      "rotating-equipment",
+      "reliability-awareness",
+      "mechanical-troubleshooting",
+      "asset-integrity"
+    ]
+  },
+  {
+    "id": "maintenance/mechanical/kurikulum/yunior/artikel-32-vibration-terminology",
+    "name": "Basic Vibration Terminology – Bahasa Dasar yang Harus Dipahami Teknisi",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/mechanical/kurikulum/yunior/artikel-32-vibration-terminology",
     "subtitle": "February 21, 2026",
     "keywords": [
       "vibration-terminology",
@@ -306,6 +543,54 @@
     ]
   },
   {
+    "id": "maintenance/elins/kurikulum/yunior/artikel-33-temuan-pre-ta",
+    "name": "Temuan Umum Saat Pre-Shutdown Inspection – Identifikasi Awal Sebelum Unit Dimatikan",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/elins/kurikulum/yunior/artikel-33-temuan-pre-ta",
+    "subtitle": "February 20, 2026",
+    "keywords": [
+      "pre-shutdown-inspection",
+      "electrical-instrumentation",
+      "shutdown-preparation",
+      "arc-flash-risk",
+      "loss-of-containment",
+      "diagram-literacy",
+      "reliability-awareness"
+    ]
+  },
+  {
+    "id": "maintenance/elins/kurikulum/yunior/artikel-34-checklist-ta",
+    "name": "Penyusunan Checklist Shutdown E&I – Struktur & Prioritas",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/elins/kurikulum/yunior/artikel-34-checklist-ta",
+    "subtitle": "February 20, 2026",
+    "keywords": [
+      "shutdown-checklist",
+      "electrical-instrumentation",
+      "SIS-proof-test",
+      "startup-reliability",
+      "arc-flash-risk",
+      "risk-ranking",
+      "system-based-maintenance"
+    ]
+  },
+  {
+    "id": "maintenance/elins/kurikulum/yunior/artikel-35-dasar-jsa",
+    "name": "Risk Assessment Dasar (JSA) untuk Pekerjaan Shutdown",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/elins/kurikulum/yunior/artikel-35-dasar-jsa",
+    "subtitle": "February 20, 2026",
+    "keywords": [
+      "JSA-shutdown",
+      "zero-energy-verification",
+      "arc-flash-risk",
+      "loss-of-containment",
+      "electrical-instrumentation",
+      "LOTO-safety",
+      "diagram-based-risk"
+    ]
+  },
+  {
     "id": "maintenance/mechanical/kurikulum/artikel-28-pre-tar-checklist",
     "name": "Pre-TAR Checklist – Mengapa 70% Keberhasilan Shutdown Ditentukan Sebelum Unit Dimatikan?",
     "section": "CONTENT",
@@ -342,6 +627,54 @@
     "name": "Spare Readiness – Menghindari Downtime karena Part Tidak Siap",
     "section": "CONTENT",
     "href": "/blog/maintenance/mechanical/kurikulum/artikel-30-spare-readiness",
+    "subtitle": "February 20, 2026",
+    "keywords": [
+      "spare-readiness",
+      "critical-spare-management",
+      "shutdown-planning",
+      "bearing-preservation",
+      "reliability-system",
+      "downtime-prevention",
+      "process-safety"
+    ]
+  },
+  {
+    "id": "maintenance/mechanical/kurikulum/yunior/artikel-28-pre-tar-checklist",
+    "name": "Pre-TAR Checklist – Mengapa 70% Keberhasilan Shutdown Ditentukan Sebelum Unit Dimatikan?",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/mechanical/kurikulum/yunior/artikel-28-pre-tar-checklist",
+    "subtitle": "February 20, 2026",
+    "keywords": [
+      "shutdown-preparation",
+      "pre-TAR-checklist",
+      "mechanical-planning",
+      "system-interaction",
+      "loss-of-containment",
+      "reliability-awareness",
+      "industrial-safety"
+    ]
+  },
+  {
+    "id": "maintenance/mechanical/kurikulum/yunior/artikel-29-gasket-bolt-preparation",
+    "name": "Gasket & Bolt Preparation – Menghindari Rework Saat TAR",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/mechanical/kurikulum/yunior/artikel-29-gasket-bolt-preparation",
+    "subtitle": "February 20, 2026",
+    "keywords": [
+      "flange-integrity",
+      "gasket-bolt-preload",
+      "pressure-boundary",
+      "loss-of-containment",
+      "shutdown-reliability",
+      "mechanical-verification",
+      "process-safety"
+    ]
+  },
+  {
+    "id": "maintenance/mechanical/kurikulum/yunior/artikel-30-spare-readiness",
+    "name": "Spare Readiness – Menghindari Downtime karena Part Tidak Siap",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/mechanical/kurikulum/yunior/artikel-30-spare-readiness",
     "subtitle": "February 20, 2026",
     "keywords": [
       "spare-readiness",
@@ -482,6 +815,115 @@
     ]
   },
   {
+    "id": "maintenance/elins/kurikulum/yunior/artikel-25-gas-analyzer-reading",
+    "name": "Gas Analyzer Reading Drifting – Investigasi dari Sampling Line hingga Analyzer Cell",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/elins/kurikulum/yunior/artikel-25-gas-analyzer-reading",
+    "subtitle": "February 19, 2026",
+    "keywords": [
+      "gas-analyzer",
+      "sampling-system-drift",
+      "instrument-troubleshooting",
+      "process-reliability",
+      "analyzer-maintenance",
+      "safety-awareness"
+    ]
+  },
+  {
+    "id": "maintenance/elins/kurikulum/yunior/artikel-26-moisture-analyzer",
+    "name": "Moisture Analyzer False Alarm – Gangguan Sensor atau Kondensasi?",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/elins/kurikulum/yunior/artikel-26-moisture-analyzer",
+    "subtitle": "February 19, 2026",
+    "keywords": [
+      "moisture-analyzer",
+      "sampling-heater-failure",
+      "false-alarm-troubleshooting",
+      "process-safety-interlock",
+      "instrument-reliability",
+      "condensation-risk"
+    ]
+  },
+  {
+    "id": "maintenance/elins/kurikulum/yunior/artikel-27-analyzer-samling-line",
+    "name": "Cleaning & Maintenance Sampling Line – Preventive untuk Reliability Analyzer",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/elins/kurikulum/yunior/artikel-27-analyzer-samling-line",
+    "subtitle": "February 19, 2026",
+    "keywords": [
+      "sampling-line-maintenance",
+      "analyzer-reliability-preventive",
+      "filter-differential-pressure",
+      "process-analyzer-system",
+      "instrument-safety-awareness",
+      "preventive-maintenance-discipline"
+    ]
+  },
+  {
+    "id": "maintenance/elins/kurikulum/yunior/artikel-29-esd-valve-gagal-close",
+    "name": "ESD Valve Gagal Close Saat Test – Investigasi dari Logic hingga Actuator",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/elins/kurikulum/yunior/artikel-29-esd-valve-gagal-close",
+    "subtitle": "February 19, 2026",
+    "keywords": [
+      "SIS",
+      "ESD-Valve",
+      "Solenoid-Failure",
+      "Proof-Test",
+      "Functional-Safety",
+      "IEC-61511",
+      "Safety-Loop-Troubleshooting"
+    ]
+  },
+  {
+    "id": "maintenance/elins/kurikulum/yunior/artikel-30-false-trip",
+    "name": "False Trip pada Safety Loop – Sensor Fault atau Logic Issue?",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/elins/kurikulum/yunior/artikel-30-false-trip",
+    "subtitle": "February 19, 2026",
+    "keywords": [
+      "SIS",
+      "False-Trip",
+      "Impulse-Line",
+      "Voting-Logic-1oo2",
+      "Pressure-Transmitter",
+      "Functional-Safety",
+      "Spurious-Trip-Analysis"
+    ]
+  },
+  {
+    "id": "maintenance/elins/kurikulum/yunior/artikel-31-proof-test",
+    "name": "Proof Test Awareness & Dokumentasi Sesuai IEC 61511",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/elins/kurikulum/yunior/artikel-31-proof-test",
+    "subtitle": "February 19, 2026",
+    "keywords": [
+      "SIS",
+      "Proof-Test",
+      "IEC-61511",
+      "Response-Time",
+      "SIL-Integrity",
+      "Functional-Safety",
+      "Safety-Documentation"
+    ]
+  },
+  {
+    "id": "maintenance/elins/kurikulum/yunior/artikel-32-konsep-dasar-sil",
+    "name": "Perbedaan BPCS vs SIS & Konsep Dasar SIL",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/elins/kurikulum/yunior/artikel-32-konsep-dasar-sil",
+    "subtitle": "February 19, 2026",
+    "keywords": [
+      "BPCS-vs-SIS",
+      "SIL",
+      "Functional-Safety",
+      "IEC-61511",
+      "Redundancy-1oo2",
+      "Safety-Architecture",
+      "Layer-of-Protection"
+    ]
+  },
+  {
     "id": "maintenance/mechanical/kurikulum/artikel-22-flange-leakage",
     "name": "Flange Leakage Setelah Startup – Torque Tidak Merata atau Gasket Damage?",
     "section": "CONTENT",
@@ -584,6 +1026,108 @@
     ]
   },
   {
+    "id": "maintenance/mechanical/kurikulum/yunior/artikel-22-flange-leakage",
+    "name": "Flange Leakage Setelah Startup – Torque Tidak Merata atau Gasket Damage?",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/mechanical/kurikulum/yunior/artikel-22-flange-leakage",
+    "subtitle": "February 19, 2026",
+    "keywords": [
+      "flange-leakage",
+      "bolt-torque",
+      "gasket-integrity",
+      "thermal-expansion",
+      "ASME-B31.3",
+      "process-piping",
+      "loss-of-containment",
+      "startup-failure",
+      "mechanical-troubleshooting"
+    ]
+  },
+  {
+    "id": "maintenance/mechanical/kurikulum/yunior/artikel-23-gasket-failure",
+    "name": "Gasket Failure Case – Salah Material atau Salah Instalasi?",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/mechanical/kurikulum/yunior/artikel-23-gasket-failure",
+    "subtitle": "February 19, 2026",
+    "keywords": [
+      "gasket-failure",
+      "under-torque",
+      "seating-stress",
+      "ASME-B31.3",
+      "flange-joint",
+      "pressure-surge",
+      "loss-of-containment",
+      "mechanical-troubleshooting",
+      "thermal-cycle"
+    ]
+  },
+  {
+    "id": "maintenance/mechanical/kurikulum/yunior/artikel-24-bolt-tightening",
+    "name": "Bolt Tightening Sequence Awareness – Mengapa Pola & Tahapan Penting?",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/mechanical/kurikulum/yunior/artikel-24-bolt-tightening",
+    "subtitle": "February 19, 2026",
+    "keywords": [
+      "bolt-tightening",
+      "star-pattern",
+      "multi-step-torque",
+      "seating-stress",
+      "ASME-B31.3",
+      "flange-integrity",
+      "preventive-engineering",
+      "loss-of-containment",
+      "mechanical-awareness"
+    ]
+  },
+  {
+    "id": "maintenance/mechanical/kurikulum/yunior/artikel-25-gate-valve-full-cloce",
+    "name": "Gate Valve Tidak Bisa Full Close – Masalah Internal atau Operasi?",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/mechanical/kurikulum/yunior/artikel-25-gate-valve-full-cloce",
+    "subtitle": "February 19, 2026",
+    "keywords": [
+      "mechanical",
+      "gate-valve",
+      "troubleshooting",
+      "isolation-verification",
+      "process-safety",
+      "root-cause-analysis",
+      "reliability-maintenance"
+    ]
+  },
+  {
+    "id": "maintenance/mechanical/kurikulum/yunior/artikel-26-stuck-valve",
+    "name": "Stuck Valve Case – Korosi, Over-Torque, atau Packing Problem?",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/mechanical/kurikulum/yunior/artikel-26-stuck-valve",
+    "subtitle": "February 19, 2026",
+    "keywords": [
+      "mechanical",
+      "manual-valve",
+      "packing-friction",
+      "over-torque-risk",
+      "isolation-safety",
+      "root-cause-analysis",
+      "reliability-practice"
+    ]
+  },
+  {
+    "id": "maintenance/mechanical/kurikulum/yunior/artikel-27-manual-valve-greasing",
+    "name": "Manual Valve Greasing & Inspection – Preventive untuk Reliability",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/mechanical/kurikulum/yunior/artikel-27-manual-valve-greasing",
+    "subtitle": "February 19, 2026",
+    "keywords": [
+      "mechanical",
+      "manual-valve-maintenance",
+      "preventive-maintenance",
+      "valve-greasing",
+      "isolation-reliability",
+      "process-safety",
+      "condition-monitoring"
+    ]
+  },
+  {
     "id": "maintenance/elins/kurikulum/artikel-21-transformer-overheating",
     "name": "Transformer Overheating Alarm – Investigasi Beban, Pendinginan, atau Fault Internal?",
     "section": "CONTENT",
@@ -671,6 +1215,93 @@
     ]
   },
   {
+    "id": "maintenance/elins/kurikulum/yunior/artikel-21-transformer-overheating",
+    "name": "Transformer Overheating Alarm – Investigasi Beban, Pendinginan, atau Fault Internal?",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/elins/kurikulum/yunior/artikel-21-transformer-overheating",
+    "subtitle": "February 18, 2026",
+    "keywords": [
+      "transformer-overheating",
+      "ieee-c57",
+      "iec-60076",
+      "power-distribution-system",
+      "electrical-troubleshooting",
+      "thermal-protection-49",
+      "reliability-awareness",
+      "nfpa-70e-safety",
+      "pemeliharaan-pabrik-petrokimia"
+    ]
+  },
+  {
+    "id": "maintenance/elins/kurikulum/yunior/artikel-22-unbalance-voltage",
+    "name": "Unbalance Voltage pada Panel Distribusi – Dampaknya ke Motor & Equipment",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/elins/kurikulum/yunior/artikel-22-unbalance-voltage",
+    "subtitle": "February 18, 2026",
+    "keywords": [
+      "voltage-unbalance",
+      "nema-mg1",
+      "iec-60034",
+      "power-distribution",
+      "motor-overheating",
+      "electrical-troubleshooting",
+      "load-balancing",
+      "reliability-system",
+      "pemeliharaan-pabrik-petrokimia"
+    ]
+  },
+  {
+    "id": "maintenance/elins/kurikulum/yunior/artikel-23-transformer-inspection",
+    "name": "Visual Inspection & Thermography Awareness pada Transformer & Panel",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/elins/kurikulum/yunior/artikel-23-transformer-inspection",
+    "subtitle": "February 18, 2026",
+    "keywords": [
+      "thermography-inspection",
+      "busbar-hotspot",
+      "ieee-c57",
+      "nfpa-70e-safety",
+      "electrical-panel-maintenance",
+      "contact-resistance",
+      "preventive-reliability",
+      "transformer-inspection",
+      "pemeliharaan-pabrik-petrokimia"
+    ]
+  },
+  {
+    "id": "maintenance/elins/kurikulum/yunior/artikel-24-transformer-operation",
+    "name": "Basic Transformer Operation & Protection Concept",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/elins/kurikulum/yunior/artikel-24-transformer-operation",
+    "subtitle": "February 18, 2026",
+    "keywords": [
+      "transformer-basic-operation",
+      "ieee-c57",
+      "iec-60076",
+      "transformer-protection-49-50-51",
+      "oti-wti-monitoring",
+      "thermal-aging-insulation",
+      "power-distribution-reliability",
+      "electrical-system-awareness",
+      "pemeliharaan-pabrik-petrokimia"
+    ]
+  },
+  {
+    "id": "maintenance/elins/kurikulum/yunior/artikel-28-gas-analyzer-basic",
+    "name": "Prinsip Kerja Gas Analyzer & Basic Gas Chromatograph (GC)",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/elins/kurikulum/yunior/artikel-28-gas-analyzer-basic",
+    "subtitle": "February 18, 2026",
+    "keywords": [
+      "gas-chromatograph-basic",
+      "carrier-gas-stability",
+      "retention-time-shift",
+      "process-analyzer-reliability",
+      "quality-control-system",
+      "gc-troubleshooting"
+    ]
+  },
+  {
     "id": "maintenance/mechanical/kurikulum/artikel-19-fouling-heat-exchanger",
     "name": "Fouling pada Heat Exchanger – Dampak pada Performance & Overload System",
     "section": "CONTENT",
@@ -710,6 +1341,59 @@
     "name": "Visual Inspection During Shutdown – Static Equipment Awareness",
     "section": "CONTENT",
     "href": "/blog/maintenance/mechanical/kurikulum/artikel-21-visual-inspection-ta",
+    "subtitle": "February 18, 2026",
+    "keywords": [
+      "visual-inspection-static-equipment",
+      "pressure-vessel-inspection",
+      "corrosion-monitoring-program",
+      "shutdown-maintenance-procedure",
+      "api-510-awareness",
+      "asme-section-viii-awareness",
+      "confined-space-safety",
+      "static-equipment-reliability",
+      "pemeliharaan-pabrik-petrokimia"
+    ]
+  },
+  {
+    "id": "maintenance/mechanical/kurikulum/yunior/artikel-19-fouling-heat-exchanger",
+    "name": "Fouling pada Heat Exchanger – Dampak pada Performance & Overload System",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/mechanical/kurikulum/yunior/artikel-19-fouling-heat-exchanger",
+    "subtitle": "February 18, 2026",
+    "keywords": [
+      "heat-exchanger",
+      "fouling-analysis",
+      "differential-pressure-trending",
+      "system-interaction-mechanical-electrical",
+      "static-equipment-reliability",
+      "api-660-awareness",
+      "asme-section-viii-awareness",
+      "pemeliharaan-pabrik-petrokimia"
+    ]
+  },
+  {
+    "id": "maintenance/mechanical/kurikulum/yunior/artikel-20-tube-leakage-sympton",
+    "name": "Tube Leakage Symptom – Bagaimana Mendeteksi Sebelum Failure Besar?",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/mechanical/kurikulum/yunior/artikel-20-tube-leakage-sympton",
+    "subtitle": "February 18, 2026",
+    "keywords": [
+      "tube-leakage-detection",
+      "shell-and-tube-heat-exchanger",
+      "pressure-imbalance-analysis",
+      "corrosion-monitoring-static-equipment",
+      "system-interaction-mechanical-process",
+      "api-660-awareness",
+      "asme-section-viii-awareness",
+      "nfpa-30-safety-awareness",
+      "pemeliharaan-pabrik-petrokimia"
+    ]
+  },
+  {
+    "id": "maintenance/mechanical/kurikulum/yunior/artikel-21-visual-inspection-ta",
+    "name": "Visual Inspection During Shutdown – Static Equipment Awareness",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/mechanical/kurikulum/yunior/artikel-21-visual-inspection-ta",
     "subtitle": "February 18, 2026",
     "keywords": [
       "visual-inspection-static-equipment",
@@ -811,6 +1495,106 @@
     "name": "Perbedaan PLC vs DCS & Konsep Redundancy Dasar",
     "section": "CONTENT",
     "href": "/blog/maintenance/elins/kurikulum/artikel-20-dcs-plc-redudancy",
+    "subtitle": "February 17, 2026",
+    "keywords": [
+      "plc-vs-dcs-architecture",
+      "siemens-simatic",
+      "honeywell-experion-pks",
+      "control-system-redundancy",
+      "single-point-of-failure",
+      "iec-61511-awareness",
+      "process-safety-control",
+      "system-level-thinking"
+    ]
+  },
+  {
+    "id": "maintenance/elins/kurikulum/yunior/artikel-11-kalibrasi-trx",
+    "name": "Praktik Kalibrasi Transmitter – Bench Test vs Loop Test",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/elins/kurikulum/yunior/artikel-11-kalibrasi-trx",
+    "subtitle": "February 17, 2026",
+    "keywords": [
+      "transmitter-calibration",
+      "bench-vs-loop-test",
+      "risk-based-calibration",
+      "instrument-drift-analysis",
+      "process-control-reliability",
+      "iec-calibration-practice",
+      "pemeliharaan-pabrik-petrokimia"
+    ]
+  },
+  {
+    "id": "maintenance/elins/kurikulum/yunior/artikel-16-positioner-calibration",
+    "name": "Positioner Calibration Basic & Prinsip Kerja Control Valve",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/elins/kurikulum/yunior/artikel-16-positioner-calibration",
+    "subtitle": "February 17, 2026",
+    "keywords": [
+      "positioner-calibration",
+      "control-valve-principle",
+      "zero-span-adjustment",
+      "pneumatic-actuator",
+      "fail-safe-verification",
+      "instrumentation-reliability",
+      "pemeliharaan-pabrik-petrokimia"
+    ]
+  },
+  {
+    "id": "maintenance/elins/kurikulum/yunior/artikel-17-plc-komunikasi",
+    "name": "PLC Kehilangan Komunikasi dengan Field Device",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/elins/kurikulum/yunior/artikel-17-plc-komunikasi",
+    "subtitle": "February 17, 2026",
+    "keywords": [
+      "plc-troubleshooting",
+      "siemens-simatic",
+      "honeywell-experion-pks",
+      "loop-diagnostic",
+      "remote-io-communication",
+      "instrumentation-control",
+      "process-stability",
+      "layered-investigation"
+    ]
+  },
+  {
+    "id": "maintenance/elins/kurikulum/yunior/artikel-18-analog-input-reading",
+    "name": "Analog Input Reading Tidak Sesuai di DCS – Validasi Field hingga Logic",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/elins/kurikulum/yunior/artikel-18-analog-input-reading",
+    "subtitle": "February 17, 2026",
+    "keywords": [
+      "analog-input-validation",
+      "siemens-simatic-scaling",
+      "honeywell-experion-configuration",
+      "4-20ma-loop",
+      "double-scaling-error",
+      "instrumentation-control",
+      "process-quality-stability",
+      "data-driven-troubleshooting"
+    ]
+  },
+  {
+    "id": "maintenance/elins/kurikulum/yunior/artikel-19-backup-restore-plc",
+    "name": "Backup & Restore PLC Program – Awareness untuk Junior",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/elins/kurikulum/yunior/artikel-19-backup-restore-plc",
+    "subtitle": "February 17, 2026",
+    "keywords": [
+      "plc-backup-restore",
+      "siemens-simatic-version-control",
+      "honeywell-experion-interface",
+      "iec-61131-awareness",
+      "logic-change-management",
+      "interlock-protection-system",
+      "control-system-integrity",
+      "preventive-maintenance-control"
+    ]
+  },
+  {
+    "id": "maintenance/elins/kurikulum/yunior/artikel-20-dcs-plc-redudancy",
+    "name": "Perbedaan PLC vs DCS & Konsep Redundancy Dasar",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/elins/kurikulum/yunior/artikel-20-dcs-plc-redudancy",
     "subtitle": "February 17, 2026",
     "keywords": [
       "plc-vs-dcs-architecture",
@@ -991,6 +1775,173 @@
     ]
   },
   {
+    "id": "maintenance/mechanical/kurikulum/yunior/artikel-09-seal-leakage",
+    "name": "Seal Leakage Setelah Start-Up – Instalasi Salah atau Kondisi Operasi?",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/mechanical/kurikulum/yunior/artikel-09-seal-leakage",
+    "subtitle": "February 17, 2026",
+    "keywords": [
+      "mechanical-seal",
+      "seal-leakage-startup",
+      "api-682-awareness",
+      "centrifugal-pump",
+      "flushing-plan-11",
+      "mechanical-troubleshooting",
+      "seal-reliability",
+      "petrochemical-maintenance"
+    ]
+  },
+  {
+    "id": "maintenance/mechanical/kurikulum/yunior/artikel-10-dry-running",
+    "name": "Dry Running Damage – Mengapa Seal Bisa Rusak dalam Hitungan Menit?",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/mechanical/kurikulum/yunior/artikel-10-dry-running",
+    "subtitle": "February 17, 2026",
+    "keywords": [
+      "mechanical-seal",
+      "dry-running-damage",
+      "api-682-awareness",
+      "centrifugal-pump",
+      "seal-face-failure",
+      "startup-procedure",
+      "interlock-protection",
+      "petrochemical-maintenance"
+    ]
+  },
+  {
+    "id": "maintenance/mechanical/kurikulum/yunior/artikel-11-flushing-plan-basic",
+    "name": "Flushing Plan Basic & Seal Pot Inspection",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/mechanical/kurikulum/yunior/artikel-11-flushing-plan-basic",
+    "subtitle": "February 17, 2026",
+    "keywords": [
+      "mechanical-seal",
+      "flushing-plan-11",
+      "seal-pot-inspection",
+      "api-682-awareness",
+      "preventive-maintenance",
+      "centrifugal-pump",
+      "barrier-fluid-system",
+      "petrochemical-reliability"
+    ]
+  },
+  {
+    "id": "maintenance/mechanical/kurikulum/yunior/artikel-12-bearing-overheating",
+    "name": "Bearing Overheating – Masalah Lubrikasi, Misalignment, atau Overload?",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/mechanical/kurikulum/yunior/artikel-12-bearing-overheating",
+    "subtitle": "February 17, 2026",
+    "keywords": [
+      "bearing-overheating",
+      "pump-lubrication-analysis",
+      "misalignment-diagnosis",
+      "vibration-temperature-trending",
+      "api-610-awareness",
+      "mechanical-troubleshooting",
+      "pemeliharaan-pabrik-petrokimia"
+    ]
+  },
+  {
+    "id": "maintenance/mechanical/kurikulum/yunior/artikel-13-over-lubricant",
+    "name": "Grease Over-Lubrication Case – Silent Damage yang Sering Terjadi",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/mechanical/kurikulum/yunior/artikel-13-over-lubricant",
+    "subtitle": "February 17, 2026",
+    "keywords": [
+      "grease-over-lubrication",
+      "bearing-lubrication-engineering",
+      "pump-reliability-analysis",
+      "pressure-build-up-risk",
+      "api-610-awareness",
+      "mechanical-troubleshooting",
+      "pemeliharaan-pabrik-petrokimia"
+    ]
+  },
+  {
+    "id": "maintenance/mechanical/kurikulum/yunior/artikel-14-grease-interval",
+    "name": "Grease Interval Calculation Basic & Oil Level Inspection",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/mechanical/kurikulum/yunior/artikel-14-grease-interval",
+    "subtitle": "February 17, 2026",
+    "keywords": [
+      "grease-interval-calculation",
+      "oil-level-inspection",
+      "bearing-lubrication-engineering",
+      "preventive-maintenance-reliability",
+      "api-610-awareness",
+      "pump-maintenance",
+      "pemeliharaan-pabrik-petrokimia"
+    ]
+  },
+  {
+    "id": "maintenance/mechanical/kurikulum/yunior/artikel-15-compressor-discharge",
+    "name": "Compressor Discharge Temperature Tinggi – Valve, Clearance, Cooling, atau Stage Interaction?",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/mechanical/kurikulum/yunior/artikel-15-compressor-discharge",
+    "subtitle": "February 17, 2026",
+    "keywords": [
+      "dual-stage-compressor",
+      "reciprocating-compressor-troubleshooting",
+      "pressure-ratio-analysis",
+      "intercooler-performance",
+      "valve-leakage-diagnosis",
+      "overheating-risk-hydrocarbon",
+      "api-618-awareness",
+      "pemeliharaan-pabrik-petrokimia"
+    ]
+  },
+  {
+    "id": "maintenance/mechanical/kurikulum/yunior/artikel-16-valve-failure-symptoms",
+    "name": "Valve Failure Symptoms – Bagaimana Mendeteksi Sebelum Rusak Total?",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/mechanical/kurikulum/yunior/artikel-16-valve-failure-symptoms",
+    "subtitle": "February 17, 2026",
+    "keywords": [
+      "valve-failure-symptoms",
+      "dual-stage-compressor",
+      "reciprocating-compressor-troubleshooting",
+      "pressure-pulsation-analysis",
+      "api-618-awareness",
+      "hydrocarbon-safety-risk",
+      "predictive-maintenance",
+      "pemeliharaan-pabrik-petrokimia"
+    ]
+  },
+  {
+    "id": "maintenance/mechanical/kurikulum/yunior/artikel-17-clearance-measurement",
+    "name": "Clearance Measurement Awareness – Mengapa Clearance Penting pada Reciprocating Compressor?",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/mechanical/kurikulum/yunior/artikel-17-clearance-measurement",
+    "subtitle": "February 17, 2026",
+    "keywords": [
+      "clearance-volume",
+      "dual-stage-compressor",
+      "reciprocating-compressor-maintenance",
+      "volumetric-efficiency-analysis",
+      "feeler-gauge-measurement",
+      "api-618-awareness",
+      "preventive-maintenance",
+      "pemeliharaan-pabrik-petrokimia"
+    ]
+  },
+  {
+    "id": "maintenance/mechanical/kurikulum/yunior/artikel-18-interstage-interaction",
+    "name": "Stage Interaction & Intercooler Awareness pada Dual-Stage Reciprocating Compressor",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/mechanical/kurikulum/yunior/artikel-18-interstage-interaction",
+    "subtitle": "February 17, 2026",
+    "keywords": [
+      "dual-stage-compressor",
+      "intercooler-performance",
+      "stage-interaction-analysis",
+      "pressure-ratio-imbalance",
+      "api-618-awareness",
+      "nfpa-30-safety",
+      "hydrocarbon-overheating-risk",
+      "pemeliharaan-pabrik-petrokimia"
+    ]
+  },
+  {
     "id": "maintenance/elins/kurikulum/artikel-09-pressure-trx",
     "name": "Pressure Transmitter Reading Tidak Stabil – Investigasi dari Impulse Line hingga AI Channel",
     "section": "CONTENT",
@@ -1087,6 +2038,102 @@
     ]
   },
   {
+    "id": "maintenance/elins/kurikulum/yunior/artikel-09-pressure-trx",
+    "name": "Pressure Transmitter Reading Tidak Stabil – Investigasi dari Impulse Line hingga AI Channel",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/elins/kurikulum/yunior/artikel-09-pressure-trx",
+    "subtitle": "February 16, 2026",
+    "keywords": [
+      "pressure-transmitter",
+      "impulse-line-troubleshooting",
+      "loop-diagram-literacy",
+      "instrument-reliability",
+      "dcs-signal-analysis",
+      "troubleshooting-sistematis",
+      "pemeliharaan-pabrik-petrokimia"
+    ]
+  },
+  {
+    "id": "maintenance/elins/kurikulum/yunior/artikel-10-temperature-trx",
+    "name": "Temperature Transmitter Error Setelah Shutdown – Investigasi Wiring & Sensor",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/elins/kurikulum/yunior/artikel-10-temperature-trx",
+    "subtitle": "February 16, 2026",
+    "keywords": [
+      "temperature-transmitter",
+      "rtd-troubleshooting",
+      "loop-check-procedure",
+      "instrument-wiring-integrity",
+      "restart-safety-awareness",
+      "iec-installation-practice",
+      "pemeliharaan-pabrik-petrokimia"
+    ]
+  },
+  {
+    "id": "maintenance/elins/kurikulum/yunior/artikel-12-konsep-4-20ma",
+    "name": "Konsep 4–20 mA & Loop Wiring dalam Sistem Kontrol",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/elins/kurikulum/yunior/artikel-12-konsep-4-20ma",
+    "subtitle": "February 16, 2026",
+    "keywords": [
+      "4-20ma-loop",
+      "loop-wiring-instrumentation",
+      "analog-signal-troubleshooting",
+      "grounding-shielding-awareness",
+      "control-system-foundation",
+      "iec-instrument-practice",
+      "pemeliharaan-pabrik-petrokimia"
+    ]
+  },
+  {
+    "id": "maintenance/elins/kurikulum/yunior/artikel-13-control-valve-hunting",
+    "name": "Control Valve Hunting Saat Beban Naik – Analisa Loop vs Valve Problem",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/elins/kurikulum/yunior/artikel-13-control-valve-hunting",
+    "subtitle": "February 16, 2026",
+    "keywords": [
+      "control-valve-hunting",
+      "pid-tuning-analysis",
+      "instrumentation-troubleshooting",
+      "loop-diagnostics",
+      "pneumatic-actuator",
+      "stiction-analysis",
+      "pemeliharaan-pabrik-petrokimia"
+    ]
+  },
+  {
+    "id": "maintenance/elins/kurikulum/yunior/artikel-14-control-valve-problem",
+    "name": "Control Valve Tidak Mencapai Posisi 100% – Analisa Signal, Air Supply, dan Travel Limit",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/elins/kurikulum/yunior/artikel-14-control-valve-problem",
+    "subtitle": "February 16, 2026",
+    "keywords": [
+      "control-valve-travel-limit",
+      "instrument-air-system",
+      "4-20mA-loop-verification",
+      "pneumatic-actuator-analysis",
+      "iso-8573-awareness",
+      "loop-troubleshooting",
+      "pemeliharaan-pabrik-petrokimia"
+    ]
+  },
+  {
+    "id": "maintenance/elins/kurikulum/yunior/artikel-15-air-quality",
+    "name": "Air Quality Requirement (ISO 8573 Awareness) & Dampaknya pada Control Valve",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/elins/kurikulum/yunior/artikel-15-air-quality",
+    "subtitle": "February 16, 2026",
+    "keywords": [
+      "instrument-air-quality",
+      "iso-8573-awareness",
+      "dew-point-monitoring",
+      "control-valve-reliability",
+      "pneumatic-actuator-performance",
+      "preventive-maintenance-instrumentation",
+      "pemeliharaan-pabrik-petrokimia"
+    ]
+  },
+  {
     "id": "maintenance/mechanical/kurikulum/artikel-04-kerja-pompa-centrifugal",
     "name": "Prinsip Kerja Centrifugal Pump & Basic API 610 Awareness",
     "section": "CONTENT",
@@ -1152,6 +2199,82 @@
     "name": "Thermal Growth Awareness – Mengapa Alignment Cold ≠ Alignment Hot",
     "section": "CONTENT",
     "href": "/blog/maintenance/mechanical/kurikulum/artikel-08-thermal-growth",
+    "subtitle": "February 16, 2026",
+    "keywords": [
+      "thermal-growth-awareness",
+      "alignment-cold-vs-hot",
+      "api-686-installation-guideline",
+      "centrifugal-pump-reliability",
+      "mechanical-preventive-basic",
+      "shaft-centerline-shift"
+    ]
+  },
+  {
+    "id": "maintenance/mechanical/kurikulum/yunior/artikel-04-kerja-pompa-centrifugal",
+    "name": "Prinsip Kerja Centrifugal Pump & Basic API 610 Awareness",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/mechanical/kurikulum/yunior/artikel-04-kerja-pompa-centrifugal",
+    "subtitle": "February 16, 2026",
+    "keywords": [
+      "centrifugal-pump-theory",
+      "pump-curve-bep",
+      "api-610-awareness",
+      "mechanical-integrity",
+      "rotating-equipment-basic",
+      "hydrocarbon-service",
+      "pemeliharaan-pabrik-petrokimia"
+    ]
+  },
+  {
+    "id": "maintenance/mechanical/kurikulum/yunior/artikel-05-vibrasi-tinggi",
+    "name": "Vibrasi Tinggi Setelah Maintenance – Misalignment atau Unbalance?",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/mechanical/kurikulum/yunior/artikel-05-vibrasi-tinggi",
+    "subtitle": "February 16, 2026",
+    "keywords": [
+      "shaft-alignment",
+      "centrifugal-pump-reliability",
+      "vibration-analysis-basic",
+      "api-610-awareness",
+      "preventive-maintenance-mechanical",
+      "junior-mechanical-upgrade"
+    ]
+  },
+  {
+    "id": "maintenance/mechanical/kurikulum/yunior/artikel-06-bearing-cepat-rusak",
+    "name": "Bearing Cepat Rusak – Apakah Alignment yang Salah?",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/mechanical/kurikulum/yunior/artikel-06-bearing-cepat-rusak",
+    "subtitle": "February 16, 2026",
+    "keywords": [
+      "bearing-failure-analysis",
+      "shaft-alignment-impact",
+      "axial-vibration-awareness",
+      "api-610-reliability",
+      "pump-maintenance-troubleshooting",
+      "junior-mechanical-competency"
+    ]
+  },
+  {
+    "id": "maintenance/mechanical/kurikulum/yunior/artikel-07-soft-foot",
+    "name": "Soft Foot Checking & Dial vs Laser Alignment Basic",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/mechanical/kurikulum/yunior/artikel-07-soft-foot",
+    "subtitle": "February 16, 2026",
+    "keywords": [
+      "soft-foot-checking",
+      "dial-vs-laser-alignment",
+      "pump-installation-best-practice",
+      "api-686-awareness",
+      "mechanical-reliability-basic",
+      "preventive-maintenance-rotating-equipment"
+    ]
+  },
+  {
+    "id": "maintenance/mechanical/kurikulum/yunior/artikel-08-thermal-growth",
+    "name": "Thermal Growth Awareness – Mengapa Alignment Cold ≠ Alignment Hot",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/mechanical/kurikulum/yunior/artikel-08-thermal-growth",
     "subtitle": "February 16, 2026",
     "keywords": [
       "thermal-growth-awareness",
@@ -1265,6 +2388,108 @@
     ]
   },
   {
+    "id": "maintenance/elins/kurikulum/yunior/artikel-03-checklist-mcc",
+    "name": "Checklist Inspeksi Harian MCC & Panel Distribusi Berbasis Risk",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/elins/kurikulum/yunior/artikel-03-checklist-mcc",
+    "subtitle": "February 15, 2026",
+    "keywords": [
+      "mcc-inspection",
+      "low-voltage-distribution",
+      "risk-based-inspection",
+      "thermal-scanning-analysis",
+      "busbar-feeder-path",
+      "arc-flash-risk",
+      "electrical-maintenance-discipline",
+      "preventive-inspection-system",
+      "industrial-reliability",
+      "pemeliharaan-pabrik-petrokimia"
+    ]
+  },
+  {
+    "id": "maintenance/elins/kurikulum/yunior/artikel-04-dasar-proteksi-listrik",
+    "name": "Dasar Proteksi Listrik & ANSI Relay Code (50/51/27/59) dalam Konteks Sistem",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/elins/kurikulum/yunior/artikel-04-dasar-proteksi-listrik",
+    "subtitle": "February 15, 2026",
+    "keywords": [
+      "ansi-relay-code",
+      "electrical-protection-system",
+      "ansi-50-51-27-59",
+      "undervoltage-overvoltage",
+      "protection-relay-fundamental",
+      "voltage-trending-analysis",
+      "system-level-thinking",
+      "industrial-power-distribution",
+      "electrical-reliability",
+      "pemeliharaan-pabrik-petrokimia"
+    ]
+  },
+  {
+    "id": "maintenance/elins/kurikulum/yunior/artikel-05-motor-overheating",
+    "name": "Motor Overheating – Electrical atau Mechanical? Investigasi Berbasis Data & Diagram",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/elins/kurikulum/yunior/artikel-05-motor-overheating",
+    "subtitle": "February 15, 2026",
+    "keywords": [
+      "motor-overheating",
+      "electrical-mechanical-interface",
+      "troubleshooting-motor-induksi",
+      "ieee-43-awareness",
+      "diagram-literacy-sld",
+      "reliability-awareness",
+      "teknisi-junior-ei"
+    ]
+  },
+  {
+    "id": "maintenance/elins/kurikulum/yunior/artikel-06-vibrasi-tinggi",
+    "name": "Vibrasi Tinggi Setelah Coupling Replacement – Electrical atau Alignment Issue?",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/elins/kurikulum/yunior/artikel-06-vibrasi-tinggi",
+    "subtitle": "February 15, 2026",
+    "keywords": [
+      "vibrasi-motor",
+      "alignment-coupling",
+      "electrical-mechanical-interface",
+      "iso-10816-20816",
+      "troubleshooting-pompa-proses",
+      "reliability-awareness",
+      "teknisi-junior-ei"
+    ]
+  },
+  {
+    "id": "maintenance/elins/kurikulum/yunior/artikel-07-insulation-resistance",
+    "name": "Insulation Resistance Test & Polarization Index (PI) – Praktik Sesuai IEEE 43",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/elins/kurikulum/yunior/artikel-07-insulation-resistance",
+    "subtitle": "February 15, 2026",
+    "keywords": [
+      "insulation-resistance-test",
+      "polarization-index-pi",
+      "ieee-43",
+      "motor-induksi-preventive",
+      "electrical-reliability",
+      "megger-safety-awareness",
+      "teknisi-junior-ei"
+    ]
+  },
+  {
+    "id": "maintenance/elins/kurikulum/yunior/artikel-08-kerja-induksi-motor",
+    "name": "Prinsip Kerja Motor Induksi 3 Fasa & Hubungannya dengan Beban Mekanis",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/elins/kurikulum/yunior/artikel-08-kerja-induksi-motor",
+    "subtitle": "February 15, 2026",
+    "keywords": [
+      "motor-induksi-3-fasa",
+      "torque-speed-curve",
+      "slip-calculation",
+      "electrical-mechanical-interaction",
+      "motor-overload-analysis",
+      "iec-60034-awareness",
+      "teknisi-junior-ei"
+    ]
+  },
+  {
     "id": "maintenance/elins/panduan-kurikulum-elins",
     "name": "Panduan Lengkap Kurikulum & Matriks Kompetensi - Teknisi Electrical, Instrumentation & Control (E&I) – Industri Petrokimia",
     "section": "CONTENT",
@@ -1329,6 +2554,54 @@
     ]
   },
   {
+    "id": "maintenance/mechanical/kurikulum/yunior/artikel-01-pompa-tidak-discharge",
+    "name": "Pompa Tidak Discharge Setelah Start – Investigasi Sistematis Berbasis P&ID",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/mechanical/kurikulum/yunior/artikel-01-pompa-tidak-discharge",
+    "subtitle": "February 15, 2026",
+    "keywords": [
+      "centrifugal-pump",
+      "pump-troubleshooting",
+      "p&id-literacy",
+      "api-610-awareness",
+      "mechanical-junior",
+      "rotating-equipment-basic",
+      "pemeliharaan-pabrik-petrokimia"
+    ]
+  },
+  {
+    "id": "maintenance/mechanical/kurikulum/yunior/artikel-02-pompa-noise",
+    "name": "Abnormal Noise pada Centrifugal Pump – Identifikasi Sumber Getaran & Kavitasi",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/mechanical/kurikulum/yunior/artikel-02-pompa-noise",
+    "subtitle": "February 15, 2026",
+    "keywords": [
+      "centrifugal-pump",
+      "pump-vibration-analysis",
+      "cavitation-npsh",
+      "api-610-awareness",
+      "mechanical-troubleshooting",
+      "rotating-equipment",
+      "pemeliharaan-pabrik-petrokimia"
+    ]
+  },
+  {
+    "id": "maintenance/mechanical/kurikulum/yunior/artikel-03-checklist-pompa",
+    "name": "Daily Inspection Checklist Pump & Coupling Berbasis Risk",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/mechanical/kurikulum/yunior/artikel-03-checklist-pompa",
+    "subtitle": "February 15, 2026",
+    "keywords": [
+      "daily-inspection-pump",
+      "flexible-coupling",
+      "preventive-maintenance",
+      "api-610-awareness",
+      "rotating-equipment",
+      "mechanical-junior",
+      "pemeliharaan-pabrik-petrokimia"
+    ]
+  },
+  {
     "id": "maintenance/mechanical/panduan-kurikulum-mechanical",
     "name": "Panduan Lengkap Kurikulum & Matriks Kompetensi – Teknisi Mechanical – Industri Petrokimia",
     "section": "CONTENT",
@@ -1368,6 +2641,44 @@
     "name": "MCC Breaker Trip – Overload vs Short Circuit Analysis",
     "section": "CONTENT",
     "href": "/blog/maintenance/elins/kurikulum/artikel-02-mcc-breaker-trip",
+    "subtitle": "February 13, 2026",
+    "keywords": [
+      "mcc-breaker",
+      "electrical-protection",
+      "overload-vs-short-circuit",
+      "trip-curve-analysis",
+      "selective-coordination",
+      "upstream-downstream-protection",
+      "electrical-safety-nfpa",
+      "ieee-protection-practice",
+      "industrial-reliability",
+      "pemeliharaan-pabrik-petrokimia"
+    ]
+  },
+  {
+    "id": "maintenance/elins/kurikulum/yunior/artikel-01-motor-lv-trip",
+    "name": "Motor LV Trip Saat Start – Investigasi Sistematis Berbasis Diagram & Data",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/elins/kurikulum/yunior/artikel-01-motor-lv-trip",
+    "subtitle": "February 13, 2026",
+    "keywords": [
+      "motor-lv",
+      "electrical-troubleshooting",
+      "single-line-diagram-sld",
+      "ansi-protection-50-51",
+      "nfpa-70e-electrical-safety",
+      "ieee-motor-protection",
+      "pump-drive-system",
+      "industrial-maintenance",
+      "risk-based-troubleshooting",
+      "pemeliharaan-pabrik-petrokimia"
+    ]
+  },
+  {
+    "id": "maintenance/elins/kurikulum/yunior/artikel-02-mcc-breaker-trip",
+    "name": "MCC Breaker Trip – Overload vs Short Circuit Analysis",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/elins/kurikulum/yunior/artikel-02-mcc-breaker-trip",
     "subtitle": "February 13, 2026",
     "keywords": [
       "mcc-breaker",
@@ -1545,22 +2856,6 @@
     ]
   },
   {
-    "id": "management/budgeting",
-    "name": "Budgeting Maintenance Berbasis Risk-Based Maintenance (RBM) di Pabrik Petrokimia",
-    "section": "CONTENT",
-    "href": "/blog/management/budgeting",
-    "subtitle": "January 29, 2026",
-    "keywords": [
-      "risk-based-maintenance",
-      "maintenance-budgeting",
-      "pemeliharaan-pabrik-petrokimia",
-      "process-safety",
-      "asset-criticality",
-      "reliability-engineering",
-      "she-governance"
-    ]
-  },
-  {
     "id": "management/MSH/MSH-4-budgeting",
     "name": "Budgeting Maintenance Berbasis Risk-Based Maintenance (RBM) di Pabrik Petrokimia",
     "section": "CONTENT",
@@ -1644,10 +2939,10 @@
     ]
   },
   {
-    "id": "management/MSH-1-maintenance-fondasi-risiko",
+    "id": "Management/MSH-1-maintenance-fondasi-risiko",
     "name": "Filosofi Sistem Pemeliharaan dan Fondasi Risiko",
     "section": "CONTENT",
-    "href": "/blog/management/MSH-1-maintenance-fondasi-risiko",
+    "href": "/blog/Management/MSH-1-maintenance-fondasi-risiko",
     "subtitle": "January 25, 2026",
     "keywords": [
       "maintenance-philosophy",
@@ -1661,10 +2956,10 @@
     ]
   },
   {
-    "id": "management/MSH-2-model-risiko",
+    "id": "Management/MSH-2-model-risiko",
     "name": "Model Risiko dan Logika Pengambilan Keputusan Pemeliharaan",
     "section": "CONTENT",
-    "href": "/blog/management/MSH-2-model-risiko",
+    "href": "/blog/Management/MSH-2-model-risiko",
     "subtitle": "January 25, 2026",
     "keywords": [
       "risk-model",
@@ -1679,10 +2974,10 @@
     ]
   },
   {
-    "id": "management/MSH-3-rbm",
+    "id": "Management/MSH-3-rbm",
     "name": "Risk-Based Maintenance sebagai Strategi Pemeliharaan Praktis",
     "section": "CONTENT",
-    "href": "/blog/management/MSH-3-rbm",
+    "href": "/blog/Management/MSH-3-rbm",
     "subtitle": "January 25, 2026",
     "keywords": [
       "risk-based-maintenance",
@@ -1697,10 +2992,10 @@
     ]
   },
   {
-    "id": "management/MSH-4-organization",
+    "id": "Management/MSH-4-organization",
     "name": "Organisasi, KPI, dan Akuntabilitas dalam Sistem Pemeliharaan",
     "section": "CONTENT",
-    "href": "/blog/management/MSH-4-organization",
+    "href": "/blog/Management/MSH-4-organization",
     "subtitle": "January 25, 2026",
     "keywords": [
       "organisasi-pemeliharaan",
@@ -1714,10 +3009,10 @@
     ]
   },
   {
-    "id": "management/MSH-5-eksekusi",
+    "id": "Management/MSH-5-eksekusi",
     "name": "Eksekusi, Troubleshooting, dan Sistem Pembelajaran Pemeliharaan",
     "section": "CONTENT",
-    "href": "/blog/management/MSH-5-eksekusi",
+    "href": "/blog/Management/MSH-5-eksekusi",
     "subtitle": "January 25, 2026",
     "keywords": [
       "eksekusi-pemeliharaan",
@@ -1732,10 +3027,10 @@
     ]
   },
   {
-    "id": "management/MSH-6-she-compliance",
+    "id": "Management/MSH-6-she-compliance",
     "name": "SHE sebagai Batas Sistem dalam Pengambilan Keputusan Pemeliharaan",
     "section": "CONTENT",
-    "href": "/blog/management/MSH-6-she-compliance",
+    "href": "/blog/Management/MSH-6-she-compliance",
     "subtitle": "January 25, 2026",
     "keywords": [
       "she-maintenance",
@@ -1751,10 +3046,10 @@
     ]
   },
   {
-    "id": "management/MSH-7-lifecycle-ta",
+    "id": "Management/MSH-7-lifecycle-ta",
     "name": "Lifecycle Aset, Turnaround, dan Continuous Improvement Sistem Pemeliharaan",
     "section": "CONTENT",
-    "href": "/blog/management/MSH-7-lifecycle-ta",
+    "href": "/blog/Management/MSH-7-lifecycle-ta",
     "subtitle": "January 25, 2026",
     "keywords": [
       "maintenance-system-handbook",
@@ -1823,41 +3118,6 @@
     ]
   },
   {
-    "id": "management/MSH/MSH-4-organization",
-    "name": "Organisasi, KPI, dan Akuntabilitas dalam Sistem Pemeliharaan",
-    "section": "CONTENT",
-    "href": "/blog/management/MSH/MSH-4-organization",
-    "subtitle": "January 25, 2026",
-    "keywords": [
-      "organisasi-pemeliharaan",
-      "job-description-dan-akuntabilitas",
-      "kpi-berbasis-peran",
-      "governance-maintenance",
-      "manajemen-aset-iso-55000",
-      "audit-dan-akuntabilitas",
-      "maintenance-management-system",
-      "risk-based-maintenance-governance"
-    ]
-  },
-  {
-    "id": "management/MSH/MSH-5-eksekusi",
-    "name": "Eksekusi, Troubleshooting, dan Sistem Pembelajaran Pemeliharaan",
-    "section": "CONTENT",
-    "href": "/blog/management/MSH/MSH-5-eksekusi",
-    "subtitle": "January 25, 2026",
-    "keywords": [
-      "eksekusi-pemeliharaan",
-      "troubleshooting-sistematis",
-      "root-cause-analysis-rca",
-      "fmea-dan-fta",
-      "first-time-fix",
-      "learning-loop-maintenance",
-      "dokumentasi-pemeliharaan",
-      "risk-based-maintenance-execution",
-      "continuous-improvement-maintenance"
-    ]
-  },
-  {
     "id": "management/MSH/MSH-5-organization",
     "name": "Organisasi, KPI, dan Akuntabilitas dalam Sistem Pemeliharaan",
     "section": "CONTENT",
@@ -1890,44 +3150,6 @@
       "dokumentasi-pemeliharaan",
       "risk-based-maintenance-execution",
       "continuous-improvement-maintenance"
-    ]
-  },
-  {
-    "id": "management/MSH/MSH-6-she-compliance",
-    "name": "SHE sebagai Batas Sistem dalam Pengambilan Keputusan Pemeliharaan",
-    "section": "CONTENT",
-    "href": "/blog/management/MSH/MSH-6-she-compliance",
-    "subtitle": "January 25, 2026",
-    "keywords": [
-      "she-maintenance",
-      "safety-health-environment",
-      "risk-decision-boundary",
-      "esc-risk-integration",
-      "rbm-she-governance",
-      "maintenance-compliance",
-      "process-safety",
-      "asset-management-iso55000",
-      "api-rp-580-581",
-      "petrochemical-maintenance-system"
-    ]
-  },
-  {
-    "id": "management/MSH/MSH-7-lifecycle-ta",
-    "name": "Lifecycle Aset, Turnaround, dan Continuous Improvement Sistem Pemeliharaan",
-    "section": "CONTENT",
-    "href": "/blog/management/MSH/MSH-7-lifecycle-ta",
-    "subtitle": "January 25, 2026",
-    "keywords": [
-      "maintenance-system-handbook",
-      "asset-lifecycle-management",
-      "turnaround-maintenance",
-      "continuous-improvement",
-      "reliability-growth",
-      "rbm-maturity",
-      "iso-55000",
-      "api-rp-580-581",
-      "long-term-maintenance-strategy",
-      "petrochemical-maintenance"
     ]
   },
   {
@@ -1969,10 +3191,55 @@
     ]
   },
   {
-    "id": "management/MSH-0-maintenance-evolusi",
+    "id": "Management/fundamental-rbi-rbm",
+    "name": "Memahami Dasar Risk-Based Inventory (RBI) dalam Kerangka Risk-Based Maintenance (RBM)",
+    "section": "CONTENT",
+    "href": "/blog/Management/fundamental-rbi-rbm",
+    "subtitle": "January 24, 2026",
+    "keywords": [
+      "risk-based-maintenance",
+      "risk-based-inventory",
+      "asset-management",
+      "maintenance-reliability",
+      "inventory-strategy",
+      "rcm-fmea"
+    ]
+  },
+  {
+    "id": "Management/implementasi-rbi",
+    "name": "Implementasi Sistem dan Integrasi Operasional RBI dalam RBM",
+    "section": "CONTENT",
+    "href": "/blog/Management/implementasi-rbi",
+    "subtitle": "January 24, 2026",
+    "keywords": [
+      "risk-based-inventory",
+      "rbi-implementation",
+      "erp-cmms",
+      "inventory-integration",
+      "rcm-fmea",
+      "industrial-case-study"
+    ]
+  },
+  {
+    "id": "Management/metodologi-rbi",
+    "name": "Metodologi Klasifikasi Inventory Berbasis Risiko (RBI)",
+    "section": "CONTENT",
+    "href": "/blog/Management/metodologi-rbi",
+    "subtitle": "January 24, 2026",
+    "keywords": [
+      "risk-based-inventory",
+      "inventory-risk-assessment",
+      "risk-based-maintenance",
+      "spare-part-criticality",
+      "inventory-classification",
+      "reorder-point-strategy"
+    ]
+  },
+  {
+    "id": "Management/MSH-0-maintenance-evolusi",
     "name": "Konteks Industri dan Alasan Sistem Pemeliharaan Harus Berevolusi",
     "section": "CONTENT",
-    "href": "/blog/management/MSH-0-maintenance-evolusi",
+    "href": "/blog/Management/MSH-0-maintenance-evolusi",
     "subtitle": "January 24, 2026",
     "keywords": [
       "pemeliharaan-pabrik-petrokimia",
@@ -1986,10 +3253,10 @@
     ]
   },
   {
-    "id": "management/MSH-panduan-lengkap",
+    "id": "Management/MSH-panduan-lengkap",
     "name": "Dari Risk-Based Thinking ke Reliability-Driven Organization - Panduan Lengkap Maintenance System Handbook",
     "section": "CONTENT",
-    "href": "/blog/management/MSH-panduan-lengkap",
+    "href": "/blog/Management/MSH-panduan-lengkap",
     "subtitle": "January 24, 2026",
     "keywords": [
       "maintenance-system-handbook",
@@ -2042,10 +3309,10 @@
     ]
   },
   {
-    "id": "management/RBInv-1-fundamental-rbi-rbm",
+    "id": "Management/RBI-1-fundamental-rbi-rbm",
     "name": "Memahami Dasar Risk-Based Inventory (RBInv) dalam Kerangka Risk-Based Maintenance (RBM)",
     "section": "CONTENT",
-    "href": "/blog/management/RBInv-1-fundamental-rbi-rbm",
+    "href": "/blog/Management/RBI-1-fundamental-rbi-rbm",
     "subtitle": "January 24, 2026",
     "keywords": [
       "risk-based-maintenance",
@@ -2057,10 +3324,10 @@
     ]
   },
   {
-    "id": "management/RBInv-2-metodologi-rbi",
+    "id": "Management/RBI-2-metodologi-rbi",
     "name": "Metodologi Klasifikasi Inventory Berbasis Risiko (RBInv)",
     "section": "CONTENT",
-    "href": "/blog/management/RBInv-2-metodologi-rbi",
+    "href": "/blog/Management/RBI-2-metodologi-rbi",
     "subtitle": "January 24, 2026",
     "keywords": [
       "risk-based-inventory",
@@ -2072,10 +3339,10 @@
     ]
   },
   {
-    "id": "management/RBInv-3-implementasi-rbi",
+    "id": "Management/RBI-3-implementasi-rbi",
     "name": "Implementasi Sistem dan Integrasi Operasional RBInv dalam RBM",
     "section": "CONTENT",
-    "href": "/blog/management/RBInv-3-implementasi-rbi",
+    "href": "/blog/Management/RBI-3-implementasi-rbi",
     "subtitle": "January 24, 2026",
     "keywords": [
       "risk-based-inventory",
@@ -2087,10 +3354,10 @@
     ]
   },
   {
-    "id": "management/RBInv-4-template-rbi",
+    "id": "Management/RBI-4-template-rbi",
     "name": "Template, SOP, dan Strategi Lanjutan dalam RBInv",
     "section": "CONTENT",
-    "href": "/blog/management/RBInv-4-template-rbi",
+    "href": "/blog/Management/RBI-4-template-rbi",
     "subtitle": "January 24, 2026",
     "keywords": [
       "rbi-tools",
@@ -2102,10 +3369,85 @@
     ]
   },
   {
-    "id": "management/RBInv-panduan-lengkap",
+    "id": "Management/RBI-panduan-lengkap",
     "name": "Buku Panduan - Sistem Risk-Based Inventory (RBInv) dalam Risk-Based Maintenance (RBM)",
     "section": "CONTENT",
-    "href": "/blog/management/RBInv-panduan-lengkap",
+    "href": "/blog/Management/RBI-panduan-lengkap",
+    "subtitle": "January 24, 2026",
+    "keywords": [
+      "rbi-guide",
+      "risk-based-maintenance",
+      "inventory-management",
+      "engineering-reference",
+      "jit-sop-template",
+      "cmms-erp"
+    ]
+  },
+  {
+    "id": "Management/RBInv-1-fundamental-rbi-rbm",
+    "name": "Memahami Dasar Risk-Based Inventory (RBInv) dalam Kerangka Risk-Based Maintenance (RBM)",
+    "section": "CONTENT",
+    "href": "/blog/Management/RBInv-1-fundamental-rbi-rbm",
+    "subtitle": "January 24, 2026",
+    "keywords": [
+      "risk-based-maintenance",
+      "risk-based-inventory",
+      "asset-management",
+      "maintenance-reliability",
+      "inventory-strategy",
+      "rcm-fmea"
+    ]
+  },
+  {
+    "id": "Management/RBInv-2-metodologi-rbi",
+    "name": "Metodologi Klasifikasi Inventory Berbasis Risiko (RBInv)",
+    "section": "CONTENT",
+    "href": "/blog/Management/RBInv-2-metodologi-rbi",
+    "subtitle": "January 24, 2026",
+    "keywords": [
+      "risk-based-inventory",
+      "inventory-risk-assessment",
+      "risk-based-maintenance",
+      "spare-part-criticality",
+      "inventory-classification",
+      "reorder-point-strategy"
+    ]
+  },
+  {
+    "id": "Management/RBInv-3-implementasi-rbi",
+    "name": "Implementasi Sistem dan Integrasi Operasional RBInv dalam RBM",
+    "section": "CONTENT",
+    "href": "/blog/Management/RBInv-3-implementasi-rbi",
+    "subtitle": "January 24, 2026",
+    "keywords": [
+      "risk-based-inventory",
+      "rbi-implementation",
+      "erp-cmms",
+      "inventory-integration",
+      "rcm-fmea",
+      "industrial-case-study"
+    ]
+  },
+  {
+    "id": "Management/RBInv-4-template-rbi",
+    "name": "Template, SOP, dan Strategi Lanjutan dalam RBInv",
+    "section": "CONTENT",
+    "href": "/blog/Management/RBInv-4-template-rbi",
+    "subtitle": "January 24, 2026",
+    "keywords": [
+      "rbi-tools",
+      "inventory-template",
+      "sop-maintenance-warehouse",
+      "jit-risk-based",
+      "material-readiness",
+      "shutdown-support"
+    ]
+  },
+  {
+    "id": "Management/RBInv-panduan-lengkap",
+    "name": "Buku Panduan - Sistem Risk-Based Inventory (RBInv) dalam Risk-Based Maintenance (RBM)",
+    "section": "CONTENT",
+    "href": "/blog/Management/RBInv-panduan-lengkap",
     "subtitle": "January 24, 2026",
     "keywords": [
       "rbi-guide",
@@ -2189,6 +3531,21 @@
       "engineering-reference",
       "jit-sop-template",
       "cmms-erp"
+    ]
+  },
+  {
+    "id": "Management/template-rbi",
+    "name": "Template, SOP, dan Strategi Lanjutan dalam RBI",
+    "section": "CONTENT",
+    "href": "/blog/Management/template-rbi",
+    "subtitle": "January 24, 2026",
+    "keywords": [
+      "rbi-tools",
+      "inventory-template",
+      "sop-maintenance-warehouse",
+      "jit-risk-based",
+      "material-readiness",
+      "shutdown-support"
     ]
   },
   {
@@ -2817,20 +4174,6 @@
     ]
   },
   {
-    "id": "markdown/github-markdown-guide",
-    "name": "Panduan Markdown",
-    "section": "CONTENT",
-    "href": "/blog/markdown/github-markdown-guide",
-    "subtitle": "October 7, 2025",
-    "keywords": [
-      "github",
-      "panduan",
-      "markdown",
-      "md",
-      "mdx"
-    ]
-  },
-  {
     "id": "markdown/math-formula-guide",
     "name": "Panduan Penulisan Formula Matematika dalam Block Markdown",
     "section": "CONTENT",
@@ -2983,23 +4326,6 @@
     "name": "Panduan Troubleshooting dengan Root Cause Analysis di Pabrik Petrokimia - Metode, Implementasi, dan Studi Kasus",
     "section": "CONTENT",
     "href": "/blog/maintenance/troubleshooting-metode",
-    "subtitle": "October 11, 2024",
-    "keywords": [
-      "root-cause-analysis",
-      "rca-petrokimia",
-      "troubleshooting-industri",
-      "reliability-engineering",
-      "process-safety",
-      "maintenance-management",
-      "continuous-improvement",
-      "asset-integrity"
-    ]
-  },
-  {
-    "id": "management/RCA/troubleshooting-metode",
-    "name": "Panduan Troubleshooting dengan Root Cause Analysis di Pabrik Petrokimia - Metode, Implementasi, dan Studi Kasus",
-    "section": "CONTENT",
-    "href": "/blog/management/RCA/troubleshooting-metode",
     "subtitle": "October 11, 2024",
     "keywords": [
       "root-cause-analysis",
@@ -3699,40 +5025,6 @@
     ]
   },
   {
-    "id": "management/RCA/maintenance-fishbone-diagram",
-    "name": "Optimasi Proses dalam Industri Petrokimia Menggunakan Fishbone Diagram",
-    "section": "CONTENT",
-    "href": "/blog/management/RCA/maintenance-fishbone-diagram",
-    "subtitle": "October 26, 2023",
-    "keywords": [
-      "fishbone-diagram",
-      "diagram-ishikawa",
-      "pemeliharaan-pabrik-petrokimia",
-      "analisis-akar-masalah",
-      "troubleshooting-industri",
-      "manajemen-risiko",
-      "process-improvement",
-      "safety-environment"
-    ]
-  },
-  {
-    "id": "management/RCA/maintenance-fmea",
-    "name": "Mengungkap Keunggulan FMEA dalam Meningkatkan Keandalan di Industri Petrokimia",
-    "section": "CONTENT",
-    "href": "/blog/management/RCA/maintenance-fmea",
-    "subtitle": "October 26, 2023",
-    "keywords": [
-      "fmea",
-      "failure-mode-and-effects-analysis",
-      "pemeliharaan-pabrik-petrokimia",
-      "manajemen-risiko",
-      "keandalan-peralatan",
-      "risk-priority-number",
-      "safety-environment",
-      "continuous-improvement"
-    ]
-  },
-  {
     "id": "management/RCA/rca-fishbone-diagram",
     "name": "Fishbone Diagram sebagai Alat Eksplorasi Penyebab dalam Root Cause Analysis Berbasis RBM",
     "section": "CONTENT",
@@ -3809,40 +5101,6 @@
     "name": "Mengungkap Akar Masalah - Panduan Lengkap Analisis Akar Penyebab Kegagalan (RCFA)",
     "section": "CONTENT",
     "href": "/blog/maintenance/maintenance-rcfa",
-    "subtitle": "October 25, 2023",
-    "keywords": [
-      "rcfa",
-      "root-cause-failure-analysis",
-      "pemeliharaan-pabrik-petrokimia",
-      "keandalan-peralatan",
-      "analisis-kegagalan",
-      "safety-environment",
-      "maintenance-management",
-      "continuous-improvement"
-    ]
-  },
-  {
-    "id": "management/RCA/maintenance-fta",
-    "name": "Mengungkap Risiko Tersembunyi - Panduan Lengkap tentang Failure Tree Analysis (FTA)",
-    "section": "CONTENT",
-    "href": "/blog/management/RCA/maintenance-fta",
-    "subtitle": "October 25, 2023",
-    "keywords": [
-      "fta",
-      "failure-tree-analysis",
-      "analisis-risiko",
-      "pemeliharaan-pabrik-petrokimia",
-      "keandalan-sistem",
-      "process-safety",
-      "manajemen-risiko",
-      "safety-engineering"
-    ]
-  },
-  {
-    "id": "management/RCA/maintenance-rcfa",
-    "name": "Mengungkap Akar Masalah - Panduan Lengkap Analisis Akar Penyebab Kegagalan (RCFA)",
-    "section": "CONTENT",
-    "href": "/blog/management/RCA/maintenance-rcfa",
     "subtitle": "October 25, 2023",
     "keywords": [
       "rcfa",
@@ -4029,18 +5287,6 @@
       "System",
       "API RP 580",
       "Risk-Management"
-    ]
-  },
-  {
-    "id": "management/RCA/maintenance-gemba-kaizen",
-    "name": "Gemba Kaizen",
-    "section": "CONTENT",
-    "href": "/blog/management/RCA/maintenance-gemba-kaizen",
-    "subtitle": "October 20, 2023",
-    "keywords": [
-      "Maintenance",
-      "gemba",
-      "kaizen"
     ]
   },
   {

@@ -106,34 +106,34 @@ summary: Artikel ini membahas interaksi antar stage dan peran intercooler pada d
 Artikel ini melengkapi pembahasan valve dan clearance dengan fokus pada **interaksi antar stage dan peran intercooler** sebagai elemen kritikal keseimbangan sistem kompresi.
 
 <ResourceBox
-  title="Artikel terkait :"
-  items={[
-    {
-      name: 'Panduan Lengkap Kurikulum & Matriks Kompetensi',
-      href: '/blog/maintenance/mechanical/panduan-kurikulum-mechanical',
-      description:
-        'Panduan Lengkap Kurikulum & Matriks Kompetensi – Teknisi Mechanical – Industri Petrokimia',
-    },
-    {
-      name: 'Compressor Discharge Temperature Tinggi',
-      href: '/blog/maintenance/mechanical/kurikulum/artikel-15-compressor-discharge',
-      description:
-        'Compressor Discharge Temperature Tinggi – Valve, Clearance, Cooling, atau Stage Interaction?',
-    },
-    {
-      name: 'Valve Failure Symptoms',
-      href: '/blog/maintenance/mechanical/kurikulum/artikel-16-valve-failure-symptoms',
-      description:
-        'Valve Failure Symptoms – Bagaimana Mendeteksi Sebelum Rusak Total?',
-    },
-    {
-      name: 'Clearance Measurement Awareness',
-      href: '/blog/maintenance/mechanical/kurikulum/artikel-17-clearance-measurement',
-      description:
-        'Clearance Measurement Awareness – Mengapa Clearance Penting pada Reciprocating Compressor?',
-    },
-  ]}
-  note="Artikel-artikel di atas merupakan bagian dari serial peningkatan kompetensi Electrical & Instrumentation yang dirancang untuk diikuti secara berurutan guna membangun pemahaman sistematis dan bertahap. Meskipun demikian, setiap artikel tetap dapat digunakan sebagai referensi mandiri sesuai kebutuhan teknis di lapangan. Pembaca tetap disarankan melakukan verifikasi lanjutan dan penyesuaian sesuai standar perusahaan serta regulasi keselamatan yang berlaku."
+title="Artikel terkait :"
+items={[
+{
+name: 'Panduan Lengkap Kurikulum & Matriks Kompetensi',
+href: '/blog/maintenance/mechanical/panduan-kurikulum-mechanical',
+description:
+'Panduan Lengkap Kurikulum & Matriks Kompetensi – Teknisi Mechanical – Industri Petrokimia',
+},
+{
+name: 'Compressor Discharge Temperature Tinggi',
+href: '/blog/maintenance/mechanical/kurikulum/yunior/artikel-15-compressor-discharge',
+description:
+'Compressor Discharge Temperature Tinggi – Valve, Clearance, Cooling, atau Stage Interaction?',
+},
+{
+name: 'Valve Failure Symptoms',
+href: '/blog/maintenance/mechanical/kurikulum/yunior/artikel-16-valve-failure-symptoms',
+description:
+'Valve Failure Symptoms – Bagaimana Mendeteksi Sebelum Rusak Total?',
+},
+{
+name: 'Clearance Measurement Awareness',
+href: '/blog/maintenance/mechanical/kurikulum/yunior/artikel-17-clearance-measurement',
+description:
+'Clearance Measurement Awareness – Mengapa Clearance Penting pada Reciprocating Compressor?',
+},
+]}
+note="Artikel-artikel di atas merupakan bagian dari serial peningkatan kompetensi Electrical & Instrumentation yang dirancang untuk diikuti secara berurutan guna membangun pemahaman sistematis dan bertahap. Meskipun demikian, setiap artikel tetap dapat digunakan sebagai referensi mandiri sesuai kebutuhan teknis di lapangan. Pembaca tetap disarankan melakukan verifikasi lanjutan dan penyesuaian sesuai standar perusahaan serta regulasi keselamatan yang berlaku."
 />
 
 ---
