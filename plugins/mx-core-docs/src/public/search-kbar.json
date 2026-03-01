@@ -1,5 +1,22 @@
 [
   {
+    "id": "safety/creg",
+    "name": "COMPANY RISK ENGINEERING GUIDELINE (CREG)",
+    "section": "CONTENT",
+    "href": "/blog/safety/creg",
+    "subtitle": "February 28, 2026",
+    "keywords": [
+      "CREG",
+      "Petrochemical-Plant",
+      "Process-Safety",
+      "SMR-Hydrogenation",
+      "Flammable-Storage",
+      "SIL-LOPA",
+      "Asset-Integrity",
+      "Risk-Governance"
+    ]
+  },
+  {
     "id": "maintenance/elins/kurikulum/artikel-40-vibration-transmitter-abnormal",
     "name": "Vibration Transmitter Abnormal Reading – Sensor Fault atau Machinery Problem?",
     "section": "CONTENT",
