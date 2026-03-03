@@ -1,0 +1,1638 @@
+---
+title: Maintenance Winding Motor Industri (6 kV & 380 V) - Strategi Evaluasi Isolasi dan Keputusan Intervensi Berbasis Risiko
+authors: ['sam']
+date: '2026-03-03'
+tags:
+  [
+    'motor-6kV',
+    'motor-380V',
+    'winding-maintenance',
+    'insulation-class-IEC60034',
+    'partial-discharge',
+    're-varnish',
+    're-wind-decision',
+    'risk-based-maintenance',
+    'petrokimia',
+  ]
+draft: false
+summary: Artikel ini membahas strategi maintenance winding motor industri 6 kV dan 380 V dengan pendekatan berbasis kondisi dan risiko. Pembahasan dimulai dari arsitektur sistem isolasi, batas termal berdasarkan insulation class sesuai IEC 60034, hingga mekanisme kegagalan yang mempengaruhi keputusan intervensi. Parameter kunci seperti partial discharge, tan delta, insulation resistance, dan thermal history dianalisis secara action-oriented. Disusun pula decision tree teknis (monitor–cleaning–re-varnish–re-wind–replace) serta matrix severity scoring berbasis RBM untuk motor kritikal plant petrokimia. Dokumen ini dirancang sebagai one-stop reference bagi engineer dalam menentukan intervensi winding yang tepat, ekonomis, dan defensible secara teknis.
+---
+
+# **_Maintenance Winding Motor Industri (6 kV & 380 V): Strategi Evaluasi Isolasi dan Keputusan Intervensi Berbasis Risiko_**
+
+---
+
+- [**_Maintenance Winding Motor Industri (6 kV \& 380 V): Strategi Evaluasi Isolasi dan Keputusan Intervensi Berbasis Risiko_**](#maintenance-winding-motor-industri-6-kv--380-v-strategi-evaluasi-isolasi-dan-keputusan-intervensi-berbasis-risiko)
+  - [1️⃣ Arsitektur Sistem Isolasi Mesin Listrik](#1️⃣-arsitektur-sistem-isolasi-mesin-listrik)
+    - [1.1 Motor 6 kV (Medium Voltage)](#11-motor-6-kv-medium-voltage)
+    - [1.2 Motor 380 V (Low Voltage)](#12-motor-380-v-low-voltage)
+    - [🔎 Ringkasan Perbandingan Arsitektur](#-ringkasan-perbandingan-arsitektur)
+    - [🔧 Implikasi terhadap Maintenance Strategy](#-implikasi-terhadap-maintenance-strategy)
+  - [2️⃣ Insulation Class \& Thermal Limit](#2️⃣-insulation-class--thermal-limit)
+    - [2.1 Klasifikasi Insulation Class](#21-klasifikasi-insulation-class)
+  - [2.2 Konsep Temperatur Total Winding](#22-konsep-temperatur-total-winding)
+    - [2.3 Thermal Aging Mechanism](#23-thermal-aging-mechanism)
+    - [2.4 Thermal Rule (Practical Engineering Rule)](#24-thermal-rule-practical-engineering-rule)
+    - [2.5 Hubungan Insulation Class dengan Maintenance Decision](#25-hubungan-insulation-class-dengan-maintenance-decision)
+    - [2.6 Implikasi Praktis di Plant Petrokimia](#26-implikasi-praktis-di-plant-petrokimia)
+    - [🔎 Engineering Takeaway](#-engineering-takeaway)
+  - [3️⃣ Failure Mechanism yang Menentukan Keputusan](#3️⃣-failure-mechanism-yang-menentukan-keputusan)
+    - [3.1 Thermal degradation](#31-thermal-degradation)
+    - [3.2 Partial discharge (khusus 6 kV)](#32-partial-discharge-khusus-6-kv)
+    - [3.3 Inter-turn weakness](#33-inter-turn-weakness)
+    - [3.4 Vibration-induced insulation cracking](#34-vibration-induced-insulation-cracking)
+    - [3.5 Contamination \& tracking](#35-contamination--tracking)
+    - [🔎 Engineering Summary Bab 3](#-engineering-summary-bab-3)
+  - [4️⃣ Parameter Monitoring (Action-Oriented)](#4️⃣-parameter-monitoring-action-oriented)
+    - [4.1 Motor 6 kV](#41-motor-6-kv)
+    - [4.2 Motor 380 V](#42-motor-380-v)
+    - [🔎 Trending \> Snapshot](#-trending--snapshot)
+    - [🔧 Engineering Summary Bab 4](#-engineering-summary-bab-4)
+  - [5️⃣ Level Intervensi Maintenance Winding](#5️⃣-level-intervensi-maintenance-winding)
+    - [1️⃣ Monitor](#1️⃣-monitor)
+    - [2️⃣ Cleaning \& Drying](#2️⃣-cleaning--drying)
+    - [3️⃣ Re-varnish / Re-impregnation](#3️⃣-re-varnish--re-impregnation)
+    - [4️⃣ Re-wind](#4️⃣-re-wind)
+    - [5️⃣ Replace](#5️⃣-replace)
+    - [🔎 Ringkasan Level Intervensi](#-ringkasan-level-intervensi)
+    - [🔧 Prinsip Engineering](#-prinsip-engineering)
+  - [6️⃣ Decision Tree – Visual Logic (Engineering Version)](#6️⃣-decision-tree--visual-logic-engineering-version)
+    - [🔎 Visual Decision Flow](#-visual-decision-flow)
+    - [6.1 Tahap 1 – Validasi Parameter Normal](#61-tahap-1--validasi-parameter-normal)
+    - [6.2 Tahap 2 – Moisture / Contamination Screening](#62-tahap-2--moisture--contamination-screening)
+    - [6.3 Tahap 3 – PD Moderate / Surface Tracking](#63-tahap-3--pd-moderate--surface-tracking)
+    - [6.4 Tahap 4 – Structural Breakdown](#64-tahap-4--structural-breakdown)
+    - [6.5 Tahap 5 – Evaluasi Ekonomi](#65-tahap-5--evaluasi-ekonomi)
+    - [🔧 Integrasi Decision Tree dengan Criticality](#-integrasi-decision-tree-dengan-criticality)
+    - [🔎 Contoh Praktis](#-contoh-praktis)
+  - [7️⃣ Kriteria Teknis Re-Var­nish](#7️⃣-kriteria-teknis-re-varnish)
+    - [🔎 Apa yang Diperbaiki oleh Re-Var­nish?](#-apa-yang-diperbaiki-oleh-re-varnish)
+    - [✔ Re-Var­nish Layak Jika](#-re-varnish-layak-jika)
+    - [✘ Re-Var­nish Tidak Layak Jika](#-re-varnish-tidak-layak-jika)
+    - [🔎 Ringkasan Engineering](#-ringkasan-engineering)
+    - [🎯 Engineering Takeaway](#-engineering-takeaway-1)
+  - [8️⃣ Matrix Severity Scoring – RBM Approach](#8️⃣-matrix-severity-scoring--rbm-approach)
+    - [8.1 Severity Index (S)](#81-severity-index-s)
+    - [8.2 Condition Index (C)](#82-condition-index-c)
+    - [8.3 Risk Score](#83-risk-score)
+    - [🔎 Contoh Aplikasi (Singkat, Engineer Style)](#-contoh-aplikasi-singkat-engineer-style)
+  - [9️⃣ Integrasi dengan Reliability Program Plant (Berbasis Tier–Grading Aset)](#9️⃣-integrasi-dengan-reliability-program-plant-berbasis-tiergrading-aset)
+    - [9.1 Definisi Tier Aset](#91-definisi-tier-aset)
+    - [9.2 Penyesuaian Monitoring Berdasarkan Tier](#92-penyesuaian-monitoring-berdasarkan-tier)
+    - [9.3 Integrasi dengan Outage Planning Berbasis Tier](#93-integrasi-dengan-outage-planning-berbasis-tier)
+    - [9.4 Dokumentasi \& Governance](#94-dokumentasi--governance)
+    - [9.5 Hubungan dengan Program Reliability Lain](#95-hubungan-dengan-program-reliability-lain)
+    - [🎯 Engineering Takeaway Bab 9 (Versi Tier-Grading)](#-engineering-takeaway-bab-9-versi-tier-grading)
+  - [🔟 Kesimpulan Engineering](#-kesimpulan-engineering)
+    - [🔹 Re-varnish adalah tindakan intermediate, bukan solusi EOL](#-re-varnish-adalah-tindakan-intermediate-bukan-solusi-eol)
+    - [🔹 Re-wind dilakukan saat dielectric structural strength hilang](#-re-wind-dilakukan-saat-dielectric-structural-strength-hilang)
+    - [🔹 Replace dipertimbangkan jika ekonomi \& usia tidak mendukung](#-replace-dipertimbangkan-jika-ekonomi--usia-tidak-mendukung)
+    - [🔹 Keputusan berbasis parameter + criticality](#-keputusan-berbasis-parameter--criticality)
+    - [🔹 RBM scoring mencegah over-maintenance dan under-maintenance](#-rbm-scoring-mencegah-over-maintenance-dan-under-maintenance)
+  - [11. 📚 Referensi](#11--referensi)
+
+---
+
+## 1️⃣ Arsitektur Sistem Isolasi Mesin Listrik
+
+Pemahaman arsitektur isolasi adalah fondasi seluruh keputusan maintenance winding.
+Perbedaan konstruksi antara motor 6 kV dan 380 V menentukan:
+
+- Jenis stress dominan
+- Mekanisme degradasi
+- Parameter monitoring
+- Strategi intervensi
+
+<ResourceBox
+  title="Artikel terkait :"
+  items={[
+    {
+      name: 'Sistem Kelistrikan',
+      href: '/blog/maintenance/elins/electrical-devices',
+      description: 'Sistem Kelistrikan Pabrik Petrokimia',
+    },
+    {
+      name: 'Kebocoran Minyak pada Power Transformer Oil-Immersed',
+      href: '/blog/maintenance/elins/power-transformer-oil-leakage',
+      description:
+        'Pencegahan Kebocoran Minyak pada Power Transformer Oil-Immersed',
+    },
+    {
+      name: 'Winding Integrity pada Transformator Oil-Immersed',
+      href: '/blog/maintenance/elins/transformer-winding-integrity',
+      description:
+        'Winding Integrity pada Transformator Oil-Immersed - Parameter Kritis dan Keputusan Re-Winding Berbasis Risiko',
+    },
+  ]}
+/>
+
+---
+
+### 1.1 Motor 6 kV (Medium Voltage)
+
+![Image](https://figures.semanticscholar.org/f61deb8f2449e0bfeee83c1ca44596055da08b71/2-Figure1-1.png)
+
+![Image](https://www.researchgate.net/publication/365892145/figure/fig1/AS%3A11431281115174957%401674786189562/a-End-winding-region-of-a-stator-from-a-turbogenerator-The-bending-regions-of-the.jpg)
+
+Motor 6 kV menggunakan **form-wound coil**, berbeda secara fundamental dari motor low voltage.
+
+🔹 a. Form-Wound Construction
+
+Ciri utama:
+
+- Coil dibuat terpisah lalu dimasukkan ke slot
+- Konduktor rectangular (Roebel bar / multi-strand)
+- Insulasi tebal berbasis mica tape
+- Vacuum Pressure Impregnation (VPI)
+
+Struktur isolasi terdiri dari:
+
+1. Turn insulation
+2. Ground wall insulation (mica-based)
+3. Slot liner
+4. End-winding bracing
+
+Ground wall insulation adalah komponen paling kritikal karena menahan tegangan phase-to-ground.
+
+---
+
+🔹 b. Electrical Stress Signifikan
+
+Pada motor 6 kV:
+
+- Tegangan phase-to-ground ≈ 3.5 kV
+- Stress listrik tinggi di slot exit dan end-winding
+- VFD meningkatkan dv/dt stress
+
+Distribusi medan listrik tidak homogen. Titik kritikal:
+
+- Slot discharge
+- End-winding corona
+- Phase separator
+
+---
+
+🔹 c. Partial Discharge (PD) sebagai Failure Driver
+
+PD muncul akibat:
+
+- Void mikro pada insulation
+- Delamination mica
+- Kontaminasi
+- Aging thermal
+
+PD → erosion → tracking → ground fault.
+
+Dalam motor 6 kV:
+
+> PD adalah indikator paling dini dari degradasi ground wall insulation.
+
+Karena itu monitoring PD menjadi parameter kunci dalam maintenance MV motor.
+
+---
+
+### 1.2 Motor 380 V (Low Voltage)
+
+![Image](https://www.researchgate.net/publication/4261332/figure/fig3/AS%3A651570802880515%401532357993510/Structure-of-an-insulation-system-in-random-wound-low-voltage-machine.png)
+
+![Image](https://images.openai.com/static-rsc-3/qg9-qyZedDQW8w2p-OhRpIchb-dzYU6JbE9ATObyeiJD_k3ktnE-CCyd6W5YsXAFqkyAQsaUQ1kCtGGN6CXJDICQsP1ThOJRJOtHnnPsQiQ?purpose=fullsize&v=1)
+
+Motor 380 V menggunakan konstruksi **random-wound**.
+
+🔹 a. Random-Wound Construction
+
+Karakteristik:
+
+- Konduktor bulat enamel-coated
+- Winding langsung dililit di slot
+- Insulasi utama = enamel + varnish impregnation
+- Tidak ada ground wall tebal seperti MV motor
+
+Slot liner tetap ada, tetapi dielectric system jauh lebih tipis dibanding MV motor.
+
+---
+
+🔹 b. Thermal Aging Dominan
+
+Karena tegangan relatif rendah:
+
+- Electrical stress jarang menjadi failure driver
+- Thermal overload menjadi faktor utama
+
+Penyebab umum:
+
+- Overcurrent
+- Phase unbalance
+- Pendinginan buruk
+- Frequent start-stop
+
+Aging enamel → short antar lilitan → thermal runaway.
+
+---
+
+🔹 c. PD Umumnya Tidak Signifikan
+
+Pada 380 V:
+
+- Tegangan tidak cukup tinggi untuk PD aktif pada kondisi normal
+- Kecuali ada severe insulation defect
+
+Karena itu:
+
+> Monitoring PD bukan prioritas pada motor 380 V.
+
+Fokus utama adalah:
+
+- IR trending
+- Thermal exposure
+- Current unbalance
+
+---
+
+### 🔎 Ringkasan Perbandingan Arsitektur
+
+| Aspek          | Motor 6 kV             | Motor 380 V      |
+| -------------- | ---------------------- | ---------------- |
+| Konstruksi     | Form-wound             | Random-wound     |
+| Insulasi utama | Mica-based ground wall | Enamel + varnish |
+| Stress dominan | Electrical + Thermal   | Thermal          |
+| PD monitoring  | Kritis                 | Tidak prioritas  |
+| Failure umum   | Ground fault           | Burned winding   |
+
+---
+
+### 🔧 Implikasi terhadap Maintenance Strategy
+
+1. Motor 6 kV → Electrical health monitoring wajib
+2. Motor 380 V → Thermal & loading control lebih kritikal
+3. Re-varnish pada MV bersifat dielectric reinforcement
+4. Re-varnish pada LV lebih ke bonding & moisture recovery
+
+---
+
+## 2️⃣ Insulation Class & Thermal Limit
+
+Rujukan utama klasifikasi termal motor mengacu pada IEC 60034.
+
+Insulation class menentukan **batas temperatur maksimum total winding**, bukan hanya temperatur lingkungan.
+
+---
+
+### 2.1 Klasifikasi Insulation Class
+
+| Class | Max Temp (°C) |
+| ----- | ------------- |
+| A     | 105           |
+| B     | 130           |
+| F     | 155           |
+| H     | 180           |
+
+Keterangan umum:
+
+- **Class A** → sistem lama berbasis cotton, silk, varnish organik
+- **Class B** → resin improved organic system
+- **Class F** → epoxy + mica modern (umum pada motor industri)
+- **Class H** → high-temperature system (silicone / advanced resin)
+
+Motor 6 kV modern umumnya Class F atau H.
+Motor 380 V industri mayoritas Class F.
+
+---
+
+## 2.2 Konsep Temperatur Total Winding
+
+Temperatur winding bukan hanya temperature rise.
+
+$$
+T_{total} = T_{ambient} + T_{rise} + T_{hotspot}
+$$
+
+Contoh:
+
+Motor Class F (155°C)
+
+- Ambient: 40°C
+- Rise: 105°C
+- Hotspot allowance: 10°C
+
+Total ≈ 155°C (limit class F)
+
+Jika ambient naik menjadi 50°C → margin hilang.
+
+---
+
+### 2.3 Thermal Aging Mechanism
+
+Aging isolasi mengikuti hukum Arrhenius:
+
+Kenaikan temperatur mempercepat reaksi kimia degradasi resin / enamel.
+
+![Image](https://www.researchgate.net/publication/278251914/figure/fig1/AS%3A669948120686614%401536739487602/Typical-winding-insulation-life-versus-temperature-curve.png)
+
+![Image](https://image.makewebeasy.net/makeweb/0/MSa0ipZyN/Content/Temp_rise_Insuclation_Class.jpg?v=202405291424)
+
+---
+
+### 2.4 Thermal Rule (Practical Engineering Rule)
+
+Rule praktis di industri:
+
+> Setiap kenaikan +10°C di atas rating insulation class → umur isolasi berkurang ±50%.
+
+Contoh numerik sederhana:
+
+- Design life: 20 tahun @ Class F rating
+- Operasi konsisten +10°C → life ≈ 10 tahun
+- +20°C → life ≈ 5 tahun
+
+Untuk motor 380 V yang sering overload, ini adalah failure driver utama.
+
+Untuk motor 6 kV, thermal aging mempercepat kerentanan terhadap PD.
+
+---
+
+### 2.5 Hubungan Insulation Class dengan Maintenance Decision
+
+Insulation class menjadi baseline untuk:
+
+1. Evaluasi overload history
+2. Validasi setting thermal protection
+3. Analisis chronic over-temperature
+4. Justifikasi re-varnish vs re-wind
+
+Jika motor Class B dipaksa bekerja seperti Class F → aging dipercepat drastis.
+
+---
+
+### 2.6 Implikasi Praktis di Plant Petrokimia
+
+- Motor outdoor di area panas proses sering bekerja dengan ambient > 40°C
+- Ventilasi ruang MCC mempengaruhi life
+- Frequent start pada pump & fan mempercepat thermal cycling
+
+Maintenance harus memverifikasi:
+
+✔ Setting overload relay sesuai class
+✔ Temperatur bearing tidak mempengaruhi winding
+✔ Cooling path bersih
+
+---
+
+### 🔎 Engineering Takeaway
+
+Insulation class bukan sekadar data nameplate.
+
+Ia adalah:
+
+> Baseline umur winding dan referensi utama dalam semua keputusan intervensi.
+
+Tanpa memahami thermal limit, evaluasi PD atau IR menjadi tidak kontekstual.
+
+---
+
+## 3️⃣ Failure Mechanism yang Menentukan Keputusan
+
+Bab ini berfokus pada mekanisme kegagalan yang **langsung mempengaruhi keputusan intervensi** (monitor, re-varnish, re-wind, replace).
+Tidak semua failure mode relevan terhadap winding — hanya yang berdampak pada **dielectric integrity dan mechanical stability**.
+
+---
+
+### 3.1 Thermal degradation
+
+![Image](https://www.researchgate.net/publication/304619580/figure/fig14/AS%3A647166955618305%401531308034084/Motor-with-insulation-stator-in-thermal-degradation-process.png)
+
+![Image](https://www.researchgate.net/publication/299401653/figure/fig4/AS%3A545408416190465%401507046907853/Thermal-deterioration-of-the-stator-winding-insulation-of-the-motors-in-a-one-phase.png)
+
+Thermal degradation adalah failure driver utama pada:
+
+- Motor 380 V
+- Motor 6 kV dengan overload kronis
+
+🔹 Mekanisme
+
+Peningkatan temperatur menyebabkan:
+
+- Oksidasi resin / enamel
+- Kehilangan fleksibilitas insulation
+- Micro-crack pada varnish
+- Penurunan dielectric strength
+
+Thermal cycling (start–stop frequent) mempercepat fatigue isolasi.
+
+🔹 Indikasi Lapangan
+
+- Discoloration winding
+- Insulation brittle
+- IR menurun perlahan
+- Overcurrent history
+
+Jika thermal degradation kronis → re-varnish sering tidak efektif → re-wind menjadi opsi realistis.
+
+---
+
+### 3.2 Partial discharge (khusus 6 kV)
+
+![Image](https://www.researchgate.net/publication/351770183/figure/fig4/AS%3A1027458488868865%401621976601622/a-Corona-discharge-at-the-slot-outlet-causes-single-phase-ground-fault-on-a-10kV.png)
+
+![Image](https://images.squarespace-cdn.com/content/v1/600588f9eb771710662ddd48/1610975601994-2D38F9RYWAOEUJ3AZNII/image-asset.jpeg)
+
+Partial discharge (PD) adalah pelepasan energi lokal pada void atau kelemahan isolasi.
+
+Relevan pada motor 6 kV karena:
+
+- Tegangan tinggi
+- Ground wall insulation tebal berbasis mica
+- Stress listrik signifikan
+
+🔹 Mekanisme Eskalasi
+
+Void → PD → erosion mica → carbon tracking → ground fault.
+
+🔹 Titik Kritis
+
+- Slot exit
+- End winding
+- Phase separator
+
+🔹 Implikasi Maintenance
+
+- PD rendah & stabil → monitor
+- PD moderate → re-varnish (jika superficial)
+- PD tinggi & meningkat → re-wind
+
+PD progresif hampir selalu mengarah pada breakdown jika tidak ditangani.
+
+---
+
+### 3.3 Inter-turn weakness
+
+![Image](https://www.researchgate.net/publication/243055807/figure/fig7/AS%3A669445685014538%401536619697367/nter-turn-short-circuit-of-the-stator-winding-in-three-phase-induction-motors-a-Short.png)
+
+![Image](https://www.researchgate.net/publication/304619580/figure/fig2/AS%3A382452271992834%401468195135728/Typical-waveforms-expected-in-the-Surge-test.png)
+
+![Image](https://www.mdpi.com/energies/energies-13-02272/article_deploy/html/images/energies-13-02272-g003.png)
+
+Inter-turn weakness terjadi ketika isolasi antar lilitan melemah.
+
+Lebih umum pada:
+
+- Motor 380 V
+- Motor dengan surge spike
+- Motor dengan frequent starting
+
+🔹 Penyebab
+
+- Thermal aging enamel
+- Surge voltage
+- Manufacturing defect
+- Mechanical rubbing
+
+🔹 Indikasi
+
+- Surge comparison mismatch
+- Local overheating
+- Current unbalance
+- Repeated trip
+
+Inter-turn short bersifat progresif dan jarang dapat diperbaiki dengan re-varnish.
+
+Jika sudah terjadi → re-wind diperlukan.
+
+---
+
+### 3.4 Vibration-induced insulation cracking
+
+![Image](https://figures.semanticscholar.org/d416e2676d99b4254a610b918e17a3f948b5f5db/2-Figure1-1.png)
+
+![Image](https://www.researchgate.net/publication/260523297/figure/fig6/AS%3A392464205664294%401470582166695/Finite-element-model-of-stator-end-winding-a-Geometric-model-b-Mesh-c-Boundary.png)
+
+Vibration mempengaruhi winding terutama pada:
+
+- Motor 6 kV (end-winding unsupported)
+- Motor dengan misalignment
+- High starting torque motor
+
+🔹 Mekanisme
+
+- End-winding oscillation
+- Slot wedge looseness
+- Micro-crack pada insulation
+
+Vibration mempercepat:
+
+- PD onset (pada 6 kV)
+- Inter-turn rubbing
+
+Jika hanya looseness ringan → re-varnish dapat membantu bonding.
+Jika crack struktural → re-wind.
+
+---
+
+### 3.5 Contamination & tracking
+
+![Image](https://www.researchgate.net/publication/304619580/figure/fig9/AS%3A382452276187138%401468195136369/Motor-with-insulation-stator-in-contamination-process-by-oil-dirt.png)
+
+![Image](https://i1.rgstatic.net/publication/3171329_Stator_winding_failures_Contamination_surface_discharge_tracking/links/5ea048a0299bf1f16571dddf/largepreview.png)
+
+Lingkungan plant petrokimia sering mengandung:
+
+- Hydrocarbon vapor
+- Dust
+- Chemical mist
+
+Kontaminasi menyebabkan:
+
+- Surface leakage current
+- Tracking
+- Local heating
+
+Pada 6 kV → bisa memicu PD surface.
+Pada 380 V → mempercepat breakdown enamel.
+
+🔹 Indikasi
+
+- IR fluktuatif
+- PI rendah
+- Permukaan winding kotor
+
+Kasus ini sering dapat diselesaikan dengan:
+
+✔ Cleaning
+✔ Drying
+✔ Re-varnish
+
+Tanpa perlu re-wind jika belum terjadi structural breakdown.
+
+---
+
+### 🔎 Engineering Summary Bab 3
+
+| Failure Mode    | Dominan pada | Potensi Re-Var­nish | Potensi Re-Wind    |
+| --------------- | ------------ | ------------------- | ------------------ |
+| Thermal aging   | 380 V        | Terbatas            | Tinggi jika kronis |
+| PD              | 6 kV         | Jika ringan         | Jika progresif     |
+| Inter-turn      | 380 V        | Jarang              | Hampir pasti       |
+| Vibration crack | 6 kV         | Jika ringan         | Jika struktural    |
+| Contamination   | Semua        | Tinggi              | Jarang             |
+
+Bab ini menjadi dasar keputusan di Bab 6 (Decision Tree).
+
+---
+
+## 4️⃣ Parameter Monitoring (Action-Oriented)
+
+Bab ini menjawab pertanyaan praktis:
+
+> Parameter apa yang benar-benar menentukan keputusan intervensi winding?
+
+Fokus bukan pada banyaknya test, tetapi pada **parameter yang memiliki korelasi langsung dengan kegagalan insulation**.
+
+Prinsip utama:
+
+> Trending lebih penting daripada snapshot measurement.
+
+---
+
+### 4.1 Motor 6 kV
+
+![Image](https://www.schleich.com/piccontent/SchleichPedia/Pr%C3%BCfmethoden/TE%20Surge/Antenne.png)
+
+![Image](https://figures.semanticscholar.org/c303d733e44bb966298eaeb2720a7d978f37a38b/2-Figure1-1.png)
+
+![Image](https://control.com/uploads/thumbnails/Motor_Megger_featured.jpg)
+
+Motor 6 kV memiliki kombinasi stress listrik dan thermal. Parameter monitoring harus mencerminkan dua aspek tersebut.
+
+---
+
+🔹 PD Magnitude & Trend
+
+Parameter paling kritikal untuk motor MV.
+
+- Satuan umum: pC (offline) atau mV (online coupling capacitor)
+- Batas tipikal indikatif:
+
+  - < 500 pC → normal
+  - 500–1000 pC → monitor ketat
+  - > 1000 pC → investigasi
+
+Namun angka absolut kurang penting dibanding:
+
+✔ Trend tahunan
+✔ Rate of increase
+✔ Pola discharge (slot vs end-winding)
+
+PD stabil selama 5 tahun ≠ PD naik tajam dalam 1 tahun.
+
+---
+
+🔹 Tan Delta Trend
+
+Mengukur dielectric loss factor.
+
+Kenaikan tan δ menunjukkan:
+
+- Delaminasi mica
+- Moisture ingress
+- Thermal aging
+
+Perhatikan:
+
+- Absolute value
+- Tip-up behavior
+- Drift antar tahun
+
+Drift kecil + stabil → monitor
+Drift progresif → pertimbangkan intervensi
+
+---
+
+🔹 IR & PI
+
+IR (Insulation Resistance) dan PI (Polarization Index):
+
+- PI < 2 → evaluasi
+- IR drop signifikan → indikasi contamination/moisture
+
+Pada motor 6 kV:
+
+IR bukan parameter utama untuk structural breakdown, tetapi:
+
+> Indikator awal masalah permukaan atau kelembaban.
+
+---
+
+🔹 Surge Comparison
+
+Digunakan untuk mendeteksi:
+
+- Inter-turn weakness
+- Perbedaan antar phase
+
+Surge mismatch signifikan → indikasi awal short antar lilitan.
+
+Jika mismatch konsisten → re-wind hampir pasti.
+
+---
+
+🔹 Thermal History
+
+Review:
+
+- Overload event
+- Start frequency
+- Hotspot measurement
+
+Motor yang sering bekerja mendekati limit insulation class akan mengalami percepatan aging, meskipun PD masih rendah.
+
+---
+
+### 4.2 Motor 380 V
+
+![Image](https://images.openai.com/static-rsc-3/llr5EuSOO-R_6eEq-QXr1NaTyhyRgVgfad5wHH5cn7q7LFrDfYTvwRs7HUM9QQQUxAm9xk0x73C54rKvggIk99oWfUmrWlsh6rdT5jVzMqU?purpose=fullsize&v=1)
+
+![Image](https://www.researchgate.net/publication/339778270/figure/fig4/AS%3A1164525722177544%401654655976967/Thermal-images-of-the-induction-motor-faulty-machine-condition.png)
+
+Pada 380 V, electrical stress bukan failure driver utama. Fokus pada thermal dan loading.
+
+---
+
+🔹 IR Trending
+
+IR rendah tapi stabil ≠ masalah serius.
+
+Yang berbahaya:
+
+- IR turun bertahap tiap tahun
+- IR tidak recover setelah drying
+
+IR trending minimal 3 tahun memberikan konteks aging.
+
+---
+
+🔹 Thermal Scan
+
+Gunakan thermal imaging untuk:
+
+- Identifikasi hotspot
+- Phase imbalance heating
+- Cooling obstruction
+
+Chronic overheating adalah penyebab utama burned winding pada LV motor.
+
+---
+
+🔹 Current Unbalance
+
+Unbalance > 2–3% dapat menyebabkan:
+
+- Overheating lokal
+- Accelerated insulation aging
+
+Monitoring load profile penting untuk motor pump & fan.
+
+---
+
+🔹 Vibration
+
+Vibration tinggi menyebabkan:
+
+- Mechanical rubbing
+- Insulation abrasion
+- End-winding loosening
+
+Pada motor LV kecil, vibration sering lebih berperan dibanding electrical stress.
+
+---
+
+### 🔎 Trending > Snapshot
+
+Snapshot test hanya memberi kondisi sesaat.
+
+Contoh:
+
+- IR = 200 MΩ → terlihat baik
+- Tetapi 3 tahun lalu = 1500 MΩ
+
+Trend menunjukkan degradasi signifikan.
+
+Parameter harus:
+
+✔ Didokumentasikan tahunan
+✔ Dibandingkan baseline commissioning
+✔ Dianalisis rate of change
+
+---
+
+### 🔧 Engineering Summary Bab 4
+
+| Motor | Parameter Paling Menentukan |
+| ----- | --------------------------- |
+| 6 kV  | PD trend + Tan delta        |
+| 380 V | Thermal exposure + IR trend |
+
+Monitoring yang tepat memungkinkan:
+
+- Re-varnish sebelum breakdown
+- Re-wind sebelum failure mendadak
+- Hindari over-maintenance
+
+---
+
+## 5️⃣ Level Intervensi Maintenance Winding
+
+Bab ini mendefinisikan **hierarki intervensi** secara teknis dan ekonomis.
+Tujuannya adalah mencegah dua kesalahan umum:
+
+- Over-maintenance (langsung re-wind padahal cukup re-varnish)
+- Under-maintenance (hanya cleaning padahal sudah perlu re-wind)
+
+Urutan berikut bersifat progresif berdasarkan tingkat degradasi isolasi.
+
+---
+
+### 1️⃣ Monitor
+
+Level terendah – tidak ada tindakan fisik.
+
+Dilakukan jika:
+
+✔ Parameter stabil
+✔ Tidak ada drift signifikan
+✔ Tidak ada indikasi PD agresif (6 kV)
+✔ Tidak ada overheating kronis
+
+Fokus:
+
+- Trending tahunan
+- Review load profile
+- Validasi thermal exposure vs insulation class
+
+Motor tetap operasi normal.
+
+---
+
+### 2️⃣ Cleaning & Drying
+
+![Image](https://www.industrialoven.com/images/product/electric-motor-drying-oven1.jpg)
+
+![Image](https://www.germanatj.com/data/upload/main/ueditor/20250806/68932fa71f72c.png)
+
+Dilakukan jika:
+
+- IR turun akibat kelembaban
+- Kontaminasi debu / oil vapor
+- PI borderline
+
+Metode:
+
+- Compressed dry air cleaning
+- Solvent wipe (sesuai prosedur)
+- Oven drying / space heater
+
+Tujuan:
+
+- Menghilangkan leakage path
+- Mengembalikan IR
+- Mengurangi tracking
+
+Jika parameter recover → kembali ke MONITOR.
+
+---
+
+### 3️⃣ Re-varnish / Re-impregnation
+
+![Image](https://ars.els-cdn.com/content/image/1-s2.0-S0957582022001100-gr1.jpg)
+
+![Image](https://www.grobgroup.com/fileadmin/userdaten/bilder/News_und_Media/Presse/Presseartikel/Impregnation.png)
+
+Intervensi intermediate.
+
+Dilakukan jika:
+
+✔ Degradasi masih superficial
+✔ Bonding melemah
+✔ PD ringan (6 kV)
+✔ Insulation belum brittle
+
+Metode umum:
+
+- Dip & bake
+- Vacuum Pressure Impregnation (VPI)
+
+Tujuan:
+
+- Mengisi micro-void
+- Memperkuat bonding antar coil
+- Meningkatkan dielectric surface strength
+
+Catatan penting:
+
+> Re-varnish tidak mengembalikan insulation yang sudah mengalami breakdown struktural.
+
+---
+
+### 4️⃣ Re-wind
+
+![Image](https://www.sunygroup.cn/uploads/allimg/220208/1_220208153212_1.jpg)
+
+![Image](https://content.instructables.com/F9L/5BJN/JIKJVZA4/F9L5BJNJIKJVZA4.jpg?auto=webp&frame=1&width=2100)
+
+![Image](https://www.alphitan.com/img/cms/image%20%286%29.jpg)
+
+Dilakukan jika:
+
+- ✔ Inter-turn short terjadi
+- ✔ PD tinggi & progresif
+- ✔ Ground wall breakdown (6 kV)
+- ✔ Burned winding (380 V)
+- ✔ Insulation brittle total
+
+Re-wind berarti:
+
+- Mengganti seluruh winding
+- Mengembalikan dielectric system
+- Reset life insulation
+
+Namun:
+
+- Downtime tinggi
+- Biaya signifikan
+- Risiko workmanship
+
+---
+
+### 5️⃣ Replace
+
+Dilakukan jika:
+
+✔ Biaya re-wind > 60–70% motor baru
+✔ Core laminasi rusak
+✔ Mechanical integrity menurun
+✔ Motor sudah mendekati akhir life mechanical
+
+Replace lebih rasional jika:
+
+- Motor standar tersedia
+- Upgrade efficiency diinginkan
+- Reliability target tinggi
+
+---
+
+### 🔎 Ringkasan Level Intervensi
+
+| Level      | Scope                  | Tujuan                |
+| ---------- | ---------------------- | --------------------- |
+| Monitor    | Tanpa tindakan fisik   | Observasi tren        |
+| Cleaning   | Permukaan              | Hilangkan leakage     |
+| Re-varnish | Dielectric superficial | Reinforce bonding     |
+| Re-wind    | Structural dielectric  | Reset life            |
+| Replace    | Unit total             | Reliability & ekonomi |
+
+---
+
+### 🔧 Prinsip Engineering
+
+1. Naik level intervensi hanya jika parameter mendukung.
+2. Jangan lompat dari Monitor langsung ke Re-wind tanpa justifikasi data.
+3. Re-varnish adalah solusi intermediate, bukan solusi akhir life.
+4. Keputusan harus dikaitkan dengan criticality motor.
+
+Bab ini menjadi dasar untuk Bab 6 (Decision Tree).
+
+---
+
+## 6️⃣ Decision Tree – Visual Logic (Engineering Version)
+
+Bab ini mengubah seluruh parameter teknis sebelumnya menjadi **alur keputusan operasional** yang dapat digunakan dalam meeting reliability atau outage planning.
+
+Prinsip utama:
+
+> Keputusan tidak boleh berbasis intuisi, tetapi berbasis parameter + verifikasi kondisi.
+
+---
+
+### 🔎 Visual Decision Flow
+
+```
+START
+  │
+  ├─► IR / PD / Tan δ Normal ?
+  │        │
+  │        ├─ YES → MONITOR (routine trending)
+  │        │
+  │        └─ NO
+  │
+  ├─► Moisture / Contamination only ?
+  │        │
+  │        ├─ YES → CLEAN + DRY
+  │        │          │
+  │        │          └─ Parameter recover ?
+  │        │                ├─ YES → MONITOR
+  │        │                └─ NO → RE-VARNISH
+  │        │
+  │        └─ NO
+  │
+  ├─► PD Moderate / Surface tracking ?
+  │        │
+  │        ├─ YES → RE-VARNISH
+  │        │
+  │        └─ NO
+  │
+  ├─► Inter-turn short / High PD / Ground fault ?
+  │        │
+  │        ├─ YES → RE-WIND
+  │        │
+  │        └─ NO
+  │
+  └─► Age + Cost > 70% new motor ?
+           │
+           ├─ YES → REPLACE
+           └─ NO → RE-WIND
+```
+
+---
+
+### 6.1 Tahap 1 – Validasi Parameter Normal
+
+Parameter dianggap normal jika:
+
+✔ Motor 6 kV
+
+- PD stabil dan rendah
+- Tan delta tidak drift
+- IR & PI stabil
+
+✔ Motor 380 V
+
+- IR stabil
+- Tidak ada overheating kronis
+- Current balance normal
+
+Jika semua stabil → **Monitor**.
+
+---
+
+### 6.2 Tahap 2 – Moisture / Contamination Screening
+
+Gejala umum:
+
+- IR turun mendadak
+- PI rendah
+- Permukaan winding kotor
+
+Langkah:
+
+1. Cleaning
+2. Drying
+3. Re-test
+
+Jika parameter recover → kembali ke Monitor.
+
+Jika tidak recover → kemungkinan degradasi permukaan → lanjut ke Re-varnish.
+
+---
+
+### 6.3 Tahap 3 – PD Moderate / Surface Tracking
+
+Relevan terutama pada 6 kV.
+
+Indikasi:
+
+- PD moderate & stabil
+- Tan delta drift kecil
+- Tidak ada ground fault
+
+Dalam kondisi ini:
+
+> Re-varnish masih rasional karena degradasi belum struktural.
+
+---
+
+### 6.4 Tahap 4 – Structural Breakdown
+
+Indikasi berat:
+
+- Inter-turn short (surge test mismatch)
+- PD tinggi & progresif
+- Repeated ground fault
+- Burned coil (380 V)
+
+Dalam tahap ini:
+
+> Re-varnish tidak efektif.
+> Re-wind adalah tindakan teknis yang benar.
+
+---
+
+### 6.5 Tahap 5 – Evaluasi Ekonomi
+
+Jika:
+
+- Motor > 20–25 tahun
+- Core laminasi menunjukkan kerusakan
+- Biaya re-wind > 70% motor baru
+
+Maka opsi **Replace** menjadi lebih rasional.
+
+Pertimbangan tambahan:
+
+- Upgrade efficiency class
+- Ketersediaan spare
+- Lead time
+
+---
+
+### 🔧 Integrasi Decision Tree dengan Criticality
+
+Decision tree ini harus dibaca bersama dengan:
+
+- Severity Index (Bab 8)
+- Condition Index
+- Risk Score
+
+Motor kritikal dapat “meloncat level” lebih cepat dibanding motor non-critical.
+
+---
+
+### 🔎 Contoh Praktis
+
+✔ Kasus 1 – Motor 6 kV Pump Utama
+
+- PD naik dari 400 → 900 pC dalam 1 tahun
+- Tan delta drift kecil
+- Tidak ada ground fault
+
+Keputusan: Re-varnish terencana saat outage.
+
+---
+
+✔ Kasus 2 – Motor 380 V Cooling Fan
+
+- IR turun perlahan
+- Overload history kronis
+- Local overheating
+
+Jika enamel sudah rusak → Re-wind lebih tepat.
+
+---
+
+✔ 🎯 Engineering Principle
+
+1. Intervensi harus proporsional dengan severity.
+2. Re-varnish hanya untuk degradasi permukaan.
+3. Re-wind untuk kerusakan struktural.
+4. Replace untuk keputusan ekonomi & reliability jangka panjang.
+
+---
+
+## 7️⃣ Kriteria Teknis Re-Var­nish
+
+Bab ini mempertegas batas teknis kapan **re-varnish / re-impregnation** masih rasional dan kapan sudah tidak defensible secara engineering.
+
+Prinsip dasar:
+
+> Re-varnish memperbaiki **surface dielectric & bonding**,
+> bukan mengembalikan **structural insulation integrity**.
+
+---
+
+### 🔎 Apa yang Diperbaiki oleh Re-Var­nish?
+
+![Image](https://image.made-in-china.com/202f0j00ekBboGqILSoc/Classic-Stator-Varnish-Vacuum-Impregnation-Machine.webp)
+
+![Image](https://www.nide-group.com/ueditor/php/upload/image/20241231/1735615593500315.jpg)
+
+![Image](https://www.nide-group.com/ueditor/php/upload/image/20241231/1735615568457008.jpg)
+
+Re-varnish bekerja dengan:
+
+- Mengisi micro-void pada permukaan
+- Mengikat ulang coil & end-winding
+- Mengurangi surface tracking
+- Meningkatkan dielectric surface strength
+
+Namun:
+
+- Tidak memperbaiki turn insulation yang sudah rusak
+- Tidak memperbaiki ground wall mica yang delaminasi berat
+- Tidak menghilangkan inter-turn short
+
+---
+
+### ✔ Re-Var­nish Layak Jika
+
+✔ IR Borderline tetapi Stabil
+
+- IR rendah namun tidak terus menurun
+- IR meningkat setelah drying
+- Tidak ada indikasi carbon tracking berat
+
+Interpretasi: degradasi kemungkinan akibat moisture atau kontaminasi permukaan.
+
+---
+
+✔ PI 1.5–2
+
+PI borderline tetapi:
+
+- Tidak turun drastis dari baseline
+- Tidak menunjukkan pola penurunan tahunan agresif
+
+Masih dalam zona yang bisa dipulihkan melalui drying + impregnation.
+
+---
+
+✔ PD Rendah–Moderate & Tidak Agresif (6 kV)
+
+- PD < ~1000 pC (indikatif)
+- Tidak ada kenaikan tajam tahunan
+- Pola discharge tidak menunjukkan slot erosion parah
+
+PD ringan akibat surface void → re-varnish masih efektif.
+
+---
+
+✔ Tan Delta Drift Kecil
+
+- Drift tahunan kecil
+- Tidak menunjukkan tip-up signifikan
+
+Menunjukkan degradasi belum struktural.
+
+---
+
+✔ Tidak Ada Inter-Turn Short
+
+Surge comparison normal.
+Tidak ada mismatch signifikan antar phase.
+
+Jika inter-turn weakness sudah muncul → re-varnish tidak efektif.
+
+---
+
+✔ Insulation Belum Brittle
+
+Inspeksi visual menunjukkan:
+
+- Resin masih fleksibel
+- Tidak retak besar
+- Tidak terkelupas
+
+Insulation brittle menandakan thermal aging kronis → biasanya perlu re-wind.
+
+---
+
+### ✘ Re-Var­nish Tidak Layak Jika
+
+✘ Ground Wall Breakdown (6 kV)
+
+Jika ground wall insulation sudah mengalami:
+
+- Delaminasi mica
+- Erosion dalam
+- Tracking struktural
+
+Re-varnish hanya menutup gejala, bukan akar masalah.
+
+---
+
+✘ PD Tinggi & Progresif
+
+Jika PD:
+
+- > 1000–1500 pC dan naik cepat
+- Menunjukkan pola slot discharge aktif
+
+Maka dielectric erosion sudah berjalan → re-wind lebih tepat.
+
+---
+
+✘ Repeated Ground Fault
+
+Ground fault berulang menandakan:
+
+- Insulation structural failure
+- Electrical integrity hilang
+
+Re-varnish tidak akan mengembalikan kekuatan dielectric internal.
+
+---
+
+✘ Burned Winding (380 V)
+
+Jika enamel sudah terbakar:
+
+- Thermal runaway sudah terjadi
+- Inter-turn damage permanen
+
+Satu-satunya opsi teknis adalah re-wind.
+
+---
+
+### 🔎 Ringkasan Engineering
+
+| Kondisi                  | Re-Var­nish | Re-Wind |
+| ------------------------ | ----------- | ------- |
+| Moisture / contamination | ✔           | ✘       |
+| Surface tracking ringan  | ✔           | ✘       |
+| PD ringan stabil         | ✔           | ✘       |
+| Inter-turn short         | ✘           | ✔       |
+| Ground wall breakdown    | ✘           | ✔       |
+| Burned coil              | ✘           | ✔       |
+
+---
+
+### 🎯 Engineering Takeaway
+
+Re-varnish adalah:
+
+- Intervensi intermediate
+- Cost-effective jika tepat sasaran
+- Cocok untuk degradasi awal atau permukaan
+
+Re-wind diperlukan jika:
+
+- Dielectric structural strength hilang
+- Electrical breakdown sudah terjadi
+- Aging sudah melewati batas reversibilitas
+
+---
+
+## 8️⃣ Matrix Severity Scoring – RBM Approach
+
+Bab ini menyediakan metode **Risk-Based Maintenance (RBM)** yang defensible untuk motor kritikal plant petrokimia, sehingga keputusan intervensi winding:
+
+- Konsisten antar engineer
+- Bisa dipertanggungjawabkan dalam audit internal
+- Selaras dengan prioritas produksi dan SHE
+
+Prinsip:
+
+> **Risk = Consequence (Severity) × Condition (Health).**
+> Bukan hanya “kondisi jelek” atau “umur tua”.
+
+---
+
+### 8.1 Severity Index (S)
+
+Severity menilai **konsekuensi kegagalan motor** terhadap operasi plant.
+
+| Dampak                            | Score |
+| --------------------------------- | ----- |
+| Non-critical utility              | 1     |
+| Production support                | 2     |
+| Unit utama                        | 3     |
+| Safety critical (compressor, BFP) | 4     |
+| Plant shutdown total              | 5     |
+
+**Panduan praktis penentuan Severity:**
+
+- **Score 1**: motor cadangan tersedia, tidak berdampak ke unit proses
+- **Score 2**: gangguan mengurangi kapasitas atau efisiensi, tidak menghentikan unit
+- **Score 3**: trip motor menghentikan satu unit proses utama
+- **Score 4**: trip berdampak langsung pada **fungsi keselamatan proses** atau equipment yang jika gagal bisa memicu kondisi berbahaya (mis. compressor, boiler feed pump, critical cooling)
+- **Score 5**: kegagalan memicu shutdown plant total atau domino shutdown multi-unit
+
+Catatan SHE: semakin tinggi potensi eskalasi (mis. loss of cooling, loss of compression, loss of boiler feed), semakin tinggi severity.
+
+---
+
+### 8.2 Condition Index (C)
+
+Condition menilai **kesehatan winding secara teknis** berbasis parameter yang sudah dibahas (Bab 4 & 7).
+
+Kita gunakan skala 1–3 agar sederhana namun kuat.
+
+| Parameter | Ringan (1) | Sedang (2)          | Berat (3)        |
+| --------- | ---------- | ------------------- | ---------------- |
+| IR        | Stable     | Fluctuating         | Drop signifikan  |
+| PD (6 kV) | < 500 pC   | 500–1000 pC         | >1000 pC         |
+| Tan δ     | Stable     | Drift kecil         | Drift besar      |
+| Thermal   | Normal     | Occasional overload | Chronic overload |
+
+**Cara pakai:**
+
+1. Tentukan score masing-masing parameter (1/2/3).
+2. Hitung rata-rata:
+   **C = (IR + PD + Tan δ + Thermal) / n**
+
+   - Untuk motor **380 V**: PD dan Tan δ sering tidak tersedia → gunakan parameter yang tersedia (mis. IR + Thermal + indikator operasional seperti current unbalance bila Anda memasukkannya sebagai substitute).
+
+3. Bulatkan secara konservatif ke atas jika mendekati batas (engineering safety margin).
+
+**Interpretasi cepat:**
+
+- **C ≈ 1.0–1.4**: sehat
+- **C ≈ 1.5–2.3**: degradasi aktif
+- **C ≈ 2.4–3.0**: kritikal / mendekati failure
+
+---
+
+### 8.3 Risk Score
+
+Formula:
+
+**Risk = Severity × Condition**
+
+| Risk Score | Tindakan              |
+| ---------- | --------------------- |
+| 1–4        | Monitor               |
+| 5–8        | Cleaning / Re-varnish |
+| 9–12       | Re-wind planned       |
+| >12        | Immediate action      |
+
+🔧 Cara membaca tabel tindakan
+
+- **Monitor (1–4)**
+  Trending rutin, tidak perlu intervensi fisik.
+- **Cleaning / Re-varnish (5–8)**
+  Ada degradasi tetapi masih berpotensi reversible (surface/contamination).
+- **Re-wind planned (9–12)**
+  Kondisi sudah mengarah ke structural weakness. Masukkan dalam outage window terdekat.
+- **Immediate action (>12)**
+  Risiko terlalu tinggi untuk ditoleransi.
+  Opsi: de-rate load, standby redundancy, shutdown terencana cepat, atau langsung re-wind/replace tergantung ketersediaan.
+
+---
+
+### 🔎 Contoh Aplikasi (Singkat, Engineer Style)
+
+Contoh 1 — Motor 6 kV, unit utama (Severity 3)
+
+- IR: fluctuating → 2
+- PD: 900 pC → 2
+- Tan δ: drift kecil → 2
+- Thermal: occasional overload → 2
+
+C = (2+2+2+2)/4 = 2.0
+Risk = 3 × 2.0 = 6 → **Cleaning / Re-varnish** (planned)
+
+---
+
+Contoh 2 — Motor 6 kV, safety critical compressor (Severity 4)
+
+- IR: drop signifikan → 3
+- PD: 1500 pC → 3
+- Tan δ: drift besar → 3
+- Thermal: chronic overload → 3
+
+C = 3.0
+Risk = 4 × 3.0 = 12 → **Re-wind planned** (accelerated)
+Jika ada temuan tambahan (ground fault history) → perlakukan sebagai **Immediate action**.
+
+---
+
+🎯 Engineering Takeaway
+
+RBM matrix ini memastikan:
+
+- Motor kritikal tidak diperlakukan sama dengan utility motor
+- Intervensi winding selaras dengan consequence dan kondisi aktual
+- Keputusan re-varnish / re-wind tidak “berasa dongeng”, tetapi berbasis scoring yang jelas
+
+---
+
+## 9️⃣ Integrasi dengan Reliability Program Plant (Berbasis Tier–Grading Aset)
+
+Pendekatan maintenance winding harus mengikuti klasifikasi Tier aset, sehingga:
+
+- Frekuensi monitoring berbeda
+- Threshold intervensi berbeda
+- Urgensi keputusan berbeda
+
+Prinsip:
+
+> Parameter sama, tetapi toleransi risiko berbeda antar Tier.
+
+---
+
+### 9.1 Definisi Tier Aset
+
+Contoh tipikal di plant petrokimia:
+
+| Tier                      | Deskripsi                                                | Contoh                                      |
+| ------------------------- | -------------------------------------------------------- | ------------------------------------------- |
+| **Tier 1 – Critical**     | Kegagalan menyebabkan shutdown unit / risiko keselamatan | 6 kV compressor, BFP, main circulation pump |
+| **Tier 2 – Normal**       | Mengganggu produksi tetapi tidak menghentikan total unit | Utility pump utama, cooling fan besar       |
+| **Tier 3 – Non-Critical** | Redundansi tersedia / dampak minimal                     | Fan ventilasi lokal, auxiliary small pump   |
+
+---
+
+### 9.2 Penyesuaian Monitoring Berdasarkan Tier
+
+🔹 Tier 1 – Critical
+
+Motor 6 kV hampir selalu masuk kategori ini.
+
+Wajib:
+
+- Review PD tahunan
+- Tan delta trending
+- Review thermal exposure tiap semester
+- IR minimal 1× per tahun
+- Dokumentasi trend ≥ 5 tahun
+
+Intervensi dipercepat jika:
+
+- Risk score ≥ 9
+- PD menunjukkan slope kenaikan signifikan
+
+---
+
+🔹 Tier 2 – Normal
+
+- IR tahunan
+- Thermal review tahunan
+- PD (jika 6 kV) bisa 1–2 tahun sekali tergantung kondisi
+
+Re-varnish dapat ditunda ke outage berikutnya jika risk masih moderat.
+
+---
+
+🔹 Tier 3 – Non-Critical
+
+- IR periodik sesuai program umum
+- Tidak wajib PD monitoring rutin
+- Fokus pada corrective maintenance
+
+Re-wind sering kali langsung dibandingkan dengan replace berdasarkan ekonomi.
+
+---
+
+### 9.3 Integrasi dengan Outage Planning Berbasis Tier
+
+| Tier   | Risk Score 5–8          | Risk Score 9–12       | >12                    |
+| ------ | ----------------------- | --------------------- | ---------------------- |
+| Tier 1 | Schedule minor outage   | Major outage terdekat | Immediate action       |
+| Tier 2 | Minor outage berikutnya | Planned outage        | Accelerated planning   |
+| Tier 3 | Monitor / defer         | Planned repair        | Replace lebih rasional |
+
+Tier menentukan seberapa cepat tindakan dilakukan, bukan mengubah parameter teknis.
+
+---
+
+### 9.4 Dokumentasi & Governance
+
+Untuk Tier 1:
+
+- Semua data dimasukkan dalam reliability dashboard
+- Review tahunan dalam reliability meeting
+- Keputusan re-wind terdokumentasi secara formal
+
+Untuk Tier 2–3:
+
+- Dokumentasi tetap diperlukan, tetapi kedalaman analisis dapat disesuaikan.
+
+---
+
+### 9.5 Hubungan dengan Program Reliability Lain
+
+Integrasikan evaluasi winding dengan:
+
+- Vibration monitoring
+- Load & harmonic analysis
+- Root cause analysis bila terjadi trip
+- Management of Change jika ada perubahan operasi
+
+Motor Tier 1 wajib masuk dalam daftar audit reliability tahunan.
+
+---
+
+### 🎯 Engineering Takeaway Bab 9 (Versi Tier-Grading)
+
+- Tier menentukan urgency dan frekuensi monitoring.
+- Tier tidak mengubah physics, tetapi mengubah toleransi risiko.
+- Motor 6 kV hampir selalu Tier 1 atau Tier 2.
+- Motor 380 V sering Tier 2 atau Tier 3, kecuali pada fungsi keselamatan.
+- Integrasi Tier memastikan tidak ada motor kritikal yang “terlewat” hingga terjadi failure mendadak.
+
+---
+
+## 🔟 Kesimpulan Engineering
+
+Artikel ini menegaskan bahwa maintenance winding motor 6 kV dan 380 V harus berbasis **fisika degradasi isolasi, data trending, dan tier–criticality aset**, bukan berbasis umur kalender semata.
+
+### 🔹 Re-varnish adalah tindakan intermediate, bukan solusi EOL
+
+Re-varnish efektif untuk:
+
+- Degradasi permukaan
+- Moisture / contamination
+- PD ringan yang belum struktural
+
+Namun re-varnish tidak mengembalikan kekuatan dielectric jika ground wall atau turn insulation sudah rusak permanen.
+
+---
+
+### 🔹 Re-wind dilakukan saat dielectric structural strength hilang
+
+Re-wind diperlukan ketika:
+
+- Inter-turn short terjadi
+- PD tinggi dan progresif
+- Ground wall breakdown (6 kV)
+- Burned winding (380 V)
+- Insulation brittle akibat thermal aging kronis
+
+Pada tahap ini, intervensi superficial tidak lagi defensible secara teknis.
+
+---
+
+### 🔹 Replace dipertimbangkan jika ekonomi & usia tidak mendukung
+
+Replace lebih rasional apabila:
+
+- Biaya re-wind > 60–70% motor baru
+- Core laminasi / mechanical integrity menurun
+- Upgrade efisiensi atau reliability diinginkan
+- Lead time dan spare strategy mendukung
+
+Keputusan harus mempertimbangkan lifecycle cost, bukan hanya repair cost.
+
+---
+
+### 🔹 Keputusan berbasis parameter + criticality
+
+Parameter teknis (PD, tan δ, IR, thermal history) harus dikombinasikan dengan:
+
+- Tier–grading aset
+- Severity index
+- Dampak terhadap produksi dan SHE
+
+Motor Tier 1 tidak boleh diperlakukan sama dengan Tier 3.
+
+---
+
+### 🔹 RBM scoring mencegah over-maintenance dan under-maintenance
+
+Matrix Risk = Severity × Condition memastikan:
+
+- Intervensi proporsional
+- Tidak terjadi premature rewind
+- Tidak terjadi delayed action pada motor kritikal
+
+Pendekatan ini menjadikan evaluasi winding:
+
+> Defensible, repeatable, dan audit-ready.
+
+---
+
+## 11. 📚 Referensi
+
+1. IEC 60034 – Rotating Electrical Machines (rating, temperature rise, insulation class).
+2. IEEE 43 – Recommended Practice for Testing Insulation Resistance of Rotating Machinery.
+3. IEEE 286 – Measurement of Partial Discharge in Rotating Machinery.
+4. IEEE 1434 – Guide to Measurement of Partial Discharges in AC Electric Machinery.
+5. IEEE 95 – Surge Comparison Testing of Rotating Machinery.
+6. IEEE 56 – Guide for Insulation Maintenance of Large AC Rotating Machinery.
+7. NFPA 70 – Electrical installation and protection framework.
+
+---
+
+<small>
+  **_Catatan Penyusunan_** Artikel ini disusun sebagai materi edukasi dan
+  referensi umum berdasarkan berbagai sumber pustaka, praktik lapangan, serta
+  bantuan alat penulisan. Pembaca disarankan untuk melakukan verifikasi lanjutan
+  dan penyesuaian sesuai dengan kondisi serta kebutuhan masing-masing sistem.
+</small>

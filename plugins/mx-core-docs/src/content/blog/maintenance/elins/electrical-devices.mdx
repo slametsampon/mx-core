@@ -1,0 +1,2914 @@
+---
+title: Sistem Kelistrikan Pabrik Petrokimia
+authors: ['sam']
+date: '2023-10-21'
+tags:
+  [
+    '20kV-6kV-380V',
+    'ELINS-SystemBased',
+    'PowerDistribution',
+    'Motor-Transformer-MCC',
+    'CapacitorBank',
+    'Reliability-Safety',
+    'ProtectionCoordination',
+    'ProcessIntegrity',
+  ]
+draft: false
+summary: Sistem kelistrikan pabrik petrokimia dengan konfigurasi 20 kV → 6 kV → 380 V merupakan tulang punggung operasi proses, menghubungkan sumber energi PLN hingga motor, MCC, UPS, dan sistem kontrol. Setiap level tegangan memiliki peran kritis terhadap reliability, proteksi, dan keselamatan. Kegagalan pada incoming, transformator, motor, capacitor bank, atau MCC dapat memicu gangguan proses, eskalasi tekanan, hingga risiko kebakaran dan ledakan. Pendekatan edukasi teknisi ELINS harus berbasis sistem, menekankan rantai sebab–akibat teknis, koordinasi proteksi, integrasi listrik–instrument–control, serta implikasi terhadap asset integrity dan process safety secara menyeluruh.
+---
+
+# **_Sistem Kelistrikan Pabrik Petrokimia_**
+
+_Konfigurasi: PLN 20 kV → Trafo 20/6 kV → 6 kV System → Trafo 6/380 V → MCC 380 V + Capacitor Bank → Beban Proses & Kontrol_
+
+---
+
+- [**_Sistem Kelistrikan Pabrik Petrokimia_**](#sistem-kelistrikan-pabrik-petrokimia)
+  - [BAB 1 – FILOSOFI SISTEM TENAGA DI PABRIK PETROKIMIA](#bab-1--filosofi-sistem-tenaga-di-pabrik-petrokimia)
+    - [1.1 Energi Listrik sebagai Tulang Punggung Proses](#11-energi-listrik-sebagai-tulang-punggung-proses)
+    - [1.2 Rantai Sebab–Akibat: Listrik → Mekanik → Proses → Safety](#12-rantai-sebabakibat-listrik--mekanik--proses--safety)
+    - [1.3 Konsep Layer of Protection pada Sistem Tenaga](#13-konsep-layer-of-protection-pada-sistem-tenaga)
+    - [1.4 Dampak Kegagalan Listrik terhadap Loss of Containment](#14-dampak-kegagalan-listrik-terhadap-loss-of-containment)
+    - [1.5 Peran Teknisi ELINS dalam Menjaga Reliability Sistem](#15-peran-teknisi-elins-dalam-menjaga-reliability-sistem)
+  - [BAB 2 – INCOMING 20 kV DARI PLN](#bab-2--incoming-20-kv-dari-pln)
+    - [2.1 Arsitektur Interkoneksi dengan PLN](#21-arsitektur-interkoneksi-dengan-pln)
+    - [2.2 Proteksi Utama Incoming 20 kV](#22-proteksi-utama-incoming-20-kv)
+    - [2.3 Koordinasi Proteksi \& Selective Tripping](#23-koordinasi-proteksi--selective-tripping)
+    - [2.4 Gangguan dari Sisi PLN (Eksternal Disturbance)](#24-gangguan-dari-sisi-pln-eksternal-disturbance)
+    - [2.5 Failure Mode Incoming 20 kV](#25-failure-mode-incoming-20-kv)
+    - [2.6 Eskalasi Kegagalan: Dari 20 kV ke 380 V](#26-eskalasi-kegagalan-dari-20-kv-ke-380-v)
+    - [2.7 Implikasi terhadap Reliability dan Process Safety](#27-implikasi-terhadap-reliability-dan-process-safety)
+    - [2.8 Scope Teknisi ELINS pada Incoming 20 kV](#28-scope-teknisi-elins-pada-incoming-20-kv)
+  - [BAB 3 – POWER TRANSFORMER 20/6 kV](#bab-3--power-transformer-206-kv)
+    - [3.1 Posisi Strategis dalam Sistem Tenaga](#31-posisi-strategis-dalam-sistem-tenaga)
+    - [3.2 Prinsip Kerja dan Konversi Energi](#32-prinsip-kerja-dan-konversi-energi)
+    - [3.3 Sistem Pendinginan dan Proteksi](#33-sistem-pendinginan-dan-proteksi)
+    - [3.4 Mekanisme Degradasi Isolasi dan Aging](#34-mekanisme-degradasi-isolasi-dan-aging)
+    - [3.5 Failure Mode Transformator 20/6 kV](#35-failure-mode-transformator-206-kv)
+    - [3.6 Dampak terhadap Sistem 6 kV dan Trafo 6/380](#36-dampak-terhadap-sistem-6-kv-dan-trafo-6380)
+    - [3.7 Implikasi terhadap Shutdown Plant](#37-implikasi-terhadap-shutdown-plant)
+  - [BAB 4 – SISTEM DISTRIBUSI 6 kV \& MOTOR PROSES UTAMA](#bab-4--sistem-distribusi-6-kv--motor-proses-utama)
+    - [4.1 Konfigurasi Switchgear 6 kV](#41-konfigurasi-switchgear-6-kv)
+    - [4.2 Karakteristik Motor 6 kV (Pompa Utama, Kompresor, Blower Besar)](#42-karakteristik-motor-6-kv-pompa-utama-kompresor-blower-besar)
+    - [4.3 Metode Starting dan Dampaknya terhadap Sistem](#43-metode-starting-dan-dampaknya-terhadap-sistem)
+    - [4.4 Proteksi Motor MV dan Koordinasinya](#44-proteksi-motor-mv-dan-koordinasinya)
+    - [4.5 Failure Mode Motor 6 kV](#45-failure-mode-motor-6-kv)
+    - [4.6 Rantai Kegagalan Motor → Gangguan Proses → Flare Load → Risiko Kebakaran](#46-rantai-kegagalan-motor--gangguan-proses--flare-load--risiko-kebakaran)
+    - [4.7 Integrasi dengan Interlock Proses dan Sistem Kontrol](#47-integrasi-dengan-interlock-proses-dan-sistem-kontrol)
+  - [BAB 5 – TRANSFORMATOR 6/380 V (STEP DOWN KE LOW VOLTAGE)](#bab-5--transformator-6380-v-step-down-ke-low-voltage)
+    - [5.1 Fungsi sebagai Penghubung ke Sistem LV](#51-fungsi-sebagai-penghubung-ke-sistem-lv)
+    - [5.2 Pola Beban Fluktuatif dari MCC](#52-pola-beban-fluktuatif-dari-mcc)
+    - [5.3 Risiko Ketidakseimbangan Fasa dan Overload](#53-risiko-ketidakseimbangan-fasa-dan-overload)
+    - [5.4 Failure Mode Trafo 6/380](#54-failure-mode-trafo-6380)
+    - [5.5 Dampak terhadap MCC, UPS, Lighting, dan Pompa Utilitas](#55-dampak-terhadap-mcc-ups-lighting-dan-pompa-utilitas)
+  - [BAB 6 – MCC 380 V DAN DISTRIBUSI LOW VOLTAGE](#bab-6--mcc-380-v-dan-distribusi-low-voltage)
+    - [6.1 Struktur dan Komponen Utama MCC](#61-struktur-dan-komponen-utama-mcc)
+    - [6.2 Karakteristik Motor 380 V dan Beban Non-Motor](#62-karakteristik-motor-380-v-dan-beban-non-motor)
+    - [6.3 Koordinasi Breaker dan Proteksi LV](#63-koordinasi-breaker-dan-proteksi-lv)
+    - [6.4 Arc Flash Hazard dan Mitigasinya](#64-arc-flash-hazard-dan-mitigasinya)
+    - [6.5 Failure Mode MCC](#65-failure-mode-mcc)
+    - [6.6 Dampak ke Sistem Kontrol dan Instrument Power](#66-dampak-ke-sistem-kontrol-dan-instrument-power)
+  - [BAB 7 – CAPACITOR BANK \& POWER FACTOR CORRECTION](#bab-7--capacitor-bank--power-factor-correction)
+    - [7.1 Fungsi Capacitor Bank dalam Sistem 6 kV / 380 V](#71-fungsi-capacitor-bank-dalam-sistem-6-kv--380-v)
+    - [7.2 Hubungan Faktor Daya, Arus Sistem, dan Losses](#72-hubungan-faktor-daya-arus-sistem-dan-losses)
+    - [7.3 Lokasi Pemasangan (MV vs LV Capacitor Bank)](#73-lokasi-pemasangan-mv-vs-lv-capacitor-bank)
+    - [7.4 Mekanisme Kerja Automatic Power Factor Controller](#74-mekanisme-kerja-automatic-power-factor-controller)
+    - [7.5 Risiko Resonansi dan Harmonik (Interaksi dengan VFD)](#75-risiko-resonansi-dan-harmonik-interaksi-dengan-vfd)
+    - [7.6 Failure Mode Capacitor Bank](#76-failure-mode-capacitor-bank)
+    - [7.7 Root Cause Chain](#77-root-cause-chain)
+    - [7.8 Dampak Sistemik](#78-dampak-sistemik)
+    - [7.9 Keterkaitan dengan Reliability dan Biaya Energi](#79-keterkaitan-dengan-reliability-dan-biaya-energi)
+  - [BAB 8 – UPS DAN POWER UNTUK SISTEM KONTROL](#bab-8--ups-dan-power-untuk-sistem-kontrol)
+    - [8.1 Arsitektur Supply UPS dari MCC](#81-arsitektur-supply-ups-dari-mcc)
+    - [8.2 Peran UPS dalam Menjaga DCS/PLC Tetap Aktif Saat Gangguan](#82-peran-ups-dalam-menjaga-dcsplc-tetap-aktif-saat-gangguan)
+    - [8.3 Battery System dan Mode Kegagalan](#83-battery-system-dan-mode-kegagalan)
+    - [8.4 Failure Mode UPS](#84-failure-mode-ups)
+    - [8.5 Dampak Kehilangan Instrument Power terhadap Interlock dan ESD](#85-dampak-kehilangan-instrument-power-terhadap-interlock-dan-esd)
+  - [BAB 9 – SISTEM GROUNDING DAN PROTEKSI PETIR](#bab-9--sistem-grounding-dan-proteksi-petir)
+    - [9.1 Filosofi Grounding Industri Petrokimia](#91-filosofi-grounding-industri-petrokimia)
+    - [9.2 Ground Grid dan Bonding Antar Peralatan](#92-ground-grid-dan-bonding-antar-peralatan)
+    - [9.3 Pengaruh Grounding terhadap Sistem Proteksi Relay](#93-pengaruh-grounding-terhadap-sistem-proteksi-relay)
+    - [9.4 Risiko Touch Voltage \& Step Potential](#94-risiko-touch-voltage--step-potential)
+    - [9.5 Hubungan Grounding dengan Area Berbahaya](#95-hubungan-grounding-dengan-area-berbahaya)
+  - [BAB 10 – GANGGUAN SISTEMIK: VOLTAGE SAG, SURGE, HARMONIK](#bab-10--gangguan-sistemik-voltage-sag-surge-harmonik)
+    - [10.1 Sumber Gangguan Internal \& Eksternal](#101-sumber-gangguan-internal--eksternal)
+    - [10.2 Dampak terhadap Motor 6 kV dan 380 V](#102-dampak-terhadap-motor-6-kv-dan-380-v)
+    - [10.3 Dampak terhadap UPS dan Kontrol](#103-dampak-terhadap-ups-dan-kontrol)
+    - [10.4 Peran SPD dan Filtering Harmonik](#104-peran-spd-dan-filtering-harmonik)
+    - [10.5 Studi Rantai Kegagalan: Sag → Pompa Trip → Tekanan Naik](#105-studi-rantai-kegagalan-sag--pompa-trip--tekanan-naik)
+  - [BAB 11 – INTEGRASI LISTRIK DENGAN INSTRUMENT \& CONTROL](#bab-11--integrasi-listrik-dengan-instrument--control)
+    - [11.1 Interlock Berbasis Listrik dan Proses](#111-interlock-berbasis-listrik-dan-proses)
+    - [11.2 Hubungan Trip Motor dengan Logic Control](#112-hubungan-trip-motor-dengan-logic-control)
+    - [11.3 Hardwired vs Soft Interlock](#113-hardwired-vs-soft-interlock)
+    - [11.4 Electrical Protection vs SIS Layer](#114-electrical-protection-vs-sis-layer)
+    - [11.5 Risiko Jika Sistem Listrik dan Kontrol Tidak Terkoordinasi](#115-risiko-jika-sistem-listrik-dan-kontrol-tidak-terkoordinasi)
+  - [BAB 12 – FAILURE MODE BERBASIS SISTEM (END-TO-END FAILURE ANALYSIS)](#bab-12--failure-mode-berbasis-sistem-end-to-end-failure-analysis)
+    - [12.1 Eskalasi Kegagalan dari 20 kV sampai 380 V](#121-eskalasi-kegagalan-dari-20-kv-sampai-380-v)
+    - [12.2 Root Cause Tree Blackout Plant](#122-root-cause-tree-blackout-plant)
+    - [12.3 Interaksi antar Level Tegangan](#123-interaksi-antar-level-tegangan)
+    - [12.4 Dampak terhadap Asset Integrity dan Safety Plant](#124-dampak-terhadap-asset-integrity-dan-safety-plant)
+  - [BAB 13 – STANDAR DAN PRAKTIK INDUSTRI YANG RELEVAN](#bab-13--standar-dan-praktik-industri-yang-relevan)
+    - [13.1 IEC 60079 – Area Berbahaya](#131-iec-60079--area-berbahaya)
+    - [13.2 IEEE 1584 – Arc Flash](#132-ieee-1584--arc-flash)
+    - [13.3 NFPA 70 – Instalasi \& Grounding](#133-nfpa-70--instalasi--grounding)
+    - [13.4 API RP 500 / API RP 505 – Klasifikasi Area](#134-api-rp-500--api-rp-505--klasifikasi-area)
+    - [13.5 API 670 – Proteksi Mesin](#135-api-670--proteksi-mesin)
+    - [13.6 Awareness Teknisi terhadap Audit \& Compliance](#136-awareness-teknisi-terhadap-audit--compliance)
+
+---
+
+## BAB 1 – FILOSOFI SISTEM TENAGA DI PABRIK PETROKIMIA
+
+---
+
+### 1.1 Energi Listrik sebagai Tulang Punggung Proses
+
+![Image](https://previews.123rf.com/images/manine99/manine991802/manine99180200039/94779863-electrical-substation-room-in-petrochemical-industry-or-oil-and-gas-refinery-and-power-plants.jpg)
+
+![Image](https://www.acbsource.com/cdn/shop/articles/Motor_Control_Center.jpg?crop=center&height=2048&v=1706837310&width=2048)
+
+Pada konfigurasi pabrik:
+
+**PLN 20 kV → Trafo 20/6 kV → Sistem 6 kV → Trafo 6/380 V → MCC 380 V → Motor/UPS/Lighting**
+
+Energi listrik adalah sumber energi primer untuk:
+
+- Motor pompa proses
+- Kompresor
+- Cooling water system
+- Sistem utilitas
+- UPS untuk DCS/PLC
+- Sistem penerangan dan keselamatan
+
+Tanpa listrik:
+
+- Fluida tidak mengalir
+- Pendinginan berhenti
+- Kontrol tidak bekerja
+- Proteksi otomatis bisa gagal
+
+Secara sistemik, listrik bukan hanya “daya”, tetapi **enabler seluruh sistem produksi dan keselamatan**.
+
+<ResourceBox
+  title="Artikel terkait :"
+  items={[
+    {
+      name: 'Maintenance Winding Motor Industri (6 kV & 380 V)',
+      href: '/blog/maintenance/elins/motor-winding-maintenance',
+      description:
+        'Maintenance Winding Motor Industri (6 kV & 380 V) - Strategi Evaluasi Isolasi dan Keputusan Intervensi Berbasis Risiko',
+    },
+    {
+      name: 'Kebocoran Minyak pada Power Transformer Oil-Immersed',
+      href: '/blog/maintenance/elins/power-transformer-oil-leakage',
+      description:
+        'Pencegahan Kebocoran Minyak pada Power Transformer Oil-Immersed',
+    },
+    {
+      name: 'Winding Integrity pada Transformator Oil-Immersed',
+      href: '/blog/maintenance/elins/transformer-winding-integrity',
+      description:
+        'Winding Integrity pada Transformator Oil-Immersed - Parameter Kritis dan Keputusan Re-Winding Berbasis Risiko',
+    },
+  ]}
+/>
+
+---
+
+### 1.2 Rantai Sebab–Akibat: Listrik → Mekanik → Proses → Safety
+
+![Image](https://imgv2-2-f.scribdassets.com/img/document/539691940/original/bf40d5f208/1?v=1)
+
+![Image](https://irp.cdn-website.com/1edac3eb/dms3rep/multi/iStock-639165672.jpg)
+
+Di pabrik petrokimia, setiap gangguan listrik memiliki efek berantai.
+
+✔ Contoh Rantai Kegagalan Nyata
+
+**Root Physical Event:**
+Voltage sag pada sistem 6 kV
+
+**Dampak Listrik:**
+Motor pompa trip karena undervoltage relay aktif
+
+**Dampak Mekanik:**
+Shaft berhenti → aliran fluida berhenti
+
+**Dampak Proses:**
+Tekanan reaktor naik karena tidak ada sirkulasi
+
+**Dampak Safety:**
+PSV membuka → flare load meningkat → potensi flame instability
+
+Inilah filosofi utama:
+
+> Gangguan listrik kecil dapat berubah menjadi risiko keselamatan besar jika tidak dipahami secara sistemik.
+
+Teknisi ELINS wajib berpikir lintas disiplin, bukan hanya pada panel atau motor.
+
+---
+
+### 1.3 Konsep Layer of Protection pada Sistem Tenaga
+
+![Image](https://images.openai.com/static-rsc-3/HFoNVWbXAZjoOD5lAvx24EXwuItqKfl1b24htuSSxTn9r3xULrbj9t7ST3jKbMVln0qVuTJ_OgtMWAcllJcrnCuRS_ZC_p7EJrWdHzRaKA0?purpose=fullsize&v=1)
+
+Sistem tenaga memiliki beberapa lapisan proteksi:
+
+✔ Layer 1 – Proteksi Incoming
+
+Relay overcurrent, earth fault, differential.
+
+✔ Layer 2 – Proteksi Transformator
+
+Temperature, Buchholz, differential.
+
+✔ Layer 3 – Proteksi Distribusi
+
+Breaker coordination, selective tripping.
+
+✔ Layer 4 – Proteksi Motor
+
+Overload, earth fault, vibration interlock.
+
+✔ Layer 5 – Proteksi Proses
+
+Interlock, SIS, Emergency Shutdown.
+
+Jika satu layer gagal, layer berikutnya harus mencegah eskalasi.
+
+Contoh kegagalan berbahaya:
+
+Grounding buruk → fault current tidak cukup → relay tidak trip → arc membesar → panel terbakar → plant shutdown.
+
+Layer of Protection bukan hanya milik proses (SIS), tetapi juga milik sistem tenaga.
+
+---
+
+### 1.4 Dampak Kegagalan Listrik terhadap Loss of Containment
+
+![Image](https://eu-images.contentstack.com/v3/assets/bltf2605c1a31475f8b/blt0f29adc67d86b432/68e56f29a0b77d6186b503a9/GettyImages-157681700-Chemical-Fire-Resized.jpg?auto=webp&disable=upscale&quality=80&width=1280)
+
+![Image](https://media.licdn.com/dms/image/v2/C5612AQE4QbDyAN_KjQ/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1563088093901?e=2147483647&t=zUMsM0RUrPxUWw0dlbE4FJiQvQwSDRzt_Js1nZ5_o58&v=beta)
+
+![Image](https://info.rittal.us/hubfs/Arc_Flash_Email.jpeg)
+
+Loss of Containment (LoC) sering diawali oleh gangguan utilitas, termasuk listrik.
+
+✔ Contoh Eskalasi:
+
+Motor cooling water trip
+→ Heat exchanger overheat
+→ Fluida hidrokarbon vaporize
+→ Overpressure
+→ Gasket blowout
+→ Kebocoran hidrokarbon
+→ Fire / Explosion
+
+Atau:
+
+MCC terbakar karena arc flash
+→ Banyak pompa trip simultan
+→ Sistem tidak stabil
+→ Emergency shutdown tidak terkendali
+
+Listrik adalah salah satu **sumber ignition paling umum** di industri hidrokarbon.
+
+Oleh karena itu:
+
+Kegagalan listrik = potensi LoC = potensi fire & explosion.
+
+---
+
+### 1.5 Peran Teknisi ELINS dalam Menjaga Reliability Sistem
+
+Teknisi ELINS berada di titik kritis antara energi dan keselamatan.
+
+✔ Scope Peran Sistemik:
+
+- Memastikan setting proteksi benar dan selektif
+- Menjaga integritas grounding
+- Mengawasi overheating pada panel
+- Memahami trip motor sebagai sinyal gangguan proses
+- Berkoordinasi dengan tim mekanik dan operasi
+
+✔ Perspektif Kompetensi
+
+**Level A (Awareness):**
+Memahami alur sistem 20 kV – 6 kV – 380 V.
+
+**Level W (Working):**
+Mampu membaca SLD dan mengidentifikasi titik rawan.
+
+**Level I (Independent):**
+Mampu menganalisis root cause trip motor dan dampaknya ke proses.
+
+**Level E (Technical Authority):**
+Mampu melakukan coordination study, arc flash analysis, dan evaluasi proteksi menyeluruh.
+
+---
+
+✔ **Penegasan Filosofi BAB 1**
+
+1. Energi listrik adalah fondasi proses.
+2. Gangguan kecil dapat bereskalasi menjadi risiko besar.
+3. Sistem tenaga memiliki layer proteksi berlapis.
+4. Kegagalan listrik dapat menyebabkan Loss of Containment.
+5. Teknisi ELINS adalah penjaga reliability dan keselamatan plant.
+
+---
+
+## BAB 2 – INCOMING 20 kV DARI PLN
+
+---
+
+### 2.1 Arsitektur Interkoneksi dengan PLN
+
+![Image](https://www.researchgate.net/publication/384540066/figure/fig1/AS%3A11431281281442548%401727849516931/Single-line-diagram-medium-voltage-switchgear-20-kV-Source-A-Geothermal-Power-Plant.png)
+
+Pada konfigurasi plant:
+
+**PLN 20 kV → Main 20 kV Switchgear → Trafo 20/6 kV**
+
+Incoming 20 kV adalah **titik transfer energi eksternal ke sistem internal plant**.
+Di titik ini biasanya terdapat:
+
+- Vacuum Circuit Breaker (VCB)
+- CT & PT untuk proteksi dan metering
+- Relay proteksi (OC, EF, UV, OV, Directional bila perlu)
+- Grounding system
+
+Secara sistemik, incoming adalah:
+
+> Batas antara risiko eksternal (grid disturbance) dan stabilitas internal plant.
+
+Gangguan di sisi PLN langsung mempengaruhi seluruh plant.
+
+---
+
+### 2.2 Proteksi Utama Incoming 20 kV
+
+![Image](https://images.openai.com/static-rsc-3/jyg6cFQRjx6pmSfeBzwlUwJC03QX7DzRV-d0J699jIY45OeC4iRx8TcV-JZTUgo_29jL8uMs1JtTYIPiCFpW9WONbqr7uHq9Kv1hkzoD1Lc?purpose=fullsize&v=1)
+
+![Image](https://www.researchgate.net/publication/307532635/figure/fig3/AS%3A667076331069458%401536054799761/Time-Current-Characteristics-of-Relays.png)
+
+✔ Proteksi Umum
+
+- Overcurrent (50/51)
+- Earth Fault (50N/51N)
+- Undervoltage (27)
+- Overvoltage (59)
+- Differential (87) – bila sistem kompleks
+- Breaker Failure Protection
+
+✔ Tujuan Proteksi:
+
+1. Mengisolasi gangguan lokal
+2. Mencegah kerusakan trafo 20/6 kV
+3. Menjaga stabilitas sistem downstream
+
+✔ Prinsip Kritis:
+
+Proteksi harus **selektif**, artinya:
+
+Gangguan di downstream tidak boleh memadamkan seluruh plant jika tidak diperlukan.
+
+Jika setting tidak tepat:
+
+- Trip tidak selektif
+- Total blackout
+- Shutdown besar
+
+---
+
+### 2.3 Koordinasi Proteksi & Selective Tripping
+
+Incoming 20 kV adalah layer pertama proteksi.
+
+Koordinasi harus memperhatikan:
+
+- Rating trafo 20/6
+- Inrush current trafo
+- Starting current motor 6 kV
+- Fault level PLN
+
+Jika setting terlalu sensitif:
+→ Motor start dianggap fault
+→ Incoming trip
+→ Plant blackout
+
+Jika setting terlalu lambat:
+→ Fault tidak cepat diisolasi
+→ Kerusakan besar
+
+Teknisi ELINS level I harus memahami Time-Current Curve (TCC) dan filosofi grading.
+
+---
+
+### 2.4 Gangguan dari Sisi PLN (Eksternal Disturbance)
+
+![Image](https://www.researchgate.net/publication/344216990/figure/fig1/AS%3A934861745426433%401599899817528/oltage-waveform-with-sag-and-swell-7.png)
+
+![Image](https://www.researchgate.net/publication/318216926/figure/fig1/AS%3A512984683823104%401499316487692/Distorted-waveform-due-to-harmonics.png)
+
+✔ A. Voltage Sag
+
+**Root Physical Mechanism:**
+Gangguan hubung singkat di jaringan PLN.
+
+**Stress Condition:**
+Tegangan turun < 80% nominal.
+
+**Trigger:**
+Gangguan regional grid.
+
+**System Consequence:**
+Relay undervoltage aktif → motor trip.
+
+---
+
+✔ B. Transient Surge
+
+**Root:** Switching atau petir
+**Stress:** Overvoltage sesaat
+**Consequence:** Insulation stress pada trafo
+
+---
+
+✔ C. Harmonik
+
+**Root:** Non-linear load (VFD internal plant atau grid distortion)
+**Stress:** Heating pada trafo dan capacitor bank
+**Consequence:** Losses meningkat → overheating
+
+Incoming bukan hanya menerima energi, tetapi juga menerima gangguan dari grid.
+
+---
+
+### 2.5 Failure Mode Incoming 20 kV
+
+✔ 1️⃣ Circuit Breaker Failure
+
+**Root Physical Mechanism:**
+Mechanical wear / spring mechanism failure.
+
+**Load Condition:**
+High fault current.
+
+**Operational Trigger:**
+Short circuit downstream.
+
+**System Consequence:**
+Breaker gagal membuka → arcing internal → switchgear damage.
+
+**Safety Implication:**
+Arc flash level tinggi (MV) → potensi fatality.
+
+---
+
+✔ 2️⃣ Relay Mal-setting
+
+**Root:** Human error / perubahan sistem tidak di-update.
+**Stress:** Motor starting current tinggi.
+**Trigger:** Start pompa besar.
+**Consequence:** Incoming trip.
+**System Impact:** Total blackout.
+**Safety:** Emergency shutdown tidak terkendali.
+
+---
+
+✔ 3️⃣ Grounding Failure
+
+**Root:** Korosi ground grid.
+**Stress:** Earth fault terjadi.
+**Trigger:** Insulation breakdown trafo.
+**Consequence:** Fault current tidak cukup → relay tidak trip.
+**System Impact:** Arc escalation.
+**Safety:** Panel explosion.
+
+---
+
+### 2.6 Eskalasi Kegagalan: Dari 20 kV ke 380 V
+
+Contoh eskalasi nyata:
+
+Short circuit di MCC 380 V
+→ Breaker LV gagal trip
+→ Fault naik ke trafo 6/380
+→ Trafo overload
+→ Proteksi 6 kV aktif
+→ Incoming 20 kV trip
+
+Gangguan kecil bisa menjalar ke atas jika koordinasi buruk.
+
+---
+
+### 2.7 Implikasi terhadap Reliability dan Process Safety
+
+Incoming 20 kV menentukan:
+
+- Stabilitas suplai energi
+- Ketersediaan motor proses utama
+- Keandalan UPS
+- Keandalan interlock
+
+Blackout total menyebabkan:
+
+- Pompa berhenti
+- Kompresor trip
+- Flare spike
+- Potensi Loss of Containment
+
+Incoming adalah titik paling kritis dalam perspektif availability.
+
+---
+
+### 2.8 Scope Teknisi ELINS pada Incoming 20 kV
+
+✔ Level A
+
+- Mengetahui alur incoming ke trafo 20/6.
+
+✔ Level W
+
+- Memahami panel layout 20 kV.
+- Mampu membaca SLD incoming.
+
+✔ Level I
+
+- Menganalisis trip event berdasarkan relay record.
+- Mengevaluasi setting proteksi dasar.
+
+✔ Level E
+
+- Melakukan coordination study.
+- Menghitung fault level.
+- Review arc flash study MV.
+
+---
+
+✔ **Penegasan BAB 2**
+
+1. Incoming 20 kV adalah boundary energi plant.
+2. Gangguan eksternal bisa memicu eskalasi internal.
+3. Koordinasi proteksi menentukan stabilitas plant.
+4. Failure di incoming berpotensi blackout total.
+5. Teknisi ELINS wajib memahami proteksi MV secara sistemik.
+
+---
+
+## BAB 3 – POWER TRANSFORMER 20/6 kV
+
+---
+
+### 3.1 Posisi Strategis dalam Sistem Tenaga
+
+![Image](https://www.daelimtransformer.com/media/115/H83f93d9aa9604165ab2d38625e676765u.jpg)
+
+![Image](https://www.chintglobal.com/content/dam/chintsite/global/en/solutions/cases-center/500kv-167mva-auto-transformer-for-1700-mw-talimarjan-tpp%2C-uzbekistan/500kV%20167MVA%20Auto%20Transformer%20for%201700%20MW%20Talimarjan%20TPP%2C%20Uzbekistan-image%20%283%29.png)
+
+Dalam konfigurasi plant:
+
+**PLN 20 kV → Trafo 20/6 kV → Sistem 6 kV → Trafo 6/380 V → MCC**
+
+Trafo 20/6 kV adalah **node konversi energi utama**.
+
+Jika incoming adalah “gerbang energi”, maka trafo 20/6 adalah “jantung distribusi”.
+
+Semua beban berikut bergantung pada trafo ini:
+
+- Motor 6 kV (pompa utama, kompresor)
+- Trafo 6/380 V
+- Sistem utilitas
+- UPS dan sistem kontrol (indirect)
+
+Kegagalan trafo ini = kehilangan seluruh sistem 6 kV.
+
+---
+
+### 3.2 Prinsip Kerja dan Konversi Energi
+
+![Image](https://images.openai.com/static-rsc-3/yKUzqV-583Ir0dT7eyK_ekOF6O2-gdrY5NMvgAWYyGIXVEMhguR002Fdx2AzKMs-BtaXqyQijVOiqaEghDQj0C9h_ZPZsUeJmkxWgbJYJFw?purpose=fullsize&v=1)
+
+![Image](https://i.sstatic.net/9ccpO.png)
+
+![Image](https://www.tutorialspoint.com/electrical_machines/images/delta_star_connection_of_transformer.jpg)
+
+Trafo bekerja berdasarkan prinsip **induksi elektromagnetik**:
+
+- Tegangan 20 kV masuk ke winding primer.
+- Medan magnet terbentuk pada core.
+- Tegangan 6 kV terinduksi di winding sekunder.
+
+Parameter kritis:
+
+- Rasio lilitan
+- Impedansi trafo
+- Rating MVA
+- Cooling capacity
+
+Tap changer menjaga stabilitas tegangan 6 kV saat beban berubah.
+
+Secara sistemik:
+
+Trafo mengatur keseimbangan antara **stabilitas tegangan dan beban proses**.
+
+---
+
+### 3.3 Sistem Pendinginan dan Proteksi
+
+![Image](https://www.ziehl-abegg.com/fileadmin/_processed_/f/6/csm_4-Transformatoren_51498e9d3e.jpg)
+
+![Image](https://owlcation.com/.image/w_1080%2Cq_auto%3Agood%2Cc_limit/MTc0NjQyMTAyNzI5NjQ4MDcz/parts-of-a-power-transformer.png?arena_f_auto=)
+
+![Image](https://media.licdn.com/dms/image/v2/D5612AQFtdpnbzMFxSQ/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1733546442882?e=2147483647&t=l2mwJ7rXaw3h_C9VYERb3B-yB1Uk0Uhv9tQED3XLT6U&v=beta)
+
+✔ Sistem Pendinginan
+
+Umumnya tipe ONAN / ONAF:
+
+- Oil Natural Air Natural
+- Oil Natural Air Forced
+
+Pendinginan menjaga suhu winding di bawah batas aging.
+
+✔ Proteksi Utama
+
+- Temperature relay (oil & winding)
+- Differential relay (87T)
+- Buchholz relay (gas accumulation)
+- Pressure relief device
+- Overcurrent backup
+
+Trafo adalah peralatan statis, tetapi failure-nya sering bersifat **progresif dan tersembunyi**.
+
+---
+
+### 3.4 Mekanisme Degradasi Isolasi dan Aging
+
+✔ Root Physical Mechanism
+
+1️⃣ Thermal Aging
+Selulosa kertas isolasi mengalami depolimerisasi akibat suhu tinggi.
+
+2️⃣ Moisture Ingress
+Air menurunkan dielectric strength minyak.
+
+3️⃣ Partial Discharge
+Void pada isolasi menyebabkan erosi internal.
+
+4️⃣ Oxidation
+Minyak teroksidasi → sludge formation → pendinginan menurun.
+
+✔ Load/Stress Condition
+
+- Overload berkepanjangan
+- Starting motor 6 kV berulang
+- Harmonik dari sistem downstream
+- Ambient temperature tinggi
+
+✔ Operational Trigger
+
+- Fan pendingin gagal
+- Radiator tersumbat
+- Ketidakseimbangan fasa
+
+Aging trafo adalah fungsi waktu + temperatur.
+
+Setiap kenaikan 6–8°C dapat mempercepat aging dua kali lipat.
+
+---
+
+### 3.5 Failure Mode Transformator 20/6 kV
+
+---
+
+✔ A. Overheating
+
+**Root:** Beban melebihi rating / cooling gagal
+**Stress:** Arus tinggi → I²R losses
+**Trigger:** Starting motor besar bersamaan
+**System Consequence:** Gas formation → Buchholz trip
+**Safety:** Risiko tank rupture & oil fire
+
+---
+
+✔ B. Insulation Breakdown
+
+**Root:** Aging + moisture
+**Stress:** Overvoltage transient
+**Trigger:** Switching surge dari incoming
+**System Consequence:** Internal short circuit
+**Safety:** Explosion internal
+
+---
+
+✔ C. Oil Leakage
+
+**Root:** Gasket aging / thermal expansion
+**Stress:** Cycling load
+**Trigger:** Shutdown–startup berulang
+**System Consequence:** Level minyak turun → pendinginan turun
+**Safety:** Pool fire risk
+
+---
+
+✔ D. Differential Trip
+
+**Root:** Internal fault antara primer–sekunder
+**Stress:** High fault current
+**Trigger:** Insulation flashover
+**System Consequence:** Instantaneous trip trafo
+**Impact:** Blackout sistem 6 kV
+**Safety:** Proses berhenti mendadak
+
+---
+
+### 3.6 Dampak terhadap Sistem 6 kV dan Trafo 6/380
+
+Ketika trafo 20/6 trip:
+
+- Semua motor 6 kV berhenti
+- Trafo 6/380 kehilangan supply
+- MCC 380 V blackout
+- UPS masuk battery mode
+- Jika durasi lama → DCS shutdown
+
+Rantai eskalasi:
+
+Trafo trip
+→ Pompa utama berhenti
+→ Tekanan berubah
+→ Interlock aktif
+→ Plant trip
+
+Kegagalan satu trafo bisa menghentikan seluruh fasilitas.
+
+---
+
+### 3.7 Implikasi terhadap Shutdown Plant
+
+Trafo 20/6 adalah titik tunggal kegagalan (single point of failure) bila tidak ada redundansi.
+
+Blackout akibat trafo menyebabkan:
+
+- Emergency Shutdown (ESD)
+- Depressurizing ke flare
+- Thermal shock pada equipment
+- Mechanical stress akibat stop mendadak
+
+Shutdown tak terencana mempercepat kerusakan:
+
+- Seal mechanical
+- Bearing
+- Valve actuator
+
+Artinya:
+
+> Failure trafo bukan hanya masalah listrik, tetapi juga memperpendek umur peralatan mekanik.
+
+---
+
+✔ **Penegasan BAB 3**
+
+1. Trafo 20/6 adalah jantung distribusi energi plant.
+2. Degradasi bersifat progresif dan sering tersembunyi.
+3. Failure dapat menyebabkan blackout total 6 kV.
+4. Dampaknya menjalar ke mekanik, proses, dan keselamatan.
+5. Pemeliharaan berbasis kondisi adalah kunci reliability.
+
+---
+
+## BAB 4 – SISTEM DISTRIBUSI 6 kV & MOTOR PROSES UTAMA
+
+---
+
+### 4.1 Konfigurasi Switchgear 6 kV
+
+![Image](https://www.eaton.com/content/dam/eaton/products/medium-voltage-power-distribution-control-systems/vacclad-w-5-15-kv-36-wide-metal-clad-medium-voltage-switchgear/eaton-mva-5kv-switchgear-november2018-3.jpg.transform/default-mobile/image.jpg)
+
+![Image](https://imgv2-2-f.scribdassets.com/img/document/401974689/original/6ae55c643e/1?v=1)
+
+Sistem 6 kV menerima daya dari trafo 20/6 kV dan mendistribusikannya ke:
+
+- Motor pompa utama
+- Kompresor proses
+- Blower besar
+- Trafo 6/380 V
+
+Komponen utama:
+
+- Busbar 6 kV
+- Vacuum Circuit Breaker (VCB)
+- CT & PT
+- Motor protection relay
+- Panel metering & monitoring
+
+Secara sistemik, switchgear 6 kV adalah **hub penggerak utama proses**.
+Gangguan di sini langsung memengaruhi stabilitas produksi.
+
+---
+
+### 4.2 Karakteristik Motor 6 kV (Pompa Utama, Kompresor, Blower Besar)
+
+![Image](https://image.made-in-china.com/202f0j00rLDqcQdMYzuV/Ykk-6kv-10kv-High-Voltage-Squirrel-Cage-Large-Size-AC-Induction-Motor.webp)
+
+![Image](https://www.researchgate.net/publication/267498500/figure/fig2/AS%3A650477767245824%401532097393421/Electric-Motor-Driven-Centrifugal-Compressor.png)
+
+Motor 6 kV biasanya berdaya ratusan kW hingga beberapa MW.
+
+Karakteristik penting:
+
+- Arus starting tinggi
+- Inersia beban besar
+- Waktu akselerasi panjang
+- Sensitif terhadap tegangan drop
+
+Motor ini menggerakkan:
+
+- Main feed pump reaktor
+- Recycle pump
+- Kompresor gas
+- Blower furnace
+
+Jika motor 6 kV berhenti:
+
+→ Aliran utama terganggu
+→ Tekanan dan temperatur berubah drastis
+
+Motor MV adalah **interface langsung antara listrik dan stabilitas proses kimia**.
+
+---
+
+### 4.3 Metode Starting dan Dampaknya terhadap Sistem
+
+![Image](https://www.eaton.com/content/dam/eaton/products/medium-voltage-power-distribution-control-systems/motor-control/images/800-Amp-Arc-wht-back-500x500.dpi.jpg.transform/default-mobile/image.jpg)
+
+Metode umum:
+
+- Direct On Line (DOL) – terbatas untuk kapasitas tertentu
+- Soft starter
+- VFD (Variable Frequency Drive)
+- Autotransformer starter
+
+✔ Dampak terhadap Sistem
+
+#✔ Direct Start
+
+- Arus 6–8 kali FLA
+- Voltage drop di bus 6 kV
+- Risiko undervoltage trip motor lain
+
+#✔ Soft Starter
+
+- Mengurangi arus awal
+- Mengurangi stress mekanik
+
+#✔ VFD
+
+- Kontrol kecepatan
+- Menghasilkan harmonik
+- Berinteraksi dengan capacitor bank
+
+Kesalahan koordinasi starting dapat menyebabkan:
+
+Start satu motor
+→ Bus 6 kV drop
+→ Motor lain trip
+→ Gangguan simultan proses
+
+---
+
+### 4.4 Proteksi Motor MV dan Koordinasinya
+
+![Image](https://www.researchgate.net/publication/258383070/figure/fig11/AS%3A329884586004480%401455662022115/Differential-protection-scheme.png)
+
+![Image](https://www.chintglobal.com/content/dam/chintsite/global/en/about-us/news-center/blog/NXR%20Series%20Thermal%20Overload%20Relays%20Trip%20characteristics.png)
+
+![Image](https://www.researchgate.net/publication/308605610/figure/fig12/AS%3A626226934841344%401526315544429/EC60947-4-1-tripping-time-curves-as-a-function-of-actual-to-full-load-or-setting-current.png)
+
+Proteksi motor 6 kV meliputi:
+
+- Overcurrent (50/51)
+- Earth fault
+- Thermal overload (49)
+- Negative sequence
+- Differential (untuk motor besar)
+- Vibration interlock (integrasi dengan sistem mekanik)
+
+Koordinasi penting:
+
+- Tidak boleh trip saat start normal
+- Harus trip saat overload abnormal
+- Harus selektif terhadap fault downstream
+
+Proteksi motor bukan hanya perlindungan listrik, tetapi perlindungan proses.
+
+---
+
+### 4.5 Failure Mode Motor 6 kV
+
+---
+
+✔ A. Bearing Failure
+
+![Image](https://images.openai.com/static-rsc-3/OIYZxGRgTa5dUuQPOVYsSeqDJhzPbdRxSskA9GubWJtKN2chgd9NwAXr0Nx3OxOmShIkJd_eksxkmQljBPua6zV4wH3nWLBsoTSPBBa3cZw?purpose=fullsize&v=1)
+
+![Image](https://www.ms-motorservice.com/_assets/thumbnail/16679/image?1743153567=)
+
+**Root Physical Mechanism:**
+Degradasi grease → metal-to-metal contact.
+
+**Load/Stress:**
+Misalignment, radial load pompa, over-lubrication.
+
+**Operational Trigger:**
+Start-stop berulang atau kontaminasi.
+
+**System Consequence:**
+Vibrasi naik → shaft deflection → seal bocor.
+
+**Safety Impact:**
+Hydrocarbon leak → ignition risk.
+
+---
+
+✔ B. Insulation Degradation
+
+![Image](https://easa.com/portals/0/Images/FailuresBrochure/WindingFailure1_web.png)
+
+![Image](https://easa.com/portals/0/Images/FailuresBrochure/WindingFailure4_web.png)
+
+**Root:** Thermal aging + partial discharge.
+**Stress:** Overload / voltage imbalance.
+**Trigger:** Voltage sag atau harmonik.
+**Consequence:** Short internal.
+**System Impact:** Motor trip.
+**Safety:** Arc internal di terminal box.
+
+---
+
+✔ C. Overload
+
+**Root:** Proses demand meningkat.
+**Stress:** Arus > FLA.
+**Trigger:** Valve downstream tertutup sebagian.
+**Consequence:** Thermal relay aktif.
+**System Impact:** Flow berhenti mendadak.
+**Safety:** Tekanan proses naik.
+
+---
+
+### 4.6 Rantai Kegagalan Motor → Gangguan Proses → Flare Load → Risiko Kebakaran
+
+Contoh eskalasi nyata:
+
+Motor recycle pump trip
+→ Sirkulasi reaktor berhenti
+→ Temperatur naik
+→ Tekanan meningkat
+→ PSV membuka
+→ Flare load meningkat
+→ Flame instability
+
+Atau:
+
+Motor kompresor trip
+→ Gas tidak terkompresi
+→ Pressure upstream naik
+→ Emergency depressurizing
+→ Lonjakan flare system
+
+Motor trip bukan sekadar “gangguan listrik”, tetapi **pemicu potensi kejadian besar**.
+
+---
+
+### 4.7 Integrasi dengan Interlock Proses dan Sistem Kontrol
+
+Motor 6 kV terhubung dengan:
+
+- Interlock flow rendah
+- Interlock tekanan tinggi
+- ESD logic
+- Vibration shutdown
+
+Jika proteksi listrik tidak sinkron dengan logic proses:
+
+- Motor trip terlalu cepat → trip palsu
+- Motor tidak trip saat perlu → kerusakan besar
+
+Integrasi harus mempertimbangkan:
+
+Electrical Protection + Mechanical Monitoring + Process Interlock.
+
+Motor adalah titik temu antara tiga disiplin:
+
+Electrical – Mechanical – Process.
+
+---
+
+✔ **Penegasan BAB 4**
+
+1. Motor 6 kV adalah penggerak utama proses.
+2. Starting dan proteksi harus terkoordinasi dengan sistem.
+3. Failure motor bisa bereskalasi menjadi risiko proses besar.
+4. Integrasi listrik–mekanik–proses wajib dipahami teknisi ELINS.
+5. Reliability motor menentukan stabilitas plant.
+
+---
+
+## BAB 5 – TRANSFORMATOR 6/380 V (STEP DOWN KE LOW VOLTAGE)
+
+---
+
+### 5.1 Fungsi sebagai Penghubung ke Sistem LV
+
+![Image](https://s.alicdn.com/%40sc04/kf/Hf03cb23c5f7c440cbe3b795eda1864e0p/Step-Down-Transformer-Manufacturers-6kv-33kv-to-400v-50-500kva-Three-Phase-Oil-immersed-Distribution-Power-Transformers-Price.png)
+
+![Image](https://image.made-in-china.com/318f0j00atrURqvdIVoQ/Dry-Type-Transformer-1-1-1-1-mp4.webp)
+
+Trafo 6/380 V menerima daya dari bus 6 kV dan menurunkannya menjadi 380 V untuk:
+
+- MCC 380 V
+- Motor kecil–menengah
+- Lighting
+- UPS charger
+- Panel instrument
+
+Posisi trafo ini sangat strategis karena menjadi:
+
+> Titik transisi dari sistem proses utama (MV) ke sistem operasional dan kontrol (LV).
+
+Jika trafo 20/6 adalah jantung utama, maka trafo 6/380 adalah **jantung sekunder operasional plant**.
+
+---
+
+### 5.2 Pola Beban Fluktuatif dari MCC
+
+![Image](https://www.researchgate.net/publication/261200223/figure/fig3/AS%3A296956145487878%401447811270656/Daily-load-curve-for-residential-and-industrial-loads.png)
+
+![Image](https://www.researchgate.net/publication/322605754/figure/fig1/AS%3A584676854996992%401516409233425/Typical-industrial-load-curves.png)
+
+Beban pada trafo 6/380 bersifat dinamis karena:
+
+- Motor 380 V start–stop
+- Blower dan fan berubah beban
+- UPS charging–discharging
+- Lighting switching
+
+Karakteristik beban LV:
+
+- Inrush current tinggi saat start
+- Unbalance antar fasa
+- Non-linear load dari VFD kecil & rectifier UPS
+
+✔ Konsekuensi Sistemik
+
+Starting beberapa motor 380 V bersamaan:
+
+→ Arus naik tajam
+→ Voltage drop pada bus 380 V
+→ UPS masuk battery mode
+→ DCS terganggu
+
+Trafo 6/380 harus dirancang untuk menangani fluktuasi beban, bukan hanya beban rata-rata.
+
+---
+
+### 5.3 Risiko Ketidakseimbangan Fasa dan Overload
+
+![Image](https://www.researchgate.net/profile/Patrice-Wira/publication/224696726/figure/fig1/AS%3A650032860655657%401531991319924/Experimental-voltage-waveforms-of-a-three-phase-system-under-an-unbalanced-load.png)
+
+![Image](https://www.kritester.com/Uploads/image/20241106/20241106090135_92227.jpg)
+
+✔ A. Ketidakseimbangan Fasa
+
+**Root Physical Mechanism:**
+Distribusi beban tidak merata di MCC.
+
+**Stress Condition:**
+Arus salah satu fasa lebih tinggi.
+
+**Operational Trigger:**
+Penambahan beban satu fasa tanpa evaluasi.
+
+**System Consequence:**
+Winding fasa tertentu overheat.
+
+**Safety Impact:**
+Accelerated aging → insulation failure.
+
+---
+
+✔ B. Overload
+
+**Root:** Penambahan beban tanpa review kapasitas.
+**Stress:** Arus > rating trafo.
+**Trigger:** Ekspansi plant tanpa uprating trafo.
+**Consequence:** Kenaikan temperatur minyak/winding.
+**Safety:** Risiko kebakaran internal.
+
+Overload kronis sering tidak terlihat sampai terjadi degradasi serius.
+
+---
+
+### 5.4 Failure Mode Trafo 6/380
+
+---
+
+✔ 1️⃣ Overheating
+
+**Root:** Beban berlebih + ventilasi buruk.
+**Stress:** I²R losses meningkat.
+**Trigger:** Starting motor simultan.
+**System Consequence:** Thermal trip atau degradasi isolasi.
+**Safety:** Risiko flashover internal.
+
+---
+
+✔ 2️⃣ Insulation Breakdown
+
+**Root:** Aging + thermal cycling.
+**Stress:** Overvoltage transient dari sistem 6 kV.
+**Trigger:** Switching event.
+**System Consequence:** Short internal LV side.
+**Impact:** MCC blackout.
+**Safety:** Arc flash LV.
+
+---
+
+✔ 3️⃣ Harmonic Overheating
+
+**Root:** Non-linear load (UPS, VFD kecil).
+**Stress:** Eddy current losses meningkat.
+**Trigger:** Penambahan inverter load.
+**Consequence:** Overheating core.
+**Safety:** Kebakaran panel trafo.
+
+---
+
+✔ 4️⃣ Mechanical Loosening
+
+**Root:** Getaran dari lingkungan.
+**Stress:** Thermal expansion berulang.
+**Trigger:** Siklus beban tinggi.
+**Consequence:** Resistansi kontak naik.
+**Safety:** Hotspot → ignition source.
+
+---
+
+### 5.5 Dampak terhadap MCC, UPS, Lighting, dan Pompa Utilitas
+
+Jika trafo 6/380 trip:
+
+✔ Dampak ke MCC
+
+- Semua motor 380 V berhenti
+- Cooling water auxiliary pump mati
+- Air compressor mati
+
+✔ Dampak ke UPS
+
+- Charger hilang
+- Sistem kontrol bergantung pada baterai
+- Jika durasi lama → DCS shutdown
+
+✔ Dampak ke Lighting
+
+- Area gelap
+- Risiko keselamatan personel meningkat
+
+✔ Dampak ke Utilitas
+
+- Pompa drain
+- Fan ventilasi
+- Instrument air compressor
+
+Rantai eskalasi:
+
+Trafo 6/380 trip
+→ MCC blackout
+→ Cooling pump berhenti
+→ Temperatur naik
+→ Interlock aktif
+→ Partial plant shutdown
+
+Trafo 6/380 sering dianggap “sekunder”, padahal ia menentukan stabilitas operasional harian plant.
+
+---
+
+✔ **Penegasan BAB 5**
+
+1. Trafo 6/380 adalah penghubung ke sistem operasional.
+2. Beban LV bersifat fluktuatif dan tidak linear.
+3. Ketidakseimbangan fasa mempercepat aging.
+4. Failure trafo LV dapat mengganggu sistem kontrol dan utilitas.
+5. Monitoring berbasis beban nyata lebih penting daripada rating nameplate.
+
+---
+
+## BAB 6 – MCC 380 V DAN DISTRIBUSI LOW VOLTAGE
+
+---
+
+### 6.1 Struktur dan Komponen Utama MCC
+
+![Image](https://rockwellautomation.scene7.com/is/image/rockwellautomation/16x9-centerline-2100-motor-control-center-RA.2400.jpg)
+
+![Image](https://images.openai.com/static-rsc-3/_LwAs8AGherz355aouGRCATvYXpj2r3-dbcF8FCDu4r5jDnZ1e6oZWQx5QHv0VPD9fkG1dx6uy_6YGCZ6VSZnDVeAPbrUQo9AiY36PeF2qs?purpose=fullsize&v=1)
+
+MCC 380 V menerima daya dari trafo 6/380 V dan mendistribusikan ke:
+
+- Motor 380 V (pompa utilitas, blower, fan)
+- Lighting panel
+- UPS charger
+- Panel instrument
+
+Komponen utama:
+
+- Incoming ACB/MCCB
+- Busbar 3 phase + N
+- Feeder breaker (MCCB/MCB)
+- Contactor + overload relay
+- Power meter & protection
+- Terminal & cable gland
+
+MCC adalah titik dengan **kepadatan energi tinggi** dan aktivitas switching paling sering.
+Risiko kegagalan di MCC secara statistik lebih tinggi dibanding trafo.
+
+---
+
+### 6.2 Karakteristik Motor 380 V dan Beban Non-Motor
+
+![Image](https://inwfile.com/s-fi/i8u9z9.jpg)
+
+✔ Motor 380 V
+
+- Daya kecil–menengah
+- Start-stop sering
+- Banyak jumlahnya
+- Sensitif terhadap voltage drop
+
+✔ Beban Non-Motor
+
+- UPS (rectifier non-linear)
+- Lighting LED (harmonik)
+- Heater kecil
+- Instrument power supply
+
+Karakteristik penting:
+
+- Inrush current tinggi
+- Harmonic distortion meningkat
+- Beban satu fasa tidak merata
+
+MCC LV adalah pusat interaksi antara beban dinamis dan proteksi cepat.
+
+---
+
+### 6.3 Koordinasi Breaker dan Proteksi LV
+
+![Image](https://www.researchgate.net/publication/224237883/figure/fig3/AS%3A302773573832709%401449198253708/Typical-characteristic-time-current-curve-for-a-small-low-voltage-Navy-ALB-1-AC-circuit.png)
+
+Proteksi LV meliputi:
+
+- ACB (incoming MCC)
+- MCCB feeder
+- Thermal overload relay
+- Short circuit instantaneous trip
+
+✔ Prinsip Koordinasi:
+
+Gangguan di feeder harus diputus oleh feeder breaker, bukan oleh incoming ACB.
+
+Jika koordinasi gagal:
+
+Feeder short
+→ Incoming ACB trip
+→ Seluruh MCC blackout
+
+Koordinasi LV harus mempertimbangkan:
+
+- Short circuit level trafo 6/380
+- Icu rating breaker
+- Selective time delay
+
+Kesalahan koordinasi LV sering menjadi penyebab blackout parsial.
+
+---
+
+### 6.4 Arc Flash Hazard dan Mitigasinya
+
+![Image](https://media.licdn.com/dms/image/v2/C5612AQE4QbDyAN_KjQ/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1563088093901?e=2147483647&t=zUMsM0RUrPxUWw0dlbE4FJiQvQwSDRzt_Js1nZ5_o58&v=beta)
+
+Arc flash adalah risiko terbesar di MCC.
+
+✔ Root Physical Mechanism
+
+- Short circuit antar fasa
+- Loose contact menghasilkan ionisasi udara
+- Arc plasma terbentuk
+- Temperatur > 20.000°C
+
+✔ Stress Condition
+
+- Fault current tinggi
+- Clearance kecil dalam panel
+- Debu konduktif
+
+✔ Operational Trigger
+
+- Maintenance tanpa torque sesuai
+- Tools terjatuh
+- Kabel terkelupas
+
+✔ System Consequence
+
+- Panel rusak total
+- Banyak feeder mati
+- Downtime lama
+
+✔ Safety Implication
+
+- Luka bakar fatal
+- Blast pressure
+- Secondary fire
+
+Mitigasi:
+
+- Arc flash study (IEEE 1584)
+- Setting instantaneous trip
+- Arc resistant panel
+- Maintenance torque control
+
+---
+
+### 6.5 Failure Mode MCC
+
+---
+
+✔ A. Loose Termination
+
+![Image](https://global.discourse-cdn.com/internachi/original/3X/2/d/2daa69f39de60ec8e07323a567bb5e175e1ea1cb.jpeg)
+
+![Image](https://res.cloudinary.com/dedqjkwql/image/upload/f_auto%2Cq_auto/v1758470571/loose-connections-electrical-thermal-imaging.jpg)
+
+**Root Physical Mechanism:**
+Baut terminal tidak sesuai torque → resistansi naik.
+
+**Stress:** Arus beban normal menghasilkan panas lokal.
+
+**Trigger:** Vibrasi & thermal cycling.
+
+**System Consequence:**
+Hotspot → karbonisasi isolasi.
+
+**Safety:**
+Arc flash atau kebakaran panel.
+
+---
+
+✔ B. Busbar Overheating
+
+![Image](https://occamy.chemistry.jhu.edu/busbarburnout/Montage.jpg)
+
+**Root:** Beban melebihi rating.
+**Stress:** I²R losses meningkat.
+**Trigger:** Penambahan feeder tanpa uprating.
+**Consequence:** Degradasi isolasi busbar.
+**Safety:** Internal phase-to-phase fault.
+
+---
+
+✔ C. Internal Short Circuit
+
+![Image](https://www.electricalfaultsfixed.com/sites/default/files/2024-09/blog%20-%20img%20%283%29.png)
+
+![Image](https://vertexeng.com/app/uploads/2020/03/Electrical-Panel-Fire-49084-CT-1200x788.jpg)
+
+**Root:** Insulation failure atau foreign object.
+**Stress:** Fault current tinggi dari trafo 6/380.
+**Trigger:** Kelembaban atau hewan kecil masuk panel.
+**Consequence:** Instantaneous trip atau arc escalation.
+**Safety:** Panel explosion & fire.
+
+---
+
+### 6.6 Dampak ke Sistem Kontrol dan Instrument Power
+
+MCC 380 V mensuplai:
+
+- UPS charger
+- Panel instrument
+- Power actuator valve
+- HVAC control room
+
+Jika MCC gagal:
+
+→ UPS tidak charging
+→ DCS bergantung baterai
+→ Jika durasi panjang → sistem kontrol mati
+
+Rantai eskalasi:
+
+Loose terminal
+→ Arc flash
+→ MCC blackout
+→ UPS discharge
+→ DCS shutdown
+→ Interlock tidak aktif
+→ Risiko proses meningkat
+
+MCC LV adalah penghubung langsung antara listrik dan stabilitas kontrol proses.
+
+---
+
+✔ **Penegasan BAB 6**
+
+1. MCC 380 V adalah titik risiko tertinggi dalam distribusi.
+2. Arc flash adalah bahaya utama LV.
+3. Loose termination adalah penyebab kegagalan paling umum.
+4. Koordinasi breaker menentukan selektivitas sistem.
+5. Kegagalan MCC berdampak langsung ke sistem kontrol dan keselamatan.
+
+---
+
+## BAB 7 – CAPACITOR BANK & POWER FACTOR CORRECTION
+
+---
+
+### 7.1 Fungsi Capacitor Bank dalam Sistem 6 kV / 380 V
+
+![Image](https://image.made-in-china.com/202f0j00PvUiDglzaORB/Medium-Voltage-Motor-Inductive-Reactive-Power-Compensation-Capacitor-Bank-6kv.jpg)
+
+![Image](https://lirp.cdn-website.com/15ea1570/dms3rep/multi/opt/PFC%2Bunit%2B8-640w.JPG)
+
+Capacitor bank dipasang untuk memperbaiki **faktor daya (power factor)** akibat dominasi beban induktif:
+
+- Motor 6 kV
+- Motor 380 V
+- Trafo distribusi
+
+Fungsi utama:
+
+- Menyediakan daya reaktif lokal
+- Mengurangi arus yang ditarik dari trafo
+- Mengurangi losses (I²R)
+- Menjaga stabilitas tegangan
+
+Dalam sistem plant:
+
+> Capacitor bank bukan sekadar alat penghemat biaya, tetapi bagian dari stabilitas tegangan sistem.
+
+---
+
+### 7.2 Hubungan Faktor Daya, Arus Sistem, dan Losses
+
+![Image](https://www.researchgate.net/publication/306287372/figure/fig1/AS%3A396749270208512%401471603805163/Power-factor-triangle.png)
+
+![Image](https://www.researchgate.net/publication/338449501/figure/fig1/AS%3A845011759419412%401578477911989/Concept-of-Reactive-Power-Compensation.png)
+
+Jika faktor daya rendah:
+
+- Arus sistem meningkat
+- Trafo bekerja lebih berat
+- Busbar panas
+- Losses meningkat
+
+Secara matematis:
+
+Daya aktif tetap, tetapi arus meningkat saat cos φ turun.
+
+Akibat sistemik:
+
+PF rendah
+→ Arus naik
+→ Trafo overload
+→ Temperatur naik
+→ Aging dipercepat
+
+Capacitor bank mengurangi arus tanpa menambah daya aktif.
+
+---
+
+### 7.3 Lokasi Pemasangan (MV vs LV Capacitor Bank)
+
+![Image](https://www.researchgate.net/publication/305817945/figure/fig1/AS%3A670708153724930%401536920693225/Single-line-diagram-of-the-capacitor-bank-system-in-the-NongChok-substation.png)
+
+![Image](https://www.zddqelectric.com/js/htmledit/kindeditor/attached/20200316/20200316111438_71941.png)
+
+✔ A. MV Capacitor Bank (6 kV)
+
+- Terpasang di bus 6 kV
+- Mengompensasi motor besar
+- Dampak langsung ke trafo 20/6
+
+✔ B. LV Capacitor Bank (380 V)
+
+- Terpasang di MCC
+- Mengompensasi motor kecil & beban LV
+- Lebih fleksibel dan bertahap
+
+Pemilihan lokasi harus mempertimbangkan:
+
+- Profil beban
+- Level harmonik
+- Stabilitas tegangan
+- Koordinasi dengan VFD
+
+Kesalahan lokasi dapat menyebabkan overcompensation atau resonansi.
+
+---
+
+### 7.4 Mekanisme Kerja Automatic Power Factor Controller
+
+![Image](https://tiimg.tistatic.com/fp/4/008/033/automatic-power-factor-controller-573.jpg)
+
+![Image](https://image1ws.indotrading.com/s3/productimages/webp/co93602/p574053/w300-h300/e52cca72-998d-48a1-99db-d3b4b6463bdew.png)
+
+Automatic Power Factor Controller (APFC):
+
+1. Mengukur cos φ sistem.
+2. Membandingkan dengan target (misalnya 0.95).
+3. Mengaktifkan step kapasitor secara bertahap.
+4. Menonaktifkan saat beban turun.
+
+Risiko:
+
+Switching terlalu sering
+→ Transient spike
+→ Stress dielectric kapasitor
+
+APFC harus dikalibrasi sesuai pola beban plant.
+
+---
+
+### 7.5 Risiko Resonansi dan Harmonik (Interaksi dengan VFD)
+
+![Image](https://www.hioki.com/system/files/image/2022-08/Waveform-02_1.png)
+
+![Image](https://www.researchgate.net/publication/272768004/figure/fig1/AS%3A410875111460864%401474971668204/Harmonic-current-spectrum-at-the-input-of-VFD-1.png)
+
+Motor dengan VFD menghasilkan harmonik.
+
+Jika kapasitor dipasang tanpa reaktor detuning:
+
+Harmonik tertentu dapat menyebabkan resonansi paralel.
+
+✔ Root Physical Mechanism
+
+Induktansi trafo + kapasitansi bank membentuk rangkaian resonan.
+
+✔ Stress Condition
+
+Frekuensi harmonik mendekati frekuensi resonansi.
+
+✔ Operational Trigger
+
+Penambahan VFD baru tanpa studi harmonik.
+
+✔ System Consequence
+
+Arus harmonik besar mengalir ke kapasitor.
+
+✔ Safety Impact
+
+Overheating → rupture → fire panel.
+
+Detuned reactor diperlukan pada sistem dengan harmonik signifikan.
+
+---
+
+### 7.6 Failure Mode Capacitor Bank
+
+---
+
+✔ A. Capacitor Dielectric Breakdown
+
+![Image](https://www.aictech-inc.com/en/valuable-articles/images/c02/c02-035.png)
+
+**Root:** Aging dielectric film.
+**Stress:** Overvoltage & harmonik.
+**Trigger:** Switching transient.
+**Consequence:** Internal short.
+**Safety:** Ledakan kecil dalam panel.
+
+---
+
+✔ B. Overvoltage
+
+**Root:** Overcompensation saat beban rendah.
+**Stress:** Tegangan > rating kapasitor.
+**Trigger:** Banyak step tetap aktif saat beban turun.
+**Consequence:** Dielectric stress meningkat.
+**Safety:** Premature failure.
+
+---
+
+✔ C. Harmonic Overheating
+
+**Root:** Harmonik dari VFD.
+**Stress:** RMS current > nominal.
+**Trigger:** Resonansi sistem.
+**Consequence:** Suhu naik cepat.
+**Safety:** Fire panel.
+
+---
+
+✔ D. Switching Transient
+
+**Root:** Switching tanpa zero-cross control.
+**Stress:** Inrush current tinggi.
+**Trigger:** APFC aktifkan step besar.
+**Consequence:** Contact wear & dielectric stress.
+**Safety:** Arc di contactor.
+
+---
+
+### 7.7 Root Cause Chain
+
+Harmonik tinggi
+→ Arus kapasitor naik
+→ Overheating dielectric
+→ Internal rupture
+→ Proteksi kapasitor trip
+→ PF turun
+→ Arus sistem naik
+→ Tegangan drop
+→ Motor overload
+
+Satu kegagalan kecil dapat menjalar ke sistem distribusi.
+
+---
+
+### 7.8 Dampak Sistemik
+
+Jika capacitor bank gagal:
+
+✔ Trafo Overload
+
+Arus sistem meningkat kembali.
+
+✔ MCC Trip
+
+Voltage drop memicu undervoltage relay.
+
+✔ Penurunan Efisiensi
+
+Losses meningkat.
+
+✔ Risiko Fire Panel
+
+Panel kapasitor sering memiliki ventilasi terbatas.
+
+Capacitor bank mempengaruhi:
+
+- Loading trafo 20/6
+- Loading trafo 6/380
+- Stabilitas bus 6 kV & 380 V
+
+---
+
+### 7.9 Keterkaitan dengan Reliability dan Biaya Energi
+
+Power factor rendah menyebabkan:
+
+- Penalty biaya dari utilitas
+- Losses internal tinggi
+- Aging lebih cepat pada trafo & busbar
+
+Namun overkompensasi juga berbahaya.
+
+Reliability optimal dicapai bila:
+
+- PF dijaga stabil (±0.95)
+- Harmonic study dilakukan sebelum instalasi
+- APFC dikalibrasi sesuai profil beban
+
+Capacitor bank adalah elemen kecil yang memiliki dampak besar terhadap:
+
+- Stabilitas sistem
+- Umur trafo
+- Efisiensi energi
+- Keselamatan panel
+
+---
+
+✔ **Penegasan BAB 7**
+
+1. Capacitor bank mempengaruhi arus dan losses sistem.
+2. Harmonik adalah risiko utama dalam sistem modern.
+3. Resonansi dapat menyebabkan kegagalan cepat.
+4. Overcompensation sama berbahayanya dengan undercompensation.
+5. Reliability trafo dan MCC bergantung pada manajemen daya reaktif yang benar.
+
+---
+
+## BAB 8 – UPS DAN POWER UNTUK SISTEM KONTROL
+
+---
+
+### 8.1 Arsitektur Supply UPS dari MCC
+
+![Image](https://media.licdn.com/dms/image/v2/D4D12AQGpxTqINc2vyg/article-cover_image-shrink_720_1280/B4DZcFkgbuGkAI-/0/1748145148496?e=2147483647&t=YmhWD5Up0cSXPUJZ_GqUX1e-joDMGF8VGkHww1nQVHY&v=beta)
+
+![Image](https://www.researchgate.net/publication/265936805/figure/fig2/AS%3A392145711190027%401470506231804/Single-line-diagram-of-the-distribution-system-containing-a-UPS.png)
+
+![Image](https://www.kstar.com/bocupload/cms/www/20210830154121240001.jpg)
+
+Alur suplai sistem kontrol di plant:
+
+**PLN 20 kV → Trafo 20/6 → Trafo 6/380 → MCC 380 V → UPS → DCS/PLC/Instrument**
+
+UPS menerima daya dari MCC 380 V melalui feeder khusus, kemudian:
+
+1. Rectifier mengubah AC menjadi DC.
+2. DC mengisi baterai.
+3. Inverter mengubah DC menjadi AC stabil untuk beban kontrol.
+
+Beban UPS biasanya meliputi:
+
+- DCS server & controller
+- PLC panel
+- SIS logic solver
+- HMI & jaringan kontrol
+- Instrument power supply 24 VDC
+
+UPS adalah **jembatan antara sistem tenaga dan sistem keselamatan proses**.
+
+---
+
+### 8.2 Peran UPS dalam Menjaga DCS/PLC Tetap Aktif Saat Gangguan
+
+![Image](https://control.com/uploads/articles/image1_DCS.jpg)
+
+![Image](https://www.researchgate.net/publication/327073518/figure/fig1/AS%3A660600527015936%401534510847055/Architecture-of-industrial-control-system.png)
+
+Saat terjadi gangguan listrik:
+
+- Voltage sag
+- Trip MCC
+- Trafo 6/380 trip
+- Blackout parsial
+
+UPS memastikan:
+
+- DCS tetap aktif
+- PLC tetap menjalankan logic
+- Interlock tetap bekerja
+- Data historis tidak hilang
+
+Contoh eskalasi tanpa UPS:
+
+MCC trip
+→ PLC mati
+→ Control valve fail state tidak terkontrol
+→ Tekanan proses naik
+→ PSV buka
+
+Dengan UPS, kontrol tetap aktif sehingga proses dapat dihentikan secara terkendali.
+
+UPS bukan hanya backup daya, tetapi bagian dari **Layer of Protection**.
+
+---
+
+### 8.3 Battery System dan Mode Kegagalan
+
+![Image](https://res.cloudinary.com/utiblog/image/upload/f_auto%2Cq_auto/battery-terminal-corrosion_hero1cebf7d0b-66cf-455d-808a-6637ed8a4aef.webp)
+
+![Image](https://www.corrosionx.com/cdn/shop/articles/battery-corrosion.jpg?v=1714763511)
+
+Jenis baterai umum:
+
+- VRLA (Valve Regulated Lead Acid)
+- Flooded Lead Acid
+- Lithium (pada sistem modern)
+
+✔ Mode Kegagalan Baterai
+
+#✔ 1️⃣ Capacity Degradation
+
+**Root:** Aging kimia internal.
+**Stress:** Temperatur tinggi.
+**Trigger:** Ventilasi ruang buruk.
+**Consequence:** Backup time lebih pendek dari desain.
+
+---
+
+#✔ 2️⃣ Thermal Runaway
+
+**Root:** Overcharging.
+**Stress:** Suhu meningkat → resistansi turun → arus naik.
+**Trigger:** Charger malfunction.
+**Consequence:** Kenaikan suhu tak terkendali.
+**Safety:** Risiko kebakaran ruang baterai.
+
+---
+
+#✔ 3️⃣ Terminal Corrosion
+
+**Root:** Gas H₂ dari charging.
+**Stress:** Kelembaban tinggi.
+**Consequence:** Resistansi kontak naik → overheating.
+
+Baterai adalah titik lemah tersembunyi dalam sistem UPS.
+
+---
+
+### 8.4 Failure Mode UPS
+
+![Image](https://www.tycorun.com/cdn/shop/articles/Common-UPS-failure-the-causes-and-solutions.webp?v=1709800085)
+
+---
+
+✔ A. Rectifier Failure
+
+**Root Physical Mechanism:**
+Komponen semikonduktor rusak.
+
+**Stress:** Harmonik dari MCC.
+
+**Trigger:** Voltage spike.
+
+**System Consequence:**
+Baterai tidak terisi.
+
+**Safety Impact:**
+Backup time berkurang.
+
+---
+
+✔ B. Inverter Failure
+
+**Root:** IGBT overheating.
+**Stress:** Beban melebihi kapasitas.
+**Trigger:** Penambahan panel kontrol tanpa review kapasitas.
+**Consequence:** Output UPS hilang.
+**Safety:** Sistem kontrol mati mendadak.
+
+---
+
+✔ C. Static Bypass Failure
+
+**Root:** SCR malfunction.
+**Stress:** Switching berulang.
+**Consequence:** UPS tidak dapat transfer ke bypass.
+**Impact:** Total loss of supply kontrol.
+
+---
+
+✔ D. Battery Failure Saat Blackout
+
+**Root:** Kapasitas menurun tidak terdeteksi.
+**Trigger:** Blackout > beberapa menit.
+**Consequence:** DCS mati saat proses belum aman.
+
+---
+
+### 8.5 Dampak Kehilangan Instrument Power terhadap Interlock dan ESD
+
+![Image](https://control.com/uploads/textbooks/valve_20.jpg)
+
+Instrument power (24 VDC) biasanya berasal dari UPS.
+
+Jika instrument power hilang:
+
+- Transmitter mati
+- Valve actuator kehilangan kontrol
+- Interlock logic terganggu
+- SIS bisa masuk fail-safe mode
+
+✔ Rantai Eskalasi
+
+UPS gagal
+→ Instrument 24 VDC mati
+→ Flow transmitter nol
+→ PLC interpretasi sebagai kondisi abnormal
+→ ESD aktif
+
+Atau lebih berbahaya:
+
+UPS gagal
+→ PLC mati
+→ Interlock tidak bekerja
+→ Overpressure tidak terdeteksi
+→ Loss of Containment
+
+Instrument power adalah **fondasi keandalan interlock proses**.
+
+---
+
+✔ **Penegasan BAB 8**
+
+1. UPS adalah layer proteksi untuk sistem kontrol.
+2. Baterai adalah titik lemah tersembunyi.
+3. Kegagalan UPS dapat memicu shutdown tak terkendali.
+4. Instrument power adalah fondasi interlock dan ESD.
+5. Reliability kontrol sangat bergantung pada stabilitas LV dan UPS.
+
+---
+
+## BAB 9 – SISTEM GROUNDING DAN PROTEKSI PETIR
+
+---
+
+### 9.1 Filosofi Grounding Industri Petrokimia
+
+![Image](https://eepower.com/uploads/thumbnails/Screen_Shot_2020-10-02_at_9.05.52_AM_.png)
+
+![Image](https://storage.tameson.com/asset/Articles/general/ground-rod-installation.jpg)
+
+![Image](https://4.bp.blogspot.com/-nMkxpShOZEg/WG3y7Nop8YI/AAAAAAAACM0/lHUSv96RzXI8ZctE0hXV_Xjn7BXSSS-IACLcB/s1600/substation%2Bearthing.jpg)
+
+Grounding di industri petrokimia bukan sekadar “menanam batang ground”, tetapi merupakan:
+
+> Sistem jalur arus gangguan terkontrol untuk melindungi manusia, peralatan, dan proses.
+
+Filosofi utamanya:
+
+1. Menyediakan jalur impedansi rendah untuk fault current.
+2. Menjamin relay proteksi bekerja cepat.
+3. Menyamakan potensial antar struktur (equipotential bonding).
+4. Mengendalikan energi petir agar tidak menjadi ignition source.
+
+Grounding yang buruk berarti:
+
+- Arus gangguan tidak mengalir dengan benar.
+- Relay gagal mendeteksi fault.
+- Tegangan sentuh membahayakan personel.
+- Risiko percikan di area hidrokarbon.
+
+Grounding adalah fondasi proteksi listrik dan keselamatan plant.
+
+---
+
+### 9.2 Ground Grid dan Bonding Antar Peralatan
+
+![Image](https://www.easypower.com/images/product_images/Ground_Grid_Construction_560_1.png)
+
+![Image](https://www.dehn-international.com/sites/default/files/styles/3_2_ratio_1200_x_800/public/media/images/2025-05/image-cable-support-systems-1200x800px.webp?itok=ZefutvQe)
+
+![Image](https://zandz.com/files/uploads/information_12650/Equipotential%20bonding%20system%20in%20a%20residential%20house-2.jpg)
+
+✔ Ground Grid
+
+Biasanya berupa jaringan konduktor tembaga tertanam di bawah tanah yang terhubung ke:
+
+- Panel 20 kV
+- Switchgear 6 kV
+- MCC 380 V
+- Tangki dan struktur baja
+- Pipa proses
+
+Tujuan:
+
+- Mengurangi resistansi tanah
+- Menyebarkan arus gangguan secara merata
+
+---
+
+✔ Bonding
+
+Bonding menyamakan potensial antar:
+
+- Struktur baja
+- Tangki penyimpanan
+- Pipa proses
+- Cable tray
+- Motor frame
+
+Tanpa bonding yang baik:
+
+Perbedaan potensial dapat menyebabkan percikan (spark) saat ada arus bocor.
+
+---
+
+✔ Neutral Grounding
+
+Pada sistem 6 kV sering digunakan:
+
+- Neutral Grounding Resistor (NGR)
+- Solid grounding (untuk LV)
+
+Tujuannya membatasi arus earth fault agar:
+
+- Cukup besar untuk dideteksi relay
+- Tidak terlalu besar merusak peralatan
+
+---
+
+### 9.3 Pengaruh Grounding terhadap Sistem Proteksi Relay
+
+![Image](https://www.researchgate.net/publication/278372344/figure/fig1/AS%3A778274762416128%401562566571027/The-ground-path-shunts-fault-current-to-flow-safely-through-ground.png)
+
+Proteksi earth fault sangat bergantung pada kualitas grounding.
+
+✔ Root Physical Mechanism
+
+Insulation breakdown → fasa menyentuh ground.
+
+✔ Jika Grounding Baik
+
+- Arus fault mengalir melalui ground grid.
+- Relay mendeteksi arus.
+- Breaker trip cepat.
+- Fault terisolasi.
+
+✔ Jika Grounding Buruk
+
+- Arus fault kecil atau menyebar tidak terkontrol.
+- Relay tidak trip.
+- Arc terus menyala.
+- Kerusakan membesar.
+
+Grounding menentukan:
+
+- Kecepatan proteksi
+- Besarnya energi fault
+- Tingkat kerusakan peralatan
+
+Grounding yang buruk dapat mengubah fault kecil menjadi ledakan panel.
+
+---
+
+### 9.4 Risiko Touch Voltage & Step Potential
+
+![Image](https://static.wixstatic.com/media/e4ba2e_534498f6d1574e1d97af9129d9a9fccc~mv2.png/v1/fill/w_657%2Ch_319%2Cal_c%2Cq_85%2Cenc_avif%2Cquality_auto/e4ba2e_534498f6d1574e1d97af9129d9a9fccc~mv2.png)
+
+Saat terjadi ground fault besar di 6 kV atau 20 kV:
+
+- Ground grid mengalami Ground Potential Rise (GPR).
+
+✔ Touch Voltage
+
+Perbedaan tegangan antara tangan dan kaki saat menyentuh peralatan.
+
+✔ Step Potential
+
+Perbedaan tegangan antara dua kaki saat berdiri di area fault.
+
+Jika resistansi grid tinggi:
+
+- Tegangan sentuh bisa mematikan.
+- Personel maintenance berisiko fatal.
+
+Desain grounding harus mempertimbangkan:
+
+- Soil resistivity
+- Fault current maksimum
+- Durasi fault
+
+Grounding adalah sistem proteksi manusia, bukan hanya peralatan.
+
+---
+
+### 9.5 Hubungan Grounding dengan Area Berbahaya
+
+![Image](https://image.everyeng.com/learn/5251ba7b/bannerimage)
+
+![Image](https://eepower.com/uploads/articles/The_Risks_Of_Static_Electricity_In_The_Petroleum_Industry_Figure_4.jpg)
+
+Di area dengan hidrokarbon:
+
+- Gas mudah terbakar
+- Uap volatile
+- Potensi ignition rendah
+
+Grounding dan bonding berfungsi untuk:
+
+1. Menghilangkan muatan statis.
+2. Mencegah percikan saat transfer fluida.
+3. Mengendalikan energi petir.
+4. Mengurangi risiko spark akibat perbedaan potensial.
+
+Contoh eskalasi:
+
+Bonding buruk pada tangki
+→ Static charge terakumulasi
+→ Spark kecil
+→ Ignition vapor
+→ Fire / Explosion
+
+Grounding dan bonding adalah bagian dari sistem pencegahan ignition.
+
+---
+
+✔ **Penegasan BAB 9**
+
+1. Grounding adalah fondasi proteksi sistem tenaga.
+2. Relay proteksi bergantung pada jalur fault yang baik.
+3. Touch voltage & step potential adalah risiko fatal.
+4. Grounding berkaitan langsung dengan pencegahan ignition di area berbahaya.
+5. Kegagalan grounding dapat mengeskalasi gangguan kecil menjadi kecelakaan besar.
+
+---
+
+## BAB 10 – GANGGUAN SISTEMIK: VOLTAGE SAG, SURGE, HARMONIK
+
+---
+
+### 10.1 Sumber Gangguan Internal & Eksternal
+
+![Image](https://www.researchgate.net/publication/43976345/figure/fig1/AS%3A394367429824521%401471035931011/oltage-sag-waveform.png)
+
+![Image](https://www.hioki.com/system/files/image/2022-08/Waveform-02_1.png)
+
+![Image](https://www.packetpower.com/hs-fs/hubfs/THD%20image%201.png?height=596&name=THD+image+1.png&width=702)
+
+Gangguan sistem tenaga pada konfigurasi:
+
+**PLN 20 kV → Trafo 20/6 → 6 kV → Trafo 6/380 → MCC → UPS**
+
+dapat berasal dari:
+
+✔ A. Eksternal (PLN / Lingkungan)
+
+- Hubung singkat jaringan utilitas
+- Switching transmisi
+- Petir
+- Fluktuasi grid regional
+
+✔ B. Internal (Plant)
+
+- Starting motor 6 kV besar
+- Switching capacitor bank
+- Fault di MCC
+- VFD menghasilkan harmonik
+
+Gangguan ini tidak berdiri sendiri — efeknya menjalar lintas level tegangan.
+
+---
+
+### 10.2 Dampak terhadap Motor 6 kV dan 380 V
+
+![Image](https://www.researchgate.net/publication/229007280/figure/fig6/AS%3A668558140928011%401536408090227/oltage-sag-due-to-a-motor-starting-oltage-sag-due-to-a-motor-starting-Transformers-can.png)
+
+![Image](https://www.researchgate.net/publication/342156543/figure/fig2/AS%3A11431281108640741%401671554129462/Speed-torque-curves-for-different-voltage-values.ppm)
+
+✔ A. Voltage Sag
+
+**Root Physical Mechanism:**
+Penurunan tegangan < 90% nominal.
+
+**Stress Condition:**
+Motor membutuhkan torsi, tetapi tegangan turun.
+
+**Efek pada Motor:**
+
+- Torsi ∝ V² → turun drastis.
+- Arus meningkat untuk mempertahankan beban.
+- Overheating stator.
+
+Jika sag cukup dalam:
+
+→ Undervoltage relay trip
+→ Motor berhenti
+
+---
+
+✔ B. Voltage Unbalance
+
+Perbedaan kecil antar fasa menghasilkan:
+
+- Negative sequence current
+- Heating rotor
+- Vibrasi meningkat
+
+---
+
+✔ C. Harmonik
+
+Harmonik menyebabkan:
+
+- Losses tambahan pada stator
+- Heating trafo
+- Interferensi proteksi
+
+Motor 6 kV sangat sensitif terhadap gangguan tegangan karena beban proses besar dan inersia tinggi.
+
+---
+
+### 10.3 Dampak terhadap UPS dan Kontrol
+
+![Image](https://www.iqsdirectory.com/articles/power-supply/uninterruptible-power-supply/off-line-ups.jpg)
+
+✔ Voltage Sag pada MCC
+
+Sag di 6 kV
+→ Trafo 6/380 drop
+→ MCC voltage turun
+→ UPS masuk mode battery
+
+Jika sag sering terjadi:
+
+- Siklus charge-discharge baterai meningkat
+- Umur baterai menurun
+
+---
+
+✔ Surge / Transient
+
+Lonjakan tegangan:
+
+- Stress pada rectifier UPS
+- Potensi kerusakan power supply PLC
+- Gangguan komunikasi kontrol
+
+---
+
+✔ Harmonik
+
+Harmonik tinggi:
+
+- Memanaskan trafo UPS
+- Mengganggu zero-cross detection
+- Memicu alarm sistem
+
+Gangguan listrik kecil bisa memicu false trip atau bahkan shutdown kontrol.
+
+---
+
+### 10.4 Peran SPD dan Filtering Harmonik
+
+![Image](https://www.best-surge-protector.com/images/Cabinet-SPD-Update-2023.png)
+
+✔ SPD (Surge Protective Device)
+
+Fungsi:
+
+- Menyerap transient overvoltage.
+- Mengalihkan energi surge ke ground.
+
+Posisi ideal:
+
+- Incoming 20 kV
+- Panel 6 kV
+- MCC 380 V
+- Panel UPS
+
+---
+
+✔ Harmonic Filter
+
+Digunakan untuk:
+
+- Mengurangi THD (Total Harmonic Distortion)
+- Melindungi trafo dan kapasitor
+- Mengurangi overheating
+
+Tanpa filtering:
+
+Harmonik
+→ Overheating kapasitor
+→ Trip capacitor bank
+→ PF turun
+→ Arus naik
+→ Trafo overload
+
+---
+
+### 10.5 Studi Rantai Kegagalan: Sag → Pompa Trip → Tekanan Naik
+
+![Image](https://www.researchgate.net/publication/315339733/figure/fig16/AS%3A473220903116802%401489836063253/Process-flow-diagram-of-reactor-system-used-for-all-experiments.png)
+
+![Image](https://www.sheffieldforgemasters.com/uploads/previews/High%20Pressure%20Reactor%20Preview.jpg)
+
+✔ Studi Kasus Sistemik
+
+**Step 1 – Voltage Sag dari PLN**
+Tegangan 20 kV turun 20% selama 300 ms.
+
+**Step 2 – Dampak ke 6 kV**
+Bus 6 kV drop → motor recycle pump kehilangan torsi.
+
+**Step 3 – Proteksi Aktif**
+Undervoltage relay trip.
+
+**Step 4 – Dampak Mekanik**
+Aliran sirkulasi reaktor berhenti.
+
+**Step 5 – Dampak Proses**
+Temperatur naik → tekanan meningkat.
+
+**Step 6 – Dampak Safety**
+PSV membuka → flare load meningkat.
+
+Jika sag berulang:
+
+- Thermal stress pada peralatan.
+- Seal dan bearing mengalami kelelahan.
+- Reliability plant menurun.
+
+Ini menunjukkan bahwa gangguan tegangan milidetik dapat bereskalasi menjadi event proses besar.
+
+---
+
+✔ **Penegasan BAB 10**
+
+1. Gangguan kecil dapat menjalar lintas level tegangan.
+2. Motor dan UPS sangat sensitif terhadap sag dan harmonik.
+3. SPD dan filter harmonik adalah bagian dari strategi reliability.
+4. Voltage sag dapat memicu eskalasi proses.
+5. Power quality adalah faktor keselamatan, bukan hanya kualitas listrik.
+
+---
+
+## BAB 11 – INTEGRASI LISTRIK DENGAN INSTRUMENT & CONTROL
+
+---
+
+### 11.1 Interlock Berbasis Listrik dan Proses
+
+![Image](https://www.researchgate.net/publication/303314790/figure/fig1/AS%3A363155537580034%401463594435427/Process-Interlock-diagram-of-cooler.png)
+
+![Image](https://www.hcpetroleum.hk/ueditor/image/20200803/Current_flowchart_shows_how_ESD_Control_Panel_connected_with_components_of_surface_well_test_systems_001.jpg)
+
+Dalam sistem 20 kV → 6 kV → 380 V → UPS → DCS/PLC, interlock adalah jembatan antara:
+
+- Proteksi listrik
+- Proteksi mekanik
+- Proteksi proses
+
+Contoh interlock berbasis listrik:
+
+- Motor trip → kirim sinyal ke PLC
+- Undervoltage → blok start ulang otomatis
+- Overcurrent → shutdown pompa
+
+Contoh interlock berbasis proses:
+
+- Flow rendah → trip motor
+- Tekanan tinggi → stop kompresor
+- Temperatur tinggi → aktifkan ESD
+
+Interlock memastikan bahwa gangguan di satu disiplin tidak berkembang menjadi kegagalan besar.
+
+---
+
+### 11.2 Hubungan Trip Motor dengan Logic Control
+
+![Image](https://static.wixstatic.com/media/0564a2_3e774df52e684bec9533f2ec2b4cbe43~mv2.png/v1/fill/w_625%2Ch_682%2Cal_c%2Cq_90%2Cenc_avif%2Cquality_auto/0564a2_3e774df52e684bec9533f2ec2b4cbe43~mv2.png)
+
+Ketika motor 6 kV atau 380 V trip, ada dua jalur dampak:
+
+✔ A. Jalur Listrik
+
+Relay mendeteksi fault → breaker trip.
+
+✔ B. Jalur Kontrol
+
+Sinyal trip dikirim ke PLC/DCS.
+
+PLC kemudian:
+
+- Menghentikan peralatan terkait
+- Mengubah posisi control valve
+- Mengaktifkan alarm
+- Menjalankan shutdown sequence
+
+Jika logic tidak sinkron:
+
+Motor trip
+→ PLC tidak menerima sinyal
+→ Sistem tetap mencoba start ulang
+→ Overstress mekanik
+
+Atau sebaliknya:
+
+Trip kecil
+→ Logic terlalu agresif
+→ Shutdown plant penuh
+
+Koordinasi sangat krusial.
+
+---
+
+### 11.3 Hardwired vs Soft Interlock
+
+![Image](https://images.openai.com/static-rsc-3/l8SXcotEG2HKVHnWArw-JTm2tFlIhvo0zsyf_TNt9DaTJMTbyit22NCWT-SE_yAKZa9bTrvRWeJpzwO96FFaMgR--0d0UqtGHFXWM1t-P2Y?purpose=fullsize&v=1)
+
+![Image](https://images.squarespace-cdn.com/content/v1/62f930f4df0dc207a359b2ff/1727794862672-J4IYXPZY4ITLRK61LV0B/SafetyRelayCover.jpg)
+
+![Image](https://i.sstatic.net/U3eEP.png)
+
+✔ Hardwired Interlock
+
+- Menggunakan relay fisik.
+- Jalur langsung tanpa software.
+- Respon cepat dan independen dari PLC.
+
+Contoh:
+
+- Overpressure switch langsung memutus coil breaker.
+
+✔ Soft Interlock
+
+- Menggunakan logic di PLC/DCS.
+- Fleksibel dan mudah dimodifikasi.
+- Bergantung pada integritas power dan software.
+
+Contoh:
+
+- Flow transmitter → PLC → perintah trip motor.
+
+✔ Perbandingan Risiko
+
+Jika UPS gagal:
+
+- Soft interlock bisa mati.
+- Hardwired tetap bekerja (jika supply independen).
+
+Plant kritikal biasanya mengkombinasikan keduanya.
+
+---
+
+### 11.4 Electrical Protection vs SIS Layer
+
+![Image](https://cdn.prod.website-files.com/65f854814fd223fc3678ea53/65f854814fd223fc3678ef58_64ecb598f13dc7b853748f30_What-Is-a-Safety-Instrumented-System..png)
+
+![Image](https://www.researchgate.net/publication/375631784/figure/fig2/AS%3A11431281247567904%401716863795173/The-layers-of-protection-utilized-for-LOPA-analysis-that-are-applicable-to-the-safety-of.png)
+
+![Image](https://www.primatech.com/images/LOPA1.jpg)
+
+Electrical protection dan SIS adalah dua layer berbeda.
+
+✔ Electrical Protection
+
+- Melindungi peralatan listrik.
+- Contoh: overcurrent, differential, earth fault.
+- Tujuan: mencegah kerusakan listrik.
+
+✔ SIS (Safety Instrumented System)
+
+- Melindungi proses dan manusia.
+- Berdasarkan SIL.
+- Tujuan: mencegah kecelakaan besar.
+
+Contoh eskalasi tanpa koordinasi:
+
+Motor overload
+→ Relay tidak trip
+→ Pompa tetap jalan
+→ Tekanan naik
+→ SIS aktifkan ESD
+
+Jika electrical protection gagal, SIS menjadi layer terakhir.
+
+Tetapi jika keduanya tidak terkoordinasi, bisa terjadi:
+
+- Nuisance trip berulang
+- Shutdown tak terkendali
+- Atau lebih berbahaya: tidak ada trip saat diperlukan
+
+---
+
+### 11.5 Risiko Jika Sistem Listrik dan Kontrol Tidak Terkoordinasi
+
+![Image](https://ars.els-cdn.com/content/image/3-s2.0-B9780128220474000108-f12-02-9780128220474.jpg)
+
+![Image](https://www.afpm.org/sites/default/files/inline-images/question%206%20figure%205%202012.jpg)
+
+✔ Contoh 1 – Proteksi Terlalu Sensitif
+
+Setting undervoltage terlalu tinggi
+→ Motor trip saat sag kecil
+→ Banyak pompa berhenti
+→ Proses tidak stabil
+→ Flare spike
+
+---
+
+✔ Contoh 2 – Proteksi Terlalu Lambat
+
+Ground fault kecil
+→ Tidak terdeteksi
+→ Arc membesar
+→ MCC terbakar
+→ UPS gagal
+→ Sistem kontrol mati
+
+---
+
+✔ Contoh 3 – Logic Tidak Sinkron
+
+Motor trip listrik
+→ PLC tidak log event
+→ Operator tidak tahu root cause
+→ Restart berulang
+→ Kerusakan mekanik
+
+Ketidaksinkronan listrik dan kontrol meningkatkan risiko:
+
+- Loss of Containment
+- Fire & explosion
+- Downtime besar
+
+Integrasi yang baik memerlukan:
+
+- Review setting relay bersama tim kontrol
+- Verifikasi cause & effect matrix
+- Pengujian interlock berkala
+
+---
+
+✔ **Penegasan BAB 11**
+
+1. Interlock adalah jembatan antara listrik dan proses.
+2. Motor trip harus terintegrasi dengan logic kontrol.
+3. Hardwired dan soft interlock memiliki peran berbeda.
+4. Electrical protection dan SIS adalah layer proteksi berbeda.
+5. Ketidakterkoordinasian dapat memicu shutdown atau kecelakaan besar.
+
+---
+
+## BAB 12 – FAILURE MODE BERBASIS SISTEM (END-TO-END FAILURE ANALYSIS)
+
+---
+
+### 12.1 Eskalasi Kegagalan dari 20 kV sampai 380 V
+
+![Image](https://www.researchgate.net/publication/349904147/figure/fig1/AS%3A1012947740540928%401618516969303/Single-line-diagramof-20-kV-Distribution-System.jpg)
+
+![Image](https://www.researchgate.net/publication/342497030/figure/fig4/AS%3A907036325855234%401593265720323/Protection-coordination-scheme-using-ZSI-During-ground-fault-or-phase-fault-conditions.png)
+
+Eskalasi kegagalan adalah kondisi ketika gangguan di satu level tegangan **menjalar ke level lain** karena proteksi tidak selektif, desain tidak robust, atau kondisi operasi memicu stress berlapis.
+
+✔ Pola Eskalasi Umum (Top-down)
+
+Gangguan eksternal PLN
+→ incoming 20 kV undervoltage / trip
+→ trafo 20/6 drop
+→ bus 6 kV drop
+→ motor 6 kV trip simultan
+→ trafo 6/380 drop
+→ MCC 380 blackout
+→ UPS discharge
+→ kontrol melemah / shutdown
+
+✔ Pola Eskalasi Umum (Bottom-up)
+
+Fault di feeder MCC 380
+→ breaker feeder gagal trip
+→ arus fault naik ke busbar MCC
+→ incoming MCC trip
+→ trafo 6/380 overload / proteksi aktif
+→ bus 6 kV terganggu
+→ upstream 6 kV trip
+→ upstream 20/6 trip (bila grading buruk)
+→ blackout luas
+
+**Kunci teknis:** eskalasi bukan “takdir”, tetapi hasil dari **jalur fault + setting proteksi + desain grounding + pola operasi**.
+
+---
+
+### 12.2 Root Cause Tree Blackout Plant
+
+![Image](https://www.researchgate.net/publication/335757307/figure/fig1/AS%3A802241501990918%401568280687876/Root-cause-analysis-tree-diagram.ppm)
+
+![Image](https://www.tandfonline.com/cms/asset/870a41e0-e23b-4deb-88ee-54c7f7e5cbd2/tmar_a_2423425_f0006_oc.jpg)
+
+Di bawah ini adalah _root cause tree_ konseptual yang digunakan teknisi ELINS untuk investigasi blackout. Fokusnya bukan menyalahkan komponen, tetapi memetakan **mekanisme fisik → trigger operasi → konsekuensi sistem**.
+
+✔ TOP EVENT: BLACKOUT PLANT (Loss of Power to MCC & Control)
+
+**A. Incoming 20 kV Loss**
+
+- A1: PLN disturbance (sag/outage)
+- A2: Incoming relay trip salah setting
+- A3: Breaker failure / trip spurious
+- A4: Lightning surge → insulation flashover
+
+**B. Transformer 20/6 Trip**
+
+- B1: Differential trip (internal fault)
+- B2: Overtemperature (cooling fail)
+- B3: Buchholz trip (gas from internal heating)
+- B4: Protection coordination issue (upstream trip duluan)
+
+**C. Bus 6 kV Collapse**
+
+- C1: Motor start simultan → voltage dip parah
+- C2: Fault pada feeder motor 6 kV
+- C3: Ground fault tidak clear cepat (grounding/relay)
+
+**D. Transformer 6/380 Trip**
+
+- D1: LV fault reflected ke MV
+- D2: Overload akibat PF rendah / capacitor bank trip
+- D3: Harmonic heating / overheating
+
+**E. MCC 380 Blackout**
+
+- E1: Busbar fault (internal short)
+- E2: Incoming ACB trip non-selektif
+- E3: Arc flash event
+
+**F. UPS Drop / Control Power Loss**
+
+- F1: Battery capacity drop (tidak terdeteksi)
+- F2: Rectifier/inverter failure
+- F3: Bypass transfer gagal
+
+Investigasi lapangan yang benar akan mencari bukti pada:
+
+- Relay event record & waveform
+- Trend tegangan 6 kV/380 V
+- Thermal scan MCC
+- Alarm history UPS/DCS
+- Status capacitor bank dan THD
+
+---
+
+### 12.3 Interaksi antar Level Tegangan
+
+![Image](https://www.researchgate.net/publication/224127357/figure/fig4/AS%3A667853346836500%401536240054724/Ground-fault-current-on-the-secondary-side-recloses-to-the-center-star-of-the-substation.png)
+
+✔ A. Interaksi Tegangan Drop
+
+Start motor 6 kV atau fault LV dapat menyebabkan:
+
+- Tegangan bus 6 kV turun
+- Tegangan 380 V turun (melalui trafo 6/380)
+- UPS transfer ke baterai
+
+**Mekanisme:** impedansi trafo + arus tinggi → voltage drop.
+
+---
+
+✔ B. Interaksi Arus Gangguan (Fault Current Reflection)
+
+Fault di LV menciptakan arus besar di sisi LV, yang terlihat sebagai arus tinggi di sisi MV sesuai rasio trafo.
+
+Jika LV breaker gagal trip cepat:
+
+- Proteksi trafo bisa trip
+- Proteksi 6 kV upstream bisa ikut trip
+- Blackout meluas
+
+---
+
+✔ C. Interaksi Harmonik & PF
+
+VFD dan UPS menghasilkan harmonik.
+
+- Harmonik memanaskan trafo 6/380 dan capacitor bank
+- Capacitor bank trip → PF turun
+- Arus sistem naik → trafo overload
+- Tegangan turun → motor overload
+
+Interaksi ini sering menjadi “silent escalation” yang muncul sebagai overheating kronis sebelum trip.
+
+---
+
+### 12.4 Dampak terhadap Asset Integrity dan Safety Plant
+
+![Image](https://www.electricsolenoidvalves.com/product_images/uploaded_images/water-hammer-diagram.jpg)
+
+![Image](https://media.globalnews.ca/videostatic/178/467/2019-01-13T14-11-36.833Z--1280x720.jpg)
+
+Blackout dan eskalasi listrik berdampak langsung pada integritas aset:
+
+✔ Dampak terhadap Asset Integrity
+
+- **Water hammer** saat pompa utilitas mati mendadak → stress pipa (ASME B31.3 awareness)
+- **Thermal shock** pada heat exchanger akibat hilang aliran
+- **Seal damage** akibat dry running setelah trip
+- **Bearing damage** akibat restart berulang tanpa root cause clear
+
+✔ Dampak terhadap Safety
+
+- Loss of Containment dari seal/gasket yang gagal
+- Flare load meningkat karena depressurizing
+- Potensi ignition dari arc flash atau hot surface
+- Risiko kegagalan interlock bila UPS drop
+
+**Rantai eksplisit yang wajib dipahami teknisi:**
+
+Root physical mechanism (misal: LV breaker gagal trip)
+→ Load/stress (fault current tinggi, heating)
+→ Operational trigger (maintenance torque buruk / setting salah)
+→ System consequence (MCC blackout → UPS discharge)
+→ Safety implication (interlock lemah → potensi LoC)
+
+---
+
+✔ **Penegasan BAB 12**
+
+1. Eskalasi kegagalan terjadi ketika proteksi dan desain tidak menahan gangguan di level asal.
+2. Root cause tree membantu menemukan node awal, bukan hanya komponen yang rusak.
+3. Interaksi tegangan, arus fault, dan harmonik menghubungkan semua level.
+4. Blackout berdampak langsung pada asset integrity dan process safety.
+5. Investigasi harus selalu menutup rantai: mekanisme → trigger → konsekuensi → safety.
+
+---
+
+## BAB 13 – STANDAR DAN PRAKTIK INDUSTRI YANG RELEVAN
+
+Bab ini tidak membahas teori standar secara akademik, tetapi bagaimana standar tersebut **mempengaruhi pekerjaan teknisi ELINS di lapangan**, khususnya pada sistem:
+
+**20 kV → 6 kV → 380 V → MCC → UPS → Motor → Sistem Kontrol**
+
+---
+
+### 13.1 IEC 60079 – Area Berbahaya
+
+![Image](https://media.licdn.com/dms/image/v2/D4D12AQHXculNr553HQ/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1675411090581?e=2147483647&t=_a9Zal5AbkC3yqjyV-j6lm9XvLdkqp9KYV3PvNAS1Go&v=beta)
+
+![Image](https://www.eaton.com/content/dam/eaton/company/news-insights/intrinsic-safety-blog/Hazardous-area-fig.png.transform/default-mobile/image.jpg)
+
+✔ Relevansi ke Sistem Listrik
+
+IEC 60079 mengatur:
+
+- Zona 0 / 1 / 2
+- Jenis proteksi Ex (Ex d, Ex e, Ex i)
+- Temperatur kelas (T-class)
+- Instalasi kabel & gland
+
+✔ Dampak Sistemik
+
+Jika motor 380 V dipasang di Zona 1 tanpa proteksi Ex sesuai:
+
+**Root:** enclosure tidak flameproof
+**Stress:** percikan internal akibat loose terminal
+**Trigger:** arcing kecil
+**System consequence:** ignition vapor
+**Safety:** explosion
+
+Teknisi ELINS wajib memastikan:
+
+- Nameplate sesuai zona
+- Cable gland Ex certified
+- Bonding area hazardous baik
+- Tidak ada modifikasi liar panel Ex
+
+---
+
+### 13.2 IEEE 1584 – Arc Flash
+
+![Image](https://media.licdn.com/dms/image/v2/C5612AQE4QbDyAN_KjQ/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1563088093901?e=2147483647&t=zUMsM0RUrPxUWw0dlbE4FJiQvQwSDRzt_Js1nZ5_o58&v=beta)
+
+![Image](https://pksafety.com/cdn/shop/articles/arc-flash-protection.jpg?v=1720164258&width=640)
+
+![Image](https://eu.pipglobal.com/images/arc-protection-2-gray-flipped.jpg)
+
+IEEE 1584 digunakan untuk:
+
+- Menghitung incident energy
+- Menentukan arc flash boundary
+- Menentukan kategori PPE
+
+✔ Kaitan dengan MCC 380 V & 6 kV
+
+Arc energy dipengaruhi oleh:
+
+- Fault current dari trafo
+- Clearing time breaker
+- Jarak kerja
+
+Jika setting instantaneous terlalu lambat:
+
+Fault LV
+→ Arc bertahan lebih lama
+→ Energi meningkat
+→ Kerusakan parah
+
+Arc flash bukan hanya bahaya personel, tetapi juga dapat menyebabkan:
+
+- MCC terbakar
+- UPS mati
+- Blackout plant
+
+---
+
+### 13.3 NFPA 70 – Instalasi & Grounding
+
+![Image](https://eepower.com/uploads/articles/nec-2023-basics-equipment-grounding-conductors-fig1.jpg)
+
+NFPA 70 (NEC) mengatur:
+
+- Instalasi kabel
+- Ampacity
+- Grounding & bonding
+- Proteksi overcurrent
+
+Dalam konteks plant:
+
+Grounding tidak sesuai
+→ Fault current tidak cukup
+→ Relay gagal trip
+→ Arc membesar
+
+Instalasi kabel salah rating:
+
+Overload
+→ Insulation rusak
+→ Short circuit
+→ MCC trip
+
+Standar ini mempengaruhi:
+
+- Desain MCC
+- Ukuran kabel feeder
+- Sistem grounding
+
+---
+
+### 13.4 API RP 500 / API RP 505 – Klasifikasi Area
+
+![Image](https://imgv2-1-f.scribdassets.com/img/document/311240676/original/910e9d2ffa/1?v=1)
+
+![Image](https://www.researchgate.net/publication/4350478/figure/fig1/AS%3A670713958633485%401536922077935/Typical-area-classification-drawing-showing-part-of-oil-refinery-plant-overlapping-of.png)
+
+![Image](https://media.licdn.com/dms/image/v2/C5612AQEj2kYnv4_I5g/article-inline_image-shrink_1000_1488/article-inline_image-shrink_1000_1488/0/1632854240649?e=2147483647&t=RO-Hm6hAuB7opofXeaIuJtjiL3ENyFoKNQwcSYHQVxM&v=beta)
+
+API RP 500 & 505 digunakan untuk:
+
+- Menentukan klasifikasi Div/Zone
+- Mengidentifikasi radius area berbahaya
+- Menentukan jenis peralatan listrik yang boleh dipasang
+
+✔ Dampak Praktis
+
+Jika MCC ditempatkan terlalu dekat dengan area Zone 1 tanpa enclosure sesuai:
+
+- Potensi ignition meningkat
+- Audit finding serius
+- Risiko shutdown oleh regulator
+
+Teknisi harus memahami peta klasifikasi area sebelum:
+
+- Menambah panel
+- Menarik kabel baru
+- Memasang motor tambahan
+
+---
+
+### 13.5 API 670 – Proteksi Mesin
+
+![Image](https://ars.els-cdn.com/content/image/3-s2.0-B9780128009406000058-f05-06-9780128009406.jpg)
+
+![Image](https://www.danfoss.com/media/4507/mbt-5310.png)
+
+API 670 mengatur:
+
+- Vibration monitoring
+- Bearing temperature
+- Shaft position monitoring
+
+Integrasi dengan listrik:
+
+Vibration tinggi
+→ Sinyal ke MPS
+→ Interlock trip motor 6 kV
+
+Jika integrasi salah:
+
+- Motor tetap jalan saat vibration tinggi
+- Bearing rusak
+- Seal bocor
+- Hydrocarbon leak
+
+API 670 adalah penghubung antara proteksi mekanik dan listrik.
+
+---
+
+### 13.6 Awareness Teknisi terhadap Audit & Compliance
+
+Standar bukan sekadar dokumen, tetapi dasar:
+
+- Audit internal
+- Audit regulator
+- Insurance requirement
+- Investigation pasca-incident
+
+✔ Area yang sering menjadi temuan audit:
+
+- Label arc flash tidak update
+- Grounding tidak terdokumentasi
+- Setting relay tidak terdokumentasi
+- MCC overload tanpa review kapasitas
+- Kapasitor bank tanpa harmonic study
+
+Teknisi ELINS harus memahami bahwa:
+
+> Compliance bukan hanya kewajiban hukum, tetapi bagian dari menjaga reliability dan mencegah eskalasi kegagalan.
+
+---
+
+✔ **Penegasan BAB 13**
+
+1. Standar internasional adalah fondasi desain dan operasi aman.
+2. IEC 60079 & API RP 500/505 melindungi dari ignition di area berbahaya.
+3. IEEE 1584 melindungi dari risiko arc flash.
+4. NFPA 70 memastikan instalasi dan grounding benar.
+5. API 670 mengintegrasikan proteksi mesin dan listrik.
+6. Awareness compliance adalah bagian dari tanggung jawab teknisi ELINS.
+
+---
+
+<small>
+  **_Catatan Penyusunan_** Artikel ini disusun sebagai materi edukasi dan
+  referensi umum berdasarkan berbagai sumber pustaka, praktik lapangan, serta
+  bantuan alat penulisan. Pembaca disarankan untuk melakukan verifikasi lanjutan
+  dan penyesuaian sesuai dengan kondisi serta kebutuhan masing-masing sistem.
+</small>

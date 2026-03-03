@@ -1,5 +1,58 @@
 [
   {
+    "id": "maintenance/elins/motor-winding-maintenance",
+    "name": "Maintenance Winding Motor Industri (6 kV & 380 V) - Strategi Evaluasi Isolasi dan Keputusan Intervensi Berbasis Risiko",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/elins/motor-winding-maintenance",
+    "subtitle": "March 3, 2026",
+    "keywords": [
+      "motor-6kV",
+      "motor-380V",
+      "winding-maintenance",
+      "insulation-class-IEC60034",
+      "partial-discharge",
+      "re-varnish",
+      "re-wind-decision",
+      "risk-based-maintenance",
+      "petrokimia"
+    ]
+  },
+  {
+    "id": "maintenance/elins/transformer-winding-integrity",
+    "name": "Winding Integrity pada Transformator Oil-Immersed - Parameter Kritis dan Keputusan Re-Winding Berbasis Risiko",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/elins/transformer-winding-integrity",
+    "subtitle": "March 3, 2026",
+    "keywords": [
+      "transformator-daya",
+      "oil-immersed-transformer",
+      "winding-integrity",
+      "cellulose-insulation",
+      "degree-of-polymerization",
+      "dissolved-gas-analysis",
+      "sfra",
+      "risk-based-maintenance",
+      "petrokimia"
+    ]
+  },
+  {
+    "id": "project/punch-list",
+    "name": "Punch List Classification dalam EPC Project",
+    "section": "CONTENT",
+    "href": "/blog/project/punch-list",
+    "subtitle": "March 2, 2026",
+    "keywords": [
+      "EPC Project",
+      "Punch List Classification",
+      "Mechanical Completion",
+      "Commissioning Readiness",
+      "Asset-Integrity",
+      "Process Safety",
+      "Reliability Engineering",
+      "Cross-Discipline Control"
+    ]
+  },
+  {
     "id": "safety/creg",
     "name": "COMPANY RISK ENGINEERING GUIDELINE (CREG)",
     "section": "CONTENT",
@@ -4221,6 +4274,23 @@
     ]
   },
   {
+    "id": "maintenance/elins/power-transformer-oil-leakage",
+    "name": "Pencegahan Kebocoran Minyak pada Power Transformer Oil-Immersed",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/elins/power-transformer-oil-leakage",
+    "subtitle": "October 17, 2024",
+    "keywords": [
+      "power-transformer",
+      "oil-immersed",
+      "mechanical-electrical-integration",
+      "asset-integrity",
+      "risk-based-maintenance",
+      "industrial-reliability",
+      "failure-mechanism-analysis",
+      "transformer-protection"
+    ]
+  },
+  {
     "id": "maintenance/maintenance-boiler-flame-out",
     "name": "Tantangan Operasi Burner Boiler pada Beban Rendah dan Solusinya",
     "section": "CONTENT",
@@ -5240,6 +5310,40 @@
     "keywords": [
       "Engineering",
       "website"
+    ]
+  },
+  {
+    "id": "maintenance/elins/electrical-devices",
+    "name": "Sistem Kelistrikan Pabrik Petrokimia",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/elins/electrical-devices",
+    "subtitle": "October 21, 2023",
+    "keywords": [
+      "20kV-6kV-380V",
+      "ELINS-SystemBased",
+      "PowerDistribution",
+      "Motor-Transformer-MCC",
+      "CapacitorBank",
+      "Reliability-Safety",
+      "ProtectionCoordination",
+      "ProcessIntegrity"
+    ]
+  },
+  {
+    "id": "maintenance/elins/maintenance-electrical-devices",
+    "name": "Sistem Kelistrikan Pabrik Petrokimia",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/elins/maintenance-electrical-devices",
+    "subtitle": "October 21, 2023",
+    "keywords": [
+      "20kV-6kV-380V",
+      "ELINS-SystemBased",
+      "PowerDistribution",
+      "Motor-Transformer-MCC",
+      "CapacitorBank",
+      "Reliability-Safety",
+      "ProtectionCoordination",
+      "ProcessIntegrity"
     ]
   },
   {
