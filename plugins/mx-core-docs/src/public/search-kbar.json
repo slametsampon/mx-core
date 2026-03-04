@@ -1,5 +1,23 @@
 [
   {
+    "id": "maintenance/mechanical/cryogenic-storage-tank",
+    "name": "Storage Tank Liquid CO₂ dan Liquid Nitrogen pada Fasilitas Industri Proses",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/mechanical/cryogenic-storage-tank",
+    "subtitle": "March 4, 2026",
+    "keywords": [
+      "storage-tank",
+      "liquid-co2",
+      "liquid-nitrogen",
+      "cryogenic-storage",
+      "industrial-gases",
+      "process-industry",
+      "tank-design",
+      "plant-operation",
+      "maintenance-management"
+    ]
+  },
+  {
     "id": "maintenance/elins/motor-winding-maintenance",
     "name": "Maintenance Winding Motor Industri (6 kV & 380 V) - Strategi Evaluasi Isolasi dan Keputusan Intervensi Berbasis Risiko",
     "section": "CONTENT",
