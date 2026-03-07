@@ -1,7 +1,7 @@
 ---
 title: Bearing pada Rotating Equipment - Panduan Praktis Berbasis Engineering dan Lifecycle Maintenance
 authors: ['sam']
-date: '2026-03-09'
+date: '2026-03-06'
 tags:
   [
     'rotating-equipment',
@@ -91,9 +91,9 @@ Pada peralatan tersebut, bearing berfungsi sebagai elemen yang memastikan rotor 
   title="Artikel terkait :"
   items={[
     {
-      name: 'Bearing Load Calculation',
-      href: '/blog/maintenance/Bearing-Load-Calculation-for-Pumps',
-      description: 'Bearing Load Calculation for Centrifugal Pumps',
+      name: 'Pemeliharaan Bearing',
+      href: '/blog/maintenance/maintenance-bearing',
+      description: 'Pemeliharaan Bearing',
     },
   ]}
 />
@@ -353,82 +353,6 @@ Parameter tersebut berbeda antara **rolling bearing** dan **journal bearing**, k
 
 Pada rolling bearing, umur bearing terutama ditentukan oleh **beban kontak antara rolling element dan raceway**. Beban ini menghasilkan tegangan kontak yang dapat menyebabkan **fatigue pada material bearing**.
 
-### Bearing Life Calculation
-
-Umur rolling bearing secara teoritis dihitung menggunakan persamaan **basic rating life (L10)**:
-
-$$
-L_{10} = \left(\frac{C}{P}\right)^p
-$$
-
-dimana:
-
-- (L\_{10}) = umur bearing (juta revolusi)
-- (C) = dynamic load rating (N)
-- (P) = equivalent dynamic load (N)
-- (p = 3) untuk ball bearing
-- (p = 10/3) untuk roller bearing
-
-Untuk konversi ke jam operasi:
-
-$$
-L_{10h} = \frac{10^6}{60n}\left(\frac{C}{P}\right)^p
-$$
-
-dimana:
-
-- (n) = rotational speed (RPM)
-
-Persamaan ini menunjukkan bahwa **kenaikan load kecil saja dapat menurunkan umur bearing secara signifikan** karena hubungan berpangkat.
-
----
-
-### Equivalent Dynamic Load
-
-Jika bearing menerima kombinasi radial dan axial load, maka beban efektif dihitung dengan:
-
-$$
-P = X F_r + Y F_a
-$$
-
-dimana:
-
-- (F_r) = radial load
-- (F_a) = axial load
-- (X,Y) = load factor tergantung tipe bearing
-
-Load (P) ini digunakan dalam perhitungan **bearing life**.
-
----
-
-### Life Modification Factor
-
-Persamaan L10 di atas adalah **basic rating life**. Dalam kondisi operasi nyata, umur bearing dipengaruhi oleh kualitas pelumasan, tingkat kontaminasi, dan kondisi operasi.
-
-Modified bearing life dinyatakan dengan:
-
-$$
-L_{na} = a_1 , a_{ISO} , L_{10}
-$$
-
-dimana:
-
-- (L\_{na}) = modified rating life
-- (a_1) = reliability factor
-- (a\_{ISO}) = life modification factor
-- (L\_{10}) = basic rating life
-
-Nilai (a\_{ISO}) dipengaruhi oleh:
-
-- kualitas pelumasan
-- tingkat kontaminasi
-- viskositas pelumas
-- kondisi operasi
-
-Karena itu umur aktual bearing di lapangan sering lebih rendah dari nilai teoritis jika kondisi pelumasan dan kebersihan tidak terjaga.
-
-Parameter utama yang mempengaruhi umur rolling bearing adalah sebagai berikut.
-
 ---
 
 ✔ Load (Beban)
@@ -512,6 +436,93 @@ Dalam praktik lapangan, kegagalan pelumasan merupakan salah satu penyebab paling
 Pada journal bearing, prinsip kerjanya berbeda karena **tidak terdapat rolling element**. Shaft berputar di dalam bearing dan dipisahkan oleh **lapisan pelumas (oil film)**.
 
 Karena itu, parameter yang menentukan keandalan journal bearing berfokus pada **stabilitas oil film**.
+
+### Bearing Life Calculation
+
+Umur rolling bearing secara teoritis dihitung menggunakan persamaan **basic rating life (L10)**:
+
+$$
+L_{10} = \left(\frac{C}{P}\right)^p
+$$
+
+dimana:
+
+- $L_{10}$ = umur bearing (juta revolusi)
+- (C) = dynamic load rating (N)
+- (P) = equivalent dynamic load (N)
+- (p = 3) untuk ball bearing
+- (p = 10/3) untuk roller bearing
+
+Untuk konversi ke jam operasi:
+
+$$
+L_{10h} = \frac{10^6}{60n}\left(\frac{C}{P}\right)^p
+$$
+
+dimana:
+
+- (n) = rotational speed (RPM)
+
+Persamaan ini menunjukkan bahwa **kenaikan load kecil saja dapat menurunkan umur bearing secara signifikan** karena hubungan berpangkat.
+
+<ResourceBox
+  title="Artikel terkait :"
+  items={[
+    {
+      name: 'Bearing Load Calculation',
+      href: '/blog/maintenance/Bearing-Load-Calculation-for-Pumps',
+      description: 'Bearing Load Calculation for Centrifugal Pumps',
+    },
+  ]}
+/>
+
+---
+
+### Equivalent Dynamic Load
+
+Jika bearing menerima kombinasi radial dan axial load, maka beban efektif dihitung dengan:
+
+$$
+P = X F_r + Y F_a
+$$
+
+dimana:
+
+- (F_r) = radial load
+- (F_a) = axial load
+- (X,Y) = load factor tergantung tipe bearing
+
+Load (P) ini digunakan dalam perhitungan **bearing life**.
+
+---
+
+### Life Modification Factor
+
+Persamaan L10 di atas adalah **basic rating life**. Dalam kondisi operasi nyata, umur bearing dipengaruhi oleh kualitas pelumasan, tingkat kontaminasi, dan kondisi operasi.
+
+Modified bearing life dinyatakan dengan:
+
+$$
+L_{na} = a_1 , a_{ISO} , L_{10}
+$$
+
+dimana:
+
+- $L_{na}$ = modified rating life
+- $a_1$ = reliability factor
+- $a_{\mathrm{ISO}}$ = life modification factor
+- $L_{10}$ = basic rating life
+
+Nilai $a_{\mathrm{ISO}}$ dipengaruhi oleh:
+
+- kualitas pelumasan
+- tingkat kontaminasi
+- viskositas pelumas
+- kondisi operasi
+
+Karena itu umur aktual bearing di lapangan sering lebih rendah dari nilai teoritis jika kondisi pelumasan dan kebersihan tidak terjaga.
+
+Parameter utama yang mempengaruhi umur rolling bearing adalah sebagai berikut.
 
 ---
 
@@ -894,13 +905,11 @@ Sumber kontaminasi dapat berasal dari:
 - air
 - residu dari proses produksi
 
-✔ Pengaruh Kontaminasi terhadap Umur Bearing
+### Pengaruh Kontaminasi terhadap Umur Bearing
 
 Partikel keras yang masuk ke dalam bearing dapat menyebabkan **indentation pada raceway**. Indentation ini menjadi titik konsentrasi tegangan yang memicu **pitting** dan kemudian berkembang menjadi **spalling**.
 
-Dalam konteks life modification factor, kontaminasi akan menurunkan nilai \(a\_{\mathrm{ISO}}\) sehingga umur aktual bearing menjadi jauh lebih rendah dari nilai L10.
-
-Partikel kecil yang masuk ke dalam bearing dapat menyebabkan **indentation pada raceway** yang kemudian berkembang menjadi **pitting atau spalling**.
+Dalam konteks life modification factor, kontaminasi akan menurunkan nilai $a_{\mathrm{ISO}}$ sehingga umur aktual bearing menjadi jauh lebih rendah dari nilai \(L\*{10}\).
 
 Pada journal bearing, kontaminasi dapat merusak **oil film** dan mempercepat keausan permukaan bearing.
 
