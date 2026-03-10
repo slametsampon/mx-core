@@ -3,18 +3,9 @@ title: Basic Ladder Logic & Motor Start–Stop Control
 authors: ['sam']
 date: '2026-03-04'
 tags:
-  [
-    'plc',
-    'siemens-s7',
-    'ladder-diagram',
-    'motor-start-stop-control',
-    'seal-in-circuit',
-    'industrial-automation',
-    'pump-control',
-    'plc-troubleshooting',
-  ]
+  ['plc', 'siemens-s7', 'ladder-logic', 'motor-start-stop', 'seal-in-circuit']
 draft: false
-summary: Artikel ini menjelaskan **logika dasar Ladder Diagram untuk kontrol motor start–stop menggunakan PLC** pada sistem motor–pump. Fokus utama adalah memahami pola kontrol paling fundamental dalam sistem otomasi industri yaitu **seal-in (self-holding) circuit**. Dengan logika ini motor dapat start dengan satu perintah operator, tetap berjalan setelah tombol dilepas, dan berhenti dengan prioritas stop untuk keselamatan operasi. Artikel juga menjelaskan hubungan antara **sinyal operator, ladder logic, dan respon electrical equipment di MCC**. Pemahaman pola ini menjadi fondasi sebelum engineer mempelajari logika yang lebih kompleks seperti permissive, interlock, alarm, dan sequence control dalam sistem PLC industri.
+summary: Motor dalam sistem kontrol industri biasanya dioperasikan menggunakan logika start–stop control. Dalam ladder logic PLC, kontrol ini dibangun menggunakan elemen dasar seperti contact (NO/NC) dan coil. Agar motor tetap berjalan setelah tombol start dilepas, digunakan pola logika seal-in circuit yang memanfaatkan auxiliary contact untuk menjaga coil tetap aktif. Pola ini memungkinkan motor terus berjalan sampai operator menekan tombol stop. Memahami seal-in circuit penting bagi engineer untuk merancang logika kontrol motor serta melakukan troubleshooting sistem start–stop pada equipment seperti pump, fan, dan conveyor.
 ---
 
 # **_Artikel 2: Basic Ladder Logic & Motor Start–Stop Control_**
@@ -22,893 +13,466 @@ summary: Artikel ini menjelaskan **logika dasar Ladder Diagram untuk kontrol mot
 ---
 
 - [**_Artikel 2: Basic Ladder Logic \& Motor Start–Stop Control_**](#artikel-2-basic-ladder-logic--motor-startstop-control)
-  - [1. Equipment Context](#1-equipment-context)
-  - [2. Operational Problem](#2-operational-problem)
-    - [1. Motor hanya berjalan selama tombol START ditekan](#1-motor-hanya-berjalan-selama-tombol-start-ditekan)
-    - [2. Motor tidak berhenti saat tombol STOP ditekan](#2-motor-tidak-berhenti-saat-tombol-stop-ditekan)
-    - [3. Motor restart sendiri setelah listrik kembali](#3-motor-restart-sendiri-setelah-listrik-kembali)
-  - [3. Physical Mechanism](#3-physical-mechanism)
-    - [Masalah Tanpa Seal-In Logic](#masalah-tanpa-seal-in-logic)
-    - [Prinsip Self-Holding (Seal-In)](#prinsip-self-holding-seal-in)
-  - [4. Control Objective](#4-control-objective)
-    - [1. Motor dapat start dengan satu perintah operator](#1-motor-dapat-start-dengan-satu-perintah-operator)
-    - [2. Motor tetap berjalan setelah tombol dilepas](#2-motor-tetap-berjalan-setelah-tombol-dilepas)
-    - [3. Motor harus berhenti jika tombol STOP ditekan](#3-motor-harus-berhenti-jika-tombol-stop-ditekan)
-    - [4. Sistem harus mencegah restart otomatis](#4-sistem-harus-mencegah-restart-otomatis)
-  - [5. Instrument and Signal Mapping](#5-instrument-and-signal-mapping)
-    - [START Push Button](#start-push-button)
-    - [STOP Push Button](#stop-push-button)
-    - [Motor Feedback (MOTOR\_FB)](#motor-feedback-motor_fb)
-    - [Motor Command (MOTOR\_CMD)](#motor-command-motor_cmd)
-  - [6. Ladder Logic Implementation](#6-ladder-logic-implementation)
-    - [START\_PB](#start_pb)
-    - [RUN\_CMD Holding Contact](#run_cmd-holding-contact)
-    - [STOP\_PB](#stop_pb)
-  - [7. System Response](#7-system-response)
-    - [Scenario 1 — Motor Start Normal](#scenario-1--motor-start-normal)
-    - [Scenario 2 — Motor Stop](#scenario-2--motor-stop)
-    - [Scenario 3 — Power Loss](#scenario-3--power-loss)
-  - [8. Troubleshooting Guide](#8-troubleshooting-guide)
-    - [Motor tidak start](#motor-tidak-start)
-    - [Motor hanya berjalan saat tombol START ditekan](#motor-hanya-berjalan-saat-tombol-start-ditekan)
-    - [Motor tidak bisa berhenti](#motor-tidak-bisa-berhenti)
-    - [Output PLC aktif tetapi motor tidak start](#output-plc-aktif-tetapi-motor-tidak-start)
-    - [Kesimpulan Teknis](#kesimpulan-teknis)
+- [Section 1 — Operational Context](#section-1--operational-context)
+- [Section 2 — System Mechanism](#section-2--system-mechanism)
+  - [Contact](#contact)
+    - [Normally Open (NO)](#normally-open-no)
+    - [Normally Closed (NC)](#normally-closed-nc)
+  - [Coil](#coil)
+- [Section 3 — Signal Flow](#section-3--signal-flow)
+- [Section 5 — Practical Example — Seal-In Circuit](#section-5--practical-example--seal-in-circuit)
+  - [Logika Kerja Seal-In Circuit](#logika-kerja-seal-in-circuit)
+  - [Kondisi Stop](#kondisi-stop)
+- [Section 6 — Troubleshooting Insight](#section-6--troubleshooting-insight)
+  - [Step 1 — Periksa Start Push Button](#step-1--periksa-start-push-button)
+  - [Step 2 — Periksa Stop Push Button](#step-2--periksa-stop-push-button)
+  - [Step 3 — Periksa PLC Logic](#step-3--periksa-plc-logic)
+  - [Step 4 — Periksa Motor Output dan Contactor](#step-4--periksa-motor-output-dan-contactor)
+  - [Troubleshooting Principle](#troubleshooting-principle)
 
 ---
 
-## 1. Equipment Context
+# Section 1 — Operational Context
 
-Artikel ini tetap menggunakan **motor–pump system** sebagai konteks utama karena hampir semua fasilitas industri memiliki equipment jenis ini.
+Di plant industri, banyak equipment digerakkan oleh **motor listrik**. Motor ini biasanya digunakan untuk menggerakkan berbagai sistem proses, seperti:
 
-Contoh aplikasi nyata di plant:
+- **pump motor** untuk memindahkan fluida
+- **fan motor** untuk sistem ventilasi atau pendinginan
+- **conveyor motor** untuk transport material
 
-- cooling water pump
-- utility water pump
-- transfer pump
-- circulation pump
+Dalam sistem otomasi modern, motor-motor tersebut umumnya dikontrol oleh **PLC (Programmable Logic Controller)**.
 
-Walaupun sederhana, kontrol motor ini merupakan **fondasi hampir seluruh kontrol equipment rotating di industri**.
+Operator biasanya mengoperasikan motor melalui **panel kontrol atau HMI**, menggunakan dua perintah dasar:
 
-Komponen utama sistem:
+- **Start push button**
+- **Stop push button**
 
-- **Motor listrik** — penggerak mekanik pump
-- **Pump** — equipment proses untuk memindahkan fluida
-- **MCC motor starter** — perangkat electrical yang menghubungkan supply motor
-- **Start push button** — perintah operator untuk menjalankan motor
-- **Stop push button** — perintah operator untuk menghentikan motor
-- **Motor auxiliary contact** — feedback status motor running
-- **PLC** — controller yang menjalankan ladder logic
+Konsep kontrol ini dapat digambarkan secara sederhana sebagai berikut.
 
-Hubungan antar disiplin dalam sistem:
-
-| Discipline      | Komponen                       |
-| --------------- | ------------------------------ |
-| Mechanical      | pump                           |
-| Electrical      | MCC contactor & overload relay |
-| Instrumentation | auxiliary contact feedback     |
-| Control         | PLC ladder logic               |
-
-Dalam arsitektur kontrol ini, PLC tidak langsung menggerakkan motor. PLC hanya mengirim **command listrik ke MCC**.
-
-Alur kontrol dasar sistem:
-
-```text
-Operator START command
-↓
-PLC membaca input
-↓
-PLC menjalankan ladder logic
-↓
-PLC mengaktifkan output
-↓
-MCC contactor energize
-↓
-motor berputar
-↓
-pump mulai memindahkan fluida
+```text id="motor_control_concept"
+Operator Command
+      │
+      ▼
+Start / Stop Push Button
+      │
+      ▼
+PLC Control Logic
+      │
+      ▼
+Motor Contactor
+      │
+      ▼
+Motor Running
 ```
 
-Dengan struktur ini PLC bertugas **mengendalikan kapan motor harus start dan kapan motor harus stop**.
+Ketika operator menekan **Start Push Button**, PLC harus mengaktifkan output yang mengendalikan **motor contactor**, sehingga motor mulai beroperasi.
+
+Namun terdapat satu perilaku penting dalam sistem kontrol motor industri:
+
+> Motor tidak boleh berhenti hanya karena tombol start dilepas.
+
+Jika sistem kontrol hanya membaca kondisi tombol start secara langsung, motor akan berhenti segera setelah operator melepaskan tombol tersebut.
+
+Padahal dalam operasi plant, motor harus **tetap berjalan secara kontinu** sampai operator memberikan perintah berhenti.
+
+Dengan kata lain, sistem kontrol harus memenuhi perilaku berikut:
+
+```text id="motor_control_requirement"
+Start Command
+→ Motor Running
+
+Stop Command
+→ Motor Stop
+```
+
+Untuk mencapai perilaku ini, PLC menggunakan pola logika khusus dalam ladder logic yang disebut **seal-in circuit**.
+
+Seal-in circuit memungkinkan PLC **menjaga coil output tetap aktif** meskipun tombol start sudah dilepas.
+
+Konsep ini merupakan salah satu pola logika paling dasar dan paling sering digunakan dalam sistem kontrol industri.
 
 ---
 
-## 2. Operational Problem
+# Section 2 — System Mechanism
 
-Beberapa masalah yang sering terjadi pada kontrol motor sederhana antara lain:
+Dalam sistem PLC, logika kontrol biasanya ditulis menggunakan **Ladder Logic**.
+Ladder logic adalah bahasa pemrograman yang dirancang menyerupai **diagram rangkaian relay listrik**.
 
-### 1. Motor hanya berjalan selama tombol START ditekan
+Struktur ladder logic terdiri dari beberapa **rung** yang dieksekusi oleh PLC selama **scan cycle**.
 
-Operator menekan START:
+Setiap rung ladder biasanya terdiri dari dua elemen dasar:
 
-- motor berjalan
+- **Contact**
+- **Coil**
 
-Operator melepas tombol:
-
-- motor langsung berhenti.
-
-Masalah ini menunjukkan **logika tidak memiliki self-holding**.
+Kedua elemen ini membentuk dasar dari hampir semua logika kontrol dalam sistem PLC.
 
 ---
 
-### 2. Motor tidak berhenti saat tombol STOP ditekan
+## Contact
 
-Kondisi ini dapat disebabkan oleh:
+**Contact** digunakan untuk membaca kondisi suatu sinyal atau variabel dalam program PLC.
 
-- wiring STOP salah
-- alamat input STOP salah
-- logika ladder tidak memberikan prioritas stop.
+Contact biasanya mewakili kondisi dari:
 
-Dalam sistem industri, kondisi ini berbahaya karena operator **tidak dapat menghentikan equipment dengan cepat**.
+- push button
+- limit switch
+- sensor
+- status internal PLC
+
+Terdapat dua jenis contact yang umum digunakan.
+
+### Normally Open (NO)
+
+Contact **Normally Open (NO)** akan bernilai TRUE ketika sinyal yang dibacanya aktif.
+
+Representasi ladder:
+
+```text id="contact_no"
+---[ ]---
+```
+
+Contoh penggunaan:
+
+- Start Push Button
+- Running feedback
+
+Ketika sinyal aktif, contact akan **menutup secara logika** dan memungkinkan aliran logika menuju coil.
 
 ---
 
-### 3. Motor restart sendiri setelah listrik kembali
+### Normally Closed (NC)
 
-Jika logika tidak dirancang dengan benar:
+Contact **Normally Closed (NC)** akan bernilai TRUE ketika sinyal yang dibacanya tidak aktif.
 
-```text
-power kembali
-↓
-PLC kembali aktif
-↓
-output langsung ON
-↓
-motor start otomatis
+Representasi ladder:
+
+```text id="contact_nc"
+---[/]---
 ```
 
-Automatic restart dapat menimbulkan risiko:
+Contoh penggunaan:
 
-- mechanical shock
-- operator tidak siap
-- potensi kecelakaan kerja.
+- Stop Push Button
+- Trip signal
+
+Jika sinyal aktif, contact akan **membuka secara logika** dan memutus aliran logika.
 
 ---
 
-Sebagian besar masalah di atas terjadi karena **struktur ladder logic yang tidak tepat**.
+## Coil
 
-Untuk menghindari masalah tersebut digunakan pola kontrol standar yang disebut:
+**Coil** digunakan untuk menghasilkan aksi atau mengaktifkan suatu output dalam program PLC.
 
-**seal-in circuit (self-holding circuit)**.
+Representasi ladder:
 
-Logika ini merupakan **pola paling dasar dalam hampir semua kontrol motor di industri**.
+```text id="coil01"
+---( )---
+```
+
+Coil biasanya digunakan untuk:
+
+- mengaktifkan output PLC
+- menyimpan status internal
+- mengontrol equipment
+
+Contoh coil dalam sistem motor control:
+
+```text id="motor_coil"
+Motor Coil
+```
+
+Jika kondisi logika pada rung terpenuhi, PLC akan mengaktifkan coil tersebut.
+
+Aktivasi coil kemudian akan menyebabkan **output PLC aktif**, yang pada sistem motor control biasanya akan mengaktifkan **motor contactor**.
+
+Hubungan antara contact dan coil dalam ladder logic dapat digambarkan sebagai berikut.
+
+```text id="ladder_basic_structure"
+Contact Conditions
+        │
+        ▼
+    Ladder Logic
+        │
+        ▼
+        Coil
+        │
+        ▼
+   Output Activation
+```
+
+Elemen contact dan coil inilah yang menjadi dasar untuk membangun berbagai pola logika kontrol, termasuk **motor start–stop control** yang akan dibahas pada bagian berikutnya.
 
 ---
 
-## 3. Physical Mechanism
+# Section 3 — Signal Flow
 
-Ketika motor dijalankan melalui sistem kontrol PLC, terdapat **rantai mekanisme fisik** yang menghubungkan aksi operator dengan pergerakan mekanik motor.
+Dalam sistem kontrol motor berbasis PLC, sinyal kontrol berasal dari **operator** yang memberikan perintah melalui **push button**.
 
-Walaupun logika berada di dalam PLC, sistem sebenarnya melibatkan **perangkat mekanik, electrical, dan kontrol**.
+Dua sinyal utama yang digunakan dalam kontrol motor sederhana adalah:
 
-✔ Alur Fisik Start Motor
+- **Start Push Button**
+- **Stop Push Button**
 
-![Image](https://media.licdn.com/dms/image/v2/D4E22AQFFEtbMsggiGw/feedshare-shrink_800/B4EZlbaRr6K0Ag-/0/1758175240059?e=2147483647&t=6lhGfCeiOdBrtHpNVOpQGebWQWr50nfJUW1RCbx5PUo&v=beta)
+Sinyal dari push button tersebut masuk ke PLC melalui **input module**, kemudian diproses oleh **ladder logic** untuk menentukan apakah motor harus dijalankan atau dihentikan.
 
-![Image](https://media.licdn.com/dms/image/v2/D4E22AQEViaLvUxH9Ng/feedshare-shrink_800/B4EZosAqUeJgAg-/0/1761674964028?e=2147483647&t=ePC08Zk1V9K35DzrWz9Q16yWB1IgZaPH7hliP1SUNvk&v=beta)
+Hubungan aliran sinyal dalam sistem kontrol motor sederhana dapat digambarkan sebagai berikut.
 
-Urutan fisik ketika operator menekan tombol START adalah sebagai berikut:
-
-```text
-Operator menekan START push button
+```text id="flow02"
+Start Push Button
 ↓
-kontak push button menutup
+PLC Ladder Logic
 ↓
-digital input PLC berubah status
+Motor Contactor
 ↓
-PLC membaca input pada scan cycle
-↓
-ladder logic mengevaluasi kondisi start
-↓
-PLC mengaktifkan output
-↓
-kontaktor MCC energize
-↓
-motor menerima supply listrik
-↓
-motor mulai berputar
-↓
-auxiliary contact berubah status
-↓
-PLC menerima feedback motor running
+Motor Running
 ```
 
-Setiap tahapan merupakan **rantai sebab–akibat dalam sistem kontrol industri**.
+Penjelasan aliran sinyal:
 
-Jika salah satu tahapan gagal, motor tidak akan berjalan.
+1. **Start Push Button**
+   Operator menekan tombol start untuk memberikan perintah menjalankan motor.
+
+2. **PLC Ladder Logic**
+   PLC membaca kondisi input dan mengevaluasi logika ladder untuk menentukan apakah coil motor harus diaktifkan.
+
+3. **Motor Contactor**
+   Jika logika terpenuhi, PLC mengaktifkan output yang mengendalikan motor contactor.
+
+4. **Motor Running**
+   Motor contactor menutup rangkaian daya motor sehingga motor mulai beroperasi.
+
+Dalam implementasi sebenarnya, beberapa sinyal tambahan juga terlibat dalam logika kontrol motor.
+
+Contoh sinyal yang umum digunakan:
+
+- **Start PB** — perintah menjalankan motor
+- **Stop PB** — perintah menghentikan motor
+- **Motor Coil** — output PLC yang mengaktifkan motor contactor
+- **Motor Auxiliary Contact** — feedback status motor dari contactor
+
+Hubungan antara sinyal-sinyal tersebut dapat digambarkan sebagai berikut.
+
+```text id="motor_signal_structure"
+Start PB
+Stop PB
+Motor Auxiliary Contact
+        │
+        ▼
+PLC Ladder Logic
+        │
+        ▼
+Motor Coil
+        │
+        ▼
+Motor Contactor
+        │
+        ▼
+Motor Running
+```
+
+Aliran sinyal ini menunjukkan bagaimana PLC bertindak sebagai **penghubung antara perintah operator dan operasi equipment**.
+
+Pada bagian berikutnya akan dijelaskan bagaimana PLC mengevaluasi sinyal-sinyal tersebut menggunakan **ladder logic** dalam rung program.
 
 ---
 
-### Masalah Tanpa Seal-In Logic
+# Section 5 — Practical Example — Seal-In Circuit
 
-Jika ladder logic hanya bergantung pada **START push button**, maka kondisi berikut akan terjadi:
+Untuk menjaga motor tetap berjalan setelah tombol **Start** dilepas, sistem kontrol menggunakan pola logika yang disebut **seal-in circuit**.
 
-```text
-START PB ditekan
-↓
-PLC membaca START = ON
-↓
-output PLC aktif
-↓
-motor start
+Seal-in circuit memungkinkan PLC **menjaga coil output tetap aktif** dengan menggunakan kontak umpan balik dari output itu sendiri.
+
+Contoh ladder logic untuk seal-in circuit adalah sebagai berikut.
+
+```text id="ladder03"
+Start PB     Stop PB
+---[ ]--------[/]----+----( Motor )
+                     |
+Motor Contact -------+
 ```
 
-Namun ketika tombol dilepas:
+Pada ladder ini terdapat tiga elemen utama:
 
-```text
-START PB kembali open
-↓
-input PLC menjadi OFF
-↓
-ladder logic menjadi FALSE
-↓
-output PLC mati
-↓
-motor berhenti
-```
+- **Start Push Button** — memberikan perintah awal untuk menjalankan motor
+- **Stop Push Button** — menghentikan motor
+- **Motor Contact (Auxiliary Contact)** — menjaga coil tetap aktif
 
-Artinya motor hanya berjalan selama tombol start **ditahan secara fisik oleh operator**.
-
-Hal ini tidak praktis dan tidak sesuai dengan praktik kontrol industri.
+Kontak **Motor Contact** berasal dari **auxiliary contact pada motor contactor** atau status internal output PLC.
 
 ---
 
-### Prinsip Self-Holding (Seal-In)
+## Logika Kerja Seal-In Circuit
 
-Untuk menjaga motor tetap berjalan setelah perintah start diberikan, ladder logic harus memiliki **holding path**.
+Urutan operasi dapat dijelaskan sebagai berikut.
 
-Konsepnya adalah:
+1. **Operator menekan Start PB**
 
-```text
-START command
-↓
-RUN_CMD menjadi TRUE
-↓
-RUN_CMD contact menjaga rung tetap aktif
+   Ketika tombol start ditekan, contact **Start PB** menjadi TRUE sehingga PLC mengaktifkan **Motor Coil**.
+
+2. **Motor coil aktif**
+
+   PLC mengaktifkan output yang mengendalikan **motor contactor**.
+
+3. **Motor auxiliary contact ikut aktif**
+
+   Ketika contactor motor aktif, **auxiliary contact motor** juga berubah menjadi aktif.
+
+4. **Auxiliary contact menjaga coil tetap aktif**
+
+   Kontak ini membentuk jalur paralel dengan **Start PB**, sehingga coil tetap aktif meskipun tombol start sudah dilepas.
+
+Diagram logika ini membuat sistem memiliki perilaku berikut:
+
+```text id="seal_in_behavior"
+Start PB ditekan
+→ Motor Start
+
+Start PB dilepas
+→ Motor tetap running
 ```
 
-Dengan demikian:
-
-```text
-START dilepas
-↓
-RUN_CMD contact tetap closed
-↓
-motor tetap running
-```
-
-Inilah yang disebut **seal-in circuit** atau **self-holding logic**.
-
-Logika ini adalah **pola kontrol paling dasar pada sistem motor PLC**.
+Motor akan terus berjalan sampai operator memberikan perintah berhenti.
 
 ---
 
-## 4. Control Objective
+## Kondisi Stop
 
-Tujuan dari struktur logika motor start–stop adalah memastikan bahwa operasi equipment mengikuti prinsip kontrol industri yang aman dan stabil.
+Motor akan berhenti ketika **Stop Push Button ditekan**.
 
-Empat tujuan utama logika ini adalah sebagai berikut.
-
----
-
-### 1. Motor dapat start dengan satu perintah operator
-
-Operator cukup menekan tombol START satu kali.
-
-```text
-START_PB = ON
-↓
-RUN_CMD = TRUE
-↓
-motor start
+```text id="stop02"
+Stop PB ditekan
 ```
 
----
-
-### 2. Motor tetap berjalan setelah tombol dilepas
-
-Self-holding memastikan bahwa motor tetap running walaupun operator sudah melepas tombol.
-
-```text
-START_PB = OFF
-RUN_CMD contact tetap aktif
-↓
-motor tetap running
-```
-
----
-
-### 3. Motor harus berhenti jika tombol STOP ditekan
-
-STOP push button memiliki prioritas lebih tinggi daripada start command.
-
-```text
-STOP_PB = ON
-↓
-NOT STOP_PB = FALSE
-↓
-RUN_CMD = FALSE
-↓
-motor stop
-```
-
----
-
-### 4. Sistem harus mencegah restart otomatis
-
-Ketika PLC kehilangan power:
-
-```text
-PLC memory reset
-↓
-RUN_CMD hilang
-↓
-output OFF
-↓
-motor berhenti
-```
-
-Ketika listrik kembali:
-
-```text
-RUN_CMD tidak aktif
-↓
-motor tetap OFF
-```
-
-Hal ini mencegah **automatic restart yang tidak diinginkan**, yang dapat membahayakan operator dan equipment.
-
----
-
-Struktur kontrol ini menjadi **fondasi hampir semua kontrol motor di sistem PLC industri**, sebelum engineer menambahkan logika lain seperti:
-
-- permissive
-- interlock
-- alarm
-- trip logic.
-
----
-
-## 5. Instrument and Signal Mapping
-
-Sebelum logika ladder dibuat, engineer harus menentukan **jalur sinyal kontrol yang menghubungkan operator, PLC, dan motor starter**. Tahap ini disebut **signal mapping**.
-
-Signal mapping memastikan bahwa setiap sinyal memiliki:
-
-- sumber sinyal yang jelas
-- alamat I/O PLC yang benar
-- fungsi logika yang terdefinisi.
-
-Tanpa mapping yang jelas, program PLC akan sulit dibaca dan troubleshooting menjadi tidak sistematis.
-
-✔ Arsitektur Sinyal Motor Control
-
-![Image](https://cdn.automationforum.co/uploads/2025/07/PLC-Program-for-Motor-Starter-with-Low-Level-Switch-Interlock-3-1024x566.jpg)
-
-![Image](https://media.licdn.com/dms/image/v2/D4D22AQHRad5fM_Ev4Q/feedshare-shrink_800/B4DZjBQ1EPGgAk-/0/1755589072790?e=2147483647&t=jsVy4yHZSEDBH57Nu3tsGmxHMnD2BOXecsZf5mJM21o&v=beta)
-
-Dalam sistem motor start–stop sederhana, PLC menggunakan beberapa sinyal dasar berikut.
-
-| Signal    | Source                | PLC Type | Function                   |
-| --------- | --------------------- | -------- | -------------------------- |
-| START_PB  | push button panel     | DI       | perintah start             |
-| STOP_PB   | push button panel     | DI       | perintah stop              |
-| MOTOR_FB  | MCC auxiliary contact | DI       | feedback motor running     |
-| MOTOR_CMD | PLC output            | DO       | command ke kontaktor motor |
-
-Mapping ini membentuk **jalur kontrol lengkap dari operator hingga motor**.
-
----
-
-### START Push Button
-
-START push button memberikan **perintah awal untuk menjalankan motor**.
-
-Ketika tombol ditekan:
-
-```text
-START_PB = ON
-```
-
-PLC membaca sinyal ini pada **input scan** dan kemudian logika ladder mengevaluasi apakah motor dapat dijalankan.
-
----
-
-### STOP Push Button
-
-STOP push button digunakan untuk menghentikan motor.
-
-Dalam praktik industri, STOP biasanya menggunakan **kontak NC (Normally Closed)**.
-
-Tujuannya adalah **fail-safe protection**.
-
-Jika terjadi kegagalan seperti:
-
-- kabel putus
-- terminal longgar
-- input PLC rusak
-
-maka:
-
-```text
-STOP_PB = FALSE
-↓
-logic stop aktif
-↓
-motor berhenti
-```
-
-Desain ini memastikan bahwa **kegagalan sistem kontrol tidak menyebabkan motor terus berjalan**.
-
----
-
-### Motor Feedback (MOTOR_FB)
-
-Motor feedback berasal dari **auxiliary contact pada MCC contactor**.
-
-Ketika kontaktor motor energize:
-
-```text
-MOTOR_FB = TRUE
-```
-
-Signal ini digunakan untuk:
-
-- konfirmasi bahwa motor benar-benar berjalan
-- status running di HMI
-- dasar logika alarm atau trip pada sistem yang lebih kompleks.
-
----
-
-### Motor Command (MOTOR_CMD)
-
-MOTOR_CMD adalah output PLC yang mengendalikan **coil kontaktor motor starter**.
-
-Jika output aktif:
-
-```text
-MOTOR_CMD = TRUE
-```
-
-maka:
-
-```text
-kontaktor MCC energize
-↓
-motor menerima supply listrik
-↓
-motor berputar
-```
-
-Dengan mapping ini PLC dapat menghubungkan **perintah operator dengan respon equipment electrical**.
-
----
-
-## 6. Ladder Logic Implementation
-
-Setelah sinyal dipetakan, langkah berikutnya adalah membuat **struktur ladder logic** yang mengendalikan motor.
-
-Logika ini dikenal sebagai **motor start–stop control** dengan **seal-in circuit**.
-
----
-
-✔ Struktur Basic Ladder Logic
-
-![Image](https://www.allaboutcircuits.com/uploads/articles/latch-the-control-circuit.jpg)
-
-![Image](https://www.allaboutcircuits.com/uploads/articles/switch-motor-stop.jpg)
-
-Logika utama yang digunakan:
-
-```text
-RUN_CMD =
-(START_PB OR RUN_CMD)
-AND NOT STOP_PB
-```
-
-Penjelasan setiap elemen logika.
-
----
-
-### START_PB
-
-START push button memberikan **trigger awal** untuk menjalankan motor.
-
-Ketika START_PB aktif:
-
-```text
-RUN_CMD = TRUE
-```
-
-PLC kemudian mengaktifkan output MOTOR_CMD.
-
----
-
-### RUN_CMD Holding Contact
-
-RUN_CMD digunakan sebagai **seal-in contact**.
-
-Fungsi utama holding contact adalah mempertahankan kondisi rung tetap aktif walaupun tombol START sudah dilepas.
-
-Tanpa seal-in logic:
-
-```text
-START dilepas
-↓
-input PLC OFF
-↓
-output PLC OFF
-↓
-motor berhenti
-```
-
-Dengan seal-in:
-
-```text
-RUN_CMD contact aktif
-↓
-motor tetap running
-```
-
----
-
-### STOP_PB
-
-STOP push button memberikan **prioritas penghentian sistem**.
-
-Ketika STOP ditekan:
-
-```text
-STOP_PB = ON
-↓
-NOT STOP_PB = FALSE
-↓
-RUN_CMD = FALSE
-↓
-MOTOR_CMD OFF
-↓
-motor stop
-```
-
-Karena kondisi STOP berada di jalur utama logika, maka **STOP selalu memiliki prioritas tertinggi** dalam kontrol motor.
-
----
-
-## 7. System Response
-
-Setelah ladder logic dibuat, langkah berikutnya adalah memahami **bagaimana sistem merespon berbagai kondisi operasi**. Respon ini terjadi karena PLC terus menjalankan **scan cycle** sehingga setiap perubahan input akan segera mempengaruhi output.
-
-Logika seal-in menghasilkan beberapa kondisi operasi yang umum terjadi pada sistem motor.
-
----
-
-✔ Respons Sistem Motor Control
-
-![Image](https://global.discourse-cdn.com/digikey/original/3X/8/9/893693bf129ad762dc7382ec106696b21982839b.png)
-
----
-
-### Scenario 1 — Motor Start Normal
-
-Kondisi awal sistem:
-
-```text
-START_PB = OFF
-STOP_PB  = OFF
-RUN_CMD  = OFF
-MOTOR_CMD = OFF
-```
-
-Operator menekan tombol START:
-
-```text
-START_PB = ON
-STOP_PB  = OFF
-```
-
-PLC mengevaluasi ladder logic:
-
-```text
-RUN_CMD =
-(START_PB OR RUN_CMD)
-AND NOT STOP_PB
-```
-
-Hasil evaluasi:
-
-```text
-RUN_CMD = TRUE
-```
-
-PLC kemudian mengaktifkan output:
-
-```text
-MOTOR_CMD = ON
-```
+Ketika tombol stop ditekan, contact **Stop PB (NC)** akan membuka sehingga aliran logika menuju coil terputus.
 
 Akibatnya:
 
-```text
-kontaktor MCC energize
-↓
-motor menerima supply listrik
-↓
-motor mulai berputar
-```
+- Motor coil menjadi OFF
+- Motor contactor membuka
+- Motor berhenti
 
-Ketika tombol START dilepas:
-
-```text
-START_PB = OFF
-```
-
-motor tetap berjalan karena:
-
-```text
-RUN_CMD contact masih aktif
-```
-
-Inilah fungsi utama **seal-in circuit**.
+Seal-in circuit ini merupakan salah satu **pola logika paling dasar dalam sistem kontrol motor berbasis PLC** dan sangat umum digunakan pada berbagai equipment industri seperti pump, fan, dan conveyor.
 
 ---
 
-### Scenario 2 — Motor Stop
+# Section 6 — Troubleshooting Insight
 
-Jika operator menekan tombol STOP:
+Pemahaman mengenai **seal-in circuit** sangat penting bagi engineer yang melakukan troubleshooting sistem kontrol motor di plant industri.
 
-```text
-STOP_PB = ON
-```
+Ketika motor tidak dapat start atau tidak dapat tetap berjalan, penyebabnya sering berkaitan dengan salah satu elemen dalam **rangkaian start–stop control**.
 
-Maka logika ladder berubah menjadi:
+Pendekatan troubleshooting biasanya mengikuti urutan aliran kontrol berikut.
 
-```text
-NOT STOP_PB = FALSE
-```
-
-Sehingga:
-
-```text
-RUN_CMD = FALSE
-```
-
-PLC kemudian mematikan output:
-
-```text
-MOTOR_CMD = OFF
-```
-
-Akibatnya:
-
-```text
-kontaktor MCC de-energize
+```text id="trb02"
+Start Push Button
 ↓
-supply listrik ke motor terputus
+Stop Push Button
 ↓
-motor berhenti
+PLC Logic
+↓
+Motor Output
+↓
+Motor Contactor
 ```
 
-Karena STOP berada dalam jalur utama logika, maka **STOP selalu memiliki prioritas tertinggi dalam kontrol motor**.
+Dengan mengikuti urutan ini, engineer dapat mengisolasi sumber masalah secara sistematis.
 
 ---
 
-### Scenario 3 — Power Loss
+## Step 1 — Periksa Start Push Button
 
-Kehilangan power pada PLC atau MCC merupakan kondisi yang harus dipertimbangkan dalam desain kontrol.
+Langkah pertama adalah memastikan **Start Push Button berfungsi dengan benar**.
 
-Jika PLC kehilangan power:
+Engineer perlu memeriksa apakah sinyal start benar-benar diterima oleh PLC.
 
-```text
-PLC memory reset
-↓
-RUN_CMD hilang
-↓
-output PLC OFF
-```
-
-Akibatnya:
-
-```text
-MOTOR_CMD = OFF
-↓
-kontaktor MCC de-energize
-↓
-motor berhenti
-```
-
-Ketika power kembali:
-
-```text
-START_PB = OFF
-RUN_CMD = OFF
-```
-
-motor **tidak akan restart secara otomatis**.
-
-Hal ini penting untuk:
-
-- keselamatan operator
-- mencegah mechanical shock
-- memastikan operator melakukan restart secara sadar.
-
----
-
-Respon sistem ini menunjukkan bahwa **struktur seal-in ladder logic mengontrol tiga kondisi utama operasi motor**:
-
-1. start normal
-2. stop command
-3. kehilangan power.
-
----
-
-## 8. Troubleshooting Guide
-
-Ketika sistem motor tidak merespon sesuai dengan logika ladder yang dirancang, engineer harus melakukan troubleshooting dengan pendekatan **alur sinyal kontrol**.
-
-Prinsip dasar troubleshooting PLC adalah mengikuti urutan berikut:
-
-```text id="j6qsp8"
-Field Device
-↓
-PLC Input
-↓
-Ladder Logic
-↓
-PLC Output
-↓
-Electrical Equipment
-```
-
-Dengan metode ini engineer dapat menentukan **di titik mana rantai kontrol terputus**.
-
----
-
-✔ Alur Diagnosa Sistem Motor
-
-![Image](https://www.researchgate.net/publication/333489346/figure/fig5/AS%3A764358757994497%401559248737628/A-simplified-flow-chart-of-the-PLC-logic-program-As-shown-in-Figure-6-four-types-of.png)
-
----
-
-### Motor tidak start
-
-Jika operator menekan START tetapi motor tidak berjalan, lakukan pemeriksaan berikut.
-
-Periksa status input START di PLC.
-
-```text id="d9as4u"
-START_PB = ON ?
-```
-
-Jika input tidak berubah:
-
-Kemungkinan penyebab:
+Kemungkinan masalah:
 
 - push button rusak
-- kabel field putus
-- terminal wiring longgar
-- input module PLC rusak.
+- wiring input terputus
+- input module PLC tidak membaca sinyal
 
-Jika input benar tetapi motor tidak start, periksa rung logika.
-
-```text id="efanpt"
-RUN_CMD = TRUE ?
-```
-
-Jika tidak TRUE, kemungkinan:
-
-- STOP_PB aktif
-- logika ladder salah
-- permissive condition belum terpenuhi.
+Jika sinyal start tidak pernah berubah menjadi TRUE di PLC, motor tidak akan dapat start.
 
 ---
 
-### Motor hanya berjalan saat tombol START ditekan
+## Step 2 — Periksa Stop Push Button
 
-Kondisi ini menunjukkan **seal-in circuit tidak bekerja**.
+Stop push button biasanya menggunakan **contact Normally Closed (NC)**.
 
-Ketika START ditekan:
+Jika contact ini selalu terbuka, aliran logika menuju coil akan selalu terputus.
 
-```text id="q1d1m4"
-START_PB = ON
-↓
-RUN_CMD = TRUE
-```
+Kemungkinan masalah:
 
-Namun saat START dilepas:
+- stop push button rusak
+- wiring terputus
+- safety interlock terbuka
 
-```text id="q95s32"
-START_PB = OFF
-↓
-RUN_CMD = FALSE
-↓
-motor stop
-```
-
-Penyebab umum:
-
-- tidak ada holding contact
-- RUN_CMD tidak digunakan sebagai seal-in contact
-- alamat tag RUN_CMD salah.
+Akibatnya motor tidak akan pernah dapat start.
 
 ---
 
-### Motor tidak bisa berhenti
+## Step 3 — Periksa PLC Logic
 
-Jika motor tetap berjalan walaupun tombol STOP ditekan, kemungkinan terjadi masalah pada jalur stop.
+Jika sinyal start dan stop sudah benar, langkah berikutnya adalah memeriksa **ladder logic PLC**.
 
-Periksa status input STOP.
+Engineer harus memastikan bahwa kondisi rung terpenuhi sehingga **Motor Coil dapat aktif**.
 
-```text id="ruysj0"
-STOP_PB = ON ?
-```
-
-Jika tidak berubah:
-
-Kemungkinan:
-
-- push button STOP rusak
-- wiring putus
-- alamat input salah.
-
-Jika input berubah tetapi motor tetap berjalan:
-
-Periksa logika:
-
-```text id="dxfvfb"
-NOT STOP_PB
-```
-
-Jika kondisi ini tidak mempengaruhi rung, kemungkinan logika ladder tidak memberikan **prioritas stop**.
+Jika logika tidak terpenuhi, PLC tidak akan mengaktifkan output motor.
 
 ---
 
-### Output PLC aktif tetapi motor tidak start
+## Step 4 — Periksa Motor Output dan Contactor
 
-Jika ladder logic menghasilkan output tetapi motor tidak berjalan, masalah biasanya berada pada sistem electrical.
+Jika PLC output sudah aktif tetapi motor tetap tidak berjalan, kemungkinan masalah berada pada **perangkat lapangan**.
 
-Periksa status output PLC:
+Beberapa kemungkinan penyebab:
 
-```text id="2lchd1"
-MOTOR_CMD = ON ?
-```
-
-Jika output aktif tetapi motor tidak berjalan:
-
-Kemungkinan penyebab:
-
+- motor contactor gagal menarik
 - overload relay trip
-- coil kontaktor rusak
-- supply MCC hilang
-- interlock electrical aktif.
+- supply listrik ke motor terputus
 
-Dalam kondisi ini PLC sebenarnya sudah memberikan command, tetapi **equipment tidak merespon perintah tersebut**.
+Engineer biasanya memeriksa status berikut:
+
+```text id="motor_output_check"
+Motor Output = ON
+Motor Contactor = OFF
+```
+
+Jika kondisi ini terjadi, berarti masalah berada pada **rangkaian daya motor**, bukan pada logika PLC.
 
 ---
 
-### Kesimpulan Teknis
+## Troubleshooting Principle
 
-Motor start–stop control menggunakan **seal-in ladder logic** untuk memastikan motor tetap berjalan setelah perintah start diberikan.
+Dengan memahami struktur seal-in circuit, engineer dapat menganalisis sistem kontrol motor menggunakan pendekatan berikut.
 
-Struktur logika utama adalah:
-
-```text id="ykp7qg"
-RUN_CMD =
-(START_PB OR RUN_CMD)
-AND NOT STOP_PB
+```text id="seal_in_troubleshooting_flow"
+Start Command
+↓
+Stop Circuit
+↓
+PLC Logic
+↓
+Motor Output
+↓
+Contactor
+↓
+Motor
 ```
 
-Struktur ini memastikan bahwa:
+Pendekatan ini membantu engineer menemukan penyebab masalah secara sistematis tanpa harus langsung membongkar seluruh sistem kontrol.
 
-- motor dapat start dengan satu perintah
-- motor tetap berjalan setelah tombol dilepas
-- motor dapat dihentikan kapan saja melalui tombol stop.
+---
 
-Logika seal-in ini merupakan **fondasi hampir semua kontrol motor dalam sistem PLC industri**, sebelum ditambahkan logika yang lebih kompleks seperti:
+Silakan **review Section 6**.
 
-- permissive
-- interlock
-- alarm
-- sequence control.
+Jika sudah **OK**, langkah terakhir adalah menambahkan:
+
+- **Summary (≤100 words)**
+- **Tags**
+
+sehingga **Artikel 2 selesai sepenuhnya seperti Artikel 1**.
 
 ---
 

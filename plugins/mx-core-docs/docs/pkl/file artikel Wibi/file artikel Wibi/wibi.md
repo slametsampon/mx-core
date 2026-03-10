@@ -1,0 +1,10 @@
+---
+name: Ikhwan Priyo Wibisono
+avatar: /static/images/authors/wibi.jpg
+occupation: Peserta Kerja Praktek
+company: PT. Petro Oxo Nusantara
+email: ikhwanwibisono@gmail.com
+bio: Saya adalah seorang mahasiswa semester 6 di Departemen Teknik Institut Teknologi Sepuluh Nopember. Saya berada di penjurusan sistem tenaga yang berhubungan dengan listrik arus kuat. Selain itu, saya memiliki hobi dalam menulis dan mengembangkan ide-ide saya. saya memiliki pengetahuan yang cukup mengenai kelistrikan arus kuat. Dengan latar belakang pendidikan dan minat yang saya miliki, saya yakin dan akan terus berusaha memberikan hasil yang positif dalam industri tenaga listrik.
+---
+
+Saya adalah seorang mahasiswa semester 6 di Departemen Teknik Institut Teknologi Sepuluh Nopember. Saya berada di penjurusan sistem tenaga yang berhubungan dengan listrik arus kuat. Selain itu, saya memiliki hobi dalam menulis dan mengembangkan ide-ide saya. saya memiliki pengetahuan yang cukup mengenai kelistrikan arus kuat. Dengan latar belakang pendidikan dan minat yang saya miliki, saya yakin dan akan terus berusaha memberikan hasil yang positif dalam industri tenaga listrik.

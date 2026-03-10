@@ -1,0 +1,10 @@
+---
+name: Iedo El Faiz Abrar
+avatar: /static/images/authors/edo.png
+occupation: Peserta Kerja Praktek
+company: PT. Petro Oxo Nusantara
+email: Iedo.elfai02@gmail.com
+bio: Saya adalah mahasiswa semester 6 jurusan Teknik Elektro dengan pembidangan Teknik Sistem Tenaga di ITS. Saya memiliki minat yang besar dalam bidang sistem tenaga listrik, khususnya pada analisis, perancangan, dan pengoperasian sistem distribusi serta proteksi tenaga listrik. Dengan latar belakang pendidikan dan minat yang saya miliki, saya akan terus berusaha memberikan hasil yang positif dalam industri tenaga listrik.
+---
+
+Saya adalah mahasiswa semester 6 jurusan Teknik Elektro dengan pembidangan Teknik Sistem Tenaga di ITS. Saya memiliki minat yang besar dalam bidang sistem tenaga listrik, khususnya pada analisis, perancangan, dan pengoperasian sistem distribusi serta proteksi tenaga listrik. Dengan latar belakang pendidikan dan minat yang saya miliki, saya akan terus berusaha memberikan hasil yang positif dalam industri tenaga listrik.

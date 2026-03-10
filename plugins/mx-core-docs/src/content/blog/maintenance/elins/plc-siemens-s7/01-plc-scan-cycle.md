@@ -6,15 +6,12 @@ tags:
   [
     'plc',
     'siemens-s7',
-    'ladder-diagram',
-    'industrial-automation',
-    'motor-control',
-    'pump-control',
+    'ladder-logic',
     'plc-scan-cycle',
-    'control-system-troubleshooting',
+    'industrial-automation',
   ]
 draft: false
-summary: Artikel ini menjelaskan **PLC Scan Cycle dan alur sinyal kontrol pada equipment industri** menggunakan contoh **motor–pump system**. Fokus utama adalah memahami bagaimana sinyal dari field device diproses oleh PLC melalui tiga tahap utama - **input scan, program execution, dan output update**. Dengan memahami siklus ini, engineer dapat menentukan titik kegagalan ketika equipment tidak merespon perintah kontrol. Artikel ini juga menunjukkan hubungan antara **sinyal instrument, ladder logic, dan respon equipment electrical**. Pemahaman scan cycle menjadi dasar troubleshooting sistem kontrol industri sebelum mempelajari logika PLC yang lebih kompleks seperti permissive, interlock, dan sequence control.
+summary: PLC bekerja menggunakan **scan cycle** yang terdiri dari tiga tahap utama - membaca input, mengeksekusi logika program, dan memperbarui output. Seluruh input dari field device disalin ke dalam **Input Memory (Process Image)** sebelum program ladder dijalankan. Hasil evaluasi logika kemudian disimpan pada **Output Memory** dan dikirim ke output module pada akhir scan cycle. Memahami mekanisme ini membantu engineer menganalisis perilaku sistem kontrol serta melakukan troubleshooting dengan mengikuti urutan **input → logic → output → equipment**.
 ---
 
 # **_Artikel 1: PLC Scan Cycle & Signal Flow dalam Control Equipment_**
@@ -22,751 +19,464 @@ summary: Artikel ini menjelaskan **PLC Scan Cycle dan alur sinyal kontrol pada e
 ---
 
 - [**_Artikel 1: PLC Scan Cycle \& Signal Flow dalam Control Equipment_**](#artikel-1-plc-scan-cycle--signal-flow-dalam-control-equipment)
-  - [1. Equipment Context](#1-equipment-context)
-  - [2. Operational Problem](#2-operational-problem)
-  - [3. Physical Mechanism](#3-physical-mechanism)
-  - [4. Control Objective](#4-control-objective)
-  - [5. Instrument and Signal Mapping](#5-instrument-and-signal-mapping)
-  - [6. Ladder Logic Implementation](#6-ladder-logic-implementation)
-  - [7. System Response](#7-system-response)
-  - [8. Troubleshooting Guide](#8-troubleshooting-guide)
-  - [Kesimpulan Teknis](#kesimpulan-teknis)
+- [1. Operational Context](#1-operational-context)
+- [2. System Mechanism](#2-system-mechanism)
+- [3. Signal Flow](#3-signal-flow)
+- [4. PLC Behaviour](#4-plc-behaviour)
+  - [Industrial Context](#industrial-context)
+- [5. Practical Example](#5-practical-example)
+    - [Step 1 — Read Inputs](#step-1--read-inputs)
+    - [Step 2 — Execute Logic](#step-2--execute-logic)
+    - [Step 3 — Update Outputs](#step-3--update-outputs)
+- [6. Troubleshooting Insight](#6-troubleshooting-insight)
+    - [Periksa Input](#periksa-input)
+    - [Periksa Logic](#periksa-logic)
+    - [Periksa Output](#periksa-output)
+    - [Periksa Equipment](#periksa-equipment)
 
 ---
 
-## 1. Equipment Context
+# 1. Operational Context
 
-Artikel pertama menggunakan **motor–pump system sederhana** sebagai konteks kontrol. Sistem ini sangat umum ditemukan pada berbagai fasilitas industri seperti:
+Dalam sistem kontrol industri, **Programmable Logic Controller (PLC)** digunakan untuk membaca kondisi proses dan mengontrol equipment seperti:
 
-- cooling water pump
-- utility water pump
-- transfer pump
+- motor
+- pump
+- valve
+- conveyor
+- compressor
 
-Walaupun sederhana, sistem ini mewakili struktur kontrol dasar yang terdapat pada hampir semua **equipment motor-driven** di plant.
+PLC berfungsi sebagai **sistem pengambil keputusan logika** yang menghubungkan kondisi proses dengan aksi equipment.
 
-Komponen utama sistem:
-
-- **Motor listrik** – penggerak mekanik pump
-- **Pump** – equipment proses yang memindahkan fluida
-- **MCC motor starter** – perangkat electrical untuk start/stop motor
-- **Start / Stop push button** – interface operator
-- **Motor auxiliary feedback contact** – konfirmasi motor running
-- **PLC** – controller yang menjalankan logic ladder
-
-Hubungan antar disiplin dalam sistem ini:
-
-| Discipline      | Komponen                   |
-| --------------- | -------------------------- |
-| Mechanical      | pump                       |
-| Electrical      | MCC motor starter          |
-| Instrumentation | auxiliary feedback contact |
-| Control         | PLC ladder logic           |
-
-Secara sistem kontrol, PLC berfungsi sebagai **penghubung antara sinyal operator dan equipment electrical**.
-
-Alur kontrol dasar:
-
-```
-Operator Command
-↓
-PLC Input
-↓
-Ladder Logic
-↓
-PLC Output
-↓
-Motor Starter (MCC)
-↓
-Pump Running
-```
-
-PLC tidak langsung menggerakkan motor. PLC hanya memberikan **command listrik ke MCC**, kemudian MCC yang mengenergize kontaktor motor.
-
----
-
-## 2. Operational Problem
-
-Masalah yang sering ditemui di lapangan adalah:
-
-**Motor tidak start walaupun tombol start sudah ditekan.**
-
-Operator biasanya melihat kondisi berikut:
-
-- lampu indikator start menyala
-- HMI menunjukkan start command aktif
-- tetapi motor tidak berputar.
-
-Dalam kondisi seperti ini engineer harus menjawab pertanyaan penting:
-
-> Di bagian mana sinyal kontrol berhenti?
-
-Kemungkinan titik kegagalan dapat terjadi pada beberapa bagian sistem:
-
-| Area              | Kemungkinan masalah                   |
-| ----------------- | ------------------------------------- |
-| Field device      | push button rusak                     |
-| PLC input         | input module tidak membaca sinyal     |
-| PLC logic         | rung ladder tidak menghasilkan output |
-| PLC output        | output module tidak aktif             |
-| Electrical system | kontaktor MCC tidak energize          |
-
-Tanpa memahami **alur pemrosesan sinyal dalam PLC**, engineer sering melakukan troubleshooting secara acak.
-
-Padahal PLC selalu memproses sistem kontrol melalui mekanisme yang sangat terstruktur yaitu **scan cycle**.
-
-Memahami scan cycle memungkinkan engineer menentukan secara cepat:
-
-- apakah masalah berada di **field device**
-- di **PLC logic**
-- atau di **equipment electrical**
-
----
-
-## 3. Physical Mechanism
-
-Mekanisme fisik aliran sinyal kontrol dalam sistem motor–pump dimulai dari **aksi operator** dan berakhir pada **pergerakan mekanik motor**. Walaupun PLC bekerja secara digital, rantai kontrol ini tetap melibatkan interaksi antara **perangkat mekanik, listrik, dan logika kontrol**.
-
-✔ Alur Fisik Sinyal Kontrol
-
-![Image](https://www.researchgate.net/publication/378749198/figure/fig1/AS%3A11431281227735712%401709728899226/PLC-Motor-control-circuit.ppm)
-
-![Image](https://cdn.forumautomation.com/original/2X/e/e7088f178df93338d16b49f1c60553cb507f52ef.png)
-
-Urutan mekanisme kontrol secara fisik adalah sebagai berikut:
+Hubungan dasar sistem kontrol dapat digambarkan sebagai berikut.
 
 ```text
-Operator menekan START push button
+Process Condition
 ↓
-Kontak push button menutup
+Instrument Signal
 ↓
-Digital input PLC berubah status
+PLC Logic
 ↓
-PLC membaca input pada tahap input scan
-↓
-Program ladder dieksekusi
-↓
-PLC mengaktifkan output module
-↓
-Kontaktor MCC energize
-↓
-Motor menerima supply listrik
-↓
-Motor mulai berputar
-↓
-Auxiliary contact berubah status
-↓
-PLC menerima motor running feedback
+Equipment Response
 ```
 
-Setiap langkah dalam rantai ini merupakan **hubungan sebab–akibat antar disiplin sistem**.
+![Image](https://automationindustrial.com/cdn/shop/articles/industrial_automation_levels.jpg?v=1611934259)
 
-| Tahap                   | Domain Sistem      | Mekanisme                       |
-| ----------------------- | ------------------ | ------------------------------- |
-| Operator menekan PB     | Human interface    | kontak mekanik berubah          |
-| Input PLC aktif         | Instrumentation    | sinyal digital masuk            |
-| Logic ladder dieksekusi | Control            | keputusan logika                |
-| Output PLC aktif        | Control/Electrical | sinyal ke MCC                   |
-| Kontaktor energize      | Electrical         | supply motor terhubung          |
-| Motor berputar          | Mechanical         | energi listrik → energi mekanik |
+Contoh sederhana terjadi pada **motor pump di plant industri**.
 
-Jika salah satu tahap gagal maka motor tidak akan start.
+Operator menekan tombol **START** pada panel kontrol.
 
-Contoh kegagalan pada rantai kontrol:
+Sistem kontrol kemudian harus melakukan beberapa langkah:
 
-| Titik Kegagalan     | Dampak                       |
-| ------------------- | ---------------------------- |
-| Push button rusak   | PLC tidak menerima input     |
-| Input module gagal  | logic tidak dieksekusi       |
-| Ladder logic salah  | output tidak aktif           |
-| Output module rusak | MCC tidak menerima command   |
-| Kontaktor rusak     | motor tidak menerima listrik |
+1. membaca sinyal dari **push button start**
+2. mengevaluasi logika kontrol dalam program PLC
+3. mengaktifkan output untuk menjalankan motor
 
-Karena PLC bekerja dalam **scan cycle yang sangat cepat**, semua proses ini sebenarnya terjadi dalam waktu sangat singkat.
+Namun dalam praktik operasi plant sering muncul kondisi seperti berikut:
 
-Namun dari sudut pandang troubleshooting, engineer harus memahami **di titik mana rantai kontrol terputus**.
+> tombol start ditekan tetapi motor tidak berjalan.
+
+Masalah ini dapat terjadi pada berbagai bagian sistem kontrol, seperti:
+
+- sinyal input tidak terbaca oleh PLC
+- logika kontrol tidak terpenuhi
+- output PLC tidak aktif
+- contactor motor gagal bekerja
+
+Untuk memahami penyebab masalah tersebut, engineer harus memahami **bagaimana PLC memproses sinyal dalam satu siklus kerja**.
+
+PLC bekerja menggunakan **siklus pemrosesan berulang** yang disebut **PLC Scan Cycle**.
 
 ---
 
-## 4. Control Objective
+Berikut **section Anda tanpa perubahan teks**, hanya **menambahkan gambar engineering Siemens S7 tepat di bawah setiap diagram konsep** sesuai instruksi.
 
-Tujuan utama sistem kontrol PLC pada motor starter adalah memastikan bahwa **perintah operator diterjemahkan menjadi aksi equipment secara konsisten dan dapat diverifikasi**.
+---
 
-Secara praktis, sistem kontrol harus memenuhi tiga tujuan berikut.
+# 2. System Mechanism
 
-✔ 1. Membaca Kondisi Lapangan
+PLC tidak memproses sinyal secara kontinu seperti sistem kontrol analog.
 
-PLC harus mampu membaca status semua sinyal input dari field device secara akurat.
+Sebaliknya, PLC bekerja menggunakan **siklus pemrosesan berulang** yang disebut **scan cycle**.
 
-Contoh input penting:
+Dalam setiap siklus, PLC melakukan tiga langkah utama.
 
 ```text
-START_PB
-STOP_PB
-MOTOR_FEEDBACK
-```
-
-Kesalahan pembacaan input dapat menyebabkan:
-
-- motor tidak start
-- motor tidak stop
-- status sistem tidak akurat.
-
----
-
-✔ 2. Mengevaluasi Logic Control
-
-PLC harus mengevaluasi program ladder untuk menentukan apakah kondisi operasi memungkinkan equipment berjalan.
-
-Contoh logika dasar:
-
-```text
-RUN_CMD =
-(START_PB OR RUN_CMD)
-AND NOT STOP_PB
-```
-
-Logika ini menentukan apakah motor harus berjalan atau berhenti.
-
----
-
-✔ 3. Mengirim Command ke Equipment
-
-Jika hasil evaluasi logika menghasilkan kondisi **RUN_CMD = TRUE**, PLC harus mengaktifkan output yang mengendalikan motor starter.
-
-Contoh output:
-
-```text
-MOTOR_CMD
-```
-
-Output ini akan:
-
-```text
-energize MCC contactor
+Read Inputs
 ↓
-motor supply terhubung
+Execute Logic
 ↓
-motor berputar
+Update Outputs
 ```
-
----
-
-Semua proses ini tidak terjadi sekali saja, tetapi terus diulang oleh PLC melalui mekanisme yang disebut **scan cycle**.
-
-Setiap scan cycle memastikan bahwa:
-
-- perubahan input segera terdeteksi
-- logic selalu diperbarui
-- output selalu mencerminkan kondisi sistem terbaru.
-
----
-
-## 5. Instrument and Signal Mapping
-
-Sebelum menulis logic ladder, engineer harus terlebih dahulu memahami **jalur sinyal yang menghubungkan operator, PLC, dan equipment electrical**. Proses ini disebut **signal mapping**.
-
-Signal mapping menjawab tiga pertanyaan utama:
-
-1. **Sinyal berasal dari mana**
-2. **Sinyal masuk ke modul PLC mana**
-3. **Sinyal digunakan untuk fungsi apa dalam logic**
-
-Tanpa mapping yang jelas, program PLC akan sulit dibaca dan troubleshooting menjadi tidak sistematis.
-
-✔ Signal Flow dalam Sistem Motor Control
-
-![Image](https://media.licdn.com/dms/image/v2/D4E22AQHdFJ8YFr_O8A/feedshare-shrink_1280/B4EZhUkmN0GcAk-/0/1753765537412?e=2147483647&t=oPuG9QdTRJPXREEWOYnKB12TDDfyJPD76gT2-d7ivY8&v=beta)
-
-Dalam sistem motor–pump sederhana, jalur sinyal kontrol biasanya terdiri dari empat sinyal utama.
-
-| Signal    | Source                | PLC Type | Function                 |
-| --------- | --------------------- | -------- | ------------------------ |
-| START_PB  | push button panel     | DI       | perintah start           |
-| STOP_PB   | push button panel     | DI       | perintah stop            |
-| MOTOR_FB  | MCC auxiliary contact | DI       | konfirmasi motor running |
-| MOTOR_CMD | PLC output            | DO       | command ke motor starter |
-
-Penjelasan setiap sinyal:
-
-✔ START_PB
-
-START push button memberikan **perintah awal untuk menjalankan motor**.
-
-Ketika tombol ditekan:
-
-```text id="9q9c7e"
-START_PB = ON
-```
-
-Sinyal ini masuk ke **digital input module PLC**.
-
----
-
-✔ STOP_PB
-
-STOP push button digunakan untuk menghentikan motor.
-
-Dalam praktik industri, STOP biasanya menggunakan **kontak NC (Normally Closed)**.
-
-Tujuannya adalah **fail-safe**.
-
-Jika kabel putus:
-
-```text id="g7g8fd"
-STOP_PB = FALSE
-↓
-motor stop
-```
-
-Dengan desain ini motor tidak akan tetap berjalan ketika sistem kontrol mengalami kegagalan.
-
----
-
-✔ MOTOR_FB
-
-Motor feedback berasal dari **auxiliary contact pada MCC contactor**.
-
-Ketika motor benar-benar berjalan:
-
-```text id="q7rj9b"
-MOTOR_FB = TRUE
-```
-
-Signal ini penting untuk:
-
-- verifikasi start berhasil
-- alarm start failure
-- status running di HMI.
-
----
-
-✔ MOTOR_CMD
-
-Output PLC yang mengendalikan motor starter.
-
-Jika output ini aktif:
-
-```text id="rsn98j"
-MOTOR_CMD = TRUE
-```
-
-PLC akan mengirim sinyal listrik ke coil kontaktor MCC.
-
-Akibatnya:
-
-```text id="v6i3je"
-kontaktor energize
-↓
-motor supply terhubung
-↓
-motor berputar
-```
-
-Mapping sinyal ini membentuk **jalur kontrol lengkap dari operator hingga equipment**.
-
----
-
-## 6. Ladder Logic Implementation
-
-Setelah sinyal dipetakan, langkah berikutnya adalah membuat **logic ladder yang menentukan kapan motor harus berjalan**.
-
-✔ Basic Motor Start Logic
-
-![Image](https://control.com/uploads/articles/startstop_1.jpg)
-
-![Image](https://www.allaboutcircuits.com/uploads/articles/switch-motor-stop.jpg)
-
-![Image](https://i.pinimg.com/736x/1b/df/c0/1bdfc073cc72abb5c216b1479e67a9f8.jpg)
-
-Logika dasar yang digunakan dalam motor starter adalah **seal-in circuit** atau **self-holding circuit**.
-
-Logika ini memastikan motor tetap berjalan setelah tombol start dilepas.
-
-Struktur logika:
-
-```text id="49luzh"
-RUN_CMD =
-(START_PB OR RUN_CMD)
-AND NOT STOP_PB
-```
-
-Penjelasan logika:
-
-✔ START_PB
-
-Memberikan perintah awal untuk menjalankan motor.
-
-Ketika START_PB aktif:
-
-```text id="sps1dc"
-RUN_CMD = TRUE
-```
-
----
-
-✔ RUN_CMD Holding Contact
-
-RUN_CMD digunakan sebagai **holding contact**.
-
-Fungsi utamanya adalah mempertahankan kondisi run walaupun tombol start sudah dilepas.
-
-Tanpa holding contact:
-
-```text id="ckdu1t"
-START dilepas
-↓
-input OFF
-↓
-motor berhenti
-```
-
----
-
-✔ STOP_PB
-
-STOP memiliki prioritas lebih tinggi.
-
-Ketika STOP ditekan:
-
-```text id="n7uecc"
-STOP_PB = TRUE
-↓
-NOT STOP_PB = FALSE
-↓
-RUN_CMD = FALSE
-↓
-motor stop
-```
-
----
-
-Dengan struktur logika ini PLC dapat memastikan bahwa:
-
-- motor dapat start dengan satu perintah
-- motor tetap berjalan setelah tombol dilepas
-- motor dapat dihentikan kapan saja dengan tombol stop.
-
----
-
-## 7. System Response
-
-Setelah sinyal dipetakan dan logic ladder dibuat, langkah berikutnya adalah memahami **bagaimana PLC memproses semua informasi tersebut secara terus-menerus**. Proses ini disebut **PLC Scan Cycle**.
-
-PLC tidak menjalankan program hanya sekali. PLC membaca input, menjalankan logika, dan memperbarui output **berulang kali dalam siklus yang sangat cepat**.
-
----
-
-✔ PLC Scan Cycle
-
-![Image](https://theautomization.com/plc-working-principle-and-plc-scan-cycle/plc-scanning-cycle/)
 
 ![Image](https://www.researchgate.net/publication/338129116/figure/fig6/AS%3A840664354942991%401577441409736/The-scan-cycle-of-a-PLC.ppm)
 
-Urutan dasar scan cycle PLC adalah:
+Setelah tahap terakhir selesai, PLC kembali ke tahap pertama dan mengulangi proses yang sama.
+
+Durasi satu scan cycle biasanya hanya **beberapa milidetik**, tergantung pada:
+
+- tipe CPU PLC
+- ukuran program
+- jumlah I/O yang diproses
+
+Secara konseptual mekanisme ini dapat digambarkan sebagai berikut.
 
 ```text
-Input Scan
+INPUT MODULE
+(read field signals)
 ↓
-Program Execution
+PLC MEMORY
+(store input status)
 ↓
-Output Update
+EXECUTE PROGRAM
+(run ladder logic)
 ↓
-Next Scan
+OUTPUT MEMORY
+(store output status)
+↓
+OUTPUT MODULE
+(send signal to equipment)
 ```
 
-Proses ini berlangsung secara terus menerus selama PLC beroperasi.
+![Image](https://support.industry.siemens.com/cs/images/109767576/109767576_Redundant_IO_S7_1500_01.png)
 
-Durasi satu siklus biasanya:
-
-```text
-5 – 20 ms
-```
-
-Artinya PLC mengevaluasi sistem kontrol **50 sampai 200 kali setiap detik**.
+Urutan pemrosesan ini menjadi dasar bagaimana PLC merespon setiap perubahan sinyal dalam sistem kontrol.
 
 ---
 
-✔ Input Scan
+Baik. Berikut **Section 3 langsung diperbaiki** tanpa perubahan teks Anda, **langsung ditingkatkan** dengan **3 gambar engineering kuat**:
 
-Pada tahap ini PLC membaca seluruh **status input dari field device**.
+- **Signal chain (instrument → controller)**
+- **Siemens S7 I/O architecture**
+- **PLC process image model**
+
+Semua ditempatkan **tepat di bawah diagram konsep**, siap **copas**.
+
+---
+
+# 3. Signal Flow
+
+Pada awal setiap **scan cycle**, PLC membaca seluruh sinyal dari **input module** yang terhubung dengan field device.
+
+Field device adalah perangkat yang mendeteksi kondisi proses di lapangan, seperti:
+
+- push button
+- limit switch
+- pressure switch
+- temperature switch
+- motor running feedback
+
+Sinyal listrik dari field device masuk ke **input module PLC**, kemudian dikonversi menjadi data digital yang dapat diproses oleh CPU PLC.
+
+Aliran sinyal dari lapangan menuju PLC dapat digambarkan sebagai berikut.
+
+```text
+FIELD DEVICE
+(push button, switch, sensor)
+        │
+        ▼
+INPUT MODULE
+(digital / analog input)
+        │
+        ▼
+PLC CPU
+```
+
+![Image](https://cdn.automationforum.co/uploads/2023/05/1-9.png)
+
+![Image](https://www.researchgate.net/publication/350110488/figure/fig1/AS%3A1019865951375360%401620166399766/Architecture-of-PLC-3.png)
+
+Namun PLC tidak langsung menggunakan data dari input module ketika menjalankan program.
+
+Pada awal scan cycle, PLC terlebih dahulu menyalin seluruh status input ke dalam **Input Memory**, yang sering disebut sebagai **Process Image Input Table**.
+
+```text
+FIELD DEVICE
+        │
+        ▼
+INPUT MODULE
+        │
+        ▼
+PROCESS IMAGE INPUT
+(Input Memory Snapshot)
+        │
+        ▼
+PLC PROGRAM EXECUTION
+```
+
+![Image](https://media.licdn.com/dms/image/v2/D5622AQFvUO8ULVOkCg/feedshare-shrink_800/B56Zfs0d2THcAg-/0/1752024868636?e=2147483647&t=JbfG-T7XYuMKG10acLhynTv5Ty_JeTAJAQpxmbEwMac&v=beta)
+
+Process Image berfungsi sebagai **snapshot kondisi input pada awal scan cycle**.
+
+Contoh isi Process Image Input Table:
+
+```text
+I0.0  Start Push Button   = 1
+I0.1  Stop Push Button    = 0
+I0.2  Motor Feedback      = 0
+I0.3  Valve Limit Switch  = 1
+```
+
+Selama program ladder dijalankan, PLC **tidak membaca ulang input module**.
+
+Perubahan sinyal baru akan diproses pada **scan cycle berikutnya**.
+
+---
+
+Berikut **Section 4 tanpa perubahan teks Anda**, hanya **menambahkan gambar engineering relevan** tepat **di bawah setiap diagram konsep**.
+
+Siap **langsung copas**.
+
+---
+
+# 4. PLC Behaviour
+
+Setelah PLC membaca seluruh input dan menyimpannya di **Input Memory**, CPU PLC mulai menjalankan **program ladder logic**.
+
+Program PLC dieksekusi secara **berurutan dari atas ke bawah**.
+
+```text id="r9u2fe"
+PLC Program Scan
+
+Rung 1
+↓
+Rung 2
+↓
+Rung 3
+↓
+Rung 4
+↓
+Update Output Memory
+```
+
+![Image](https://cdn.prod.website-files.com/63dea6cb95e58cb38bb98cbd/6830777728b9763b99de72f5_AD_4nXcOLkF1sL4E0EQ2lWACzOG6SHW4ngny9iGytOQC5J0aHbPIdxz_kGBSqaq7VR59iPiBCy63VQvsjK-ueVBROaECYw7aOBnqqGF5K-UC7opRNvf6eLUs99faUN0sHHvh5UNF9nUPLQ.png)
+
+Setiap rung ladder dievaluasi menggunakan data input dari **Input Memory**.
+
+Contoh ladder sederhana:
+
+```text id="j7x1vq"
+Start PB     Stop PB
+---[ ]--------[/]--------( Motor )
+```
+
+![Image](https://control.com/uploads/articles/startstop_1.jpg)
+
+![Image](https://control.com/uploads/articles/startstop_10.jpg)
+
+![Image](https://www.kronotech.com/LadderLogic/Basic/images/motor1.gif)
+
+Penjelasan:
+
+- Start PB = contact NO
+- Stop PB = contact NC
+- Motor = output coil
 
 Contoh kondisi input:
 
-```text
-START_PB = ON
-STOP_PB  = OFF
-MOTOR_FB = OFF
+```text id="guxh6m"
+Start Push Button = ON
+Stop Push Button  = OFF
 ```
 
-Input tersebut berasal dari:
+Evaluasi logika:
 
-- push button operator
-- limit switch
-- auxiliary contact
-- instrument switch.
+```text id="h0g4ci"
+Motor Coil = TRUE
+```
 
-PLC menyimpan semua status input ini dalam **memory internal** sebelum logika dievaluasi.
+Jika kondisi rung TRUE, PLC akan mengaktifkan coil pada **Output Memory**.
 
-Hal penting:
+```text id="m9sp0q"
+INPUT MEMORY
+(Start = ON, Stop = OFF)
+        │
+        ▼
+LADDER LOGIC EXECUTION
+        │
+        ▼
+OUTPUT MEMORY
+(Motor = ON)
+```
 
-Perubahan input **tidak langsung mempengaruhi output** sampai tahap program execution selesai.
+![Image](https://cdn.automationforum.co/uploads/2021/04/Untitled-24.jpg)
+
+Output baru dikirim ke **output module** pada tahap akhir scan cycle.
 
 ---
 
-✔ Program Execution
+## Industrial Context
 
-Pada tahap ini PLC menjalankan program ladder **rung demi rung**.
+Dalam sistem kontrol industri yang sebenarnya, motor biasanya menggunakan **seal-in circuit** agar motor tetap berjalan setelah tombol start dilepas.
 
-Contoh logika motor control:
+Contoh ladder yang lebih umum digunakan:
 
-```text
-RUN_CMD =
-(START_PB OR RUN_CMD)
-AND NOT STOP_PB
+```text id="o7h2an"
+Start PB     Stop PB
+---[ ]--------[/]----+----( Motor )
+                     |
+Motor Contact -------+
 ```
 
-Jika kondisi input adalah:
+![Image](https://www.allaboutcircuits.com/uploads/articles/switch-motor-stop.jpg)
 
-```text
-START_PB = ON
-STOP_PB  = OFF
+Logika ini membuat motor tetap aktif setelah start command dilepas.
+
+Namun untuk menjelaskan **scan cycle PLC**, ladder sederhana sudah cukup karena fokusnya adalah mekanisme:
+
+```text id="x3n48b"
+Input Memory
+↓
+Logic Execution
+↓
+Output Memory
 ```
 
-Maka hasil evaluasi:
+![Image](https://www.researchgate.net/publication/338129116/figure/fig6/AS%3A840664354942991%401577441409736/The-scan-cycle-of-a-PLC.ppm)
 
-```text
-RUN_CMD = TRUE
-```
-
-Jika STOP ditekan:
-
-```text
-STOP_PB = ON
-```
-
-Maka:
-
-```text
-RUN_CMD = FALSE
-```
-
-Program execution menentukan **status logika internal PLC**.
+Detail motor control akan dibahas pada artikel berikutnya.
 
 ---
 
-✔ Output Update
-
-Setelah semua rung dievaluasi, PLC memperbarui status output module.
-
-Contoh:
-
-Jika hasil logika adalah:
-
-```text
-RUN_CMD = TRUE
-```
-
-PLC akan mengaktifkan output:
-
-```text
-MOTOR_CMD = ON
-```
-
-Akibatnya:
-
-```text
-kontaktor MCC energize
-↓
-motor menerima supply listrik
-↓
-motor mulai berputar
-```
-
-Jika pada scan berikutnya kondisi berubah (misalnya STOP ditekan), PLC akan mematikan output pada siklus berikutnya.
+Berikut **Section 5 tanpa perubahan teks Anda**, hanya **menambahkan gambar engineering relevan tepat di bawah diagram konsep**, siap **langsung copas**.
 
 ---
 
-✔ Continuous Response
+# 5. Practical Example
 
-Karena scan cycle berjalan sangat cepat, sistem kontrol terlihat **merespon secara real-time**.
+Contoh operasi sederhana pada **motor start**.
 
-Contoh respon sistem:
-
-Scenario A — Start Motor
+Operator menekan **Start Push Button**.
 
 ```text
-START_PB = ON
-STOP_PB  = OFF
+START PUSH BUTTON
 ↓
-RUN_CMD = TRUE
+INPUT MODULE
 ↓
-MOTOR_CMD = ON
+PLC PROGRAM
 ↓
-motor start
+OUTPUT MODULE
+↓
+MOTOR CONTACTOR
+↓
+MOTOR RUNNING
 ```
 
-Scenario B — Stop Motor
+![Image](https://cdn.automationforum.co/uploads/2025/07/PLC-Program-for-Motor-Starter-with-Low-Level-Switch-Interlock-3-scaled.jpg)
+
+Proses dalam satu scan cycle:
+
+### Step 1 — Read Inputs
 
 ```text
-STOP_PB = ON
-↓
-RUN_CMD = FALSE
-↓
-MOTOR_CMD = OFF
-↓
-motor stop
+Start Push Button = ON
+Stop Push Button  = OFF
+Motor Feedback    = OFF
 ```
 
-Setiap perubahan input akan diproses pada **scan cycle berikutnya**.
+![Image](https://cdn.forumautomation.com/original/2X/9/999405a89b845f330c8ec5b41c5ea03224a96386.png)
 
-Inilah yang membuat PLC mampu mengontrol equipment secara stabil dan konsisten.
+![Image](https://control.com/uploads/articles/Poster_PLCIO_Wiring.png)
+
+### Step 2 — Execute Logic
+
+PLC mengevaluasi ladder:
+
+```text
+Start PB     Stop PB
+---[ ]--------[/]--------( Motor )
+```
+
+![Image](https://i.pinimg.com/736x/0d/f8/c2/0df8c218df4ab5fed86ccd3abe247949.jpg)
+
+Hasil:
+
+```text
+Motor Coil = TRUE
+```
+
+### Step 3 — Update Outputs
+
+```text
+Motor Output = ON
+```
+
+![Image](https://europe1.discourse-cdn.com/arduino/optimized/4X/b/d/d/bddad1308d74be3cddef7e1f7e53d694e606568e_2_1024x576.jpeg)
+
+Output module kemudian mengaktifkan **motor contactor** sehingga motor mulai berputar.
 
 ---
 
-## 8. Troubleshooting Guide
+# 6. Troubleshooting Insight
 
-Memahami **PLC scan cycle** memberikan keuntungan besar saat melakukan troubleshooting di plant. Engineer dapat melacak **di tahap mana sinyal kontrol terputus**, karena setiap respon sistem selalu mengikuti urutan tetap:
+Pemahaman scan cycle sangat penting untuk troubleshooting sistem kontrol.
 
-```text
-Field Device
+Engineer biasanya menganalisis sistem menggunakan urutan berikut.
+
+```
+FIELD DEVICE
 ↓
-PLC Input
+INPUT SIGNAL
 ↓
-Ladder Logic
+PLC INPUT MEMORY
 ↓
-PLC Output
+PLC LOGIC
 ↓
-Electrical Equipment
+OUTPUT MEMORY
+↓
+OUTPUT MODULE
+↓
+EQUIPMENT
 ```
 
-Dengan pendekatan ini troubleshooting tidak dilakukan secara acak, tetapi mengikuti **alur sinyal kontrol yang diproses oleh PLC**.
+Langkah troubleshooting:
 
----
+### Periksa Input
 
-✔ Step 1 — Periksa Input PLC
-
-Langkah pertama adalah memastikan **PLC benar-benar menerima sinyal dari field device**.
-
-Contoh kasus: operator menekan tombol start.
-
-Engineer harus memverifikasi status input PLC:
-
-```text
-START_PB = ON
+```
+Start Push Button = ON
 ```
 
-Jika input tidak berubah:
-
-Kemungkinan penyebab:
+Jika input tidak berubah, kemungkinan masalah:
 
 - push button rusak
-- kabel field putus
-- terminal wiring longgar
-- input module PLC bermasalah.
-
-Dalam kondisi ini ladder logic tidak akan pernah dievaluasi dengan benar karena **PLC tidak membaca perintah operator**.
+- wiring bermasalah
+- input module gagal membaca sinyal
 
 ---
 
-✔ Step 2 — Periksa Logic Ladder
+### Periksa Logic
 
-Jika input PLC sudah benar, langkah berikutnya adalah memeriksa **hasil evaluasi rung ladder**.
-
-Engineer harus melihat apakah rung menghasilkan kondisi berikut:
-
-```text
-RUN_CMD = TRUE
+```
+Start PB = TRUE
+Stop PB  = TRUE
+→ Motor Coil = TRUE
 ```
 
-Jika rung tidak aktif walaupun START_PB sudah ON, kemungkinan masalah adalah:
-
-- STOP_PB aktif
-- permissive condition tidak terpenuhi
-- kesalahan alamat tag pada ladder
-- logika rung salah.
-
-Online monitoring di software PLC biasanya menunjukkan **status setiap kontak pada rung ladder**, sehingga engineer dapat melihat dengan cepat **kontak mana yang memblok logika**.
+Jika logika tidak terpenuhi, PLC tidak akan mengaktifkan output.
 
 ---
 
-✔ Step 3 — Periksa Output PLC
+### Periksa Output
 
-Jika ladder logic sudah menghasilkan kondisi run, langkah berikutnya adalah memeriksa **output PLC**.
-
-Engineer harus memverifikasi status output berikut:
-
-```text
-MOTOR_CMD = ON
+```
+Motor Output = ON
 ```
 
-Jika output tidak aktif walaupun rung benar:
+Jika output tidak aktif:
 
-Kemungkinan penyebab:
-
-- alamat output salah
-- output module PLC rusak
-- channel output disable.
-
-Dalam tahap ini engineer memastikan bahwa **PLC benar-benar mengirim command ke equipment electrical**.
+- output module rusak
+- konfigurasi PLC salah
 
 ---
 
-✔ Step 4 — Periksa Equipment Electrical
+### Periksa Equipment
 
-Jika output PLC sudah aktif tetapi motor tetap tidak berjalan, maka masalah berada pada **sistem electrical di MCC**.
+Jika output aktif tetapi motor tidak berjalan:
 
-Beberapa kemungkinan:
-
-- coil kontaktor rusak
-- overload relay trip
-- supply MCC tidak tersedia
-- interlock electrical aktif.
-
-Dalam kondisi ini PLC sebenarnya sudah memberikan command, tetapi **equipment tidak merespon perintah tersebut**.
-
----
-
-✔ Metode Troubleshooting Berbasis Scan Cycle
-
-Pendekatan troubleshooting dapat diringkas menjadi alur berikut:
-
-```text
-Apakah input PLC berubah?
-↓
-Jika YA → periksa logic ladder
-↓
-Apakah rung menghasilkan output?
-↓
-Jika YA → periksa output PLC
-↓
-Apakah output PLC aktif?
-↓
-Jika YA → periksa MCC / motor starter
-```
-
-Dengan metode ini engineer dapat menemukan sumber masalah secara sistematis tanpa harus memeriksa seluruh sistem secara acak.
-
----
-
-## Kesimpulan Teknis
-
-PLC control system bekerja melalui **scan cycle berulang** yang terdiri dari tiga tahap utama:
-
-```text
-Input Scan
-Program Execution
-Output Update
-```
-
-Setiap respon equipment selalu mengikuti urutan ini.
-
-Memahami scan cycle memberikan tiga manfaat utama bagi engineer:
-
-1. **Menentukan titik kegagalan kontrol dengan cepat**
-2. **Mempercepat troubleshooting sistem PLC**
-3. **Memisahkan masalah antara field device, PLC logic, dan electrical equipment**
-
-Dalam praktik plant, kemampuan memahami scan cycle adalah **fondasi sebelum mempelajari logika kontrol yang lebih kompleks**, seperti permissive, interlock, sequence control, dan shutdown logic.
+- contactor motor rusak
+- motor overload trip
+- supply listrik terputus
 
 ---
 

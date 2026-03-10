@@ -2,19 +2,9 @@
 title: Interlock & Trip Logic — Menghentikan Equipment Saat Kondisi Berbahaya Terjadi
 authors: ['sam']
 date: '2026-03-04'
-tags:
-  [
-    'plc',
-    'siemens-s7',
-    'interlock-logic',
-    'trip-logic',
-    'pump-protection',
-    'industrial-automation',
-    'process-safety',
-    'motor-protection',
-  ]
+tags: ['plc', 'siemens-s7', 'ladder-logic', 'trip-logic', 'interlock-logic']
 draft: false
-summary: Artikel ini menjelaskan interlock dan trip logic pada sistem PLC yang digunakan untuk menghentikan equipment secara otomatis ketika kondisi operasi menjadi berbahaya. Contoh yang digunakan adalah motor–pump system dengan kondisi proses seperti suction pressure rendah, discharge pressure tinggi, dan motor overload. Berbeda dengan permissive yang memblok start sebelum operasi, interlock bekerja selama equipment sedang berjalan untuk melindungi sistem dari kerusakan mekanis dan electrical. Artikel ini menunjukkan bagaimana sinyal instrument digabungkan menjadi logika TRIP_ACTIVE yang memutus run command motor. Pendekatan ini merupakan lapisan proteksi penting untuk menjaga reliability equipment dan keselamatan proses industri.
+summary: Interlock dan trip logic digunakan dalam sistem kontrol industri untuk melindungi equipment dari kondisi operasi yang berbahaya. PLC memonitor berbagai sinyal proteksi seperti low pressure, high temperature, dan motor overload selama equipment beroperasi. Ketika salah satu kondisi trip terdeteksi, PLC akan menghasilkan stop command yang mematikan output equipment sehingga equipment berhenti secara otomatis. Berbeda dengan permissive logic yang menentukan apakah equipment boleh start, trip logic berfungsi menghentikan equipment yang sedang berjalan untuk mencegah kerusakan dan menjaga keselamatan proses.
 ---
 
 # **_Artikel 4: Interlock & Trip Logic — Menghentikan Equipment Saat Kondisi Berbahaya Terjadi_**
@@ -22,780 +12,330 @@ summary: Artikel ini menjelaskan interlock dan trip logic pada sistem PLC yang d
 ---
 
 - [**_Artikel 4: Interlock \& Trip Logic — Menghentikan Equipment Saat Kondisi Berbahaya Terjadi_**](#artikel-4-interlock--trip-logic--menghentikan-equipment-saat-kondisi-berbahaya-terjadi)
-  - [1. Equipment Context](#1-equipment-context)
-  - [2. Operational Problem](#2-operational-problem)
-    - [Suction pressure tiba-tiba turun](#suction-pressure-tiba-tiba-turun)
-    - [Discharge pressure terlalu tinggi](#discharge-pressure-terlalu-tinggi)
-    - [Motor overload](#motor-overload)
-  - [3. Physical Mechanism](#3-physical-mechanism)
-    - [Peran Instrument dalam Deteksi Kondisi Berbahaya](#peran-instrument-dalam-deteksi-kondisi-berbahaya)
-  - [4. Control Objective](#4-control-objective)
-    - [1. Mendeteksi Kondisi Operasi Berbahaya](#1-mendeteksi-kondisi-operasi-berbahaya)
-    - [2. Menghentikan Equipment Sebelum Kerusakan Terjadi](#2-menghentikan-equipment-sebelum-kerusakan-terjadi)
-    - [3. Mencegah Eskalasi Kegagalan Sistem](#3-mencegah-eskalasi-kegagalan-sistem)
-  - [5. Instrument and Signal Mapping](#5-instrument-and-signal-mapping)
-    - [Low Suction Pressure Signal](#low-suction-pressure-signal)
-    - [High Discharge Pressure Signal](#high-discharge-pressure-signal)
-    - [Motor Overload Signal](#motor-overload-signal)
-  - [6. Ladder Logic Implementation](#6-ladder-logic-implementation)
-    - [Integrasi Trip dengan Run Command](#integrasi-trip-dengan-run-command)
-  - [7. System Response](#7-system-response)
-    - [Scenario 1 — Normal Operation](#scenario-1--normal-operation)
-    - [Scenario 2 — Low Suction Pressure](#scenario-2--low-suction-pressure)
-    - [Scenario 3 — Motor Overload](#scenario-3--motor-overload)
-  - [8. Troubleshooting Guide](#8-troubleshooting-guide)
-    - [Step 1 — Periksa status trip di PLC](#step-1--periksa-status-trip-di-plc)
-    - [Step 2 — Verifikasi kondisi proses](#step-2--verifikasi-kondisi-proses)
-    - [Step 3 — Periksa instrument](#step-3--periksa-instrument)
-    - [Step 4 — Periksa electrical protection](#step-4--periksa-electrical-protection)
-    - [Kesimpulan Teknis](#kesimpulan-teknis)
+- [Section 1 — Operational Context](#section-1--operational-context)
+- [Section 2 — Equipment Behaviour](#section-2--equipment-behaviour)
+- [Section 3 — Control Requirement](#section-3--control-requirement)
+- [Section 4 — Signal Logic](#section-4--signal-logic)
+- [Section 5 — Ladder Logic Pattern](#section-5--ladder-logic-pattern)
+- [Section 6 — Practical Example](#section-6--practical-example)
+- [Section 7 — Engineering Notes](#section-7--engineering-notes)
+  - [Trip berbeda dengan Permissive](#trip-berbeda-dengan-permissive)
+  - [Trip biasanya berasal dari instrument proteksi](#trip-biasanya-berasal-dari-instrument-proteksi)
+  - [Trip logic harus lebih cepat dari operator response](#trip-logic-harus-lebih-cepat-dari-operator-response)
 
 ---
 
-## 1. Equipment Context
+# Section 1 — Operational Context
 
-Artikel ini masih menggunakan **motor–pump system** yang sama agar kontinuitas sistem tetap terjaga dengan artikel sebelumnya.
+Dalam operasi plant industri, berbagai equipment seperti **pump, compressor, dan fan** bekerja dalam kondisi proses yang dapat berubah secara dinamis.
 
-Pump merupakan salah satu **rotating equipment paling umum dalam plant industri** dan biasanya beroperasi secara kontinu selama proses berjalan.
+Pada kondisi tertentu, parameter proses dapat keluar dari batas operasi yang aman.
 
-Komponen utama sistem:
+Contoh kondisi yang berpotensi berbahaya antara lain:
 
-- **Pump** — equipment hidraulik yang memindahkan fluida
-- **Motor listrik** — penggerak mekanik pump
-- **Discharge piping** — jalur keluaran fluida dari pump
-- **Pressure instrument** — mendeteksi kondisi tekanan proses
-- **MCC motor starter** — sistem electrical untuk menghidupkan motor
-- **PLC** — controller yang menjalankan logika kontrol
+- **tekanan terlalu rendah**
+- **temperatur terlalu tinggi**
+- **aliran fluida hilang**
 
-Hubungan disiplin dalam sistem:
+Jika kondisi tersebut terjadi dan equipment tetap beroperasi, risiko yang dapat muncul meliputi:
 
-| Discipline      | Komponen                      |
-| --------------- | ----------------------------- |
-| Mechanical      | pump, impeller, seal          |
-| Electrical      | motor & MCC starter           |
-| Instrumentation | pressure switch / transmitter |
-| Control         | PLC interlock logic           |
+- kerusakan pada equipment
+- gangguan pada sistem proses
+- potensi kecelakaan operasi
 
-Pada artikel sebelumnya PLC digunakan untuk **mencegah pump start dalam kondisi tidak aman** menggunakan permissive logic.
+Karena itu sistem kontrol industri biasanya dilengkapi dengan **logika proteksi otomatis** yang dapat menghentikan equipment ketika kondisi berbahaya terdeteksi.
 
-Namun setelah pump berjalan, kondisi proses masih dapat berubah karena faktor seperti:
+Logika ini dikenal sebagai **interlock** atau **trip logic**.
 
-- perubahan tekanan sistem
-- perubahan aliran fluida
-- gangguan pada motor.
+Tujuan utama dari interlock dan trip logic adalah memastikan bahwa equipment dapat **dihentikan secara otomatis** ketika kondisi operasi berada di luar batas aman.
 
-Karena itu sistem kontrol membutuhkan **interlock dan trip logic** untuk melindungi equipment selama operasi berlangsung.
+Hubungan dasar antara kondisi berbahaya dan respon sistem dapat digambarkan sebagai berikut.
 
-Secara konsep, struktur proteksi sistem menjadi:
-
-```text id="r8g4m7"
-Permissive Logic
+```text id="trip_basic_concept"
+Abnormal Condition
 ↓
-Start Equipment
+Trip Detection
 ↓
-Monitor Process Condition
-↓
-Interlock / Trip Logic
-↓
-Stop Equipment jika kondisi berbahaya
+Automatic Equipment Stop
 ```
+
+Dengan mekanisme ini, sistem kontrol dapat melindungi equipment dan proses tanpa harus menunggu tindakan operator.
 
 ---
 
-## 2. Operational Problem
+# Section 2 — Equipment Behaviour
 
-Beberapa kondisi berbahaya dapat muncul **setelah pump sudah running**.
+Untuk memahami fungsi **interlock dan trip logic**, kita dapat melihat contoh perilaku sistem pada **pump system**.
 
-Contoh kondisi yang sering terjadi di plant:
+Pump dalam sistem proses biasanya beroperasi dengan memindahkan fluida dari **suction line** menuju **discharge line**. Selama operasi normal, tekanan pada sisi suction harus berada dalam batas yang aman agar aliran fluida dapat masuk ke pump dengan stabil.
 
-### Suction pressure tiba-tiba turun
+Namun dalam kondisi tertentu, tekanan pada sisi suction dapat turun terlalu rendah.
 
-Hal ini dapat disebabkan oleh:
+Jika kondisi ini terjadi, pump dapat mengalami beberapa masalah serius seperti:
 
-- suction valve tertutup sebagian
-- level tank upstream turun
-- blockage pada suction piping.
+- **cavitation** akibat terbentuknya gelembung uap pada fluida
+- **overheating** karena pendinginan internal pump tidak bekerja dengan baik
+- **kerusakan impeller** akibat operasi pada kondisi aliran yang tidak stabil
+
+Karena itu sistem kontrol harus mampu mendeteksi kondisi **low suction pressure** dan menghentikan pump secara otomatis.
+
+Perilaku sistem yang diharapkan dapat digambarkan sebagai berikut.
+
+```text id="trip_behavior_pump"
+Low Suction Pressure
+→ Pump Stop
+```
+
+Dengan kata lain, ketika tekanan suction turun di bawah batas yang ditentukan, sistem kontrol harus segera memberikan perintah untuk menghentikan pump.
+
+Respon otomatis ini merupakan bagian dari **trip logic**, yang dirancang untuk melindungi equipment dari kerusakan akibat kondisi operasi yang berbahaya.
 
 ---
 
-### Discharge pressure terlalu tinggi
+# Section 3 — Control Requirement
 
-Penyebab umum:
+Dalam sistem kontrol industri, PLC harus mampu **mendeteksi kondisi operasi yang berbahaya dan meresponnya dengan menghentikan equipment secara otomatis**.
 
-- discharge valve tertutup
-- downstream line tersumbat
-- control valve gagal membuka.
+Fungsi ini biasanya diimplementasikan melalui **trip logic** atau **interlock logic** yang memonitor parameter operasi equipment secara terus-menerus.
+
+Pada sistem pump, beberapa kondisi trip yang umum digunakan antara lain:
+
+```text id="pump_trip_conditions"
+Low Suction Pressure
+High Motor Temperature
+Motor Overload Trip
+```
+
+Penjelasan kondisi trip tersebut:
+
+- **Low Suction Pressure**
+  Tekanan pada sisi suction turun di bawah batas aman sehingga aliran fluida menuju pump tidak stabil.
+
+- **High Motor Temperature**
+  Temperatur motor meningkat melebihi batas operasi yang diizinkan.
+
+- **Motor Overload Trip**
+  Sistem proteksi motor mendeteksi arus berlebih yang dapat menyebabkan kerusakan pada motor.
+
+Sistem kontrol harus memonitor kondisi-kondisi ini selama equipment beroperasi.
+
+Hubungan antara kondisi trip dan respon sistem dapat digambarkan sebagai berikut.
+
+```text id="trip_logic_requirement"
+Any Trip Condition
+↓
+Trip Detection
+↓
+Pump Stop Command
+```
+
+Artinya, jika **salah satu kondisi trip muncul**, PLC harus segera menghentikan pump.
+
+Pendekatan ini memastikan bahwa equipment tidak terus beroperasi dalam kondisi yang dapat menyebabkan kerusakan atau membahayakan proses.
 
 ---
 
-### Motor overload
+# Section 4 — Signal Logic
 
-Motor overload dapat terjadi karena:
+Dalam **trip logic**, PLC harus memonitor berbagai sinyal proteksi yang berasal dari instrument atau perangkat proteksi equipment.
 
-- pump bekerja pada beban terlalu tinggi
-- mechanical friction meningkat
-- bearing rusak.
+Sinyal-sinyal ini digunakan untuk mendeteksi kondisi operasi yang berbahaya selama equipment sedang beroperasi.
+
+Hubungan antara sinyal trip dan respon sistem kontrol dapat digambarkan sebagai berikut.
+
+```text id="trip_signal_logic"
+Trip Signal
+↓
+PLC Logic
+↓
+Stop Command
+↓
+Equipment Stop
+```
+
+Ketika salah satu sinyal trip terdeteksi oleh PLC, sistem kontrol akan menghasilkan **perintah stop** untuk equipment yang bersangkutan.
+
+Beberapa contoh sinyal trip yang umum digunakan pada sistem pump adalah:
+
+```text id="trip_signal_examples"
+Low Pressure Switch
+Motor Overload Signal
+High Temperature Switch
+```
+
+Penjelasan sinyal trip:
+
+- **Low Pressure Switch**
+  Memberikan sinyal ketika tekanan suction turun di bawah batas aman.
+
+- **Motor Overload Signal**
+  Berasal dari sistem proteksi motor yang mendeteksi arus berlebih.
+
+- **High Temperature Switch**
+  Memberikan sinyal ketika temperatur equipment atau motor melebihi batas operasi yang diizinkan.
+
+PLC akan memonitor sinyal-sinyal ini secara **terus-menerus selama equipment beroperasi**.
+
+Jika salah satu sinyal trip berubah status menjadi aktif, PLC akan memproses kondisi tersebut dalam logika kontrol dan menghasilkan **stop command** untuk menghentikan equipment.
+
+Pendekatan ini memungkinkan sistem kontrol merespon kondisi berbahaya secara otomatis tanpa menunggu intervensi operator.
 
 ---
 
-Jika pump tetap berjalan dalam kondisi tersebut, kegagalan dapat berkembang menjadi kerusakan serius.
+# Section 5 — Ladder Logic Pattern
 
-Contoh eskalasi kegagalan:
+Trip logic dalam sistem PLC biasanya diimplementasikan menggunakan **ladder logic** yang memonitor kondisi trip secara terus-menerus.
 
-```text id="4os8qk"
-low suction pressure
-↓
-cavitation
-↓
-impeller erosion
-↓
-vibration meningkat
-↓
-seal failure
-↓
-loss of containment
+Ketika salah satu kondisi trip terdeteksi, PLC harus segera menghentikan equipment dengan mematikan output yang menjalankan equipment tersebut.
+
+Contoh ladder logic sederhana untuk kondisi trip dapat digambarkan sebagai berikut.
+
+```text id="trip_ladder_pattern"
+Low Pressure Switch
+----[/]--------------------( Pump Stop )
+
+Motor Overload
+----[/]--------------------( Pump Stop )
 ```
 
-Atau pada sisi electrical:
+Pada ladder ini terdapat beberapa sinyal trip yang dapat menyebabkan pump berhenti.
 
-```text id="2h8ykn"
-motor overload
-↓
-motor winding overheating
-↓
-insulation breakdown
-↓
-motor failure
-```
+Elemen-elemen pada ladder tersebut antara lain:
 
-Karena itu PLC harus memiliki kemampuan untuk **menghentikan equipment secara otomatis ketika kondisi berbahaya terdeteksi**.
+- **Low Pressure Switch**
+  Memberikan indikasi bahwa tekanan suction berada di bawah batas aman.
 
-Fungsi ini disebut **interlock atau trip logic**.
+- **Motor Overload**
+  Memberikan sinyal ketika sistem proteksi motor mendeteksi kondisi arus berlebih.
+
+Contact pada ladder biasanya menggunakan **Normally Closed (NC)** untuk kondisi trip.
+
+Selama kondisi operasi normal, contact tersebut berada dalam keadaan tertutup sehingga tidak memicu perintah stop.
+
+Namun ketika kondisi trip terjadi, contact akan berubah status dan menyebabkan logika rung menjadi aktif.
+
+Akibatnya PLC akan mematikan coil **Pump Run**, sehingga output yang menjalankan pump menjadi OFF.
+
+Dengan demikian **pump akan berhenti secara otomatis ketika salah satu kondisi trip muncul**.
+
+Pola ladder seperti ini merupakan bentuk dasar dari **trip logic** yang digunakan untuk melindungi equipment dalam sistem kontrol industri.
 
 ---
 
-## 3. Physical Mechanism
+# Section 6 — Practical Example
 
-Salah satu kondisi berbahaya yang paling sering terjadi pada pump adalah **penurunan tekanan suction secara tiba-tiba**. Kondisi ini dapat menyebabkan fenomena hidraulik yang merusak komponen internal pump.
+Sebagai contoh implementasi **trip logic** dalam sistem kontrol industri, kita dapat melihat kasus pada **Pump P-101**.
 
-Pump sentrifugal membutuhkan tekanan inlet minimum agar fluida dapat masuk ke impeller secara stabil. Jika tekanan terlalu rendah maka kondisi **NPSH (Net Positive Suction Head)** tidak terpenuhi.
+Pump P-101 sedang beroperasi untuk memindahkan fluida dari suction line menuju discharge line.
 
-✔ Mekanisme Cavitation pada Pump
+Selama operasi normal, tekanan pada sisi suction harus berada dalam batas operasi yang aman.
 
-![Image](https://www.researchgate.net/publication/336253916/figure/fig2/AS%3A11431281108504850%401671533386335/Formation-and-collapsing-of-vapor-bubbles-Some-of-situations-where-cavitation-phenomenon.png)
+Namun jika tekanan suction turun di bawah batas yang ditentukan, kondisi ini dapat membahayakan pump.
 
-![Image](https://www.michael-smith-engineers.co.uk/mse/uploads/UsefulInfo/PumpCavitation/PUMP-CAVITATION-FIG-1.JPG)
+Kondisi tersebut dapat dinyatakan sebagai berikut.
 
-![Image](https://media.licdn.com/dms/image/v2/D5622AQGOSxKGq4QFjg/feedshare-shrink_800/B56Zk5CPqFJsAg-/0/1757598514893?e=2147483647&t=K2KInpHmCG-_i_-EAjqO6H2W8D506qi-sI3dTXXU208&v=beta)
+```text id="p101_trip_condition"
+Suction Pressure < Low Limit
+```
 
-Rantai mekanisme kegagalan dapat dijelaskan sebagai berikut.
+Pada sistem ini, tekanan suction dimonitor oleh **pressure switch** yang terpasang pada suction line.
 
-```text
-suction pressure turun
+Ketika tekanan turun di bawah batas yang ditentukan, pressure switch akan berubah status dan menghasilkan **sinyal trip** ke PLC.
+
+PLC kemudian membaca sinyal tersebut sebagai kondisi trip.
+
+Respon sistem kontrol dapat digambarkan sebagai berikut.
+
+```text id="p101_trip_response"
+Low Suction Pressure
 ↓
-NPSH tidak terpenuhi
+PLC Trip Logic
 ↓
-fluida mulai menguap di area impeller
-↓
-vapor bubble terbentuk
-↓
-bubble runtuh ketika tekanan meningkat
-↓
-micro shock terjadi pada permukaan impeller
-↓
-impeller mengalami erosi
-↓
-vibration meningkat
-↓
-mechanical seal rusak
-↓
-fluida proses bocor
+Pump Run = OFF
 ```
 
-Fenomena ini disebut **cavitation**.
-
-Cavitation memiliki beberapa gejala yang dapat diamati di plant:
-
-- suara seperti kerikil di dalam pump
-- peningkatan getaran
-- penurunan flow rate
-- kerusakan permukaan impeller.
-
-Jika pump terus dioperasikan dalam kondisi ini, kerusakan dapat berkembang menjadi kegagalan sistem.
-
----
-
-### Peran Instrument dalam Deteksi Kondisi Berbahaya
-
-PLC tidak dapat mengukur fenomena fisik seperti cavitation secara langsung. Oleh karena itu sistem menggunakan **instrument proses** untuk mendeteksi kondisi yang mengarah pada kegagalan tersebut.
-
-Contoh instrument yang digunakan:
-
-- **pressure switch**
-- **pressure transmitter**
-- **flow switch**
-- **motor protection relay**
-
-✔ Deteksi Trip melalui Pressure Switch
-
-![Image](https://www.adminstrumentengineering.com.au/sites/default/files/styles/wide/public/pressure_switches_for_water_pumps_copy.webp?itok=gjHuJKto)
-
-Pressure switch dipasang pada suction piping untuk memonitor tekanan inlet pump.
-
-Ketika tekanan berada di atas batas minimum:
-
-```text
-SUCTION_PRESS_OK = TRUE
-```
-
-Jika tekanan turun di bawah setpoint:
-
-```text
-LOW_SUCTION_PRESS = TRUE
-```
-
-Perubahan status ini dikirim ke PLC sebagai **digital input**.
-
-PLC kemudian memproses sinyal tersebut dalam logika trip.
-
-```text
-LOW_SUCTION_PRESS
-↓
-TRIP_ACTIVE = TRUE
-↓
-RUN_CMD = FALSE
-↓
-motor stop
-```
-
-Dengan cara ini PLC dapat menghentikan pump **sebelum cavitation merusak komponen internal**.
-
----
-
-## 4. Control Objective
-
-Interlock dan trip logic memiliki tujuan utama untuk **melindungi equipment selama operasi berlangsung**.
-
-Berbeda dengan permissive yang bekerja sebelum start, interlock bekerja **ketika equipment sedang running**.
-
-Tujuan utama sistem interlock adalah sebagai berikut.
-
----
-
-### 1. Mendeteksi Kondisi Operasi Berbahaya
-
-PLC harus memonitor kondisi proses secara terus-menerus menggunakan sinyal instrument.
-
-Contoh kondisi yang harus dipantau:
-
-```text
-low suction pressure
-high discharge pressure
-motor overload
-```
-
-Jika salah satu kondisi ini muncul maka sistem harus segera merespon.
-
----
-
-### 2. Menghentikan Equipment Sebelum Kerusakan Terjadi
-
-Interlock dirancang untuk menghentikan equipment sebelum kerusakan berkembang.
-
-Contoh respon sistem:
-
-```text
-LOW_SUCTION_PRESS = TRUE
-↓
-TRIP_ACTIVE = TRUE
-↓
-motor stop
-```
-
-Dengan cara ini pump tidak terus beroperasi dalam kondisi cavitation.
-
----
-
-### 3. Mencegah Eskalasi Kegagalan Sistem
-
-Jika kondisi berbahaya tidak dihentikan, kegagalan dapat berkembang menjadi insiden yang lebih besar.
-
-Contoh eskalasi:
-
-```text
-cavitation
-↓
-seal failure
-↓
-loss of containment
-↓
-potensi fire / explosion
-```
-
-Dengan interlock logic, PLC menjadi **lapisan proteksi penting dalam sistem kontrol proses**.
-
----
-
-## 5. Instrument and Signal Mapping
-
-Untuk membangun **interlock dan trip logic**, PLC membutuhkan sinyal yang dapat mendeteksi kondisi operasi berbahaya secara real-time. Sinyal ini biasanya berasal dari **instrument proses dan sistem proteksi electrical**.
-
-Instrument tersebut mengubah kondisi fisik di lapangan (tekanan, arus motor, aliran) menjadi **sinyal digital yang dapat diproses oleh PLC**.
-
-✔ Arsitektur Sinyal Interlock Pump System
-
-![Image](https://cdn.automationforum.co/uploads/2025/07/PLC-Program-for-Motor-Starter-with-Low-Level-Switch-Interlock-7-scaled.jpg)
-
-Contoh sinyal yang digunakan dalam sistem interlock pump:
-
-| Signal            | Source             | PLC Type | Function        |
-| ----------------- | ------------------ | -------- | --------------- |
-| LOW_SUCTION_PRESS | pressure switch    | DI       | trip condition  |
-| HIGH_DISCH_PRESS  | pressure switch    | DI       | trip condition  |
-| MOTOR_OVERLOAD    | MCC overload relay | DI       | electrical trip |
-| RUN_CMD           | PLC logic          | internal | run command     |
-| MOTOR_CMD         | PLC output         | DO       | motor control   |
-
-Ketiga sinyal trip ini akan digabungkan menjadi satu kondisi logika yang disebut:
-
-```text
-TRIP_ACTIVE
-```
-
-Jika salah satu kondisi trip aktif, PLC harus menghentikan motor pump.
-
----
-
-### Low Suction Pressure Signal
-
-Pressure switch dipasang pada **suction piping** untuk memonitor tekanan inlet pump.
-
-Ketika tekanan turun di bawah batas minimum:
-
-```text
-LOW_SUCTION_PRESS = TRUE
-```
-
-Sinyal ini menunjukkan bahwa pump berpotensi mengalami **cavitation**.
-
-PLC harus menghentikan pump sebelum kerusakan terjadi.
-
----
-
-### High Discharge Pressure Signal
-
-Pressure switch juga dapat dipasang pada **discharge piping**.
-
-Jika tekanan discharge terlalu tinggi:
-
-```text
-HIGH_DISCH_PRESS = TRUE
-```
-
-Hal ini dapat disebabkan oleh:
-
-- discharge valve tertutup
-- downstream line blockage
-- control valve gagal membuka.
-
-Jika pump tetap berjalan, tekanan berlebih dapat menyebabkan:
-
-- overloading motor
-- kerusakan casing pump
-- kegagalan piping system.
-
----
-
-### Motor Overload Signal
-
-Motor overload biasanya dideteksi oleh **thermal overload relay** di MCC.
-
-Ketika arus motor melebihi batas aman:
-
-```text
-MOTOR_OVERLOAD = TRUE
-```
-
-Sinyal ini dikirim ke PLC sebagai trip condition.
-
-Overload dapat terjadi karena:
-
-- pump bekerja pada tekanan terlalu tinggi
-- mechanical friction meningkat
-- bearing rusak.
-
----
-
-Semua sinyal ini menjadi **indikasi bahwa sistem sedang berada dalam kondisi tidak aman**.
-
-PLC menggabungkan sinyal tersebut untuk menentukan apakah pump harus dihentikan.
-
----
-
-## 6. Ladder Logic Implementation
-
-Setelah semua sinyal trip dipetakan, langkah berikutnya adalah membangun **struktur ladder logic interlock**.
-
-Logika ini memastikan bahwa equipment dihentikan segera ketika kondisi berbahaya terdeteksi.
-
----
-
-✔ Struktur Interlock & Trip Logic
-
-![Image](https://cdn.automationforum.co/uploads/2023/08/plc-motor-2-scaled.jpg)
-
-Langkah pertama adalah membuat logika trip.
-
-```text
-TRIP_ACTIVE =
-LOW_SUCTION_PRESS
-OR HIGH_DISCH_PRESS
-OR MOTOR_OVERLOAD
-```
-
-Jika salah satu kondisi trip aktif maka:
-
-```text
-TRIP_ACTIVE = TRUE
-```
-
----
-
-### Integrasi Trip dengan Run Command
-
-Trip kemudian dimasukkan ke dalam rung RUN_CMD.
-
-```text
-RUN_CMD =
-(START_PB OR RUN_CMD)
-AND NOT STOP_PB
-AND PERMISSIVE_OK
-AND NOT TRIP_ACTIVE
-```
-
-Penjelasan logika:
-
-Jika salah satu trip aktif:
-
-```text
-TRIP_ACTIVE = TRUE
-↓
-NOT TRIP_ACTIVE = FALSE
-↓
-RUN_CMD = FALSE
-↓
-motor stop
-```
-
-Motor akan berhenti secara otomatis tanpa intervensi operator.
-
----
-
-## 7. System Response
-
-Setelah logika **TRIP_ACTIVE** dimasukkan ke dalam rung **RUN_CMD**, PLC akan memonitor kondisi proses secara terus-menerus melalui **scan cycle**. Setiap perubahan sinyal instrument akan mempengaruhi status trip dan menentukan apakah motor pump tetap berjalan atau harus dihentikan.
-
-Secara prinsip kontrol:
-
-```text
-Equipment boleh running
-jika tidak ada kondisi trip
-```
-
-atau dalam bentuk logika:
-
-```text
-RUN_CMD = RUN_LOGIC
-AND NOT TRIP_ACTIVE
-```
-
----
-
-✔ Lanjutan Artikel — Bagian 5
-
-![Image](https://www.researchgate.net/publication/318191208/figure/fig1/AS%3A512736128966656%401499257227865/Flowchart-of-Program-Working-Condition-A.png)
-
-![Image](https://www.researchgate.net/publication/351508147/figure/fig2/AS%3A1033116625948673%401623325606182/Piping-and-instrumentation-diagram-P-ID-of-the-system.png)
-
----
-
-### Scenario 1 — Normal Operation
-
-Kondisi sistem:
-
-```text
-PERMISSIVE_OK = TRUE
-LOW_SUCTION_PRESS = FALSE
-HIGH_DISCH_PRESS = FALSE
-MOTOR_OVERLOAD = FALSE
-```
-
-PLC mengevaluasi logika trip:
-
-```text
-TRIP_ACTIVE = FALSE
-```
-
-Rung RUN_CMD menjadi:
-
-```text
-RUN_CMD = TRUE
-```
-
-PLC mengaktifkan output:
-
-```text
-MOTOR_CMD = ON
-```
-
-Respon sistem:
-
-```text
-motor running
-↓
-pump memindahkan fluida
-↓
-tekanan dan flow stabil
-```
-
-Dalam kondisi ini PLC hanya **memantau kondisi proses tanpa melakukan intervensi**.
-
----
-
-### Scenario 2 — Low Suction Pressure
-
-Jika tekanan suction turun di bawah batas aman:
-
-```text
-LOW_SUCTION_PRESS = TRUE
-```
-
-PLC mengevaluasi logika trip:
-
-```text
-TRIP_ACTIVE = TRUE
-```
-
-Rung RUN_CMD menjadi:
-
-```text
-RUN_CMD = FALSE
-```
-
-PLC mematikan output:
-
-```text
-MOTOR_CMD = OFF
-```
-
-Respon sistem:
-
-```text
-kontaktor MCC de-energize
-↓
-motor berhenti
-↓
-pump berhenti
-```
-
-Dengan respon ini pump dihentikan **sebelum cavitation merusak impeller**.
-
----
-
-### Scenario 3 — Motor Overload
-
-Jika arus motor melebihi batas aman, overload relay di MCC akan aktif.
-
-```text
-MOTOR_OVERLOAD = TRUE
-```
-
-PLC menerima sinyal trip ini dan menghitung logika:
-
-```text
-TRIP_ACTIVE = TRUE
-```
+Ketika PLC mendeteksi kondisi trip, PLC akan mematikan coil **Pump Run**.
 
 Akibatnya:
 
-```text
-RUN_CMD = FALSE
-```
+- output PLC yang mengendalikan motor contactor menjadi OFF
+- motor contactor membuka
+- pump berhenti beroperasi
 
-PLC mematikan output motor.
-
-Respon sistem:
-
-```text
-motor stop
-↓
-arus motor turun
-↓
-motor terlindungi dari overheating
-```
-
-Trip ini melindungi motor dari **thermal damage pada winding motor**.
+Dengan mekanisme ini, sistem kontrol dapat **menghentikan Pump P-101 secara otomatis ketika kondisi operasi tidak aman terdeteksi**.
 
 ---
 
-## 8. Troubleshooting Guide
+# Section 7 — Engineering Notes
 
-Ketika pump tiba-tiba berhenti selama operasi, engineer harus menentukan **trip condition mana yang memicu penghentian equipment**. Pendekatan troubleshooting harus mengikuti urutan evaluasi logika trip di PLC.
-
-Secara sistematis alur diagnosa adalah:
-
-```text
-Process Condition
-↓
-Instrument Signal
-↓
-Trip Logic (PLC)
-↓
-Motor Command
-↓
-MCC Motor Starter
-```
-
-Pendekatan ini mencegah troubleshooting dilakukan secara acak.
+Beberapa prinsip penting perlu diperhatikan dalam implementasi **interlock dan trip logic** pada sistem kontrol industri.
 
 ---
 
-✔ Alur Diagnosa Trip System
+## Trip berbeda dengan Permissive
 
-![Image](https://cdn.automationforum.co/uploads/2025/06/Explore-how-permissive-logic-and-trip-interlocks-ensure-safe-equipment-operation-in-DCS-PLC-and-SIS-based-automation-systems.-1-scaled.jpg)
+Trip logic memiliki fungsi yang berbeda dengan permissive logic.
 
-![Image](https://cdn.automationforum.co/uploads/2026/01/PLC-Permissive-Logic-Troubleshooting-Procedure-for-Instrumentation-Engineers-4-1024x670.jpg)
+Permissive logic menentukan **apakah equipment diizinkan untuk start**, sedangkan trip logic menentukan **apakah equipment harus dihentikan**.
 
----
-
-### Step 1 — Periksa status trip di PLC
-
-Langkah pertama adalah melihat **status trip signal pada PLC atau HMI**.
-
-Engineer harus mengidentifikasi sinyal mana yang aktif:
+Perbedaan fungsi ini dapat digambarkan sebagai berikut.
 
 ```text
-LOW_SUCTION_PRESS
-HIGH_DISCH_PRESS
-MOTOR_OVERLOAD
-```
-
-Jika salah satu bernilai TRUE maka:
-
-```text
-TRIP_ACTIVE = TRUE
-```
-
-Pump akan berhenti.
-
-Mengetahui **trip source** adalah langkah paling penting sebelum melakukan investigasi lebih lanjut.
-
----
-
-### Step 2 — Verifikasi kondisi proses
-
-Jika trip berasal dari kondisi proses, engineer harus memverifikasi apakah kondisi tersebut benar-benar terjadi.
-
-Contoh pemeriksaan:
-
-**Low suction pressure**
-
-Periksa:
-
-- level tank upstream
-- posisi suction valve
-- kemungkinan blockage pada suction line.
-
----
-
-**High discharge pressure**
-
-Periksa:
-
-- discharge valve
-- control valve downstream
-- kondisi pipeline.
-
-Trip sering terjadi karena **kondisi proses memang tidak normal**.
-
----
-
-### Step 3 — Periksa instrument
-
-Jika PLC menunjukkan trip tetapi kondisi proses normal, kemungkinan masalah berada pada **instrument lapangan**.
-
-Periksa perangkat berikut:
-
-**Pressure switch**
-
-- apakah switch berfungsi
-- apakah setpoint benar
-- apakah wiring instrument normal.
-
-Kesalahan kalibrasi atau kerusakan instrument dapat menyebabkan **false trip**.
-
----
-
-### Step 4 — Periksa electrical protection
-
-Jika trip berasal dari sinyal:
-
-```text
-MOTOR_OVERLOAD
-```
-
-maka pemeriksaan harus diarahkan ke sistem electrical.
-
-Periksa:
-
-- overload relay setting
-- arus motor
-- temperatur motor
-- kemungkinan mechanical friction pada pump.
-
-Contoh eskalasi kegagalan:
-
-```text
-bearing friction meningkat
+Permissive Logic
+Start Command
 ↓
-motor current naik
+Permissive Check
 ↓
-overload relay trip
-↓
-motor stop
+Start Allowed
 ```
 
-Dalam kasus ini trip justru **melindungi motor dari kerusakan yang lebih besar**.
+```text
+Trip Logic
+Trip Condition
+↓
+Trip Detection
+↓
+Equipment Stop
+```
+
+Dengan kata lain:
+
+```text
+Permissive → Start Authorization
+Trip → Emergency Stop
+```
+
+Permissive bekerja **sebelum equipment start**, sedangkan trip bekerja **selama equipment beroperasi**.
 
 ---
 
-### Kesimpulan Teknis
+## Trip biasanya berasal dari instrument proteksi
 
-Interlock dan trip logic digunakan untuk **menghentikan equipment secara otomatis ketika kondisi berbahaya terdeteksi selama operasi**.
+Sinyal trip umumnya berasal dari **instrument proteksi atau perangkat proteksi equipment** yang memonitor kondisi operasi.
 
-Struktur dasar trip logic:
+Beberapa contoh sumber sinyal trip antara lain:
 
-```text
-TRIP_ACTIVE =
-trip_condition_1
-OR trip_condition_2
-OR trip_condition_3
-```
+- **pressure switch**
+- **temperature switch**
+- **overload relay**
 
-Trip kemudian memutus logika run command:
+Perangkat-perangkat ini dirancang untuk mendeteksi kondisi operasi yang berpotensi merusak equipment.
 
-```text
-RUN_CMD = RUN_LOGIC
-AND NOT TRIP_ACTIVE
-```
+Ketika kondisi tersebut terdeteksi, instrument akan menghasilkan **sinyal trip** yang dibaca oleh PLC atau sistem proteksi.
 
-Dengan struktur ini PLC dapat:
+---
 
-- memonitor kondisi proses secara terus-menerus
-- menghentikan equipment sebelum kerusakan berkembang
-- mencegah eskalasi kegagalan menjadi insiden keselamatan.
+## Trip logic harus lebih cepat dari operator response
 
-Interlock & trip logic merupakan **lapisan proteksi penting dalam sistem kontrol industri** yang bekerja setelah equipment mulai beroperasi.
+Tujuan utama trip logic adalah **melindungi equipment dari kerusakan akibat kondisi operasi yang berbahaya**.
+
+Karena itu trip logic harus bekerja **secara otomatis dan lebih cepat dibandingkan respon operator**.
+
+Jika sistem hanya bergantung pada tindakan operator, terdapat risiko bahwa equipment akan terus beroperasi dalam kondisi yang tidak aman.
+
+Dengan adanya trip logic, sistem kontrol dapat menghentikan equipment secara otomatis segera setelah kondisi berbahaya terdeteksi.
+
+Pendekatan ini merupakan bagian penting dari **proteksi equipment dalam sistem kontrol industri**.
 
 ---
 
