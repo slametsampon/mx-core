@@ -1,5 +1,127 @@
 [
   {
+    "id": "maintenance/mechanical/centrifugal-pump-engineering/01-centrifugal-pump-fundamentals",
+    "name": "Centrifugal Pump Fundamentals",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/mechanical/centrifugal-pump-engineering/01-centrifugal-pump-fundamentals",
+    "subtitle": "March 11, 2026",
+    "keywords": [
+      "centrifugal-pump",
+      "pump-fundamentals",
+      "fluid-mechanics",
+      "euler-pump-equation",
+      "rotodynamic-machinery",
+      "pump-head-generation"
+    ]
+  },
+  {
+    "id": "maintenance/mechanical/centrifugal-pump-engineering/02-pump-performance-curve-and-operating-point",
+    "name": "Pump Performance Curve and Operating Point",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/mechanical/centrifugal-pump-engineering/02-pump-performance-curve-and-operating-point",
+    "subtitle": "March 11, 2026",
+    "keywords": [
+      "centrifugal-pump",
+      "pump-performance-curve",
+      "system-curve",
+      "operating-point",
+      "best-efficiency-point",
+      "pump-hydraulics"
+    ]
+  },
+  {
+    "id": "maintenance/mechanical/centrifugal-pump-engineering/03-total-dynamic-head-calculation",
+    "name": "Total Dynamic Head Calculation",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/mechanical/centrifugal-pump-engineering/03-total-dynamic-head-calculation",
+    "subtitle": "March 11, 2026",
+    "keywords": [
+      "centrifugal-pump",
+      "total-dynamic-head",
+      "pipe-friction-loss",
+      "minor-losses",
+      "pump-system-curve",
+      "pump-sizing"
+    ]
+  },
+  {
+    "id": "maintenance/mechanical/centrifugal-pump-engineering/05-centrifugal-pump-selection-engineering",
+    "name": "Centrifugal Pump Selection Engineering",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/mechanical/centrifugal-pump-engineering/05-centrifugal-pump-selection-engineering",
+    "subtitle": "March 11, 2026",
+    "keywords": [
+      "centrifugal-pump",
+      "pump-selection",
+      "specific-speed",
+      "pump-efficiency",
+      "pump-power-estimation",
+      "pump-engineering"
+    ]
+  },
+  {
+    "id": "maintenance/mechanical/centrifugal-pump-engineering/06-centrifugal-pump-installation-engineering",
+    "name": "Centrifugal Pump Installation Engineering",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/mechanical/centrifugal-pump-engineering/06-centrifugal-pump-installation-engineering",
+    "subtitle": "March 11, 2026",
+    "keywords": [
+      "centrifugal-pump",
+      "pump-installation",
+      "pump-foundation",
+      "shaft-alignment",
+      "suction-piping",
+      "pump-hydraulic-stability"
+    ]
+  },
+  {
+    "id": "maintenance/mechanical/centrifugal-pump-engineering/07-centrifugal-pump-operation-behavior",
+    "name": "Centrifugal Pump Operation Behavior",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/mechanical/centrifugal-pump-engineering/07-centrifugal-pump-operation-behavior",
+    "subtitle": "March 11, 2026",
+    "keywords": [
+      "centrifugal-pump",
+      "pump-operation",
+      "pump-operating-region",
+      "minimum-flow",
+      "best-efficiency-point",
+      "hydraulic-instability"
+    ]
+  },
+  {
+    "id": "maintenance/mechanical/centrifugal-pump-engineering/08-centrifugal-pump-maintenance-and-reliability",
+    "name": "Centrifugal Pump Maintenance and Reliability",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/mechanical/centrifugal-pump-engineering/08-centrifugal-pump-maintenance-and-reliability",
+    "subtitle": "March 11, 2026",
+    "keywords": [
+      "centrifugal-pump",
+      "pump-maintenance",
+      "pump-reliability",
+      "bearing-failure",
+      "mechanical-seal",
+      "mtbf-availability"
+    ]
+  },
+  {
+    "id": "maintenance/mechanical/centrifugal-pump-engineering/README",
+    "name": "Centrifugal Pump Engineering Series",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/mechanical/centrifugal-pump-engineering/README",
+    "subtitle": "March 10, 2026",
+    "keywords": [
+      "centrifugal-pump",
+      "pump-engineering",
+      "fluid-mechanics",
+      "pump-selection",
+      "pump-installation",
+      "pump-operation",
+      "pump-reliability",
+      "rotating-equipment"
+    ]
+  },
+  {
     "id": "maintenance/mechanical/reliability-improvement-v-belt-cws",
     "name": "Reliability Improvement of Cooling Tower Blower Belt Drive Systems",
     "section": "CONTENT",
@@ -29,6 +151,21 @@
       "rolling-bearing",
       "predictive-maintenance",
       "open-bowl-curve"
+    ]
+  },
+  {
+    "id": "maintenance/mechanical/centrifugal-pump-engineering/04-npsh-and-cavitation-in-centrifugal-pumps",
+    "name": "NPSH and Cavitation in Centrifugal Pumps",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/mechanical/centrifugal-pump-engineering/04-npsh-and-cavitation-in-centrifugal-pumps",
+    "subtitle": "March 4, 2026",
+    "keywords": [
+      "centrifugal-pump",
+      "npsh",
+      "npsh-available",
+      "npsh-required",
+      "pump-cavitation",
+      "pump-suction-condition"
     ]
   },
   {

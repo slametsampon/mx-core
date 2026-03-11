@@ -1,0 +1,533 @@
+---
+title: Centrifugal Pump Operation Behavior
+authors: ['sam']
+date: '2026-03-11'
+tags:
+  [
+    'centrifugal-pump',
+    'pump-operation',
+    'pump-operating-region',
+    'minimum-flow',
+    'best-efficiency-point',
+    'hydraulic-instability',
+  ]
+draft: false
+summary: Perilaku operasi pompa sentrifugal ditentukan oleh interaksi antara karakteristik pompa dan kebutuhan sistem hidraulik. Kondisi operasi aktual terjadi pada titik perpotongan antara pump curve dan system curve. Startup pompa melibatkan percepatan impeller hingga sistem mencapai kondisi operasi stabil. Pompa memiliki rentang operasi tertentu dengan area operasi terbaik berada di sekitar Best Efficiency Point (BEP). Operasi pada flow yang terlalu rendah dapat menyebabkan internal recirculation dan ketidakstabilan aliran, sedangkan flow terlalu tinggi dapat meningkatkan losses hidraulik. Penyimpangan dari BEP menurunkan efisiensi dan dapat memicu instabilitas hidraulik seperti flow separation dan recirculation di dalam impeller.
+---
+
+# **_Artikel 07: Centrifugal Pump Operation Behavior_**
+
+---
+
+- [**_Artikel 07: Centrifugal Pump Operation Behavior_**](#artikel-07-centrifugal-pump-operation-behavior)
+- [1. Operating Behavior of Centrifugal Pumps](#1-operating-behavior-of-centrifugal-pumps)
+  - [1.1 Pump operation within a hydraulic system](#11-pump-operation-within-a-hydraulic-system)
+  - [1.2 Relationship between pump curve and system curve](#12-relationship-between-pump-curve-and-system-curve)
+  - [1.3 Operating conditions affecting pump behavior](#13-operating-conditions-affecting-pump-behavior)
+- [2. Pump Startup Principle](#2-pump-startup-principle)
+  - [2.1 Initial conditions before pump startup](#21-initial-conditions-before-pump-startup)
+  - [2.2 Startup sequence of centrifugal pumps](#22-startup-sequence-of-centrifugal-pumps)
+  - [2.3 Hydraulic behavior during startup](#23-hydraulic-behavior-during-startup)
+  - [2.4 Influence of startup conditions on pump stability](#24-influence-of-startup-conditions-on-pump-stability)
+- [3. Pump Operating Region](#3-pump-operating-region)
+  - [3.1 Definition of operating region](#31-definition-of-operating-region)
+  - [3.2 Preferred operating region](#32-preferred-operating-region)
+  - [3.3 Operating limits of centrifugal pumps](#33-operating-limits-of-centrifugal-pumps)
+    - [Shut-off condition](#shut-off-condition)
+    - [Runout condition](#runout-condition)
+  - [3.4 Relationship between operating region and pump performance](#34-relationship-between-operating-region-and-pump-performance)
+- [4. Minimum Flow Requirement](#4-minimum-flow-requirement)
+  - [4.1 Definition of minimum flow](#41-definition-of-minimum-flow)
+  - [4.2 Hydraulic effects at very low flow conditions](#42-hydraulic-effects-at-very-low-flow-conditions)
+  - [4.3 Internal recirculation in the pump](#43-internal-recirculation-in-the-pump)
+  - [4.4 Consequences of operating below minimum flow](#44-consequences-of-operating-below-minimum-flow)
+- [5. Deviation from Best Efficiency Point (BEP)](#5-deviation-from-best-efficiency-point-bep)
+  - [5.1 Best Efficiency Point as reference operating condition](#51-best-efficiency-point-as-reference-operating-condition)
+  - [5.2 Operating at flow lower than BEP](#52-operating-at-flow-lower-than-bep)
+  - [5.3 Operating at flow higher than BEP](#53-operating-at-flow-higher-than-bep)
+  - [5.4 Impact of deviation from BEP on pump performance](#54-impact-of-deviation-from-bep-on-pump-performance)
+- [6. Hydraulic Instabilities in Pump Operation](#6-hydraulic-instabilities-in-pump-operation)
+  - [6.1 Nature of hydraulic instabilities in centrifugal pumps](#61-nature-of-hydraulic-instabilities-in-centrifugal-pumps)
+  - [6.2 Internal flow disturbances](#62-internal-flow-disturbances)
+    - [Separation of flow](#separation-of-flow)
+    - [Recirculation](#recirculation)
+  - [6.3 Relationship between operating point and instability](#63-relationship-between-operating-point-and-instability)
+  - [6.4 Operational conditions leading to instability](#64-operational-conditions-leading-to-instability)
+
+---
+
+# 1. Operating Behavior of Centrifugal Pumps
+
+Perilaku operasi pompa sentrifugal ditentukan oleh interaksi antara **karakteristik pompa** dan **karakteristik sistem hidraulik**. Kondisi operasi aktual pompa bergantung pada keseimbangan antara head yang dihasilkan pompa dan head yang dibutuhkan oleh sistem.
+
+<ResourceBox
+  title="Artikel terkait:"
+  items={[
+    {
+      name: 'README - Centrifugal Pump',
+      href: '/blog/maintenance/mechanical/centrifugal-pump-engineering/README',
+      description: 'Centrifugal Pump Engineering Series',
+    },
+  ]}
+/>
+
+---
+
+## 1.1 Pump operation within a hydraulic system
+
+Pompa sentrifugal tidak beroperasi secara terisolasi, tetapi merupakan bagian dari sistem perpipaan yang lebih besar.
+
+Dalam sistem tersebut, pompa harus mengatasi:
+
+- perbedaan elevasi
+- losses pada pipa
+- losses pada fitting dan peralatan
+
+Flow rate yang dihasilkan pompa akan menyesuaikan dengan karakteristik sistem.
+
+| System Parameter  | Influence                    |
+| ----------------- | ---------------------------- |
+| Static head       | Beban elevasi sistem         |
+| Friction losses   | Losses pada pipa dan fitting |
+| System resistance | Hambatan aliran sistem       |
+
+Perubahan parameter sistem akan mempengaruhi kondisi operasi pompa.
+
+---
+
+## 1.2 Relationship between pump curve and system curve
+
+Kondisi operasi aktual pompa ditentukan oleh perpotongan antara **pump performance curve** dan **system curve**.
+
+![Image](https://datatool.pumps.org/pump-fundamentals/images/iC-2-Pump-and-system-Curve-valve-closed.png)
+
+![Image](https://ars.els-cdn.com/content/image/3-s2.0-B9780750672948500063-f06-16-9780750672948.gif)
+
+Pada titik perpotongan tersebut berlaku:
+
+$$
+H_{pump} = H_{system}
+$$
+
+Parameter operasi yang dihasilkan:
+
+| Parameter      | Meaning           |
+| -------------- | ----------------- |
+| Operating flow | Flow aktual pompa |
+| Operating head | Head aktual pompa |
+
+---
+
+## 1.3 Operating conditions affecting pump behavior
+
+Beberapa kondisi operasi dapat mempengaruhi perilaku pompa selama operasi.
+
+| Operating Condition | Effect                          |
+| ------------------- | ------------------------------- |
+| Variasi flow rate   | Mengubah posisi operating point |
+| Variasi head sistem | Menggeser system curve          |
+
+Sebagai contoh:
+
+- valve throttling meningkatkan system resistance
+- perubahan konfigurasi sistem mengubah losses
+
+Akibatnya operating point pompa akan bergeser.
+
+---
+
+# 2. Pump Startup Principle
+
+Startup pompa merupakan proses transisi dari kondisi statis menuju kondisi operasi stabil. Proses ini melibatkan perubahan kondisi hidraulik dalam sistem.
+
+---
+
+## 2.1 Initial conditions before pump startup
+
+Sebelum pompa dihidupkan, beberapa kondisi sistem harus dipastikan.
+
+| Condition      | Requirement                        |
+| -------------- | ---------------------------------- |
+| Suction line   | Terisi fluida                      |
+| Discharge line | Valve dalam posisi sesuai prosedur |
+| Pump casing    | Terisi fluida (primed)             |
+
+Pompa sentrifugal tidak dapat memompa udara secara efektif sehingga casing pompa harus terisi fluida sebelum startup.
+
+---
+
+## 2.2 Startup sequence of centrifugal pumps
+
+Urutan umum startup pompa meliputi:
+
+1. Aktivasi driver (motor atau turbine)
+2. Percepatan rotasi impeller
+3. Peningkatan energi fluida di dalam pompa
+
+Ketika impeller mulai berputar, fluida di dalam pompa mulai dipercepat dan menghasilkan head.
+
+---
+
+## 2.3 Hydraulic behavior during startup
+
+Pada awal startup, kondisi aliran masih belum stabil.
+
+Perubahan kondisi hidraulik yang terjadi:
+
+| Startup Phase         | Hydraulic Condition             |
+| --------------------- | ------------------------------- |
+| Impeller acceleration | Aliran mulai terbentuk          |
+| Pressure build-up     | Head pompa meningkat            |
+| Flow establishment    | Sistem mencapai operating point |
+
+Proses ini berlangsung hingga pompa mencapai **kondisi operasi stabil**.
+
+---
+
+## 2.4 Influence of startup conditions on pump stability
+
+Kondisi startup dapat mempengaruhi kestabilan operasi pompa.
+
+Faktor yang mempengaruhi stabilitas startup meliputi:
+
+| Factor                 | Influence            |
+| ---------------------- | -------------------- |
+| Kondisi suction        | Tekanan inlet pompa  |
+| Posisi valve discharge | Beban hidraulik awal |
+| Kondisi sistem         | Resistansi sistem    |
+
+Startup yang tidak sesuai prosedur dapat menyebabkan:
+
+- fluktuasi tekanan
+- getaran sistem
+- ketidakstabilan aliran
+
+---
+
+# 3. Pump Operating Region
+
+Pompa sentrifugal tidak dirancang untuk beroperasi pada seluruh rentang flow yang mungkin terjadi dalam sistem. Setiap pompa memiliki **operating region** tertentu di mana pompa dapat bekerja dengan stabil dan efisien.
+
+---
+
+## 3.1 Definition of operating region
+
+Operating region adalah rentang flow rate di mana pompa dapat beroperasi tanpa menimbulkan masalah hidraulik atau mekanis yang signifikan.
+
+Operating region biasanya ditentukan berdasarkan **pump performance curve**.
+
+Parameter utama operating region meliputi:
+
+| Parameter              | Description               |
+| ---------------------- | ------------------------- |
+| Minimum allowable flow | Batas bawah operasi pompa |
+| Maximum allowable flow | Batas atas operasi pompa  |
+
+Operating region ini menentukan batas kondisi operasi pompa dalam sistem.
+
+---
+
+## 3.2 Preferred operating region
+
+Preferred Operating Region (POR) adalah area pada kurva performa pompa di mana pompa bekerja dengan efisiensi dan stabilitas terbaik.
+
+Area ini biasanya berada di sekitar **Best Efficiency Point (BEP)**.
+
+![Image](https://media.licdn.com/dms/image/v2/C5612AQELJTTJB77FWA/article-inline_image-shrink_1000_1488/article-inline_image-shrink_1000_1488/0/1638926784094?e=2147483647&t=XmJJ41XTteKqozme_TuJ_OgPws_4wxILR9IjRkOdx5U&v=beta)
+
+![Image](https://www.specificenergy.com/assets/images/solutions/dpo/dpo-links/dpo-operating-ranges.png)
+
+![Image](https://cms.media.wilo.com/cdnpic/wilo715439/9543571/wilo715439_1140x_1.jpg)
+
+Dalam praktik industri, preferred operating region umumnya berada pada kisaran:
+
+| Flow Range          | Description                |
+| ------------------- | -------------------------- |
+| 70% – 120% BEP flow | Preferred operating region |
+
+Operasi dalam rentang ini memberikan:
+
+- efisiensi tinggi
+- stabilitas hidraulik
+- umur pompa lebih panjang
+
+---
+
+## 3.3 Operating limits of centrifugal pumps
+
+Di luar preferred operating region terdapat batas operasi pompa.
+
+### Shut-off condition
+
+Terjadi ketika discharge valve tertutup sehingga flow mendekati nol.
+
+Karakteristik kondisi ini:
+
+- head maksimum
+- aliran sangat kecil
+
+Operasi pada kondisi ini dapat menyebabkan:
+
+- overheating fluida
+- internal recirculation
+
+---
+
+### Runout condition
+
+Runout terjadi ketika sistem memiliki resistansi sangat rendah sehingga flow menjadi sangat besar.
+
+Karakteristik kondisi ini:
+
+- head rendah
+- flow sangat tinggi
+
+Konsekuensi runout dapat meliputi:
+
+- peningkatan kebutuhan daya
+- potensi overload motor
+
+---
+
+## 3.4 Relationship between operating region and pump performance
+
+Operating region memiliki hubungan langsung dengan performa pompa.
+
+| Operating Condition | Pump Performance              |
+| ------------------- | ----------------------------- |
+| Near BEP            | Efisiensi maksimum            |
+| Below POR           | Risiko ketidakstabilan aliran |
+| Above POR           | Efisiensi menurun             |
+
+Karena itu pemilihan pompa dan desain sistem biasanya bertujuan untuk menempatkan **operating point dekat dengan BEP**.
+
+---
+
+# 4. Minimum Flow Requirement
+
+Pompa sentrifugal memiliki batas aliran minimum yang diperlukan agar operasi pompa tetap stabil.
+
+---
+
+## 4.1 Definition of minimum flow
+
+Minimum flow adalah **flow rate minimum yang harus dipertahankan agar pompa dapat beroperasi dengan stabil tanpa mengalami gangguan hidraulik**.
+
+Jika flow turun di bawah nilai ini, pola aliran dalam pompa dapat menjadi tidak stabil.
+
+---
+
+## 4.2 Hydraulic effects at very low flow conditions
+
+Pada kondisi flow sangat rendah, distribusi aliran dalam impeller berubah.
+
+Perubahan yang terjadi meliputi:
+
+| Effect              | Description                         |
+| ------------------- | ----------------------------------- |
+| Aliran tidak merata | Distribusi kecepatan tidak simetris |
+| Turbulensi lokal    | Gangguan aliran dalam impeller      |
+
+Akibatnya performa hidraulik pompa dapat menurun.
+
+---
+
+## 4.3 Internal recirculation in the pump
+
+Pada kondisi flow sangat rendah dapat terjadi fenomena **internal recirculation**.
+
+![Image](https://www.researchgate.net/publication/236013928/figure/fig3/AS%3A669531756314639%401536640218661/Effect-of-suction-recirculation-on-the-flow-field-of-an-end-suction-pump-This-figure.png)
+
+![Image](https://www.researchgate.net/publication/334541918/figure/fig3/AS%3A871874959507457%401584882597185/Secondary-flows-in-the-pump-impeller-stage.png)
+
+Internal recirculation adalah aliran balik fluida di dalam pompa akibat kondisi flow yang terlalu kecil.
+
+Fenomena ini biasanya terjadi pada:
+
+- inlet impeller
+- outlet impeller
+
+Recirculation menyebabkan:
+
+- peningkatan losses
+- fluktuasi tekanan dalam pompa
+
+---
+
+## 4.4 Consequences of operating below minimum flow
+
+Operasi pompa di bawah minimum flow dapat menyebabkan berbagai masalah.
+
+| Problem               | Description                  |
+| --------------------- | ---------------------------- |
+| Hydraulic instability | Aliran tidak stabil          |
+| Temperature rise      | Fluida menjadi panas         |
+| Mechanical loading    | Beban tambahan pada komponen |
+
+Jika kondisi ini berlangsung lama, dapat terjadi:
+
+- kerusakan impeller
+- kerusakan bearing
+- kerusakan mechanical seal
+
+Karena itu banyak sistem pompa dilengkapi dengan **minimum flow protection**, seperti:
+
+- recirculation line
+- automatic minimum flow valve
+
+---
+
+# 5. Deviation from Best Efficiency Point (BEP)
+
+Best Efficiency Point (BEP) merupakan kondisi operasi pompa di mana efisiensi hidraulik mencapai nilai maksimum. Operasi pompa yang menyimpang dari kondisi ini dapat mempengaruhi karakteristik hidraulik dan mekanis pompa.
+
+---
+
+## 5.1 Best Efficiency Point as reference operating condition
+
+BEP merupakan titik referensi utama dalam analisis performa pompa.
+
+Pada titik ini:
+
+- losses hidraulik minimum
+- distribusi aliran dalam impeller paling stabil
+- gaya hidraulik pada impeller relatif seimbang
+
+![Image](https://www.engineeringtoolbox.com/docs/documents/311/pump_bep_best_efficiency_point.jpg)
+
+![Image](https://www.fcxperformance.com/media/wysiwyg/FCX-blogs/get-pump-running-best-efficiency-point-2.jpg)
+
+Karena itu desain sistem pompa biasanya bertujuan menempatkan **operating point sedekat mungkin dengan BEP**.
+
+---
+
+## 5.2 Operating at flow lower than BEP
+
+Jika pompa beroperasi pada flow yang lebih rendah dari BEP, distribusi aliran dalam impeller menjadi tidak merata.
+
+Perubahan kondisi hidraulik yang terjadi meliputi:
+
+| Effect                | Description                       |
+| --------------------- | --------------------------------- |
+| Aliran tidak simetris | Distribusi kecepatan tidak merata |
+| Tekanan tidak stabil  | Fluktuasi tekanan dalam impeller  |
+
+Selain itu dapat terjadi fenomena:
+
+- inlet recirculation
+- internal flow disturbance
+
+---
+
+## 5.3 Operating at flow higher than BEP
+
+Jika pompa beroperasi pada flow lebih tinggi dari BEP, kondisi hidraulik di dalam pompa juga berubah.
+
+Karakteristik kondisi ini meliputi:
+
+| Effect                     | Description             |
+| -------------------------- | ----------------------- |
+| Kecepatan fluida meningkat | Velocity head meningkat |
+| Head pompa menurun         | Kurva performa menurun  |
+
+Pada kondisi ekstrem mendekati **runout**, pompa dapat mengalami:
+
+- overload motor
+- peningkatan losses hidraulik
+
+---
+
+## 5.4 Impact of deviation from BEP on pump performance
+
+Operasi pompa jauh dari BEP dapat menyebabkan berbagai perubahan performa.
+
+| Impact                 | Description                                 |
+| ---------------------- | ------------------------------------------- |
+| Penurunan efisiensi    | Energi pompa tidak digunakan secara optimal |
+| Ketidakstabilan aliran | Distribusi aliran tidak merata              |
+| Peningkatan getaran    | Fluktuasi tekanan dalam pompa               |
+
+Akibatnya pompa dapat bekerja dengan performa yang lebih rendah dibandingkan kondisi desain.
+
+---
+
+# 6. Hydraulic Instabilities in Pump Operation
+
+Selain penurunan efisiensi, operasi pompa pada kondisi tertentu dapat menyebabkan **instabilitas hidraulik** dalam sistem pompa.
+
+---
+
+## 6.1 Nature of hydraulic instabilities in centrifugal pumps
+
+Hydraulic instability terjadi ketika aliran fluida dalam pompa tidak stabil.
+
+Kondisi ini biasanya ditandai dengan:
+
+- fluktuasi tekanan
+- perubahan pola aliran dalam impeller
+
+Instabilitas ini dapat muncul ketika pompa beroperasi di luar rentang operasi normal.
+
+---
+
+## 6.2 Internal flow disturbances
+
+Gangguan aliran dalam pompa dapat terjadi dalam berbagai bentuk.
+
+### Separation of flow
+
+Terjadi ketika aliran fluida terlepas dari permukaan blade impeller.
+
+---
+
+### Recirculation
+
+Terjadi ketika sebagian fluida bergerak kembali ke arah inlet.
+
+![Image](https://www.researchgate.net/publication/236013928/figure/fig3/AS%3A669531756314639%401536640218661/Effect-of-suction-recirculation-on-the-flow-field-of-an-end-suction-pump-This-figure.png)
+
+![Image](https://www.fluensys.co.uk/blogfiles/2024/09/troubleshooting-centrifugal-pumps-rev1_image3.png)
+
+Fenomena ini menyebabkan distribusi energi fluida menjadi tidak stabil.
+
+---
+
+## 6.3 Relationship between operating point and instability
+
+Instabilitas hidraulik sangat dipengaruhi oleh posisi operating point terhadap kurva performa pompa.
+
+| Operating Region       | Stability               |
+| ---------------------- | ----------------------- |
+| Near BEP               | Stabil                  |
+| Below preferred region | Potensi recirculation   |
+| Above preferred region | Potensi flow separation |
+
+Dengan demikian stabilitas operasi pompa sangat bergantung pada posisi operating point.
+
+---
+
+## 6.4 Operational conditions leading to instability
+
+Beberapa kondisi operasi dapat meningkatkan risiko instabilitas hidraulik.
+
+| Condition           | Effect                     |
+| ------------------- | -------------------------- |
+| Flow terlalu rendah | Internal recirculation     |
+| Flow terlalu tinggi | Flow separation            |
+| Perubahan sistem    | Pergeseran operating point |
+
+Kondisi ini dapat muncul akibat:
+
+- perubahan resistansi sistem
+- perubahan kondisi operasi proses
+
+Karena itu pengendalian kondisi operasi pompa sangat penting untuk menjaga stabilitas sistem.
+
+---
+
+<small>
+  **_Catatan Penyusunan_** Artikel ini disusun sebagai materi edukasi dan
+  referensi umum berdasarkan berbagai sumber pustaka, praktik lapangan, serta
+  bantuan alat penulisan. Pembaca disarankan untuk melakukan verifikasi lanjutan
+  dan penyesuaian sesuai dengan kondisi serta kebutuhan masing-masing sistem.
+</small>

@@ -1,0 +1,582 @@
+---
+title: NPSH and Cavitation in Centrifugal Pumps
+authors: ['sam']
+date: '2026-03-04'
+tags:
+  [
+    'centrifugal-pump',
+    'npsh',
+    'npsh-available',
+    'npsh-required',
+    'pump-cavitation',
+    'pump-suction-condition',
+  ]
+draft: false
+summary: Net Positive Suction Head (NPSH) merupakan parameter utama yang menentukan kondisi tekanan fluida pada sisi suction pompa sentrifugal. Jika tekanan lokal fluida turun hingga mendekati vapor pressure, cairan dapat mengalami vaporization dan menyebabkan cavitation. NPSH Available (NPSHa) menggambarkan energi fluida yang tersedia pada suction sistem, sedangkan NPSH Required (NPSHr) adalah kebutuhan minimum pompa untuk mencegah cavitation. Cavitation terjadi ketika gelembung uap terbentuk pada impeller inlet dan runtuh pada area bertekanan lebih tinggi sehingga menimbulkan kerusakan material, getaran, serta penurunan performa pompa. Operasi pompa harus memastikan bahwa NPSHa lebih besar dari NPSHr dengan margin keamanan yang cukup.
+---
+
+# **_Artikel 04: NPSH and Cavitation in Centrifugal Pumps_**
+
+---
+
+- [**_Artikel 04: NPSH and Cavitation in Centrifugal Pumps_**](#artikel-04-npsh-and-cavitation-in-centrifugal-pumps)
+- [1. Suction Conditions in Centrifugal Pumps](#1-suction-conditions-in-centrifugal-pumps)
+  - [1.1 Importance of suction conditions](#11-importance-of-suction-conditions)
+  - [1.2 Pressure distribution at pump suction](#12-pressure-distribution-at-pump-suction)
+  - [1.3 Vapor pressure of liquid](#13-vapor-pressure-of-liquid)
+- [2. Net Positive Suction Head (NPSH)](#2-net-positive-suction-head-npsh)
+  - [2.1 Definition of NPSH](#21-definition-of-npsh)
+  - [2.2 Physical meaning of NPSH](#22-physical-meaning-of-npsh)
+  - [2.3 Representation of NPSH in pump systems](#23-representation-of-npsh-in-pump-systems)
+- [3. NPSH Available (NPSHa)](#3-npsh-available-npsha)
+  - [3.1 Definition of NPSHa](#31-definition-of-npsha)
+  - [3.2 Components affecting NPSHa](#32-components-affecting-npsha)
+  - [3.3 Calculation model for NPSHa](#33-calculation-model-for-npsha)
+  - [3.4 Influence of operating conditions on NPSHa](#34-influence-of-operating-conditions-on-npsha)
+    - [Fluid temperature](#fluid-temperature)
+    - [Tank elevation](#tank-elevation)
+    - [Suction piping losses](#suction-piping-losses)
+- [4. NPSH Required (NPSHr)](#4-npsh-required-npshr)
+  - [4.1 Definition of NPSHr](#41-definition-of-npshr)
+  - [4.2 Determination of NPSHr from pump testing](#42-determination-of-npshr-from-pump-testing)
+  - [4.3 Relationship between NPSHr and flow rate](#43-relationship-between-npshr-and-flow-rate)
+  - [4.4 Representation of NPSHr on pump performance data](#44-representation-of-npshr-on-pump-performance-data)
+- [5. Cavitation Mechanism in Centrifugal Pumps](#5-cavitation-mechanism-in-centrifugal-pumps)
+  - [5.1 Condition for vapor bubble formation](#51-condition-for-vapor-bubble-formation)
+  - [5.2 Formation of vapor bubbles at impeller inlet](#52-formation-of-vapor-bubbles-at-impeller-inlet)
+  - [5.3 Collapse of vapor bubbles inside the pump](#53-collapse-of-vapor-bubbles-inside-the-pump)
+  - [5.4 Effects of cavitation on pump performance](#54-effects-of-cavitation-on-pump-performance)
+- [6. Cavitation Operating Limits](#6-cavitation-operating-limits)
+  - [6.1 Relationship between NPSHa and NPSHr](#61-relationship-between-npsha-and-npshr)
+  - [6.2 Cavitation margin](#62-cavitation-margin)
+  - [6.3 Influence of operating conditions on cavitation risk](#63-influence-of-operating-conditions-on-cavitation-risk)
+    - [Flow rate](#flow-rate)
+    - [Fluid temperature](#fluid-temperature-1)
+  - [6.4 Operating limits for cavitation-free pump operation](#64-operating-limits-for-cavitation-free-pump-operation)
+
+---
+
+# 1. Suction Conditions in Centrifugal Pumps
+
+Kondisi pada sisi suction pompa sangat menentukan kestabilan operasi pompa sentrifugal. Berbeda dengan sisi discharge yang biasanya memiliki tekanan tinggi, tekanan pada sisi suction sering mendekati **vapor pressure fluida**. Jika tekanan turun terlalu rendah, fluida dapat mengalami **vaporization**, yang menyebabkan cavitation.
+
+<ResourceBox
+  title="Artikel terkait:"
+  items={[
+    {
+      name: 'README - Centrifugal Pump',
+      href: '/blog/maintenance/mechanical/centrifugal-pump-engineering/README',
+      description: 'Centrifugal Pump Engineering Series',
+    },
+  ]}
+/>
+
+---
+
+## 1.1 Importance of suction conditions
+
+Kondisi suction mempengaruhi beberapa aspek penting operasi pompa.
+
+| Parameter             | Influence                                       |
+| --------------------- | ----------------------------------------------- |
+| Suction pressure      | Menentukan energi fluida yang masuk ke impeller |
+| Fluid temperature     | Mempengaruhi vapor pressure                     |
+| Suction piping losses | Mengurangi tekanan inlet pompa                  |
+
+Jika tekanan pada suction terlalu rendah, fluida dapat mengalami perubahan fase dari cair menjadi uap sebelum memasuki impeller. Kondisi ini mengganggu kestabilan aliran dan dapat menyebabkan kerusakan pompa.
+
+Dalam praktik industri, desain suction system harus memastikan bahwa **tekanan fluida tetap berada di atas vapor pressure**.
+
+---
+
+## 1.2 Pressure distribution at pump suction
+
+Tekanan fluida pada sisi suction mengalami perubahan ketika fluida mendekati impeller.
+
+Fluida mengalami percepatan ketika masuk ke **impeller eye**, sehingga tekanan statik dapat menurun akibat peningkatan velocity.
+
+![Image](https://a-us.storyblok.com/f/1022642/640x308/f558b7b5fc/impeller-diagram.png)
+
+![Image](https://www.researchgate.net/publication/369221016/figure/fig4/AS%3A11431281387993039%401745146457166/Flow-through-pump-and-leakage-from-volute-to-impeller-eye-7.tif)
+
+Distribusi tekanan pada sisi suction dapat diringkas sebagai:
+
+| Location         | Pressure condition                       |
+| ---------------- | ---------------------------------------- |
+| Suction pipe     | Tekanan mendekati tekanan sistem         |
+| Impeller eye     | Tekanan menurun akibat percepatan fluida |
+| Impeller passage | Tekanan mulai meningkat                  |
+
+Penurunan tekanan di impeller eye merupakan area paling kritis terkait cavitation.
+
+---
+
+## 1.3 Vapor pressure of liquid
+
+Vapor pressure adalah tekanan di mana suatu fluida mulai berubah fase dari cair menjadi uap pada temperatur tertentu.
+
+| Parameter      | Description                                  |
+| -------------- | -------------------------------------------- |
+| Vapor pressure | Tekanan minimum sebelum cairan mulai menguap |
+
+Hubungan penting dalam sistem pompa:
+
+Jika:
+
+$$
+P_{fluid} \le P_{vapor}
+$$
+
+maka cairan akan mengalami **vaporization**.
+
+Vapor pressure meningkat dengan temperatur fluida.
+
+Contoh:
+
+| Fluid | Temperature | Vapor Pressure |
+| ----- | ----------- | -------------- |
+| Water | 20°C        | ≈ 2.3 kPa      |
+| Water | 80°C        | ≈ 47 kPa       |
+
+Karena itu temperatur fluida sangat mempengaruhi risiko cavitation.
+
+---
+
+# 2. Net Positive Suction Head (NPSH)
+
+Untuk mencegah vaporization pada sisi suction pompa, digunakan konsep **Net Positive Suction Head (NPSH)**.
+
+NPSH merupakan parameter yang menggambarkan **margin energi fluida terhadap kondisi vaporization**.
+
+---
+
+## 2.1 Definition of NPSH
+
+Net Positive Suction Head adalah head fluida yang tersedia di atas vapor pressure pada inlet pompa.
+
+Secara umum:
+
+$$
+NPSH = \frac{P_{absolute}}{\rho g} + \frac{V^2}{2g} - \frac{P_{vapor}}{\rho g}
+$$
+
+| Parameter  | Description                  |
+| ---------- | ---------------------------- |
+| P_absolute | Tekanan absolut pada suction |
+| P_vapor    | Vapor pressure fluida        |
+
+NPSH menunjukkan **seberapa jauh tekanan fluida dari kondisi vaporization**.
+
+---
+
+## 2.2 Physical meaning of NPSH
+
+Secara fisika, NPSH adalah **energi tambahan di atas vapor pressure** yang mencegah terbentuknya gelembung uap.
+
+Jika NPSH cukup besar:
+
+- fluida tetap dalam fase cair
+- aliran stabil di impeller inlet
+
+Jika NPSH terlalu kecil:
+
+- tekanan fluida mendekati vapor pressure
+- cavitation dapat terjadi
+
+Dengan demikian NPSH dapat dipahami sebagai **safety margin terhadap cavitation**.
+
+---
+
+## 2.3 Representation of NPSH in pump systems
+
+Dalam analisis sistem pompa terdapat dua jenis NPSH:
+
+| Parameter | Meaning                               |
+| --------- | ------------------------------------- |
+| NPSHa     | NPSH Available (tersedia pada sistem) |
+| NPSHr     | NPSH Required (dibutuhkan oleh pompa) |
+
+Perbandingan kedua nilai ini menentukan apakah pompa akan mengalami cavitation atau tidak.
+
+![Image](https://www.michael-smith-engineers.co.uk/mse/uploads/UsefulInfo/NPSH/NPSH-FIG3.JPG)
+
+![Image](https://www.michael-smith-engineers.co.uk/mse/uploads/UsefulInfo/NPSH/NPSH-FIG1.JPG)
+
+Dalam desain sistem pompa, kondisi yang harus dipenuhi adalah:
+
+$$
+NPSH_A > NPSH_R
+$$
+
+Konsep ini akan dibahas lebih lanjut pada section berikutnya.
+
+---
+
+# 3. NPSH Available (NPSHa)
+
+Dalam sistem pompa nyata, nilai NPSH yang tersedia ditentukan oleh kondisi hidraulik pada sisi suction. Nilai ini disebut **Net Positive Suction Head Available (NPSHa)**.
+
+---
+
+## 3.1 Definition of NPSHa
+
+NPSHa adalah **head aktual yang tersedia pada inlet pompa di atas vapor pressure fluida**.
+
+NPSHa menggambarkan kondisi energi fluida yang benar-benar tersedia pada sistem suction sebelum fluida memasuki impeller.
+
+| Parameter           | Meaning                                   |
+| ------------------- | ----------------------------------------- |
+| NPSHa               | Head yang tersedia pada suction pompa     |
+| Vapor pressure head | Batas energi minimum sebelum vaporization |
+
+Jika nilai NPSHa terlalu kecil, tekanan fluida dapat turun hingga mencapai vapor pressure sehingga cavitation dapat terjadi.
+
+---
+
+## 3.2 Components affecting NPSHa
+
+Beberapa komponen sistem mempengaruhi besarnya NPSHa.
+
+| Component           | Influence                                   |
+| ------------------- | ------------------------------------------- |
+| Static suction head | Head akibat elevasi tangki terhadap pompa   |
+| Suction pressure    | Tekanan absolut fluida pada suction         |
+| Vapor pressure      | Tekanan uap fluida pada temperatur tertentu |
+| Suction line losses | Kehilangan energi pada suction piping       |
+
+Secara umum NPSHa meningkat jika:
+
+- elevasi sumber fluida lebih tinggi dari pompa
+- tekanan sistem lebih tinggi
+- losses pada suction piping kecil
+
+---
+
+## 3.3 Calculation model for NPSHa
+
+Model umum untuk menghitung NPSHa adalah:
+
+$$
+NPSH*A = \frac{P*{suction}}{\rho g} + \frac{V^2}{2g} - \frac{P\_{vapor}}{\rho g} - h\_{loss}
+$$
+
+| Parameter | Description                  | Unit |
+| --------- | ---------------------------- | ---- |
+| P_suction | Absolute pressure at suction | Pa   |
+| V         | Fluid velocity               | m/s  |
+| P_vapor   | Vapor pressure of fluid      | Pa   |
+| h_loss    | Suction piping losses        | m    |
+
+Persamaan ini menunjukkan bahwa NPSHa merupakan hasil dari:
+
+- tekanan fluida yang tersedia
+- dikurangi energi yang hilang sebelum fluida memasuki impeller
+
+---
+
+## 3.4 Influence of operating conditions on NPSHa
+
+Beberapa kondisi operasi dapat mempengaruhi nilai NPSHa secara signifikan.
+
+### Fluid temperature
+
+Temperatur yang lebih tinggi meningkatkan vapor pressure fluida.
+
+Akibatnya:
+
+$$
+P_{vapor} ↑ \Rightarrow NPSH_A ↓
+$$
+
+Risiko cavitation meningkat.
+
+---
+
+### Tank elevation
+
+Jika tangki sumber berada lebih tinggi dari pompa:
+
+- static suction head meningkat
+- NPSHa meningkat
+
+Sebaliknya jika pompa berada lebih tinggi dari sumber fluida, NPSHa akan berkurang.
+
+---
+
+### Suction piping losses
+
+Loss pada suction piping disebabkan oleh:
+
+- panjang pipa
+- diameter pipa kecil
+- banyak fitting
+
+Loss yang besar akan mengurangi tekanan fluida sebelum memasuki impeller sehingga menurunkan NPSHa.
+
+---
+
+# 4. NPSH Required (NPSHr)
+
+Selain NPSHa yang ditentukan oleh sistem, setiap pompa memiliki kebutuhan minimum NPSH agar dapat beroperasi tanpa cavitation. Nilai ini disebut **NPSH Required (NPSHr)**.
+
+---
+
+## 4.1 Definition of NPSHr
+
+NPSHr adalah **head minimum yang dibutuhkan pompa pada inlet agar aliran di dalam impeller tetap stabil tanpa terjadi cavitation yang signifikan**.
+
+| Parameter | Description                        |
+| --------- | ---------------------------------- |
+| NPSHr     | Head minimum yang dibutuhkan pompa |
+
+Jika:
+
+$$
+NPSH_A < NPSH_R
+$$
+
+maka pompa akan mengalami cavitation.
+
+---
+
+## 4.2 Determination of NPSHr from pump testing
+
+Nilai NPSHr tidak dihitung secara teoritis, tetapi diperoleh melalui **pengujian performa pompa oleh manufacturer**.
+
+Dalam pengujian tersebut:
+
+- tekanan inlet pompa secara bertahap diturunkan
+- performa pompa diukur
+
+Nilai NPSHr biasanya ditentukan pada kondisi ketika terjadi **penurunan head sebesar 3% akibat cavitation**.
+
+Metode ini dikenal sebagai:
+
+**3% head drop criterion**
+
+---
+
+## 4.3 Relationship between NPSHr and flow rate
+
+NPSHr tidak konstan dan berubah terhadap flow rate pompa.
+
+Karakteristik umum:
+
+| Flow           | NPSHr           |
+| -------------- | --------------- |
+| Flow kecil     | NPSHr rendah    |
+| Flow meningkat | NPSHr meningkat |
+
+Hal ini disebabkan oleh meningkatnya kecepatan fluida pada impeller inlet.
+
+---
+
+## 4.4 Representation of NPSHr on pump performance data
+
+Manufacturer biasanya menyediakan kurva NPSHr pada pump performance data.
+
+![Image](https://www.bbapumps.com/content/files/BBA-Pumps/News/BBA_Pumps_pump_performance_curves_chart.png)
+
+![Image](https://www.inspection-for-industry.com/images/NPSH_pump_test.jpg)
+
+![Image](https://www.shipcopumps.com/tools/mathwizard/data/npshr.gif)
+
+Kurva ini digunakan oleh engineer untuk memastikan bahwa:
+
+$$
+NPSH_A > NPSH_R
+$$
+
+pada kondisi operasi pompa.
+
+---
+
+# 5. Cavitation Mechanism in Centrifugal Pumps
+
+Cavitation adalah fenomena terbentuknya dan runtuhnya gelembung uap dalam fluida akibat tekanan lokal yang turun di bawah **vapor pressure fluida**. Fenomena ini sering terjadi pada sisi inlet pompa sentrifugal karena tekanan di area tersebut relatif rendah.
+
+---
+
+## 5.1 Condition for vapor bubble formation
+
+Pembentukan gelembung uap terjadi ketika tekanan lokal fluida lebih rendah dari vapor pressure pada temperatur tertentu.
+
+$$
+P_{local} \le P_{vapor}
+$$
+
+| Parameter | Description           |
+| --------- | --------------------- |
+| P_local   | Tekanan lokal fluida  |
+| P_vapor   | Vapor pressure fluida |
+
+Jika kondisi ini terpenuhi, cairan akan mulai mengalami **phase change** menjadi uap.
+
+Fenomena ini dapat terjadi pada:
+
+- suction piping
+- impeller eye
+- bagian aliran dengan percepatan tinggi
+
+---
+
+## 5.2 Formation of vapor bubbles at impeller inlet
+
+Area yang paling sering mengalami cavitation adalah **impeller eye**, yaitu bagian inlet impeller tempat fluida pertama kali memasuki impeller.
+
+![Image](https://media.licdn.com/dms/image/v2/D5622AQGvWBvpBdVvbg/feedshare-shrink_800/B56ZdKvWpHGoAk-/0/1749305621711?e=2147483647&t=47DBpUzuR2lf0uZaV1K0g4nTROh9gl21xjoa4t25lqA&v=beta)
+
+![Image](https://www.michael-smith-engineers.co.uk/mse/uploads/UsefulInfo/PumpCavitation/PUMP-CAVITATION-FIG-1.JPG)
+
+![Image](https://www.researchgate.net/publication/336253916/figure/fig2/AS%3A11431281108504850%401671533386335/Formation-and-collapsing-of-vapor-bubbles-Some-of-situations-where-cavitation-phenomenon.png)
+
+Beberapa faktor yang menyebabkan tekanan rendah pada impeller inlet:
+
+| Factor            | Influence                   |
+| ----------------- | --------------------------- |
+| Percepatan fluida | Meningkatkan velocity head  |
+| Geometri impeller | Mengubah distribusi tekanan |
+| Suction losses    | Mengurangi tekanan inlet    |
+
+Akibatnya tekanan statik dapat turun hingga mencapai vapor pressure fluida.
+
+---
+
+## 5.3 Collapse of vapor bubbles inside the pump
+
+Setelah terbentuk pada impeller inlet, gelembung uap terbawa aliran menuju area dengan tekanan lebih tinggi.
+
+Ketika tekanan lokal meningkat kembali:
+
+$$
+P_{local} > P_{vapor}
+$$
+
+gelembung uap akan **collapse secara tiba-tiba**.
+
+Proses collapse ini menghasilkan:
+
+- microjet berkecepatan tinggi
+- shock wave lokal
+
+Tekanan lokal yang dihasilkan dapat mencapai nilai sangat tinggi sehingga menyebabkan **kerusakan pada permukaan impeller**.
+
+---
+
+## 5.4 Effects of cavitation on pump performance
+
+Cavitation memiliki beberapa dampak negatif terhadap performa pompa.
+
+| Effect              | Description                                    |
+| ------------------- | ---------------------------------------------- |
+| Penurunan head      | Energi pompa hilang akibat aliran tidak stabil |
+| Penurunan efisiensi | Distribusi aliran menjadi tidak seragam        |
+| Getaran pompa       | Fluktuasi tekanan dalam impeller               |
+| Kerusakan material  | Erosi pada permukaan impeller                  |
+
+Dalam kondisi berat, cavitation dapat menyebabkan:
+
+- pitting pada impeller
+- kerusakan casing
+- kegagalan mekanis komponen pompa
+
+---
+
+# 6. Cavitation Operating Limits
+
+Untuk mencegah cavitation, kondisi operasi pompa harus memastikan bahwa tekanan fluida pada suction tetap berada di atas vapor pressure.
+
+Parameter utama yang digunakan untuk menentukan batas operasi adalah perbandingan antara **NPSHa** dan **NPSHr**.
+
+---
+
+## 6.1 Relationship between NPSHa and NPSHr
+
+Kondisi operasi aman terhadap cavitation adalah:
+
+$$
+NPSH_A > NPSH_R
+$$
+
+| Parameter | Meaning                            |
+| --------- | ---------------------------------- |
+| NPSHa     | NPSH tersedia pada sistem          |
+| NPSHr     | NPSH minimum yang dibutuhkan pompa |
+
+Jika kondisi ini tidak terpenuhi, pompa akan mengalami cavitation.
+
+---
+
+## 6.2 Cavitation margin
+
+Dalam praktik industri, biasanya diberikan **margin keamanan** antara NPSHa dan NPSHr.
+
+Cavitation margin biasanya dinyatakan sebagai:
+
+$$
+Margin = NPSH_A - NPSH_R
+$$
+
+Beberapa standar industri merekomendasikan margin tertentu, misalnya:
+
+| Guideline           | Typical Margin       |
+| ------------------- | -------------------- |
+| Industrial practice | 10–30% di atas NPSHr |
+
+Margin ini memberikan toleransi terhadap variasi kondisi operasi.
+
+---
+
+## 6.3 Influence of operating conditions on cavitation risk
+
+Risiko cavitation dipengaruhi oleh beberapa kondisi operasi.
+
+### Flow rate
+
+Ketika flow meningkat:
+
+- velocity di suction meningkat
+- losses meningkat
+
+Akibatnya NPSHa dapat menurun.
+
+---
+
+### Fluid temperature
+
+Temperatur yang lebih tinggi meningkatkan vapor pressure.
+
+$$
+P_{vapor} ↑ \Rightarrow NPSH_A ↓
+$$
+
+Hal ini meningkatkan risiko cavitation.
+
+---
+
+## 6.4 Operating limits for cavitation-free pump operation
+
+Untuk menghindari cavitation, beberapa prinsip desain dan operasi biasanya diterapkan:
+
+| Design Principle          | Objective                  |
+| ------------------------- | -------------------------- |
+| Menjaga NPSHa > NPSHr     | Menghindari vaporization   |
+| Mengurangi suction losses | Meningkatkan tekanan inlet |
+| Menjaga temperatur fluida | Mengontrol vapor pressure  |
+
+Dalam sistem industri, desain suction piping biasanya mempertimbangkan:
+
+- pipa suction lebih pendek
+- diameter pipa lebih besar
+- jumlah fitting minimal
+
+Tujuannya adalah menjaga tekanan fluida tetap cukup tinggi sebelum memasuki impeller.
+
+---
+
+<small>
+  **_Catatan Penyusunan_** Artikel ini disusun sebagai materi edukasi dan
+  referensi umum berdasarkan berbagai sumber pustaka, praktik lapangan, serta
+  bantuan alat penulisan. Pembaca disarankan untuk melakukan verifikasi lanjutan
+  dan penyesuaian sesuai dengan kondisi serta kebutuhan masing-masing sistem.
+</small>

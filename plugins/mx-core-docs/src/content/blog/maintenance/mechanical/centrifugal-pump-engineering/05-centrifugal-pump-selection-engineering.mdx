@@ -1,0 +1,576 @@
+---
+title: Centrifugal Pump Selection Engineering
+authors: ['sam']
+date: '2026-03-11'
+tags:
+  [
+    'centrifugal-pump',
+    'pump-selection',
+    'specific-speed',
+    'pump-efficiency',
+    'pump-power-estimation',
+    'pump-engineering',
+  ]
+draft: false
+summary: Pemilihan pompa sentrifugal didasarkan pada kesesuaian antara kebutuhan sistem dan karakteristik performa pompa. Parameter utama seleksi pompa meliputi flow rate, Total Dynamic Head (TDH), serta sifat fluida seperti densitas, viskositas, dan temperatur. Specific speed digunakan sebagai parameter klasifikasi untuk menentukan tipe pompa yang paling sesuai terhadap kombinasi flow dan head, baik radial, mixed-flow, maupun axial-flow. Efisiensi pompa ditentukan oleh perbandingan antara hydraulic power dan input power, dengan efisiensi maksimum terjadi pada Best Efficiency Point (BEP). Estimasi daya penggerak dilakukan berdasarkan hydraulic power dan efisiensi pompa untuk menentukan kapasitas motor yang mampu memenuhi kondisi operasi sistem.
+---
+
+# **_Artikel 05: Centrifugal Pump Selection Engineering_**
+
+---
+
+- [**_Artikel 05: Centrifugal Pump Selection Engineering_**](#artikel-05-centrifugal-pump-selection-engineering)
+- [1. Pump Selection in Engineering Design](#1-pump-selection-in-engineering-design)
+  - [1.1 Role of pump selection in fluid transport systems](#11-role-of-pump-selection-in-fluid-transport-systems)
+  - [1.2 Input parameters for pump selection](#12-input-parameters-for-pump-selection)
+  - [1.3 Relationship between system requirement and pump performance](#13-relationship-between-system-requirement-and-pump-performance)
+- [2. Key Parameters for Centrifugal Pump Selection](#2-key-parameters-for-centrifugal-pump-selection)
+  - [2.1 Flow rate requirement](#21-flow-rate-requirement)
+  - [2.2 Total Dynamic Head requirement](#22-total-dynamic-head-requirement)
+  - [2.3 Fluid properties affecting pump selection](#23-fluid-properties-affecting-pump-selection)
+  - [2.4 Operating conditions of the pumping system](#24-operating-conditions-of-the-pumping-system)
+- [3. Specific Speed as Pump Classification Parameter](#3-specific-speed-as-pump-classification-parameter)
+  - [3.1 Definition of specific speed](#31-definition-of-specific-speed)
+  - [3.2 Specific speed equation](#32-specific-speed-equation)
+  - [3.3 Interpretation of specific speed](#33-interpretation-of-specific-speed)
+  - [3.4 Pump classification based on specific speed](#34-pump-classification-based-on-specific-speed)
+    - [Radial flow pump](#radial-flow-pump)
+    - [Mixed flow pump](#mixed-flow-pump)
+    - [Axial flow pump](#axial-flow-pump)
+- [4. Relationship Between Flow, Head, and Pump Type](#4-relationship-between-flow-head-and-pump-type)
+  - [4.1 Flow–head characteristics of centrifugal pumps](#41-flowhead-characteristics-of-centrifugal-pumps)
+  - [4.2 Characteristics of mixed-flow pumps](#42-characteristics-of-mixed-flow-pumps)
+  - [4.3 Characteristics of axial-flow pumps](#43-characteristics-of-axial-flow-pumps)
+  - [4.4 Selection of pump type based on system requirements](#44-selection-of-pump-type-based-on-system-requirements)
+- [5. Pump Efficiency Considerations](#5-pump-efficiency-considerations)
+  - [5.1 Definition of pump efficiency](#51-definition-of-pump-efficiency)
+  - [5.2 Hydraulic power of the pump](#52-hydraulic-power-of-the-pump)
+  - [5.3 Overall pump efficiency](#53-overall-pump-efficiency)
+  - [5.4 Relationship between efficiency and operating point](#54-relationship-between-efficiency-and-operating-point)
+- [6. Driver Power Estimation](#6-driver-power-estimation)
+  - [6.1 Required pump power](#61-required-pump-power)
+  - [6.2 Relationship between hydraulic power and shaft power](#62-relationship-between-hydraulic-power-and-shaft-power)
+  - [6.3 Motor sizing considerations](#63-motor-sizing-considerations)
+  - [6.4 Influence of efficiency on power requirement](#64-influence-of-efficiency-on-power-requirement)
+
+---
+
+# 1. Pump Selection in Engineering Design
+
+Pemilihan pompa merupakan langkah penting dalam desain sistem transport fluida. Pompa yang dipilih harus mampu memenuhi kebutuhan sistem tanpa menyebabkan operasi yang tidak efisien atau tidak stabil.
+
+<ResourceBox
+  title="Artikel terkait:"
+  items={[
+    {
+      name: 'README - Centrifugal Pump',
+      href: '/blog/maintenance/mechanical/centrifugal-pump-engineering/README',
+      description: 'Centrifugal Pump Engineering Series',
+    },
+  ]}
+/>
+
+---
+
+## 1.1 Role of pump selection in fluid transport systems
+
+Dalam sistem perpipaan industri, pompa berfungsi untuk memberikan energi kepada fluida agar dapat mengatasi:
+
+- perbedaan elevasi
+- losses dalam pipa
+- losses pada fitting dan peralatan
+
+Pemilihan pompa yang tidak tepat dapat menyebabkan beberapa masalah operasi.
+
+| Problem                  | Consequence           |
+| ------------------------ | --------------------- |
+| Pompa terlalu kecil      | Flow tidak tercapai   |
+| Pompa terlalu besar      | Operasi jauh dari BEP |
+| Kurva pompa tidak sesuai | Sistem tidak stabil   |
+
+Karena itu proses pemilihan pompa harus mempertimbangkan **karakteristik sistem dan karakteristik pompa secara simultan**.
+
+---
+
+## 1.2 Input parameters for pump selection
+
+Parameter utama yang diperlukan untuk memilih pompa adalah:
+
+| Parameter                | Description                             |
+| ------------------------ | --------------------------------------- |
+| Flow rate (Q)            | Kapasitas aliran yang dibutuhkan sistem |
+| Total Dynamic Head (TDH) | Head total yang harus diatasi pompa     |
+| Fluid properties         | Karakteristik fluida yang dipompa       |
+
+Parameter ini biasanya diperoleh dari:
+
+- process design data
+- piping system calculation
+- operating conditions
+
+---
+
+## 1.3 Relationship between system requirement and pump performance
+
+Pemilihan pompa dilakukan dengan membandingkan kebutuhan sistem dengan **pump performance curve** dari pompa yang tersedia.
+
+Operating point sistem ditentukan oleh perpotongan antara:
+
+- **pump curve**
+- **system curve**
+
+![Image](https://datatool.pumps.org/pump-fundamentals/images/iC-5-Pump-and-system-Curve-with-Valve-head-2.png)
+
+![Image](https://www.michael-smith-engineers.co.uk/mse/uploads/UsefulInfo/CentrifugalPumpSelection/Cent-Pump-Selection-Figure2.jpg)
+
+Pompa yang dipilih harus mampu menghasilkan head yang dibutuhkan sistem pada flow yang diinginkan.
+
+---
+
+# 2. Key Parameters for Centrifugal Pump Selection
+
+Pemilihan pompa tidak hanya didasarkan pada flow dan head, tetapi juga mempertimbangkan karakteristik fluida dan kondisi operasi sistem.
+
+---
+
+## 2.1 Flow rate requirement
+
+Flow rate adalah jumlah fluida yang harus dialirkan oleh pompa dalam satuan waktu.
+
+$$
+Q = \frac{Volume}{Time}
+$$
+
+| Parameter | Description | Unit |
+| --------- | ----------- | ---- |
+| (Q)       | Flow rate   | m³/s |
+
+Flow requirement biasanya ditentukan oleh:
+
+- kebutuhan proses
+- kapasitas produksi
+- kebutuhan sirkulasi sistem
+
+---
+
+## 2.2 Total Dynamic Head requirement
+
+Total Dynamic Head merupakan beban hidraulik yang harus diatasi pompa.
+
+$$
+TDH = H_{static} + h_f + h_m
+$$
+
+| Component | Description     |
+| --------- | --------------- |
+| H_static  | Static head     |
+| (h_f)     | Friction losses |
+| (h_m)     | Minor losses    |
+
+TDH menentukan **head minimum yang harus dihasilkan pompa pada flow tertentu**.
+
+---
+
+## 2.3 Fluid properties affecting pump selection
+
+Karakteristik fluida mempengaruhi performa pompa.
+
+| Property    | Influence                       |
+| ----------- | ------------------------------- |
+| Density     | Mempengaruhi kebutuhan daya     |
+| Viscosity   | Mempengaruhi losses dalam pompa |
+| Temperature | Mempengaruhi vapor pressure     |
+
+Fluida dengan viskositas tinggi dapat menyebabkan:
+
+- penurunan efisiensi pompa
+- perubahan karakteristik kurva pompa
+
+---
+
+## 2.4 Operating conditions of the pumping system
+
+Kondisi operasi sistem juga harus dipertimbangkan dalam pemilihan pompa.
+
+| Operating Condition  | Consideration                                   |
+| -------------------- | ----------------------------------------------- |
+| Continuous operation | Pompa harus bekerja stabil dalam jangka panjang |
+| Variable flow        | Sistem mungkin memerlukan kontrol flow          |
+
+Dalam sistem dengan flow variabel, pompa sering dikombinasikan dengan:
+
+- control valve
+- variable speed drive
+
+Tujuannya adalah menjaga operasi pompa tetap berada dalam **rentang efisiensi yang baik**.
+
+---
+
+# 3. Specific Speed as Pump Classification Parameter
+
+Dalam desain dan seleksi pompa, engineer sering menggunakan parameter yang disebut **specific speed**. Parameter ini digunakan untuk mengklasifikasikan tipe pompa berdasarkan hubungan antara **flow rate, head, dan kecepatan rotasi**.
+
+---
+
+## 3.1 Definition of specific speed
+
+Specific speed adalah parameter karakteristik yang menunjukkan **jenis geometri impeller yang paling sesuai untuk kombinasi flow dan head tertentu**.
+
+Specific speed bukan merupakan kecepatan aktual pompa, tetapi parameter yang digunakan untuk membandingkan karakteristik pompa dengan ukuran berbeda.
+
+| Parameter      | Meaning                          |
+| -------------- | -------------------------------- |
+| Specific speed | Parameter klasifikasi tipe pompa |
+
+Parameter ini membantu engineer menentukan apakah sistem lebih cocok menggunakan:
+
+- pompa radial
+- pompa mixed-flow
+- pompa axial-flow
+
+---
+
+## 3.2 Specific speed equation
+
+Specific speed dinyatakan dengan persamaan:
+
+$$
+N_s = \frac{N\sqrt{Q}}{H^{3/4}}
+$$
+
+| Parameter | Description      | Unit |
+| --------- | ---------------- | ---- |
+| (N_s)     | Specific speed   | -    |
+| (N)       | Rotational speed | rpm  |
+| (Q)       | Flow rate        | m³/s |
+| (H)       | Pump head        | m    |
+
+Persamaan ini menunjukkan hubungan antara:
+
+- kecepatan pompa
+- kapasitas aliran
+- head pompa
+
+---
+
+## 3.3 Interpretation of specific speed
+
+Nilai specific speed menggambarkan karakteristik hidraulik pompa.
+
+| Specific Speed | Characteristic           |
+| -------------- | ------------------------ |
+| Rendah         | Head tinggi, flow rendah |
+| Sedang         | Head sedang, flow sedang |
+| Tinggi         | Head rendah, flow tinggi |
+
+Dengan demikian nilai specific speed memberikan indikasi tipe impeller yang paling efisien untuk kondisi operasi tertentu.
+
+---
+
+## 3.4 Pump classification based on specific speed
+
+Berdasarkan nilai specific speed, pompa sentrifugal dapat diklasifikasikan menjadi beberapa tipe.
+
+![Image](https://www.michael-smith-engineers.co.uk/mse/uploads/UsefulInfo/SpecificSpeed/specific-speed-fig1.JPG)
+
+![Image](https://www.pumpsandsystems.com/sites/default/files/15334/HI_FAQ_IMG1_980x400_0524.png)
+
+![Image](https://www.pumpsandsystems.com/sites/default/files/HIpumpFAQ-fig1.2.jpg)
+
+### Radial flow pump
+
+Karakteristik:
+
+- flow relatif kecil
+- head tinggi
+- aliran keluar impeller dominan radial
+
+Pompa ini umum digunakan pada:
+
+- boiler feed systems
+- high pressure applications
+
+---
+
+### Mixed flow pump
+
+Karakteristik:
+
+- kombinasi komponen radial dan aksial
+- head sedang
+- flow sedang
+
+Pompa ini banyak digunakan pada:
+
+- irrigation systems
+- cooling water circulation
+
+---
+
+### Axial flow pump
+
+Karakteristik:
+
+- flow sangat besar
+- head rendah
+- aliran dominan aksial
+
+Pompa axial biasanya digunakan pada:
+
+- flood control systems
+- large water circulation systems
+
+---
+
+# 4. Relationship Between Flow, Head, and Pump Type
+
+Hubungan antara flow rate dan head merupakan faktor utama dalam menentukan tipe pompa yang paling sesuai untuk suatu sistem.
+
+---
+
+## 4.1 Flow–head characteristics of centrifugal pumps
+
+Pompa radial memiliki karakteristik:
+
+| Parameter | Characteristic |
+| --------- | -------------- |
+| Flow rate | Relatif kecil  |
+| Head      | Tinggi         |
+
+Energi fluida dihasilkan terutama oleh **komponen radial dari kecepatan impeller**.
+
+---
+
+## 4.2 Characteristics of mixed-flow pumps
+
+Pompa mixed-flow menghasilkan aliran dengan komponen:
+
+- radial
+- aksial
+
+Karakteristiknya berada di antara pompa radial dan axial.
+
+| Parameter | Characteristic |
+| --------- | -------------- |
+| Flow      | Sedang         |
+| Head      | Sedang         |
+
+---
+
+## 4.3 Characteristics of axial-flow pumps
+
+Pompa axial menghasilkan aliran yang hampir seluruhnya **searah dengan sumbu pompa**.
+
+Karakteristik utama:
+
+| Parameter | Characteristic |
+| --------- | -------------- |
+| Flow      | Sangat tinggi  |
+| Head      | Rendah         |
+
+---
+
+## 4.4 Selection of pump type based on system requirements
+
+Pemilihan tipe pompa ditentukan oleh kebutuhan sistem.
+
+| System Requirement             | Pump Type        |
+| ------------------------------ | ---------------- |
+| Head tinggi, flow rendah       | Radial flow pump |
+| Head sedang, flow sedang       | Mixed flow pump  |
+| Head rendah, flow sangat besar | Axial flow pump  |
+
+Hubungan ini membantu engineer menentukan jenis pompa yang paling efisien untuk kondisi operasi tertentu.
+
+---
+
+# 5. Pump Efficiency Considerations
+
+Efisiensi pompa merupakan parameter penting dalam pemilihan pompa karena menentukan seberapa efektif energi mekanis dari driver dikonversi menjadi energi hidraulik pada fluida.
+
+---
+
+## 5.1 Definition of pump efficiency
+
+Efisiensi pompa didefinisikan sebagai perbandingan antara **hydraulic power yang diberikan kepada fluida** dan **input power yang diberikan kepada pompa**.
+
+$$
+\eta = \frac{P_h}{P_{input}}
+$$
+
+| Parameter | Description     |
+| --------- | --------------- |
+| (\eta)    | Pump efficiency |
+| (P_h)     | Hydraulic power |
+| P_input   | Input power     |
+
+Nilai efisiensi biasanya dinyatakan dalam persen.
+
+---
+
+## 5.2 Hydraulic power of the pump
+
+Hydraulic power adalah energi yang benar-benar diberikan pompa kepada fluida.
+
+$$
+P_h = \rho g Q H
+$$
+
+| Parameter | Description                | Unit  |
+| --------- | -------------------------- | ----- |
+| (P_h)     | Hydraulic power            | W     |
+| (\rho)    | Fluid density              | kg/m³ |
+| (g)       | Gravitational acceleration | m/s²  |
+| (Q)       | Flow rate                  | m³/s  |
+| (H)       | Pump head                  | m     |
+
+Hydraulic power merupakan energi yang diperlukan untuk mengalirkan fluida sesuai kebutuhan sistem.
+
+---
+
+## 5.3 Overall pump efficiency
+
+Efisiensi total pompa merupakan hasil dari beberapa komponen efisiensi.
+
+| Efficiency Type       | Description                              |
+| --------------------- | ---------------------------------------- |
+| Hydraulic efficiency  | Kehilangan energi akibat aliran fluida   |
+| Mechanical efficiency | Kehilangan energi akibat gesekan mekanis |
+
+Efisiensi total dapat dinyatakan sebagai:
+
+$$
+\eta_{overall} = \eta_h \times \eta_m
+$$
+
+di mana:
+
+| Parameter | Meaning               |
+| --------- | --------------------- |
+| (\eta_h)  | Hydraulic efficiency  |
+| (\eta_m)  | Mechanical efficiency |
+
+---
+
+## 5.4 Relationship between efficiency and operating point
+
+Efisiensi pompa tidak konstan terhadap flow.
+
+![Image](https://media.licdn.com/dms/image/v2/D5612AQE7CY-9-r7lYg/article-cover_image-shrink_720_1280/B56ZW5adJKHoAI-/0/1742572475790?e=2147483647&t=u2l-0wLtZsqOhPuAcZg6qOmmdcRKni-lkLBhKDdfuvA&v=beta)
+
+![Image](https://www.engineeringtoolbox.com/docs/documents/311/pump_bep_best_efficiency_point.jpg)
+
+![Image](https://media.licdn.com/dms/image/v2/D5612AQHqhW1BsEBb4Q/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1735822084295?e=2147483647&t=deofIEfNI7OcnyixpoOJfdlv0oAutPTzQq8zz9lMnHI&v=beta)
+
+![Image](https://images.squarespace-cdn.com/content/v1/556c6ecae4b099a4afb2aa99/6c249ec8-7ff0-4a99-969a-917606f32f0e/Part%2B4-Figure%2B2.jpg)
+
+Karakteristik efisiensi pompa:
+
+| Flow region | Efficiency         |
+| ----------- | ------------------ |
+| Flow rendah | Efisiensi rendah   |
+| BEP         | Efisiensi maksimum |
+| Flow tinggi | Efisiensi menurun  |
+
+Karena itu pemilihan pompa harus memastikan bahwa **operating point berada dekat Best Efficiency Point (BEP)**.
+
+---
+
+# 6. Driver Power Estimation
+
+Setelah flow dan head sistem ditentukan, langkah berikutnya adalah menentukan **daya penggerak pompa**.
+
+Driver pompa biasanya berupa:
+
+- electric motor
+- steam turbine
+- gas turbine
+
+---
+
+## 6.1 Required pump power
+
+Daya yang dibutuhkan pompa dapat dihitung menggunakan persamaan:
+
+$$
+P = \frac{\rho g Q H}{\eta}
+$$
+
+| Parameter | Description         |
+| --------- | ------------------- |
+| (P)       | Required pump power |
+| (\eta)    | Pump efficiency     |
+
+Persamaan ini menunjukkan bahwa kebutuhan daya meningkat jika:
+
+- flow meningkat
+- head meningkat
+- efisiensi pompa rendah
+
+---
+
+## 6.2 Relationship between hydraulic power and shaft power
+
+Energi yang diberikan oleh driver tidak seluruhnya menjadi hydraulic power karena adanya losses dalam pompa.
+
+Losses utama meliputi:
+
+| Loss Type         | Description                  |
+| ----------------- | ---------------------------- |
+| Hydraulic losses  | Turbulence dan recirculation |
+| Mechanical losses | Gesekan bearing dan seal     |
+
+Akibat losses tersebut:
+
+$$
+P_{shaft} > P_h
+$$
+
+---
+
+## 6.3 Motor sizing considerations
+
+Dalam pemilihan motor penggerak pompa, engineer biasanya memberikan **safety margin** terhadap daya yang dihitung.
+
+Tujuan margin ini adalah untuk mengakomodasi:
+
+- variasi kondisi operasi
+- perubahan karakteristik sistem
+- ketidakpastian perhitungan
+
+Sebagai contoh:
+
+| Calculated Power | Selected Motor |
+| ---------------- | -------------- |
+| 90 kW            | 110 kW         |
+
+Margin ini memastikan motor tidak bekerja pada kondisi overload.
+
+---
+
+## 6.4 Influence of efficiency on power requirement
+
+Efisiensi pompa memiliki pengaruh langsung terhadap kebutuhan daya.
+
+Jika efisiensi menurun:
+
+$$
+\eta ↓ \Rightarrow P_{required} ↑
+$$
+
+Akibatnya pompa membutuhkan daya lebih besar untuk menghasilkan head dan flow yang sama.
+
+Karena itu pemilihan pompa dengan efisiensi tinggi dapat memberikan keuntungan:
+
+- konsumsi energi lebih rendah
+- biaya operasi lebih kecil
+- umur peralatan lebih panjang
+
+---
+
+<small>
+  **_Catatan Penyusunan_** Artikel ini disusun sebagai materi edukasi dan
+  referensi umum berdasarkan berbagai sumber pustaka, praktik lapangan, serta
+  bantuan alat penulisan. Pembaca disarankan untuk melakukan verifikasi lanjutan
+  dan penyesuaian sesuai dengan kondisi serta kebutuhan masing-masing sistem.
+</small>

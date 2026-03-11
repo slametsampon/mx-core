@@ -1,0 +1,629 @@
+---
+title: Pump Performance Curve and Operating Point
+authors: ['sam']
+date: '2026-03-11'
+tags:
+  [
+    'centrifugal-pump',
+    'pump-performance-curve',
+    'system-curve',
+    'operating-point',
+    'best-efficiency-point',
+    'pump-hydraulics',
+  ]
+draft: false
+summary: Pump performance curve menggambarkan hubungan antara flow rate dan head yang dihasilkan pompa pada kecepatan rotasi tertentu. Kurva ini menunjukkan karakteristik hidraulik pompa serta batas operasi seperti shut-off dan runout. Sistem perpipaan memiliki kebutuhan head sendiri yang direpresentasikan oleh system curve yang terdiri dari static head dan friction losses. Titik operasi pompa ditentukan oleh perpotongan pump curve dan system curve, yang menghasilkan operating flow dan head aktual. Efisiensi pompa mencapai maksimum pada Best Efficiency Point (BEP). Operasi di sekitar BEP menghasilkan kondisi hidraulik paling stabil, sedangkan operasi jauh dari BEP dapat menurunkan efisiensi serta meningkatkan beban mekanis pada pompa.
+---
+
+# **_Artikel 02: Pump Performance Curve and Operating Point_**
+
+---
+
+- [**_Artikel 02: Pump Performance Curve and Operating Point_**](#artikel-02-pump-performance-curve-and-operating-point)
+- [1. Hydraulic Performance Characteristics of a Centrifugal Pump](#1-hydraulic-performance-characteristics-of-a-centrifugal-pump)
+  - [1.1 Definition of pump hydraulic performance](#11-definition-of-pump-hydraulic-performance)
+  - [1.2 Head–Flow relationship in centrifugal pumps](#12-headflow-relationship-in-centrifugal-pumps)
+  - [1.3 Typical shape of pump performance curve](#13-typical-shape-of-pump-performance-curve)
+- [2. Pump Performance Curve](#2-pump-performance-curve)
+  - [2.1 Head vs flow curve (H–Q curve)](#21-head-vs-flow-curve-hq-curve)
+  - [2.2 Efficiency curve](#22-efficiency-curve)
+  - [2.3 Power curve](#23-power-curve)
+  - [2.4 Operating limits on pump curve](#24-operating-limits-on-pump-curve)
+- [3. System Curve](#3-system-curve)
+  - [3.1 Definition of system head requirement](#31-definition-of-system-head-requirement)
+  - [3.2 Static head component](#32-static-head-component)
+  - [3.3 Friction head component](#33-friction-head-component)
+  - [3.4 Shape of the system curve](#34-shape-of-the-system-curve)
+- [4. Interaction Between Pump Curve and System Curve](#4-interaction-between-pump-curve-and-system-curve)
+  - [4.1 Graphical intersection of pump and system curves](#41-graphical-intersection-of-pump-and-system-curves)
+  - [4.2 Determination of operating flow and head](#42-determination-of-operating-flow-and-head)
+  - [4.3 Influence of system resistance changes](#43-influence-of-system-resistance-changes)
+  - [4.4 Influence of pump characteristics](#44-influence-of-pump-characteristics)
+- [5. Operating Point of the Pump](#5-operating-point-of-the-pump)
+  - [5.1 Definition of operating point](#51-definition-of-operating-point)
+  - [5.2 Stability of the operating point](#52-stability-of-the-operating-point)
+  - [5.3 Impact of operating point deviation](#53-impact-of-operating-point-deviation)
+    - [Operation at very low flow](#operation-at-very-low-flow)
+    - [Operation at very high flow](#operation-at-very-high-flow)
+- [6. Best Efficiency Point (BEP)](#6-best-efficiency-point-bep)
+  - [6.1 Definition of BEP](#61-definition-of-bep)
+  - [6.2 Location of BEP on pump curve](#62-location-of-bep-on-pump-curve)
+  - [6.3 Relationship between BEP and hydraulic behavior](#63-relationship-between-bep-and-hydraulic-behavior)
+  - [6.4 Operating region around BEP](#64-operating-region-around-bep)
+  - [6.5 Consequences of operating away from BEP](#65-consequences-of-operating-away-from-bep)
+
+---
+
+# 1. Hydraulic Performance Characteristics of a Centrifugal Pump
+
+Kinerja hidraulik pompa sentrifugal ditentukan oleh hubungan antara **flow rate** yang dihasilkan pompa dan **head** yang dapat dihasilkan pada kondisi operasi tertentu. Hubungan ini direpresentasikan dalam bentuk **pump performance curve** yang diperoleh dari pengujian pompa pada kecepatan rotasi konstan.
+
+<ResourceBox
+  title="Artikel terkait:"
+  items={[
+    {
+      name: 'README - Centrifugal Pump',
+      href: '/blog/maintenance/mechanical/centrifugal-pump-engineering/README',
+      description: 'Centrifugal Pump Engineering Series',
+    },
+  ]}
+/>
+
+## 1.1 Definition of pump hydraulic performance
+
+Hydraulic performance pompa menggambarkan kemampuan pompa untuk menghasilkan **head pada berbagai flow rate**.
+
+Parameter utama performa pompa adalah:
+
+| Parameter | Description     | Unit |
+| --------- | --------------- | ---- |
+| (Q)       | Flow rate       | m³/s |
+| (H)       | Pump head       | m    |
+| (P)       | Shaft power     | W    |
+| (\eta)    | Pump efficiency | -    |
+
+Hubungan antara head dan flow merupakan karakteristik utama pompa sentrifugal.
+
+Secara empiris hubungan ini sering direpresentasikan sebagai:
+
+$$
+H = H_0 - kQ^2
+$$
+
+| Parameter | Description                  |
+| --------- | ---------------------------- |
+| (H_0)     | Shut-off head                |
+| (k)       | Pump characteristic constant |
+
+Persamaan ini menggambarkan bahwa **head pompa menurun ketika flow meningkat**.
+
+---
+
+## 1.2 Head–Flow relationship in centrifugal pumps
+
+Perilaku umum pompa sentrifugal menunjukkan bahwa:
+
+- head maksimum terjadi pada **flow = 0**
+- head menurun saat flow meningkat
+- flow maksimum terjadi saat head sangat kecil
+
+Dua kondisi operasi penting pada kurva pompa adalah:
+
+| Condition     | Description                                                  |
+| ------------- | ------------------------------------------------------------ |
+| Shut-off head | Head maksimum saat valve discharge tertutup                  |
+| Runout flow   | Flow maksimum ketika sistem memiliki resistance sangat kecil |
+
+Perilaku ini merupakan konsekuensi langsung dari **energi yang diberikan impeller kepada fluida**, sebagaimana dijelaskan oleh **Euler Pump Equation** pada artikel sebelumnya.
+
+---
+
+## 1.3 Typical shape of pump performance curve
+
+Bentuk kurva performa pompa dipengaruhi oleh desain impeller dan kondisi hidraulik internal pompa.
+
+![Image](https://img.waimaoniu.net/2328/2328-202208221006442832.png)
+
+![Image](https://www.amarinth.com/media/V-series-discharge-curve-500x582.jpg)
+
+Karakteristik umum kurva pompa:
+
+- head menurun dengan peningkatan flow
+- terdapat titik efisiensi maksimum
+- kebutuhan daya meningkat dengan flow
+
+Faktor yang mempengaruhi bentuk kurva:
+
+| Factor            | Influence                     |
+| ----------------- | ----------------------------- |
+| Impeller diameter | Menentukan head maksimum      |
+| Blade angle       | Mengubah karakteristik kurva  |
+| Rotational speed  | Menggeser seluruh kurva pompa |
+
+---
+
+# 2. Pump Performance Curve
+
+Pump performance curve merupakan representasi grafis dari karakteristik pompa pada **kecepatan rotasi tertentu**.
+
+Biasanya kurva ini diperoleh dari **pengujian pompa oleh manufacturer** sesuai standar **Hydraulic Institute atau API**.
+
+---
+
+## 2.1 Head vs flow curve (H–Q curve)
+
+Kurva utama pada pump performance adalah **Head vs Flow curve**.
+
+![Image](https://media.licdn.com/dms/image/v2/D5612AQHqhW1BsEBb4Q/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1735822084295?e=2147483647&t=deofIEfNI7OcnyixpoOJfdlv0oAutPTzQq8zz9lMnHI&v=beta)
+
+Interpretasi kurva:
+
+| Region                  | Interpretation          |
+| ----------------------- | ----------------------- |
+| Low flow region         | Head tinggi, flow kecil |
+| Normal operating region | Flow dan head seimbang  |
+| High flow region        | Head rendah             |
+
+Kurva ini menunjukkan bagaimana pompa merespon perubahan flow dalam sistem.
+
+---
+
+## 2.2 Efficiency curve
+
+Selain kurva head, manufacturer juga menyediakan **efficiency curve**.
+
+Efisiensi pompa didefinisikan sebagai:
+
+$$
+\eta = \frac{\rho g Q H}{P}
+$$
+
+| Parameter | Description |
+| --------- | ----------- |
+| (P)       | Shaft power |
+
+Karakteristik efisiensi:
+
+- efisiensi rendah pada flow kecil
+- efisiensi meningkat hingga mencapai maksimum
+- efisiensi menurun kembali pada flow tinggi
+
+Titik efisiensi maksimum disebut **Best Efficiency Point (BEP)**.
+
+---
+
+## 2.3 Power curve
+
+Kurva berikutnya adalah **power curve** yang menunjukkan kebutuhan daya pompa.
+
+$$
+P = \frac{\rho g Q H}{\eta}
+$$
+
+Umumnya:
+
+- power meningkat dengan flow
+- motor harus dipilih agar mampu menanggung kondisi beban maksimum
+
+---
+
+## 2.4 Operating limits on pump curve
+
+Pump curve juga menunjukkan batas operasi pompa.
+
+Dua batas penting adalah:
+
+| Limit               | Description                            |
+| ------------------- | -------------------------------------- |
+| Shut-off condition  | Flow nol dengan head maksimum          |
+| Maximum flow region | Flow maksimum yang dapat dicapai pompa |
+
+Operasi pompa di luar rentang ini dapat menyebabkan:
+
+- ketidakstabilan hidraulik
+- penurunan efisiensi
+- potensi kerusakan mekanis
+
+---
+
+# 3. System Curve
+
+Pump performance tidak dapat dianalisis tanpa mempertimbangkan **karakteristik sistem perpipaan** tempat pompa beroperasi. Sistem fluida memiliki kebutuhan head tertentu untuk mengalirkan fluida melalui pipa, valve, dan peralatan proses.
+
+Hubungan antara **flow rate** dan **head yang dibutuhkan sistem** direpresentasikan sebagai **system curve**.
+
+---
+
+## 3.1 Definition of system head requirement
+
+System head requirement adalah **total energi per satuan berat fluida yang diperlukan agar fluida dapat mengalir melalui sistem**.
+
+Secara umum system head terdiri dari dua komponen utama:
+
+$$
+H_{system} = H_{static} + H_{loss}
+$$
+
+| Parameter | Description               | Unit |
+| --------- | ------------------------- | ---- |
+| H_system  | Total system head         | m    |
+| H_static  | Static head               | m    |
+| H_loss    | Friction and minor losses | m    |
+
+System head menentukan **beban hidraulik yang harus diatasi pompa**.
+
+---
+
+## 3.2 Static head component
+
+Static head adalah head yang disebabkan oleh **perbedaan elevasi antara suction dan discharge**.
+
+$$
+H_{static} = z_{discharge} - z_{suction}
+$$
+
+| Parameter | Description |
+| --------- | ----------- |
+| (z)       | Elevation   |
+
+Karakteristik static head:
+
+- **tidak bergantung pada flow rate**
+- hanya ditentukan oleh perbedaan elevasi
+
+Contoh aplikasi:
+
+- transfer tank to tank
+- cooling water circulation
+- boiler feed systems
+
+---
+
+## 3.3 Friction head component
+
+Selain elevasi, sistem juga memiliki **energy loss akibat gesekan fluida dalam pipa**.
+
+Head loss pada pipa biasanya dihitung menggunakan persamaan Darcy–Weisbach:
+
+$$
+h_f = f \frac{L}{D} \frac{V^2}{2g}
+$$
+
+| Parameter | Description        | Unit |
+| --------- | ------------------ | ---- |
+| (h_f)     | Friction head loss | m    |
+| (f)       | Friction factor    | -    |
+| (L)       | Pipe length        | m    |
+| (D)       | Pipe diameter      | m    |
+| (V)       | Flow velocity      | m/s  |
+
+Karena:
+
+$$
+V \propto Q
+$$
+
+maka friction head secara umum berbanding dengan:
+
+$$
+h_f \propto Q^2
+$$
+
+Artinya semakin besar flow, semakin besar kehilangan head akibat gesekan.
+
+---
+
+## 3.4 Shape of the system curve
+
+Karena static head konstan dan friction head meningkat terhadap kuadrat flow, maka system curve memiliki bentuk:
+
+$$
+H_{system} = H_{static} + kQ^2
+$$
+
+![Image](https://www.datacor.com/hubfs/2025%20NEW%20Website%20Images/Former%20AFT%20Site%20Blog%20Images/KnowYourPumpandSystemCurves/Part1/b2ap3_large_Figure-5.png)
+
+![Image](https://www.pumpsandsystems.com/sites/default/files/10814/System-curve1-2-980x551.png)
+
+![Image](https://www.pumpsandsystems.com/sites/default/files/10814/System-curve1-980x551.png)
+
+Karakteristik system curve:
+
+| Flow           | System Head                    |
+| -------------- | ------------------------------ |
+| Q = 0          | Head = static head             |
+| Flow meningkat | Head meningkat akibat friction |
+
+System curve menggambarkan **kebutuhan head sistem terhadap flow rate**.
+
+---
+
+# 4. Interaction Between Pump Curve and System Curve
+
+Pump curve menunjukkan **kemampuan pompa menghasilkan head**, sedangkan system curve menunjukkan **head yang dibutuhkan sistem**.
+
+Operasi pompa ditentukan oleh **interaksi antara kedua kurva tersebut**.
+
+---
+
+## 4.1 Graphical intersection of pump and system curves
+
+Jika pump curve dan system curve digambar pada grafik yang sama, maka akan terdapat **titik perpotongan kedua kurva**.
+
+![Image](https://datatool.pumps.org/pump-fundamentals/images/iC-4-Pump-and-system-Curve-with-Valve-head.png)
+
+![Image](https://docs.bentley.com/LiveContent/web/Bentley%20HAMMER%20SS6-v1/en/GUID-ADCC6C59-5FFB-4333-ADED-0B02764B17CA-low.png)
+
+Titik perpotongan ini menunjukkan kondisi di mana:
+
+$$
+H_{pump} = H_{system}
+$$
+
+Pada kondisi ini pompa dan sistem berada dalam **keseimbangan hidraulik**.
+
+---
+
+## 4.2 Determination of operating flow and head
+
+Titik perpotongan pump curve dan system curve menentukan:
+
+| Parameter      | Meaning                |
+| -------------- | ---------------------- |
+| Operating flow | Flow rate aktual pompa |
+| Operating head | Head aktual pompa      |
+
+Jika pompa mencoba menghasilkan flow lebih besar dari titik ini:
+
+- head pompa turun
+- sistem tidak dapat mempertahankan flow tersebut
+
+Sebaliknya jika flow lebih kecil:
+
+- head pompa meningkat
+- sistem akan mempercepat aliran hingga mencapai keseimbangan
+
+---
+
+## 4.3 Influence of system resistance changes
+
+Jika resistansi sistem berubah, maka system curve akan bergeser.
+
+Contoh perubahan resistansi sistem:
+
+- valve throttling
+- fouling pada pipa
+- perubahan konfigurasi piping
+
+Secara matematis perubahan ini mengubah koefisien (k):
+
+$$
+H_{system} = H_{static} + kQ^2
+$$
+
+Jika (k) meningkat:
+
+- system curve menjadi lebih curam
+- operating flow menurun
+
+Sebaliknya jika resistansi menurun:
+
+- system curve menjadi lebih landai
+- operating flow meningkat
+
+---
+
+## 4.4 Influence of pump characteristics
+
+Selain perubahan sistem, karakteristik pompa juga dapat berubah.
+
+Contoh perubahan karakteristik pompa:
+
+- perubahan **rotational speed**
+- perubahan **impeller diameter**
+- degradasi performa pompa
+
+Perubahan ini akan **menggeser pump curve**.
+
+Akibatnya:
+
+- titik operasi berpindah
+- flow dan head operasi berubah
+
+Fenomena ini merupakan dasar dari:
+
+- **pump control by throttling**
+- **pump control by speed variation**
+
+---
+
+# 5. Operating Point of the Pump
+
+Operating point adalah kondisi operasi aktual pompa dalam sistem. Titik ini ditentukan oleh keseimbangan antara **kemampuan pompa menghasilkan head** dan **head yang dibutuhkan sistem**.
+
+Seperti dijelaskan pada section sebelumnya, operating point terjadi pada titik perpotongan antara **pump curve** dan **system curve**.
+
+---
+
+## 5.1 Definition of operating point
+
+Operating point adalah kondisi di mana:
+
+$$
+H_{pump} = H_{system}
+$$
+
+Pada kondisi ini:
+
+- pompa menghasilkan head yang sama dengan kebutuhan sistem
+- aliran dalam sistem berada pada kondisi stabil
+
+Parameter utama operating point:
+
+| Parameter | Meaning             |
+| --------- | ------------------- |
+| Q_op      | Operating flow rate |
+| H_op      | Operating head      |
+
+Secara grafis, operating point adalah **titik perpotongan kurva pompa dan kurva sistem**.
+
+---
+
+## 5.2 Stability of the operating point
+
+Operating point bersifat stabil jika perubahan kecil pada flow menghasilkan gaya pemulih yang mengembalikan sistem ke titik keseimbangan.
+
+Secara praktis:
+
+- jika flow meningkat sedikit → head pompa menurun → sistem mengurangi flow
+- jika flow menurun sedikit → head pompa meningkat → sistem meningkatkan flow
+
+Stabilitas ini bergantung pada:
+
+| Factor             | Influence               |
+| ------------------ | ----------------------- |
+| Slope pump curve   | Kemiringan kurva pompa  |
+| Slope system curve | Kemiringan kurva sistem |
+
+Pada pompa sentrifugal normal, karakteristik kurva menghasilkan **operasi yang stabil**.
+
+---
+
+## 5.3 Impact of operating point deviation
+
+Jika kondisi sistem berubah, operating point akan bergeser dari posisi semula.
+
+Dua kondisi ekstrem yang dapat terjadi adalah:
+
+### Operation at very low flow
+
+Jika flow terlalu kecil:
+
+- head pompa sangat tinggi
+- aliran dalam impeller menjadi tidak stabil
+
+Potensi fenomena yang muncul:
+
+- internal recirculation
+- overheating
+- hydraulic instability
+
+---
+
+### Operation at very high flow
+
+Jika flow terlalu besar:
+
+- head pompa sangat rendah
+- impeller bekerja mendekati batas hidrauliknya
+
+Konsekuensi yang mungkin terjadi:
+
+- peningkatan kebutuhan daya
+- potensi overload motor
+- penurunan efisiensi pompa
+
+---
+
+# 6. Best Efficiency Point (BEP)
+
+Setiap pompa sentrifugal memiliki kondisi operasi di mana efisiensinya mencapai nilai maksimum. Kondisi ini disebut **Best Efficiency Point (BEP)**.
+
+---
+
+## 6.1 Definition of BEP
+
+Best Efficiency Point adalah kondisi operasi pompa di mana:
+
+$$
+\eta = \eta_{max}
+$$
+
+Pada kondisi ini:
+
+- losses hidraulik minimum
+- distribusi aliran dalam impeller paling stabil
+- performa pompa optimal
+
+---
+
+## 6.2 Location of BEP on pump curve
+
+BEP biasanya terletak di sekitar bagian tengah dari kurva performa pompa.
+
+![Image](https://www.pumpsandsystems.com/sites/default/files/0218/59_PS_0218.png)
+
+![Image](https://www.engineeringtoolbox.com/docs/documents/311/pump_bep_best_efficiency_point.jpg)
+
+Pada kurva performa pompa:
+
+- BEP terletak pada titik puncak kurva efisiensi
+- flow pada titik ini disebut **BEP flow**
+
+---
+
+## 6.3 Relationship between BEP and hydraulic behavior
+
+Distribusi aliran dalam impeller sangat dipengaruhi oleh posisi operasi relatif terhadap BEP.
+
+Pada kondisi BEP:
+
+- aliran mengikuti geometri blade dengan baik
+- losses hidraulik minimum
+- gaya hidraulik pada impeller seimbang
+
+Sebaliknya jika pompa beroperasi jauh dari BEP:
+
+- pola aliran menjadi tidak simetris
+- tekanan di sekitar impeller menjadi tidak merata
+
+---
+
+## 6.4 Operating region around BEP
+
+Dalam praktik industri, pompa tidak selalu beroperasi tepat di BEP, tetapi dalam **rentang operasi yang diizinkan di sekitar BEP**.
+
+Rentang ini disebut **Preferred Operating Region (POR)**.
+
+Secara umum:
+
+| Region                     | Typical Range    |
+| -------------------------- | ---------------- |
+| Preferred operating region | 70–120% BEP flow |
+
+Operasi dalam rentang ini menjaga:
+
+- efisiensi tinggi
+- stabilitas hidraulik
+- umur pompa lebih panjang
+
+---
+
+## 6.5 Consequences of operating away from BEP
+
+Operasi pompa yang jauh dari BEP dapat menyebabkan berbagai masalah hidraulik dan mekanis.
+
+Beberapa konsekuensi utama adalah:
+
+| Condition             | Consequence                |
+| --------------------- | -------------------------- |
+| Flow terlalu rendah   | Recirculation, overheating |
+| Flow terlalu tinggi   | Overload motor             |
+| Operasi jauh dari BEP | Penurunan efisiensi        |
+
+Selain itu, operasi jauh dari BEP dapat menyebabkan:
+
+- peningkatan gaya radial pada impeller
+- peningkatan getaran pompa
+- penurunan umur bearing dan seal
+
+Karena itu dalam desain sistem pompa, target utama adalah memastikan **operating point berada dekat dengan BEP**.
+
+---
+
+<small>
+  **_Catatan Penyusunan_** Artikel ini disusun sebagai materi edukasi dan
+  referensi umum berdasarkan berbagai sumber pustaka, praktik lapangan, serta
+  bantuan alat penulisan. Pembaca disarankan untuk melakukan verifikasi lanjutan
+  dan penyesuaian sesuai dengan kondisi serta kebutuhan masing-masing sistem.
+</small>

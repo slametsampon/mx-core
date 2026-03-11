@@ -1,0 +1,624 @@
+---
+title: Total Dynamic Head Calculation
+authors: ['sam']
+date: '2026-03-11'
+tags:
+  [
+    'centrifugal-pump',
+    'total-dynamic-head',
+    'pipe-friction-loss',
+    'minor-losses',
+    'pump-system-curve',
+    'pump-sizing',
+  ]
+draft: false
+summary: Total Dynamic Head (TDH) merupakan total energi per satuan berat fluida yang harus dihasilkan pompa agar fluida dapat mengalir melalui sistem perpipaan. TDH terdiri dari tiga komponen utama yaitu static head akibat perbedaan elevasi, friction losses pada pipa lurus, serta minor losses pada fitting dan komponen sistem seperti valve dan elbow. Friction losses umumnya meningkat terhadap kuadrat flow rate sehingga system curve berbentuk non-linear. Nilai TDH digunakan bersama flow rate untuk menentukan pompa yang sesuai melalui perpotongan antara pump performance curve dan system curve. Perhitungan TDH yang akurat penting untuk memastikan pompa beroperasi pada kondisi efisien mendekati Best Efficiency Point (BEP).
+---
+
+# **_Artikel 03: Total Dynamic Head Calculation_**
+
+---
+
+- [**_Artikel 03: Total Dynamic Head Calculation_**](#artikel-03-total-dynamic-head-calculation)
+- [1. Head Concept in Fluid Systems](#1-head-concept-in-fluid-systems)
+  - [1.1 Definition of head in fluid mechanics](#11-definition-of-head-in-fluid-mechanics)
+  - [1.2 Head representation in pumping systems](#12-head-representation-in-pumping-systems)
+  - [1.3 Types of head in hydraulic analysis](#13-types-of-head-in-hydraulic-analysis)
+- [2. Static Head in Pumping Systems](#2-static-head-in-pumping-systems)
+  - [2.1 Definition of static head](#21-definition-of-static-head)
+  - [2.2 Static suction head and static suction lift](#22-static-suction-head-and-static-suction-lift)
+    - [Static suction head](#static-suction-head)
+    - [Static suction lift](#static-suction-lift)
+  - [2.3 Static discharge head](#23-static-discharge-head)
+  - [2.4 Total static head in the system](#24-total-static-head-in-the-system)
+- [3. Friction Loss in Pipes](#3-friction-loss-in-pipes)
+  - [3.1 Flow resistance in pipe systems](#31-flow-resistance-in-pipe-systems)
+  - [3.2 Major losses in straight pipes](#32-major-losses-in-straight-pipes)
+  - [3.3 Darcy–Weisbach equation for pipe friction](#33-darcyweisbach-equation-for-pipe-friction)
+  - [3.4 Factors affecting pipe friction losses](#34-factors-affecting-pipe-friction-losses)
+- [4. Minor Losses in System Components](#4-minor-losses-in-system-components)
+  - [4.1 Definition of minor losses](#41-definition-of-minor-losses)
+  - [4.2 Typical sources of minor losses](#42-typical-sources-of-minor-losses)
+  - [4.3 Minor loss coefficient method](#43-minor-loss-coefficient-method)
+  - [4.4 Contribution of minor losses to system head requirement](#44-contribution-of-minor-losses-to-system-head-requirement)
+- [5. Total Dynamic Head (TDH)](#5-total-dynamic-head-tdh)
+  - [5.1 Definition of Total Dynamic Head](#51-definition-of-total-dynamic-head)
+  - [5.2 Combination of head components](#52-combination-of-head-components)
+  - [5.3 Interpretation of TDH in pump selection](#53-interpretation-of-tdh-in-pump-selection)
+  - [5.4 TDH as the basis of system curve](#54-tdh-as-the-basis-of-system-curve)
+- [6. Engineering Interpretation of TDH](#6-engineering-interpretation-of-tdh)
+  - [6.1 Relationship between TDH and flow rate](#61-relationship-between-tdh-and-flow-rate)
+  - [6.2 Impact of piping design on required head](#62-impact-of-piping-design-on-required-head)
+  - [6.3 TDH as input parameter for pump sizing](#63-tdh-as-input-parameter-for-pump-sizing)
+
+---
+
+# 1. Head Concept in Fluid Systems
+
+Dalam analisis sistem pompa, energi fluida dinyatakan dalam bentuk **head**. Penggunaan head memungkinkan analisis energi fluida dilakukan secara independen terhadap densitas fluida, sehingga memudahkan perbandingan kondisi sistem.
+
+<ResourceBox
+  title="Artikel terkait:"
+  items={[
+    {
+      name: 'README - Centrifugal Pump',
+      href: '/blog/maintenance/mechanical/centrifugal-pump-engineering/README',
+      description: 'Centrifugal Pump Engineering Series',
+    },
+  ]}
+/>
+
+---
+
+## 1.1 Definition of head in fluid mechanics
+
+Head adalah representasi **energi fluida per satuan berat**.
+
+Dalam mekanika fluida, energi total fluida dinyatakan melalui persamaan Bernoulli:
+
+$$
+H = \frac{P}{\rho g} + \frac{V^2}{2g} + z
+$$
+
+| Parameter | Description                | Unit  |
+| --------- | -------------------------- | ----- |
+| (H)       | Total head                 | m     |
+| (P)       | Pressure                   | Pa    |
+| (\rho)    | Fluid density              | kg/m³ |
+| (V)       | Velocity                   | m/s   |
+| (z)       | Elevation                  | m     |
+| (g)       | Gravitational acceleration | m/s²  |
+
+Persamaan ini menunjukkan bahwa energi fluida terdiri dari tiga komponen:
+
+- pressure energy
+- kinetic energy
+- potential energy
+
+---
+
+## 1.2 Head representation in pumping systems
+
+Dalam sistem pompa, head digunakan untuk menyatakan **energi yang harus diberikan pompa kepada fluida** agar fluida dapat mengalir melalui sistem.
+
+Jika pompa menaikkan tekanan fluida sebesar (\Delta P), maka kenaikan head yang dihasilkan adalah:
+
+$$
+H = \frac{\Delta P}{\rho g}
+$$
+
+Hubungan ini menunjukkan bahwa pompa sebenarnya tidak menghasilkan tekanan secara langsung, tetapi memberikan **energi hidraulik kepada fluida**.
+
+Karena itu spesifikasi pompa biasanya dinyatakan dalam:
+
+- **flow rate (Q)**
+- **head (H)**
+
+bukan tekanan.
+
+---
+
+## 1.3 Types of head in hydraulic analysis
+
+Dalam analisis sistem fluida terdapat tiga jenis head utama.
+
+| Head Type      | Description                     |
+| -------------- | ------------------------------- |
+| Elevation head | Energi akibat perbedaan elevasi |
+| Pressure head  | Energi akibat tekanan fluida    |
+| Velocity head  | Energi akibat kecepatan fluida  |
+
+![Image](https://images.openai.com/static-rsc-3/JOUyLXR_t-H2beAHDeHLDVHzTE-r2K-ItPFXjKiZS61YeuPn2F_cJQYygkNGNU8JB9vtFisy23NviAozp-qhlK7wz5wxArXgO2eUGcVFLNo?purpose=fullsize&v=1)
+
+![Image](https://d36z6dgmsq8u8z.cloudfront.net/userfiles/_images-pdfs-general/blog/grundfos-head-water-energy-measurements.jpg)
+
+![Image](https://upload.wikimedia.org/wikipedia/commons/a/ae/Hydraulic_head.PNG)
+
+Dalam sistem pompa industri, analisis biasanya berfokus pada:
+
+- **static head**
+- **head losses dalam sistem perpipaan**
+
+---
+
+# 2. Static Head in Pumping Systems
+
+Static head merupakan komponen head yang disebabkan oleh **perbedaan elevasi antara titik suction dan discharge dalam sistem pompa**.
+
+---
+
+## 2.1 Definition of static head
+
+Static head didefinisikan sebagai perbedaan elevasi antara sisi suction dan discharge sistem.
+
+$$
+H_{static} = z_d - z_s
+$$
+
+| Parameter | Description         |
+| --------- | ------------------- |
+| (z_d)     | Discharge elevation |
+| (z_s)     | Suction elevation   |
+
+Karakteristik static head:
+
+- tidak bergantung pada flow rate
+- hanya ditentukan oleh elevasi sistem
+
+---
+
+## 2.2 Static suction head and static suction lift
+
+Kondisi suction pompa dapat dibedakan menjadi dua situasi.
+
+### Static suction head
+
+Terjadi ketika sumber fluida berada **di atas pompa**.
+
+Karakteristik:
+
+- fluida mengalir menuju pompa akibat gravitasi
+- tekanan suction relatif lebih tinggi
+
+---
+
+### Static suction lift
+
+Terjadi ketika sumber fluida berada **di bawah pompa**.
+
+Karakteristik:
+
+- pompa harus mengangkat fluida
+- tekanan suction lebih rendah
+
+![Image](https://imgv2-1-f.scribdassets.com/img/document/771378617/original/e78203bcbd/1?v=1)
+
+Kondisi suction sangat penting karena mempengaruhi:
+
+- tekanan inlet pompa
+- potensi cavitation
+
+Topik ini akan dibahas lebih lanjut pada artikel **NPSH and cavitation**.
+
+---
+
+## 2.3 Static discharge head
+
+Static discharge head adalah head yang disebabkan oleh elevasi pada sisi discharge sistem.
+
+Contoh sistem dengan static discharge head:
+
+- transfer tank ke tank pada elevasi lebih tinggi
+- boiler feed systems
+- cooling water tower circulation
+
+Head ini merupakan bagian dari static head total sistem.
+
+---
+
+## 2.4 Total static head in the system
+
+Total static head merupakan selisih elevasi antara titik suction dan discharge sistem.
+
+$$
+H_{static} = z_{discharge} - z_{suction}
+$$
+
+Karakteristik utama static head:
+
+| Characteristic          | Description                   |
+| ----------------------- | ----------------------------- |
+| Independent of flow     | Tidak berubah terhadap flow   |
+| Determined by elevation | Ditentukan oleh layout sistem |
+
+Dalam banyak sistem industri, static head hanya merupakan **satu bagian dari total head sistem**, karena sistem juga memiliki **friction losses** akibat aliran fluida dalam pipa.
+
+---
+
+# 3. Friction Loss in Pipes
+
+Dalam sistem perpipaan industri, fluida yang mengalir melalui pipa mengalami kehilangan energi akibat **gesekan antara fluida dan dinding pipa**. Kehilangan energi ini disebut **friction loss** dan merupakan komponen utama dari head yang harus diatasi oleh pompa.
+
+---
+
+## 3.1 Flow resistance in pipe systems
+
+Ketika fluida mengalir dalam pipa, lapisan fluida yang bersentuhan dengan dinding pipa mengalami **gaya gesek akibat viskositas fluida**.
+
+Akibatnya terjadi:
+
+- penurunan tekanan sepanjang pipa
+- kehilangan energi fluida
+
+Fenomena ini merupakan konsekuensi dari **shear stress pada boundary layer fluida**.
+
+Karakteristik utama friction loss:
+
+| Characteristic                     | Description                                        |
+| ---------------------------------- | -------------------------------------------------- |
+| Bergantung pada flow rate          | Semakin tinggi flow, semakin besar losses          |
+| Bergantung pada panjang pipa       | Pipa lebih panjang menghasilkan losses lebih besar |
+| Dipengaruhi kondisi permukaan pipa | Pipa kasar menghasilkan losses lebih besar         |
+
+---
+
+## 3.2 Major losses in straight pipes
+
+Kehilangan energi yang terjadi sepanjang pipa lurus disebut **major losses**.
+
+Loss ini terjadi akibat:
+
+- interaksi viskositas fluida dengan dinding pipa
+- pembentukan boundary layer sepanjang pipa
+
+![Image](https://www.pumpandflow.com.au/storage/2020/12/imgpsh_fullsize_anim-1.png)
+
+![Image](https://www.pumpandflow.com.au/storage/2020/12/imgpsh_fullsize_anim-1-1024x634.png)
+
+![Image](https://engineeringlibrary.org/static/img/References/DOE-Fundamentals-Handbook/fluid-flow/Original/moody-chart.png)
+
+![Image](https://www.engineeringtoolbox.com/docs/documents/1147/plastic-pipe-pressure-loss-diagram.png)
+
+Major losses merupakan komponen kehilangan energi terbesar dalam banyak sistem perpipaan industri.
+
+---
+
+## 3.3 Darcy–Weisbach equation for pipe friction
+
+Kehilangan head akibat gesekan dalam pipa dihitung menggunakan **persamaan Darcy–Weisbach**.
+
+$$
+h_f = f \frac{L}{D} \frac{V^2}{2g}
+$$
+
+| Parameter | Description                | Unit |
+| --------- | -------------------------- | ---- |
+| (h_f)     | Friction head loss         | m    |
+| (f)       | Darcy friction factor      | -    |
+| (L)       | Pipe length                | m    |
+| (D)       | Pipe diameter              | m    |
+| (V)       | Flow velocity              | m/s  |
+| (g)       | Gravitational acceleration | m/s² |
+
+Persamaan ini menunjukkan bahwa friction loss meningkat secara signifikan terhadap **kuadrat kecepatan aliran**.
+
+Karena:
+
+$$
+V \propto Q
+$$
+
+maka secara praktis:
+
+$$
+h_f \propto Q^2
+$$
+
+---
+
+## 3.4 Factors affecting pipe friction losses
+
+Beberapa faktor utama yang mempengaruhi friction losses dalam pipa adalah:
+
+| Factor              | Influence                                           |
+| ------------------- | --------------------------------------------------- |
+| Pipe length (L)     | Semakin panjang pipa, semakin besar losses          |
+| Pipe diameter (D)   | Diameter kecil menghasilkan losses lebih besar      |
+| Flow velocity (V)   | Loss meningkat dengan kuadrat velocity              |
+| Friction factor (f) | Dipengaruhi oleh Reynolds number dan roughness pipa |
+
+Friction factor biasanya diperoleh dari **Moody diagram** berdasarkan:
+
+- Reynolds number
+- relative roughness pipa
+
+---
+
+# 4. Minor Losses in System Components
+
+Selain losses pada pipa lurus, sistem perpipaan juga memiliki kehilangan energi akibat **perubahan arah aliran dan komponen sistem**.
+
+Kehilangan ini disebut **minor losses**.
+
+---
+
+## 4.1 Definition of minor losses
+
+Minor losses adalah kehilangan energi fluida yang terjadi pada:
+
+- fitting
+- valve
+- perubahan diameter pipa
+- percabangan aliran
+
+Walaupun disebut “minor”, dalam sistem kompleks kontribusinya bisa menjadi signifikan.
+
+---
+
+## 4.2 Typical sources of minor losses
+
+Komponen sistem yang menghasilkan minor losses antara lain:
+
+| Component          | Description                          |
+| ------------------ | ------------------------------------ |
+| Elbow              | Perubahan arah aliran                |
+| Valve              | Hambatan aliran akibat kontrol valve |
+| Reducer / expander | Perubahan diameter pipa              |
+| Tee connection     | Percabangan aliran                   |
+
+![Image](https://datatool.pumps.org/fluid-flow-iii/images/table-32b.png)
+
+![Image](https://imgv2-2-f.scribdassets.com/img/document/641684659/original/85ee9d9e8d/1?v=1)
+
+![Image](https://datatool.pumps.org/fluid-flow-iii/images/table-32a.png)
+
+![Image](https://powderprocess.net/Tools_html/Images/K%20coefficient%20valves%20and%20fittings.jpg)
+
+Setiap komponen menghasilkan kehilangan energi akibat:
+
+- perubahan arah aliran
+- turbulensi lokal
+
+---
+
+## 4.3 Minor loss coefficient method
+
+Minor losses biasanya dihitung menggunakan **loss coefficient (K)**.
+
+$$
+h_m = K \frac{V^2}{2g}
+$$
+
+| Parameter | Description      |
+| --------- | ---------------- |
+| (h_m)     | Minor head loss  |
+| (K)       | Loss coefficient |
+
+Nilai (K) diperoleh dari tabel eksperimen untuk masing-masing jenis fitting.
+
+Contoh nilai K tipikal:
+
+| Component               | K Value   |
+| ----------------------- | --------- |
+| Standard elbow          | 0.3 – 1.5 |
+| Gate valve (fully open) | 0.15      |
+| Globe valve             | 6 – 10    |
+| Tee junction            | 1 – 2     |
+
+---
+
+## 4.4 Contribution of minor losses to system head requirement
+
+Total minor losses dalam sistem merupakan penjumlahan dari seluruh komponen sistem.
+
+$$
+h_{minor,total} = \sum K_i \frac{V^2}{2g}
+$$
+
+Dalam sistem industri dengan banyak fitting, minor losses dapat menyumbang **20–40% dari total head loss sistem**.
+
+Karena itu dalam desain sistem pompa, engineer harus mempertimbangkan:
+
+- jumlah fitting
+- jenis valve
+- layout piping
+
+agar kebutuhan head sistem tidak menjadi terlalu besar.
+
+---
+
+# 5. Total Dynamic Head (TDH)
+
+Dalam analisis sistem pompa, semua komponen head yang mempengaruhi aliran fluida harus digabungkan untuk menentukan **total energi yang harus diberikan pompa kepada fluida**. Nilai ini disebut **Total Dynamic Head (TDH)**.
+
+TDH merupakan parameter utama dalam:
+
+- pemilihan pompa
+- analisis sistem pompa
+- penentuan operating point
+
+---
+
+## 5.1 Definition of Total Dynamic Head
+
+Total Dynamic Head adalah **jumlah seluruh head yang harus diatasi oleh pompa untuk mengalirkan fluida melalui sistem**.
+
+Komponen utama TDH meliputi:
+
+| Head Component | Description                                          |
+| -------------- | ---------------------------------------------------- |
+| Static head    | Perbedaan elevasi antara suction dan discharge       |
+| Friction loss  | Kehilangan energi sepanjang pipa                     |
+| Minor losses   | Kehilangan energi akibat fitting dan komponen sistem |
+
+Dengan demikian TDH menggambarkan **beban hidraulik total sistem**.
+
+---
+
+## 5.2 Combination of head components
+
+Total Dynamic Head dihitung sebagai penjumlahan seluruh komponen head sistem:
+
+$$
+TDH = H_{static} + h_f + h_m
+$$
+
+| Parameter | Description        | Unit |
+| --------- | ------------------ | ---- |
+| (TDH)     | Total Dynamic Head | m    |
+| H_static  | Static head        | m    |
+| (h_f)     | Friction losses    | m    |
+| (h_m)     | Minor losses       | m    |
+
+Persamaan ini menunjukkan bahwa TDH bergantung pada:
+
+- konfigurasi sistem perpipaan
+- kondisi aliran fluida
+
+---
+
+## 5.3 Interpretation of TDH in pump selection
+
+Dalam pemilihan pompa, engineer harus menentukan dua parameter utama:
+
+| Parameter     | Description                      |
+| ------------- | -------------------------------- |
+| Flow rate (Q) | Kapasitas aliran sistem          |
+| TDH           | Head yang harus dihasilkan pompa |
+
+Nilai TDH kemudian dibandingkan dengan **pump performance curve** dari pompa yang tersedia.
+
+![Image](https://datatool.pumps.org/pump-fundamentals/images/iC-5-Pump-and-system-Curve-with-Valve-head-2.png)
+
+![Image](https://static.wixstatic.com/media/ac8db1_db4382634a7f4f38b371e5b3d33a546d~mv2.png/v1/fill/w_793%2Ch_560%2Cal_c%2Cq_90/ac8db1_db4382634a7f4f38b371e5b3d33a546d~mv2.png)
+
+Pompa yang dipilih harus mampu menghasilkan:
+
+$$
+H_{pump} \ge TDH
+$$
+
+pada flow yang diinginkan.
+
+---
+
+## 5.4 TDH as the basis of system curve
+
+System curve pada sistem pompa berasal langsung dari perhitungan TDH terhadap flow rate.
+
+Karena:
+
+- static head konstan
+- friction losses meningkat terhadap (Q^2)
+
+maka system curve dapat ditulis sebagai:
+
+$$
+TDH = H_{static} + kQ^2
+$$
+
+![Image](https://www.datacor.com/hubfs/2025%20NEW%20Website%20Images/Former%20AFT%20Site%20Blog%20Images/KnowYourPumpandSystemCurves/Part1/b2ap3_large_Figure-5.png)
+
+![Image](https://www.pumpsandsystems.com/sites/default/files/10814/System-curve1-2-980x551.png)
+
+![Image](https://datatool.pumps.org/pump-fundamentals/images/iA-1-Friction-Dominated-System-Curve.png)
+
+![Image](https://www.pumpsandsystems.com/sites/default/files/15321/CS_Hydraulic-Institute_IMG1_0824.png)
+
+System curve menggambarkan **kebutuhan head sistem untuk berbagai nilai flow**.
+
+Perpotongan antara:
+
+- pump curve
+- system curve
+
+menentukan **operating point pompa**, sebagaimana dijelaskan pada artikel sebelumnya.
+
+---
+
+# 6. Engineering Interpretation of TDH
+
+Analisis TDH memberikan pemahaman bagaimana desain sistem perpipaan mempengaruhi performa pompa.
+
+---
+
+## 6.1 Relationship between TDH and flow rate
+
+Friction losses dalam pipa bergantung pada kuadrat kecepatan aliran.
+
+Karena:
+
+$$
+V \propto Q
+$$
+
+maka:
+
+$$
+h_f \propto Q^2
+$$
+
+Akibatnya:
+
+- TDH meningkat secara non-linear terhadap flow
+- system curve berbentuk **kurva parabola**
+
+Konsekuensi engineering:
+
+| Flow       | TDH                       |
+| ---------- | ------------------------- |
+| Flow kecil | TDH mendekati static head |
+| Flow besar | TDH meningkat signifikan  |
+
+---
+
+## 6.2 Impact of piping design on required head
+
+Desain sistem perpipaan memiliki pengaruh besar terhadap TDH.
+
+Parameter yang mempengaruhi losses antara lain:
+
+| Design Parameter   | Effect                                      |
+| ------------------ | ------------------------------------------- |
+| Pipe diameter      | Diameter kecil meningkatkan friction losses |
+| Pipe length        | Pipa lebih panjang meningkatkan losses      |
+| Number of fittings | Banyak fitting meningkatkan minor losses    |
+
+Sebagai contoh:
+
+- meningkatkan diameter pipa dapat menurunkan velocity
+- penurunan velocity akan menurunkan friction losses
+
+Akibatnya TDH sistem dapat berkurang secara signifikan.
+
+---
+
+## 6.3 TDH as input parameter for pump sizing
+
+Dalam proses **pump sizing**, TDH digunakan bersama dengan flow rate untuk menentukan pompa yang tepat.
+
+Langkah umum dalam pemilihan pompa:
+
+1. Tentukan flow requirement sistem
+2. Hitung TDH sistem
+3. Plot system curve
+4. Pilih pompa dengan kurva yang memenuhi kebutuhan sistem
+
+Operating point pompa akan berada pada perpotongan antara:
+
+- pump curve
+- system curve
+
+Karena itu akurasi perhitungan TDH sangat penting untuk memastikan:
+
+- pompa bekerja dekat **Best Efficiency Point (BEP)**
+- sistem beroperasi secara efisien
+
+---
+
+<small>
+  **_Catatan Penyusunan_** Artikel ini disusun sebagai materi edukasi dan
+  referensi umum berdasarkan berbagai sumber pustaka, praktik lapangan, serta
+  bantuan alat penulisan. Pembaca disarankan untuk melakukan verifikasi lanjutan
+  dan penyesuaian sesuai dengan kondisi serta kebutuhan masing-masing sistem.
+</small>
