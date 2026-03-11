@@ -7,6 +7,44 @@ draft: false
 summary: Pembahasan lengkap mengenai beberapa kegiatan pemeliharaan transformator serta Penerapan keamanan pada transformator yang ada di PT Petro Oxo Nusantara.'
 ---
 
+# **_Pemeliharaan dan keamanan Transformator di PT Petro Oxo Nusantara_**
+
+---
+
+- [**_Pemeliharaan dan keamanan Transformator di PT Petro Oxo Nusantara_**](#pemeliharaan-dan-keamanan-transformator-di-pt-petro-oxo-nusantara)
+- [1. Pendahuluan](#1-pendahuluan)
+  - [1.1 Pengertian dan Fungsi Transformator](#11-pengertian-dan-fungsi-transformator)
+    - [1.1.2 Cara Kerja Transformator](#112-cara-kerja-transformator)
+    - [1.1.2 Penggunaan Transformator di PT Petro Oxo Nusantara](#112-penggunaan-transformator-di-pt-petro-oxo-nusantara)
+  - [1.2 Pentingnya Transformator](#12-pentingnya-transformator)
+- [2. Masalah umum pada transformator](#2-masalah-umum-pada-transformator)
+  - [2.1 Masalah-masalah pada transformator](#21-masalah-masalah-pada-transformator)
+  - [2.2 Faktor Penyebab Masalah pada Transformator](#22-faktor-penyebab-masalah-pada-transformator)
+  - [2.3 Dampak Masalah pada Transformator](#23-dampak-masalah-pada-transformator)
+  - [2.4 Pemeliharan dan Keamanan](#24-pemeliharan-dan-keamanan)
+- [3. Pemeliharaan Transformator](#3-pemeliharaan-transformator)
+  - [3.1 Tes DGA (dissolved gas analysis)](#31-tes-dga-dissolved-gas-analysis)
+  - [3.2 Tes impuls](#32-tes-impuls)
+  - [3.3 Tes noise](#33-tes-noise)
+  - [3.4 Tes partial discharge](#34-tes-partial-discharge)
+  - [3.5 Tes tan delta](#35-tes-tan-delta)
+  - [3.6 Tes kenaikan temperatur](#36-tes-kenaikan-temperatur)
+  - [3.7 Tes zero phase sequence](#37-tes-zero-phase-sequence)
+  - [3.8 Tes Kebocoran minyak](#38-tes-kebocoran-minyak)
+  - [3.9 Perbaikan bushing akibat kebocoran](#39-perbaikan-bushing-akibat-kebocoran)
+  - [3.10 Menjaga spesifikasi](#310-menjaga-spesifikasi)
+- [4. Keamanan Transformator](#4-keamanan-transformator)
+- [4.1 Data keselamatan bahan](#41-data-keselamatan-bahan)
+  - [4.2 Pemilihan standar torsi](#42-pemilihan-standar-torsi)
+  - [4.3 Tap changer](#43-tap-changer)
+  - [4.4 Prosedur tes trafo](#44-prosedur-tes-trafo)
+  - [4.5 Standar internasional](#45-standar-internasional)
+  - [4.6 Pencegahan Short circuit](#46-pencegahan-short-circuit)
+  - [4.7 Prosedur pemadaman dan penghubungan listrik](#47-prosedur-pemadaman-dan-penghubungan-listrik)
+  - [5. Kesimpulan](#5-kesimpulan)
+
+---
+
 # 1. Pendahuluan
 
 ## 1.1 Pengertian dan Fungsi Transformator

@@ -7,6 +7,48 @@ draft: false
 summary: ETAP (Electrical Transient Analyzer Program) merupakan perangkat lunak analisis sistem tenaga listrik yang digunakan secara luas di industri dan dunia akademik. Dengan ETAP, perancang dan operator sistem tenaga dapat mensimulasikan kondisi operasi sistem sebelum implementasi nyata. Hal ini membantu meningkatkan keandalan dan efisiensi sistem, mengurangi risiko kesalahan desain, serta meningkatkan keselamatan kerja Salah satu penggunaan ETAP ialah melakukan perhitungan aliran daya.
 ---
 
+# **_Perhitungan Aliran Daya Menggunakan ETAP_**
+
+---
+
+- [**_Perhitungan Aliran Daya Menggunakan ETAP_**](#perhitungan-aliran-daya-menggunakan-etap)
+- [1. Pendahuluan](#1-pendahuluan)
+  - [1.1 Latar Belakang](#11-latar-belakang)
+  - [1.2 Tujuan](#12-tujuan)
+- [3. Pengertian ETAP](#3-pengertian-etap)
+- [4. Fungsi ETAP](#4-fungsi-etap)
+  - [4.1 Mensimulasikan Kondisi Operasi Normal dan Gangguan](#41-mensimulasikan-kondisi-operasi-normal-dan-gangguan)
+  - [4.2 Menganalisis Performa Sistem](#42-menganalisis-performa-sistem)
+  - [4.3 Menentukan Sistem Proteksi yang Tepat](#43-menentukan-sistem-proteksi-yang-tepat)
+  - [4.4 Meningkatkan Keandalan, Efisiensi, dan Keselamatan Sistem Listrik](#44-meningkatkan-keandalan-efisiensi-dan-keselamatan-sistem-listrik)
+- [5. Fitur-Fitur Software ETAP](#5-fitur-fitur-software-etap)
+  - [5.1 Load Flow Analysis (Analisis Aliran Daya)](#51-load-flow-analysis-analisis-aliran-daya)
+  - [5.2 Short Circuit Analysis (Analisis Hubung Singkat)](#52-short-circuit-analysis-analisis-hubung-singkat)
+  - [5.3 Star Protection \& Coordination](#53-star-protection--coordination)
+  - [5.4 Arc Flash Analysis](#54-arc-flash-analysis)
+  - [5.5 Motor Acceleration Analysis](#55-motor-acceleration-analysis)
+  - [5.6 Dynamic \& Transient Stability Analysis](#56-dynamic--transient-stability-analysis)
+- [6. Manfaat Penggunaan ETAP](#6-manfaat-penggunaan-etap)
+- [7. Kelebihan dan Kekurangan ETAP](#7-kelebihan-dan-kekurangan-etap)
+  - [7.1 Kelebihan ETAP](#71-kelebihan-etap)
+  - [7.2 Kekurangan ETAP](#72-kekurangan-etap)
+- [Panduan Penggunaan ETAP](#panduan-penggunaan-etap)
+  - [1. Membuat File Project Baru](#1-membuat-file-project-baru)
+  - [2. Tampilan ETAP](#2-tampilan-etap)
+- [Panduan Load Flow Analysis dalam ETAP](#panduan-load-flow-analysis-dalam-etap)
+  - [Langkah 1: Buat Single Line Diagram](#langkah-1-buat-single-line-diagram)
+  - [Langkah 2: Masukkan Data Komponen](#langkah-2-masukkan-data-komponen)
+  - [Langkah 3: Masuk ke Mode Load Flow dan Jalankan Simulasi](#langkah-3-masuk-ke-mode-load-flow-dan-jalankan-simulasi)
+  - [Rumus Perhitungan untuk Membantu Analisa Load Flow](#rumus-perhitungan-untuk-membantu-analisa-load-flow)
+    - [1. Daya pada Sistem 3 Fasa](#1-daya-pada-sistem-3-fasa)
+    - [2. Arus Beban 3 Fasa](#2-arus-beban-3-fasa)
+    - [3. Arus Desain Kabel](#3-arus-desain-kabel)
+    - [4. Rating Transformator](#4-rating-transformator)
+    - [5. Rugi Rugi Daya pada Kabel](#5-rugi-rugi-daya-pada-kabel)
+- [Kesimpulan](#kesimpulan)
+
+---
+
 # 1. Pendahuluan
 
 ## 1.1 Latar Belakang
