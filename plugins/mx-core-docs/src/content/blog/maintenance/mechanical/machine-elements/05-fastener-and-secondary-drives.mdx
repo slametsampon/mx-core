@@ -1,0 +1,482 @@
+---
+title: Fastener & Secondary Drive Systems in Rotating Equipment
+authors: ['sam']
+date: '2026-03-13'
+tags:
+  [
+    'fastener',
+    'bolting',
+    'belt-drive',
+    'chain-drive',
+    'power-transmission',
+    'rotating-equipment',
+  ]
+draft: false
+summary: Artikel ini membahas elemen mesin yang berperan dalam penyambungan komponen dan transmisi daya sekunder pada sistem mekanik. Pembahasan mencakup prinsip preload bolt dan hubungan antara torque dengan gaya jepit, konsep sambungan flange dan distribusi beban pada gasket, serta sistem transmisi daya menggunakan belt drive dan chain drive. Pemahaman terhadap tegangan bolt, distribusi preload pada flange, serta mekanisme transmisi daya pada belt dan chain sangat penting untuk menjaga keandalan operasi peralatan industri. Dengan pemasangan yang benar, pelumasan yang baik, serta kontrol tension dan alignment, kegagalan komponen dapat diminimalkan dan umur sistem mekanik dapat ditingkatkan.
+---
+
+# **_Artikel 05: Fastener & Secondary Drive Systems in Rotating Equipment_**
+
+_(Bolt Preload, Flange Bolting, Belt Drive, Chain Drive)_
+
+---
+
+- [**_Artikel 05: Fastener \& Secondary Drive Systems in Rotating Equipment_**](#artikel-05-fastener--secondary-drive-systems-in-rotating-equipment)
+- [Bolt Preload \& Torque](#bolt-preload--torque)
+  - [1. Problem di Lapangan](#1-problem-di-lapangan)
+  - [2. Komponen](#2-komponen)
+  - [3. Mekanisme Kerja](#3-mekanisme-kerja)
+  - [4. Formula Utama](#4-formula-utama)
+  - [5. Contoh Calculation](#5-contoh-calculation)
+  - [6. Failure Mode](#6-failure-mode)
+  - [7. Insight Maintenance](#7-insight-maintenance)
+- [Flange Bolting Principles](#flange-bolting-principles)
+  - [1. Problem di Lapangan](#1-problem-di-lapangan-1)
+  - [2. Komponen](#2-komponen-1)
+  - [3. Mekanisme Kerja](#3-mekanisme-kerja-1)
+  - [4. Formula Utama](#4-formula-utama-1)
+  - [5. Contoh Calculation](#5-contoh-calculation-1)
+  - [6. Failure Mode](#6-failure-mode-1)
+  - [7. Insight Maintenance](#7-insight-maintenance-1)
+- [Belt Drive Power Transmission](#belt-drive-power-transmission)
+  - [1. Problem di Lapangan](#1-problem-di-lapangan-2)
+  - [2. Komponen](#2-komponen-2)
+  - [3. Mekanisme Kerja](#3-mekanisme-kerja-2)
+  - [4. Formula Utama](#4-formula-utama-2)
+  - [5. Contoh Calculation](#5-contoh-calculation-2)
+  - [6. Failure Mode](#6-failure-mode-2)
+  - [7. Insight Maintenance](#7-insight-maintenance-2)
+- [Chain Drive Fundamentals](#chain-drive-fundamentals)
+  - [1. Problem di Lapangan](#1-problem-di-lapangan-3)
+  - [2. Komponen](#2-komponen-3)
+  - [3. Mekanisme Kerja](#3-mekanisme-kerja-3)
+  - [4. Formula Utama](#4-formula-utama-3)
+  - [5. Contoh Calculation](#5-contoh-calculation-3)
+  - [6. Failure Mode](#6-failure-mode-3)
+  - [7. Insight Maintenance](#7-insight-maintenance-3)
+
+---
+
+# Bolt Preload & Torque
+
+## 1. Problem di Lapangan
+
+Bolt digunakan untuk menjaga dua komponen tetap terjepit selama operasi mesin. Jika preload bolt terlalu kecil, sambungan dapat menjadi longgar akibat getaran dan beban dinamis. Sebaliknya jika preload terlalu besar, bolt dapat mengalami deformasi plastis atau bahkan patah. Oleh karena itu kontrol preload bolt menjadi faktor penting dalam keandalan sambungan mekanis.
+
+<ResourceBox
+  title="Artikel terkait:"
+  items={[
+    {
+      name: 'README',
+      href: '/blog/maintenance/mechanical/machine-elements/README',
+      description: 'README - Machine Elements',
+    },
+  ]}
+/>
+
+---
+
+## 2. Komponen
+
+Komponen dalam sambungan bolt:
+
+- bolt
+- nut
+- washer
+- clamped parts (flange / housing / bracket)
+
+---
+
+## 3. Mekanisme Kerja
+
+![Image](https://www.researchgate.net/publication/268253060/figure/fig5/AS%3A373987960999941%401466177086543/Force-diagram-for-a-typical-bolted-joint.png)
+
+![Image](https://www.nord-lock.com/globalassets/mediavalet/web-assets/pictures/insights/bolting-tips/expert-bolted-1-21_4.jpg.png)
+
+![Image](https://www.celofasteners.com/img/cms/engineering/clamping-force-graphic-en-forces-assembly.png)
+
+Saat bolt dikencangkan menggunakan torque wrench, bolt mengalami gaya tarik sepanjang sumbu bolt. Gaya tarik ini menghasilkan **gaya jepit (clamping force)** yang menekan komponen yang disambungkan.
+
+Selama gaya eksternal yang bekerja pada sambungan lebih kecil dari gaya jepit ini, sambungan akan tetap stabil tanpa terjadi slip atau pergerakan antar komponen.
+
+Preload bolt yang tepat memastikan sambungan mampu menahan **beban dinamis, getaran, dan perubahan temperatur** selama operasi.
+
+---
+
+## 4. Formula Utama
+
+Hubungan antara torque dan preload bolt dapat diperkirakan dengan:
+
+$$
+T = KFD
+$$
+
+Dimana:
+
+- (T) = tightening torque (Nm)
+- (K) = nut factor (koefisien gesekan)
+- (F) = preload force (N)
+- (D) = diameter bolt (m)
+
+Nilai **nut factor (K)** biasanya berkisar **0.18 – 0.25** tergantung kondisi pelumasan ulir.
+
+---
+
+## 5. Contoh Calculation
+
+Diketahui:
+
+Diameter bolt (D) = **20 mm = 0.02 m**
+Preload (F) = **40 kN = 40000 N**
+Nut factor (K) = **0.2**
+
+Perhitungan torque:
+
+$$
+T = 0.2 \times 40000 \times 0.02
+$$
+
+$$
+T = 160 , Nm
+$$
+
+Interpretasi:
+
+Bolt harus dikencangkan dengan **torque sekitar 160 Nm** untuk menghasilkan preload yang diinginkan.
+
+---
+
+## 6. Failure Mode
+
+Kerusakan bolt yang sering terjadi:
+
+- bolt yielding
+- bolt fatigue
+- thread stripping
+- bolt loosening
+
+Kegagalan ini sering berkaitan dengan **preload yang tidak tepat atau getaran operasi**.
+
+---
+
+## 7. Insight Maintenance
+
+- preload terlalu kecil dapat menyebabkan bolt longgar akibat getaran
+- pelumasan ulir mempengaruhi nilai **nut factor**
+- gunakan **torque wrench** saat instalasi bolt
+- inspeksi periodik penting pada sambungan yang mengalami **beban dinamis**
+
+---
+
+# Flange Bolting Principles
+
+## 1. Problem di Lapangan
+
+Sambungan flange digunakan secara luas pada sistem piping, casing pompa, dan pressure vessel. Jika distribusi preload pada bolt tidak merata, tekanan pada gasket menjadi tidak seragam. Kondisi ini dapat menyebabkan kebocoran fluida, terutama pada sistem dengan tekanan atau temperatur tinggi. Oleh karena itu pengencangan bolt pada flange harus dilakukan dengan metode yang benar.
+
+---
+
+## 2. Komponen
+
+Komponen utama dalam sambungan flange:
+
+- flange
+- gasket
+- bolt
+- nut
+
+---
+
+## 3. Mekanisme Kerja
+
+![Image](https://static.wixstatic.com/media/f3609c_c4d2b7f121de454e8bbfda1b020e32dd~mv2.jpg/v1/fill/w_700%2Ch_534%2Cal_c%2Clg_1%2Cq_85/f3609c_c4d2b7f121de454e8bbfda1b020e32dd~mv2.jpg)
+
+![Image](https://www.arthomson.com/web/image/305706-c2276e30/1-1.jpg)
+
+![Image](https://www.researchgate.net/publication/334943165/figure/fig2/AS%3A11431281122973527%401677596012101/Stress-distribution-of-the-flange-bolted-joint-a-perfectly-stiffen-flanges-b-real.jpg)
+
+Pada sambungan flange, bolt menghasilkan **gaya jepit (clamping force)** yang menekan gasket di antara dua flange. Tekanan ini menyebabkan gasket mengalami deformasi elastis dan mengisi celah mikro pada permukaan flange.
+
+Tekanan gasket yang cukup akan membentuk **seal** yang mampu menahan tekanan fluida di dalam sistem. Jika gaya jepit tidak merata atau terlalu kecil, sebagian area gasket dapat kehilangan tekanan dan menyebabkan kebocoran.
+
+Distribusi gaya jepit sangat dipengaruhi oleh **urutan pengencangan bolt** serta nilai torque yang diterapkan.
+
+---
+
+## 4. Formula Utama
+
+Tekanan pada gasket dapat diperkirakan dengan:
+
+$$
+P = \frac{F}{A}
+$$
+
+Dimana:
+
+- (P) = tekanan pada gasket
+- (F) = total gaya bolt (N)
+- (A) = luas area gasket
+
+Semakin besar gaya bolt, semakin besar tekanan yang bekerja pada gasket.
+
+---
+
+## 5. Contoh Calculation
+
+Misalkan:
+
+Total gaya bolt (F) = **120000 N**
+Area gasket (A) = **0.03 m²**
+
+Perhitungan tekanan gasket:
+
+$$
+P = \frac{120000}{0.03}
+$$
+
+$$
+P = 4,000,000 , Pa
+$$
+
+$$
+P = 4 , MPa
+$$
+
+Interpretasi:
+
+Tekanan pada gasket sekitar **4 MPa**, cukup untuk membantu pembentukan sealing pada banyak aplikasi industri.
+
+---
+
+## 6. Failure Mode
+
+Masalah yang sering terjadi pada sambungan flange:
+
+- gasket leakage
+- bolt loosening
+- uneven bolt load
+- flange deformation
+
+Kerusakan ini biasanya disebabkan oleh **preload bolt yang tidak merata atau prosedur tightening yang tidak benar**.
+
+---
+
+## 7. Insight Maintenance
+
+- gunakan **cross tightening pattern** saat mengencangkan bolt flange
+- torque harus diterapkan secara **bertahap dan berurutan**
+- gunakan **torque wrench atau hydraulic tensioner** untuk aplikasi kritis
+- gasket harus dipilih sesuai **tekanan dan temperatur operasi**
+
+---
+
+# Belt Drive Power Transmission
+
+## 1. Problem di Lapangan
+
+Belt drive banyak digunakan pada fan, blower, conveyor, dan beberapa sistem pompa industri. Jika tegangan belt tidak tepat, belt dapat mengalami slip pada pulley sehingga daya tidak dapat ditransmisikan secara efektif. Sebaliknya jika belt terlalu kencang, beban radial pada shaft dan bearing meningkat sehingga mempercepat keausan komponen.
+
+---
+
+## 2. Komponen
+
+Komponen utama dalam sistem belt drive:
+
+- driver pulley
+- driven pulley
+- belt
+- shaft
+
+---
+
+## 3. Mekanisme Kerja
+
+![Image](https://www.iqsdirectory.com/articles/conveyor-belts/v-belt/v-belt-tight-side-and-slack-side.jpg)
+
+![Image](https://www.researchgate.net/publication/312339125/figure/fig1/AS%3A11431281154501570%401682873845302/Schematic-structure-of-belt-drive.tif)
+
+![Image](https://www.iqsdirectory.com/articles/conveyor-belts/v-belt/a-4-pulley-belt-drive.jpg)
+
+Pada sistem belt drive, motor memutar **driver pulley** yang kemudian menggerakkan **driven pulley** melalui belt. Selama operasi terdapat dua sisi tegangan pada belt:
+
+- **T₁ (tight side)** → sisi belt dengan tegangan lebih besar
+- **T₂ (slack side)** → sisi belt dengan tegangan lebih kecil
+
+Perbedaan tegangan antara kedua sisi ini menghasilkan gaya yang mentransmisikan daya dari pulley penggerak ke pulley yang digerakkan.
+
+Gesekan antara belt dan permukaan pulley memungkinkan transmisi daya tanpa slip selama tegangan belt cukup.
+
+---
+
+## 4. Formula Utama
+
+Daya yang ditransmisikan oleh belt dapat dihitung dengan:
+
+$$
+P = (T_1 - T_2)v
+$$
+
+Dimana:
+
+- (P) = daya yang ditransmisikan (W)
+- (T_1) = tegangan sisi kencang (N)
+- (T_2) = tegangan sisi kendur (N)
+- (v) = kecepatan belt (m/s)
+
+Semakin besar selisih tegangan (T_1 - T_2), semakin besar daya yang dapat ditransmisikan.
+
+---
+
+## 5. Contoh Calculation
+
+Misalkan:
+
+Tegangan sisi kencang (T_1) = **900 N**
+Tegangan sisi kendur (T_2) = **300 N**
+Kecepatan belt (v) = **6 m/s**
+
+Perhitungan daya:
+
+$$
+P = (900 - 300) \times 6
+$$
+
+$$
+P = 3600 , W
+$$
+
+$$
+P = 3.6 , kW
+$$
+
+Interpretasi:
+
+Sistem belt tersebut mampu mentransmisikan daya sekitar **3.6 kW**.
+
+---
+
+## 6. Failure Mode
+
+Kerusakan yang sering terjadi pada sistem belt drive:
+
+- belt slip
+- belt wear
+- belt cracking
+- pulley misalignment
+
+Kerusakan ini biasanya disebabkan oleh **tegangan belt yang tidak tepat atau alignment pulley yang buruk**.
+
+---
+
+## 7. Insight Maintenance
+
+- tegangan belt harus sesuai rekomendasi manufacturer
+- pulley alignment sangat mempengaruhi umur belt
+- belt yang terlalu kencang dapat meningkatkan beban pada bearing
+- inspeksi periodik penting untuk mendeteksi **retak atau keausan belt**
+
+---
+
+# Chain Drive Fundamentals
+
+## 1. Problem di Lapangan
+
+Chain drive digunakan pada sistem yang memerlukan transmisi daya **tanpa slip**, seperti conveyor, bucket elevator, dan beberapa drive industri. Jika pelumasan tidak memadai atau alignment sprocket buruk, chain dapat mengalami keausan cepat dan elongation. Kondisi ini dapat menyebabkan getaran, noise, dan bahkan putusnya chain selama operasi.
+
+---
+
+## 2. Komponen
+
+Komponen utama dalam sistem chain drive:
+
+- drive sprocket
+- driven sprocket
+- chain
+- shaft
+
+---
+
+## 3. Mekanisme Kerja
+
+![Image](https://www.researchgate.net/publication/347276590/figure/fig1/AS%3A1021625285738498%401620585857720/Chain-drive-circuit-with-drive-roller-chain.png)
+
+![Image](https://images.openai.com/static-rsc-3/y5nLBdvT5sCNPiXtyQzt5nPl69tC6EupK-3QaTcM659l7fGrwLaDjrNkFb9UTfm8CR1s45nDTYJo35hEmExlFBAs2pg6AdmcGm3l1Rplswg?purpose=fullsize&v=1)
+
+Chain drive mentransmisikan daya melalui interaksi mekanis antara **link chain** dan **gigi sprocket**. Ketika drive sprocket berputar, gigi sprocket menarik chain sehingga chain bergerak dan memutar driven sprocket.
+
+Berbeda dengan belt drive, transmisi daya pada chain drive **tidak bergantung pada gesekan**, melainkan pada keterlibatan langsung antara chain dan sprocket. Oleh karena itu chain drive tidak mengalami slip selama operasi normal.
+
+Namun karena adanya kontak logam antara pin, roller, dan sprocket, pelumasan yang baik sangat penting untuk mengurangi keausan.
+
+---
+
+## 4. Formula Utama
+
+Hubungan kecepatan antara sprocket penggerak dan yang digerakkan:
+
+$$
+\frac{n_1}{n_2} = \frac{z_2}{z_1}
+$$
+
+Dimana:
+
+- (n_1) = kecepatan sprocket penggerak (rpm)
+- (n_2) = kecepatan sprocket yang digerakkan (rpm)
+- (z_1) = jumlah gigi sprocket penggerak
+- (z_2) = jumlah gigi sprocket yang digerakkan
+
+Rasio jumlah gigi sprocket menentukan **rasio transmisi kecepatan**.
+
+---
+
+## 5. Contoh Calculation
+
+Misalkan:
+
+Sprocket penggerak memiliki **20 gigi**
+Sprocket yang digerakkan memiliki **40 gigi**
+
+Perhitungan rasio kecepatan:
+
+$$
+\frac{n_1}{n_2} = \frac{40}{20}
+$$
+
+$$
+\frac{n_1}{n_2} = 2
+$$
+
+Interpretasi:
+
+Kecepatan sprocket kedua adalah **setengah dari kecepatan sprocket penggerak**, sementara torsi meningkat dua kali lipat.
+
+---
+
+## 6. Failure Mode
+
+Masalah yang sering terjadi pada sistem chain drive:
+
+- chain elongation
+- sprocket wear
+- chain breakage
+- poor lubrication
+
+Kerusakan ini biasanya berkaitan dengan **pelumasan yang tidak memadai atau tegangan chain yang tidak tepat**.
+
+---
+
+## 7. Insight Maintenance
+
+- pelumasan chain sangat penting untuk mengurangi keausan pin dan roller
+- chain tension harus dijaga agar tidak terlalu longgar maupun terlalu kencang
+- sprocket alignment mempengaruhi umur chain
+- inspeksi periodik dapat mendeteksi **elongation chain sebelum terjadi kegagalan**
+
+---
+
+<small>
+  **_Catatan Penyusunan_** Artikel ini disusun sebagai materi edukasi dan
+  referensi umum berdasarkan berbagai sumber pustaka, praktik lapangan, serta
+  bantuan alat penulisan. Pembaca disarankan untuk melakukan verifikasi lanjutan
+  dan penyesuaian sesuai dengan kondisi serta kebutuhan masing-masing sistem.
+</small>

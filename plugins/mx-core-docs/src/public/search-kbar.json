@@ -1,5 +1,111 @@
 [
   {
+    "id": "maintenance/mechanical/machine-elements/01-shaft-and-power-transmission",
+    "name": "Shaft & Power Transmission Fundamentals",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/mechanical/machine-elements/01-shaft-and-power-transmission",
+    "subtitle": "March 13, 2026",
+    "keywords": [
+      "shaft",
+      "power-transmission",
+      "rotating-equipment",
+      "mechanical-design",
+      "maintenance-engineering"
+    ]
+  },
+  {
+    "id": "maintenance/mechanical/machine-elements/02-bearing-systems",
+    "name": "Bearing Systems in Rotating Equipment",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/mechanical/machine-elements/02-bearing-systems",
+    "subtitle": "March 13, 2026",
+    "keywords": [
+      "bearing",
+      "rolling-bearing",
+      "journal-bearing",
+      "lubrication",
+      "rotating-equipment",
+      "maintenance-engineering"
+    ]
+  },
+  {
+    "id": "maintenance/mechanical/machine-elements/03-coupling-and-shaft-connection",
+    "name": "Coupling & Shaft Connection in Rotating Equipment",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/mechanical/machine-elements/03-coupling-and-shaft-connection",
+    "subtitle": "March 13, 2026",
+    "keywords": [
+      "coupling",
+      "shaft-connection",
+      "shaft-alignment",
+      "power-transmission",
+      "rotating-equipment",
+      "maintenance-engineering"
+    ]
+  },
+  {
+    "id": "maintenance/mechanical/machine-elements/04-gear-and-gearbox-mechanics",
+    "name": "Gear & Gearbox Mechanics in Rotating Equipment",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/mechanical/machine-elements/04-gear-and-gearbox-mechanics",
+    "subtitle": "March 13, 2026",
+    "keywords": [
+      "gear",
+      "gearbox",
+      "gear-failure",
+      "gear-lubrication",
+      "power-transmission",
+      "rotating-equipment"
+    ]
+  },
+  {
+    "id": "maintenance/mechanical/machine-elements/05-fastener-and-secondary-drives",
+    "name": "Fastener & Secondary Drive Systems in Rotating Equipment",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/mechanical/machine-elements/05-fastener-and-secondary-drives",
+    "subtitle": "March 13, 2026",
+    "keywords": [
+      "fastener",
+      "bolting",
+      "belt-drive",
+      "chain-drive",
+      "power-transmission",
+      "rotating-equipment"
+    ]
+  },
+  {
+    "id": "maintenance/mechanical/machine-elements/README",
+    "name": "README - Machine Elements",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/mechanical/machine-elements/README",
+    "subtitle": "March 13, 2026",
+    "keywords": [
+      "machine-elements",
+      "rotating-equipment",
+      "mechanical-engineering",
+      "industrial-maintenance",
+      "power-transmission",
+      "practical-engineering"
+    ]
+  },
+  {
+    "id": "maintenance/elins/orifice-plate",
+    "name": "Orifice Plate - Geometry, Flow Equation, Installation, and Field Engineering Practice",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/elins/orifice-plate",
+    "subtitle": "March 12, 2026",
+    "keywords": [
+      "orifice-plate",
+      "differential-pressure-flow",
+      "flow-measurement",
+      "process-instrumentation",
+      "beta-ratio",
+      "orifice-flow-equation",
+      "flow-metering",
+      "process-engineering"
+    ]
+  },
+  {
     "id": "maintenance/mechanical/centrifugal-pump-engineering/01-centrifugal-pump-fundamentals",
     "name": "Centrifugal Pump Fundamentals",
     "section": "CONTENT",

@@ -1,0 +1,497 @@
+---
+title: Gear & Gearbox Mechanics in Rotating Equipment
+authors: ['sam']
+date: '2026-03-13'
+tags:
+  [
+    'gear',
+    'gearbox',
+    'gear-failure',
+    'gear-lubrication',
+    'power-transmission',
+    'rotating-equipment',
+  ]
+draft: false
+summary: Artikel ini menjelaskan prinsip dasar mekanika gear dan gearbox dalam sistem transmisi daya pada rotating equipment. Pembahasan mencakup perhitungan gaya pada gigi gear, distribusi beban antar gigi selama proses gear mesh, mekanisme kegagalan gigi gear akibat tegangan bending dan tekanan kontak, serta pentingnya pelumasan pada sistem gearbox. Pemahaman terhadap gaya gear, distribusi beban, dan kondisi pelumasan sangat penting untuk menjaga keandalan gearbox pada aplikasi industri seperti conveyor drive, pump drive, dan compressor drive. Dengan pemeliharaan pelumasan yang baik dan monitoring kondisi gear, kerusakan gearbox dapat dideteksi lebih awal dan downtime peralatan dapat dikurangi.
+---
+
+# **_Artikel 04: Gear & Gearbox Mechanics in Rotating Equipment_**
+
+_(Gear Force, Load Distribution, Failure Modes, Lubrication)_
+
+---
+
+- [**_Artikel 04: Gear \& Gearbox Mechanics in Rotating Equipment_**](#artikel-04-gear--gearbox-mechanics-in-rotating-equipment)
+- [Gear Force Calculation](#gear-force-calculation)
+  - [1. Problem di Lapangan](#1-problem-di-lapangan)
+  - [2. Komponen](#2-komponen)
+  - [3. Mekanisme Kerja](#3-mekanisme-kerja)
+  - [4. Formula Utama](#4-formula-utama)
+  - [5. Contoh Calculation](#5-contoh-calculation)
+  - [6. Failure Mode](#6-failure-mode)
+  - [7. Insight Maintenance](#7-insight-maintenance)
+- [Gearbox Load Distribution](#gearbox-load-distribution)
+  - [1. Problem di Lapangan](#1-problem-di-lapangan-1)
+  - [2. Komponen](#2-komponen-1)
+  - [3. Mekanisme Kerja](#3-mekanisme-kerja-1)
+  - [4. Formula Utama](#4-formula-utama-1)
+  - [5. Contoh Calculation](#5-contoh-calculation-1)
+  - [6. Failure Mode](#6-failure-mode-1)
+  - [7. Insight Maintenance](#7-insight-maintenance-1)
+- [Gear Tooth Failure Modes](#gear-tooth-failure-modes)
+  - [1. Problem di Lapangan](#1-problem-di-lapangan-2)
+  - [2. Komponen](#2-komponen-2)
+  - [3. Mekanisme Kerja](#3-mekanisme-kerja-2)
+  - [4. Formula Utama](#4-formula-utama-2)
+  - [5. Contoh Calculation](#5-contoh-calculation-2)
+  - [6. Failure Mode](#6-failure-mode-2)
+  - [7. Insight Maintenance](#7-insight-maintenance-2)
+- [Gear Lubrication](#gear-lubrication)
+  - [1. Problem di Lapangan](#1-problem-di-lapangan-3)
+  - [2. Komponen](#2-komponen-3)
+  - [3. Mekanisme Kerja](#3-mekanisme-kerja-3)
+  - [4. Formula Utama](#4-formula-utama-3)
+  - [5. Contoh Calculation](#5-contoh-calculation-3)
+  - [6. Failure Mode](#6-failure-mode-3)
+  - [7. Insight Maintenance](#7-insight-maintenance-3)
+
+---
+
+# Gear Force Calculation
+
+## 1. Problem di Lapangan
+
+Gear dalam gearbox mentransmisikan torsi antara dua shaft. Jika gaya yang bekerja pada gigi gear tidak dipahami dengan baik, gear dapat mengalami kerusakan seperti pitting atau patah gigi. Oleh karena itu teknisi perlu memahami gaya yang bekerja pada gear selama operasi.
+
+<ResourceBox
+  title="Artikel terkait:"
+  items={[
+    {
+      name: 'README',
+      href: '/blog/maintenance/mechanical/machine-elements/README',
+      description: 'README - Machine Elements',
+    },
+  ]}
+/>
+
+---
+
+## 2. Komponen
+
+Komponen utama dalam sistem gear:
+
+- pinion gear
+- driven gear
+- gear shaft
+- bearing
+- gearbox housing
+
+---
+
+## 3. Mekanisme Kerja
+
+![Image](https://www.researchgate.net/publication/333390601/figure/fig89/AS%3A840494296887351%401577400864449/Mesh-force-at-spur-gear-Stage-2.jpg)
+
+![Image](https://www.researchgate.net/publication/272187787/figure/fig4/AS%3A267931787460617%401440891324304/Tooth-forces-in-helical-gear.png)
+
+![Image](https://khkgears.net/new/images/Gear-Forces/Fig.12.2-Direction-of-Forces-acting-on-a-Helical-Gear-Mesh-1.jpg)
+
+Ketika dua gear saling berhubungan (gear mesh), torsi dari shaft pinion diteruskan ke gear yang digerakkan melalui gaya tangensial pada permukaan gigi.
+
+Pada proses ini terdapat beberapa komponen gaya utama:
+
+- **gaya tangensial (Ft)** → mentransmisikan torsi
+- **gaya radial (Fr)** → menekan gear ke arah pusat
+- **gaya aksial (Fa)** → muncul pada gear helikal
+
+Gaya-gaya ini bekerja secara simultan dan mempengaruhi beban pada **shaft dan bearing** di dalam gearbox.
+
+---
+
+## 4. Formula Utama
+
+Gaya tangensial pada gear dapat dihitung dengan:
+
+$$
+F_t = \frac{2T}{d}
+$$
+
+Dimana:
+
+- (F_t) = gaya tangensial pada gear (N)
+- (T) = torsi pada shaft (Nm)
+- (d) = pitch diameter gear (m)
+
+Gaya ini merupakan komponen utama yang mentransmisikan daya pada gear mesh.
+
+---
+
+## 5. Contoh Calculation
+
+Diketahui:
+
+Torsi pada shaft (T) = **500 Nm**
+Pitch diameter gear (d) = **0.2 m**
+
+Perhitungan gaya tangensial:
+
+$$
+F_t = \frac{2 \times 500}{0.2}
+$$
+
+$$
+F_t = 5000 , N
+$$
+
+Interpretasi:
+
+Gaya tangensial yang bekerja pada gigi gear sekitar **5000 N**.
+
+Nilai ini kemudian menghasilkan **tegangan kontak dan tegangan bending** pada gigi gear.
+
+---
+
+## 6. Failure Mode
+
+Kerusakan gear yang sering terjadi akibat gaya berlebih:
+
+- gear tooth bending failure
+- pitting pada permukaan gigi
+- gear scuffing
+- gear tooth fracture
+
+Kerusakan ini biasanya berkaitan dengan **beban berlebih atau pelumasan yang tidak memadai**.
+
+---
+
+## 7. Insight Maintenance
+
+- overload dapat meningkatkan gaya pada gigi gear
+- alignment gearbox mempengaruhi distribusi beban gear
+- pelumasan yang baik penting untuk mencegah pitting
+- analisis **gear vibration dan oil condition** sering digunakan untuk mendeteksi kerusakan gearbox
+
+---
+
+# Gearbox Load Distribution
+
+## 1. Problem di Lapangan
+
+Dalam gearbox, beban tidak selalu terdistribusi secara merata pada seluruh gigi gear. Jika distribusi beban tidak merata, beberapa gigi dapat menerima beban lebih besar dibandingkan gigi lainnya. Kondisi ini dapat menyebabkan keausan tidak merata, meningkatkan getaran gearbox, dan mempercepat kerusakan gigi gear.
+
+---
+
+## 2. Komponen
+
+Komponen yang mempengaruhi distribusi beban pada gearbox:
+
+- gear pair
+- shaft
+- bearing
+- gearbox housing
+
+---
+
+## 3. Mekanisme Kerja
+
+![Image](https://www.researchgate.net/publication/287507256/figure/tbl1/AS%3A668782456483854%401536461571574/Tooth-contact-patterns.png)
+
+![Image](https://ars.els-cdn.com/content/image/1-s2.0-S0094114X20304468-gr1.jpg)
+
+![Image](https://khkgears.net/new/images/contact-ratio/meshing-of-involute-gears.jpg)
+
+Saat dua gear saling berhubungan, tidak hanya satu gigi yang mentransmisikan beban. Biasanya beberapa gigi berada dalam kontak secara bersamaan, tergantung pada **contact ratio** gear.
+
+Contact ratio menunjukkan berapa banyak pasangan gigi yang berbagi beban pada saat yang sama. Jika contact ratio lebih besar dari satu, maka beban dapat dibagi oleh lebih dari satu gigi.
+
+Namun jika terjadi **misalignment, defleksi shaft, atau kerusakan bearing**, distribusi beban dapat terkonsentrasi hanya pada sebagian kecil permukaan gigi. Hal ini menyebabkan peningkatan tegangan lokal pada gigi gear.
+
+---
+
+## 4. Formula Utama
+
+Distribusi beban sederhana dapat diperkirakan dengan:
+
+$$
+Load\ per\ tooth = \frac{F_t}{n}
+$$
+
+Dimana:
+
+- (F_t) = gaya tangensial total pada gear
+- (n) = jumlah gigi yang berbagi beban
+
+Semakin banyak gigi yang berbagi beban, semakin kecil gaya yang diterima setiap gigi.
+
+---
+
+## 5. Contoh Calculation
+
+Diketahui:
+
+Gaya tangensial total (F_t) = **5000 N**
+Jumlah gigi yang berbagi beban (n) = **2**
+
+Perhitungan:
+
+$$
+Load\ per\ tooth = \frac{5000}{2}
+$$
+
+$$
+Load\ per\ tooth = 2500 , N
+$$
+
+Interpretasi:
+
+Setiap gigi menerima beban sekitar **2500 N**.
+
+Jika distribusi beban tidak merata dan hanya satu gigi yang menerima beban, maka gaya pada gigi tersebut dapat meningkat dua kali lipat.
+
+---
+
+## 6. Failure Mode
+
+Masalah distribusi beban yang sering terjadi:
+
+- uneven wear pada gear
+- pitting lokal pada permukaan gigi
+- gear tooth breakage
+- noise dan vibration pada gearbox
+
+Kerusakan ini biasanya menunjukkan adanya **misalignment atau defleksi shaft**.
+
+---
+
+## 7. Insight Maintenance
+
+- pola kontak gear dapat diperiksa menggunakan **marking compound**
+- misalignment dapat menyebabkan beban terkonsentrasi pada satu sisi gigi
+- kondisi bearing sangat mempengaruhi distribusi beban gear
+- inspeksi pola kontak gear penting dalam **gearbox maintenance**
+
+---
+
+# Gear Tooth Failure Modes
+
+## 1. Problem di Lapangan
+
+Kerusakan gigi gear sering menyebabkan gearbox menghasilkan suara abnormal, getaran tinggi, dan peningkatan temperatur operasi. Jika kerusakan tidak segera dideteksi, kondisi ini dapat berkembang menjadi patahnya gigi gear yang menyebabkan kegagalan total gearbox. Oleh karena itu penting bagi teknisi untuk memahami jenis kerusakan yang dapat terjadi pada gigi gear.
+
+---
+
+## 2. Komponen
+
+Komponen yang sering mengalami kerusakan pada gearbox:
+
+- gear tooth
+- gear rim
+- gear shaft
+- lubrication system
+
+---
+
+## 3. Mekanisme Kerja
+
+![Image](https://www.researchgate.net/publication/280384993/figure/fig6/AS%3A669014980317195%401536517009254/Failure-modes-of-gears-14.jpg)
+
+![Image](https://www.researchgate.net/publication/380658244/figure/fig1/AS%3A11431281247155132%401716619225094/a-tooth-breakage-b-pitting-c-spalling-d-abrasive-wear-e-scuffing-22-30-31.tif)
+
+![Image](https://www.researchgate.net/publication/225602159/figure/fig4/AS%3A667804042813448%401536228299440/Bending-fatigue-fracture-surfaces-of-gear-teeth-Upper-tooth-has-multiple-origins-of.png)
+
+![Image](https://www.researchgate.net/publication/272745862/figure/fig3/AS%3A294961674244105%401447335751912/Unconventional-gear-tooth-bending-fatigue-failure.png)
+
+Selama operasi, gigi gear mengalami dua jenis tegangan utama:
+
+1. **Tegangan bending** pada akar gigi gear
+2. **Tekanan kontak** pada permukaan gigi gear
+
+Ketika gear mentransmisikan torsi, gaya tangensial bekerja pada permukaan gigi. Gaya ini menghasilkan tegangan bending di akar gigi. Jika tegangan ini melebihi kekuatan material atau terjadi secara berulang dalam jangka panjang, retakan dapat muncul dan berkembang menjadi patahnya gigi gear.
+
+Selain itu, tekanan kontak tinggi pada permukaan gigi dapat menyebabkan **pitting atau spalling** akibat fatigue pada permukaan material.
+
+---
+
+## 4. Formula Utama
+
+Tegangan bending pada gigi gear dapat diperkirakan dengan:
+
+$$
+\sigma = \frac{F_t}{b m}
+$$
+
+Dimana:
+
+- ( \sigma ) = tegangan pada gigi gear
+- (F_t) = gaya tangensial pada gear
+- (b) = lebar gear (face width)
+- (m) = module gear
+
+Semakin besar gaya tangensial, semakin besar tegangan yang bekerja pada akar gigi gear.
+
+---
+
+## 5. Contoh Calculation
+
+Misalkan:
+
+Gaya tangensial (F_t) = **5000 N**
+Lebar gear (b) = **40 mm**
+Module gear (m) = **5 mm**
+
+Perhitungan tegangan:
+
+$$
+\sigma = \frac{5000}{40 \times 5}
+$$
+
+$$
+\sigma = 25
+$$
+
+Interpretasi:
+
+Jika beban meningkat dua kali lipat akibat overload, maka tegangan pada akar gigi juga meningkat secara signifikan dan dapat memicu **bending fatigue failure**.
+
+---
+
+## 6. Failure Mode
+
+Jenis kerusakan yang sering ditemukan pada gear:
+
+- bending fatigue
+- surface pitting
+- scuffing
+- gear tooth breakage
+
+Kerusakan ini biasanya berkaitan dengan **overload, pelumasan yang buruk, atau misalignment gearbox**.
+
+---
+
+## 7. Insight Maintenance
+
+- overload sering menyebabkan patah gigi gear
+- pitting biasanya terjadi akibat tekanan kontak tinggi
+- pelumasan yang buruk dapat menyebabkan **scuffing pada permukaan gigi**
+- analisis **vibration dan oil analysis** sering digunakan untuk mendeteksi kerusakan gear lebih awal
+
+---
+
+# Gear Lubrication
+
+## 1. Problem di Lapangan
+
+Gear dalam gearbox bekerja dengan tekanan kontak yang tinggi pada permukaan gigi. Tanpa pelumasan yang memadai, gesekan meningkat secara signifikan dan dapat menyebabkan kenaikan temperatur, keausan permukaan gigi, serta kerusakan serius seperti scuffing atau pitting. Oleh karena itu sistem pelumasan gearbox menjadi faktor penting dalam menjaga keandalan operasi.
+
+---
+
+## 2. Komponen
+
+Komponen utama dalam sistem pelumasan gearbox:
+
+- gear pair
+- lubrication oil
+- oil pump (pada gearbox besar)
+- oil sump
+- oil filter
+
+---
+
+## 3. Mekanisme Kerja
+
+![Image](https://www.researchgate.net/publication/291417310/figure/fig2/AS%3A749636562190338%401555738692751/Schematic-of-WT-gearbox-lubrication-system.ppm)
+
+![Image](https://www.researchgate.net/publication/342081622/figure/fig1/AS%3A912222431764480%401594502184354/Schematic-illustration-of-gear-lubrication-and-cooling-by-means-of-oil-jets.png)
+
+Pada sistem gearbox, pelumas dialirkan ke area gear mesh untuk membentuk **film pelumas** pada permukaan gigi gear. Film ini berfungsi memisahkan dua permukaan logam yang saling bersentuhan.
+
+Pada gearbox kecil biasanya digunakan metode **splash lubrication**, dimana gear berputar di dalam oil sump dan membawa pelumas ke area kontak.
+
+Pada gearbox besar digunakan **forced lubrication system**, dimana pompa oli mengalirkan pelumas langsung ke area gear mesh menggunakan oil jet.
+
+Film pelumas ini mengurangi gesekan, menurunkan temperatur operasi, dan mencegah keausan pada permukaan gigi gear.
+
+---
+
+## 4. Formula Utama
+
+Hubungan dasar gaya gesek dapat dituliskan sebagai:
+
+$$
+F_f = \mu N
+$$
+
+Dimana:
+
+- (F_f) = friction force
+- ( \mu ) = coefficient of friction
+- (N) = normal load pada permukaan gear
+
+Pelumasan yang baik menurunkan nilai ( \mu ), sehingga gaya gesek dan panas yang dihasilkan juga berkurang.
+
+---
+
+## 5. Contoh Calculation
+
+Misalkan:
+
+Normal load pada gear (N) = **8000 N**
+
+Jika pelumasan baik:
+
+( \mu = 0.02 )
+
+$$
+F_f = 0.02 \times 8000
+$$
+
+$$
+F_f = 160 , N
+$$
+
+Jika pelumas tidak sesuai dan koefisien gesekan meningkat menjadi:
+
+( \mu = 0.06 )
+
+$$
+F_f = 0.06 \times 8000
+$$
+
+$$
+F_f = 480 , N
+$$
+
+Interpretasi:
+
+Gaya gesek meningkat **tiga kali lipat**, yang dapat menyebabkan kenaikan temperatur gearbox secara signifikan.
+
+---
+
+## 6. Failure Mode
+
+Masalah pelumasan yang sering terjadi pada gear:
+
+- scuffing
+- overheating
+- wear pada gigi gear
+- oil contamination
+
+Kerusakan ini sering terjadi jika pelumas tidak memiliki viskositas yang sesuai atau jika terjadi kontaminasi partikel.
+
+---
+
+## 7. Insight Maintenance
+
+- viskositas oil harus sesuai dengan **speed dan load gear**
+- oil contamination dapat mempercepat keausan permukaan gigi
+- inspeksi **oil condition dan oil analysis** penting untuk predictive maintenance
+- sistem filtrasi yang baik membantu menjaga kualitas pelumas gearbox
+
+---
+
+<small>
+  **_Catatan Penyusunan_** Artikel ini disusun sebagai materi edukasi dan
+  referensi umum berdasarkan berbagai sumber pustaka, praktik lapangan, serta
+  bantuan alat penulisan. Pembaca disarankan untuk melakukan verifikasi lanjutan
+  dan penyesuaian sesuai dengan kondisi serta kebutuhan masing-masing sistem.
+</small>

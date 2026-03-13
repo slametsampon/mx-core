@@ -1,0 +1,502 @@
+---
+title: Shaft & Power Transmission Fundamentals
+authors: ['sam']
+date: '2026-03-13'
+tags:
+  [
+    'shaft',
+    'power-transmission',
+    'rotating-equipment',
+    'mechanical-design',
+    'maintenance-engineering',
+  ]
+draft: false
+summary: Artikel ini menjelaskan dasar transmisi daya pada shaft dalam rotating equipment. Pembahasan mencakup perhitungan torsi shaft, tegangan akibat kombinasi torsion dan bending, mekanisme transfer torsi melalui key dan keyway, serta konsep critical speed pada sistem rotor. Pemahaman terhadap parameter tersebut penting untuk mengevaluasi beban mekanis pada shaft, mencegah kegagalan fatigue, serta menjaga keandalan operasi pada pompa, kompresor, dan gearbox. Dengan memahami hubungan antara torsi, tegangan shaft, dan dinamika rotor, engineer dan teknisi dapat lebih cepat mengidentifikasi potensi kerusakan dan memastikan mesin beroperasi pada kondisi yang aman.
+---
+
+# **_Artikel 01: Shaft & Power Transmission Fundamentals_**
+
+_(Torque, Stress, Key Connection, Critical Speed)_
+
+---
+
+- [**_Artikel 01: Shaft \& Power Transmission Fundamentals_**](#artikel-01-shaft--power-transmission-fundamentals)
+- [Shaft Torque Calculation](#shaft-torque-calculation)
+  - [1. Problem di Lapangan](#1-problem-di-lapangan)
+  - [2. Komponen](#2-komponen)
+  - [3. Mekanisme Kerja](#3-mekanisme-kerja)
+  - [4. Formula Utama](#4-formula-utama)
+  - [5. Contoh Calculation](#5-contoh-calculation)
+  - [6. Failure Mode](#6-failure-mode)
+  - [7. Insight Maintenance](#7-insight-maintenance)
+- [Shaft Stress (Torsion + Bending)](#shaft-stress-torsion--bending)
+  - [1. Problem di Lapangan](#1-problem-di-lapangan-1)
+  - [2. Komponen](#2-komponen-1)
+  - [3. Mekanisme Kerja](#3-mekanisme-kerja-1)
+  - [4. Formula Utama](#4-formula-utama-1)
+  - [5. Contoh Calculation](#5-contoh-calculation-1)
+  - [6. Failure Mode](#6-failure-mode-1)
+  - [7. Insight Maintenance](#7-insight-maintenance-1)
+- [Key and Keyway Stress](#key-and-keyway-stress)
+  - [1. Problem di Lapangan](#1-problem-di-lapangan-2)
+  - [2. Komponen](#2-komponen-2)
+  - [3. Mekanisme Kerja](#3-mekanisme-kerja-2)
+  - [4. Formula Utama](#4-formula-utama-2)
+  - [5. Contoh Calculation](#5-contoh-calculation-2)
+  - [6. Failure Mode](#6-failure-mode-2)
+  - [7. Insight Maintenance](#7-insight-maintenance-2)
+- [Shaft Critical Speed](#shaft-critical-speed)
+  - [1. Problem di Lapangan](#1-problem-di-lapangan-3)
+  - [2. Komponen](#2-komponen-3)
+  - [3. Mekanisme Kerja](#3-mekanisme-kerja-3)
+  - [4. Formula Utama](#4-formula-utama-3)
+  - [5. Contoh Calculation](#5-contoh-calculation-3)
+  - [6. Failure Mode](#6-failure-mode-3)
+  - [7. Insight Maintenance](#7-insight-maintenance-3)
+
+---
+
+# Shaft Torque Calculation
+
+## 1. Problem di Lapangan
+
+Pada rotating equipment seperti pompa, fan, dan gearbox, daya dari motor harus ditransmisikan ke beban melalui shaft. Jika teknisi tidak mengetahui torsi yang bekerja pada shaft, sulit menentukan apakah shaft, coupling, atau key mampu menahan beban tersebut. Kesalahan estimasi torsi dapat menyebabkan kegagalan mekanis pada sistem transmisi daya.
+
+<ResourceBox
+  title="Artikel terkait:"
+  items={[
+    {
+      name: 'README',
+      href: '/blog/maintenance/mechanical/machine-elements/README',
+      description: 'README - Machine Elements',
+    },
+  ]}
+/>
+
+---
+
+## 2. Komponen
+
+Komponen utama dalam transmisi torsi:
+
+- motor listrik
+- coupling
+- shaft
+- impeller / gear / pulley
+
+---
+
+## 3. Mekanisme Kerja
+
+![Image](https://ars.els-cdn.com/content/image/3-s2.0-B9780128146835000067-f06-13-9780128146835.jpg)
+
+![Image](https://www.researchgate.net/publication/269299646/figure/fig1/AS%3A705945571176449%401545321948534/Motor-transmission-drive-system-configuration.png)
+
+![Image](https://ars.els-cdn.com/content/image/3-s2.0-B978012809895000003X-f03-131-9780128098950.jpg)
+
+Motor menghasilkan daya mekanik yang diteruskan melalui coupling ke shaft. Shaft kemudian mentransmisikan torsi ke komponen yang digerakkan seperti impeller pompa atau gear pada gearbox. Selama proses ini shaft mengalami gaya puntir (torsion) akibat torsi yang ditransmisikan dari motor ke beban.
+
+Torsi merupakan parameter dasar dalam desain dan evaluasi sistem transmisi daya karena hampir semua komponen mekanik seperti shaft, key, gear, dan coupling harus mampu menahan torsi tersebut.
+
+---
+
+## 4. Formula Utama
+
+Hubungan antara daya, kecepatan rotasi, dan torsi pada shaft dinyatakan sebagai:
+
+$$
+T = \frac{9550P}{n}
+$$
+
+Dimana:
+
+- (T) = torque (Nm)
+- (P) = power (kW)
+- (n) = rotational speed (rpm)
+
+Konstanta **9550** berasal dari konversi hubungan antara daya mekanik, torsi, dan kecepatan rotasi dalam satuan SI.
+
+---
+
+## 5. Contoh Calculation
+
+Diketahui:
+
+Power motor = **75 kW**
+Speed motor = **1480 rpm**
+
+Perhitungan torsi:
+
+$$
+T = \frac{9550 \times 75}{1480}
+$$
+
+$$
+T = 484 , Nm
+$$
+
+Interpretasi:
+
+Shaft pada sistem tersebut harus mampu mentransmisikan **minimal 484 Nm torque** dalam kondisi operasi normal.
+
+Dalam praktik industri, desain biasanya mempertimbangkan **service factor** sehingga kapasitas komponen harus lebih besar dari nilai torsi nominal ini.
+
+---
+
+## 6. Failure Mode
+
+Kegagalan yang sering terjadi akibat torsi berlebih:
+
+- shaft torsional failure
+- coupling shear failure
+- key shearing
+- gear overload
+
+Jika torsi aktual melebihi kapasitas komponen, tegangan puntir pada shaft meningkat dan dapat menyebabkan patah shaft atau kegagalan koneksi mekanis.
+
+---
+
+## 7. Insight Maintenance
+
+- starting torque motor dapat mencapai **2–3× torque nominal**
+- torsi maksimum sering terjadi saat **start-up** atau saat beban mendadak meningkat
+- shaft overload sering terjadi akibat **pump seizure atau jammed load**
+- monitoring **vibration dan temperature** dapat membantu mendeteksi overload mekanis lebih awal
+
+---
+
+# Shaft Stress (Torsion + Bending)
+
+## 1. Problem di Lapangan
+
+Pada rotating equipment, shaft tidak hanya menerima torsi dari motor tetapi juga mengalami beban radial dari komponen seperti pulley, gear, atau rotor. Beban radial ini menyebabkan momen bending pada shaft. Kombinasi antara tegangan torsion dan bending dapat menghasilkan tegangan maksimum pada permukaan shaft dan menjadi penyebab utama fatigue failure pada banyak sistem mekanik.
+
+---
+
+## 2. Komponen
+
+Komponen yang mempengaruhi tegangan pada shaft:
+
+- shaft
+- bearing
+- pulley / gear
+- coupling
+
+---
+
+## 3. Mekanisme Kerja
+
+![Image](https://www.bu.edu/moss/files/2015/03/torsion_shearstrain.jpg)
+
+Shaft mengalami **torsional stress** akibat torsi yang ditransmisikan dari motor ke beban. Pada saat yang sama, gaya radial dari komponen seperti pulley atau gear menghasilkan **bending moment** pada shaft.
+
+Akibat kombinasi kedua beban ini, distribusi tegangan pada shaft tidak merata. Tegangan maksimum biasanya terjadi pada **permukaan luar shaft**, karena jarak terhadap pusat penampang paling besar. Area dengan konsentrasi tegangan seperti **keyway, fillet radius, atau shoulder shaft** menjadi lokasi yang paling rentan terhadap retakan akibat fatigue.
+
+---
+
+## 4. Formula Utama
+
+Tegangan geser akibat torsi:
+
+$$
+\tau = \frac{16T}{\pi d^3}
+$$
+
+Dimana:
+
+- ( \tau ) = shear stress (Pa atau MPa)
+- (T) = torque (Nm)
+- (d) = diameter shaft (m)
+
+Tegangan bending pada shaft:
+
+$$
+\sigma = \frac{32M}{\pi d^3}
+$$
+
+Dimana:
+
+- ( \sigma ) = bending stress
+- (M) = bending moment (Nm)
+- (d) = diameter shaft
+
+Dalam praktik desain, kedua tegangan ini sering digabungkan untuk mengevaluasi kondisi tegangan maksimum pada shaft.
+
+---
+
+## 5. Contoh Calculation
+
+Diketahui:
+
+Torque = **484 Nm**
+Diameter shaft = **40 mm = 0.04 m**
+
+Perhitungan tegangan geser akibat torsi:
+
+$$
+\tau = \frac{16T}{\pi d^3}
+$$
+
+$$
+\tau = \frac{16 \times 484}{\pi (0.04)^3}
+$$
+
+$$
+\tau \approx 38 , MPa
+$$
+
+Interpretasi:
+
+Shaft dengan diameter **40 mm** mengalami tegangan geser sekitar **38 MPa** akibat torsi tersebut.
+
+Nilai ini harus dibandingkan dengan **allowable shear stress material shaft** untuk memastikan keamanan desain.
+
+---
+
+## 6. Failure Mode
+
+Kegagalan shaft yang sering terjadi akibat kombinasi torsion dan bending:
+
+- shaft fatigue crack
+- shaft bending failure
+- crack pada keyway
+- fracture pada shoulder shaft
+
+Fatigue crack biasanya berkembang secara bertahap sebelum akhirnya menyebabkan patah shaft secara tiba-tiba.
+
+---
+
+## 7. Insight Maintenance
+
+- fatigue crack biasanya muncul di **keyway atau fillet radius**
+- misalignment meningkatkan **bending load pada shaft**
+- rotor imbalance meningkatkan **cyclic stress**
+- inspeksi visual dan **vibration monitoring** sering digunakan untuk mendeteksi kerusakan shaft lebih awal
+
+---
+
+# Key and Keyway Stress
+
+## 1. Problem di Lapangan
+
+Pada banyak rotating equipment, hub seperti gear, pulley, atau coupling dipasang pada shaft menggunakan key. Key berfungsi mentransmisikan torsi dari shaft ke hub. Jika dimensi key tidak cukup kuat atau pemasangan tidak tepat, key dapat mengalami kegagalan akibat gaya geser atau tekanan berlebih pada permukaan kontak.
+
+Kegagalan pada key atau keyway sering menyebabkan **slip antara shaft dan hub**, yang dapat menghentikan transmisi daya dan menyebabkan kerusakan komponen lain.
+
+---
+
+## 2. Komponen
+
+Komponen dalam koneksi key:
+
+- shaft
+- key
+- hub (gear / pulley / coupling)
+
+---
+
+## 3. Mekanisme Kerja
+
+![Image](https://www.huyett.com/media/cache/attachment/filter/wysiwyg_original/87ce74c18aefc3f765aae166bfe23016/113470/611680843712d913908214-Blog-MachineKeys-ShearAnalysis-347x223.png)
+
+![Image](https://media.springernature.com/lw1200/springer-static/image/art%3A10.1007%2Fs10010-025-00934-8/MediaObjects/10010_2025_934_Fig7_HTML.png)
+
+![Image](https://www.mdpi.com/machines/machines-12-00824/article_deploy/html/images/machines-12-00824-g004.png)
+
+Key dipasang pada alur yang disebut **keyway** pada shaft dan hub. Saat shaft berputar, torsi diteruskan ke hub melalui gaya tangensial yang bekerja pada permukaan key.
+
+Gaya ini menghasilkan **shear stress pada key** serta **compressive stress pada permukaan kontak antara key dan hub**. Jika gaya tangensial melebihi kekuatan material key, maka key dapat mengalami shear failure.
+
+Selain itu, keyway pada shaft juga menciptakan **stress concentration**, yang dapat menjadi lokasi awal munculnya retakan fatigue pada shaft.
+
+---
+
+## 4. Formula Utama
+
+Gaya tangensial pada key akibat torsi:
+
+$$
+F = \frac{2T}{d}
+$$
+
+Dimana:
+
+- (F) = gaya tangensial pada key (N)
+- (T) = torsi pada shaft (Nm)
+- (d) = diameter shaft (m)
+
+Tegangan geser pada key:
+
+$$
+\tau = \frac{F}{bL}
+$$
+
+Dimana:
+
+- ( \tau ) = shear stress pada key
+- (F) = gaya tangensial
+- (b) = lebar key
+- (L) = panjang key
+
+---
+
+## 5. Contoh Calculation
+
+Diketahui:
+
+Torque = **484 Nm**
+Diameter shaft = **40 mm = 0.04 m**
+
+Perhitungan gaya tangensial:
+
+$$
+F = \frac{2T}{d}
+$$
+
+$$
+F = \frac{2 \times 484}{0.04}
+$$
+
+$$
+F = 24200 , N
+$$
+
+Interpretasi:
+
+Key harus mampu menahan gaya tangensial sekitar **24.2 kN** untuk mentransmisikan torsi tersebut tanpa mengalami kegagalan.
+
+---
+
+## 6. Failure Mode
+
+Kegagalan yang umum terjadi pada koneksi key:
+
+- key shear failure
+- key crushing
+- keyway crack pada shaft
+- hub slip
+
+Kegagalan ini sering terjadi akibat **overload**, **fit yang tidak tepat**, atau **fretting wear** akibat micro-movement antara shaft dan hub.
+
+---
+
+## 7. Insight Maintenance
+
+- keyway menyebabkan **stress concentration pada shaft**
+- key yang terlalu longgar dapat menyebabkan **fretting wear**
+- key yang terlalu kecil dapat mengalami **shear failure**
+- inspeksi key dan hub penting saat overhaul rotating equipment
+
+---
+
+# Shaft Critical Speed
+
+## 1. Problem di Lapangan
+
+Pada rotating equipment seperti pompa, kompresor, dan turbin, shaft berputar pada kecepatan tertentu untuk mentransmisikan daya. Jika kecepatan operasi mesin mendekati **critical speed**, sistem rotor dapat mengalami peningkatan amplitudo getaran secara drastis. Kondisi ini berbahaya karena dapat menyebabkan kerusakan pada bearing, coupling, atau bahkan patahnya shaft akibat fatigue.
+
+Oleh karena itu, dalam desain dan operasi rotating equipment, sangat penting memastikan bahwa **operating speed tidak berada di dekat critical speed**.
+
+---
+
+## 2. Komponen
+
+Komponen yang mempengaruhi critical speed sistem rotor:
+
+- shaft
+- rotor (impeller / disk / gear)
+- bearing
+- support structure
+
+---
+
+## 3. Mekanisme Kerja
+
+![Image](https://acszigalen.cloudimg.io/v7/https%3A%2F%2Flive-resources-e2e-sales.ksb.com%2Fresource%2Fblob%2F1116404%2Fa3a9c238cf1de20af9dd3e701080a9d3%2Fpic-critical-speed-data.jpg?ci_url_encoded=1&force_format=webp&q=60)
+
+![Image](https://static-01.extrica.com/articles/23493/23493-gabs-1563x945.webp)
+
+![Image](https://upload.wikimedia.org/wikipedia/commons/3/3d/Campbelldiagram.png)
+
+![Image](https://www.researchgate.net/publication/323214038/figure/fig10/AS%3A11431281153957196%401682607507705/Campbell-diagram-of-the-rotor.tif)
+
+Critical speed terjadi ketika **frekuensi rotasi shaft sama dengan frekuensi alami sistem rotor**. Pada kondisi ini, fenomena resonansi dapat terjadi dan menyebabkan peningkatan amplitudo getaran secara signifikan.
+
+Saat rotor melewati critical speed, shaft dapat mengalami **whirling motion**, yaitu gerakan berputar yang tidak stabil di sekitar sumbu rotasi. Jika sistem tidak dirancang dengan baik, kondisi ini dapat menghasilkan gaya dinamis yang besar pada bearing dan struktur pendukung.
+
+Dalam praktik desain rotating machinery, biasanya ditentukan **operating speed margin** agar mesin tidak beroperasi pada atau dekat dengan critical speed.
+
+---
+
+## 4. Formula Utama
+
+Frekuensi alami sederhana sistem rotor dapat diperkirakan dengan hubungan:
+
+$$
+\omega_n = \sqrt{\frac{k}{m}}
+$$
+
+Dimana:
+
+- ( \omega_n ) = natural frequency sistem
+- (k) = stiffness sistem rotor-support
+- (m) = massa rotor
+
+Critical speed terjadi ketika:
+
+$$
+\omega_{operating} \approx \omega_n
+$$
+
+Pada kondisi tersebut, resonansi dapat terjadi dan menyebabkan peningkatan getaran.
+
+---
+
+## 5. Contoh Calculation
+
+Misalkan sistem rotor memiliki:
+
+massa rotor (m) meningkat karena impeller yang lebih besar.
+
+Jika nilai massa meningkat sementara stiffness tetap, maka dari persamaan:
+
+$$
+\omega_n = \sqrt{\frac{k}{m}}
+$$
+
+nilai **natural frequency akan menurun**.
+
+Interpretasi:
+
+critical speed sistem menjadi **lebih rendah**, sehingga kemungkinan mendekati operating speed menjadi lebih besar.
+
+---
+
+## 6. Failure Mode
+
+Masalah yang sering terjadi akibat operasi dekat critical speed:
+
+- rotor vibration tinggi
+- bearing overheating
+- shaft fatigue
+- coupling failure
+
+Getaran yang terus menerus dapat mempercepat kerusakan komponen rotating equipment.
+
+---
+
+## 7. Insight Maintenance
+
+- mesin sebaiknya beroperasi **jauh dari critical speed**
+- rotor balancing sangat penting untuk stabilitas rotasi
+- bearing stiffness mempengaruhi critical speed sistem
+- monitoring vibration merupakan metode utama untuk mendeteksi masalah rotor dynamics
+
+---
+
+<small>
+  **_Catatan Penyusunan_** Artikel ini disusun sebagai materi edukasi dan
+  referensi umum berdasarkan berbagai sumber pustaka, praktik lapangan, serta
+  bantuan alat penulisan. Pembaca disarankan untuk melakukan verifikasi lanjutan
+  dan penyesuaian sesuai dengan kondisi serta kebutuhan masing-masing sistem.
+</small>

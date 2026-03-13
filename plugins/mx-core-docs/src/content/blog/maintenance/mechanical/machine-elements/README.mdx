@@ -1,0 +1,609 @@
+---
+title: README - Machine Elements
+authors: ['sam']
+date: '2026-03-13'
+tags:
+  [
+    'machine-elements',
+    'rotating-equipment',
+    'mechanical-engineering',
+    'industrial-maintenance',
+    'power-transmission',
+    'practical-engineering',
+  ]
+draft: false
+summary: README ini menjelaskan tujuan, struktur, dan metodologi dari serial artikel Elemen Mesin yang dirancang untuk teknisi dan engineer industri. Serial ini berfokus pada komponen yang paling sering ditemui pada rotating equipment seperti shaft, bearing, coupling, gear, bolt, serta sistem transmisi sekunder seperti belt dan chain drive. Setiap artikel menggunakan template yang konsisten untuk menjelaskan problem lapangan, mekanisme kerja, rumus inti, contoh perhitungan, failure mode, dan insight maintenance. Pendekatan ini memungkinkan pembaca memahami hubungan antara mekanisme mekanik dan penyebab kegagalan peralatan sehingga troubleshooting dapat dilakukan lebih cepat dan lebih akurat di lingkungan industri.
+---
+
+- [1. Executive Summary](#1-executive-summary)
+  - [Tujuan Serial Artikel](#tujuan-serial-artikel)
+  - [Mengapa Serial Ini Penting](#mengapa-serial-ini-penting)
+  - [Kenapa Format Web-Based](#kenapa-format-web-based)
+- [2. STANDARD TEMPLATE (Framework Penulisan)](#2-standard-template-framework-penulisan)
+- [ARTIKEL ELEMEN MESIN (REUSABLE) — FINAL](#artikel-elemen-mesin-reusable--final)
+  - [1. Problem di Lapangan](#1-problem-di-lapangan)
+  - [2. Komponen](#2-komponen)
+  - [3. Mekanisme Kerja](#3-mekanisme-kerja)
+  - [4. Formula Utama](#4-formula-utama)
+  - [5. Contoh Calculation](#5-contoh-calculation)
+  - [6. Failure Mode](#6-failure-mode)
+  - [7. Insight Maintenance](#7-insight-maintenance)
+- [3. MASTER LIST TOPIK (TIDAK BERUBAH) — FINAL](#3-master-list-topik-tidak-berubah--final)
+  - [SHAFT \& POWER TRANSMISSION](#shaft--power-transmission)
+  - [BEARING](#bearing)
+  - [COUPLING \& SHAFT CONNECTION](#coupling--shaft-connection)
+  - [GEAR \& GEARBOX](#gear--gearbox)
+  - [FASTENER \& SECONDARY DRIVE](#fastener--secondary-drive)
+- [4. Flow Reading dan Hubungan Antar Artikel](#4-flow-reading-dan-hubungan-antar-artikel)
+  - [Urutan Membaca yang Direkomendasikan](#urutan-membaca-yang-direkomendasikan)
+    - [Tahap 1 — Dasar Transmisi Daya](#tahap-1--dasar-transmisi-daya)
+    - [Tahap 2 — Sistem Penopang Rotasi](#tahap-2--sistem-penopang-rotasi)
+    - [Tahap 3 — Koneksi Motor dan Mesin](#tahap-3--koneksi-motor-dan-mesin)
+    - [Tahap 4 — Gearbox](#tahap-4--gearbox)
+    - [Tahap 5 — Assembly dan Drive](#tahap-5--assembly-dan-drive)
+- [5. Materi Penguat Serial (Supporting Principles)](#5-materi-penguat-serial-supporting-principles)
+  - [Prinsip 1 — Fokus pada Mekanisme Fisik](#prinsip-1--fokus-pada-mekanisme-fisik)
+  - [Prinsip 2 — Formula Minimal](#prinsip-2--formula-minimal)
+  - [Prinsip 3 — Calculation dengan Angka Nyata](#prinsip-3--calculation-dengan-angka-nyata)
+  - [Prinsip 4 — Failure Oriented](#prinsip-4--failure-oriented)
+  - [Prinsip 5 — Maintenance Insight](#prinsip-5--maintenance-insight)
+- [Kesimpulan](#kesimpulan)
+
+---
+
+# 1. Executive Summary
+
+## Tujuan Serial Artikel
+
+Serial artikel ini dibuat untuk membantu **teknisi dan engineer industri** memahami prinsip elemen mesin yang paling sering ditemui pada peralatan seperti:
+
+- pompa sentrifugal
+- kompresor
+- gearbox industri
+- motor listrik
+- conveyor
+- fan dan blower
+
+Fokus utama bukan teori akademik panjang, tetapi **aplikasi praktis di lapangan**.
+
+Materi difokuskan pada komponen yang paling sering menyebabkan masalah pada rotating equipment, seperti:
+
+- shaft
+- bearing
+- coupling
+- gear
+- bolt
+- belt drive
+
+Serial ini bertujuan membantu teknisi:
+
+- memahami **mekanisme kerja komponen**
+- melakukan **perhitungan dasar**
+- mengenali **mode kegagalan**
+- mempercepat **troubleshooting**
+
+---
+
+## Mengapa Serial Ini Penting
+
+Di banyak industri, kegagalan peralatan mekanik sering berasal dari masalah sederhana seperti:
+
+- misalignment shaft
+- bearing overload
+- bolt preload tidak tepat
+- gear overload
+- pelumasan buruk
+
+Namun sering kali teknisi hanya melihat **gejala**, bukan **mekanisme penyebabnya**.
+
+Serial ini menghubungkan:
+
+```
+komponen mesin
+↓
+mekanisme kerja
+↓
+perhitungan sederhana
+↓
+failure mode
+↓
+maintenance insight
+```
+
+Sehingga teknisi dapat:
+
+- memahami penyebab kerusakan
+- bukan hanya mengganti komponen.
+
+---
+
+## Kenapa Format Web-Based
+
+Artikel dirancang untuk:
+
+- dibaca cepat di laptop / tablet / smartphone
+- durasi baca 4–6 menit
+- langsung ke formula dan contoh.
+
+Prinsip utama:
+
+**anti dongeng, fokus teknis.**
+
+---
+
+# 2. STANDARD TEMPLATE (Framework Penulisan)
+
+# ARTIKEL ELEMEN MESIN (REUSABLE) — FINAL
+
+Template ini digunakan untuk **SEMUA artikel** dalam serial ini.
+
+Urutan **tidak boleh berubah**.
+
+---
+
+## 1. Problem di Lapangan
+
+Menjelaskan masalah nyata yang sering terjadi.
+
+Isi:
+
+- 3–4 kalimat
+- langsung ke kasus teknis.
+
+Contoh:
+
+> Pada rotating equipment seperti pompa dan gearbox, shaft mentransmisikan torsi dari motor ke beban. Jika tegangan pada shaft melebihi batas material, dapat terjadi fatigue crack atau patah shaft.
+
+---
+
+## 2. Komponen
+
+Menjelaskan komponen yang terlibat.
+
+Format bullet.
+
+Contoh:
+
+- motor listrik
+- coupling
+- shaft
+- impeller atau gear
+
+---
+
+## 3. Mekanisme Kerja
+
+![Image](https://www.mstpumps.com/Content/upload/2018180819/201805291145344003294.jpg)
+
+![Image](https://www.researchgate.net/publication/369380117/figure/fig2/AS%3A11431281207411305%401701226758119/Torque-transmission-mechanism-from-the-motor-to-wheel-and-wheel-to-the-rotary-encoder.png)
+
+![Image](https://www.northridgepumps.com/upload/images/aea184d9f4124c1f96bd77fb97e74cb7.jpg)
+
+![Image](https://www.iqsdirectory.com/articles/shaft-couplings/prevention-of-heat-transfer-by-shaft-couplings.jpg)
+
+Menjelaskan bagaimana gaya atau daya berpindah antar komponen.
+
+Isi:
+
+- 3–5 kalimat
+- fokus pada mekanisme fisik.
+
+---
+
+## 4. Formula Utama
+
+Berisi **rumus inti**.
+
+Aturan:
+
+- maksimal **2 rumus**
+- rumus yang paling sering digunakan.
+
+Contoh:
+
+$$
+T = \frac{9550P}{n}
+$$
+
+Dimana:
+
+- (T) = torque (Nm)
+- (P) = power (kW)
+- (n) = rotational speed (rpm)
+
+---
+
+## 5. Contoh Calculation
+
+Berisi contoh perhitungan praktis.
+
+Contoh:
+
+Power = 75 kW
+Speed = 1480 rpm
+
+$$
+T = \frac{9550 \times 75}{1480}
+$$
+
+$$
+T = 484 , Nm
+$$
+
+Interpretasi:
+
+shaft harus mampu mentransmisikan **≥ 484 Nm torque**.
+
+---
+
+## 6. Failure Mode
+
+Menjelaskan bagaimana komponen gagal.
+
+Contoh:
+
+- fatigue crack
+- overload
+- misalignment
+- lubrication failure
+- installation error
+
+---
+
+## 7. Insight Maintenance
+
+Tips praktis untuk teknisi.
+
+Contoh:
+
+- starting torque motor bisa 2–3× torque nominal
+- misalignment meningkatkan bending load
+- keyway sering menjadi titik awal crack
+
+---
+
+# 3. MASTER LIST TOPIK
+
+Total artikel: **21 topik**
+
+---
+
+## SHAFT & POWER TRANSMISSION
+
+1. Shaft torque calculation
+2. Shaft stress (torsion + bending)
+3. Key and keyway stress
+4. Shaft critical speed
+
+<ResourceBox
+  title="Artikel terkait:"
+  items={[
+    {
+      name: 'Shaft & Power Transmission',
+      href: '/blog/maintenance/mechanical/machine-elements/01-shaft-and-power-transmission',
+      description: 'Shaft & Power Transmission Fundamentals',
+    },
+  ]}
+/>
+
+---
+
+## BEARING
+
+5. Bearing life calculation
+6. Rolling bearing failure analysis
+7. Journal bearing lubrication
+8. Bearing installation & fit
+9. Bearing Lubrication Fundamentals
+
+<ResourceBox
+  title="Artikel terkait:"
+  items={[
+    {
+      name: 'Bearing Systems',
+      href: '/blog/maintenance/mechanical/machine-elements/02-bearing-systems',
+      description: 'Bearing Systems in Rotating Equipment',
+    },
+  ]}
+/>
+
+---
+
+## COUPLING & SHAFT CONNECTION
+
+10. Coupling types
+11. Coupling torque capacity
+12. Interference fit / shrink fit
+13. Shaft alignment basics
+
+<ResourceBox
+  title="Artikel terkait:"
+  items={[
+    {
+      name: 'Coupling & Shaft Connection',
+      href: '/blog/maintenance/mechanical/machine-elements/03-coupling-and-shaft-connection',
+      description: 'Coupling & Shaft Connection in Rotating Equipment',
+    },
+  ]}
+/>
+
+---
+
+## GEAR & GEARBOX
+
+14. Gear force calculation
+15. Gearbox load distribution
+16. Gear tooth failure modes
+17. Gear lubrication
+
+<ResourceBox
+  title="Artikel terkait:"
+  items={[
+    {
+      name: 'Gear & Gearbox Mechanics',
+      href: '/blog/maintenance/mechanical/machine-elements/04-gear-and-gearbox-mechanics',
+      description: 'Gear & Gearbox Mechanics in Rotating Equipment',
+    },
+  ]}
+/>
+
+---
+
+## FASTENER & SECONDARY DRIVE
+
+18. Bolt preload & torque
+19. Flange bolting principles
+20. Belt drive power transmission
+21. Chain drive fundamentals
+
+<ResourceBox
+  title="Artikel terkait:"
+  items={[
+    {
+      name: 'Fastener & Secondary Drive',
+      href: '/blog/maintenance/mechanical/machine-elements/05-fastener-and-secondary-drives',
+      description: 'Fastener & Secondary Drive Systems in Rotating Equipment',
+    },
+  ]}
+/>
+
+---
+
+# 4. Flow Reading dan Hubungan Antar Artikel
+
+Serial ini dirancang seperti **alur sistem transmisi daya pada mesin**.
+
+Flow pembelajaran mengikuti jalur energi mekanik.
+
+```
+Motor
+↓
+Coupling
+↓
+Shaft
+↓
+Bearing support
+↓
+Gearbox / Transmission
+↓
+Secondary drive (belt / chain)
+↓
+Fastener & assembly
+```
+
+---
+
+## Urutan Membaca yang Direkomendasikan
+
+### Tahap 1 — Dasar Transmisi Daya
+
+1. Shaft torque calculation
+2. Shaft stress (torsion + bending)
+3. Key and keyway stress
+4. Shaft critical speed
+
+Tujuan:
+
+memahami **bagaimana daya ditransmisikan**.
+
+<ResourceBox
+  title="Artikel terkait:"
+  items={[
+    {
+      name: 'Shaft & Power Transmission',
+      href: '/blog/maintenance/mechanical/machine-elements/01-shaft-and-power-transmission',
+      description: 'Shaft & Power Transmission Fundamentals',
+    },
+  ]}
+/>
+
+---
+
+### Tahap 2 — Sistem Penopang Rotasi
+
+5. Bearing life calculation
+6. Rolling bearing failure analysis
+7. Journal bearing lubrication
+8. Bearing installation & fit
+9. Bearing Lubrication Fundamentals
+
+Tujuan:
+
+memahami **bagaimana shaft didukung dan dilumasi**.
+
+<ResourceBox
+  title="Artikel terkait:"
+  items={[
+    {
+      name: 'Bearing Systems',
+      href: '/blog/maintenance/mechanical/machine-elements/02-bearing-systems',
+      description: 'Bearing Systems in Rotating Equipment',
+    },
+  ]}
+/>
+
+---
+
+### Tahap 3 — Koneksi Motor dan Mesin
+
+10. Coupling types
+11. Coupling torque capacity
+12. Interference fit / shrink fit
+13. Shaft alignment basics
+
+Tujuan:
+
+memahami **bagaimana motor terhubung ke mesin**.
+
+<ResourceBox
+  title="Artikel terkait:"
+  items={[
+    {
+      name: 'Coupling & Shaft Connection',
+      href: '/blog/maintenance/mechanical/machine-elements/03-coupling-and-shaft-connection',
+      description: 'Coupling & Shaft Connection in Rotating Equipment',
+    },
+  ]}
+/>
+
+---
+
+### Tahap 4 — Gearbox
+
+14. Gear force calculation
+15. Gearbox load distribution
+16. Gear tooth failure modes
+17. Gear lubrication
+
+Tujuan:
+
+memahami **transmisi daya melalui gear**.
+
+<ResourceBox
+  title="Artikel terkait:"
+  items={[
+    {
+      name: 'Gear & Gearbox Mechanics',
+      href: '/blog/maintenance/mechanical/machine-elements/04-gear-and-gearbox-mechanics',
+      description: 'Gear & Gearbox Mechanics in Rotating Equipment',
+    },
+  ]}
+/>
+---
+
+### Tahap 5 — Assembly dan Drive
+
+18. Bolt preload & torque
+19. Flange bolting principles
+20. Belt drive power transmission
+21. Chain drive fundamentals
+
+Tujuan:
+
+memahami **sistem transmisi tambahan dan assembly**.
+
+<ResourceBox
+  title="Artikel terkait:"
+  items={[
+    {
+      name: 'Fastener & Secondary Drive',
+      href: '/blog/maintenance/mechanical/machine-elements/05-fastener-and-secondary-drives',
+      description: 'Fastener & Secondary Drive Systems in Rotating Equipment',
+    },
+  ]}
+/>
+
+---
+
+# 5. Materi Penguat Serial (Supporting Principles)
+
+Agar serial ini kuat dan konsisten, digunakan prinsip berikut.
+
+---
+
+## Prinsip 1 — Fokus pada Mekanisme Fisik
+
+Setiap artikel harus menjawab:
+
+```
+gaya berasal dari mana
+↓
+bagaimana gaya berpindah
+↓
+bagaimana komponen menahan gaya
+↓
+bagaimana komponen gagal
+```
+
+---
+
+## Prinsip 2 — Formula Minimal
+
+Teknisi tidak membutuhkan derivasi matematika panjang.
+
+Setiap artikel maksimal:
+
+**1–2 rumus inti.**
+
+---
+
+## Prinsip 3 — Calculation dengan Angka Nyata
+
+Contoh calculation menggunakan angka realistis dari industri:
+
+- motor 30–200 kW
+- speed 1500 rpm
+- gearbox ratio 3–20
+
+---
+
+## Prinsip 4 — Failure Oriented
+
+Setiap artikel harus menjelaskan:
+
+```
+bagaimana komponen gagal
+```
+
+karena itu yang paling berguna bagi teknisi.
+
+---
+
+## Prinsip 5 — Maintenance Insight
+
+Artikel harus memberikan **insight praktis**, misalnya:
+
+- kesalahan instalasi
+- kesalahan pelumasan
+- misalignment
+- preload bolt salah
+
+---
+
+# Kesimpulan
+
+Serial artikel ini dirancang sebagai **panduan praktis elemen mesin untuk teknisi industri**.
+
+Karakter utama:
+
+- ringkas
+- teknis
+- konsisten
+- berbasis kasus lapangan
+
+Dengan:
+
+- **1 template tetap**
+- **21 topik tetap**
+- **alur pembelajaran yang jelas**
+
+serial ini dapat menjadi **referensi praktis untuk memahami mekanisme dan kegagalan komponen pada rotating equipment industri**.
+
+---
+
+<small>
+  **_Catatan Penyusunan_** Artikel ini disusun sebagai materi edukasi dan
+  referensi umum berdasarkan berbagai sumber pustaka, praktik lapangan, serta
+  bantuan alat penulisan. Pembaca disarankan untuk melakukan verifikasi lanjutan
+  dan penyesuaian sesuai dengan kondisi serta kebutuhan masing-masing sistem.
+</small>

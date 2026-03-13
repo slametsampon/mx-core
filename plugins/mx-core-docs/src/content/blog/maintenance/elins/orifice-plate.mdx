@@ -1,0 +1,1962 @@
+---
+title: Orifice Plate - Geometry, Flow Equation, Installation, and Field Engineering Practice
+authors: ['sam']
+date: '2026-03-12'
+tags:
+  [
+    'orifice-plate',
+    'differential-pressure-flow',
+    'flow-measurement',
+    'process-instrumentation',
+    'beta-ratio',
+    'orifice-flow-equation',
+    'flow-metering',
+    'process-engineering',
+  ]
+draft: false
+summary: Orifice plate adalah perangkat pengukuran aliran berbasis differential pressure yang bekerja dengan prinsip penyempitan area aliran di dalam pipa. Ketika fluida melewati bore orifice, kecepatan meningkat dan tekanan statis turun, menghasilkan differential pressure yang dapat dikaitkan dengan flow rate melalui persamaan orifice. Performa pengukuran dipengaruhi oleh geometri plate (diameter pipa, diameter bore, beta ratio), kondisi instalasi, serta batas operasi seperti Reynolds number, cavitation, dan erosi. Instalasi yang benar, batas operasi yang dipatuhi, dan inspeksi berkala memastikan hubungan matematis antara flow dan differential pressure tetap valid sehingga pengukuran aliran dapat dilakukan secara konsisten dan akurat sepanjang siklus operasi sistem.
+---
+
+# **_Orifice Plate: Geometry, Flow Equation, Installation, and Field Engineering Practice_**
+
+---
+
+- [**_Orifice Plate: Geometry, Flow Equation, Installation, and Field Engineering Practice_**](#orifice-plate-geometry-flow-equation-installation-and-field-engineering-practice)
+  - [1. Physical Geometry](#1-physical-geometry)
+  - [Model](#model)
+  - [Parameter](#parameter)
+  - [Engineering Graph](#engineering-graph)
+  - [Example Calculation](#example-calculation)
+    - [Input data](#input-data)
+    - [Substitusi](#substitusi)
+    - [Result](#result)
+  - [2. Flow Model](#2-flow-model)
+  - [2. Flow Model](#2-flow-model-1)
+    - [Engineering Diagram](#engineering-diagram)
+    - [Model](#model-1)
+    - [Parameter](#parameter-1)
+    - [Engineering Graph](#engineering-graph-1)
+    - [Example Calculation](#example-calculation-1)
+  - [3. Differential Pressure Behaviour](#3-differential-pressure-behaviour)
+    - [Engineering Diagram](#engineering-diagram-1)
+    - [Model](#model-2)
+    - [Parameter](#parameter-2)
+    - [Engineering Graph](#engineering-graph-2)
+      - [1. Flow vs Differential Pressure](#1-flow-vs-differential-pressure)
+      - [2. Differential Pressure vs Flow](#2-differential-pressure-vs-flow)
+      - [3. Permanent Pressure Loss](#3-permanent-pressure-loss)
+    - [Example Calculation](#example-calculation-2)
+      - [Kasus 1](#kasus-1)
+      - [Kasus 2](#kasus-2)
+      - [Kasus 3](#kasus-3)
+  - [3. Differential Pressure Behaviour](#3-differential-pressure-behaviour-1)
+  - [3. Differential Pressure Behaviour](#3-differential-pressure-behaviour-2)
+    - [Engineering Diagram](#engineering-diagram-2)
+    - [Model](#model-3)
+    - [Parameter](#parameter-3)
+    - [Engineering Graph](#engineering-graph-3)
+      - [Flow vs Differential Pressure](#flow-vs-differential-pressure)
+      - [Differential Pressure vs Flow](#differential-pressure-vs-flow)
+      - [Permanent Pressure Loss](#permanent-pressure-loss)
+    - [Example Calculation](#example-calculation-3)
+  - [4. Installation Requirements](#4-installation-requirements)
+    - [Engineering Diagram](#engineering-diagram-3)
+    - [Model](#model-4)
+    - [Parameter](#parameter-4)
+    - [Engineering Graph](#engineering-graph-4)
+    - [Example Calculation](#example-calculation-4)
+- [5. Operational Limits](#5-operational-limits)
+  - [Engineering Diagram](#engineering-diagram-4)
+  - [Model](#model-5)
+  - [Parameter](#parameter-5)
+  - [Engineering Graph](#engineering-graph-5)
+  - [Example Calculation](#example-calculation-5)
+- [6. Inspection Points](#6-inspection-points)
+  - [Engineering Diagram](#engineering-diagram-5)
+  - [Model](#model-6)
+  - [Parameter](#parameter-6)
+  - [Engineering Graph](#engineering-graph-6)
+  - [Example Calculation](#example-calculation-6)
+  - [7. Example Engineering Calculation](#7-example-engineering-calculation)
+    - [Engineering Diagram](#engineering-diagram-6)
+    - [Model](#model-7)
+    - [Parameter](#parameter-7)
+    - [Engineering Graph](#engineering-graph-7)
+    - [Example Calculation](#example-calculation-7)
+      - [Input data](#input-data-1)
+      - [Substitusi ke model](#substitusi-ke-model)
+        - [1. Hitung bore diameter](#1-hitung-bore-diameter)
+        - [2. Hitung orifice area](#2-hitung-orifice-area)
+        - [3. Hitung pipe flow area](#3-hitung-pipe-flow-area)
+        - [4. Differential pressure check](#4-differential-pressure-check)
+        - [5. Hitung kecepatan rata-rata di pipa](#5-hitung-kecepatan-rata-rata-di-pipa)
+        - [6. Reynolds number verification](#6-reynolds-number-verification)
+      - [Result](#result-1)
+
+---
+
+## 1. Physical Geometry
+
+**Engineering Diagram**
+
+![Image](https://cdn.automationforum.co/uploads/2023/02/2-1.png)
+
+![Image](https://ars.els-cdn.com/content/image/3-s2.0-B9780128009406000046-f04-14-9780128009406.jpg)
+
+Diagram menunjukkan konfigurasi dasar **orifice plate di dalam pipa** yang menghasilkan penyempitan aliran. Geometri orifice menentukan karakteristik percepatan aliran dan pembentukan **vena contracta** setelah fluida melewati bore.
+
+Dimensi utama yang digunakan dalam analisis dan desain:
+
+- **Pipe internal diameter (D)**
+- **Orifice bore diameter (d)**
+- **Plate thickness (t)**
+- **Beta ratio (β = d/D)**
+
+Elemen geometri lain yang mempengaruhi performa pengukuran:
+
+- **Upstream sharp edge** — sisi masuk harus tajam untuk memastikan pembentukan vena contracta stabil.
+- **Downstream bevel** — sisi keluar biasanya dibevelling untuk menjaga bentuk edge upstream tetap tajam.
+- **Gasket clearance** — gasket tidak boleh menonjol ke dalam bore karena dapat mengubah profil aliran.
+
+---
+
+## Model
+
+Hubungan geometri dasar:
+
+$$
+\beta = \frac{d}{D}
+$$
+
+Area bore:
+
+$$
+A_o = \frac{\pi d^2}{4}
+$$
+
+Area pipa:
+
+$$
+A_p = \frac{\pi D^2}{4}
+$$
+
+Rasio area:
+
+$$
+\frac{A_o}{A_p} = \beta^2
+$$
+
+Model geometri ini menjadi dasar dalam penentuan karakteristik aliran melalui orifice.
+
+---
+
+## Parameter
+
+| Parameter        | Description                       | Typical Unit      |
+| ---------------- | --------------------------------- | ----------------- |
+| D                | Pipe internal diameter            | m                 |
+| d                | Orifice bore diameter             | m                 |
+| β                | Diameter ratio (d/D)              | –                 |
+| t                | Plate thickness                   | mm                |
+| Ao               | Orifice bore area                 | m²                |
+| Ap               | Pipe internal area                | m²                |
+| edge             | Upstream sharp edge condition     | geometric feature |
+| bevel            | Downstream bevel geometry         | geometric feature |
+| gasket clearance | clearance between gasket and bore | mm                |
+
+---
+
+## Engineering Graph
+
+Hubungan geometri yang penting adalah antara **beta ratio dan area restriction**.
+
+$$
+\frac{A_o}{A_p} = \beta^2
+$$
+
+Karakteristik hubungan:
+
+- β kecil → restriksi area besar
+- β besar → restriksi area kecil
+
+Konsekuensi terhadap aliran:
+
+- β kecil menghasilkan percepatan aliran lebih besar di bore
+- β besar menghasilkan percepatan aliran lebih kecil
+
+Hubungan ini menentukan sensitivitas differential pressure terhadap perubahan flow.
+
+---
+
+## Example Calculation
+
+### Input data
+
+Pipe internal diameter
+
+$$
+D = 100\ mm
+$$
+
+Orifice bore diameter
+
+$$
+d = 50\ mm
+$$
+
+---
+
+### Substitusi
+
+Beta ratio:
+
+$$
+\beta = \frac{d}{D}
+$$
+
+$$
+\beta = \frac{50}{100} = 0.5
+$$
+
+Area bore:
+
+$$
+A_o = \frac{\pi d^2}{4}
+$$
+
+$$
+A_o = \frac{\pi (0.05)^2}{4}
+$$
+
+$$
+A_o = 0.001963\ m^2
+$$
+
+Area pipa:
+
+$$
+A_p = \frac{\pi D^2}{4}
+$$
+
+$$
+A_p = \frac{\pi (0.1)^2}{4}
+$$
+
+$$
+A_p = 0.007854\ m^2
+$$
+
+---
+
+### Result
+
+$$
+\beta = 0.5
+$$
+
+$$
+\frac{A_o}{A_p} = 0.25
+$$
+
+Artinya area aliran pada orifice hanya **25% dari area pipa**, sehingga fluida mengalami percepatan saat melewati bore.
+
+---
+
+## 2. Flow Model
+
+![Image](https://media.licdn.com/dms/image/v2/D4D12AQFzSGVV2-FL7w/article-cover_image-shrink_600_2000/article-cover_image-shrink_600_2000/0/1683241644734?e=2147483647&t=XXBdOP8d3oifBDR2eXIt9Ek2jbVuF2OhW-1m-_1R8a4&v=beta)
+
+![Image](https://www.researchgate.net/publication/369755317/figure/fig1/AS%3A11431281136667215%401680562901564/Model-of-orifice-meter-flow-lines-and-their-pressure-characteristics.jpg)
+
+![Image](https://www.piping-world.com/images/10_design/10.01_plantlayout/Orifice_Plate_Pressure_Profile.png)
+
+Subtopik:
+
+- orifice flow equation
+- discharge coefficient
+- beta ratio definition
+- orifice area
+- pipe flow area
+
+Output bagian ini:
+
+- model matematis aliran
+- definisi variabel yang dipakai dalam persamaan
+
+## 2. Flow Model
+
+### Engineering Diagram
+
+Model aliran melalui orifice plate didasarkan pada perubahan area aliran dari **pipe flow area** ke **orifice area**. Fluida dipercepat saat melewati bore, tekanan statis turun di sekitar plate, lalu terbentuk **vena contracta** di sisi downstream. Differential pressure yang diukur antara sisi upstream dan downstream digunakan untuk menghitung flow rate.
+
+Urutan area dan perilaku aliran:
+
+- **Pipe flow area**: area aliran penuh di dalam pipa
+- **Orifice area**: area minimum pada bore plate
+- **Vena contracta area**: area efektif minimum jet setelah melewati plate
+
+Variabel geometri yang mengendalikan model:
+
+- ( D ): pipe internal diameter
+- ( d ): orifice bore diameter
+- ( \beta = d/D )
+- ( A_p ): pipe flow area
+- ( A_o ): orifice bore area
+
+---
+
+### Model
+
+Persamaan dasar kontinuitas:
+
+$$
+Q = A_p V_1 = A_o V_o
+$$
+
+dengan:
+
+$$
+A_p = \frac{\pi D^2}{4}
+$$
+
+$$
+A_o = \frac{\pi d^2}{4}
+$$
+
+Definisi beta ratio:
+
+$$
+\beta = \frac{d}{D}
+$$
+
+Persamaan flow orifice untuk fluida incompressible:
+
+$$
+Q = C_d A_o \sqrt{\frac{2\Delta P}{\rho(1-\beta^4)}}
+$$
+
+Bentuk alternatif dalam mass flow rate:
+
+$$
+\dot{m} = \rho Q
+$$
+
+$$
+\dot{m} = C_d A_o \sqrt{\frac{2\rho \Delta P}{(1-\beta^4)}}
+$$
+
+Model menunjukkan bahwa flow rate ditentukan oleh:
+
+- geometri orifice ((d, D))
+- differential pressure ((\Delta P))
+- fluid density ((\rho))
+- discharge coefficient ((C_d))
+
+---
+
+### Parameter
+
+| Parameter  | Description                                | Typical Unit |
+| ---------- | ------------------------------------------ | ------------ |
+| (Q)        | Volumetric flow rate                       | m³/s         |
+| (m_dot)    | Mass flow rate                             | kg/s         |
+| (C_d)      | Discharge coefficient                      | –            |
+| (\Delta P) | Differential pressure across orifice plate | Pa           |
+| (\rho)     | Fluid density                              | kg/m³        |
+| (D)        | Pipe internal diameter                     | m            |
+| (d)        | Orifice bore diameter                      | m            |
+| (\beta)    | Diameter ratio (d/D)                       | –            |
+| (A_p)      | Pipe flow area                             | m²           |
+| (A_o)      | Orifice bore area                          | m²           |
+| (V_1)      | Average upstream pipe velocity             | m/s          |
+| (V_o)      | Average velocity through orifice bore      | m/s          |
+
+Catatan parameter:
+
+- (C_d) mewakili deviasi aliran nyata terhadap model ideal.
+- (A_o) dan (A_p) berasal langsung dari geometri plate dan pipe.
+- (\beta) menghubungkan geometri pipa dengan geometri bore.
+
+---
+
+### Engineering Graph
+
+Hubungan utama dari model:
+
+$$
+Q \propto \sqrt{\Delta P}
+$$
+
+Untuk geometri dan fluida tetap:
+
+- differential pressure naik → flow rate naik
+- hubungan tidak linear
+- kurva berbentuk akar kuadrat
+
+Pengaruh beta ratio pada model:
+
+- ( \beta ) kecil → restriksi besar → DP lebih tinggi pada flow yang sama
+- ( \beta ) besar → restriksi kecil → DP lebih rendah pada flow yang sama
+
+Pengaruh discharge coefficient:
+
+- (C_d) lebih besar → flow terhitung lebih besar pada DP yang sama
+- (C_d) dipengaruhi oleh geometri nyata dan kondisi aliran
+
+Hubungan area:
+
+$$
+A_o = \beta^2 A_p
+$$
+
+Sehingga perubahan kecil pada (d) akan mengubah (A_o), (\beta), dan hasil flow calculation.
+
+---
+
+### Example Calculation
+
+**Input data**
+
+Pipe internal diameter:
+
+$$
+D = 0.100 \text{ m}
+$$
+
+Orifice bore diameter:
+
+$$
+d = 0.060 \text{ m}
+$$
+
+Differential pressure:
+
+$$
+\Delta P = 10{,}000 \text{ Pa}
+$$
+
+Fluid density:
+
+$$
+\rho = 1000 \text{ kg/m}^3
+$$
+
+Discharge coefficient:
+
+$$
+C_d = 0.61
+$$
+
+---
+
+**Substitusi ke model**
+
+Hitung beta ratio:
+
+$$
+\beta = \frac{d}{D} = \frac{0.060}{0.100} = 0.60
+$$
+
+Hitung orifice area:
+
+$$
+A_o = \frac{\pi d^2}{4}
+= \frac{\pi (0.060)^2}{4}
+= 0.002827 \text{ m}^2
+$$
+
+Hitung pipe area:
+
+$$
+A_p = \frac{\pi D^2}{4}
+= \frac{\pi (0.100)^2}{4}
+= 0.007854 \text{ m}^2
+$$
+
+Hitung faktor geometri:
+
+$$
+1-\beta^4 = 1-(0.60)^4
+$$
+
+$$
+1-\beta^4 = 1-0.1296 = 0.8704
+$$
+
+Hitung flow rate:
+
+$$
+Q = C_d A_o \sqrt{\frac{2\Delta P}{\rho(1-\beta^4)}}
+$$
+
+$$
+Q = 0.61 \times 0.002827 \times
+\sqrt{\frac{2(10{,}000)}{1000(0.8704)}}
+$$
+
+$$
+\frac{20{,}000}{870.4} = 22.98
+$$
+
+$$
+\sqrt{22.98} = 4.79
+$$
+
+$$
+Q = 0.61 \times 0.002827 \times 4.79
+$$
+
+$$
+Q = 0.00826 \text{ m}^3/\text{s}
+$$
+
+Hitung mass flow rate:
+
+$$
+\dot{m} = \rho Q = 1000 \times 0.00826 = 8.26 \text{ kg/s}
+$$
+
+---
+
+**Result**
+
+$$
+\beta = 0.60
+$$
+
+$$
+A_o = 0.002827 \text{ m}^2
+$$
+
+$$
+A_p = 0.007854 \text{ m}^2
+$$
+
+$$
+Q = 0.00826 \text{ m}^3/\text{s}
+$$
+
+$$
+\dot{m} = 8.26 \text{ kg/s}
+$$
+
+Silakan review **Respon 2**.
+
+## 3. Differential Pressure Behaviour
+
+### Engineering Diagram
+
+Perilaku differential pressure pada orifice ditentukan oleh perubahan energi aliran saat fluida melewati penyempitan area. Saat flow meningkat, kecepatan pada bore meningkat, tekanan statis turun, lalu sebagian tekanan pulih di sisi downstream. Namun tekanan tidak kembali penuh ke kondisi upstream karena ada **permanent pressure loss**.
+
+Tiga perilaku utama yang harus dipisahkan:
+
+- **Flow vs differential pressure**
+  menunjukkan bagaimana flow berubah terhadap DP terukur
+
+- **Differential pressure vs flow**
+  menunjukkan bagaimana DP meningkat terhadap flow
+
+- **Permanent pressure loss**
+  menunjukkan bagian pressure loss yang tidak pulih setelah melewati orifice
+
+Secara fisik:
+
+- pressure drop maksimum terjadi di sekitar vena contracta
+- sebagian pressure recovery terjadi setelah vena contracta
+- sisa loss menjadi permanent pressure loss
+
+---
+
+### Model
+
+Model dasar orifice:
+
+$$
+Q = C_d A_o \sqrt{\frac{2\Delta P}{\rho(1-\beta^4)}}
+$$
+
+Untuk geometri, fluida, dan (C_d) tetap:
+
+$$
+Q \propto \sqrt{\Delta P}
+$$
+
+Bentuk kebalikannya:
+
+$$
+\Delta P = \frac{\rho}{2}\left(\frac{Q}{C_d A_o}\right)^2 (1-\beta^4)
+$$
+
+Sehingga:
+
+$$
+\Delta P \propto Q^2
+$$
+
+Tekanan hilang permanen dinyatakan secara konseptual sebagai:
+
+$$
+\Delta P_{perm} = P_1 - P_3
+$$
+
+dengan:
+
+- (P_1): tekanan upstream
+- (P_3): tekanan downstream setelah pressure recovery
+
+Sedangkan differential pressure pengukuran adalah:
+
+$$
+\Delta P = P_1 - P_2
+$$
+
+dengan:
+
+- (P_2): tekanan pada titik downstream tapping
+
+Karena ada pressure recovery:
+
+$$
+\Delta P_{perm} < \Delta P
+$$
+
+---
+
+### Parameter
+
+| Parameter       | Description                                    | Typical Unit |
+| --------------- | ---------------------------------------------- | ------------ |
+| (Q)             | Volumetric flow rate                           | m³/s         |
+| (\Delta P)      | Differential pressure across orifice           | Pa           |
+| (\Delta P_perm) | Permanent pressure loss                        | Pa           |
+| (P_1)           | Upstream pressure                              | Pa           |
+| (P_2)           | Pressure at downstream tap / low pressure side | Pa           |
+| (P_3)           | Recovered downstream pressure                  | Pa           |
+| (C_d)           | Discharge coefficient                          | –            |
+| (\rho)          | Fluid density                                  | kg/m³        |
+| (A_o)           | Orifice bore area                              | m²           |
+| (\beta)         | Diameter ratio (d/D)                           | –            |
+
+---
+
+### Engineering Graph
+
+#### 1. Flow vs Differential Pressure
+
+Dari model:
+
+$$
+Q \propto \sqrt{\Delta P}
+$$
+
+Bentuk grafik:
+
+- kurva akar kuadrat
+- pada DP rendah, perubahan kecil DP menghasilkan perubahan flow yang terlihat besar
+- pada DP tinggi, flow tetap naik tetapi tidak linear
+
+#### 2. Differential Pressure vs Flow
+
+Dari model invers:
+
+$$
+\Delta P \propto Q^2
+$$
+
+Bentuk grafik:
+
+- kurva kuadratik
+- kenaikan flow kecil pada daerah flow tinggi menghasilkan kenaikan DP yang lebih besar
+- sizing transmitter harus mempertimbangkan sifat kuadratik ini
+
+#### 3. Permanent Pressure Loss
+
+Pressure profile sepanjang orifice mengikuti urutan:
+
+- tekanan upstream (P_1)
+- tekanan turun melewati plate
+- tekanan minimum mendekati vena contracta
+- tekanan pulih sebagian
+- tekanan akhir downstream (P_3) tetap lebih rendah dari (P_1)
+
+Hubungan penting:
+
+$$
+P_1 > P_3 > P_2
+$$
+
+dan
+
+$$
+\Delta P_{perm} = P_1 - P_3
+$$
+
+Permanent pressure loss meningkat saat:
+
+- flow meningkat
+- beta ratio mengecil
+- restriksi makin besar
+
+---
+
+### Example Calculation
+
+**Input data**
+
+Gunakan data dari bagian flow model:
+
+$$
+D = 0.100 \text{ m}
+$$
+
+$$
+d = 0.060 \text{ m}
+$$
+
+$$
+\beta = 0.60
+$$
+
+$$
+A_o = 0.002827 \text{ m}^2
+$$
+
+$$
+\rho = 1000 \text{ kg/m}^3
+$$
+
+$$
+C_d = 0.61
+$$
+
+Evaluasi pada tiga kondisi flow:
+
+$$
+Q_1 = 0.004 \text{ m}^3/\text{s}
+$$
+
+$$
+Q_2 = 0.008 \text{ m}^3/\text{s}
+$$
+
+$$
+Q_3 = 0.012 \text{ m}^3/\text{s}
+$$
+
+---
+
+**Substitusi ke model**
+
+Gunakan:
+
+$$
+\Delta P = \frac{\rho}{2}\left(\frac{Q}{C_d A_o}\right)^2 (1-\beta^4)
+$$
+
+Hitung faktor tetap:
+
+$$
+1-\beta^4 = 1-(0.60)^4 = 0.8704
+$$
+
+$$
+C_d A_o = 0.61 \times 0.002827 = 0.001725
+$$
+
+---
+
+#### Kasus 1
+
+$$
+Q_1 = 0.004
+$$
+
+$$
+\frac{Q_1}{C_dA_o}=\frac{0.004}{0.001725}=2.319
+$$
+
+$$
+(2.319)^2=5.378
+$$
+
+$$
+\Delta P_1 = 500 \times 5.378 \times 0.8704
+$$
+
+$$
+\Delta P_1 = 2340 \text{ Pa}
+$$
+
+---
+
+#### Kasus 2
+
+$$
+Q_2 = 0.008
+$$
+
+$$
+\frac{Q_2}{C_dA_o}=\frac{0.008}{0.001725}=4.638
+$$
+
+$$
+(4.638)^2=21.511
+$$
+
+$$
+\Delta P_2 = 500 \times 21.511 \times 0.8704
+$$
+
+$$
+\Delta P_2 = 9362 \text{ Pa}
+$$
+
+---
+
+#### Kasus 3
+
+$$
+Q_3 = 0.012
+$$
+
+$$
+\frac{Q_3}{C_dA_o}=\frac{0.012}{0.001725}=6.957
+$$
+
+$$
+(6.957)^2=48.400
+$$
+
+$$
+\Delta P_3 = 500 \times 48.400 \times 0.8704
+$$
+
+$$
+\Delta P_3 = 21066 \text{ Pa}
+$$
+
+---
+
+**Result**
+
+$$
+Q_1 = 0.004 \text{ m}^3/\text{s} \rightarrow \Delta P_1 = 2340 \text{ Pa}
+$$
+
+$$
+Q_2 = 0.008 \text{ m}^3/\text{s} \rightarrow \Delta P_2 = 9362 \text{ Pa}
+$$
+
+$$
+Q_3 = 0.012 \text{ m}^3/\text{s} \rightarrow \Delta P_3 = 21066 \text{ Pa}
+$$
+
+Verifikasi perilaku:
+
+- saat flow naik dari 0.004 ke 0.008 m³/s, flow menjadi **2 kali**, DP naik menjadi sekitar **4 kali**
+- saat flow naik dari 0.004 ke 0.012 m³/s, flow menjadi **3 kali**, DP naik menjadi sekitar **9 kali**
+
+Ini konsisten dengan:
+
+$$
+\Delta P \propto Q^2
+$$
+
+Silakan review **Respon 3**.
+
+---
+
+## 3. Differential Pressure Behaviour
+
+![Image](https://www.omega.co.uk/literature/transactions/volume4/Images/07_Fig_06_l.GIF)
+
+![Image](https://www.researchgate.net/publication/316686601/figure/fig2/AS%3A490627453460483%401493986108895/ariation-in-flow-rate-with-square-root-of-pressure-drop-across-orifice-Comparison.png)
+
+![Image](https://www.engineeringtoolbox.com/docs/documents/494/TurnDown_ratio.gif)
+
+![Image](https://img80003270.weyesimg.com/uploads/kaidi86.com/images/17128150264975.gif)
+
+Subtopik:
+
+- flow vs differential pressure
+- differential pressure vs flow
+- permanent pressure loss
+
+Output bagian ini:
+
+- grafik hubungan variabel
+- bentuk hubungan matematis
+
+## 3. Differential Pressure Behaviour
+
+### Engineering Diagram
+
+![Image](https://www.omega.co.uk/literature/transactions/volume4/Images/07_Fig_06_l.GIF)
+
+![Image](https://www.researchgate.net/publication/316686601/figure/fig2/AS%3A490627453460483%401493986108895/ariation-in-flow-rate-with-square-root-of-pressure-drop-across-orifice-Comparison.png)
+
+![Image](https://www.engineeringtoolbox.com/docs/documents/494/TurnDown_ratio.gif)
+
+![Image](https://img80003270.weyesimg.com/uploads/kaidi86.com/images/17128150264975.gif)
+
+Gambar di atas dipakai untuk menunjukkan tiga perilaku utama:
+
+- hubungan **flow vs differential pressure**
+- hubungan **differential pressure vs flow**
+- **permanent pressure loss** setelah orifice
+
+---
+
+### Model
+
+Persamaan dasar orifice untuk fluida incompressible:
+
+$$
+Q = C_d A_o \sqrt{\frac{2\Delta P}{\rho(1-\beta^4)}}
+$$
+
+Untuk geometri, densitas, dan (C_d) tetap:
+
+$$
+Q \propto \sqrt{\Delta P}
+$$
+
+Bentuk kebalikannya:
+
+$$
+\Delta P = \frac{\rho}{2}\left(\frac{Q}{C_d A_o}\right)^2(1-\beta^4)
+$$
+
+Sehingga:
+
+$$
+\Delta P \propto Q^2
+$$
+
+Permanent pressure loss dinyatakan sebagai:
+
+$$
+\Delta P_{perm} = P_1 - P_3
+$$
+
+Differential pressure pengukuran:
+
+$$
+\Delta P = P_1 - P_2
+$$
+
+Dengan:
+
+- (P_1) = upstream pressure
+- (P_2) = pressure at low-pressure side / downstream tap
+- (P_3) = recovered downstream pressure
+
+Karena terjadi pressure recovery:
+
+$$
+P_1 > P_3 > P_2
+$$
+
+dan
+
+$$
+\Delta P_{perm} < \Delta P
+$$
+
+---
+
+### Parameter
+
+| Parameter       | Description                                    | Typical Unit |
+| --------------- | ---------------------------------------------- | ------------ |
+| (Q)             | Volumetric flow rate                           | m³/s         |
+| (\Delta P)      | Differential pressure across orifice           | Pa           |
+| (\Delta P_perm) | Permanent pressure loss                        | Pa           |
+| (P_1)           | Upstream pressure                              | Pa           |
+| (P_2)           | Pressure at downstream tap / low-pressure side | Pa           |
+| (P_3)           | Recovered downstream pressure                  | Pa           |
+| (C_d)           | Discharge coefficient                          | –            |
+| (\rho)          | Fluid density                                  | kg/m³        |
+| (A_o)           | Orifice bore area                              | m²           |
+| (\beta)         | Diameter ratio (d/D)                           | –            |
+
+---
+
+### Engineering Graph
+
+#### Flow vs Differential Pressure
+
+Dari model:
+
+$$
+Q \propto \sqrt{\Delta P}
+$$
+
+Bentuk hubungan:
+
+- tidak linear
+- kurva akar kuadrat
+- kenaikan flow makin landai pada DP yang lebih tinggi
+
+#### Differential Pressure vs Flow
+
+Dari model invers:
+
+$$
+\Delta P \propto Q^2
+$$
+
+Bentuk hubungan:
+
+- tidak linear
+- kurva kuadratik
+- kenaikan flow menyebabkan DP naik lebih cepat pada flow tinggi
+
+#### Permanent Pressure Loss
+
+Profil tekanan sepanjang orifice:
+
+- upstream pressure = (P_1)
+- tekanan turun saat melewati plate
+- tekanan minimum terjadi mendekati vena contracta
+- tekanan pulih sebagian di downstream
+- tekanan akhir menjadi (P_3)
+
+Hubungan utama:
+
+$$
+P_1 > P_3 > P_2
+$$
+
+dan
+
+$$
+\Delta P_{perm} = P_1 - P_3
+$$
+
+Permanent pressure loss meningkat bila:
+
+- flow meningkat
+- beta ratio mengecil
+- restriksi membesar
+
+---
+
+### Example Calculation
+
+**Input data**
+
+$$
+D = 0.100 \text{ m}
+$$
+
+$$
+d = 0.060 \text{ m}
+$$
+
+$$
+\beta = 0.60
+$$
+
+$$
+A_o = \frac{\pi d^2}{4} = 0.002827 \text{ m}^2
+$$
+
+$$
+\rho = 1000 \text{ kg/m}^3
+$$
+
+$$
+C_d = 0.61
+$$
+
+Tiga kondisi flow:
+
+$$
+Q_1 = 0.004 \text{ m}^3/\text{s}
+$$
+
+$$
+Q_2 = 0.008 \text{ m}^3/\text{s}
+$$
+
+$$
+Q_3 = 0.012 \text{ m}^3/\text{s}
+$$
+
+**Substitusi ke model**
+
+Gunakan:
+
+$$
+\Delta P = \frac{\rho}{2}\left(\frac{Q}{C_d A_o}\right)^2(1-\beta^4)
+$$
+
+Hitung faktor geometri:
+
+$$
+1-\beta^4 = 1-(0.60)^4 = 0.8704
+$$
+
+$$
+C_d A_o = 0.61 \times 0.002827 = 0.001725
+$$
+
+**Kasus 1**
+
+$$
+\frac{Q_1}{C_dA_o}=\frac{0.004}{0.001725}=2.319
+$$
+
+$$
+(2.319)^2=5.378
+$$
+
+$$
+\Delta P_1 = 500 \times 5.378 \times 0.8704 = 2340 \text{ Pa}
+$$
+
+**Kasus 2**
+
+$$
+\frac{Q_2}{C_dA_o}=\frac{0.008}{0.001725}=4.638
+$$
+
+$$
+(4.638)^2=21.511
+$$
+
+$$
+\Delta P_2 = 500 \times 21.511 \times 0.8704 = 9362 \text{ Pa}
+$$
+
+**Kasus 3**
+
+$$
+\frac{Q_3}{C_dA_o}=\frac{0.012}{0.001725}=6.957
+$$
+
+$$
+(6.957)^2=48.400
+$$
+
+$$
+\Delta P_3 = 500 \times 48.400 \times 0.8704 = 21066 \text{ Pa}
+$$
+
+**Result**
+
+$$
+Q_1 = 0.004 \text{ m}^3/\text{s} \rightarrow \Delta P_1 = 2340 \text{ Pa}
+$$
+
+$$
+Q_2 = 0.008 \text{ m}^3/\text{s} \rightarrow \Delta P_2 = 9362 \text{ Pa}
+$$
+
+$$
+Q_3 = 0.012 \text{ m}^3/\text{s} \rightarrow \Delta P_3 = 21066 \text{ Pa}
+$$
+
+Verifikasi hubungan:
+
+- flow (2\times) → DP sekitar (4\times)
+- flow (3\times) → DP sekitar (9\times)
+
+Sesuai dengan:
+
+$$
+\Delta P \propto Q^2
+$$
+
+Lanjut ke **Respon 4: Installation Requirements + Operational Limits + Inspection Points**.
+
+---
+
+## 4. Installation Requirements
+
+### Engineering Diagram
+
+![Image](https://instrumentationandcontrol.net/img/articles/Rosemount-2011-Installation-and-Flowmeter-Orientation.jpg)
+
+![Image](https://instrumentationandcontrol.net/img/articles/orifice-flange-taps-orientation.jpg)
+
+![Image](https://www.researchgate.net/publication/276377948/figure/fig12/AS%3A11431281210012404%401701922279640/Orifice-plate-taps-and-pressure-profile.tif)
+
+![Image](https://www.piping-world.com/images/10_design/10.01_plantlayout/Orifice_Flange_Hookups.png)
+
+Instalasi orifice harus menjaga kondisi aliran agar sesuai dengan asumsi model aliran. Distorsi profil kecepatan sebelum orifice akan mempengaruhi differential pressure dan menghasilkan error pengukuran.
+
+Elemen instalasi utama:
+
+- **Upstream straight run**
+  Panjang pipa lurus sebelum orifice untuk menstabilkan profil kecepatan aliran.
+
+- **Downstream straight run**
+  Panjang pipa lurus setelah orifice untuk menghindari gangguan tekanan balik.
+
+- **Pressure tapping location**
+  Lokasi pengambilan tekanan untuk high pressure dan low pressure.
+
+- **Orientation**
+  Posisi plate dan posisi tapping terhadap arah aliran.
+
+- **Impulse line implication**
+  Jalur impulse line dari tapping menuju differential pressure transmitter.
+
+---
+
+### Model
+
+Pengaruh instalasi muncul melalui perubahan **discharge coefficient**.
+
+$$
+Q = C_d A_o \sqrt{\frac{2\Delta P}{\rho(1-\beta^4)}}
+$$
+
+Jika profil aliran upstream tidak berkembang penuh, maka nilai efektif (C_d) berubah.
+
+Hubungan kecepatan rata-rata aliran:
+
+$$
+V = \frac{Q}{A_p}
+$$
+
+Reynolds number aliran dalam pipa:
+
+$$
+Re = \frac{\rho V D}{\mu}
+$$
+
+Nilai (Re) mempengaruhi stabilitas koefisien discharge.
+
+---
+
+### Parameter
+
+| Parameter    | Description                        | Typical Unit |
+| ------------ | ---------------------------------- | ------------ |
+| (L_u)        | Upstream straight pipe length      | m            |
+| (L_d)        | Downstream straight pipe length    | m            |
+| Tap type     | Pressure tapping configuration     | —            |
+| Orientation  | Plate orientation relative to flow | —            |
+| Impulse line | Connection to DP transmitter       | —            |
+| (D)          | Pipe diameter                      | m            |
+| (V)          | Average flow velocity              | m/s          |
+| (Re)         | Reynolds number                    | —            |
+
+---
+
+### Engineering Graph
+
+Pengaruh instalasi terhadap pengukuran muncul melalui stabilitas koefisien discharge.
+
+Jika profil aliran upstream terganggu:
+
+- swirl meningkat
+- distribusi kecepatan tidak simetris
+- nilai efektif (C_d) berubah
+
+Perubahan (C_d) menyebabkan deviasi hubungan:
+
+$$
+Q \propto \sqrt{\Delta P}
+$$
+
+Hubungan yang diharapkan hanya valid ketika profil aliran upstream stabil.
+
+---
+
+### Example Calculation
+
+**Input data**
+
+Pipe diameter:
+
+$$
+D = 0.10\ m
+$$
+
+Flow rate:
+
+$$
+Q = 0.008\ m^3/s
+$$
+
+Fluid density:
+
+$$
+\rho = 1000\ kg/m^3
+$$
+
+Fluid viscosity:
+
+$$
+\mu = 0.001\ Pa\cdot s
+$$
+
+---
+
+**Substitution**
+
+Pipe area:
+
+$$
+A_p = \frac{\pi D^2}{4}
+$$
+
+$$
+A_p = 0.00785\ m^2
+$$
+
+Velocity:
+
+$$
+V = \frac{Q}{A_p}
+$$
+
+$$
+V = \frac{0.008}{0.00785}
+$$
+
+$$
+V = 1.02\ m/s
+$$
+
+Reynolds number:
+
+$$
+Re = \frac{\rho V D}{\mu}
+$$
+
+$$
+Re = \frac{1000 \times 1.02 \times 0.10}{0.001}
+$$
+
+$$
+Re = 102000
+$$
+
+---
+
+**Result**
+
+$$
+V = 1.02\ m/s
+$$
+
+$$
+Re = 1.02 \times 10^5
+$$
+
+Aliran berada pada regime turbulen sehingga asumsi model orifice tetap berlaku.
+
+---
+
+# 5. Operational Limits
+
+### Engineering Diagram
+
+![Image](https://www.asad-shaikh.com/uploads/1/2/7/1/127173248/new-pic-4-low-beta-ratio_orig.jpg)
+
+![Image](https://www.researchgate.net/publication/335660398/figure/fig2/AS%3A800115358961664%401567773775117/Relation-of-the-Reynolds-Number-with-discharge-coefficient-for-orifice-plates-12.png)
+
+![Image](https://www.researchgate.net/publication/252556636/figure/fig11/AS%3A667066948415499%401536052562429/The-role-of-cavitation-and-the-effect-of-orifice-length-2.png)
+
+![Image](https://www.valmet.com/globalassets/flow-control/flow-control-manual/figures/fig-39.png?height=327&quality=80&width=1024)
+
+Operasi orifice harus berada dalam batas parameter tertentu agar hubungan matematis tetap valid.
+
+Parameter utama yang membatasi operasi:
+
+- Reynolds number
+- beta ratio
+- pressure drop
+- velocity through bore
+
+---
+
+### Model
+
+Reynolds number:
+
+$$
+Re = \frac{\rho V D}{\mu}
+$$
+
+Hubungan discharge coefficient dengan Reynolds number menunjukkan bahwa pada (Re) rendah nilai (C_d) berubah.
+
+Beta ratio:
+
+$$
+\beta = \frac{d}{D}
+$$
+
+Hubungan diferensial tekanan dengan beta ratio:
+
+$$
+\Delta P \propto \frac{1}{(1-\beta^4)}
+$$
+
+Semakin kecil beta ratio, restriksi semakin besar dan differential pressure meningkat.
+
+---
+
+### Parameter
+
+| Parameter | Description           | Typical Range |
+| --------- | --------------------- | ------------- |
+| (Re)      | Reynolds number       | > 10000       |
+| (β)       | Diameter ratio        | 0.3 – 0.7     |
+| (V)       | Velocity in pipe      | m/s           |
+| (V_o)     | Velocity in bore      | m/s           |
+| (ΔP)      | Differential pressure | Pa            |
+
+---
+
+### Engineering Graph
+
+Hubungan penting yang membatasi operasi:
+
+1. **Reynolds number vs discharge coefficient**
+
+Pada Reynolds rendah nilai (C_d) berubah sehingga akurasi pengukuran menurun.
+
+2. **Beta ratio vs differential pressure**
+
+Beta ratio kecil menghasilkan differential pressure tinggi.
+
+3. **Pressure drop vs cavitation**
+
+Jika tekanan turun di bawah vapor pressure fluida maka cavitation dapat terjadi.
+
+4. **Velocity vs erosion**
+
+Kecepatan tinggi di bore meningkatkan potensi erosi pada plate.
+
+---
+
+### Example Calculation
+
+**Input data**
+
+$$
+D = 0.1\ m
+$$
+
+$$
+d = 0.04\ m
+$$
+
+Flow rate:
+
+$$
+Q = 0.01\ m^3/s
+$$
+
+---
+
+**Substitution**
+
+Pipe area:
+
+$$
+A_p = 0.00785\ m^2
+$$
+
+Velocity in pipe:
+
+$$
+V = \frac{Q}{A_p}
+$$
+
+$$
+V = 1.27\ m/s
+$$
+
+Bore area:
+
+$$
+A_o = \frac{\pi d^2}{4}
+$$
+
+$$
+A_o = 0.001257\ m^2
+$$
+
+Velocity in bore:
+
+$$
+V_o = \frac{Q}{A_o}
+$$
+
+$$
+V_o = 7.96\ m/s
+$$
+
+---
+
+**Result**
+
+$$
+V = 1.27\ m/s
+$$
+
+$$
+V_o = 7.96\ m/s
+$$
+
+Kecepatan pada bore sekitar **6 kali kecepatan pipa** sehingga potensi erosi meningkat pada beta ratio kecil.
+
+---
+
+# 6. Inspection Points
+
+### Engineering Diagram
+
+![Image](https://www.deltafluid.fr/files/Produits/plaque-monotrou-191015-recentree1.png)
+
+![Image](https://www.researchgate.net/publication/259172867/figure/fig2/AS%3A267705701892099%401440837421019/a-Valve-seat-recess-tilted-b-erosion-in-orifice-bore-c-valve-A-operating-pin-d.png)
+
+![Image](https://www.omega.co.uk/literature/transactions/volume4/Images/07_Fig_04_l.GIF)
+
+![Image](https://www.omega.co.uk/literature/transactions/volume4/Images/07_Fig_05_l.GIF)
+
+Inspeksi dilakukan untuk memastikan geometri orifice tetap sesuai desain.
+
+Titik inspeksi utama:
+
+- kondisi bore
+- kondisi edge upstream
+- orientasi plate
+- fouling atau deposit
+
+---
+
+### Model
+
+Perubahan geometri bore akan mempengaruhi area orifice:
+
+$$
+A_o = \frac{\pi d^2}{4}
+$$
+
+Jika diameter berubah akibat erosi:
+
+$$
+d_{actual} > d_{design}
+$$
+
+maka flow yang dihitung dari differential pressure menjadi tidak akurat.
+
+---
+
+### Parameter
+
+| Parameter         | Description                   | Unit |
+| ----------------- | ----------------------------- | ---- |
+| (d_design)        | Bore diameter design          | m    |
+| (d_actual)        | Bore diameter actual          | m    |
+| edge condition    | Sharpness of upstream edge    | —    |
+| fouling thickness | Deposit thickness             | mm   |
+| plate orientation | Alignment with flow direction | —    |
+
+---
+
+### Engineering Graph
+
+Perubahan diameter bore menghasilkan perubahan area:
+
+$$
+A_o \propto d^2
+$$
+
+Perubahan kecil diameter menghasilkan perubahan area yang lebih besar.
+
+Jika bore membesar:
+
+- area meningkat
+- differential pressure turun
+- flow terbaca lebih rendah dari aktual
+
+---
+
+### Example Calculation
+
+**Input data**
+
+Design bore diameter:
+
+$$
+d = 0.050\ m
+$$
+
+Erosion increase:
+
+$$
+d_{actual} = 0.052\ m
+$$
+
+---
+
+**Substitution**
+
+Design area:
+
+$$
+A_o = \frac{\pi (0.050)^2}{4}
+$$
+
+$$
+A_o = 0.001963\ m^2
+$$
+
+Actual area:
+
+$$
+A_{actual} = \frac{\pi (0.052)^2}{4}
+$$
+
+$$
+A_{actual} = 0.002124\ m^2
+$$
+
+---
+
+**Result**
+
+Area increase:
+
+$$
+\frac{A_{actual}}{A_o} = 1.082
+$$
+
+Area bertambah sekitar **8.2%** sehingga hubungan flow dan differential pressure berubah.
+
+---
+
+Silakan review **Respon 4**.
+
+---
+
+## 7. Example Engineering Calculation
+
+### Engineering Diagram
+
+![Image](https://www.researchgate.net/publication/331438263/figure/fig1/AS%3A731632315146241%401551446145292/An-orifice-plate-flow-meter-with-vena-contracta.jpg)
+
+![Image](https://www.omega.co.uk/literature/transactions/volume4/Images/07_Fig_06_l.GIF)
+
+Gambar pertama dipakai untuk menetapkan geometri dasar perhitungan: **pipe ID, bore diameter, upstream pressure, downstream pressure, dan vena contracta**.
+Gambar kedua dipakai untuk memeriksa konsistensi hubungan **flow–differential pressure** pada hasil sizing.
+
+Subtopik perhitungan pada bagian ini:
+
+- orifice sizing
+- differential pressure check
+- Reynolds number verification
+
+---
+
+### Model
+
+Persamaan geometri:
+
+$$
+\beta = \frac{d}{D}
+$$
+
+$$
+A_o = \frac{\pi d^2}{4}
+$$
+
+$$
+A_p = \frac{\pi D^2}{4}
+$$
+
+Persamaan flow orifice:
+
+$$
+Q = C_d A_o \sqrt{\frac{2\Delta P}{\rho(1-\beta^4)}}
+$$
+
+Bentuk sizing untuk mencari bore area:
+
+$$
+A_o = \frac{Q}{C_d \sqrt{\frac{2\Delta P}{\rho(1-\beta^4)}}}
+$$
+
+Persamaan Reynolds number:
+
+$$
+Re = \frac{\rho V D}{\mu}
+$$
+
+dengan:
+
+$$
+V = \frac{Q}{A_p}
+$$
+
+---
+
+### Parameter
+
+| Parameter  | Description            | Typical Unit |
+| ---------- | ---------------------- | ------------ |
+| (Q)        | Volumetric flow rate   | m³/s         |
+| (\Delta P) | Differential pressure  | Pa           |
+| (C_d)      | Discharge coefficient  | –            |
+| (\rho)     | Fluid density          | kg/m³        |
+| (\mu)      | Dynamic viscosity      | Pa·s         |
+| (D)        | Pipe internal diameter | m            |
+| (d)        | Orifice bore diameter  | m            |
+| (\beta)    | Diameter ratio (d/D)   | –            |
+| (A_o)      | Orifice bore area      | m²           |
+| (A_p)      | Pipe flow area         | m²           |
+| (V)        | Average pipe velocity  | m/s          |
+| (Re)       | Reynolds number        | –            |
+
+---
+
+### Engineering Graph
+
+Hubungan yang diverifikasi pada hasil perhitungan:
+
+1. **Flow vs Differential Pressure**
+
+$$
+Q \propto \sqrt{\Delta P}
+$$
+
+2. **Differential Pressure vs Flow**
+
+$$
+\Delta P \propto Q^2
+$$
+
+3. **Reynolds verification**
+
+Jika (Re) cukup tinggi, perubahan (C_d) terhadap Reynolds menjadi lebih kecil dan model orifice lebih stabil untuk dipakai.
+
+---
+
+### Example Calculation
+
+#### Input data
+
+Fluida: water
+
+$$
+\rho = 1000 ; \text{kg/m}^3
+$$
+
+$$
+\mu = 1.0 \times 10^{-3} ; \text{Pa·s}
+$$
+
+Pipe internal diameter:
+
+$$
+D = 0.1023 ; \text{m}
+$$
+
+Target normal flow:
+
+$$
+Q = 0.010 ; \text{m}^3/\text{s}
+$$
+
+Target differential pressure pada normal flow:
+
+$$
+\Delta P = 12{,}000 ; \text{Pa}
+$$
+
+Assumed discharge coefficient:
+
+$$
+C_d = 0.61
+$$
+
+Untuk sizing awal dipilih:
+
+$$
+\beta = 0.60
+$$
+
+---
+
+#### Substitusi ke model
+
+##### 1. Hitung bore diameter
+
+$$
+d = \beta D = 0.60 \times 0.1023 = 0.06138 ; \text{m}
+$$
+
+$$
+d = 61.38 ; \text{mm}
+$$
+
+##### 2. Hitung orifice area
+
+$$
+A_o = \frac{\pi d^2}{4}
+$$
+
+$$
+A_o = \frac{\pi (0.06138)^2}{4}
+$$
+
+$$
+A_o = 0.002959 ; \text{m}^2
+$$
+
+##### 3. Hitung pipe flow area
+
+$$
+A_p = \frac{\pi D^2}{4}
+$$
+
+$$
+A_p = \frac{\pi (0.1023)^2}{4}
+$$
+
+$$
+A_p = 0.008221 ; \text{m}^2
+$$
+
+##### 4. Differential pressure check
+
+Hitung faktor geometri:
+
+$$
+1-\beta^4 = 1-(0.60)^4
+$$
+
+$$
+1-\beta^4 = 1-0.1296 = 0.8704
+$$
+
+Gunakan persamaan:
+
+$$
+\Delta P = \frac{\rho}{2}\left(\frac{Q}{C_d A_o}\right)^2(1-\beta^4)
+$$
+
+Substitusi:
+
+$$
+\Delta P
+\frac{1000}{2}
+\left(
+\frac{0.010}{0.61 \times 0.002959}
+\right)^2
+\times 0.8704
+$$
+
+$$
+0.61 \times 0.002959 = 0.001805
+$$
+
+$$
+\frac{0.010}{0.001805} = 5.540
+$$
+
+$$
+(5.540)^2 = 30.69
+$$
+
+$$
+\Delta P = 500 \times 30.69 \times 0.8704
+$$
+
+$$
+\Delta P = 13{,}356 ; \text{Pa}
+$$
+
+$$
+\Delta P \approx 13.36 ; \text{kPa}
+$$
+
+Hasil ini dekat dengan target awal 12 kPa dan masih layak untuk sizing awal.
+
+##### 5. Hitung kecepatan rata-rata di pipa
+
+$$
+V = \frac{Q}{A_p}
+$$
+
+$$
+V = \frac{0.010}{0.008221}
+$$
+
+$$
+V = 1.216 ; \text{m/s}
+$$
+
+##### 6. Reynolds number verification
+
+$$
+Re = \frac{\rho V D}{\mu}
+$$
+
+$$
+Re = \frac{1000 \times 1.216 \times 0.1023}{1.0 \times 10^{-3}}
+$$
+
+$$
+Re = 124{,}400
+$$
+
+---
+
+#### Result
+
+Orifice sizing result:
+
+$$
+d = 61.38 ; \text{mm}
+$$
+
+$$
+\beta = 0.60
+$$
+
+$$
+A_o = 0.002959 ; \text{m}^2
+$$
+
+Differential pressure check:
+
+$$
+\Delta P \approx 13.36 ; \text{kPa at } Q=0.010 ; \text{m}^3/\text{s}
+$$
+
+Reynolds verification:
+
+$$
+V = 1.216 ; \text{m/s}
+$$
+
+$$
+Re \approx 1.244 \times 10^5
+$$
+
+Kesimpulan perhitungan:
+
+- bore hasil sizing: **61.38 mm**
+- beta ratio: **0.60**
+- DP pada normal flow: **13.36 kPa**
+- Reynolds number: **124,400**
+- hasil sizing dapat dipakai sebagai basis evaluasi lanjutan untuk instalasi dan operasi.
+
+---
+
+<small>
+  **_Catatan Penyusunan_** Artikel ini disusun sebagai materi edukasi dan
+  referensi umum berdasarkan berbagai sumber pustaka, praktik lapangan, serta
+  bantuan alat penulisan. Pembaca disarankan untuk melakukan verifikasi lanjutan
+  dan penyesuaian sesuai dengan kondisi serta kebutuhan masing-masing sistem.
+</small>

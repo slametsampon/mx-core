@@ -1,0 +1,507 @@
+---
+title: Coupling & Shaft Connection in Rotating Equipment
+authors: ['sam']
+date: '2026-03-13'
+tags:
+  [
+    'coupling',
+    'shaft-connection',
+    'shaft-alignment',
+    'power-transmission',
+    'rotating-equipment',
+    'maintenance-engineering',
+  ]
+draft: false
+summary: Artikel ini membahas peran coupling dan koneksi shaft dalam sistem transmisi daya pada rotating equipment. Pembahasan meliputi jenis-jenis coupling yang digunakan untuk menghubungkan dua shaft, kapasitas torsi coupling yang menentukan kemampuan transmisi daya, prinsip pemasangan hub menggunakan interference fit atau shrink fit, serta dasar-dasar shaft alignment. Pemahaman terhadap topik ini penting untuk menjaga keandalan operasi pompa, motor listrik, kompresor, dan gearbox. Dengan memilih coupling yang tepat, mengontrol interferensi pemasangan, serta melakukan alignment yang akurat, engineer dan teknisi dapat mengurangi getaran, mencegah kerusakan bearing, dan meningkatkan umur komponen transmisi daya.
+---
+
+# **_Artikel 03: Coupling & Shaft Connection in Rotating Equipment_**
+
+_(Coupling Types, Torque Capacity, Shrink Fit, Alignment)_
+
+---
+
+- [**_Artikel 03: Coupling \& Shaft Connection in Rotating Equipment_**](#artikel-03-coupling--shaft-connection-in-rotating-equipment)
+- [Coupling Types](#coupling-types)
+  - [1. Problem di Lapangan](#1-problem-di-lapangan)
+  - [2. Komponen](#2-komponen)
+  - [3. Mekanisme Kerja](#3-mekanisme-kerja)
+  - [4. Formula Utama](#4-formula-utama)
+  - [5. Contoh Calculation](#5-contoh-calculation)
+  - [6. Failure Mode](#6-failure-mode)
+  - [7. Insight Maintenance](#7-insight-maintenance)
+- [Coupling Torque Capacity](#coupling-torque-capacity)
+  - [1. Problem di Lapangan](#1-problem-di-lapangan-1)
+  - [2. Komponen](#2-komponen-1)
+  - [3. Mekanisme Kerja](#3-mekanisme-kerja-1)
+  - [4. Formula Utama](#4-formula-utama-1)
+  - [5. Contoh Calculation](#5-contoh-calculation-1)
+  - [6. Failure Mode](#6-failure-mode-1)
+  - [7. Insight Maintenance](#7-insight-maintenance-1)
+- [Interference Fit / Shrink Fit](#interference-fit--shrink-fit)
+  - [1. Problem di Lapangan](#1-problem-di-lapangan-2)
+  - [2. Komponen](#2-komponen-2)
+  - [3. Mekanisme Kerja](#3-mekanisme-kerja-2)
+  - [4. Formula Utama](#4-formula-utama-2)
+  - [5. Contoh Calculation](#5-contoh-calculation-2)
+  - [6. Failure Mode](#6-failure-mode-2)
+  - [7. Insight Maintenance](#7-insight-maintenance-2)
+- [Shaft Alignment Basics](#shaft-alignment-basics)
+  - [1. Problem di Lapangan](#1-problem-di-lapangan-3)
+  - [2. Komponen](#2-komponen-3)
+  - [3. Mekanisme Kerja](#3-mekanisme-kerja-3)
+  - [4. Formula Utama](#4-formula-utama-3)
+  - [5. Contoh Calculation](#5-contoh-calculation-3)
+  - [6. Failure Mode](#6-failure-mode-3)
+  - [7. Insight Maintenance](#7-insight-maintenance-3)
+
+---
+
+# Coupling Types
+
+## 1. Problem di Lapangan
+
+Pada sistem rotating equipment, motor dan mesin jarang berada dalam kondisi alignment sempurna. Jika koneksi antara motor dan mesin terlalu kaku, getaran dan beban tambahan dapat muncul pada shaft dan bearing. Oleh karena itu pemilihan jenis coupling yang tepat sangat penting untuk menjaga keandalan sistem transmisi daya.
+
+<ResourceBox
+  title="Artikel terkait:"
+  items={[
+    {
+      name: 'README',
+      href: '/blog/maintenance/mechanical/machine-elements/README',
+      description: 'README - Machine Elements',
+    },
+  ]}
+/>
+
+---
+
+## 2. Komponen
+
+Komponen dalam sistem coupling:
+
+- motor shaft
+- driven shaft
+- coupling hub
+- flexible element (jika ada)
+
+Jenis coupling yang umum digunakan:
+
+- rigid coupling
+- flexible coupling
+- gear coupling
+- grid coupling
+- jaw coupling
+
+---
+
+## 3. Mekanisme Kerja
+
+![Image](https://www.researchgate.net/publication/360795154/figure/fig1/AS%3A11431281095595194%401667953050284/The-exploded-diagram-of-a-typical-flexible-jaw-coupling.ppm)
+
+![Image](https://ars.els-cdn.com/content/image/3-s2.0-B978012809895000003X-f03-134-9780128098950.jpg)
+
+![Image](https://cpimg.tistatic.com/3455030/b/6/grid-coupling.jpg)
+
+![Image](https://image.made-in-china.com/365f3j00RriWlMDICmkc/Js-Series-Heavy-Duty-Industrial-Large-Transmission-Torque-Flexible-Conveyor-Spline-Shaft-Snake-Spring-Grid-Coupling.webp)
+
+Coupling berfungsi menghubungkan dua shaft untuk mentransmisikan torsi dari motor ke mesin yang digerakkan. Pada rigid coupling, kedua shaft dihubungkan secara langsung tanpa elemen fleksibel sehingga hampir tidak ada toleransi terhadap misalignment.
+
+Sebaliknya, flexible coupling menggunakan elemen elastis seperti grid, gear teeth, atau elastomer untuk menyerap **misalignment, shock load, dan getaran** yang terjadi selama operasi.
+
+Pemilihan jenis coupling sangat mempengaruhi stabilitas sistem transmisi daya serta umur komponen seperti shaft dan bearing.
+
+---
+
+## 4. Formula Utama
+
+Hubungan antara daya, kecepatan rotasi, dan torsi:
+
+$$
+T = \frac{9550P}{n}
+$$
+
+Dimana:
+
+- (T) = torque (Nm)
+- (P) = power (kW)
+- (n) = rotational speed (rpm)
+
+Rumus ini digunakan untuk menentukan **torsi yang harus ditransmisikan oleh coupling**.
+
+---
+
+## 5. Contoh Calculation
+
+Diketahui:
+
+Power motor = **90 kW**
+Speed = **1500 rpm**
+
+Perhitungan torsi:
+
+$$
+T = \frac{9550 \times 90}{1500}
+$$
+
+$$
+T \approx 573 , Nm
+$$
+
+Interpretasi:
+
+Coupling harus mampu mentransmisikan **minimal 573 Nm torque** dalam kondisi operasi normal.
+
+Dalam praktik desain biasanya digunakan **service factor**, sehingga kapasitas coupling harus lebih besar dari nilai tersebut.
+
+---
+
+## 6. Failure Mode
+
+Kegagalan coupling yang sering terjadi:
+
+- flexible element wear
+- hub cracking
+- bolt failure
+- coupling misalignment damage
+
+Kerusakan ini sering disebabkan oleh **misalignment, overload, atau pelumasan yang tidak memadai** pada coupling tertentu.
+
+---
+
+## 7. Insight Maintenance
+
+- flexible coupling dapat mengurangi getaran akibat misalignment
+- gear coupling membutuhkan pelumasan yang baik
+- inspeksi coupling penting dalam **predictive maintenance**
+- kerusakan coupling sering menjadi indikasi **alignment problem**
+
+---
+
+# Coupling Torque Capacity
+
+## 1. Problem di Lapangan
+
+Coupling yang tidak memiliki kapasitas torsi yang cukup dapat mengalami kerusakan saat mesin start atau ketika terjadi beban berlebih. Pada banyak kasus di lapangan, coupling gagal bukan karena operasi normal, tetapi karena **start-up torque, shock load, atau transient load** yang melebihi rating desain. Oleh karena itu penting untuk memastikan bahwa coupling memiliki **kapasitas torsi yang lebih besar dari torsi operasi sistem**.
+
+---
+
+## 2. Komponen
+
+Komponen yang mempengaruhi kapasitas torsi coupling:
+
+- coupling hub
+- flexible element
+- shaft diameter
+- key connection
+
+Selain itu, material hub dan desain elemen fleksibel juga sangat menentukan kemampuan coupling dalam mentransmisikan torsi.
+
+---
+
+## 3. Mekanisme Kerja
+
+![Image](https://www.iqsdirectory.com/articles/shaft-couplings/shock-absorption-and-vibration-dampening-by-shaft-couplings.jpg)
+
+![Image](https://www.researchgate.net/publication/307931130/figure/fig3/AS%3A669651369472010%401536668736340/a-Spline-coupling-design-b-Test-bench-schematics.png)
+
+![Image](https://www.researchgate.net/publication/360620180/figure/fig2/AS%3A11431281213157027%401702970637129/The-coupling-design-and-its-torsional-stiffness-a-The-main-parts-of-the-coupling-from.tif)
+
+Torsi yang dihasilkan motor diteruskan melalui hub coupling ke shaft mesin yang digerakkan. Pada flexible coupling, elemen elastis berfungsi mentransmisikan torsi sekaligus menyerap shock load dan sedikit misalignment.
+
+Kapasitas torsi coupling ditentukan oleh:
+
+- kekuatan material hub
+- kekuatan elemen fleksibel
+- ukuran shaft dan key
+- geometri coupling
+
+Jika torsi yang ditransmisikan melebihi kapasitas desain coupling, maka komponen seperti **key, bolt, atau flexible element** dapat mengalami kerusakan.
+
+---
+
+## 4. Formula Utama
+
+Hubungan antara daya dan torsi pada sistem rotasi:
+
+$$
+T = \frac{P}{\omega}
+$$
+
+Dimana:
+
+- (T) = torque (Nm)
+- (P) = power (W)
+- ( \omega ) = angular speed (rad/s)
+
+Hubungan antara kecepatan rotasi dan angular speed:
+
+$$
+\omega = \frac{2\pi n}{60}
+$$
+
+Dimana:
+
+- (n) = rotational speed (rpm)
+
+---
+
+## 5. Contoh Calculation
+
+Diketahui:
+
+Power motor (P) = **75 kW = 75000 W**
+Speed (n) = **1500 rpm**
+
+Hitung angular speed:
+
+$$
+\omega = \frac{2\pi \times 1500}{60}
+$$
+
+$$
+\omega \approx 157 , rad/s
+$$
+
+Perhitungan torsi:
+
+$$
+T = \frac{75000}{157}
+$$
+
+$$
+T \approx 478 , Nm
+$$
+
+Interpretasi:
+
+Coupling harus memiliki **kapasitas torsi lebih besar dari 478 Nm**, biasanya dengan tambahan **service factor** untuk mengantisipasi beban dinamis.
+
+---
+
+## 6. Failure Mode
+
+Kerusakan yang sering terjadi akibat kapasitas torsi yang tidak mencukupi:
+
+- coupling shear
+- key failure
+- hub deformation
+- bolt loosening
+
+Kerusakan ini sering terjadi saat **start-up atau shock load**.
+
+---
+
+## 7. Insight Maintenance
+
+- coupling rating harus lebih besar dari **service torque**
+- shock load dapat meningkatkan torsi sesaat secara signifikan
+- start-up torque sering lebih tinggi dari steady torque
+- inspeksi coupling penting pada sistem dengan **beban fluktuatif**.
+
+---
+
+# Interference Fit / Shrink Fit
+
+## 1. Problem di Lapangan
+
+Pada banyak rotating equipment, hub seperti coupling, gear, atau pulley dipasang pada shaft menggunakan metode **interference fit**. Metode ini memungkinkan transmisi torsi tanpa menggunakan key. Namun jika nilai interferensi terlalu kecil, hub dapat mengalami slip selama operasi. Sebaliknya, interferensi yang terlalu besar dapat menimbulkan tegangan tinggi pada shaft maupun hub yang berpotensi menyebabkan retak atau deformasi.
+
+---
+
+## 2. Komponen
+
+Komponen utama dalam sistem shrink fit:
+
+- shaft
+- hub (coupling / gear / pulley)
+- mounting equipment
+
+Pada beberapa aplikasi, pemasangan dilakukan dengan **heating method** untuk memperbesar diameter hub sebelum dipasang pada shaft.
+
+---
+
+## 3. Mekanisme Kerja
+
+![Image](https://www.researchgate.net/publication/337539445/figure/fig1/AS%3A829484798324742%401574775995882/Principle-sketch-of-an-interference-fit.png)
+
+![Image](https://www.researchgate.net/publication/230315810/figure/fig5/AS%3A281784936878130%401444194172950/Shrink-fit-assembly-and-nomenclature.png)
+
+![Image](https://www.researchgate.net/publication/373168454/figure/fig1/AS%3A11431281182017008%401692274500606/Cross-section-of-an-interference-fit-hub-and-hollow-shaft-with-principal-stresses.png)
+
+![Image](https://www.researchgate.net/publication/237793130/figure/fig4/AS%3A669373673000985%401536602528942/Press-fit-pressure-distributions-along-the-hub-bore-while-d-D-04-and-e-0001-shaft.png)
+
+Pada interference fit, diameter shaft dibuat sedikit lebih besar daripada diameter lubang hub. Ketika hub dipasang pada shaft, terjadi **tekanan kontak antara kedua permukaan**.
+
+Dalam metode **shrink fit**, hub biasanya dipanaskan sehingga diameternya sedikit mengembang. Setelah hub dipasang pada shaft dan suhu kembali normal, hub menyusut dan menghasilkan tekanan kontak yang kuat.
+
+Tekanan kontak ini menghasilkan **gaya gesek** yang mampu mentransmisikan torsi antara shaft dan hub tanpa slip.
+
+---
+
+## 4. Formula Utama
+
+Hubungan sederhana antara tekanan kontak dan interferensi dapat dituliskan sebagai:
+
+$$
+p \propto \delta
+$$
+
+Dimana:
+
+- (p) = contact pressure antara shaft dan hub
+- ( \delta ) = nilai interferensi antara diameter shaft dan hub
+
+Semakin besar nilai interferensi, semakin besar tekanan kontak yang dihasilkan.
+
+---
+
+## 5. Contoh Calculation
+
+Misalkan interferensi antara shaft dan hub meningkat dua kali lipat.
+
+Dari hubungan:
+
+$$
+p \propto \delta
+$$
+
+maka tekanan kontak juga akan meningkat secara signifikan.
+
+Interpretasi:
+
+Peningkatan tekanan kontak akan meningkatkan **kapasitas transmisi torsi**, tetapi juga meningkatkan **tegangan pada shaft dan hub**.
+
+Karena itu nilai interferensi harus dipilih dengan hati-hati sesuai standar desain mekanik.
+
+---
+
+## 6. Failure Mode
+
+Masalah yang sering terjadi pada sistem interference fit:
+
+- hub slip
+- shaft crack
+- hub fracture
+- fretting corrosion
+
+Kegagalan ini sering terjadi jika interferensi tidak sesuai atau jika terjadi **beban torsi yang melebihi kapasitas sambungan**.
+
+---
+
+## 7. Insight Maintenance
+
+- pemasangan sering menggunakan **heating method** untuk memperbesar diameter hub
+- kontrol nilai interferensi sangat penting saat machining
+- hub slip biasanya menunjukkan **interferensi terlalu kecil**
+- inspeksi fretting corrosion dapat menunjukkan adanya **micro-movement antara shaft dan hub**
+
+---
+
+# Shaft Alignment Basics
+
+## 1. Problem di Lapangan
+
+Misalignment antara motor dan mesin merupakan salah satu penyebab utama getaran pada rotating equipment. Jika alignment tidak tepat, gaya tambahan akan muncul pada shaft, coupling, dan bearing. Beban tambahan ini dapat mempercepat keausan bearing, merusak coupling, serta meningkatkan getaran dan temperatur mesin.
+
+---
+
+## 2. Komponen
+
+Komponen dalam sistem alignment:
+
+- motor
+- coupling
+- driven machine
+- shaft
+- bearing
+
+---
+
+## 3. Mekanisme Kerja
+
+![Image](https://www.researchgate.net/publication/342188040/figure/fig1/AS%3A905667175014400%401592939289398/Types-of-misalignment-shaft.png)
+
+![Image](https://media.licdn.com/dms/image/v2/D5622AQEDabgGEKwM3g/feedshare-shrink_800/feedshare-shrink_800/0/1725003496671?e=2147483647&t=QdmxeWfUyWaSsD0JRSzjwJeDU0GNoWna57SHzawDztw&v=beta)
+
+![Image](https://media.licdn.com/dms/image/v2/D5622AQECXZa1V6TM_g/feedshare-shrink_2048_1536/feedshare-shrink_2048_1536/0/1723428560253?e=2147483647&t=OQ9xX2j9WEVY4x-0EJaH0YlIPNd8iK7Ssmk1rEnAz_Y&v=beta)
+
+Alignment memastikan bahwa sumbu rotasi motor dan mesin berada pada garis yang sama. Jika posisi kedua shaft tidak sejajar, maka terjadi **misalignment**.
+
+Secara umum terdapat dua jenis misalignment utama:
+
+- **Parallel (offset) misalignment** — kedua shaft sejajar tetapi tidak berada pada satu garis lurus
+- **Angular misalignment** — kedua shaft membentuk sudut tertentu
+
+Misalignment menyebabkan coupling harus menyesuaikan posisi shaft selama rotasi. Hal ini menghasilkan gaya dinamis tambahan yang bekerja pada **bearing dan shaft**.
+
+---
+
+## 4. Formula Utama
+
+Definisi sederhana offset misalignment dapat dituliskan sebagai:
+
+$$
+Offset = x_1 - x_2
+$$
+
+Dimana:
+
+- (x_1) = posisi shaft motor
+- (x_2) = posisi shaft mesin
+
+Nilai offset yang lebih besar menunjukkan tingkat misalignment yang lebih besar.
+
+---
+
+## 5. Contoh Calculation
+
+Misalkan:
+
+Posisi shaft motor (x_1) = **0.20 mm**
+Posisi shaft mesin (x_2) = **0.05 mm**
+
+Perhitungan offset:
+
+$$
+Offset = 0.20 - 0.05
+$$
+
+$$
+Offset = 0.15 , mm
+$$
+
+Interpretasi:
+
+Semakin besar nilai offset, semakin besar gaya tambahan yang bekerja pada coupling dan bearing.
+
+---
+
+## 6. Failure Mode
+
+Kerusakan yang sering terjadi akibat misalignment:
+
+- bearing overheating
+- coupling wear
+- shaft fatigue
+- vibration increase
+
+Dalam banyak kasus industri, misalignment merupakan penyebab utama kerusakan prematur pada bearing.
+
+---
+
+## 7. Insight Maintenance
+
+- alignment harus diperiksa setelah instalasi mesin
+- **thermal growth** dapat mempengaruhi alignment saat mesin panas
+- laser alignment memberikan hasil paling akurat dibanding metode tradisional
+- inspeksi alignment merupakan bagian penting dari **predictive maintenance program**
+
+---
+
+<small>
+  **_Catatan Penyusunan_** Artikel ini disusun sebagai materi edukasi dan
+  referensi umum berdasarkan berbagai sumber pustaka, praktik lapangan, serta
+  bantuan alat penulisan. Pembaca disarankan untuk melakukan verifikasi lanjutan
+  dan penyesuaian sesuai dengan kondisi serta kebutuhan masing-masing sistem.
+</small>

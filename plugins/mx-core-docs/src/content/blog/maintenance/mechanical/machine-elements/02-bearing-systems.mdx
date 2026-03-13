@@ -1,0 +1,598 @@
+---
+title: Bearing Systems in Rotating Equipment
+authors: ['sam']
+date: '2026-03-13'
+tags:
+  [
+    'bearing',
+    'rolling-bearing',
+    'journal-bearing',
+    'lubrication',
+    'rotating-equipment',
+    'maintenance-engineering',
+  ]
+draft: false
+summary: Artikel ini membahas prinsip dasar sistem bearing pada rotating equipment, termasuk perhitungan umur bearing, analisis kerusakan rolling bearing, pelumasan pada journal bearing, metode pemasangan bearing, serta dasar pelumasan bearing. Pemahaman terhadap mekanisme beban kontak, film pelumas, dan toleransi pemasangan sangat penting untuk menjaga keandalan operasi pompa, motor listrik, kompresor, dan gearbox. Dengan memahami pola kegagalan bearing serta prinsip pelumasan dan instalasi yang benar, engineer dan teknisi dapat mencegah kerusakan dini, meningkatkan umur bearing, serta mengurangi downtime peralatan industri.
+---
+
+# **_Artikel 02: Bearing Systems in Rotating Equipment_**
+
+_(Life, Failure, Lubrication, Installation)_
+
+---
+
+- [**_Artikel 02: Bearing Systems in Rotating Equipment_**](#artikel-02-bearing-systems-in-rotating-equipment)
+- [Bearing Life Calculation](#bearing-life-calculation)
+  - [1. Problem di Lapangan](#1-problem-di-lapangan)
+  - [2. Komponen](#2-komponen)
+  - [3. Mekanisme Kerja](#3-mekanisme-kerja)
+  - [4. Formula Utama](#4-formula-utama)
+  - [5. Contoh Calculation](#5-contoh-calculation)
+  - [6. Failure Mode](#6-failure-mode)
+  - [7. Insight Maintenance](#7-insight-maintenance)
+- [Rolling Bearing Failure Analysis](#rolling-bearing-failure-analysis)
+  - [1. Problem di Lapangan](#1-problem-di-lapangan-1)
+  - [2. Komponen](#2-komponen-1)
+  - [3. Mekanisme Kerja](#3-mekanisme-kerja-1)
+  - [4. Formula Utama](#4-formula-utama-1)
+  - [5. Contoh Calculation](#5-contoh-calculation-1)
+  - [6. Failure Mode](#6-failure-mode-1)
+  - [7. Insight Maintenance](#7-insight-maintenance-1)
+- [Journal Bearing Lubrication](#journal-bearing-lubrication)
+  - [1. Problem di Lapangan](#1-problem-di-lapangan-2)
+  - [2. Komponen](#2-komponen-2)
+  - [3. Mekanisme Kerja](#3-mekanisme-kerja-2)
+  - [4. Formula Utama](#4-formula-utama-2)
+  - [5. Contoh Calculation](#5-contoh-calculation-2)
+  - [6. Failure Mode](#6-failure-mode-2)
+  - [7. Insight Maintenance](#7-insight-maintenance-2)
+- [Bearing Installation \& Fit](#bearing-installation--fit)
+  - [1. Problem di Lapangan](#1-problem-di-lapangan-3)
+  - [2. Komponen](#2-komponen-3)
+  - [3. Mekanisme Kerja](#3-mekanisme-kerja-3)
+  - [4. Formula Utama](#4-formula-utama-3)
+  - [5. Contoh Calculation](#5-contoh-calculation-3)
+  - [6. Failure Mode](#6-failure-mode-3)
+  - [7. Insight Maintenance](#7-insight-maintenance-3)
+- [Bearing Lubrication Fundamentals](#bearing-lubrication-fundamentals)
+  - [1. Problem di Lapangan](#1-problem-di-lapangan-4)
+  - [2. Komponen](#2-komponen-4)
+  - [3. Mekanisme Kerja](#3-mekanisme-kerja-4)
+  - [4. Formula Utama](#4-formula-utama-4)
+  - [5. Contoh Calculation](#5-contoh-calculation-4)
+  - [6. Failure Mode](#6-failure-mode-4)
+  - [7. Insight Maintenance](#7-insight-maintenance-4)
+
+---
+
+# Bearing Life Calculation
+
+## 1. Problem di Lapangan
+
+Bearing sering menjadi komponen pertama yang mengalami kegagalan pada rotating equipment. Tanpa memahami konsep umur bearing, teknisi sulit menentukan interval penggantian yang tepat. Perhitungan umur bearing membantu memperkirakan masa operasi sebelum terjadi fatigue pada raceway dan rolling element.
+
+<ResourceBox
+  title="Artikel terkait:"
+  items={[
+    {
+      name: 'README',
+      href: '/blog/maintenance/mechanical/machine-elements/README',
+      description: 'README - Machine Elements',
+    },
+  ]}
+/>
+
+---
+
+## 2. Komponen
+
+Komponen utama dalam rolling bearing:
+
+- inner ring
+- outer ring
+- rolling element (ball / roller)
+- cage
+- shaft
+- housing
+
+---
+
+## 3. Mekanisme Kerja
+
+![Image](https://images.openai.com/static-rsc-3/tb8WKhEcuygpcj8FvIpnr11LoBv12Yf8n78CPPLXFRJJH4WphQFP3KTrHv8L_aXJbzIc5cR_d1QlnWDYXDgj0vJKhK_MAUPUucPfAnVEUmc?purpose=fullsize&v=1)
+
+![Image](https://images.openai.com/static-rsc-3/SKPeu5bLFfDFJnWPJhn9zdXiLInuDyz8zPtXeeYw4pXN1WlaqisgZ2hcSXxeBgDx_kvxrSgoiJNy7MIzydDU0iqln_ejzr7ANfsaEi1HJIw?purpose=fullsize&v=1)
+
+![Image](https://www.researchgate.net/publication/42387148/figure/fig8/AS%3A1097003224317954%401638557358048/Cross-section-of-a-ball-bearing.jpg)
+
+Rolling bearing bekerja dengan elemen gelinding yang mengurangi gesekan antara shaft dan housing. Beban dari shaft diteruskan melalui **rolling element** menuju raceway pada inner ring dan outer ring. Saat bearing berputar, kontak berulang antara rolling element dan raceway menghasilkan **contact stress siklik**.
+
+Seiring waktu, siklus tegangan ini dapat menyebabkan **rolling contact fatigue**, yang memunculkan pitting atau spalling pada permukaan raceway.
+
+---
+
+## 4. Formula Utama
+
+Umur teoritis bearing dinyatakan dengan **L10 life**:
+
+$$
+L_{10} = \left(\frac{C}{P}\right)^p
+$$
+
+Dimana:
+
+- (L\_{10}) = umur bearing (juta putaran)
+- (C) = dynamic load rating (kN)
+- (P) = equivalent dynamic load (kN)
+- (p = 3) untuk ball bearing
+- (p = \frac{10}{3}) untuk roller bearing
+
+Nilai **L10** berarti **90% bearing identik diperkirakan akan mencapai umur tersebut tanpa kegagalan fatigue**.
+
+---
+
+## 5. Contoh Calculation
+
+Diketahui:
+
+Dynamic load rating (C) = **35 kN**
+Equivalent load (P) = **7 kN**
+
+Perhitungan:
+
+$$
+L_{10} = \left(\frac{35}{7}\right)^3
+$$
+
+$$
+L_{10} = 125
+$$
+
+Interpretasi:
+
+Umur teoritis bearing adalah **125 juta putaran**.
+
+Jika shaft berputar pada **1500 rpm**, maka:
+
+- 1 menit = 1500 putaran
+- 1 jam ≈ 90.000 putaran
+
+Sehingga umur bearing dapat dikonversi ke **jam operasi** untuk perencanaan maintenance.
+
+---
+
+## 6. Failure Mode
+
+Kegagalan yang umum terkait umur bearing:
+
+- rolling contact fatigue
+- surface spalling
+- raceway pitting
+- cage failure akibat fatigue
+
+Kegagalan ini biasanya berkembang secara bertahap sebelum akhirnya menyebabkan getaran tinggi pada mesin.
+
+---
+
+## 7. Insight Maintenance
+
+- sebagian besar bearing **tidak mencapai umur teoritis L10** karena kondisi operasi
+- kontaminasi partikel sangat mempercepat fatigue
+- misalignment meningkatkan beban pada rolling element
+- monitoring **vibration spectrum** dapat mendeteksi kerusakan bearing lebih awal
+
+---
+
+# Rolling Bearing Failure Analysis
+
+## 1. Problem di Lapangan
+
+Kerusakan rolling bearing merupakan salah satu penyebab paling umum downtime pada rotating equipment seperti pompa, motor listrik, dan gearbox. Gejala awal biasanya berupa peningkatan getaran, temperatur bearing yang meningkat, atau suara abnormal. Tanpa memahami pola kerusakan bearing, teknisi sering kesulitan menentukan penyebab utama kegagalan sehingga penggantian bearing saja tidak menyelesaikan masalah yang sebenarnya.
+
+---
+
+## 2. Komponen
+
+Komponen yang terlibat dalam kerusakan rolling bearing:
+
+- rolling element
+- inner race
+- outer race
+- cage
+- lubrication system
+
+---
+
+## 3. Mekanisme Kerja
+
+![Image](https://www.researchgate.net/publication/226270415/figure/fig3/AS%3A341464816078860%401458422964555/Spalling-formation-in-outer-ring-of-the-tapered-roller-bearing.png)
+
+![Image](https://www.researchgate.net/publication/356140451/figure/fig5/AS%3A1159626670247936%401653487951016/Electrical-Pitting-on-the-raceway-Grey-bearing-raceway-surface-damage-with-pittings-at.png)
+
+![Image](https://www.stle.org/images/TLT/2023/June/Feature/Feature%20Fig%204.jpg)
+
+![Image](https://static.cambridge.org/binary/version/id/urn%3Acambridge.org%3Aid%3Abinary%3A20210215102828332-0003%3A9781108784887%3A48997fig3_7.png?pub-status=live)
+
+Pada rolling bearing, kontak antara rolling element dan raceway menghasilkan **contact stress yang sangat tinggi** pada area yang sangat kecil. Selama operasi, area kontak ini mengalami siklus tegangan berulang.
+
+Jika pelumasan tidak memadai, kontaminasi masuk ke dalam bearing, atau beban melebihi kapasitas desain, maka tegangan kontak meningkat dan dapat menyebabkan **micro-crack pada permukaan raceway**. Retakan ini berkembang menjadi **pitting atau spalling**, yang akhirnya menghasilkan getaran tinggi dan kerusakan bearing.
+
+---
+
+## 4. Formula Utama
+
+Tekanan kontak sederhana dapat diperkirakan dengan:
+
+$$
+P = \frac{F}{A}
+$$
+
+Dimana:
+
+- (P) = contact pressure
+- (F) = beban yang bekerja
+- (A) = luas area kontak
+
+Karena area kontak pada rolling bearing sangat kecil, tekanan kontak dapat mencapai **ratusan hingga ribuan MPa**.
+
+---
+
+## 5. Contoh Calculation
+
+Misalkan:
+
+Beban radial pada bearing (F) = **3000 N**
+Area kontak efektif (A) = **5 mm² = 5 × 10⁻⁶ m²**
+
+Perhitungan tekanan kontak:
+
+$$
+P = \frac{3000}{5 \times 10^{-6}}
+$$
+
+$$
+P = 600 , MPa
+$$
+
+Interpretasi:
+
+Tekanan kontak pada bearing sangat tinggi sehingga kualitas material, pelumasan, dan kebersihan sistem sangat menentukan umur bearing.
+
+---
+
+## 6. Failure Mode
+
+Jenis kerusakan rolling bearing yang sering ditemukan:
+
+- **pitting**
+- **spalling**
+- **brinelling**
+- **false brinelling**
+- **cage fracture**
+
+Setiap jenis kerusakan memiliki pola visual yang berbeda pada raceway dan rolling element.
+
+---
+
+## 7. Insight Maintenance
+
+- kontaminasi partikel keras sering menyebabkan **pitting pada raceway**
+- getaran saat transport atau penyimpanan dapat menyebabkan **false brinelling**
+- grease starvation mempercepat keausan rolling element
+- analisis **vibration spectrum** merupakan metode utama untuk mendeteksi kerusakan bearing lebih awal
+
+---
+
+# Journal Bearing Lubrication
+
+## 1. Problem di Lapangan
+
+Pada rotating equipment berkapasitas besar seperti kompresor, turbin, dan pompa proses, jenis bantalan yang sering digunakan adalah **journal bearing**. Jika film pelumas tidak terbentuk dengan baik, shaft dapat bersentuhan langsung dengan permukaan bearing. Kontak logam ini menghasilkan panas tinggi, keausan cepat, dan dapat menyebabkan kerusakan serius pada shaft maupun bearing shell.
+
+---
+
+## 2. Komponen
+
+Komponen utama dalam sistem journal bearing:
+
+- shaft journal
+- bearing shell
+- oil supply system
+- lubrication groove
+
+---
+
+## 3. Mekanisme Kerja
+
+![Image](https://imgv2-1-f.scribdassets.com/img/document/200549271/original/9d29e938ad/1?v=1)
+
+![Image](https://www.researchgate.net/publication/236270723/figure/fig2/AS%3A667658966036498%401536193710513/Pressure-distribution-schematic-adapted-from-wwwsubtechcom.png)
+
+![Image](https://media.noria.com/sites/Uploads/2017/2/12/abdce33b-0452-48d2-9638-0a7216065886_lubrication-regimes-hydrodynamic.jpeg)
+
+![Image](https://image.slidesharecdn.com/hydrodynamiclubrication-160513065158/75/Hydrodynamic-lubrication-By-Khairul-Bashar-2-2048.jpg)
+
+Saat shaft mulai berputar, minyak pelumas tertarik masuk ke celah kecil antara shaft dan bearing shell. Karena adanya gerakan relatif antara kedua permukaan, pelumas membentuk **oil wedge** yang menghasilkan tekanan hidrodinamik.
+
+Tekanan ini membentuk **oil film** yang cukup kuat untuk menopang beban rotor. Dalam kondisi operasi normal, shaft sebenarnya **mengapung di atas lapisan minyak** tanpa kontak langsung dengan bearing.
+
+---
+
+## 4. Formula Utama
+
+Gaya gesek pada sistem pelumasan dapat diperkirakan dengan:
+
+$$
+F_f = \mu N
+$$
+
+Dimana:
+
+- (F_f) = gaya gesek
+- (μ) = koefisien gesekan
+- (N) = gaya normal atau beban pada bearing
+
+Pada journal bearing yang terlumasi dengan baik, nilai (μ) dapat sangat kecil karena adanya film pelumas.
+
+---
+
+## 5. Contoh Calculation
+
+Misalkan:
+
+Beban pada bearing (N) = **10.000 N**
+Koefisien gesekan (μ) = **0.01**
+
+Perhitungan gaya gesek:
+
+$$
+F_f = 0.01 \times 10000
+$$
+
+$$
+F_f = 100 , N
+$$
+
+Interpretasi:
+
+Dengan pelumasan yang baik, gaya gesek relatif kecil sehingga panas yang dihasilkan juga rendah.
+
+Jika pelumasan memburuk dan koefisien gesekan meningkat, gaya gesek dan temperatur bearing akan meningkat secara signifikan.
+
+---
+
+## 6. Failure Mode
+
+Masalah yang sering terjadi pada journal bearing:
+
+- oil starvation
+- journal scoring
+- bearing overheating
+- oil contamination
+
+Kerusakan ini sering berkaitan dengan **gangguan sistem pelumasan**.
+
+---
+
+## 7. Insight Maintenance
+
+- oil pressure harus stabil selama operasi
+- oil temperature mempengaruhi viskositas pelumas
+- viskositas terlalu rendah dapat menyebabkan oil film gagal terbentuk
+- kontaminasi partikel dapat merusak permukaan journal dan bearing shell
+
+---
+
+# Bearing Installation & Fit
+
+## 1. Problem di Lapangan
+
+Banyak kerusakan bearing terjadi bukan karena keausan selama operasi, tetapi akibat kesalahan saat instalasi. Pemasangan bearing yang tidak tepat dapat menyebabkan deformasi pada raceway, preload berlebih, atau misalignment. Kondisi ini dapat memperpendek umur bearing secara signifikan bahkan sebelum mesin beroperasi dalam waktu lama.
+
+---
+
+## 2. Komponen
+
+Komponen yang terlibat dalam pemasangan bearing:
+
+- shaft
+- bearing
+- housing
+- mounting tool
+
+---
+
+## 3. Mekanisme Kerja
+
+![Image](https://product.minebeamitsumi.com/en/technology/bearing/__icsFiles/artimage/2021/06/08/cmpetc01/013-01_1_2.gif)
+
+Pada banyak aplikasi, bearing dipasang menggunakan **interference fit** antara ring bearing dengan shaft atau housing. Hal ini dilakukan untuk mencegah slip antara bearing dan komponen yang menopangnya.
+
+Interference fit menciptakan tekanan kontak antara permukaan shaft dan inner ring bearing. Tekanan ini memastikan bahwa bearing tetap stabil selama operasi. Namun jika interferensi terlalu besar, tekanan kontak dapat meningkat dan menyebabkan deformasi pada ring bearing.
+
+---
+
+## 4. Formula Utama
+
+Tekanan kontak akibat interference fit dapat diperkirakan dengan:
+
+$$
+p = \frac{\delta E}{d}
+$$
+
+Dimana:
+
+- (p) = contact pressure
+- ( \delta ) = interference antara shaft dan bearing
+- (E) = modulus elastisitas material
+- (d) = diameter shaft
+
+Tekanan kontak ini harus berada dalam batas yang aman agar tidak merusak struktur bearing.
+
+---
+
+## 5. Contoh Calculation
+
+Misalkan:
+
+Interference ( \delta ) = **0.01 mm**
+Diameter shaft (d) = **50 mm**
+Modulus elastisitas baja (E) ≈ **200 GPa**
+
+Dari persamaan:
+
+$$
+p = \frac{\delta E}{d}
+$$
+
+Jika interferensi meningkat, maka tekanan kontak juga meningkat secara proporsional.
+
+Interpretasi:
+
+Interference yang terlalu besar dapat menyebabkan **deformasi inner ring** dan memperpendek umur bearing.
+
+---
+
+## 6. Failure Mode
+
+Kegagalan yang sering terjadi akibat instalasi yang salah:
+
+- brinelling saat pemasangan
+- ring deformation
+- bearing misalignment
+- overheating
+
+Kerusakan ini sering terjadi ketika gaya pemasangan diterapkan melalui rolling element.
+
+---
+
+## 7. Insight Maintenance
+
+- gunakan **bearing heater** untuk pemasangan interference fit
+- jangan memukul bearing langsung dengan hammer
+- gaya pemasangan harus diterapkan pada **ring yang dipasang**
+- periksa toleransi shaft dan housing sebelum instalasi bearing
+
+---
+
+# Bearing Lubrication Fundamentals
+
+## 1. Problem di Lapangan
+
+Pelumasan yang tidak tepat merupakan salah satu penyebab utama kegagalan bearing pada rotating equipment. Jika pelumas tidak mampu membentuk film pelindung yang cukup, kontak logam langsung dapat terjadi antara rolling element dan raceway. Kondisi ini meningkatkan gesekan, temperatur operasi, serta mempercepat keausan dan fatigue pada bearing.
+
+---
+
+## 2. Komponen
+
+Komponen utama dalam sistem pelumasan bearing:
+
+- lubricant (oil / grease)
+- bearing
+- lubrication system
+- seal
+
+---
+
+## 3. Mekanisme Kerja
+
+![Image](https://www.researchgate.net/profile/William-Chong-6/publication/264437836/figure/fig1/AS%3A614042976657418%401523410662334/Lubrication-regimes-for-various-engineering-applications-Stribeck-curve.png)
+
+![Image](https://www.researchgate.net/publication/279961969/figure/fig2/AS%3A284516888399881%401444845520400/Needle-Roller-Bearing-Lubrication-Flow-Path.png)
+
+![Image](https://media.noria.com/sites/Uploads/2017/2/12/abdce33b-0452-48d2-9638-0a7216065886_lubrication-regimes-hydrodynamic.jpeg)
+
+Pelumas membentuk lapisan film tipis yang memisahkan permukaan logam antara rolling element dan raceway. Ketebalan film pelumas menentukan jenis **regime pelumasan** yang terjadi.
+
+Secara umum terdapat tiga kondisi pelumasan:
+
+- **Boundary lubrication** – film sangat tipis, kontak logam masih terjadi
+- **Mixed lubrication** – sebagian kontak logam terjadi
+- **Hydrodynamic lubrication** – permukaan logam sepenuhnya dipisahkan oleh film pelumas
+
+Dalam operasi ideal, bearing bekerja mendekati kondisi **elastohydrodynamic lubrication (EHL)** sehingga gesekan dan keausan dapat diminimalkan.
+
+---
+
+## 4. Formula Utama
+
+Hubungan dasar gaya gesek:
+
+$$
+F_f = \mu N
+$$
+
+Dimana:
+
+- (F_f) = friction force
+- ( \mu ) = coefficient of friction
+- (N) = normal load pada bearing
+
+Pelumasan yang baik menurunkan nilai ( \mu ), sehingga gaya gesek dan panas yang dihasilkan menjadi lebih kecil.
+
+---
+
+## 5. Contoh Calculation
+
+Misalkan:
+
+Beban pada bearing (N) = **5000 N**
+
+Jika pelumasan baik:
+
+( \mu = 0.01 )
+
+$$
+F_f = 0.01 \times 5000
+$$
+
+$$
+F_f = 50 , N
+$$
+
+Jika pelumasan buruk dan koefisien gesekan meningkat menjadi:
+
+( \mu = 0.05 )
+
+$$
+F_f = 0.05 \times 5000
+$$
+
+$$
+F_f = 250 , N
+$$
+
+Interpretasi:
+
+Gaya gesek meningkat **5 kali lipat**, sehingga temperatur bearing juga meningkat secara signifikan.
+
+---
+
+## 6. Failure Mode
+
+Masalah pelumasan yang sering terjadi pada bearing:
+
+- grease degradation
+- oil contamination
+- lubricant starvation
+- overheating
+
+Masalah ini dapat mempercepat kerusakan raceway dan rolling element.
+
+---
+
+## 7. Insight Maintenance
+
+- gunakan pelumas sesuai rekomendasi **manufacturer bearing**
+- grease compatibility harus diperhatikan saat melakukan relubrication
+- interval pelumasan harus disesuaikan dengan **speed dan temperature operasi**
+- kebersihan pelumas sangat penting untuk mencegah kontaminasi partikel
+
+---
+
+<small>
+  **_Catatan Penyusunan_** Artikel ini disusun sebagai materi edukasi dan
+  referensi umum berdasarkan berbagai sumber pustaka, praktik lapangan, serta
+  bantuan alat penulisan. Pembaca disarankan untuk melakukan verifikasi lanjutan
+  dan penyesuaian sesuai dengan kondisi serta kebutuhan masing-masing sistem.
+</small>
