@@ -19,310 +19,437 @@ summary: Pada sistem kontrol industri yang besar, program PLC harus disusun seca
 ---
 
 - [**_Artikel 7: PLC Program Structure (OB, FB, DB) — Menyusun Program Control yang Terstruktur_**](#artikel-7-plc-program-structure-ob-fb-db--menyusun-program-control-yang-terstruktur)
-- [Section 1 — Programming Problem](#section-1--programming-problem)
-- [Section 2 — PLC Program Structure](#section-2--plc-program-structure)
-- [Section 3 — Functional Blocks](#section-3--functional-blocks)
-  - [Organization Block (OB)](#organization-block-ob)
-  - [Function Block (FB)](#function-block-fb)
-  - [Data Block (DB)](#data-block-db)
-- [Section 4 — Data Handling](#section-4--data-handling)
-- [Section 5 — Program Organization](#section-5--program-organization)
-- [Section 6 — Example Architecture](#section-6--example-architecture)
-- [Section 7 — Engineering Notes](#section-7--engineering-notes)
-  - [Gunakan modular design](#gunakan-modular-design)
-  - [Hindari program monolithic](#hindari-program-monolithic)
-  - [Gunakan reusable blocks](#gunakan-reusable-blocks)
+- [Article 07](#article-07)
+- [PLC Program Structure](#plc-program-structure)
+  - [System Reference (Locked)](#system-reference-locked)
+- [Section 1](#section-1)
+- [Why PLC Programs Need Structure](#why-plc-programs-need-structure)
+  - [Engineering Focus](#engineering-focus)
+- [Section 2](#section-2)
+- [PLC Program Architecture for Pump P-101](#plc-program-architecture-for-pump-p-101)
+- [Section 3](#section-3)
+- [OB1 — Main Scan Cycle](#ob1--main-scan-cycle)
+  - [Engineering Focus](#engineering-focus-1)
+- [Section 4](#section-4)
+- [FB101 — Pump Control Logic](#fb101--pump-control-logic)
+- [Section 5](#section-5)
+- [DB101 — Instance Data Block](#db101--instance-data-block)
+- [Section 6](#section-6)
+- [Relationship Between OB1, FB101, and DB101](#relationship-between-ob1-fb101-and-db101)
+- [Section 7](#section-7)
+- [Program Execution Sequence](#program-execution-sequence)
+- [Section 8](#section-8)
+- [Modular Control Philosophy](#modular-control-philosophy)
+- [Section 9](#section-9)
+- [Ladder Context Within Program Structure](#ladder-context-within-program-structure)
+- [Section 10](#section-10)
+- [Summary of PLC Program Structure](#summary-of-plc-program-structure)
+- [Ladder Reference Summary](#ladder-reference-summary)
+- [Diagram Reference Summary](#diagram-reference-summary)
+- [Knowledge Layer Built by Article 07](#knowledge-layer-built-by-article-07)
 
 ---
 
-# Section 1 — Programming Problem
+Berikut **Outline Artikel 07 — PLC Program Structure** yang tetap **terkunci pada sistem Pump P-101**, serta merujuk langsung pada **arsitektur OB1–FB101–DB101** dan **ladder FB101 Pump_Control yang sudah dirancang**.
 
-Pada sistem kontrol kecil, ladder logic sering dapat ditulis dalam satu program sederhana.
+Artikel ini penting karena pembaca mulai memahami **bagaimana ladder program yang sudah dipelajari di artikel sebelumnya ditempatkan dalam struktur program PLC Siemens S7**.
 
-Program PLC mungkin hanya mengontrol satu atau dua equipment, sehingga seluruh logika kontrol dapat ditempatkan dalam satu blok program.
+Semua bagian tetap mematuhi aturan:
 
-Namun pada plant industri, PLC biasanya mengontrol banyak equipment sekaligus, seperti:
-
-- banyak **pump**
-- banyak **valve**
-- banyak **sensor**
-- banyak **sequence proses**
-
-Jika seluruh logika kontrol tersebut ditulis dalam satu blok program yang besar, program PLC akan menjadi:
-
-- sulit dibaca
-- sulit dipelihara
-- sulit dikembangkan
-
-Program seperti ini sering disebut sebagai **monolithic program**, di mana seluruh logika kontrol berada dalam satu bagian program tanpa struktur yang jelas.
-
-Masalah ini menjadi semakin besar ketika sistem kontrol berkembang dan semakin banyak equipment ditambahkan ke dalam sistem.
-
-Untuk mengatasi masalah tersebut, PLC modern menggunakan **struktur program modular**.
-
-Pendekatan modular memungkinkan program PLC dipecah menjadi beberapa blok fungsi yang lebih kecil sehingga program menjadi lebih terorganisasi dan mudah dikelola.
+- hanya menggunakan **Pump P-101**
+- hanya menggunakan **FB101 Pump_Control**
+- tidak membuat **block baru**
+- tidak membuat **signal baru**
+- tidak menampilkan **network baru**
 
 ---
 
-# Section 2 — PLC Program Structure
+# Article 07
 
-Pada PLC **Siemens S7**, struktur program biasanya dibangun menggunakan tiga elemen utama:
+# PLC Program Structure
 
-- **Organization Block (OB)**
-- **Function Block (FB)**
-- **Data Block (DB)**
+## System Reference (Locked)
 
-Ketiga elemen ini membentuk dasar dari **arsitektur program PLC modular**.
+Sistem yang dikontrol tetap **Pump P-101 motor-driven centrifugal pump**.
 
-Hubungan dasar struktur program dapat digambarkan sebagai berikut.
+Equipment:
 
 ```text
-OB
-↓
-FB
-↓
-DB
+P-101 Pump
+M-101 Motor
+XV-101 Suction Valve
+XV-102 Discharge Valve
 ```
 
-Penjelasan hubungan tersebut:
-
-- **OB** berfungsi sebagai blok utama yang dijalankan oleh CPU PLC.
-- **FB** berisi fungsi kontrol yang dapat digunakan kembali untuk berbagai equipment.
-- **DB** digunakan untuk menyimpan data yang terkait dengan FB.
-
-Dengan struktur ini, program PLC dapat dipisahkan menjadi beberapa bagian yang memiliki fungsi masing-masing.
-
-Pendekatan ini membuat program PLC menjadi:
-
-- lebih terorganisasi
-- lebih mudah dipahami
-- lebih mudah dikembangkan ketika sistem kontrol bertambah besar.
+Program PLC yang mengontrol sistem ini telah dijelaskan pada artikel sebelumnya melalui ladder **FB101 Pump_Control**.
 
 ---
 
-# Section 3 — Functional Blocks
+# Section 1
 
-Dalam PLC **Siemens S7**, struktur program modular dibangun menggunakan beberapa jenis blok yang memiliki fungsi berbeda.
+# Why PLC Programs Need Structure
 
-Tiga blok utama yang paling sering digunakan adalah:
+## Engineering Focus
 
-- **Organization Block (OB)**
-- **Function Block (FB)**
-- **Data Block (DB)**
+Pada sistem kontrol industri, program PLC tidak hanya terdiri dari ladder tunggal.
 
-Ketiga blok ini bekerja bersama untuk membentuk **arsitektur program PLC yang terstruktur**.
+Program harus diorganisasi agar:
 
----
+- mudah dipahami
+- mudah dikembangkan
+- mudah dipelihara
+- dapat digunakan kembali
 
-## Organization Block (OB)
-
-**Organization Block (OB)** adalah blok yang dijalankan langsung oleh **CPU PLC**.
-
-OB menentukan bagaimana dan kapan program PLC dieksekusi.
-
-Beberapa contoh OB yang umum digunakan pada Siemens S7 antara lain:
-
-- **OB1** → main program cycle
-- **OB35** → cyclic interrupt task
-- **OB100** → startup routine
-
-Dalam sebagian besar sistem kontrol, **OB1** berfungsi sebagai **program utama** yang berjalan secara terus-menerus mengikuti **PLC scan cycle**.
-
-OB1 biasanya tidak berisi seluruh logika kontrol secara langsung, tetapi berfungsi sebagai **program utama yang memanggil blok-blok fungsi lain**.
-
----
-
-## Function Block (FB)
-
-**Function Block (FB)** digunakan untuk membuat **fungsi kontrol yang dapat digunakan kembali (reusable)**.
-
-FB biasanya digunakan untuk mengimplementasikan logika kontrol suatu equipment atau fungsi tertentu.
-
-Contoh penggunaan FB dalam sistem kontrol industri:
-
-- **motor control block**
-- **valve control block**
-- **pump control block**
-
-Keuntungan utama FB adalah bahwa blok ini dapat **dipanggil berkali-kali** untuk mengontrol equipment yang berbeda.
-
-Sebagai contoh, satu FB untuk **pump control** dapat digunakan untuk mengontrol banyak pump dalam satu sistem.
-
-Pendekatan ini membuat program PLC menjadi lebih **konsisten dan mudah dipelihara**.
-
----
-
-## Data Block (DB)
-
-**Data Block (DB)** digunakan untuk menyimpan **data yang digunakan oleh Function Block**.
-
-Data yang disimpan dalam DB dapat berupa berbagai jenis informasi yang berkaitan dengan operasi equipment.
-
-Contoh data yang sering disimpan dalam DB:
-
-- **status equipment**
-- **timer values**
-- **process variables**
-
-Dalam implementasi Siemens S7, setiap FB biasanya memiliki **instance DB** yang menyimpan data spesifik untuk instance tersebut.
-
-Dengan demikian satu FB dapat digunakan oleh banyak equipment, tetapi setiap equipment memiliki **data yang berbeda**.
-
----
-
-# Section 4 — Data Handling
-
-Ketika **Function Block (FB)** dijalankan oleh PLC, sistem akan menggunakan **Data Block (DB)** untuk menyimpan data yang terkait dengan operasi blok tersebut.
-
-Hubungan antara FB dan DB dapat digambarkan sebagai berikut.
+Dalam PLC Siemens S7, struktur program biasanya terdiri dari:
 
 ```text
-Motor Control FB
-↓
-Motor Data DB
+Organization Block (OB)
+Function Block (FB)
+Data Block (DB)
 ```
 
-FB berisi **logika kontrol**, sedangkan DB menyimpan **data operasional** yang digunakan oleh logika tersebut.
-
-Contoh data yang dapat disimpan dalam DB antara lain:
-
-- **motor running status**
-- **trip status**
-- **permissive conditions**
-
-Dengan menggunakan DB, setiap equipment dapat memiliki **data yang terpisah** meskipun menggunakan FB yang sama.
-
-Sebagai contoh, satu FB untuk **motor control** dapat digunakan untuk banyak motor, tetapi setiap motor akan memiliki **DB instance sendiri** yang menyimpan status operasinya.
-
-Pendekatan ini memungkinkan sistem kontrol menangani banyak equipment dengan **logika yang sama tetapi data yang berbeda**.
+Artikel ini menjelaskan bagaimana **ladder Pump P-101 ditempatkan dalam struktur tersebut**.
 
 ---
 
-# Section 5 — Program Organization
+# Section 2
 
-Dalam sistem PLC yang lebih besar, program biasanya diorganisasi menggunakan struktur modular yang memisahkan fungsi kontrol berdasarkan jenis equipment atau fungsi proses.
+# PLC Program Architecture for Pump P-101
 
-Struktur program PLC biasanya diorganisasi sebagai berikut.
+Struktur program yang digunakan dalam sistem ini adalah:
+
+```text
+PLC CPU
+ │
+ │
+OB1  Main Scan Cycle
+ │
+ │
+FB101 Pump_Control
+ │
+ │
+DB101 Pump_Data
+```
+
+Makna struktur:
+
+| Block | Function             |
+| ----- | -------------------- |
+| OB1   | main execution cycle |
+| FB101 | pump control logic   |
+| DB101 | instance data pump   |
+
+Semua ladder yang telah dipelajari sebelumnya berada dalam:
+
+```text
+FB101 Pump_Control
+```
+
+---
+
+# Section 3
+
+# OB1 — Main Scan Cycle
+
+## Engineering Focus
+
+Dalam PLC Siemens S7, **OB1 adalah entry point utama program**.
+
+Setiap scan cycle, PLC menjalankan:
+
+```text
+Read Inputs
+↓
+Execute OB1
+↓
+Update Outputs
+```
+
+Di dalam OB1, PLC memanggil block kontrol pump.
+
+Contoh struktur OB1:
 
 ```text
 OB1
+ │
+ │
+CALL FB101 , DB101
+```
+
+Artinya:
+
+```text
+OB1 menjalankan logika pump setiap scan cycle
+```
+
+---
+
+# Section 4
+
+# FB101 — Pump Control Logic
+
+FB101 adalah **blok yang berisi seluruh ladder control Pump P-101**.
+
+Struktur ladder di dalam FB101:
+
+```text
+FB101 Pump_Control
+ │
+ ├ N1 Input Conditioning
+ ├ N2 Command Handling
+ ├ N3 Permissive Logic
+ ├ N4 Start/Stop Latch
+ ├ N5 Trip Logic
+ ├ N6 Alarm Logic
+ ├ N7 Start Failure Detection
+ └ N8 Sequence Interface
+```
+
+Semua artikel sebelumnya menjelaskan bagian dari ladder ini.
+
+Contoh:
+
+| Article    | Network |
+| ---------- | ------- |
+| Article 01 | N1      |
+| Article 02 | N2 N4   |
+| Article 03 | N3      |
+| Article 04 | N5      |
+| Article 05 | N6      |
+| Article 06 | N7      |
+
+Dengan kata lain:
+
+```text
+FB101 adalah modul kontrol lengkap untuk Pump P-101
+```
+
+---
+
+# Section 5
+
+# DB101 — Instance Data Block
+
+Function Block di Siemens S7 tidak bekerja sendiri.
+
+FB memerlukan **Data Block** untuk menyimpan state internal.
+
+Dalam sistem ini:
+
+```text
+FB101 Pump_Control
+│
+DB101 Pump_Data
+```
+
+DB101 menyimpan:
+
+- status latch
+- status alarm
+- status trip
+- timer instance
+- parameter threshold
+
+Contoh data yang tersimpan:
+
+```text
+RUN_LATCH
+START_FAIL_ACTIVE
+ALARM_ACTIVE
+TRIP_ACTIVE
+```
+
+Ini membuat FB101 dapat mempertahankan **state antar scan cycle**.
+
+---
+
+# Section 6
+
+# Relationship Between OB1, FB101, and DB101
+
+Hubungan ketiga block dapat digambarkan sebagai berikut:
+
+```text
+PLC Scan Cycle
+     │
+     ▼
+OB1
+     │
+     ▼
+CALL FB101 Pump_Control
+     │
+     ▼
+DB101 Pump_Data
+     │
+     ▼
+Ladder Logic Execution
+```
+
+Dengan struktur ini:
+
+- OB1 menjalankan logika
+- FB101 berisi ladder control pump
+- DB101 menyimpan data internal
+
+---
+
+# Section 7
+
+# Program Execution Sequence
+
+Ketika PLC berjalan, urutan eksekusi adalah:
+
+```text
+Field Inputs Read
 ↓
-Motor Control FB
-Valve Control FB
-Sequence Control FB
+OB1 execution
+↓
+FB101 Pump_Control
+↓
+Network N1 → N8 executed
+↓
+Output updated
 ```
 
-Dalam struktur ini:
+Artinya:
 
-- **OB1** berfungsi sebagai program utama yang dijalankan oleh PLC secara terus-menerus.
-- OB1 memanggil berbagai **Function Block** yang mengontrol equipment atau fungsi tertentu.
-- Setiap FB kemudian menggunakan **Data Block** untuk menyimpan data operasionalnya.
-
-Pendekatan ini memberikan beberapa keuntungan penting dalam pengembangan sistem kontrol industri.
-
-Program PLC menjadi:
-
-- **modular**
-- **scalable**
-- **mudah dipelihara**
-
-Dengan struktur ini, engineer dapat menambahkan equipment baru atau memodifikasi fungsi kontrol tanpa harus mengubah seluruh program PLC.
+PLC menjalankan **ladder pump control setiap scan cycle**.
 
 ---
 
-# Section 6 — Example Architecture
+# Section 8
 
-Sebagai contoh implementasi struktur program modular pada PLC **Siemens S7**, kita dapat melihat arsitektur program untuk **sistem pump**.
+# Modular Control Philosophy
 
-Struktur dasar program dapat digambarkan sebagai berikut.
+Pendekatan menggunakan FB memiliki keuntungan:
 
-```text id="pump_arch_1"
+| Benefit        | Explanation                             |
+| -------------- | --------------------------------------- |
+| modular design | setiap equipment memiliki block sendiri |
+| reuse          | block dapat digunakan untuk pump lain   |
+| maintenance    | perubahan logika lebih mudah            |
+
+Dalam sistem ini:
+
+```text
+FB101 = Pump Control Module
+```
+
+Artikel berikutnya akan menjelaskan konsep ini lebih lanjut.
+
+---
+
+# Section 9
+
+# Ladder Context Within Program Structure
+
+Semua ladder yang telah dibahas sebelumnya berada dalam:
+
+```text
+FB101 Pump_Control
+```
+
+Contoh hubungan:
+
+```text
+N3 Permissive Logic
+↓
+N4 Start Latch
+↓
+MTR_START_CMD
+```
+
+Network ini dijalankan setiap scan cycle oleh OB1.
+
+---
+
+# Section 10
+
+# Summary of PLC Program Structure
+
+Struktur akhir program PLC untuk Pump P-101:
+
+```text
+PLC CPU
+ │
 OB1
- ↓
-Pump Control FB
- ↓
-Pump Instance DB
+ │
+CALL FB101 Pump_Control
+ │
+DB101 Pump_Data
+ │
+Network N1 → N8
+ │
+Motor command output
 ```
 
-Pada struktur ini:
+Dengan struktur ini:
 
-- **OB1** berfungsi sebagai program utama yang dijalankan oleh CPU PLC.
-- **Pump Control FB** berisi logika kontrol pump, seperti permissive logic, start–stop control, dan trip logic.
-- **Pump Instance DB** menyimpan data operasional yang terkait dengan pump tersebut.
-
-Jika sistem memiliki beberapa pump, maka **Function Block yang sama dapat digunakan kembali**, tetapi setiap pump akan memiliki **Data Block yang berbeda**.
-
-Struktur program dapat digambarkan sebagai berikut.
-
-```text id="pump_arch_multi"
-OB1
- ↓
-Pump FB → DB_P101
-Pump FB → DB_P102
-Pump FB → DB_P103
+```text
+Pump P-101 control logic
+dapat diorganisasi secara modular
+dan dijalankan secara cyclic oleh PLC
 ```
 
-Penjelasan struktur tersebut:
+---
 
-- **Pump FB** digunakan sebagai blok logika yang sama untuk semua pump.
-- **DB_P101**, **DB_P102**, dan **DB_P103** menyimpan data untuk masing-masing pump.
+# Ladder Reference Summary
 
-Dengan pendekatan ini, engineer tidak perlu menulis logika pump berulang kali untuk setiap equipment.
+Artikel ini merujuk pada **seluruh ladder di FB101**, tetapi **tidak menampilkan rung baru**.
 
-Semua pump menggunakan **logika kontrol yang sama**, tetapi memiliki **data operasional yang berbeda**.
+Network yang dirujuk secara konseptual:
 
-Pendekatan ini sangat umum digunakan dalam sistem kontrol industri karena membuat program PLC lebih mudah dikelola.
+```text
+N1
+N2
+N3
+N4
+N5
+N6
+N7
+N8
+```
+
+Semua ladder tetap berada dalam:
+
+```text
+FB101 Pump_Control
+```
 
 ---
 
-# Section 7 — Engineering Notes
+# Diagram Reference Summary
 
-Beberapa prinsip penting perlu diperhatikan dalam perancangan **struktur program PLC modular**.
+Artikel ini hanya boleh menggunakan diagram dari library:
 
----
-
-## Gunakan modular design
-
-Program PLC sebaiknya dibagi menjadi beberapa blok fungsi yang mewakili equipment atau fungsi kontrol tertentu.
-
-Sebagai contoh:
-
-- motor control block
-- valve control block
-- pump control block
-- sequence control block
-
-Dengan pendekatan ini setiap equipment memiliki **blok kontrol tersendiri** yang lebih mudah dipahami dan dipelihara.
+```text
+Diagram 3 — PLC Program Architecture
+Diagram 4 — Ladder Execution Flow
+```
 
 ---
 
-## Hindari program monolithic
+# Knowledge Layer Built by Article 07
 
-Program yang terlalu besar dan ditulis dalam satu blok akan menjadi sulit untuk:
+Artikel ini menambahkan pemahaman berikut:
 
-- dibaca
-- diuji
-- dipelihara
+```text
+PLC Scan Cycle
+↓
+OB1 execution
+↓
+FB101 Pump Control
+↓
+DB101 data storage
+↓
+Ladder networks executed
+```
 
-Program monolithic juga meningkatkan risiko kesalahan ketika sistem kontrol dimodifikasi.
-
-Pendekatan modular membantu mengurangi kompleksitas program.
+Pembaca sekarang memahami **bagaimana seluruh ladder Pump P-101 ditempatkan dalam struktur program PLC Siemens S7**.
 
 ---
 
-## Gunakan reusable blocks
-
-**Function Block (FB)** memungkinkan engineer membuat fungsi kontrol yang dapat digunakan kembali untuk berbagai equipment.
-
-Sebagai contoh, satu **Pump Control FB** dapat digunakan untuk:
-
-- Pump P-101
-- Pump P-102
-- Pump P-103
-
-Setiap pump akan menggunakan **instance Data Block yang berbeda** untuk menyimpan datanya.
-
-Pendekatan ini membuat program PLC lebih konsisten dan mempermudah pengembangan sistem kontrol pada plant yang besar.
+Jika Anda ingin, langkah berikutnya yang sangat penting adalah membuat **Outline Artikel 08 — Equipment Control Module**, karena di situ pembaca mulai memahami **mengapa FB101 dapat digunakan sebagai reusable control module untuk equipment seperti pump, fan, atau motor lainnya**.
 
 ---
 

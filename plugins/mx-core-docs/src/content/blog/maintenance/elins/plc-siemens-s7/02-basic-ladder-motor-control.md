@@ -13,466 +13,454 @@ summary: Motor dalam sistem kontrol industri biasanya dioperasikan menggunakan l
 ---
 
 - [**_Artikel 2: Basic Ladder Logic \& Motor Start–Stop Control_**](#artikel-2-basic-ladder-logic--motor-startstop-control)
-- [Section 1 — Operational Context](#section-1--operational-context)
-- [Section 2 — System Mechanism](#section-2--system-mechanism)
-  - [Contact](#contact)
-    - [Normally Open (NO)](#normally-open-no)
-    - [Normally Closed (NC)](#normally-closed-nc)
-  - [Coil](#coil)
-- [Section 3 — Signal Flow](#section-3--signal-flow)
-- [Section 5 — Practical Example — Seal-In Circuit](#section-5--practical-example--seal-in-circuit)
-  - [Logika Kerja Seal-In Circuit](#logika-kerja-seal-in-circuit)
-  - [Kondisi Stop](#kondisi-stop)
-- [Section 6 — Troubleshooting Insight](#section-6--troubleshooting-insight)
-  - [Step 1 — Periksa Start Push Button](#step-1--periksa-start-push-button)
-  - [Step 2 — Periksa Stop Push Button](#step-2--periksa-stop-push-button)
-  - [Step 3 — Periksa PLC Logic](#step-3--periksa-plc-logic)
-  - [Step 4 — Periksa Motor Output dan Contactor](#step-4--periksa-motor-output-dan-contactor)
-  - [Troubleshooting Principle](#troubleshooting-principle)
+- [Article 02](#article-02)
+- [Basic Ladder Logic](#basic-ladder-logic)
+  - [System Reference (Locked)](#system-reference-locked)
+- [Section 1](#section-1)
+- [Role of Ladder Logic in Equipment Control](#role-of-ladder-logic-in-equipment-control)
+  - [Engineering Focus](#engineering-focus)
+- [Section 2](#section-2)
+- [FB101 Pump Control Ladder Context](#fb101-pump-control-ladder-context)
+  - [PLC Architecture](#plc-architecture)
+- [Section 3](#section-3)
+- [Network N2 — Command Handling](#network-n2--command-handling)
+  - [Rung N2-R1 — Stop Request](#rung-n2-r1--stop-request)
+  - [Rung N2-R2 — Start Request](#rung-n2-r2--start-request)
+- [Section 4](#section-4)
+- [Network N4 — Start/Stop Latch](#network-n4--startstop-latch)
+  - [Rung N4-R1 — Run Latch Set](#rung-n4-r1--run-latch-set)
+  - [Rung N4-R2 — Run Latch Reset](#rung-n4-r2--run-latch-reset)
+  - [Rung N4-R3 — Motor Start Command](#rung-n4-r3--motor-start-command)
+- [Section 5](#section-5)
+- [Basic Start-Stop Ladder Pattern](#basic-start-stop-ladder-pattern)
+- [Section 6](#section-6)
+- [Interaction with Other Networks](#interaction-with-other-networks)
+- [Section 7](#section-7)
+- [Pump Start Logic Flow](#pump-start-logic-flow)
+- [Ladder Reference Summary](#ladder-reference-summary)
+- [Diagram Reference Summary](#diagram-reference-summary)
+- [Hasil Outline Ini](#hasil-outline-ini)
 
 ---
 
-# Section 1 — Operational Context
+Berikut **Outline Artikel 02 — Basic Ladder Logic** yang tetap **terikat langsung pada ladder FB101 Pump_Control**, khususnya **Network N2 dan Network N4**.
 
-Di plant industri, banyak equipment digerakkan oleh **motor listrik**. Motor ini biasanya digunakan untuk menggerakkan berbagai sistem proses, seperti:
+Struktur ini memastikan:
 
-- **pump motor** untuk memindahkan fluida
-- **fan motor** untuk sistem ventilasi atau pendinginan
-- **conveyor motor** untuk transport material
-
-Dalam sistem otomasi modern, motor-motor tersebut umumnya dikontrol oleh **PLC (Programmable Logic Controller)**.
-
-Operator biasanya mengoperasikan motor melalui **panel kontrol atau HMI**, menggunakan dua perintah dasar:
-
-- **Start push button**
-- **Stop push button**
-
-Konsep kontrol ini dapat digambarkan secara sederhana sebagai berikut.
-
-```text id="motor_control_concept"
-Operator Command
-      │
-      ▼
-Start / Stop Push Button
-      │
-      ▼
-PLC Control Logic
-      │
-      ▼
-Motor Contactor
-      │
-      ▼
-Motor Running
-```
-
-Ketika operator menekan **Start Push Button**, PLC harus mengaktifkan output yang mengendalikan **motor contactor**, sehingga motor mulai beroperasi.
-
-Namun terdapat satu perilaku penting dalam sistem kontrol motor industri:
-
-> Motor tidak boleh berhenti hanya karena tombol start dilepas.
-
-Jika sistem kontrol hanya membaca kondisi tombol start secara langsung, motor akan berhenti segera setelah operator melepaskan tombol tersebut.
-
-Padahal dalam operasi plant, motor harus **tetap berjalan secara kontinu** sampai operator memberikan perintah berhenti.
-
-Dengan kata lain, sistem kontrol harus memenuhi perilaku berikut:
-
-```text id="motor_control_requirement"
-Start Command
-→ Motor Running
-
-Stop Command
-→ Motor Stop
-```
-
-Untuk mencapai perilaku ini, PLC menggunakan pola logika khusus dalam ladder logic yang disebut **seal-in circuit**.
-
-Seal-in circuit memungkinkan PLC **menjaga coil output tetap aktif** meskipun tombol start sudah dilepas.
-
-Konsep ini merupakan salah satu pola logika paling dasar dan paling sering digunakan dalam sistem kontrol industri.
+- tidak ada ladder baru dibuat
+- semua penjelasan merujuk **rung yang sudah dikunci**
+- sistem tetap **Pump P-101**
+- artikel hanya membedah **subset ladder program**
 
 ---
 
-# Section 2 — System Mechanism
+# Article 02
 
-Dalam sistem PLC, logika kontrol biasanya ditulis menggunakan **Ladder Logic**.
-Ladder logic adalah bahasa pemrograman yang dirancang menyerupai **diagram rangkaian relay listrik**.
+# Basic Ladder Logic
 
-Struktur ladder logic terdiri dari beberapa **rung** yang dieksekusi oleh PLC selama **scan cycle**.
+## System Reference (Locked)
 
-Setiap rung ladder biasanya terdiri dari dua elemen dasar:
+Sistem yang dianalisis tetap **Pump P-101 motor-driven centrifugal pump**.
 
-- **Contact**
-- **Coil**
+Equipment:
 
-Kedua elemen ini membentuk dasar dari hampir semua logika kontrol dalam sistem PLC.
+```
+P-101 Pump
+M-101 Motor
+XV-101 Suction Valve
+XV-102 Discharge Valve
+```
+
+Control command berasal dari:
+
+```
+PB_START
+PB_STOP
+REMOTE_START_REQ
+SEQ_START_REQ
+```
+
+Output utama PLC:
+
+```
+MTR_START_CMD
+```
+
+Diagram yang digunakan:
+
+Diagram 1 — Pump System Reference
+Diagram 5 — Pump Start Logic Flow
 
 ---
 
-## Contact
+# Section 1
 
-**Contact** digunakan untuk membaca kondisi suatu sinyal atau variabel dalam program PLC.
+# Role of Ladder Logic in Equipment Control
 
-Contact biasanya mewakili kondisi dari:
+## Engineering Focus
 
-- push button
-- limit switch
-- sensor
-- status internal PLC
+Menjelaskan bahwa ladder logic digunakan PLC untuk membuat **keputusan diskrit** berdasarkan kondisi input.
 
-Terdapat dua jenis contact yang umum digunakan.
+Hubungan kontrol dasar:
 
-### Normally Open (NO)
-
-Contact **Normally Open (NO)** akan bernilai TRUE ketika sinyal yang dibacanya aktif.
-
-Representasi ladder:
-
-```text id="contact_no"
----[ ]---
 ```
-
-Contoh penggunaan:
-
-- Start Push Button
-- Running feedback
-
-Ketika sinyal aktif, contact akan **menutup secara logika** dan memungkinkan aliran logika menuju coil.
-
----
-
-### Normally Closed (NC)
-
-Contact **Normally Closed (NC)** akan bernilai TRUE ketika sinyal yang dibacanya tidak aktif.
-
-Representasi ladder:
-
-```text id="contact_nc"
----[/]---
-```
-
-Contoh penggunaan:
-
-- Stop Push Button
-- Trip signal
-
-Jika sinyal aktif, contact akan **membuka secara logika** dan memutus aliran logika.
-
----
-
-## Coil
-
-**Coil** digunakan untuk menghasilkan aksi atau mengaktifkan suatu output dalam program PLC.
-
-Representasi ladder:
-
-```text id="coil01"
----( )---
-```
-
-Coil biasanya digunakan untuk:
-
-- mengaktifkan output PLC
-- menyimpan status internal
-- mengontrol equipment
-
-Contoh coil dalam sistem motor control:
-
-```text id="motor_coil"
-Motor Coil
-```
-
-Jika kondisi logika pada rung terpenuhi, PLC akan mengaktifkan coil tersebut.
-
-Aktivasi coil kemudian akan menyebabkan **output PLC aktif**, yang pada sistem motor control biasanya akan mengaktifkan **motor contactor**.
-
-Hubungan antara contact dan coil dalam ladder logic dapat digambarkan sebagai berikut.
-
-```text id="ladder_basic_structure"
-Contact Conditions
-        │
-        ▼
-    Ladder Logic
-        │
-        ▼
-        Coil
-        │
-        ▼
-   Output Activation
-```
-
-Elemen contact dan coil inilah yang menjadi dasar untuk membangun berbagai pola logika kontrol, termasuk **motor start–stop control** yang akan dibahas pada bagian berikutnya.
-
----
-
-# Section 3 — Signal Flow
-
-Dalam sistem kontrol motor berbasis PLC, sinyal kontrol berasal dari **operator** yang memberikan perintah melalui **push button**.
-
-Dua sinyal utama yang digunakan dalam kontrol motor sederhana adalah:
-
-- **Start Push Button**
-- **Stop Push Button**
-
-Sinyal dari push button tersebut masuk ke PLC melalui **input module**, kemudian diproses oleh **ladder logic** untuk menentukan apakah motor harus dijalankan atau dihentikan.
-
-Hubungan aliran sinyal dalam sistem kontrol motor sederhana dapat digambarkan sebagai berikut.
-
-```text id="flow02"
-Start Push Button
+Start command
 ↓
-PLC Ladder Logic
+PLC ladder logic
 ↓
-Motor Contactor
+Motor start command
 ↓
-Motor Running
+Pump operation
 ```
 
-Penjelasan aliran sinyal:
+Artikel ini membahas **bagian ladder yang menangani command start dan stop**.
 
-1. **Start Push Button**
-   Operator menekan tombol start untuk memberikan perintah menjalankan motor.
+---
 
-2. **PLC Ladder Logic**
-   PLC membaca kondisi input dan mengevaluasi logika ladder untuk menentukan apakah coil motor harus diaktifkan.
+# Section 2
 
-3. **Motor Contactor**
-   Jika logika terpenuhi, PLC mengaktifkan output yang mengendalikan motor contactor.
+# FB101 Pump Control Ladder Context
 
-4. **Motor Running**
-   Motor contactor menutup rangkaian daya motor sehingga motor mulai beroperasi.
+## PLC Architecture
 
-Dalam implementasi sebenarnya, beberapa sinyal tambahan juga terlibat dalam logika kontrol motor.
+Program PLC yang digunakan:
 
-Contoh sinyal yang umum digunakan:
-
-- **Start PB** — perintah menjalankan motor
-- **Stop PB** — perintah menghentikan motor
-- **Motor Coil** — output PLC yang mengaktifkan motor contactor
-- **Motor Auxiliary Contact** — feedback status motor dari contactor
-
-Hubungan antara sinyal-sinyal tersebut dapat digambarkan sebagai berikut.
-
-```text id="motor_signal_structure"
-Start PB
-Stop PB
-Motor Auxiliary Contact
-        │
-        ▼
-PLC Ladder Logic
-        │
-        ▼
-Motor Coil
-        │
-        ▼
-Motor Contactor
-        │
-        ▼
-Motor Running
+```
+OB1
+ └ FB101 Pump_Control
 ```
 
-Aliran sinyal ini menunjukkan bagaimana PLC bertindak sebagai **penghubung antara perintah operator dan operasi equipment**.
+Network yang relevan untuk artikel ini:
 
-Pada bagian berikutnya akan dijelaskan bagaimana PLC mengevaluasi sinyal-sinyal tersebut menggunakan **ladder logic** dalam rung program.
-
----
-
-# Section 5 — Practical Example — Seal-In Circuit
-
-Untuk menjaga motor tetap berjalan setelah tombol **Start** dilepas, sistem kontrol menggunakan pola logika yang disebut **seal-in circuit**.
-
-Seal-in circuit memungkinkan PLC **menjaga coil output tetap aktif** dengan menggunakan kontak umpan balik dari output itu sendiri.
-
-Contoh ladder logic untuk seal-in circuit adalah sebagai berikut.
-
-```text id="ladder03"
-Start PB     Stop PB
----[ ]--------[/]----+----( Motor )
-                     |
-Motor Contact -------+
+```
+N2 Command Handling
+N4 Start/Stop Latch
 ```
 
-Pada ladder ini terdapat tiga elemen utama:
+Diagram referensi:
 
-- **Start Push Button** — memberikan perintah awal untuk menjalankan motor
-- **Stop Push Button** — menghentikan motor
-- **Motor Contact (Auxiliary Contact)** — menjaga coil tetap aktif
+Diagram 4 — Ladder Execution Flow
 
-Kontak **Motor Contact** berasal dari **auxiliary contact pada motor contactor** atau status internal output PLC.
-
----
-
-## Logika Kerja Seal-In Circuit
-
-Urutan operasi dapat dijelaskan sebagai berikut.
-
-1. **Operator menekan Start PB**
-
-   Ketika tombol start ditekan, contact **Start PB** menjadi TRUE sehingga PLC mengaktifkan **Motor Coil**.
-
-2. **Motor coil aktif**
-
-   PLC mengaktifkan output yang mengendalikan **motor contactor**.
-
-3. **Motor auxiliary contact ikut aktif**
-
-   Ketika contactor motor aktif, **auxiliary contact motor** juga berubah menjadi aktif.
-
-4. **Auxiliary contact menjaga coil tetap aktif**
-
-   Kontak ini membentuk jalur paralel dengan **Start PB**, sehingga coil tetap aktif meskipun tombol start sudah dilepas.
-
-Diagram logika ini membuat sistem memiliki perilaku berikut:
-
-```text id="seal_in_behavior"
-Start PB ditekan
-→ Motor Start
-
-Start PB dilepas
-→ Motor tetap running
+```
+FB101 Pump_Control
+ │
+ ├ N1 Input Conditioning
+ ├ N2 Command Handling   ← artikel ini
+ ├ N3 Permissive Logic
+ ├ N4 Start/Stop Latch   ← artikel ini
+ ├ N5 Trip Logic
+ ├ N6 Alarm Logic
+ ├ N7 Start Failure Detection
+ └ N8 Sequence Interface
 ```
 
-Motor akan terus berjalan sampai operator memberikan perintah berhenti.
-
 ---
 
-## Kondisi Stop
+# Section 3
 
-Motor akan berhenti ketika **Stop Push Button ditekan**.
+# Network N2 — Command Handling
 
-```text id="stop02"
-Stop PB ditekan
+Network ini mengubah **command fisik menjadi internal control signal**.
+
+## Rung N2-R1 — Stop Request
+
+```
+| PB_STOP |
+|----[ ]-------------------------------|
+|                                       |----( ) CMD_STOP_REQ
+| TRIP_ACTIVE |
+|----[ ]-------------------------------|
 ```
 
-Ketika tombol stop ditekan, contact **Stop PB (NC)** akan membuka sehingga aliran logika menuju coil terputus.
+Makna logika:
 
-Akibatnya:
-
-- Motor coil menjadi OFF
-- Motor contactor membuka
-- Motor berhenti
-
-Seal-in circuit ini merupakan salah satu **pola logika paling dasar dalam sistem kontrol motor berbasis PLC** dan sangat umum digunakan pada berbagai equipment industri seperti pump, fan, dan conveyor.
-
----
-
-# Section 6 — Troubleshooting Insight
-
-Pemahaman mengenai **seal-in circuit** sangat penting bagi engineer yang melakukan troubleshooting sistem kontrol motor di plant industri.
-
-Ketika motor tidak dapat start atau tidak dapat tetap berjalan, penyebabnya sering berkaitan dengan salah satu elemen dalam **rangkaian start–stop control**.
-
-Pendekatan troubleshooting biasanya mengikuti urutan aliran kontrol berikut.
-
-```text id="trb02"
-Start Push Button
-↓
-Stop Push Button
-↓
-PLC Logic
-↓
-Motor Output
-↓
-Motor Contactor
+```
+CMD_STOP_REQ =
+PB_STOP
+OR TRIP_ACTIVE
 ```
 
-Dengan mengikuti urutan ini, engineer dapat mengisolasi sumber masalah secara sistematis.
+Engineering meaning:
+
+- operator stop command
+- protective stop dari trip logic
 
 ---
 
-## Step 1 — Periksa Start Push Button
+## Rung N2-R2 — Start Request
 
-Langkah pertama adalah memastikan **Start Push Button berfungsi dengan benar**.
-
-Engineer perlu memeriksa apakah sinyal start benar-benar diterima oleh PLC.
-
-Kemungkinan masalah:
-
-- push button rusak
-- wiring input terputus
-- input module PLC tidak membaca sinyal
-
-Jika sinyal start tidak pernah berubah menjadi TRUE di PLC, motor tidak akan dapat start.
-
----
-
-## Step 2 — Periksa Stop Push Button
-
-Stop push button biasanya menggunakan **contact Normally Closed (NC)**.
-
-Jika contact ini selalu terbuka, aliran logika menuju coil akan selalu terputus.
-
-Kemungkinan masalah:
-
-- stop push button rusak
-- wiring terputus
-- safety interlock terbuka
-
-Akibatnya motor tidak akan pernah dapat start.
-
----
-
-## Step 3 — Periksa PLC Logic
-
-Jika sinyal start dan stop sudah benar, langkah berikutnya adalah memeriksa **ladder logic PLC**.
-
-Engineer harus memastikan bahwa kondisi rung terpenuhi sehingga **Motor Coil dapat aktif**.
-
-Jika logika tidak terpenuhi, PLC tidak akan mengaktifkan output motor.
-
----
-
-## Step 4 — Periksa Motor Output dan Contactor
-
-Jika PLC output sudah aktif tetapi motor tetap tidak berjalan, kemungkinan masalah berada pada **perangkat lapangan**.
-
-Beberapa kemungkinan penyebab:
-
-- motor contactor gagal menarik
-- overload relay trip
-- supply listrik ke motor terputus
-
-Engineer biasanya memeriksa status berikut:
-
-```text id="motor_output_check"
-Motor Output = ON
-Motor Contactor = OFF
+```
+| PB_START |
+|----[ ]--------------------------------|
+|                                         |
+| REMOTE_START_REQ |
+|----[ ]--------------------------------|----[/]----( ) CMD_START_REQ
+|                                         | CMD_STOP_REQ
+| SEQ_START_REQ |
+|----[ ]--------------------------------|
 ```
 
-Jika kondisi ini terjadi, berarti masalah berada pada **rangkaian daya motor**, bukan pada logika PLC.
+Makna logika:
 
----
-
-## Troubleshooting Principle
-
-Dengan memahami struktur seal-in circuit, engineer dapat menganalisis sistem kontrol motor menggunakan pendekatan berikut.
-
-```text id="seal_in_troubleshooting_flow"
-Start Command
-↓
-Stop Circuit
-↓
-PLC Logic
-↓
-Motor Output
-↓
-Contactor
-↓
-Motor
+```
+CMD_START_REQ =
+(PB_START OR REMOTE_START_REQ OR SEQ_START_REQ)
+AND NOT CMD_STOP_REQ
 ```
 
-Pendekatan ini membantu engineer menemukan penyebab masalah secara sistematis tanpa harus langsung membongkar seluruh sistem kontrol.
+Engineering meaning:
+
+Pump dapat menerima start command dari:
+
+```
+local operator
+remote control
+sequence control
+```
+
+Namun command tidak diterima jika **stop request aktif**.
 
 ---
 
-Silakan **review Section 6**.
+# Section 4
 
-Jika sudah **OK**, langkah terakhir adalah menambahkan:
+# Network N4 — Start/Stop Latch
 
-- **Summary (≤100 words)**
-- **Tags**
+Network ini membentuk **memory state** dari pump operation.
 
-sehingga **Artikel 2 selesai sepenuhnya seperti Artikel 1**.
+## Rung N4-R1 — Run Latch Set
+
+```
+| CMD_START_REQ | PERMISSIVE_OK | /TRIP_ACTIVE |
+|----[ ]------------[ ]------------[/]------(S) RUN_LATCH
+```
+
+Makna logika:
+
+```
+Jika start request valid
+dan permissive terpenuhi
+dan tidak ada trip
+→ pump run latch diaktifkan
+```
+
+Engineering meaning:
+
+PLC mempertahankan status **pump running**.
+
+---
+
+## Rung N4-R2 — Run Latch Reset
+
+```
+| CMD_STOP_REQ |
+|----[ ]----------------------------(R) RUN_LATCH
+```
+
+Tambahan reset:
+
+```
+| START_FAIL_ACTIVE |
+|----[ ]----------------------------(R) RUN_LATCH
+```
+
+Makna logika:
+
+```
+RUN_LATCH reset jika:
+operator stop
+atau trip terjadi
+atau start failure
+```
+
+---
+
+## Rung N4-R3 — Motor Start Command
+
+```
+| RUN_LATCH | /TRIP_ACTIVE |
+|----[ ]-------[/]--------------------( ) MTR_START_CMD
+```
+
+Makna logika:
+
+```
+MTR_START_CMD =
+RUN_LATCH
+AND NOT TRIP_ACTIVE
+```
+
+Engineering meaning:
+
+Motor hanya menerima command jika:
+
+```
+pump running state aktif
+dan tidak ada trip
+```
+
+---
+
+# Section 5
+
+# Basic Start-Stop Ladder Pattern
+
+Bagian ini menjelaskan **struktur dasar ladder control**.
+
+Start-stop pattern:
+
+```
+Start command
+↓
+Set run latch
+↓
+Motor start output
+```
+
+Stop pattern:
+
+```
+Stop command
+↓
+Reset run latch
+↓
+Motor stop
+```
+
+Ini merupakan **pattern dasar kontrol equipment di PLC**.
+
+---
+
+# Section 6
+
+# Interaction with Other Networks
+
+Walaupun artikel ini hanya membahas **N2 dan N4**, ladder ini bergantung pada network lain.
+
+Contoh:
+
+```
+PERMISSIVE_OK
+→ berasal dari N3 Permissive Logic
+```
+
+```
+TRIP_ACTIVE
+→ berasal dari N5 Trip Logic
+```
+
+Artinya ladder start-stop **tidak berdiri sendiri**.
+
+---
+
+# Section 7
+
+# Pump Start Logic Flow
+
+Diagram yang digunakan:
+
+Diagram 5 — Pump Start Logic Flow
+
+```
+START COMMAND
+     │
+     ▼
+CMD_START_REQ
+     │
+     ▼
+PERMISSIVE_OK
+     │
+     ▼
+RUN_LATCH
+     │
+     ▼
+MTR_START_CMD
+     │
+     ▼
+Motor M-101
+     │
+     ▼
+Pump P-101 Running
+```
+
+Diagram ini menghubungkan **ladder dengan respon equipment**.
+
+---
+
+# Ladder Reference Summary
+
+Artikel 02 hanya merujuk:
+
+```
+FB101 Pump_Control
+
+Network:
+N2 Command Handling
+N4 Start/Stop Latch
+```
+
+Rung yang digunakan:
+
+```
+N2-R1
+N2-R2
+N4-R1
+N4-R2
+N4-R3
+```
+
+Tidak boleh menampilkan rung dari:
+
+```
+N1
+N3
+N5
+N6
+N7
+N8
+```
+
+---
+
+# Diagram Reference Summary
+
+Artikel ini hanya boleh menggunakan diagram dari library:
+
+```
+Diagram 1 — Pump System Reference
+Diagram 4 — Ladder Execution Flow
+Diagram 5 — Pump Start Logic
+```
+
+---
+
+# Hasil Outline Ini
+
+Artikel 02 sekarang terikat pada struktur berikut:
+
+```
+Pump P-101 System
+↓
+FB101 Pump_Control
+↓
+Network N2
+Network N4
+↓
+Specific ladder rung
+↓
+Motor command logic
+```
+
+Sehingga artikel tidak dapat:
+
+- mengganti ladder
+- mengganti sistem
+- menambah signal
+- menambah logic baru
+
+---
+
+Jika Anda ingin, langkah berikutnya yang sangat penting adalah membuat **Outline Artikel 03 — Permissive Logic**, karena di situlah pembaca mulai melihat **bagaimana Network N1 dan N3 membentuk kondisi start authorization untuk Pump P-101**.
 
 ---
 

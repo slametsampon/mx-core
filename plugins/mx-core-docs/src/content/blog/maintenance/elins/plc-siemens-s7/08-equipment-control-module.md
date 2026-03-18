@@ -19,289 +19,442 @@ summary: Dalam sistem kontrol industri, banyak equipment memiliki perilaku kontr
 ---
 
 - [**_Artikel 8: Equipment Control Module — Standardisasi Logic Control untuk Equipment_**](#artikel-8-equipment-control-module--standardisasi-logic-control-untuk-equipment)
-- [Section 1 — Programming Problem](#section-1--programming-problem)
-- [Section 2 — PLC Program Structure](#section-2--plc-program-structure)
-- [Section 3 — Functional Blocks](#section-3--functional-blocks)
-  - [Motor Control Module](#motor-control-module)
-  - [Pump Control Module](#pump-control-module)
-  - [Valve Control Module](#valve-control-module)
-- [Section 4 — Data Handling](#section-4--data-handling)
-- [Section 5 — Program Organization](#section-5--program-organization)
-- [Section 6 — Example Architecture](#section-6--example-architecture)
-- [Section 7 — Engineering Notes](#section-7--engineering-notes)
-  - [Gunakan modul kontrol yang konsisten](#gunakan-modul-kontrol-yang-konsisten)
-  - [Pisahkan logic dan data](#pisahkan-logic-dan-data)
-  - [Modular design mempermudah maintenance](#modular-design-mempermudah-maintenance)
+- [Article 08](#article-08)
+- [Equipment Control Module](#equipment-control-module)
+  - [System Reference (Locked)](#system-reference-locked)
+- [Section 1](#section-1)
+- [Equipment Control in Industrial Automation](#equipment-control-in-industrial-automation)
+  - [Engineering Focus](#engineering-focus)
+- [Section 2](#section-2)
+- [Concept of Equipment Control Module](#concept-of-equipment-control-module)
+- [Section 3](#section-3)
+- [Position of FB101 in PLC Architecture](#position-of-fb101-in-plc-architecture)
+- [Section 4](#section-4)
+- [Internal Structure of FB101](#internal-structure-of-fb101)
+- [Section 5](#section-5)
+- [Encapsulation of Equipment Logic](#encapsulation-of-equipment-logic)
+- [Section 6](#section-6)
+- [Role of DB101 in Equipment Module](#role-of-db101-in-equipment-module)
+- [Section 7](#section-7)
+- [Execution of Equipment Module](#execution-of-equipment-module)
+- [Section 8](#section-8)
+- [Benefits of Modular Equipment Control](#benefits-of-modular-equipment-control)
+- [Section 9](#section-9)
+- [Interface with Higher-Level Control](#interface-with-higher-level-control)
+- [Section 10](#section-10)
+- [Equipment Module in Industrial PLC Design](#equipment-module-in-industrial-plc-design)
+- [Ladder Reference Summary](#ladder-reference-summary)
+- [Diagram Reference Summary](#diagram-reference-summary)
+- [Knowledge Layer Built by Article 08](#knowledge-layer-built-by-article-08)
 
 ---
 
-# Section 1 — Programming Problem
+Berikut **Outline Artikel 08 — Equipment Control Module** yang tetap **terkunci pada PLC Reference System Pump P-101**, serta hanya merujuk **arsitektur OB1–FB101–DB101** dan **ladder FB101 Pump_Control yang telah dikunci**.
 
-Dalam plant industri, sistem kontrol biasanya mengendalikan banyak equipment yang memiliki **perilaku kontrol yang mirip**.
+Artikel ini menjelaskan **konsep modular control dalam PLC Siemens S7**, yaitu bagaimana **FB101 berfungsi sebagai equipment control module** yang mengenkapsulasi seluruh logika kontrol Pump P-101.
 
-Sebagai contoh dalam sistem pump, dapat terdapat beberapa pump yang beroperasi dalam satu sistem proses, seperti:
+Semua bagian tetap mematuhi aturan:
 
-- **Pump P-101**
-- **Pump P-102**
-- **Pump P-103**
-
-Meskipun pump tersebut berbeda secara fisik, perilaku kontrolnya biasanya sangat mirip.
-
-Setiap pump biasanya memiliki fungsi kontrol seperti:
-
-- start command
-- stop command
-- running feedback
-- trip protection
-- permissive logic
-
-Jika setiap pump diprogram secara terpisah dalam ladder logic, maka program PLC akan memiliki banyak bagian kode yang **sama atau sangat mirip**.
-
-Kondisi ini dapat menyebabkan beberapa masalah dalam pengembangan sistem kontrol, antara lain:
-
-- **banyak kode yang berulang**
-- **struktur program yang tidak rapi**
-- **kesulitan dalam maintenance program**
-
-Ketika sistem berkembang dan jumlah equipment bertambah, masalah ini dapat membuat program PLC menjadi semakin kompleks.
-
-Untuk mengatasi masalah tersebut, sistem PLC modern menggunakan pendekatan **equipment control module**.
-
-Pendekatan ini memungkinkan engineer membuat **modul kontrol standar** yang dapat digunakan oleh banyak equipment dengan perilaku kontrol yang sama.
+- tidak membuat equipment baru
+- tidak membuat signal baru
+- tidak mengubah ladder
+- hanya merujuk **FB101 Pump_Control**
 
 ---
 
-# Section 2 — PLC Program Structure
+# Article 08
 
-Equipment control module biasanya diimplementasikan menggunakan **Function Block (FB)** pada PLC.
+# Equipment Control Module
 
-Function Block memungkinkan engineer membuat **logika kontrol generik** yang dapat digunakan untuk banyak equipment yang memiliki karakteristik kontrol yang sama.
+## System Reference (Locked)
 
-Struktur dasar dari modul kontrol equipment dapat digambarkan sebagai berikut.
+Sistem yang dikontrol tetap **Pump P-101 motor-driven centrifugal pump**.
 
-```
-Equipment Control FB
-↓
-Instance Data Block
-↓
-Equipment Logic
+Equipment:
+
+```text
+P-101 Pump
+M-101 Motor
+XV-101 Suction Valve
+XV-102 Discharge Valve
 ```
 
-Penjelasan struktur ini:
+Seluruh kontrol equipment ini diimplementasikan dalam:
 
-- **Equipment Control FB** berisi logika kontrol standar untuk suatu jenis equipment.
-- **Instance Data Block** menyimpan data operasional yang spesifik untuk setiap equipment.
-- **Equipment Logic** dijalankan oleh FB menggunakan data yang tersimpan dalam DB.
-
-Dengan pendekatan ini, satu **Function Block** dapat digunakan untuk mengontrol banyak equipment tanpa harus menulis logika kontrol berulang kali.
-
-Sebagai contoh, satu **Pump Control FB** dapat digunakan untuk mengontrol berbagai pump dalam satu sistem proses.
-
-Pendekatan modular seperti ini membuat program PLC menjadi:
-
-- lebih terstruktur
-- lebih mudah dikembangkan
-- lebih mudah dipelihara dalam sistem kontrol industri yang besar.
-
----
-
-# Section 3 — Functional Blocks
-
-Dalam sistem kontrol industri, **equipment control module** biasanya dibuat untuk jenis equipment tertentu yang memiliki perilaku kontrol yang serupa.
-
-Dengan menggunakan **Function Block (FB)**, engineer dapat membuat modul kontrol yang dapat digunakan kembali untuk berbagai equipment.
-
-Beberapa contoh modul kontrol equipment yang umum digunakan antara lain:
-
----
-
-## Motor Control Module
-
-Modul kontrol motor biasanya menangani fungsi dasar operasi motor seperti:
-
-- **start command**
-- **stop command**
-- **running feedback**
-- **trip condition**
-
-Modul ini memastikan bahwa motor dapat dikontrol secara konsisten pada berbagai bagian sistem proses.
-
----
-
-## Pump Control Module
-
-Pump control module biasanya memiliki logika kontrol yang sedikit lebih kompleks dibanding motor biasa.
-
-Fungsi kontrol yang biasanya ditangani oleh modul pump antara lain:
-
-- **permissive logic**
-- **start command**
-- **running feedback**
-- **trip logic**
-
-Logika ini memastikan pump hanya dapat start ketika kondisi operasi aman dan dapat berhenti ketika terjadi kondisi trip.
-
----
-
-## Valve Control Module
-
-Valve control module digunakan untuk mengontrol pergerakan valve dalam sistem proses.
-
-Fungsi utama modul ini biasanya meliputi:
-
-- **open command**
-- **close command**
-- **position feedback**
-
-Dengan menggunakan modul kontrol valve, engineer dapat memastikan bahwa semua valve dalam sistem dikendalikan dengan struktur logika yang sama.
-
----
-
-Dengan membuat modul kontrol seperti ini, engineer dapat menggunakan **struktur kontrol yang konsisten untuk equipment yang berbeda**, sehingga program PLC menjadi lebih mudah dipahami dan dipelihara.
-
----
-
-# Section 4 — Data Handling
-
-Dalam pendekatan **equipment control module**, setiap equipment yang menggunakan Function Block akan memiliki **instance Data Block (DB)** sendiri.
-
-Struktur hubungan antara FB dan DB dapat digambarkan sebagai berikut.
-
-```text id="pump_db_structure"
-Pump Control FB
-↓
-DB_P101
-DB_P102
-DB_P103
+```text
+FB101 Pump_Control
 ```
 
-Pada struktur ini:
+yang dipanggil oleh:
 
-- **Pump Control FB** berisi logika kontrol pump.
-- **DB_P101**, **DB_P102**, dan **DB_P103** menyimpan data yang spesifik untuk masing-masing pump.
-
-Data yang biasanya disimpan dalam Data Block antara lain:
-
-- **status running**
-- **alarm status**
-- **permissive condition**
-- **trip status**
-
-Dengan menggunakan **instance DB**, satu Function Block dapat digunakan oleh banyak equipment tanpa mencampur data antar equipment.
-
-Pendekatan ini memastikan bahwa setiap equipment memiliki **data operasional yang terpisah** meskipun menggunakan logika kontrol yang sama.
-
----
-
-# Section 5 — Program Organization
-
-Dalam sistem PLC yang menggunakan pendekatan modular, program biasanya diorganisasi dengan **OB1 sebagai program utama** yang memanggil berbagai modul kontrol equipment.
-
-Struktur program PLC dapat digambarkan sebagai berikut.
-
-```text id="pump_program_structure"
+```text
 OB1
- ↓
-Pump Control FB → DB_P101
-Pump Control FB → DB_P102
-Pump Control FB → DB_P103
 ```
 
-Dalam struktur ini:
+dan menggunakan data instance:
 
-- **OB1** berfungsi sebagai program utama yang dijalankan oleh PLC.
-- OB1 memanggil **Pump Control FB** untuk setiap pump dalam sistem.
-- Setiap pump menggunakan **Data Block yang berbeda** untuk menyimpan data operasionalnya.
-
-Pendekatan ini memberikan beberapa keuntungan dalam pengembangan sistem kontrol industri.
-
-Program PLC menjadi:
-
-- **lebih modular**
-- **lebih mudah dipelihara**
-- **lebih mudah dikembangkan**
-
-Engineer dapat menambahkan equipment baru dengan memanggil FB yang sama tanpa harus menulis ulang logika kontrol dari awal.
+```text
+DB101 Pump_Data
+```
 
 ---
 
-# Section 6 — Example Architecture
+# Section 1
 
-Sebagai contoh implementasi **equipment control module**, kita dapat melihat struktur program PLC untuk sistem yang memiliki **tiga pump**.
+# Equipment Control in Industrial Automation
 
-Struktur program dapat digambarkan sebagai berikut.
+## Engineering Focus
 
-```text id="pump_architecture_three"
+Dalam plant industri, PLC tidak hanya mengontrol satu perangkat.
+
+Sebuah plant dapat memiliki:
+
+```text
+pump
+fan
+compressor
+valve
+conveyor
+agitator
+```
+
+Setiap equipment membutuhkan logika kontrol yang serupa:
+
+```text
+start command
+permissive logic
+trip protection
+alarm handling
+```
+
+Karena pola kontrol tersebut berulang, program PLC biasanya menggunakan **modular equipment control block**.
+
+---
+
+# Section 2
+
+# Concept of Equipment Control Module
+
+Equipment control module adalah **blok program PLC yang menangani seluruh kontrol untuk satu equipment**.
+
+Struktur umum modul:
+
+```text
+Equipment Module
+ │
+ ├ Command Handling
+ ├ Permissive Logic
+ ├ Run Logic
+ ├ Protection Logic
+ ├ Alarm Logic
+ └ Status Interface
+```
+
+Dalam sistem ini:
+
+```text
+FB101 = Pump Control Module
+```
+
+---
+
+# Section 3
+
+# Position of FB101 in PLC Architecture
+
+Struktur program PLC:
+
+```text
+PLC CPU
+ │
 OB1
- ↓
-Pump FB → DB_P101
-Pump FB → DB_P102
-Pump FB → DB_P103
+ │
+CALL FB101 Pump_Control
+ │
+DB101 Pump_Data
 ```
 
-Pada struktur ini:
+Makna arsitektur:
 
-- **OB1** berfungsi sebagai program utama yang dijalankan oleh PLC.
-- **Pump FB** berisi logika kontrol standar untuk pump.
-- **DB_P101**, **DB_P102**, dan **DB_P103** menyimpan data operasional untuk masing-masing pump.
+| Block | Role                   |
+| ----- | ---------------------- |
+| OB1   | main program execution |
+| FB101 | pump control module    |
+| DB101 | pump instance data     |
 
-Logika kontrol yang sama digunakan untuk semua pump, termasuk fungsi seperti:
-
-- permissive logic
-- start–stop control
-- running feedback monitoring
-- trip logic
-
-Perbedaan antar pump hanya terletak pada **data yang disimpan dalam masing-masing Data Block**.
-
-Dengan pendekatan ini, engineer tidak perlu menulis logika kontrol pump secara terpisah untuk setiap equipment.
-
-Satu **Pump Control FB** dapat digunakan untuk semua pump dalam sistem.
-
-Pendekatan ini sangat umum digunakan dalam sistem kontrol industri karena memungkinkan program PLC menjadi lebih terstruktur dan mudah dikembangkan.
+Dengan struktur ini, seluruh logika Pump P-101 **terisolasi dalam satu modul**.
 
 ---
 
-# Section 7 — Engineering Notes
+# Section 4
 
-Beberapa prinsip penting perlu diperhatikan dalam desain **equipment control module** pada sistem PLC.
+# Internal Structure of FB101
+
+Struktur ladder di dalam FB101:
+
+```text
+FB101 Pump_Control
+ │
+ ├ N1 Input Conditioning
+ ├ N2 Command Handling
+ ├ N3 Permissive Logic
+ ├ N4 Start/Stop Latch
+ ├ N5 Trip Logic
+ ├ N6 Alarm Logic
+ ├ N7 Start Failure Detection
+ └ N8 Sequence Interface
+```
+
+Setiap network merepresentasikan **fungsi kontrol tertentu**.
+
+| Network | Function            |
+| ------- | ------------------- |
+| N1      | signal conditioning |
+| N2      | command processing  |
+| N3      | start permissive    |
+| N4      | run latch           |
+| N5      | trip protection     |
+| N6      | alarm generation    |
+| N7      | start verification  |
+| N8      | sequence interface  |
+
+Dengan struktur ini FB101 menjadi **modul kontrol equipment lengkap**.
 
 ---
 
-## Gunakan modul kontrol yang konsisten
+# Section 5
 
-Setiap jenis equipment dalam sistem kontrol sebaiknya memiliki **modul kontrol standar**.
+# Encapsulation of Equipment Logic
 
-Sebagai contoh:
+Dalam desain modular, semua logika equipment ditempatkan dalam satu block.
 
-- motor control module
-- pump control module
-- valve control module
+Untuk Pump P-101:
 
-Dengan menggunakan modul yang konsisten, engineer dapat memastikan bahwa semua equipment dikendalikan dengan **struktur logika yang seragam**.
+```text
+Field Signals
+↓
+FB101 Pump_Control
+↓
+Motor Command
+```
+
+Input yang diterima FB101:
+
+```text
+PB_START
+PB_STOP
+XV101_OPEN
+PT101_PV
+LSL101
+MTR_RUN_FB
+```
+
+Output dari FB101:
+
+```text
+MTR_START_CMD
+ALM_P101
+TRIP_P101
+START_FAIL_ALM
+```
+
+Dengan demikian FB101 bertindak sebagai **interface antara field device dan PLC logic**.
 
 ---
 
-## Pisahkan logic dan data
+# Section 6
 
-Dalam desain modular PLC, **logic dan data harus dipisahkan**.
+# Role of DB101 in Equipment Module
 
-- **Logic** disimpan dalam **Function Block (FB)**
-- **Data** disimpan dalam **Data Block (DB)**
+Setiap equipment module memerlukan **data storage untuk state internal**.
 
-Pendekatan ini memungkinkan satu blok logika digunakan untuk banyak equipment tanpa mencampur data operasional masing-masing equipment.
+Dalam sistem ini:
+
+```text
+FB101 Pump_Control
+│
+DB101 Pump_Data
+```
+
+DB101 menyimpan:
+
+```text
+RUN_LATCH
+TRIP_ACTIVE
+ALARM_ACTIVE
+START_FAIL_ACTIVE
+timer instance
+parameter threshold
+```
+
+Data ini memastikan bahwa modul dapat mempertahankan **state antar scan cycle PLC**.
 
 ---
 
-## Modular design mempermudah maintenance
+# Section 7
 
-Pendekatan modular memberikan keuntungan besar dalam proses **maintenance dan pengembangan sistem kontrol**.
+# Execution of Equipment Module
 
-Jika terdapat perubahan pada logika kontrol, engineer hanya perlu **memperbarui satu Function Block**.
+Selama operasi PLC, eksekusi modul terjadi pada setiap scan cycle.
 
-Semua equipment yang menggunakan FB tersebut akan otomatis menggunakan logika terbaru tanpa perlu memodifikasi seluruh program PLC.
+Urutan eksekusi:
 
-Pendekatan ini membuat sistem kontrol lebih **scalable, konsisten, dan mudah dipelihara** dalam plant industri.
+```text
+PLC scan cycle
+↓
+OB1 execution
+↓
+CALL FB101 Pump_Control
+↓
+Execute network N1 → N8
+↓
+Update outputs
+```
+
+Dengan demikian modul kontrol pump **dieksekusi secara cyclic oleh PLC**.
+
+---
+
+# Section 8
+
+# Benefits of Modular Equipment Control
+
+Pendekatan modular memberikan beberapa keuntungan:
+
+| Benefit            | Explanation                   |
+| ------------------ | ----------------------------- |
+| structured program | program lebih terorganisasi   |
+| maintainability    | perubahan logika lebih mudah  |
+| reusability        | modul dapat digunakan ulang   |
+| scalability        | mudah menambah equipment baru |
+
+Dalam sistem ini:
+
+```text
+FB101 Pump_Control
+```
+
+berfungsi sebagai **template kontrol equipment berbasis motor**.
+
+---
+
+# Section 9
+
+# Interface with Higher-Level Control
+
+Equipment control module biasanya menjadi bagian dari sistem kontrol yang lebih besar.
+
+Dalam struktur FB101:
+
+```text
+N8 Sequence Interface
+```
+
+memungkinkan pump berinteraksi dengan **sequence control system**.
+
+Interface yang tersedia:
+
+```text
+SEQ_START_REQ
+SEQ_READY
+SEQ_RUNNING
+SEQ_TRIP
+```
+
+Ini memungkinkan pump dikontrol oleh **process automation sequence**.
+
+---
+
+# Section 10
+
+# Equipment Module in Industrial PLC Design
+
+Pendekatan modular seperti FB101 umum digunakan dalam sistem kontrol industri.
+
+Struktur tipikal:
+
+```text
+PLC Program
+ │
+ ├ Pump Module
+ ├ Valve Module
+ ├ Compressor Module
+ ├ Fan Module
+ └ Heater Module
+```
+
+Dalam serial ini, modul yang dianalisis adalah:
+
+```text
+FB101 Pump_Control
+```
+
+yang menangani seluruh kontrol untuk **Pump P-101**.
+
+---
+
+# Ladder Reference Summary
+
+Artikel ini merujuk pada **seluruh ladder dalam FB101**, tetapi tidak menampilkan rung baru.
+
+Network yang dirujuk:
+
+```text
+N1 Input Conditioning
+N2 Command Handling
+N3 Permissive Logic
+N4 Start/Stop Latch
+N5 Trip Logic
+N6 Alarm Logic
+N7 Start Failure Detection
+N8 Sequence Interface
+```
+
+Semua ladder tetap berada dalam:
+
+```text
+FB101 Pump_Control
+```
+
+---
+
+# Diagram Reference Summary
+
+Artikel ini hanya boleh menggunakan diagram dari library:
+
+```text
+Diagram 3 — PLC Program Architecture
+Diagram 4 — Ladder Execution Flow
+```
+
+---
+
+# Knowledge Layer Built by Article 08
+
+Artikel ini menambahkan pemahaman berikut:
+
+```text
+PLC Program
+↓
+Equipment Control Module
+↓
+FB101 Pump_Control
+↓
+Network N1 → N8
+↓
+Pump P-101 Operation
+```
+
+Pembaca sekarang memahami bahwa:
+
+```text
+FB101 bukan hanya ladder biasa
+tetapi modul kontrol equipment lengkap
+```
+
+---
+
+Jika Anda ingin, langkah berikutnya adalah membuat **Outline Artikel 09 — Sequence Control**, karena di situlah pembaca mulai memahami **bagaimana Pump P-101 dapat diintegrasikan ke dalam operasi proses yang memiliki urutan operasi tertentu**.
 
 ---
 

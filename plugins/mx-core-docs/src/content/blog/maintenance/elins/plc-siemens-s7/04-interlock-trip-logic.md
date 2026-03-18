@@ -12,330 +12,467 @@ summary: Interlock dan trip logic digunakan dalam sistem kontrol industri untuk 
 ---
 
 - [**_Artikel 4: Interlock \& Trip Logic — Menghentikan Equipment Saat Kondisi Berbahaya Terjadi_**](#artikel-4-interlock--trip-logic--menghentikan-equipment-saat-kondisi-berbahaya-terjadi)
-- [Section 1 — Operational Context](#section-1--operational-context)
-- [Section 2 — Equipment Behaviour](#section-2--equipment-behaviour)
-- [Section 3 — Control Requirement](#section-3--control-requirement)
-- [Section 4 — Signal Logic](#section-4--signal-logic)
-- [Section 5 — Ladder Logic Pattern](#section-5--ladder-logic-pattern)
-- [Section 6 — Practical Example](#section-6--practical-example)
-- [Section 7 — Engineering Notes](#section-7--engineering-notes)
-  - [Trip berbeda dengan Permissive](#trip-berbeda-dengan-permissive)
-  - [Trip biasanya berasal dari instrument proteksi](#trip-biasanya-berasal-dari-instrument-proteksi)
-  - [Trip logic harus lebih cepat dari operator response](#trip-logic-harus-lebih-cepat-dari-operator-response)
+- [Article 04](#article-04)
+- [Interlock \& Trip Logic](#interlock--trip-logic)
+  - [System Reference (Locked)](#system-reference-locked)
+- [Section 1](#section-1)
+- [Purpose of Interlock \& Trip Logic](#purpose-of-interlock--trip-logic)
+  - [Engineering Focus](#engineering-focus)
+- [Section 2](#section-2)
+- [Position of Trip Logic in FB101](#position-of-trip-logic-in-fb101)
+- [Section 3](#section-3)
+- [Process Conditions Leading to Trip](#process-conditions-leading-to-trip)
+- [Section 4](#section-4)
+- [Network N5 — Trip Evaluation](#network-n5--trip-evaluation)
+  - [Ladder Reference](#ladder-reference)
+    - [Rung N5-R1 — Trip Logic Evaluation](#rung-n5-r1--trip-logic-evaluation)
+- [Section 5](#section-5)
+- [Trip Output Generation](#trip-output-generation)
+  - [Ladder Reference](#ladder-reference-1)
+    - [Rung N5-R2 — Trip Output](#rung-n5-r2--trip-output)
+- [Section 6](#section-6)
+- [Interaction with Start Logic](#interaction-with-start-logic)
+- [Section 7](#section-7)
+- [Example Trip Scenarios](#example-trip-scenarios)
+  - [Scenario 1 — Motor Overload](#scenario-1--motor-overload)
+  - [Scenario 2 — Low Suction Pressure](#scenario-2--low-suction-pressure)
+  - [Scenario 3 — MCC Failure During Operation](#scenario-3--mcc-failure-during-operation)
+- [Section 8](#section-8)
+- [Interlock vs Trip](#interlock-vs-trip)
+- [Section 9](#section-9)
+- [Pump Protection Flow](#pump-protection-flow)
+- [Ladder Reference Summary](#ladder-reference-summary)
+- [Diagram Reference Summary](#diagram-reference-summary)
+- [Knowledge Layer Built by Article 04](#knowledge-layer-built-by-article-04)
 
 ---
 
-# Section 1 — Operational Context
+Berikut **Outline Artikel 04 — Interlock & Trip Logic** yang tetap **terkunci pada ladder FB101 Pump_Control**, khususnya **Network N5 Trip Logic**.
 
-Dalam operasi plant industri, berbagai equipment seperti **pump, compressor, dan fan** bekerja dalam kondisi proses yang dapat berubah secara dinamis.
+Artikel ini adalah **transisi penting dalam serial**, karena pembaca mulai memahami bahwa PLC tidak hanya **mengizinkan start**, tetapi juga **memaksa equipment berhenti ketika kondisi proses berbahaya**.
 
-Pada kondisi tertentu, parameter proses dapat keluar dari batas operasi yang aman.
+Semua bagian artikel tetap mematuhi aturan:
 
-Contoh kondisi yang berpotensi berbahaya antara lain:
-
-- **tekanan terlalu rendah**
-- **temperatur terlalu tinggi**
-- **aliran fluida hilang**
-
-Jika kondisi tersebut terjadi dan equipment tetap beroperasi, risiko yang dapat muncul meliputi:
-
-- kerusakan pada equipment
-- gangguan pada sistem proses
-- potensi kecelakaan operasi
-
-Karena itu sistem kontrol industri biasanya dilengkapi dengan **logika proteksi otomatis** yang dapat menghentikan equipment ketika kondisi berbahaya terdeteksi.
-
-Logika ini dikenal sebagai **interlock** atau **trip logic**.
-
-Tujuan utama dari interlock dan trip logic adalah memastikan bahwa equipment dapat **dihentikan secara otomatis** ketika kondisi operasi berada di luar batas aman.
-
-Hubungan dasar antara kondisi berbahaya dan respon sistem dapat digambarkan sebagai berikut.
-
-```text id="trip_basic_concept"
-Abnormal Condition
-↓
-Trip Detection
-↓
-Automatic Equipment Stop
-```
-
-Dengan mekanisme ini, sistem kontrol dapat melindungi equipment dan proses tanpa harus menunggu tindakan operator.
+- hanya menggunakan **Pump P-101 system**
+- hanya menggunakan **tag yang sudah dikunci**
+- hanya merujuk **Network N5**
+- hanya menampilkan **rung yang sudah ada**
 
 ---
 
-# Section 2 — Equipment Behaviour
+# Article 04
 
-Untuk memahami fungsi **interlock dan trip logic**, kita dapat melihat contoh perilaku sistem pada **pump system**.
+# Interlock & Trip Logic
 
-Pump dalam sistem proses biasanya beroperasi dengan memindahkan fluida dari **suction line** menuju **discharge line**. Selama operasi normal, tekanan pada sisi suction harus berada dalam batas yang aman agar aliran fluida dapat masuk ke pump dengan stabil.
+## System Reference (Locked)
 
-Namun dalam kondisi tertentu, tekanan pada sisi suction dapat turun terlalu rendah.
+Sistem yang dikontrol tetap **Pump P-101 motor-driven centrifugal pump**.
 
-Jika kondisi ini terjadi, pump dapat mengalami beberapa masalah serius seperti:
+Equipment:
 
-- **cavitation** akibat terbentuknya gelembung uap pada fluida
-- **overheating** karena pendinginan internal pump tidak bekerja dengan baik
-- **kerusakan impeller** akibat operasi pada kondisi aliran yang tidak stabil
-
-Karena itu sistem kontrol harus mampu mendeteksi kondisi **low suction pressure** dan menghentikan pump secara otomatis.
-
-Perilaku sistem yang diharapkan dapat digambarkan sebagai berikut.
-
-```text id="trip_behavior_pump"
-Low Suction Pressure
-→ Pump Stop
+```
+P-101 Pump
+M-101 Motor
+XV-101 Suction Valve
+XV-102 Discharge Valve
 ```
 
-Dengan kata lain, ketika tekanan suction turun di bawah batas yang ditentukan, sistem kontrol harus segera memberikan perintah untuk menghentikan pump.
+Instrument dan status yang relevan untuk proteksi:
 
-Respon otomatis ini merupakan bagian dari **trip logic**, yang dirancang untuk melindungi equipment dari kerusakan akibat kondisi operasi yang berbahaya.
+```
+PT101_PV
+OL_TRIP
+MCC_RDY
+```
+
+Diagram yang digunakan:
+
+- Diagram 1 — Pump System Reference
+- Diagram 6 — Pump Protection Logic
 
 ---
 
-# Section 3 — Control Requirement
+# Section 1
 
-Dalam sistem kontrol industri, PLC harus mampu **mendeteksi kondisi operasi yang berbahaya dan meresponnya dengan menghentikan equipment secara otomatis**.
+# Purpose of Interlock & Trip Logic
 
-Fungsi ini biasanya diimplementasikan melalui **trip logic** atau **interlock logic** yang memonitor parameter operasi equipment secara terus-menerus.
+## Engineering Focus
 
-Pada sistem pump, beberapa kondisi trip yang umum digunakan antara lain:
+Permissive logic memastikan **pump hanya start dalam kondisi aman**.
 
-```text id="pump_trip_conditions"
-Low Suction Pressure
-High Motor Temperature
-Motor Overload Trip
+Namun selama operasi, kondisi proses bisa berubah.
+
+Contoh:
+
+```
+suction pressure turun drastis
+motor overload
+motor starter fault
 ```
 
-Penjelasan kondisi trip tersebut:
+Dalam kondisi ini PLC harus:
 
-- **Low Suction Pressure**
-  Tekanan pada sisi suction turun di bawah batas aman sehingga aliran fluida menuju pump tidak stabil.
-
-- **High Motor Temperature**
-  Temperatur motor meningkat melebihi batas operasi yang diizinkan.
-
-- **Motor Overload Trip**
-  Sistem proteksi motor mendeteksi arus berlebih yang dapat menyebabkan kerusakan pada motor.
-
-Sistem kontrol harus memonitor kondisi-kondisi ini selama equipment beroperasi.
-
-Hubungan antara kondisi trip dan respon sistem dapat digambarkan sebagai berikut.
-
-```text id="trip_logic_requirement"
-Any Trip Condition
-↓
-Trip Detection
-↓
-Pump Stop Command
+```
+menghentikan pump secara otomatis
 ```
 
-Artinya, jika **salah satu kondisi trip muncul**, PLC harus segera menghentikan pump.
+Struktur keputusan PLC:
 
-Pendekatan ini memastikan bahwa equipment tidak terus beroperasi dalam kondisi yang dapat menyebabkan kerusakan atau membahayakan proses.
+```
+Process deviation
+↓
+Trip evaluation
+↓
+Trip active
+↓
+Motor stop
+↓
+Pump shutdown
+```
 
 ---
 
-# Section 4 — Signal Logic
+# Section 2
 
-Dalam **trip logic**, PLC harus memonitor berbagai sinyal proteksi yang berasal dari instrument atau perangkat proteksi equipment.
+# Position of Trip Logic in FB101
 
-Sinyal-sinyal ini digunakan untuk mendeteksi kondisi operasi yang berbahaya selama equipment sedang beroperasi.
+Trip logic berada dalam struktur ladder berikut:
 
-Hubungan antara sinyal trip dan respon sistem kontrol dapat digambarkan sebagai berikut.
-
-```text id="trip_signal_logic"
-Trip Signal
-↓
-PLC Logic
-↓
-Stop Command
-↓
-Equipment Stop
+```
+FB101 Pump_Control
+ │
+ ├ N1 Input Conditioning
+ ├ N2 Command Handling
+ ├ N3 Permissive Logic
+ ├ N4 Start/Stop Latch
+ ├ N5 Trip Logic      ← fokus artikel
+ ├ N6 Alarm Logic
+ ├ N7 Start Failure Detection
+ └ N8 Sequence Interface
 ```
 
-Ketika salah satu sinyal trip terdeteksi oleh PLC, sistem kontrol akan menghasilkan **perintah stop** untuk equipment yang bersangkutan.
+Hubungan antar network:
 
-Beberapa contoh sinyal trip yang umum digunakan pada sistem pump adalah:
-
-```text id="trip_signal_examples"
-Low Pressure Switch
-Motor Overload Signal
-High Temperature Switch
 ```
-
-Penjelasan sinyal trip:
-
-- **Low Pressure Switch**
-  Memberikan sinyal ketika tekanan suction turun di bawah batas aman.
-
-- **Motor Overload Signal**
-  Berasal dari sistem proteksi motor yang mendeteksi arus berlebih.
-
-- **High Temperature Switch**
-  Memberikan sinyal ketika temperatur equipment atau motor melebihi batas operasi yang diizinkan.
-
-PLC akan memonitor sinyal-sinyal ini secara **terus-menerus selama equipment beroperasi**.
-
-Jika salah satu sinyal trip berubah status menjadi aktif, PLC akan memproses kondisi tersebut dalam logika kontrol dan menghasilkan **stop command** untuk menghentikan equipment.
-
-Pendekatan ini memungkinkan sistem kontrol merespon kondisi berbahaya secara otomatis tanpa menunggu intervensi operator.
+N4 Run Logic
+↓
+N5 Trip Logic
+↓
+RUN_LATCH reset
+↓
+Motor stop
+```
 
 ---
 
-# Section 5 — Ladder Logic Pattern
+# Section 3
 
-Trip logic dalam sistem PLC biasanya diimplementasikan menggunakan **ladder logic** yang memonitor kondisi trip secara terus-menerus.
+# Process Conditions Leading to Trip
 
-Ketika salah satu kondisi trip terdeteksi, PLC harus segera menghentikan equipment dengan mematikan output yang menjalankan equipment tersebut.
+Trip logic menggunakan status yang dibentuk oleh **Network N1**.
 
-Contoh ladder logic sederhana untuk kondisi trip dapat digambarkan sebagai berikut.
+Signal yang relevan:
 
-```text id="trip_ladder_pattern"
-Low Pressure Switch
-----[/]--------------------( Pump Stop )
-
-Motor Overload
-----[/]--------------------( Pump Stop )
+```
+OL_TRIP
+SUCT_PRESS_LOWLOW
+MCC_HEALTHY
+RUN_LATCH
 ```
 
-Pada ladder ini terdapat beberapa sinyal trip yang dapat menyebabkan pump berhenti.
+Makna kondisi:
 
-Elemen-elemen pada ladder tersebut antara lain:
+| Condition         | Engineering meaning             |
+| ----------------- | ------------------------------- |
+| OL_TRIP           | motor overload                  |
+| SUCT_PRESS_LOWLOW | suction pressure terlalu rendah |
+| NOT MCC_HEALTHY   | MCC fault                       |
+| RUN_LATCH         | pump sedang running             |
 
-- **Low Pressure Switch**
-  Memberikan indikasi bahwa tekanan suction berada di bawah batas aman.
-
-- **Motor Overload**
-  Memberikan sinyal ketika sistem proteksi motor mendeteksi kondisi arus berlebih.
-
-Contact pada ladder biasanya menggunakan **Normally Closed (NC)** untuk kondisi trip.
-
-Selama kondisi operasi normal, contact tersebut berada dalam keadaan tertutup sehingga tidak memicu perintah stop.
-
-Namun ketika kondisi trip terjadi, contact akan berubah status dan menyebabkan logika rung menjadi aktif.
-
-Akibatnya PLC akan mematikan coil **Pump Run**, sehingga output yang menjalankan pump menjadi OFF.
-
-Dengan demikian **pump akan berhenti secara otomatis ketika salah satu kondisi trip muncul**.
-
-Pola ladder seperti ini merupakan bentuk dasar dari **trip logic** yang digunakan untuk melindungi equipment dalam sistem kontrol industri.
+Trip logic hanya aktif **ketika pump sedang beroperasi atau kondisi proteksi terjadi**.
 
 ---
 
-# Section 6 — Practical Example
+# Section 4
 
-Sebagai contoh implementasi **trip logic** dalam sistem kontrol industri, kita dapat melihat kasus pada **Pump P-101**.
+# Network N5 — Trip Evaluation
 
-Pump P-101 sedang beroperasi untuk memindahkan fluida dari suction line menuju discharge line.
+## Ladder Reference
 
-Selama operasi normal, tekanan pada sisi suction harus berada dalam batas operasi yang aman.
+### Rung N5-R1 — Trip Logic Evaluation
 
-Namun jika tekanan suction turun di bawah batas yang ditentukan, kondisi ini dapat membahayakan pump.
-
-Kondisi tersebut dapat dinyatakan sebagai berikut.
-
-```text id="p101_trip_condition"
-Suction Pressure < Low Limit
+```
+| OL_TRIP |
+|----[ ]--------------------------------|
+|                                         |
+| SUCT_PRESS_LOWLOW |
+|----[ ]--------------------------------|----( ) TRIP_ACTIVE
+|                                         |
+| RUN_LATCH | /MCC_HEALTHY |
+|----[ ]--------[/]----------------------|
 ```
 
-Pada sistem ini, tekanan suction dimonitor oleh **pressure switch** yang terpasang pada suction line.
+Makna logika:
 
-Ketika tekanan turun di bawah batas yang ditentukan, pressure switch akan berubah status dan menghasilkan **sinyal trip** ke PLC.
-
-PLC kemudian membaca sinyal tersebut sebagai kondisi trip.
-
-Respon sistem kontrol dapat digambarkan sebagai berikut.
-
-```text id="p101_trip_response"
-Low Suction Pressure
-↓
-PLC Trip Logic
-↓
-Pump Run = OFF
+```
+TRIP_ACTIVE =
+OL_TRIP
+OR SUCT_PRESS_LOWLOW
+OR (RUN_LATCH AND NOT MCC_HEALTHY)
 ```
 
-Ketika PLC mendeteksi kondisi trip, PLC akan mematikan coil **Pump Run**.
+Engineering meaning:
 
-Akibatnya:
+Pump harus dihentikan jika:
 
-- output PLC yang mengendalikan motor contactor menjadi OFF
-- motor contactor membuka
-- pump berhenti beroperasi
-
-Dengan mekanisme ini, sistem kontrol dapat **menghentikan Pump P-101 secara otomatis ketika kondisi operasi tidak aman terdeteksi**.
+```
+motor overload
+atau suction pressure sangat rendah
+atau MCC gagal saat pump sedang running
+```
 
 ---
 
-# Section 7 — Engineering Notes
+# Section 5
 
-Beberapa prinsip penting perlu diperhatikan dalam implementasi **interlock dan trip logic** pada sistem kontrol industri.
+# Trip Output Generation
+
+Setelah kondisi trip terdeteksi, PLC menghasilkan **trip output**.
+
+## Ladder Reference
+
+### Rung N5-R2 — Trip Output
+
+```
+| TRIP_ACTIVE |
+|----[ ]-----------------------------( ) TRIP_P101
+```
+
+Makna logika:
+
+```
+TRIP_P101 = TRIP_ACTIVE
+```
+
+Engineering meaning:
+
+```
+trip signal dikirim ke motor starter
+motor berhenti
+pump shutdown
+```
 
 ---
 
-## Trip berbeda dengan Permissive
+# Section 6
 
-Trip logic memiliki fungsi yang berbeda dengan permissive logic.
+# Interaction with Start Logic
 
-Permissive logic menentukan **apakah equipment diizinkan untuk start**, sedangkan trip logic menentukan **apakah equipment harus dihentikan**.
+Trip logic berinteraksi langsung dengan **run latch logic di Network N4**.
 
-Perbedaan fungsi ini dapat digambarkan sebagai berikut.
+Hubungan ladder:
 
-```text
-Permissive Logic
-Start Command
+```
+TRIP_ACTIVE
 ↓
-Permissive Check
+CMD_STOP_REQ
 ↓
-Start Allowed
+RUN_LATCH reset
+↓
+MTR_START_CMD off
 ```
 
-```text
-Trip Logic
-Trip Condition
-↓
-Trip Detection
-↓
-Equipment Stop
-```
-
-Dengan kata lain:
-
-```text
-Permissive → Start Authorization
-Trip → Emergency Stop
-```
-
-Permissive bekerja **sebelum equipment start**, sedangkan trip bekerja **selama equipment beroperasi**.
+Artinya trip tidak hanya menghasilkan alarm, tetapi **memaksa motor berhenti**.
 
 ---
 
-## Trip biasanya berasal dari instrument proteksi
+# Section 7
 
-Sinyal trip umumnya berasal dari **instrument proteksi atau perangkat proteksi equipment** yang memonitor kondisi operasi.
+# Example Trip Scenarios
 
-Beberapa contoh sumber sinyal trip antara lain:
+## Scenario 1 — Motor Overload
 
-- **pressure switch**
-- **temperature switch**
-- **overload relay**
+Kondisi:
 
-Perangkat-perangkat ini dirancang untuk mendeteksi kondisi operasi yang berpotensi merusak equipment.
+```
+OL_TRIP = TRUE
+```
 
-Ketika kondisi tersebut terdeteksi, instrument akan menghasilkan **sinyal trip** yang dibaca oleh PLC atau sistem proteksi.
+Hasil ladder:
+
+```
+TRIP_ACTIVE = TRUE
+TRIP_P101 = TRUE
+motor stop
+```
 
 ---
 
-## Trip logic harus lebih cepat dari operator response
+## Scenario 2 — Low Suction Pressure
 
-Tujuan utama trip logic adalah **melindungi equipment dari kerusakan akibat kondisi operasi yang berbahaya**.
+Kondisi:
 
-Karena itu trip logic harus bekerja **secara otomatis dan lebih cepat dibandingkan respon operator**.
+```
+PT101_PV < LowLow_SP
+```
 
-Jika sistem hanya bergantung pada tindakan operator, terdapat risiko bahwa equipment akan terus beroperasi dalam kondisi yang tidak aman.
+Hasil ladder:
 
-Dengan adanya trip logic, sistem kontrol dapat menghentikan equipment secara otomatis segera setelah kondisi berbahaya terdeteksi.
+```
+SUCT_PRESS_LOWLOW = TRUE
+TRIP_ACTIVE = TRUE
+pump shutdown
+```
 
-Pendekatan ini merupakan bagian penting dari **proteksi equipment dalam sistem kontrol industri**.
+---
+
+## Scenario 3 — MCC Failure During Operation
+
+Kondisi:
+
+```
+RUN_LATCH = TRUE
+MCC_HEALTHY = FALSE
+```
+
+Hasil ladder:
+
+```
+TRIP_ACTIVE = TRUE
+motor stop
+```
+
+---
+
+# Section 8
+
+# Interlock vs Trip
+
+Artikel ini juga menjelaskan perbedaan konsep:
+
+| Logic      | Function             |
+| ---------- | -------------------- |
+| Permissive | mencegah start       |
+| Trip       | menghentikan operasi |
+
+Hubungan:
+
+```
+Permissive logic
+↓
+Start authorization
+↓
+Pump running
+↓
+Trip logic protects equipment
+```
+
+---
+
+# Section 9
+
+# Pump Protection Flow
+
+Diagram referensi:
+
+Diagram 6 — Pump Protection Logic
+
+```
+Process Deviation
+     │
+     ▼
+Trip Logic Evaluation
+     │
+     ▼
+TRIP_ACTIVE
+     │
+     ▼
+RUN_LATCH Reset
+     │
+     ▼
+Motor Stop
+     │
+     ▼
+Pump Shutdown
+```
+
+Diagram ini menghubungkan **ladder logic dengan respon fisik equipment**.
+
+---
+
+# Ladder Reference Summary
+
+Artikel ini hanya boleh merujuk:
+
+```
+FB101 Pump_Control
+```
+
+Network:
+
+```
+N5 Trip Logic
+```
+
+Rung yang digunakan:
+
+```
+N5-R1
+N5-R2
+```
+
+Tidak boleh menampilkan rung dari:
+
+```
+N1
+N2
+N3
+N4
+N6
+N7
+N8
+```
+
+---
+
+# Diagram Reference Summary
+
+Artikel ini hanya boleh menggunakan diagram dari library:
+
+```
+Diagram 1 — Pump System Reference
+Diagram 4 — Ladder Execution Flow
+Diagram 6 — Pump Protection Logic
+```
+
+---
+
+# Knowledge Layer Built by Article 04
+
+Artikel ini menambahkan lapisan pemahaman berikut:
+
+```
+Process deviation
+↓
+Trip evaluation (N5)
+↓
+TRIP_ACTIVE
+↓
+Motor stop
+↓
+Pump shutdown
+```
+
+Pembaca sekarang memahami bahwa PLC:
+
+```
+tidak hanya memulai equipment
+tetapi juga melindungi equipment
+```
+
+---
+
+Jika Anda ingin, langkah berikutnya yang sangat penting adalah membuat **Outline Artikel 05 — Alarm vs Trip**, karena di situ pembaca mulai memahami **perbedaan respon PLC antara deviasi proses yang memerlukan tindakan operator dan deviasi yang memerlukan shutdown otomatis**.
 
 ---
 

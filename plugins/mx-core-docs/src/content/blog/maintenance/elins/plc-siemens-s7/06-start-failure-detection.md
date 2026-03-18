@@ -19,296 +19,503 @@ summary: Start failure detection digunakan dalam sistem kontrol industri untuk m
 ---
 
 - [**_Artikel 6: Start Failure Detection — Mendeteksi Equipment Gagal Start_**](#artikel-6-start-failure-detection--mendeteksi-equipment-gagal-start)
-- [Section 1 — Operational Context](#section-1--operational-context)
-- [Section 2 — Equipment Behaviour](#section-2--equipment-behaviour)
-- [Section 3 — Control Requirement](#section-3--control-requirement)
-- [Section 4 — Signal Logic](#section-4--signal-logic)
-- [Section 5 — Ladder Logic Pattern](#section-5--ladder-logic-pattern)
-- [Section 6 — Practical Example](#section-6--practical-example)
-- [Section 7 — Engineering Notes](#section-7--engineering-notes)
-  - [Gunakan timer yang sesuai dengan karakteristik equipment](#gunakan-timer-yang-sesuai-dengan-karakteristik-equipment)
-  - [Feedback harus berasal dari sumber yang valid](#feedback-harus-berasal-dari-sumber-yang-valid)
-  - [Start failure detection membantu troubleshooting](#start-failure-detection-membantu-troubleshooting)
+- [Article 06](#article-06)
+- [Start Failure Detection](#start-failure-detection)
+  - [System Reference (Locked)](#system-reference-locked)
+- [Section 1](#section-1)
+- [The Problem of Start Failure](#the-problem-of-start-failure)
+  - [Engineering Focus](#engineering-focus)
+- [Section 2](#section-2)
+- [Position of Start Failure Logic in FB101](#position-of-start-failure-logic-in-fb101)
+- [Section 3](#section-3)
+- [Start Command Generation](#start-command-generation)
+  - [Ladder Reference](#ladder-reference)
+    - [Rung N4-R3 — Motor Start Command](#rung-n4-r3--motor-start-command)
+- [Section 4](#section-4)
+- [Motor Running Feedback](#motor-running-feedback)
+  - [Ladder Reference](#ladder-reference-1)
+    - [Rung N1-R4 — Motor Feedback Conditioning](#rung-n1-r4--motor-feedback-conditioning)
+- [Section 5](#section-5)
+- [Network N7 — Start Failure Timer](#network-n7--start-failure-timer)
+  - [Ladder Reference](#ladder-reference-2)
+    - [Rung N7-R1 — Start Failure Timer](#rung-n7-r1--start-failure-timer)
+- [Section 6](#section-6)
+- [Start Failure Detection](#start-failure-detection-1)
+  - [Ladder Reference](#ladder-reference-3)
+    - [Rung N7-R2 — Start Fail Status](#rung-n7-r2--start-fail-status)
+- [Section 7](#section-7)
+- [Start Failure Alarm](#start-failure-alarm)
+  - [Ladder Reference](#ladder-reference-4)
+    - [Rung N7-R3 — Start Fail Alarm](#rung-n7-r3--start-fail-alarm)
+- [Section 8](#section-8)
+- [Interaction with Run Logic](#interaction-with-run-logic)
+- [Section 9](#section-9)
+- [Example Start Failure Scenario](#example-start-failure-scenario)
+  - [Scenario 1 — Normal Start](#scenario-1--normal-start)
+  - [Scenario 2 — Motor Fails to Start](#scenario-2--motor-fails-to-start)
+- [Section 10](#section-10)
+- [Start Command Verification Concept](#start-command-verification-concept)
+- [Ladder Reference Summary](#ladder-reference-summary)
+- [Diagram Reference Summary](#diagram-reference-summary)
+- [Knowledge Layer Built by Article 06](#knowledge-layer-built-by-article-06)
 
 ---
 
-# Section 1 — Operational Context
+Berikut **Outline Artikel 06 — Start Failure Detection** yang tetap **terkunci pada ladder FB101 Pump_Control**, khususnya **Network N4 dan Network N7**.
 
-Dalam operasi plant industri, banyak equipment seperti **pump, fan, dan compressor** dikendalikan melalui sistem kontrol otomatis berbasis PLC.
+Artikel ini menjelaskan **bagaimana PLC memverifikasi bahwa perintah start benar-benar menghasilkan motor running**, menggunakan **command–feedback validation**.
 
-Operator biasanya memberikan perintah operasi melalui **start command** pada panel kontrol atau HMI.
+Seluruh outline tetap mengikuti aturan yang telah dikunci:
 
-Ketika operator menekan tombol **RUN**, PLC akan mengirimkan sinyal untuk mengaktifkan equipment.
-
-Alur kontrol sederhana dapat digambarkan sebagai berikut.
-
-```
-Operator Command
-↓
-PLC Start Command
-↓
-Motor Contactor
-↓
-Equipment Start
-```
-
-Namun dalam praktik operasi plant, terdapat kondisi di mana **start command telah diberikan tetapi equipment tidak benar-benar start**.
-
-Beberapa penyebab umum kegagalan start antara lain:
-
-- motor overload trip
-- breaker terbuka
-- contactor gagal aktif
-- mechanical jam pada equipment
-
-Jika kondisi ini tidak terdeteksi oleh sistem kontrol, operator dapat mengira equipment telah berjalan padahal sebenarnya equipment tidak beroperasi.
-
-Situasi ini dapat menyebabkan gangguan proses karena sistem kontrol menganggap equipment telah aktif.
-
-Untuk mengatasi masalah ini, sistem kontrol sering menggunakan **start failure detection logic**.
-
-Logika ini bertujuan untuk mendeteksi kondisi ketika **perintah start telah diberikan tetapi equipment tidak berhasil mencapai kondisi running**.
+- hanya menggunakan **Pump P-101 system**
+- hanya menggunakan **tag yang sudah didefinisikan**
+- hanya merujuk **Network N4 dan N7**
+- hanya menampilkan **rung yang sudah ada**
+- tidak menambah ladder baru
 
 ---
 
-# Section 2 — Equipment Behaviour
+# Article 06
 
-Untuk memahami konsep start failure detection, kita dapat melihat contoh perilaku sistem pada **pump system**.
+# Start Failure Detection
 
-Misalkan operator memberikan perintah untuk menjalankan pump.
+## System Reference (Locked)
 
-```
-RUN command = ON
-```
+Sistem yang dianalisis tetap **Pump P-101 motor-driven centrifugal pump**.
 
-PLC kemudian mengaktifkan output yang mengendalikan **motor contactor**.
+Equipment:
 
-Dalam kondisi normal, ketika motor benar-benar beroperasi, sistem akan menerima sinyal konfirmasi berupa **running feedback**.
-
-Hubungan antara perintah start dan feedback dapat digambarkan sebagai berikut.
-
-```
-RUN Command
-↓
-Motor Start
-↓
-Running Feedback
+```text
+P-101 Pump
+M-101 Motor
+XV-101 Suction Valve
+XV-102 Discharge Valve
 ```
 
-Running feedback biasanya berasal dari:
+Signal yang digunakan untuk verifikasi start:
 
-- auxiliary contact pada contactor
-- motor running signal dari MCC
-- sensor proses seperti flow switch
-
-Namun jika motor gagal start, maka sistem akan mendeteksi kondisi berikut.
-
-```
-RUN command ON
-AND
-RUN feedback OFF
+```text
+MTR_START_CMD
+MTR_RUN_FB
 ```
 
-Kondisi ini menunjukkan bahwa **perintah start telah diberikan tetapi equipment tidak berhasil mencapai kondisi running**.
+Signal internal PLC:
 
-Situasi ini dikenal sebagai **start failure**.
+```text
+MOTOR_FEEDBACK_ON
+START_FAIL_ACTIVE
+START_FAIL_ALM
+```
 
-Start failure detection memungkinkan sistem kontrol mengetahui bahwa equipment gagal start sehingga operator dapat segera melakukan pemeriksaan terhadap penyebab kegagalan tersebut.
+Diagram yang digunakan:
+
+- Diagram 1 — Pump System Reference
+- Diagram 7 — Start Failure Detection Logic
 
 ---
 
-# Section 3 — Control Requirement
+# Section 1
 
-Dalam sistem kontrol industri, PLC harus mampu mendeteksi kondisi ketika **perintah start telah diberikan tetapi equipment tidak berhasil mencapai kondisi running**.
+# The Problem of Start Failure
 
-Kondisi yang harus dideteksi oleh sistem kontrol adalah sebagai berikut.
+## Engineering Focus
 
-```text id="start_fail_condition"
-Start command aktif
-Tetapi equipment tidak memberikan feedback running
+Dalam sistem kontrol equipment, **perintah start tidak selalu menghasilkan equipment running**.
+
+Contoh kondisi di plant:
+
+```text
+motor starter gagal
+motor protection aktif
+mechanical jam
+power supply gagal
 ```
 
-Namun deteksi kegagalan start tidak boleh dilakukan secara langsung setelah perintah start diberikan.
+Dalam kondisi ini:
 
-Hal ini karena sebagian besar equipment memerlukan **waktu tertentu untuk mencapai kondisi running**.
-
-Contoh waktu yang diperlukan oleh equipment:
-
-- **motor acceleration time**
-- **valve opening time**
-- **pump priming time**
-
-Jika sistem kontrol memeriksa running feedback terlalu cepat, maka sistem dapat menghasilkan **false alarm** meskipun equipment sebenarnya sedang dalam proses start.
-
-Karena itu sistem kontrol biasanya menggunakan **timer delay** sebelum melakukan pemeriksaan start failure.
-
-Timer ini memberikan waktu yang cukup bagi equipment untuk mencapai kondisi running.
-
----
-
-# Section 4 — Signal Logic
-
-Logika dasar dalam **start failure detection** melibatkan hubungan antara perintah start dan sinyal running feedback.
-
-Hubungan ini dapat digambarkan sebagai berikut.
-
-```text id="start_feedback_flow"
-RUN command
-↓
-Equipment Start
-↓
-Running Feedback
+```text
+PLC sudah memberi command start
+tetapi equipment tidak benar-benar berjalan
 ```
 
-Dalam kondisi normal, ketika perintah RUN diberikan, equipment akan start dan kemudian menghasilkan **running feedback** sebagai konfirmasi bahwa equipment benar-benar beroperasi.
+Struktur masalah:
 
-Namun dalam kondisi kegagalan start, sistem akan mendeteksi pola berikut.
-
-```text id="start_fail_logic"
-RUN command ON
-AND
-Running Feedback OFF
-AFTER delay
-→ Start Failure Alarm
-```
-
-Logika ini berarti bahwa PLC akan memeriksa apakah **running feedback muncul setelah waktu tertentu**.
-
-Jika setelah waktu delay tersebut feedback masih belum muncul, maka sistem akan menghasilkan **Start Failure Alarm**.
-
-Timer delay digunakan untuk memberikan waktu yang cukup bagi equipment untuk mencapai kondisi running sebelum sistem menyatakan bahwa start telah gagal.
-
----
-
-# Section 5 — Ladder Logic Pattern
-
-Dalam PLC, start failure detection biasanya diimplementasikan menggunakan **timer dan pemeriksaan running feedback**.
-
-Contoh pattern ladder sederhana dapat digambarkan sebagai berikut.
-
-```text id="start_fail_ladder"
-RUN Command
-----[ ]--------------------( Start Timer )
-
-Start Timer Done
-----[ ]----[/ Running Feedback ]----( Start Fail Alarm )
-```
-
-Penjelasan logika:
-
-1. Ketika **RUN command aktif**, PLC akan memulai **start timer**.
-2. Timer memberikan waktu bagi equipment untuk mencapai kondisi running.
-3. Setelah timer selesai (**Timer Done**), PLC memeriksa status **running feedback**.
-4. Jika running feedback masih OFF, sistem akan menghasilkan alarm **Start Fail**.
-
-Dengan logika ini, sistem kontrol dapat membedakan antara:
-
-```text id="start_result"
-Normal Start
-→ Running Feedback muncul
-
-Start Failure
-→ Running Feedback tidak muncul
-```
-
-Sehingga operator dapat mengetahui bahwa equipment gagal start dan melakukan pemeriksaan lebih lanjut.
-
----
-
-# Section 6 — Practical Example
-
-Sebagai contoh implementasi **start failure detection**, kita dapat melihat kasus pada **Pump P-101**.
-
-Operator memberikan perintah untuk menjalankan pump.
-
-```text id="p101_start_cmd"
-Start P-101
-```
-
-PLC kemudian mengaktifkan output yang mengendalikan **motor contactor** sehingga pump mulai melakukan proses start.
-
-Dalam kondisi normal, setelah motor berhasil start, sistem akan menerima sinyal konfirmasi berupa **running feedback**.
-
-```text id="p101_running_feedback"
-Motor Running Feedback
-```
-
-Running feedback biasanya berasal dari:
-
-- auxiliary contact pada contactor
-- motor running signal dari MCC
-- sensor proses seperti flow switch
-
-Namun jika pump gagal start, running feedback tidak akan muncul.
-
-Untuk mendeteksi kondisi ini, PLC menggunakan **timer delay** sebelum melakukan pemeriksaan feedback.
-
-Sebagai contoh, sistem dapat menggunakan delay selama **5 detik**.
-
-Logika sistem dapat digambarkan sebagai berikut.
-
-```text id="p101_start_fail_logic"
+```text
 Start Command
-↓
-Start Timer (5 s)
-↓
-Check Running Feedback
+      │
+      ▼
+Motor should run
+      │
+      ├ Running feedback present
+      │
+      └ Running feedback missing
 ```
 
-Jika setelah 5 detik **running feedback tidak muncul**, sistem akan menghasilkan alarm kegagalan start.
+PLC harus mendeteksi kondisi **start command tanpa running feedback**.
 
-```text id="p101_start_fail_alarm"
-Start Fail Alarm = ON
+---
+
+# Section 2
+
+# Position of Start Failure Logic in FB101
+
+Start failure detection berada pada struktur ladder berikut:
+
+```text
+FB101 Pump_Control
+ │
+ ├ N1 Input Conditioning
+ ├ N2 Command Handling
+ ├ N3 Permissive Logic
+ ├ N4 Start/Stop Latch
+ ├ N5 Trip Logic
+ ├ N6 Alarm Logic
+ ├ N7 Start Failure Detection   ← fokus artikel
+ └ N8 Sequence Interface
 ```
 
-Alarm ini memberi informasi kepada operator bahwa **Pump P-101 gagal start**, sehingga operator dapat segera memeriksa penyebab kegagalan tersebut.
+Hubungan network:
+
+```text
+N4 Start Command
+↓
+N7 Start Failure Detection
+↓
+Alarm / Run reset
+```
 
 ---
 
-# Section 7 — Engineering Notes
+# Section 3
 
-Beberapa prinsip penting perlu diperhatikan dalam implementasi **start failure detection logic**.
+# Start Command Generation
+
+Start command berasal dari **Network N4 Start/Stop Latch**.
+
+## Ladder Reference
+
+### Rung N4-R3 — Motor Start Command
+
+```text
+| RUN_LATCH | /TRIP_ACTIVE |
+|----[ ]-------[/]--------------------( ) MTR_START_CMD
+```
+
+Makna logika:
+
+```text
+MTR_START_CMD =
+RUN_LATCH
+AND NOT TRIP_ACTIVE
+```
+
+Engineering meaning:
+
+```text
+PLC mengirim command start ke motor starter
+```
+
+Namun PLC masih harus memastikan **motor benar-benar running**.
 
 ---
 
-## Gunakan timer yang sesuai dengan karakteristik equipment
+# Section 4
 
-Waktu delay pada start failure detection harus disesuaikan dengan karakteristik equipment.
+# Motor Running Feedback
 
-Sebagai contoh:
+Motor status diperoleh dari **field feedback signal**.
 
-- **motor kecil** biasanya memiliki waktu start yang relatif singkat
-- **motor besar** dapat memerlukan waktu akselerasi yang lebih lama
+## Ladder Reference
 
-Jika timer terlalu pendek, sistem dapat menghasilkan **false start failure alarm** meskipun equipment sebenarnya sedang dalam proses start.
+### Rung N1-R4 — Motor Feedback Conditioning
+
+```text
+| MTR_RUN_FB |
+|----[ ]--------------------( ) MOTOR_FEEDBACK_ON
+```
+
+Makna engineering:
+
+```text
+motor contactor closed
+motor running signal
+```
+
+Hubungan command dan feedback:
+
+```text
+MTR_START_CMD
+↓
+Motor start attempt
+↓
+MOTOR_FEEDBACK_ON
+```
 
 ---
 
-## Feedback harus berasal dari sumber yang valid
+# Section 5
 
-Sinyal running feedback harus berasal dari sumber yang benar-benar menunjukkan bahwa equipment telah beroperasi.
+# Network N7 — Start Failure Timer
 
-Contoh sumber feedback yang umum digunakan:
+PLC memberikan waktu tertentu bagi motor untuk mencapai kondisi running.
 
-- **auxiliary contact contactor**
-- **motor running signal dari MCC**
-- **flow switch pada pump**
+## Ladder Reference
 
-Pemilihan sumber feedback yang tepat sangat penting agar sistem dapat mendeteksi kondisi running secara akurat.
+### Rung N7-R1 — Start Failure Timer
+
+```text
+| MTR_START_CMD | /MOTOR_FEEDBACK_ON | /TRIP_ACTIVE |
+|----[ ]--------------[/]----------------[/]--------( TON )
+```
+
+Makna logika:
+
+```text
+TON.IN =
+MTR_START_CMD
+AND NOT MOTOR_FEEDBACK_ON
+AND NOT TRIP_ACTIVE
+```
+
+Engineering meaning:
+
+```text
+timer berjalan jika start command aktif
+tetapi motor belum running
+```
+
+Timer memberikan **waktu akselerasi motor**.
 
 ---
 
-## Start failure detection membantu troubleshooting
+# Section 6
 
-Start failure detection sangat membantu dalam proses **troubleshooting sistem kontrol**.
+# Start Failure Detection
 
-Dengan adanya logika ini, operator dapat segera mengetahui bahwa equipment gagal start tanpa harus langsung melakukan pemeriksaan ke lapangan.
+Jika timer selesai dan feedback belum muncul, maka PLC menyimpulkan **start gagal**.
 
-Informasi ini memungkinkan operator dan engineer untuk:
+## Ladder Reference
 
-- mempercepat identifikasi masalah
-- mengurangi waktu downtime equipment
-- meningkatkan keandalan sistem kontrol.
+### Rung N7-R2 — Start Fail Status
+
+```text
+| TON.Q |
+|----[ ]-----------------------------( ) START_FAIL_ACTIVE
+```
+
+Makna logika:
+
+```text
+START_FAIL_ACTIVE = TRUE
+```
+
+Engineering meaning:
+
+```text
+motor gagal mencapai kondisi running
+```
+
+---
+
+# Section 7
+
+# Start Failure Alarm
+
+Setelah start failure terdeteksi, PLC mengirim alarm.
+
+## Ladder Reference
+
+### Rung N7-R3 — Start Fail Alarm
+
+```text
+| START_FAIL_ACTIVE |
+|----[ ]-----------------------------( ) START_FAIL_ALM
+```
+
+Makna engineering:
+
+```text
+operator diberi notifikasi bahwa pump gagal start
+```
+
+---
+
+# Section 8
+
+# Interaction with Run Logic
+
+Start failure juga berinteraksi dengan **run latch logic**.
+
+Hubungan ladder:
+
+```text
+START_FAIL_ACTIVE
+↓
+RUN_LATCH reset
+↓
+MTR_START_CMD off
+```
+
+Artinya PLC tidak mempertahankan **command start yang gagal**.
+
+---
+
+# Section 9
+
+# Example Start Failure Scenario
+
+## Scenario 1 — Normal Start
+
+Kondisi:
+
+```text
+MTR_START_CMD = TRUE
+MOTOR_FEEDBACK_ON muncul sebelum timer selesai
+```
+
+Hasil:
+
+```text
+START_FAIL_ACTIVE = FALSE
+pump running
+```
+
+---
+
+## Scenario 2 — Motor Fails to Start
+
+Kondisi:
+
+```text
+MTR_START_CMD = TRUE
+MOTOR_FEEDBACK_ON = FALSE
+timer selesai
+```
+
+Hasil:
+
+```text
+START_FAIL_ACTIVE = TRUE
+START_FAIL_ALM = TRUE
+RUN_LATCH reset
+```
+
+Pump tidak running.
+
+---
+
+# Section 10
+
+# Start Command Verification Concept
+
+Start failure detection adalah contoh **command verification logic**.
+
+Struktur umum:
+
+```text
+Command issued
+↓
+Expected response
+↓
+Verify response
+↓
+Alarm if response missing
+```
+
+Dalam sistem Pump P-101:
+
+```text
+MTR_START_CMD
+↓
+Motor should run
+↓
+MOTOR_FEEDBACK_ON
+↓
+If not → START_FAIL_ACTIVE
+```
+
+---
+
+# Ladder Reference Summary
+
+Artikel ini hanya boleh merujuk:
+
+```text
+FB101 Pump_Control
+```
+
+Network:
+
+```text
+N4 Start/Stop Latch
+N7 Start Failure Detection
+```
+
+Rung yang digunakan:
+
+```text
+N4-R3
+N7-R1
+N7-R2
+N7-R3
+```
+
+Tidak boleh menampilkan rung dari:
+
+```text
+N1
+N2
+N3
+N5
+N6
+N8
+```
+
+---
+
+# Diagram Reference Summary
+
+Artikel ini hanya boleh menggunakan diagram dari library:
+
+```text
+Diagram 1 — Pump System Reference
+Diagram 4 — Ladder Execution Flow
+Diagram 7 — Start Failure Detection Logic
+```
+
+---
+
+# Knowledge Layer Built by Article 06
+
+Artikel ini menambahkan pemahaman berikut:
+
+```text
+Start command
+↓
+Expected motor response
+↓
+Feedback verification
+↓
+Start failure detection
+↓
+Operator alarm
+```
+
+Pembaca sekarang memahami bahwa PLC tidak hanya:
+
+```text
+mengirim command
+```
+
+tetapi juga:
+
+```text
+memverifikasi hasil command tersebut
+```
+
+---
+
+Jika Anda ingin, langkah berikutnya yang sangat penting adalah membuat **Outline Artikel 07 — PLC Program Structure**, karena di situ pembaca mulai memahami **bagaimana seluruh ladder Pump P-101 diorganisasi dalam OB1, FB101, dan DB101 pada Siemens S7**.
 
 ---
 

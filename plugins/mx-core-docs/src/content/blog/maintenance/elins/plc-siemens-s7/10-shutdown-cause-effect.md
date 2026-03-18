@@ -19,275 +19,541 @@ summary: Shutdown logic digunakan dalam sistem kontrol industri untuk melindungi
 ---
 
 - [**_Artikel 10: Shutdown Logic \& Cause–Effect — Menghentikan Sistem Secara Aman Saat Kondisi Darurat_**](#artikel-10-shutdown-logic--causeeffect--menghentikan-sistem-secara-aman-saat-kondisi-darurat)
-- [Section 1 — Process Risk](#section-1--process-risk)
-- [Section 2 — Protection Philosophy](#section-2--protection-philosophy)
-- [Section 3 — Trip Condition](#section-3--trip-condition)
-- [Section 4 — Shutdown Logic](#section-4--shutdown-logic)
-- [Section 5 — Cause \& Effect Concept](#section-5--cause--effect-concept)
-- [Section 6 — Practical Example](#section-6--practical-example)
-- [Section 7 — Engineering Notes](#section-7--engineering-notes)
-  - [Shutdown digunakan untuk kondisi kritis](#shutdown-digunakan-untuk-kondisi-kritis)
-  - [Shutdown sering diimplementasikan dalam Safety Instrumented System (SIS)](#shutdown-sering-diimplementasikan-dalam-safety-instrumented-system-sis)
-  - [Cause \& Effect Matrix sangat penting dalam desain shutdown system](#cause--effect-matrix-sangat-penting-dalam-desain-shutdown-system)
+- [Article 10](#article-10)
+- [Shutdown Logic \& Cause-Effect](#shutdown-logic--cause-effect)
+  - [System Reference (Locked)](#system-reference-locked)
+- [Section 1](#section-1)
+- [Process Protection in Industrial Control](#process-protection-in-industrial-control)
+  - [Engineering Focus](#engineering-focus)
+- [Section 2](#section-2)
+- [Shutdown Logic in Pump P-101 Control](#shutdown-logic-in-pump-p-101-control)
+- [Section 3](#section-3)
+- [Process Deviation Detection](#process-deviation-detection)
+  - [Rung N1-R7 — Low-Low Suction Pressure](#rung-n1-r7--low-low-suction-pressure)
+- [Section 4](#section-4)
+- [Trip Logic as Shutdown Trigger](#trip-logic-as-shutdown-trigger)
+  - [Ladder Reference](#ladder-reference)
+    - [Rung N5-R1 — Trip Evaluation](#rung-n5-r1--trip-evaluation)
+- [Section 5](#section-5)
+- [Equipment Shutdown Response](#equipment-shutdown-response)
+  - [Rung N5-R2 — Trip Output](#rung-n5-r2--trip-output)
+- [Section 6](#section-6)
+- [Alarm vs Shutdown Response](#alarm-vs-shutdown-response)
+  - [Rung N6-R1 — Alarm Evaluation](#rung-n6-r1--alarm-evaluation)
+- [Section 7](#section-7)
+- [Cause-Effect Relationship](#cause-effect-relationship)
+- [Section 8](#section-8)
+- [Interaction with Sequence Control](#interaction-with-sequence-control)
+  - [Rung N8-R3 — Sequence Trip](#rung-n8-r3--sequence-trip)
+- [Section 9](#section-9)
+- [Shutdown Response in Process Automation](#shutdown-response-in-process-automation)
+- [Section 10](#section-10)
+- [Control System Protection Hierarchy](#control-system-protection-hierarchy)
+- [Ladder Reference Summary](#ladder-reference-summary)
+- [Diagram Reference Summary](#diagram-reference-summary)
+- [Final Knowledge Layer of the Series](#final-knowledge-layer-of-the-series)
 
 ---
 
-# Section 1 — Process Risk
+Berikut **Outline Artikel 10 — Shutdown Logic & Cause-Effect** yang tetap **terkunci pada PLC Reference System Pump P-101**, dan hanya merujuk pada **Network N5 Trip Logic**, **Network N6 Alarm Logic**, serta **Network N8 Sequence Interface** dari **FB101 Pump_Control**.
 
-Dalam plant proses industri, berbagai parameter proses harus dijaga agar tetap berada dalam batas operasi yang aman.
+Artikel ini adalah **lapisan tertinggi dari keseluruhan serial**, karena menghubungkan seluruh konsep yang telah dipelajari sebelumnya:
 
-Jika parameter proses menyimpang terlalu jauh dari kondisi normal, sistem dapat mengalami **kondisi operasi yang berbahaya**.
+```
+process deviation
+↓
+alarm / trip logic
+↓
+equipment shutdown
+↓
+process protection
+```
 
-Beberapa contoh kondisi yang dapat menimbulkan risiko serius antara lain:
+Semua aturan tetap dijaga:
 
-- **tekanan terlalu tinggi**
-- **temperatur terlalu tinggi**
-- **kebocoran gas**
-- **kegagalan sistem pendinginan**
-
-Jika kondisi-kondisi tersebut tidak segera dihentikan, dampaknya dapat sangat serius bagi operasi plant.
-
-Potensi dampak yang dapat terjadi meliputi:
-
-- **kerusakan equipment**
-- **kegagalan proses**
-- **potensi kebakaran atau ledakan**
-
-Sebagai contoh, tekanan yang terlalu tinggi pada sebuah reactor dapat menyebabkan kerusakan mekanis pada vessel atau bahkan kegagalan struktur.
-
-Karena itu sistem kontrol industri harus memiliki mekanisme proteksi yang dapat **menghentikan proses secara otomatis ketika kondisi berbahaya terdeteksi**.
-
-Mekanisme ini dikenal sebagai **shutdown logic**.
-
-Shutdown logic berfungsi untuk menghentikan proses secara terkontrol sebelum kondisi proses berkembang menjadi situasi yang lebih berbahaya.
+- tidak membuat equipment baru
+- tidak membuat signal baru
+- tidak mengubah ladder
+- hanya merujuk network yang sudah ada
 
 ---
 
-# Section 2 — Protection Philosophy
+# Article 10
 
-Shutdown logic merupakan bagian penting dari **sistem proteksi proses** dalam plant industri.
+# Shutdown Logic & Cause-Effect
 
-Sistem proteksi ini dirancang untuk memastikan bahwa ketika terjadi deviasi proses yang berbahaya, sistem dapat merespon dengan cepat untuk mencegah kerusakan atau kecelakaan.
+## System Reference (Locked)
 
-Tujuan utama dari shutdown system adalah:
+Sistem yang dianalisis tetap **Pump P-101 motor-driven centrifugal pump**.
 
-- **melindungi equipment**
-- **mencegah eskalasi kondisi proses**
-- **menjaga keselamatan plant**
+Equipment:
 
-Berbeda dengan alarm yang hanya memberikan peringatan kepada operator, shutdown system biasanya bekerja secara **otomatis** tanpa menunggu tindakan operator.
+```
+P-101 Pump
+M-101 Motor
+XV-101 Suction Valve
+XV-102 Discharge Valve
+```
 
-Prinsip dasar proteksi proses dapat digambarkan sebagai berikut.
+Pump dikontrol oleh:
 
-```text id="shutdown_protection_chain"
+```
+FB101 Pump_Control
+```
+
+yang dipanggil oleh:
+
+```
+OB1
+```
+
+Artikel ini menghubungkan **trip logic dan alarm logic dengan shutdown respon sistem**.
+
+Diagram yang digunakan:
+
+- Diagram 1 — Pump System Reference
+- Diagram 6 — Pump Protection Logic
+- Diagram 8 — Sequence Control Interface
+
+---
+
+# Section 1
+
+# Process Protection in Industrial Control
+
+## Engineering Focus
+
+Sistem kontrol industri tidak hanya mengontrol operasi equipment, tetapi juga melindungi plant dari kondisi berbahaya.
+
+Dalam banyak sistem proses, deviasi proses dapat menyebabkan:
+
+```
+equipment damage
+process instability
+fire hazard
+explosion risk
+```
+
+Untuk mencegah eskalasi tersebut, sistem kontrol menggunakan **shutdown logic**.
+
+Struktur proteksi:
+
+```
 Process Deviation
 ↓
-Trip Condition
+Protection Logic
 ↓
-Equipment Shutdown
-```
-
-Penjelasan alur proteksi tersebut:
-
-1. **Process Deviation**
-   Parameter proses menyimpang dari batas operasi yang aman.
-
-2. **Trip Condition**
-   Sistem mendeteksi bahwa deviasi telah mencapai kondisi kritis.
-
-3. **Equipment Shutdown**
-   Sistem kontrol menghentikan equipment atau proses untuk mencegah kerusakan lebih lanjut.
-
-Dengan pendekatan ini, sistem proteksi dapat menghentikan proses secara cepat dan terstruktur ketika kondisi berbahaya terdeteksi.
-
----
-
-# Section 3 — Trip Condition
-
-Dalam sistem proteksi proses, **trip condition** adalah kondisi operasi yang menyebabkan sistem kontrol menghentikan equipment atau proses secara otomatis.
-
-Trip condition biasanya ditentukan berdasarkan **batas parameter proses** yang dianggap berbahaya bagi equipment atau keselamatan plant.
-
-Beberapa contoh trip condition yang umum ditemukan dalam sistem proses antara lain:
-
-```text id="trip_condition_examples"
-High Reactor Pressure
-High Temperature
-Low Cooling Water Flow
-Gas Detection
-```
-
-Penjelasan contoh kondisi tersebut:
-
-- **High Reactor Pressure**
-  Tekanan reactor melebihi batas desain yang aman.
-
-- **High Temperature**
-  Temperatur proses meningkat di atas batas operasi yang diizinkan.
-
-- **Low Cooling Water Flow**
-  Sistem pendinginan tidak memberikan aliran yang cukup untuk menjaga temperatur equipment.
-
-- **Gas Detection**
-  Sistem deteksi gas mendeteksi kebocoran gas berbahaya di area plant.
-
-Ketika salah satu kondisi ini terdeteksi oleh sistem kontrol atau sistem proteksi, sistem akan menghasilkan **trip signal**.
-
-Trip signal kemudian digunakan sebagai input untuk **shutdown logic** yang menentukan bagaimana proses harus dihentikan.
-
----
-
-# Section 4 — Shutdown Logic
-
-Shutdown logic menentukan **bagaimana equipment atau proses dihentikan ketika trip condition terjadi**.
-
-Tujuan utama shutdown logic adalah menghentikan proses dengan cara yang **aman dan terkendali**, sehingga tidak menimbulkan gangguan tambahan pada sistem proses.
-
-Contoh logika shutdown sederhana dapat digambarkan sebagai berikut.
-
-```text id="shutdown_logic_example"
-High Pressure Trip
+Automatic Shutdown
 ↓
-Close Feed Valve
+Plant Protection
+```
+
+---
+
+# Section 2
+
+# Shutdown Logic in Pump P-101 Control
+
+Dalam sistem Pump P-101, shutdown terjadi melalui **trip logic** yang telah dijelaskan pada artikel sebelumnya.
+
+Posisi trip logic dalam ladder:
+
+```
+FB101 Pump_Control
+ │
+ ├ N1 Input Conditioning
+ ├ N2 Command Handling
+ ├ N3 Permissive Logic
+ ├ N4 Start/Stop Latch
+ ├ N5 Trip Logic
+ ├ N6 Alarm Logic
+ ├ N7 Start Failure Detection
+ └ N8 Sequence Interface
+```
+
+Trip logic berada pada:
+
+```
+Network N5 Trip Logic
+```
+
+---
+
+# Section 3
+
+# Process Deviation Detection
+
+Deviasi proses dideteksi oleh **Network N1 Input Conditioning**.
+
+Contoh deviasi yang memicu proteksi:
+
+```
+SUCT_PRESS_LOWLOW
+OL_TRIP
+MCC_HEALTHY = FALSE
+```
+
+Contoh rung deteksi deviasi:
+
+### Rung N1-R7 — Low-Low Suction Pressure
+
+```
+| PT101_PV < LowLow_SP |
+|----[CMP<]--------------------( ) SUCT_PRESS_LOWLOW
+```
+
+Makna engineering:
+
+```
+suction pressure berada pada kondisi kritis
+```
+
+Status ini digunakan oleh **trip logic**.
+
+---
+
+# Section 4
+
+# Trip Logic as Shutdown Trigger
+
+Trip logic mengevaluasi kondisi proses untuk menentukan apakah pump harus dihentikan.
+
+## Ladder Reference
+
+### Rung N5-R1 — Trip Evaluation
+
+```
+| OL_TRIP |
+|----[ ]--------------------------------|
+|                                         |
+| SUCT_PRESS_LOWLOW |
+|----[ ]--------------------------------|----( ) TRIP_ACTIVE
+|                                         |
+| RUN_LATCH | /MCC_HEALTHY |
+|----[ ]--------[/]----------------------|
+```
+
+Makna logika:
+
+```
+TRIP_ACTIVE =
+OL_TRIP
+OR SUCT_PRESS_LOWLOW
+OR (RUN_LATCH AND NOT MCC_HEALTHY)
+```
+
+Engineering meaning:
+
+```
+PLC mendeteksi kondisi operasi tidak aman
+```
+
+---
+
+# Section 5
+
+# Equipment Shutdown Response
+
+Ketika trip aktif, PLC memaksa pump berhenti.
+
+### Rung N5-R2 — Trip Output
+
+```
+| TRIP_ACTIVE |
+|----[ ]-----------------------------( ) TRIP_P101
+```
+
+Shutdown chain:
+
+```
+TRIP_ACTIVE
 ↓
-Stop Pump
+TRIP_P101
 ↓
-Activate Alarm
+RUN_LATCH reset
+↓
+MTR_START_CMD off
+↓
+Motor stop
+↓
+Pump shutdown
 ```
 
-Penjelasan urutan shutdown tersebut:
-
-1. **High Pressure Trip**
-   Sistem mendeteksi bahwa tekanan reactor telah melewati batas trip.
-
-2. **Close Feed Valve**
-   PLC atau safety system menutup valve yang memasok material ke reactor.
-
-3. **Stop Pump**
-   Pump yang memasok fluida ke reactor dihentikan untuk menghentikan aliran material.
-
-4. **Activate Alarm**
-   Sistem mengirimkan alarm kepada operator untuk memberi informasi bahwa shutdown telah terjadi.
-
-Dengan logika ini, proses dapat dihentikan secara bertahap sehingga tekanan reactor dapat kembali ke kondisi yang aman.
+Ini adalah **automatic protective shutdown**.
 
 ---
 
-# Section 5 — Cause & Effect Concept
+# Section 6
 
-Dalam sistem shutdown yang lebih kompleks, hubungan antara **penyebab kondisi trip (cause)** dan **respon sistem (effect)** biasanya didokumentasikan dalam sebuah tabel yang disebut **Cause & Effect Matrix**.
+# Alarm vs Shutdown Response
 
-Cause & Effect Matrix menjelaskan bagaimana sistem proteksi harus merespon berbagai kondisi proses yang berbahaya.
+Tidak semua deviasi memicu shutdown.
 
-Contoh sederhana Cause & Effect Matrix dapat ditunjukkan pada tabel berikut.
+Beberapa hanya memicu alarm.
 
-| Cause                 | Effect           |
-| --------------------- | ---------------- |
-| High Reactor Pressure | Close Feed Valve |
-| High Reactor Pressure | Stop Feed Pump   |
-| High Reactor Pressure | Alarm Operator   |
-| Gas Detection         | Shutdown Unit    |
+Alarm logic berada pada:
 
-Pada tabel tersebut:
-
-- **Cause** menunjukkan kondisi proses yang memicu proteksi.
-- **Effect** menunjukkan tindakan yang harus dilakukan oleh sistem kontrol atau sistem keselamatan.
-
-Cause & Effect Matrix sangat penting dalam desain sistem shutdown karena memberikan **referensi yang jelas mengenai bagaimana sistem harus merespon setiap kondisi trip**.
-
-Dokumen ini biasanya digunakan oleh engineer selama proses:
-
-- desain sistem kontrol
-- verifikasi logika proteksi
-- pengujian sistem shutdown.
-
----
-
-# Section 6 — Practical Example
-
-Sebagai contoh implementasi **shutdown logic**, kita dapat melihat kasus pada **reactor system**.
-
-Reactor merupakan equipment proses yang biasanya beroperasi pada kondisi tekanan dan temperatur tertentu. Jika tekanan reactor melebihi batas desain yang aman, sistem harus segera menghentikan aliran material untuk mencegah kerusakan equipment.
-
-Kondisi trip dapat dinyatakan sebagai berikut.
-
-```text id="reactor_trip_condition"
-Reactor Pressure > Trip Limit
+```
+Network N6 Alarm Logic
 ```
 
-Ketika kondisi ini terdeteksi oleh sistem kontrol atau sistem keselamatan, sistem akan menjalankan **shutdown sequence** untuk menghentikan proses secara aman.
+Contoh rung:
 
-Contoh tindakan shutdown yang dilakukan oleh PLC atau safety system adalah:
+### Rung N6-R1 — Alarm Evaluation
 
-```text id="reactor_shutdown_actions"
-Close Feed Valve
-Stop Feed Pump
-Activate Alarm
+```
+| SUCT_PRESS_LOW |
+|----[ ]--------------------------------|
+|                                         |
+| START_FAIL_ACTIVE |
+|----[ ]--------------------------------|----( ) ALARM_ACTIVE
+|                                         |
+| CMD_START_REQ | /PERMISSIVE_OK |
+|----[ ]------------[/]------------------|
 ```
 
-Penjelasan langkah shutdown:
+Perbedaan respon:
 
-1. **Close Feed Valve**
-   Valve yang memasok material ke reactor ditutup untuk menghentikan aliran bahan proses.
-
-2. **Stop Feed Pump**
-   Pump yang memasok fluida ke reactor dihentikan sehingga tidak ada tambahan material yang masuk.
-
-3. **Activate Alarm**
-   Sistem memberikan alarm kepada operator untuk memberi informasi bahwa kondisi trip telah terjadi.
-
-Dengan menghentikan aliran material ke reactor, tekanan dalam reactor dapat turun kembali ke kondisi yang aman.
+| Condition         | Response |
+| ----------------- | -------- |
+| SUCT_PRESS_LOW    | Alarm    |
+| SUCT_PRESS_LOWLOW | Trip     |
 
 ---
 
-# Section 7 — Engineering Notes
+# Section 7
 
-Beberapa prinsip penting perlu diperhatikan dalam desain **shutdown logic** pada sistem proses industri.
+# Cause-Effect Relationship
+
+Shutdown system bekerja berdasarkan **hubungan cause-effect**.
+
+Struktur hubungan:
+
+```
+Cause
+↓
+Protection Logic
+↓
+Effect
+```
+
+Contoh pada Pump P-101:
+
+```
+Cause
+Low suction pressure
+↓
+Logic
+Trip evaluation
+↓
+Effect
+Pump shutdown
+```
+
+Contoh lain:
+
+```
+Cause
+Motor overload
+↓
+Logic
+Trip detection
+↓
+Effect
+Motor stop
+```
 
 ---
 
-## Shutdown digunakan untuk kondisi kritis
+# Section 8
 
-Shutdown logic biasanya digunakan hanya untuk **kondisi proses yang sangat kritis**.
+# Interaction with Sequence Control
 
-Contoh kondisi tersebut antara lain:
+Shutdown juga harus diinformasikan kepada **sequence controller**.
 
-- tekanan sangat tinggi
-- temperatur sangat tinggi
-- kegagalan sistem pendinginan
-- kebocoran gas berbahaya
+Interface tersedia pada:
 
-Shutdown tidak digunakan untuk deviasi proses kecil, karena penghentian proses dapat menyebabkan gangguan operasi yang signifikan.
+```
+Network N8 Sequence Interface
+```
+
+### Rung N8-R3 — Sequence Trip
+
+```
+| TRIP_ACTIVE |
+|----[ ]--------------------------------|
+|                                         |----( ) SEQ_TRIP
+| START_FAIL_ACTIVE |
+|----[ ]--------------------------------|
+```
+
+Makna logika:
+
+```
+SEQ_TRIP =
+TRIP_ACTIVE
+OR START_FAIL_ACTIVE
+```
+
+Engineering meaning:
+
+```
+sequence controller mengetahui bahwa pump tidak dapat beroperasi
+```
 
 ---
 
-## Shutdown sering diimplementasikan dalam Safety Instrumented System (SIS)
+# Section 9
 
-Pada banyak plant industri modern, fungsi shutdown biasanya diimplementasikan dalam **Safety Instrumented System (SIS)**.
+# Shutdown Response in Process Automation
 
-SIS biasanya menggunakan **Safety PLC** yang terpisah dari **control PLC**.
+Ketika shutdown terjadi, efeknya dapat meluas ke sistem proses.
 
-Pemisahan ini dilakukan untuk memastikan bahwa sistem proteksi tetap dapat berfungsi dengan baik bahkan jika terjadi kegagalan pada sistem kontrol utama.
+Contoh alur:
+
+```
+Process deviation
+↓
+Trip logic
+↓
+Pump shutdown
+↓
+Sequence interrupted
+↓
+Process protection
+```
+
+Ini mencegah eskalasi kegagalan dalam plant.
 
 ---
 
-## Cause & Effect Matrix sangat penting dalam desain shutdown system
+# Section 10
 
-Dalam desain sistem shutdown, **Cause & Effect Matrix** merupakan dokumen yang sangat penting.
+# Control System Protection Hierarchy
 
-Matrix ini mendefinisikan hubungan antara:
+Jika seluruh serial dirangkum, struktur proteksi sistem menjadi:
 
-- kondisi trip (cause)
-- tindakan shutdown yang harus dilakukan (effect)
+```
+Process Condition
+↓
+Instrument Detection
+↓
+PLC Logic
+↓
+Alarm / Trip Decision
+↓
+Equipment Response
+↓
+Process Protection
+```
 
-Dokumen ini biasanya digunakan sebagai referensi utama dalam proses:
+Dalam sistem Pump P-101:
 
-- desain sistem proteksi
-- implementasi logika PLC
-- verifikasi sistem shutdown
-- pengujian sistem keselamatan
+```
+PT101_PV
+↓
+SUCT_PRESS_LOWLOW
+↓
+TRIP_ACTIVE
+↓
+Pump shutdown
+```
 
-Dengan menggunakan Cause & Effect Matrix, engineer dapat memastikan bahwa setiap kondisi proses yang berbahaya telah memiliki **respon proteksi yang jelas dalam sistem kontrol**.
+---
+
+# Ladder Reference Summary
+
+Artikel ini hanya merujuk:
+
+```
+FB101 Pump_Control
+```
+
+Network:
+
+```
+N5 Trip Logic
+N6 Alarm Logic
+N8 Sequence Interface
+```
+
+Rung yang digunakan:
+
+```
+N5-R1
+N5-R2
+N6-R1
+N8-R3
+```
+
+Tidak boleh menampilkan rung dari:
+
+```
+N2
+N3
+N4
+N7
+```
+
+---
+
+# Diagram Reference Summary
+
+Artikel ini hanya boleh menggunakan diagram dari library:
+
+```
+Diagram 1 — Pump System Reference
+Diagram 6 — Pump Protection Logic
+Diagram 8 — Sequence Control Interface
+```
+
+---
+
+# Final Knowledge Layer of the Series
+
+Artikel terakhir ini menghubungkan seluruh lapisan kontrol yang telah dibangun sejak Artikel 01.
+
+Struktur akhir sistem kontrol:
+
+```
+Process Condition
+↓
+Signal Detection
+↓
+PLC Ladder Logic
+↓
+Permissive / Alarm / Trip
+↓
+Equipment Response
+↓
+Process Protection
+```
+
+Dalam konteks Pump P-101:
+
+```
+Process deviation
+↓
+Trip logic
+↓
+Pump shutdown
+↓
+Plant protection
+```
+
+Ini menyelesaikan **alur pengetahuan serial PLC Control Engineering** dari:
+
+```
+PLC behaviour
+↓
+equipment control logic
+↓
+program architecture
+↓
+process automation
+↓
+process protection
+```
 
 ---
 

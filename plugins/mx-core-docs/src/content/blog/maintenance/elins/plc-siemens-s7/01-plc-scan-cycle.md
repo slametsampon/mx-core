@@ -19,89 +19,165 @@ summary: PLC bekerja menggunakan **scan cycle** yang terdiri dari tiga tahap uta
 ---
 
 - [**_Artikel 1: PLC Scan Cycle \& Signal Flow dalam Control Equipment_**](#artikel-1-plc-scan-cycle--signal-flow-dalam-control-equipment)
-- [1. Operational Context](#1-operational-context)
-- [2. System Mechanism](#2-system-mechanism)
-- [3. Signal Flow](#3-signal-flow)
-- [4. PLC Behaviour](#4-plc-behaviour)
-  - [Industrial Context](#industrial-context)
-- [5. Practical Example](#5-practical-example)
-    - [Step 1 — Read Inputs](#step-1--read-inputs)
-    - [Step 2 — Execute Logic](#step-2--execute-logic)
-    - [Step 3 — Update Outputs](#step-3--update-outputs)
-- [6. Troubleshooting Insight](#6-troubleshooting-insight)
-    - [Periksa Input](#periksa-input)
-    - [Periksa Logic](#periksa-logic)
-    - [Periksa Output](#periksa-output)
-    - [Periksa Equipment](#periksa-equipment)
+- [Article 01](#article-01)
+- [PLC Scan Cycle \& Signal Flow](#plc-scan-cycle--signal-flow)
+  - [System Reference (Locked)](#system-reference-locked)
+- [Section 1](#section-1)
+- [PLC as Control Signal Processor](#plc-as-control-signal-processor)
+  - [Diagram Reference](#diagram-reference)
+  - [Engineering Focus](#engineering-focus)
+  - [Ladder Relation](#ladder-relation)
+- [Section 2](#section-2)
+- [PLC Scan Cycle Concept](#plc-scan-cycle-concept)
+  - [Diagram Reference](#diagram-reference-1)
+  - [Engineering Focus](#engineering-focus-1)
+- [Section 3](#section-3)
+- [Ladder Execution inside FB101](#ladder-execution-inside-fb101)
+  - [Diagram Reference](#diagram-reference-2)
+  - [Engineering Focus](#engineering-focus-2)
+- [Section 4](#section-4)
+- [Network N1 — Input Conditioning](#network-n1--input-conditioning)
+  - [Network Scope](#network-scope)
+  - [Ladder Reference](#ladder-reference)
+    - [Rung N1-R1](#rung-n1-r1)
+    - [Rung N1-R2](#rung-n1-r2)
+    - [Rung N1-R3](#rung-n1-r3)
+    - [Rung N1-R4](#rung-n1-r4)
+    - [Rung N1-R5](#rung-n1-r5)
+    - [Rung N1-R6](#rung-n1-r6)
+    - [Rung N1-R7](#rung-n1-r7)
+- [Section 5](#section-5)
+- [Signal Transformation inside PLC](#signal-transformation-inside-plc)
+- [Section 6](#section-6)
+- [Role of Input Conditioning in Control Logic](#role-of-input-conditioning-in-control-logic)
+- [Section 7](#section-7)
+- [Summary of PLC Signal Flow](#summary-of-plc-signal-flow)
+- [Ladder Reference Summary](#ladder-reference-summary)
+- [Diagram Reference Summary](#diagram-reference-summary)
+- [Hasil Outline Ini](#hasil-outline-ini)
 
 ---
 
-# 1. Operational Context
+Baik. Berikut **Outline Artikel 01 — PLC Scan Cycle & Signal Flow** yang **langsung terikat pada ladder, network, tag, dan diagram library** yang telah dikunci.
 
-Dalam sistem kontrol industri, **Programmable Logic Controller (PLC)** digunakan untuk membaca kondisi proses dan mengontrol equipment seperti:
+Outline ini **bukan outline bebas**, tetapi **network-anchored outline**, sehingga:
 
-- motor
-- pump
-- valve
-- conveyor
-- compressor
+- setiap bagian artikel merujuk **network tertentu**
+- setiap bagian artikel merujuk **rung ladder tertentu**
+- setiap bagian artikel merujuk **diagram library tertentu**
 
-PLC berfungsi sebagai **sistem pengambil keputusan logika** yang menghubungkan kondisi proses dengan aksi equipment.
+Dengan cara ini artikel hampir **tidak mungkin drift**.
 
-Hubungan dasar sistem kontrol dapat digambarkan sebagai berikut.
+---
 
-```text
-Process Condition
-↓
-Instrument Signal
-↓
-PLC Logic
-↓
-Equipment Response
+# Article 01
+
+# PLC Scan Cycle & Signal Flow
+
+## System Reference (Locked)
+
+System yang dianalisis adalah **Pump P-101**.
+
+Equipment:
+
+```
+P-101 Pump
+M-101 Motor
+XV-101 Suction Valve
+XV-102 Discharge Valve
 ```
 
-![Image](https://automationindustrial.com/cdn/shop/articles/industrial_automation_levels.jpg?v=1611934259)
+Instrument signals:
 
-Contoh sederhana terjadi pada **motor pump di plant industri**.
+```
+PT101_PV
+LSL101
+MTR_RUN_FB
+MCC_RDY
+```
 
-Operator menekan tombol **START** pada panel kontrol.
+Diagram yang digunakan:
 
-Sistem kontrol kemudian harus melakukan beberapa langkah:
-
-1. membaca sinyal dari **push button start**
-2. mengevaluasi logika kontrol dalam program PLC
-3. mengaktifkan output untuk menjalankan motor
-
-Namun dalam praktik operasi plant sering muncul kondisi seperti berikut:
-
-> tombol start ditekan tetapi motor tidak berjalan.
-
-Masalah ini dapat terjadi pada berbagai bagian sistem kontrol, seperti:
-
-- sinyal input tidak terbaca oleh PLC
-- logika kontrol tidak terpenuhi
-- output PLC tidak aktif
-- contactor motor gagal bekerja
-
-Untuk memahami penyebab masalah tersebut, engineer harus memahami **bagaimana PLC memproses sinyal dalam satu siklus kerja**.
-
-PLC bekerja menggunakan **siklus pemrosesan berulang** yang disebut **PLC Scan Cycle**.
+Diagram 1 — Pump System Reference
 
 ---
 
-Berikut **section Anda tanpa perubahan teks**, hanya **menambahkan gambar engineering Siemens S7 tepat di bawah setiap diagram konsep** sesuai instruksi.
+# Section 1
+
+# PLC as Control Signal Processor
+
+## Diagram Reference
+
+Diagram 2 — PLC Hardware Signal Flow
+
+```
+FIELD DEVICE
+ ↓
+I/O Module
+ ↓
+PLC CPU
+ ↓
+Control Logic
+ ↓
+Output Module
+ ↓
+Motor Starter
+```
+
+## Engineering Focus
+
+Menjelaskan bahwa PLC bekerja sebagai **processor sinyal kontrol**.
+
+Hubungan sistem:
+
+```
+process condition
+↓
+instrument signal
+↓
+PLC logic
+↓
+equipment response
+```
+
+## Ladder Relation
+
+Artikel mulai memperkenalkan bahwa **PLC logic berada di dalam FB101**.
+
+```
+OB1
+ └ FB101 Pump_Control
+```
+
+Belum membahas rung detail.
 
 ---
 
-# 2. System Mechanism
+# Section 2
 
-PLC tidak memproses sinyal secara kontinu seperti sistem kontrol analog.
+# PLC Scan Cycle Concept
 
-Sebaliknya, PLC bekerja menggunakan **siklus pemrosesan berulang** yang disebut **scan cycle**.
+## Diagram Reference
 
-Dalam setiap siklus, PLC melakukan tiga langkah utama.
+Diagram 3 — PLC Program Architecture
 
-```text
+```
+PLC CPU
+ │
+OB1
+ │
+FB101 Pump_Control
+ │
+DB101 Pump_Data
+```
+
+## Engineering Focus
+
+PLC Siemens S7 menjalankan program secara **cyclic scan**.
+
+Urutan scan:
+
+```
 Read Inputs
 ↓
 Execute Logic
@@ -109,374 +185,337 @@ Execute Logic
 Update Outputs
 ```
 
-![Image](https://www.researchgate.net/publication/338129116/figure/fig6/AS%3A840664354942991%401577441409736/The-scan-cycle-of-a-PLC.ppm)
+Hubungkan langsung dengan:
 
-Setelah tahap terakhir selesai, PLC kembali ke tahap pertama dan mengulangi proses yang sama.
-
-Durasi satu scan cycle biasanya hanya **beberapa milidetik**, tergantung pada:
-
-- tipe CPU PLC
-- ukuran program
-- jumlah I/O yang diproses
-
-Secara konseptual mekanisme ini dapat digambarkan sebagai berikut.
-
-```text
-INPUT MODULE
-(read field signals)
-↓
-PLC MEMORY
-(store input status)
-↓
-EXECUTE PROGRAM
-(run ladder logic)
-↓
-OUTPUT MEMORY
-(store output status)
-↓
-OUTPUT MODULE
-(send signal to equipment)
 ```
-
-![Image](https://support.industry.siemens.com/cs/images/109767576/109767576_Redundant_IO_S7_1500_01.png)
-
-Urutan pemrosesan ini menjadi dasar bagaimana PLC merespon setiap perubahan sinyal dalam sistem kontrol.
+OB1
+↓
+FB101 Pump_Control
+```
 
 ---
 
-Baik. Berikut **Section 3 langsung diperbaiki** tanpa perubahan teks Anda, **langsung ditingkatkan** dengan **3 gambar engineering kuat**:
+# Section 3
 
-- **Signal chain (instrument → controller)**
-- **Siemens S7 I/O architecture**
-- **PLC process image model**
+# Ladder Execution inside FB101
 
-Semua ditempatkan **tepat di bawah diagram konsep**, siap **copas**.
+## Diagram Reference
+
+Diagram 4 — Ladder Execution Flow
+
+```
+FB101 Pump_Control
+ │
+ ├ N1 Input Conditioning
+ ├ N2 Command Handling
+ ├ N3 Permissive Logic
+ ├ N4 Start/Stop Latch
+ ├ N5 Trip Logic
+ ├ N6 Alarm Logic
+ ├ N7 Start Failure Detection
+ └ N8 Sequence Interface
+```
+
+## Engineering Focus
+
+Menjelaskan bahwa:
+
+PLC **tidak menjalankan seluruh logic sekaligus**, tetapi menjalankan **network secara berurutan**.
+
+Namun Artikel 01 hanya fokus pada:
+
+```
+N1 Input Conditioning
+```
 
 ---
 
-# 3. Signal Flow
+# Section 4
 
-Pada awal setiap **scan cycle**, PLC membaca seluruh sinyal dari **input module** yang terhubung dengan field device.
+# Network N1 — Input Conditioning
 
-Field device adalah perangkat yang mendeteksi kondisi proses di lapangan, seperti:
+## Network Scope
 
-- push button
-- limit switch
-- pressure switch
-- temperature switch
-- motor running feedback
-
-Sinyal listrik dari field device masuk ke **input module PLC**, kemudian dikonversi menjadi data digital yang dapat diproses oleh CPU PLC.
-
-Aliran sinyal dari lapangan menuju PLC dapat digambarkan sebagai berikut.
-
-```text
-FIELD DEVICE
-(push button, switch, sensor)
-        │
-        ▼
-INPUT MODULE
-(digital / analog input)
-        │
-        ▼
-PLC CPU
+```
+N1 Input Conditioning
 ```
 
-![Image](https://cdn.automationforum.co/uploads/2023/05/1-9.png)
+## Ladder Reference
 
-![Image](https://www.researchgate.net/publication/350110488/figure/fig1/AS%3A1019865951375360%401620166399766/Architecture-of-PLC-3.png)
+### Rung N1-R1
 
-Namun PLC tidak langsung menggunakan data dari input module ketika menjalankan program.
-
-Pada awal scan cycle, PLC terlebih dahulu menyalin seluruh status input ke dalam **Input Memory**, yang sering disebut sebagai **Process Image Input Table**.
-
-```text
-FIELD DEVICE
-        │
-        ▼
-INPUT MODULE
-        │
-        ▼
-PROCESS IMAGE INPUT
-(Input Memory Snapshot)
-        │
-        ▼
-PLC PROGRAM EXECUTION
+```
+| MCC_RDY |
+|----[ ]--------------------( ) MCC_HEALTHY
 ```
 
-![Image](https://media.licdn.com/dms/image/v2/D5622AQFvUO8ULVOkCg/feedshare-shrink_800/B56Zfs0d2THcAg-/0/1752024868636?e=2147483647&t=JbfG-T7XYuMKG10acLhynTv5Ty_JeTAJAQpxmbEwMac&v=beta)
+Makna:
 
-Process Image berfungsi sebagai **snapshot kondisi input pada awal scan cycle**.
-
-Contoh isi Process Image Input Table:
-
-```text
-I0.0  Start Push Button   = 1
-I0.1  Stop Push Button    = 0
-I0.2  Motor Feedback      = 0
-I0.3  Valve Limit Switch  = 1
 ```
-
-Selama program ladder dijalankan, PLC **tidak membaca ulang input module**.
-
-Perubahan sinyal baru akan diproses pada **scan cycle berikutnya**.
+MCC ready signal
+→ PLC mengubahnya menjadi status internal
+```
 
 ---
 
-Berikut **Section 4 tanpa perubahan teks Anda**, hanya **menambahkan gambar engineering relevan** tepat **di bawah setiap diagram konsep**.
+### Rung N1-R2
 
-Siap **langsung copas**.
+```
+| XV101_OPEN |
+|----[ ]--------------------( ) SUCT_VALVE_READY
+```
+
+Makna:
+
+```
+valve feedback
+→ status valve ready
+```
 
 ---
 
-# 4. PLC Behaviour
+### Rung N1-R3
 
-Setelah PLC membaca seluruh input dan menyimpannya di **Input Memory**, CPU PLC mulai menjalankan **program ladder logic**.
-
-Program PLC dieksekusi secara **berurutan dari atas ke bawah**.
-
-```text id="r9u2fe"
-PLC Program Scan
-
-Rung 1
-↓
-Rung 2
-↓
-Rung 3
-↓
-Rung 4
-↓
-Update Output Memory
+```
+| XV102_OPEN |
+|----[ ]--------------------( ) DISC_VALVE_READY
 ```
 
-![Image](https://cdn.prod.website-files.com/63dea6cb95e58cb38bb98cbd/6830777728b9763b99de72f5_AD_4nXcOLkF1sL4E0EQ2lWACzOG6SHW4ngny9iGytOQC5J0aHbPIdxz_kGBSqaq7VR59iPiBCy63VQvsjK-ueVBROaECYw7aOBnqqGF5K-UC7opRNvf6eLUs99faUN0sHHvh5UNF9nUPLQ.png)
+Makna:
 
-Setiap rung ladder dievaluasi menggunakan data input dari **Input Memory**.
-
-Contoh ladder sederhana:
-
-```text id="j7x1vq"
-Start PB     Stop PB
----[ ]--------[/]--------( Motor )
 ```
-
-![Image](https://control.com/uploads/articles/startstop_1.jpg)
-
-![Image](https://control.com/uploads/articles/startstop_10.jpg)
-
-![Image](https://www.kronotech.com/LadderLogic/Basic/images/motor1.gif)
-
-Penjelasan:
-
-- Start PB = contact NO
-- Stop PB = contact NC
-- Motor = output coil
-
-Contoh kondisi input:
-
-```text id="guxh6m"
-Start Push Button = ON
-Stop Push Button  = OFF
+discharge valve open status
 ```
-
-Evaluasi logika:
-
-```text id="h0g4ci"
-Motor Coil = TRUE
-```
-
-Jika kondisi rung TRUE, PLC akan mengaktifkan coil pada **Output Memory**.
-
-```text id="m9sp0q"
-INPUT MEMORY
-(Start = ON, Stop = OFF)
-        │
-        ▼
-LADDER LOGIC EXECUTION
-        │
-        ▼
-OUTPUT MEMORY
-(Motor = ON)
-```
-
-![Image](https://cdn.automationforum.co/uploads/2021/04/Untitled-24.jpg)
-
-Output baru dikirim ke **output module** pada tahap akhir scan cycle.
 
 ---
 
-## Industrial Context
+### Rung N1-R4
 
-Dalam sistem kontrol industri yang sebenarnya, motor biasanya menggunakan **seal-in circuit** agar motor tetap berjalan setelah tombol start dilepas.
-
-Contoh ladder yang lebih umum digunakan:
-
-```text id="o7h2an"
-Start PB     Stop PB
----[ ]--------[/]----+----( Motor )
-                     |
-Motor Contact -------+
+```
+| MTR_RUN_FB |
+|----[ ]--------------------( ) MOTOR_FEEDBACK_ON
 ```
 
-![Image](https://www.allaboutcircuits.com/uploads/articles/switch-motor-stop.jpg)
+Makna:
 
-Logika ini membuat motor tetap aktif setelah start command dilepas.
-
-Namun untuk menjelaskan **scan cycle PLC**, ladder sederhana sudah cukup karena fokusnya adalah mekanisme:
-
-```text id="x3n48b"
-Input Memory
-↓
-Logic Execution
-↓
-Output Memory
 ```
-
-![Image](https://www.researchgate.net/publication/338129116/figure/fig6/AS%3A840664354942991%401577441409736/The-scan-cycle-of-a-PLC.ppm)
-
-Detail motor control akan dibahas pada artikel berikutnya.
+motor running feedback
+→ PLC run status
+```
 
 ---
 
-Berikut **Section 5 tanpa perubahan teks Anda**, hanya **menambahkan gambar engineering relevan tepat di bawah diagram konsep**, siap **langsung copas**.
+### Rung N1-R5
+
+```
+| LSL101 |
+|----[ ]--------------------( ) TANK_LEVEL_LOW
+```
+
+Makna:
+
+```
+tank level switch
+→ suction availability
+```
 
 ---
 
-# 5. Practical Example
+### Rung N1-R6
 
-Contoh operasi sederhana pada **motor start**.
-
-Operator menekan **Start Push Button**.
-
-```text
-START PUSH BUTTON
-↓
-INPUT MODULE
-↓
-PLC PROGRAM
-↓
-OUTPUT MODULE
-↓
-MOTOR CONTACTOR
-↓
-MOTOR RUNNING
+```
+| PT101_PV < Low_SP |
+|----[CMP<]------------( ) SUCT_PRESS_LOW
 ```
 
-![Image](https://cdn.automationforum.co/uploads/2025/07/PLC-Program-for-Motor-Starter-with-Low-Level-Switch-Interlock-3-scaled.jpg)
+Makna:
 
-Proses dalam satu scan cycle:
-
-### Step 1 — Read Inputs
-
-```text
-Start Push Button = ON
-Stop Push Button  = OFF
-Motor Feedback    = OFF
 ```
-
-![Image](https://cdn.forumautomation.com/original/2X/9/999405a89b845f330c8ec5b41c5ea03224a96386.png)
-
-![Image](https://control.com/uploads/articles/Poster_PLCIO_Wiring.png)
-
-### Step 2 — Execute Logic
-
-PLC mengevaluasi ladder:
-
-```text
-Start PB     Stop PB
----[ ]--------[/]--------( Motor )
+pressure threshold
+→ alarm level detection
 ```
-
-![Image](https://i.pinimg.com/736x/0d/f8/c2/0df8c218df4ab5fed86ccd3abe247949.jpg)
-
-Hasil:
-
-```text
-Motor Coil = TRUE
-```
-
-### Step 3 — Update Outputs
-
-```text
-Motor Output = ON
-```
-
-![Image](https://europe1.discourse-cdn.com/arduino/optimized/4X/b/d/d/bddad1308d74be3cddef7e1f7e53d694e606568e_2_1024x576.jpeg)
-
-Output module kemudian mengaktifkan **motor contactor** sehingga motor mulai berputar.
 
 ---
 
-# 6. Troubleshooting Insight
+### Rung N1-R7
 
-Pemahaman scan cycle sangat penting untuk troubleshooting sistem kontrol.
+```
+| PT101_PV < LowLow_SP |
+|----[CMP<]---------( ) SUCT_PRESS_LOWLOW
+```
 
-Engineer biasanya menganalisis sistem menggunakan urutan berikut.
+Makna:
+
+```
+trip threshold detection
+```
+
+---
+
+# Section 5
+
+# Signal Transformation inside PLC
+
+Bagian ini menjelaskan konsep penting:
+
+PLC tidak bekerja langsung dengan **raw signal**.
+
+PLC mengubahnya menjadi **logic state**.
+
+Contoh dari ladder:
+
+```
+MCC_RDY
+↓
+MCC_HEALTHY
+```
+
+```
+XV101_OPEN
+↓
+SUCT_VALVE_READY
+```
+
+```
+PT101_PV
+↓
+SUCT_PRESS_LOW
+↓
+SUCT_PRESS_LOWLOW
+```
+
+Ini adalah **fungsi utama Network N1**.
+
+---
+
+# Section 6
+
+# Role of Input Conditioning in Control Logic
+
+Menjelaskan hubungan N1 dengan network berikutnya.
+
+```
+N1 Input Conditioning
+↓
+N3 Permissive Logic
+↓
+N4 Start Logic
+↓
+N5 Trip Logic
+```
+
+Contoh hubungan nyata:
+
+```
+SUCT_PRESS_LOWLOW
+→ digunakan oleh Trip Logic
+```
+
+```
+SUCT_VALVE_READY
+→ digunakan oleh Permissive Logic
+```
+
+---
+
+# Section 7
+
+# Summary of PLC Signal Flow
+
+Ringkasan alur sistem.
 
 ```
 FIELD DEVICE
 ↓
-INPUT SIGNAL
+Input Signal
 ↓
-PLC INPUT MEMORY
+Network N1 Input Conditioning
 ↓
-PLC LOGIC
+Logic Evaluation
 ↓
-OUTPUT MEMORY
+Output Command
 ↓
-OUTPUT MODULE
+Motor M-101
 ↓
-EQUIPMENT
+Pump P-101
 ```
-
-Langkah troubleshooting:
-
-### Periksa Input
-
-```
-Start Push Button = ON
-```
-
-Jika input tidak berubah, kemungkinan masalah:
-
-- push button rusak
-- wiring bermasalah
-- input module gagal membaca sinyal
 
 ---
 
-### Periksa Logic
+# Ladder Reference Summary
+
+Artikel 01 hanya merujuk:
 
 ```
-Start PB = TRUE
-Stop PB  = TRUE
-→ Motor Coil = TRUE
+FB101 Pump_Control
+Network N1
+Rung R1–R7
 ```
 
-Jika logika tidak terpenuhi, PLC tidak akan mengaktifkan output.
+Tidak boleh menampilkan rung dari:
+
+```
+N2
+N3
+N4
+N5
+N6
+N7
+N8
+```
 
 ---
 
-### Periksa Output
+# Diagram Reference Summary
+
+Artikel hanya boleh menggunakan diagram:
 
 ```
-Motor Output = ON
+Diagram 1 Pump System
+Diagram 2 PLC Signal Flow
+Diagram 3 Program Architecture
+Diagram 4 Ladder Execution
 ```
-
-Jika output tidak aktif:
-
-- output module rusak
-- konfigurasi PLC salah
 
 ---
 
-### Periksa Equipment
+# Hasil Outline Ini
 
-Jika output aktif tetapi motor tidak berjalan:
+Artikel 01 sekarang **terikat kuat ke sistem PLC**:
 
-- contactor motor rusak
-- motor overload trip
-- supply listrik terputus
+```
+System
+↓
+OB1
+↓
+FB101
+↓
+Network N1
+↓
+Rung N1-R1 ... N1-R7
+```
+
+Sehingga:
+
+- tidak bisa drift
+- tidak bisa ganti ladder
+- tidak bisa ganti sistem
+- tidak bisa ganti signal
+
+---
+
+Jika Anda mau, langkah berikutnya yang sangat powerful adalah membuat:
+
+**Outline Artikel 02 — Basic Ladder Logic**
+
+yang akan langsung membedah:
+
+```
+Network N2
+Network N4
+```
+
+dan menunjukkan **rung start/stop pump P-101 secara lengkap**.
 
 ---
 

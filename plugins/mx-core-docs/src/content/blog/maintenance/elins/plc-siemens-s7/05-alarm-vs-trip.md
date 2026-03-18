@@ -12,337 +12,511 @@ summary: Dalam sistem kontrol industri, deviasi parameter proses dapat menghasil
 ---
 
 - [**_Artikel 5: Alarm vs Trip Logic — Menentukan Kapan Equipment Harus Berhenti_**](#artikel-5-alarm-vs-trip-logic--menentukan-kapan-equipment-harus-berhenti)
-- [Section 1 — Operational Context](#section-1--operational-context)
-- [Section 2 — Equipment Behaviour](#section-2--equipment-behaviour)
-- [Section 3 — Control Requirement](#section-3--control-requirement)
-  - [Alarm](#alarm)
-  - [Trip](#trip)
-- [Section 4 — Signal Logic](#section-4--signal-logic)
-- [Section 5 — Ladder Logic Pattern](#section-5--ladder-logic-pattern)
-- [Section 6 — Practical Example](#section-6--practical-example)
-- [Section 7 — Engineering Notes](#section-7--engineering-notes)
-  - [Alarm harus muncul sebelum Trip](#alarm-harus-muncul-sebelum-trip)
-  - [Trip digunakan untuk proteksi equipment](#trip-digunakan-untuk-proteksi-equipment)
-  - [Alarm terlalu banyak dapat menurunkan efektivitas operasi](#alarm-terlalu-banyak-dapat-menurunkan-efektivitas-operasi)
+- [Article 05](#article-05)
+- [Alarm vs Trip](#alarm-vs-trip)
+  - [System Reference (Locked)](#system-reference-locked)
+- [Section 1](#section-1)
+- [Process Deviation in Pump Operation](#process-deviation-in-pump-operation)
+  - [Engineering Focus](#engineering-focus)
+- [Section 2](#section-2)
+- [Alarm and Trip in FB101 Structure](#alarm-and-trip-in-fb101-structure)
+- [Section 3](#section-3)
+- [Network N1 — Process Deviation Detection](#network-n1--process-deviation-detection)
+  - [Rung N1-R6 — Low Pressure Detection](#rung-n1-r6--low-pressure-detection)
+  - [Rung N1-R7 — Low-Low Pressure Detection](#rung-n1-r7--low-low-pressure-detection)
+- [Section 4](#section-4)
+- [Network N6 — Alarm Logic](#network-n6--alarm-logic)
+  - [Rung N6-R1 — Alarm Evaluation](#rung-n6-r1--alarm-evaluation)
+  - [Rung N6-R2 — Alarm Output](#rung-n6-r2--alarm-output)
+- [Section 5](#section-5)
+- [Network N5 — Trip Logic](#network-n5--trip-logic)
+  - [Rung N5-R1 — Trip Evaluation](#rung-n5-r1--trip-evaluation)
+  - [Rung N5-R2 — Trip Output](#rung-n5-r2--trip-output)
+- [Section 6](#section-6)
+- [Alarm vs Trip Threshold Concept](#alarm-vs-trip-threshold-concept)
+- [Section 7](#section-7)
+- [Example Process Scenario](#example-process-scenario)
+  - [Scenario 1 — Pressure Slightly Low](#scenario-1--pressure-slightly-low)
+  - [Scenario 2 — Pressure Very Low](#scenario-2--pressure-very-low)
+- [Section 8](#section-8)
+- [Protection Philosophy in PLC](#protection-philosophy-in-plc)
+- [Section 9](#section-9)
+- [Alarm and Trip in Pump Protection](#alarm-and-trip-in-pump-protection)
+- [Ladder Reference Summary](#ladder-reference-summary)
+- [Diagram Reference Summary](#diagram-reference-summary)
+- [Knowledge Layer Built by Article 05](#knowledge-layer-built-by-article-05)
 
 ---
 
-# Section 1 — Operational Context
+Berikut **Outline Artikel 05 — Alarm vs Trip** yang tetap **terkunci pada ladder FB101 Pump_Control**, khususnya **Network N1, Network N5, dan Network N6**.
 
-Dalam operasi plant industri, berbagai **parameter proses** harus dipantau secara terus-menerus untuk memastikan sistem beroperasi dalam batas yang aman.
+Artikel ini menjelaskan **perbedaan respon sistem kontrol terhadap deviasi proses**:
 
-Beberapa parameter proses yang umum dipantau antara lain:
+- **Alarm → operator response**
+- **Trip → automatic shutdown**
 
-- tekanan proses
-- temperatur equipment
-- level fluida
-- aliran fluida
+Semua bagian tetap mematuhi aturan:
 
-Sinyal-sinyal ini biasanya berasal dari **instrument proses** seperti transmitter, switch, atau sensor.
-
-Jika nilai parameter tersebut menyimpang dari kondisi operasi normal, sistem kontrol harus memberikan respon yang sesuai.
-
-Respon sistem kontrol biasanya diklasifikasikan menjadi dua jenis utama:
-
-- **alarm**
-- **trip**
-
-Kedua respon ini memiliki tujuan yang berbeda dalam operasi plant.
-
-Secara umum hubungan antara parameter proses dan respon sistem kontrol dapat digambarkan sebagai berikut.
-
-```
-Process Variable
-↓
-Deviation Detection
-↓
-Alarm or Trip Response
-```
-
-Memahami perbedaan antara **alarm** dan **trip** sangat penting dalam desain sistem kontrol karena kedua respon tersebut memiliki fungsi yang berbeda dalam menjaga **stabilitas proses dan keselamatan equipment**.
+- hanya menggunakan **Pump P-101 system**
+- hanya menggunakan **tag yang telah dikunci**
+- hanya merujuk **Network N1, N5, dan N6**
+- hanya menampilkan **rung yang sudah ada**
 
 ---
 
-# Section 2 — Equipment Behaviour
+# Article 05
 
-Tidak semua deviasi parameter proses memerlukan penghentian equipment.
+# Alarm vs Trip
 
-Beberapa deviasi hanya memerlukan **perhatian operator**, sedangkan deviasi lain dapat menyebabkan **kerusakan equipment atau kondisi proses yang berbahaya**.
+## System Reference (Locked)
 
-Sebagai contoh, kita dapat melihat perilaku sistem pada **compressor system**.
+Sistem yang dikontrol tetap **Pump P-101 motor-driven centrifugal pump**.
 
-Compressor biasanya memiliki beberapa parameter operasi yang harus dijaga dalam batas yang aman, salah satunya adalah **temperatur bearing**.
+Equipment:
 
-Jika temperatur meningkat sedikit di atas kondisi normal, sistem kontrol biasanya hanya memberikan **alarm** kepada operator.
-
-Perilaku sistem dalam kondisi ini dapat digambarkan sebagai berikut.
-
-```
-High Temperature
-→ Alarm
+```text
+P-101 Pump
+M-101 Motor
+XV-101 Suction Valve
+XV-102 Discharge Valve
 ```
 
-Alarm ini memberi peringatan bahwa kondisi operasi mulai menyimpang dari normal dan operator perlu melakukan tindakan koreksi.
+Instrument yang mempengaruhi alarm dan trip:
 
-Namun jika temperatur terus meningkat hingga melewati batas yang lebih tinggi, kondisi tersebut dapat menyebabkan kerusakan pada equipment.
-
-Dalam kondisi ini sistem kontrol harus memberikan respon yang lebih serius yaitu **trip**.
-
-Perilaku sistem dapat digambarkan sebagai berikut.
-
-```
-Very High Temperature
-→ Trip
+```text
+PT101_PV
+OL_TRIP
 ```
 
-Trip akan menghentikan equipment secara otomatis untuk mencegah kerusakan pada compressor atau potensi bahaya pada sistem proses.
+Diagram yang digunakan:
+
+- Diagram 1 — Pump System Reference
+- Diagram 6 — Pump Protection Logic
 
 ---
 
-# Section 3 — Control Requirement
+# Section 1
 
-Dalam sistem kontrol industri, deviasi parameter proses tidak selalu memiliki tingkat keparahan yang sama. Karena itu sistem kontrol harus mampu **membedakan tingkat respon terhadap deviasi proses**.
+# Process Deviation in Pump Operation
 
-Secara umum terdapat dua tingkat respon utama:
+## Engineering Focus
 
-- **Alarm**
-- **Trip**
+Dalam operasi pump, kondisi proses dapat menyimpang dari kondisi normal.
 
-Kedua respon ini memiliki fungsi yang berbeda dalam menjaga stabilitas operasi dan melindungi equipment.
+Contoh deviasi:
 
----
+```text
+suction pressure mulai turun
+motor overload
+suction pressure sangat rendah
+```
 
-## Alarm
+Namun **tidak semua deviasi memerlukan shutdown otomatis**.
 
-Alarm digunakan untuk memberikan **peringatan kepada operator** bahwa suatu parameter proses mulai menyimpang dari kondisi normal.
+Struktur respon sistem kontrol:
 
-Ketika alarm muncul, equipment biasanya **tetap beroperasi**.
-
-Tujuan alarm adalah memberi kesempatan kepada operator untuk:
-
-- memonitor kondisi proses
-- melakukan tindakan koreksi
-- mencegah kondisi menjadi lebih serius
-
-Hubungan antara kondisi proses dan respon alarm dapat digambarkan sebagai berikut.
-
-```text id="alarm_response"
+```text
 Process Deviation
+      │
+      ├ Alarm → operator intervention
+      │
+      └ Trip → automatic shutdown
+```
+
+Artikel ini menjelaskan **bagaimana PLC membedakan dua respon tersebut**.
+
+---
+
+# Section 2
+
+# Alarm and Trip in FB101 Structure
+
+Struktur ladder yang relevan:
+
+```text
+FB101 Pump_Control
+ │
+ ├ N1 Input Conditioning
+ ├ N2 Command Handling
+ ├ N3 Permissive Logic
+ ├ N4 Start/Stop Latch
+ ├ N5 Trip Logic
+ ├ N6 Alarm Logic
+ ├ N7 Start Failure Detection
+ └ N8 Sequence Interface
+```
+
+Network yang dianalisis dalam artikel ini:
+
+```text
+N1 Input Conditioning
+N5 Trip Logic
+N6 Alarm Logic
+```
+
+Hubungan network:
+
+```text
+Input signal
 ↓
-Alarm Activated
+N1 Input Conditioning
 ↓
-Operator Action
+Alarm threshold
+↓
+Trip threshold
 ```
 
 ---
 
-## Trip
+# Section 3
 
-Trip digunakan ketika deviasi parameter proses mencapai **batas kritis** yang dapat menyebabkan:
+# Network N1 — Process Deviation Detection
 
-- kerusakan equipment
-- gangguan proses
-- potensi bahaya keselamatan
-
-Dalam kondisi ini sistem kontrol harus **menghentikan equipment secara otomatis** tanpa menunggu tindakan operator.
-
-Hubungan antara kondisi proses dan respon trip dapat digambarkan sebagai berikut.
-
-```text id="trip_response"
-Critical Process Condition
-↓
-Trip Detection
-↓
-Automatic Equipment Stop
-```
-
-Dengan demikian sistem kontrol memiliki dua tingkat proteksi:
-
-```text id="alarm_trip_levels"
-Alarm → Operator Response
-Trip → Automatic Shutdown
-```
-
-Pendekatan ini memungkinkan sistem kontrol menangani deviasi proses secara bertahap sesuai tingkat keparahannya.
+Sebelum alarm atau trip diputuskan, PLC harus mendeteksi kondisi proses.
 
 ---
 
-# Section 4 — Signal Logic
+## Rung N1-R6 — Low Pressure Detection
 
-Perbedaan antara alarm dan trip biasanya ditentukan oleh **batas parameter proses** yang telah ditetapkan dalam desain sistem kontrol.
-
-Hubungan antara parameter proses dan level respon dapat digambarkan sebagai berikut.
-
-```text id="process_limit_logic"
-Process Variable
-↓
-Alarm Limit
-↓
-Trip Limit
+```text
+| PT101_PV < Low_SP |
+|----[CMP<]--------------------( ) SUCT_PRESS_LOW
 ```
 
-Ketika nilai parameter proses melewati **alarm limit**, sistem kontrol akan menghasilkan **alarm signal**.
+Makna engineering:
 
-Namun jika nilai parameter terus meningkat dan melewati **trip limit**, sistem kontrol akan menghasilkan **trip signal** yang menghentikan equipment.
-
-Contoh pada temperatur equipment:
-
-```text id="temperature_alarm_trip"
-Temperature > Alarm Limit
-→ Alarm
-
-Temperature > Trip Limit
-→ Equipment Stop
+```text
+tekanan suction mulai rendah
 ```
 
-Dalam implementasi PLC, sistem kontrol akan memonitor nilai parameter proses secara terus-menerus.
-
-Sinyal yang digunakan biasanya berasal dari:
-
-- temperature transmitter
-- pressure transmitter
-- level transmitter
-- flow transmitter
-
-PLC kemudian membandingkan nilai parameter tersebut dengan batas yang telah ditentukan untuk menghasilkan respon **alarm** atau **trip**.
-
-Pendekatan ini memastikan bahwa sistem kontrol dapat merespon perubahan kondisi proses secara **terstruktur dan berlapis** sesuai tingkat risiko yang dihadapi.
+Status ini digunakan untuk **alarm condition**.
 
 ---
 
-# Section 5 — Ladder Logic Pattern
+## Rung N1-R7 — Low-Low Pressure Detection
 
-Dalam PLC, perbedaan antara **alarm** dan **trip** biasanya diimplementasikan dengan membandingkan nilai parameter proses terhadap **batas alarm** dan **batas trip**.
-
-Contoh implementasi sederhana dalam ladder logic dapat digambarkan sebagai berikut.
-
-```text id="alarm_trip_ladder"
-Temperature > Alarm Limit
-----[ ]----------------( Alarm )
-
-Temperature > Trip Limit
-----[ ]----------------( Trip )
+```text
+| PT101_PV < LowLow_SP |
+|----[CMP<]-----------------( ) SUCT_PRESS_LOWLOW
 ```
 
-Pada ladder ini terdapat dua kondisi yang dipantau oleh PLC:
+Makna engineering:
 
-- **Temperature > Alarm Limit**
-  Jika temperatur melewati batas alarm, PLC akan mengaktifkan coil **Alarm**.
-
-- **Temperature > Trip Limit**
-  Jika temperatur melewati batas trip, PLC akan mengaktifkan coil **Trip**.
-
-Perbedaan respon antara kedua kondisi tersebut adalah:
-
-- **Alarm** memberikan peringatan kepada operator agar operator dapat melakukan tindakan koreksi.
-- **Trip** menghasilkan perintah untuk menghentikan equipment secara otomatis.
-
-Dengan demikian sistem kontrol dapat memberikan **dua tingkat respon terhadap deviasi proses**.
-
----
-
-# Section 6 — Practical Example
-
-Sebagai contoh implementasi pada sistem nyata, kita dapat melihat kasus pada **compressor system**.
-
-Salah satu parameter penting yang dipantau pada compressor adalah **temperatur bearing**.
-
-Temperatur bearing yang terlalu tinggi dapat menyebabkan:
-
-- kerusakan pada bearing
-- peningkatan gesekan
-- kegagalan mekanis pada compressor
-
-Karena itu sistem kontrol biasanya menetapkan dua batas temperatur:
-
-```text id="bearing_temp_limits"
-Bearing Temperature > 80°C
-→ Alarm
-
-Bearing Temperature > 95°C
-→ Compressor Trip
+```text
+tekanan suction berada pada kondisi berbahaya
 ```
 
-Penjelasan respon sistem:
+Status ini digunakan untuk **trip condition**.
 
-- Jika temperatur bearing melewati **80°C**, PLC akan menghasilkan **alarm** untuk memberi peringatan kepada operator bahwa temperatur mulai meningkat.
+---
 
-- Jika temperatur terus meningkat hingga mencapai **95°C**, PLC akan menghasilkan **trip signal** yang menghentikan compressor secara otomatis.
+# Section 4
 
-Hubungan antara temperatur dan respon sistem dapat digambarkan sebagai berikut.
+# Network N6 — Alarm Logic
 
-```text id="temp_alarm_trip_sequence"
-Normal Temperature
-↓
-Alarm Limit (80°C)
-↓
-Trip Limit (95°C)
+Network ini menghasilkan **peringatan untuk operator**.
+
+---
+
+## Rung N6-R1 — Alarm Evaluation
+
+```text
+| SUCT_PRESS_LOW |
+|----[ ]--------------------------------|
+|                                         |
+| START_FAIL_ACTIVE |
+|----[ ]--------------------------------|----( ) ALARM_ACTIVE
+|                                         |
+| CMD_START_REQ | /PERMISSIVE_OK |
+|----[ ]------------[/]------------------|
 ```
 
-Dengan pendekatan ini, sistem kontrol memberikan kesempatan kepada operator untuk melakukan tindakan koreksi sebelum kondisi menjadi kritis.
+Makna logika:
 
-Namun jika temperatur mencapai batas yang berbahaya, sistem akan menghentikan compressor secara otomatis untuk melindungi equipment.
-
----
-
-# Section 7 — Engineering Notes
-
-Beberapa prinsip penting perlu diperhatikan dalam desain **alarm dan trip logic** pada sistem kontrol industri.
-
----
-
-## Alarm harus muncul sebelum Trip
-
-Alarm seharusnya muncul **sebelum kondisi mencapai batas trip**.
-
-Tujuan alarm adalah memberikan **waktu bagi operator untuk melakukan tindakan koreksi** sebelum kondisi proses menjadi kritis.
-
-Hubungan ini dapat digambarkan sebagai berikut.
-
-```text id="alarm_before_trip"
-Normal Operation
-↓
-Alarm Limit
-↓
-Trip Limit
+```text
+ALARM_ACTIVE =
+SUCT_PRESS_LOW
+OR START_FAIL_ACTIVE
+OR (CMD_START_REQ AND NOT PERMISSIVE_OK)
 ```
 
-Dengan pendekatan ini operator memiliki kesempatan untuk:
+Engineering meaning:
 
-- menyesuaikan kondisi proses
-- mengurangi beban equipment
-- mencegah terjadinya trip
+Alarm muncul ketika:
 
----
-
-## Trip digunakan untuk proteksi equipment
-
-Trip logic digunakan untuk melindungi equipment dari kondisi operasi yang dapat menyebabkan kerusakan.
-
-Karena itu trip seharusnya hanya digunakan untuk kondisi yang benar-benar **berisiko tinggi**, seperti:
-
-- temperatur sangat tinggi
-- tekanan sangat rendah atau sangat tinggi
-- kegagalan sistem pendinginan
-- overload pada motor
-
-Trip akan menghentikan equipment secara otomatis tanpa menunggu intervensi operator.
+```text
+pressure rendah
+start gagal
+operator mencoba start ketika permissive tidak terpenuhi
+```
 
 ---
 
-## Alarm terlalu banyak dapat menurunkan efektivitas operasi
+## Rung N6-R2 — Alarm Output
 
-Jika sistem menghasilkan terlalu banyak alarm, operator dapat mengalami kondisi yang disebut **alarm fatigue**.
+```text
+| ALARM_ACTIVE |
+|----[ ]-----------------------------( ) ALM_P101
+```
 
-Alarm fatigue terjadi ketika operator menerima terlalu banyak alarm sehingga sulit membedakan alarm yang penting dan yang tidak penting.
+Makna logika:
 
-Akibatnya operator dapat:
+```text
+ALM_P101 = ALARM_ACTIVE
+```
 
-- mengabaikan alarm
-- menunda respon terhadap kondisi penting
-- kehilangan fokus terhadap kondisi proses yang kritis
+Engineering meaning:
 
-Karena itu desain sistem alarm harus dilakukan secara hati-hati agar hanya menghasilkan **alarm yang benar-benar relevan dengan operasi plant**.
+PLC mengirim **alarm signal ke operator interface**.
+
+---
+
+# Section 5
+
+# Network N5 — Trip Logic
+
+Trip logic digunakan ketika kondisi proses sudah **tidak aman untuk operasi pump**.
+
+---
+
+## Rung N5-R1 — Trip Evaluation
+
+```text
+| OL_TRIP |
+|----[ ]--------------------------------|
+|                                         |
+| SUCT_PRESS_LOWLOW |
+|----[ ]--------------------------------|----( ) TRIP_ACTIVE
+|                                         |
+| RUN_LATCH | /MCC_HEALTHY |
+|----[ ]--------[/]----------------------|
+```
+
+Makna logika:
+
+```text
+TRIP_ACTIVE =
+OL_TRIP
+OR SUCT_PRESS_LOWLOW
+OR (RUN_LATCH AND NOT MCC_HEALTHY)
+```
+
+---
+
+## Rung N5-R2 — Trip Output
+
+```text
+| TRIP_ACTIVE |
+|----[ ]-----------------------------( ) TRIP_P101
+```
+
+Makna engineering:
+
+```text
+motor stop
+pump shutdown
+```
+
+---
+
+# Section 6
+
+# Alarm vs Trip Threshold Concept
+
+Perbedaan threshold:
+
+| Condition         | Response |
+| ----------------- | -------- |
+| SUCT_PRESS_LOW    | Alarm    |
+| SUCT_PRESS_LOWLOW | Trip     |
+
+Hubungan ladder:
+
+```text
+PT101_PV
+ ↓
+SUCT_PRESS_LOW
+ ↓
+Alarm
+```
+
+```text
+PT101_PV
+ ↓
+SUCT_PRESS_LOWLOW
+ ↓
+Trip
+```
+
+Ini adalah konsep **process deviation severity**.
+
+---
+
+# Section 7
+
+# Example Process Scenario
+
+## Scenario 1 — Pressure Slightly Low
+
+```text
+PT101_PV < Low_SP
+```
+
+Hasil:
+
+```text
+SUCT_PRESS_LOW = TRUE
+ALARM_ACTIVE = TRUE
+Pump tetap running
+```
+
+Operator mendapat alarm.
+
+---
+
+## Scenario 2 — Pressure Very Low
+
+```text
+PT101_PV < LowLow_SP
+```
+
+Hasil:
+
+```text
+SUCT_PRESS_LOWLOW = TRUE
+TRIP_ACTIVE = TRUE
+Pump shutdown
+```
+
+PLC melakukan **automatic protection**.
+
+---
+
+# Section 8
+
+# Protection Philosophy in PLC
+
+Sistem kontrol biasanya mengikuti filosofi berikut:
+
+```text
+Normal condition
+↓
+Alarm region
+↓
+Trip region
+```
+
+Struktur respon:
+
+```text
+Process deviation
+ ↓
+Alarm threshold
+ ↓
+Trip threshold
+```
+
+Ini membuat operator memiliki **kesempatan untuk melakukan koreksi sebelum shutdown terjadi**.
+
+---
+
+# Section 9
+
+# Alarm and Trip in Pump Protection
+
+Diagram referensi:
+
+Diagram 6 — Pump Protection Logic
+
+```text
+Process Deviation
+     │
+     ├ Alarm → Operator Response
+     │
+     └ Trip → Automatic Shutdown
+```
+
+Diagram ini menjelaskan **hubungan antara ladder logic dan respon plant**.
+
+---
+
+# Ladder Reference Summary
+
+Artikel ini hanya boleh merujuk:
+
+```text
+FB101 Pump_Control
+```
+
+Network:
+
+```text
+N1 Input Conditioning
+N5 Trip Logic
+N6 Alarm Logic
+```
+
+Rung yang digunakan:
+
+```text
+N1-R6
+N1-R7
+N5-R1
+N5-R2
+N6-R1
+N6-R2
+```
+
+Tidak boleh menampilkan rung dari:
+
+```text
+N2
+N3
+N4
+N7
+N8
+```
+
+---
+
+# Diagram Reference Summary
+
+Artikel ini hanya boleh menggunakan diagram dari library:
+
+```text
+Diagram 1 — Pump System Reference
+Diagram 4 — Ladder Execution Flow
+Diagram 6 — Pump Protection Logic
+```
+
+---
+
+# Knowledge Layer Built by Article 05
+
+Artikel ini menambahkan pemahaman berikut:
+
+```text
+Process signal
+↓
+Deviation detection
+↓
+Alarm threshold
+↓
+Trip threshold
+↓
+Operator response vs automatic shutdown
+```
+
+Pembaca sekarang memahami bahwa PLC:
+
+```text
+tidak semua deviasi memerlukan shutdown
+beberapa hanya memerlukan alarm
+```
+
+---
+
+Jika Anda ingin, langkah berikutnya yang sangat penting adalah membuat **Outline Artikel 06 — Start Failure Detection**, karena di situlah pembaca mulai memahami **bagaimana PLC memverifikasi bahwa perintah start benar-benar menghasilkan equipment running**.
 
 ---
 

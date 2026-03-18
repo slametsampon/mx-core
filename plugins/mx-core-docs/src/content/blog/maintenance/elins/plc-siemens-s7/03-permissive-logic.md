@@ -12,368 +12,470 @@ summary: Permissive logic digunakan dalam sistem kontrol industri untuk memastik
 ---
 
 - [**_Artikel 3: Permissive Logic — Mencegah Equipment Start dalam Kondisi Tidak Aman_**](#artikel-3-permissive-logic--mencegah-equipment-start-dalam-kondisi-tidak-aman)
-- [Section 1 — Operational Context](#section-1--operational-context)
-- [Section 2 — Equipment Behaviour](#section-2--equipment-behaviour)
-- [Section 3 — Control Requirement](#section-3--control-requirement)
-- [Section 4 — Signal Logic](#section-4--signal-logic)
-- [Section 5 — Ladder Logic Pattern](#section-5--ladder-logic-pattern)
-- [Section 6 — Practical Example](#section-6--practical-example)
-- [Section 7 — Engineering Notes](#section-7--engineering-notes)
-  - [Permissive bukan Trip](#permissive-bukan-trip)
-  - [Permissive biasanya berasal dari Instrument](#permissive-biasanya-berasal-dari-instrument)
-  - [Permissive membantu mencegah operasi yang tidak aman](#permissive-membantu-mencegah-operasi-yang-tidak-aman)
+- [Article 03](#article-03)
+- [Permissive Logic](#permissive-logic)
+  - [System Reference (Locked)](#system-reference-locked)
+- [Section 1](#section-1)
+- [Purpose of Permissive Logic](#purpose-of-permissive-logic)
+  - [Engineering Focus](#engineering-focus)
+- [Section 2](#section-2)
+- [Position of Permissive Logic in FB101](#position-of-permissive-logic-in-fb101)
+- [Section 3](#section-3)
+- [Network N1 — Signal Conditioning](#network-n1--signal-conditioning)
+  - [Rung N1-R1 — MCC Healthy](#rung-n1-r1--mcc-healthy)
+  - [Rung N1-R2 — Suction Valve Ready](#rung-n1-r2--suction-valve-ready)
+  - [Rung N1-R5 — Tank Level Low](#rung-n1-r5--tank-level-low)
+  - [Rung N1-R7 — Suction Pressure Low-Low](#rung-n1-r7--suction-pressure-low-low)
+- [Section 4](#section-4)
+- [Network N3 — Permissive Logic](#network-n3--permissive-logic)
+  - [Rung N3-R1 — Permissive Evaluation](#rung-n3-r1--permissive-evaluation)
+- [Section 5](#section-5)
+- [Start Authorization Mechanism](#start-authorization-mechanism)
+- [Section 6](#section-6)
+- [Example Operating Scenarios](#example-operating-scenarios)
+  - [Scenario 1 — Normal Start](#scenario-1--normal-start)
+  - [Scenario 2 — Suction Valve Closed](#scenario-2--suction-valve-closed)
+  - [Scenario 3 — Tank Level Low](#scenario-3--tank-level-low)
+- [Section 7](#section-7)
+- [Relation to Other Logic Layers](#relation-to-other-logic-layers)
+- [Section 8](#section-8)
+- [Pump Start Logic Context](#pump-start-logic-context)
+- [Ladder Reference Summary](#ladder-reference-summary)
+- [Diagram Reference Summary](#diagram-reference-summary)
+- [Resulting Knowledge Layer](#resulting-knowledge-layer)
 
 ---
 
-# Section 1 — Operational Context
+Berikut **Outline Artikel 03 — Permissive Logic** yang tetap **terikat langsung ke ladder FB101 Pump_Control**, khususnya **Network N1 dan Network N3**.
 
-Dalam operasi plant industri, banyak equipment seperti **pump, compressor, dan fan** yang dikendalikan melalui sistem kontrol otomatis.
+Artikel ini adalah titik penting dalam serial karena pembaca mulai melihat **bagaimana PLC menentukan apakah pump diizinkan start atau tidak**.
 
-Operator biasanya memberikan perintah operasi melalui **start command** pada panel kontrol atau HMI.
+Struktur outline tetap mengikuti aturan:
 
-Namun dalam sistem proses industri, equipment tidak boleh langsung start hanya karena operator menekan tombol **RUN**.
-
-Sebelum equipment diizinkan untuk start, beberapa kondisi operasi harus terlebih dahulu terpenuhi.
-
-Contoh kondisi yang sering digunakan sebagai syarat start:
-
-- **Motor Control Center (MCC) dalam kondisi siap**
-- **Valve berada pada posisi yang benar**
-- **Tekanan proses berada dalam batas aman**
-
-Kondisi-kondisi ini disebut sebagai **permissive conditions**.
-
-Sistem kontrol harus memeriksa kondisi tersebut sebelum menerima perintah start dari operator.
-
-Konsep ini disebut **permissive logic**.
-
-Permissive logic memastikan bahwa **equipment hanya dapat start ketika kondisi operasi aman telah terpenuhi**.
-
-Hubungan dasar antara perintah operator dan kondisi operasi dapat digambarkan sebagai berikut.
-
-```
-Operator Start Command
-        │
-        ▼
-Permissive Conditions Check
-        │
-        ▼
-Equipment Start Allowed
-```
-
-Dengan pendekatan ini, sistem kontrol mencegah equipment beroperasi pada kondisi yang dapat menyebabkan:
-
-- kerusakan equipment
-- gangguan proses
-- kondisi operasi yang tidak aman
-
-Permissive logic merupakan salah satu mekanisme dasar dalam **control logic equipment** pada sistem otomasi industri.
+- hanya menggunakan **Pump P-101 system**
+- hanya menggunakan **tag yang sudah dikunci**
+- hanya merujuk **Network N1 dan N3**
+- hanya menampilkan **rung yang sudah ada**
+- tidak membuat ladder baru
 
 ---
 
-# Section 2 — Equipment Behaviour
+# Article 03
 
-Untuk memahami permissive logic, kita dapat melihat contoh perilaku sistem pada **pump system**.
+# Permissive Logic
 
-Pump dalam sistem proses biasanya digunakan untuk memindahkan fluida dari satu bagian proses ke bagian lain. Agar pump dapat beroperasi dengan aman, beberapa kondisi operasi harus dipenuhi sebelum pump diizinkan untuk start.
+## System Reference (Locked)
 
-Contoh kondisi penting pada sistem pump adalah **posisi valve pada sisi suction**.
+Sistem yang dianalisis tetap **Pump P-101**.
 
-Jika suction valve tertutup, pump tidak boleh start karena dapat menyebabkan gangguan operasi seperti **aliran tidak terbentuk atau kerusakan pada pump**.
+Equipment:
 
-Misalkan operator menekan tombol **START PUMP**.
+```
+P-101 Pump
+M-101 Motor
+XV-101 Suction Valve
+XV-102 Discharge Valve
+```
 
-Namun pump hanya boleh start jika dua kondisi berikut terpenuhi:
+Instrument signals yang mempengaruhi permissive:
 
-- **Suction valve sudah dalam posisi open**
-- **Motor Control Center (MCC) tidak dalam kondisi trip**
+```
+MCC_RDY
+XV101_OPEN
+LSL101
+PT101_PV
+OL_TRIP
+```
 
-Jika salah satu kondisi tersebut belum terpenuhi, sistem kontrol harus menolak perintah start meskipun operator menekan tombol start.
+Diagram yang digunakan:
 
-Perilaku sistem yang diharapkan dapat digambarkan sebagai berikut.
+- Diagram 1 — Pump System Reference
+- Diagram 5 — Pump Start Logic Flow
 
-```text id="permissive_behavior"
+---
+
+# Section 1
+
+# Purpose of Permissive Logic
+
+## Engineering Focus
+
+Permissive logic digunakan untuk memastikan bahwa **equipment hanya dapat dijalankan ketika kondisi operasi aman terpenuhi**.
+
+Dalam sistem Pump P-101:
+
+```
+Start command
+↓
+Permissive check
+↓
+Run authorization
+↓
+Motor start
+```
+
+Tanpa permissive, pump bisa start pada kondisi yang berbahaya seperti:
+
+```
+valve tertutup
+suction pressure terlalu rendah
+tank level rendah
+```
+
+---
+
+# Section 2
+
+# Position of Permissive Logic in FB101
+
+Permissive logic berada dalam struktur ladder berikut:
+
+```
+FB101 Pump_Control
+ │
+ ├ N1 Input Conditioning
+ ├ N2 Command Handling
+ ├ N3 Permissive Logic   ← fokus artikel
+ ├ N4 Start/Stop Latch
+ ├ N5 Trip Logic
+ ├ N6 Alarm Logic
+ ├ N7 Start Failure Detection
+ └ N8 Sequence Interface
+```
+
+Hubungan network:
+
+```
+N1 Input Conditioning
+↓
+N3 Permissive Logic
+↓
+N4 Start Logic
+```
+
+Artinya **permissive logic menggunakan status yang dibentuk oleh Network N1**.
+
+---
+
+# Section 3
+
+# Network N1 — Signal Conditioning
+
+Sebelum permissive dihitung, PLC harus mengubah **field signal menjadi logic state**.
+
+Artikel ini hanya menampilkan rung dari **N1 yang relevan untuk permissive**.
+
+---
+
+## Rung N1-R1 — MCC Healthy
+
+```
+| MCC_RDY |
+|----[ ]--------------------( ) MCC_HEALTHY
+```
+
+Makna engineering:
+
+```
+motor starter siap menerima start command
+```
+
+---
+
+## Rung N1-R2 — Suction Valve Ready
+
+```
+| XV101_OPEN |
+|----[ ]--------------------( ) SUCT_VALVE_READY
+```
+
+Makna engineering:
+
+```
+suction valve sudah terbuka
+```
+
+---
+
+## Rung N1-R5 — Tank Level Low
+
+```
+| LSL101 |
+|----[ ]--------------------( ) TANK_LEVEL_LOW
+```
+
+Makna engineering:
+
+```
+level tank terlalu rendah
+```
+
+---
+
+## Rung N1-R7 — Suction Pressure Low-Low
+
+```
+| PT101_PV < LowLow_SP |
+|----[CMP<]---------( ) SUCT_PRESS_LOWLOW
+```
+
+Makna engineering:
+
+```
+tekanan suction berada pada kondisi berbahaya
+```
+
+---
+
+# Section 4
+
+# Network N3 — Permissive Logic
+
+Network ini menghitung apakah pump **boleh start**.
+
+---
+
+## Rung N3-R1 — Permissive Evaluation
+
+```
+| MCC_HEALTHY |
+|----[ ]------------------------------|
+|                                      |
+| SUCT_VALVE_READY |
+|----[ ]------------------------------|
+|                                      |
+| /TANK_LEVEL_LOW |
+|----[/]------------------------------|
+|                                      |
+| /SUCT_PRESS_LOWLOW |
+|----[/]------------------------------|
+|                                      |
+| /OL_TRIP |
+|----[/]------------------------------|
+|                                      |
+| /TRIP_ACTIVE |
+|----[/]------------------------------( ) PERMISSIVE_OK
+```
+
+Makna logika:
+
+```
+PERMISSIVE_OK =
+MCC_HEALTHY
+AND SUCT_VALVE_READY
+AND NOT TANK_LEVEL_LOW
+AND NOT SUCT_PRESS_LOWLOW
+AND NOT OL_TRIP
+AND NOT TRIP_ACTIVE
+```
+
+---
+
+# Section 5
+
+# Start Authorization Mechanism
+
+Permissive logic berfungsi sebagai **authorization gate** sebelum pump start.
+
+Hubungan dengan ladder start logic:
+
+```
+CMD_START_REQ
+↓
+PERMISSIVE_OK
+↓
+RUN_LATCH
+↓
+MTR_START_CMD
+```
+
+Jika **PERMISSIVE_OK = FALSE**, maka:
+
+```
+RUN_LATCH tidak akan set
+motor tidak akan start
+```
+
+---
+
+# Section 6
+
+# Example Operating Scenarios
+
+## Scenario 1 — Normal Start
+
+```
+MCC_HEALTHY = TRUE
+SUCT_VALVE_READY = TRUE
+TANK_LEVEL_LOW = FALSE
+SUCT_PRESS_LOWLOW = FALSE
+OL_TRIP = FALSE
+```
+
+Hasil:
+
+```
+PERMISSIVE_OK = TRUE
+pump boleh start
+```
+
+---
+
+## Scenario 2 — Suction Valve Closed
+
+```
+XV101_OPEN = FALSE
+```
+
+Hasil:
+
+```
+SUCT_VALVE_READY = FALSE
+PERMISSIVE_OK = FALSE
+pump tidak boleh start
+```
+
+---
+
+## Scenario 3 — Tank Level Low
+
+```
+LSL101 = TRUE
+```
+
+Hasil:
+
+```
+TANK_LEVEL_LOW = TRUE
+PERMISSIVE_OK = FALSE
+pump start diblok
+```
+
+---
+
+# Section 7
+
+# Relation to Other Logic Layers
+
+Permissive logic bukan proteksi shutdown.
+
+Perbedaannya:
+
+| Logic      | Function            |
+| ---------- | ------------------- |
+| Permissive | start authorization |
+| Trip       | emergency stop      |
+| Alarm      | operator warning    |
+
+Hubungan network:
+
+```
+N3 Permissive Logic
+↓
+N4 Start Latch
+```
+
+---
+
+# Section 8
+
+# Pump Start Logic Context
+
+Diagram referensi:
+
+Diagram 5 — Pump Start Logic
+
+```
 Start Command
-AND Permissive Conditions
-→ Pump Start
-```
-
-Dalam kondisi ini, **start command dari operator tidak langsung menjalankan pump**.
-
-Sebaliknya, sistem kontrol terlebih dahulu memeriksa apakah semua kondisi permissive telah terpenuhi.
-
-Jika semua kondisi permissive terpenuhi, PLC akan mengizinkan pump untuk start.
-
-Jika salah satu kondisi permissive tidak terpenuhi, pump tidak akan start meskipun terdapat perintah start dari operator.
-
-Perilaku ini memastikan bahwa pump hanya beroperasi ketika kondisi operasi berada dalam batas yang aman.
-
----
-
-# Section 3 — Control Requirement
-
-Dalam sistem kontrol industri, **start command dari operator tidak boleh langsung mengaktifkan equipment**. Sistem kontrol harus terlebih dahulu memastikan bahwa semua kondisi operasi yang diperlukan telah terpenuhi.
-
-Kondisi-kondisi ini disebut **permissive conditions**.
-
-PLC harus memeriksa seluruh permissive conditions sebelum mengizinkan equipment untuk start.
-
-Sebagai contoh pada **pump system**, beberapa kondisi permissive yang umum digunakan adalah:
-
-```text id="perm_pump_conditions"
-MCC Healthy
-AND
-Suction Valve Open
-AND
-No Active Trip
-```
-
-Penjelasan kondisi permissive:
-
-- **MCC Healthy**
-  Motor Control Center harus dalam kondisi siap dan tidak mengalami trip.
-
-- **Suction Valve Open**
-  Valve pada sisi suction pump harus berada pada posisi open agar aliran fluida dapat masuk ke pump.
-
-- **No Active Trip**
-  Tidak terdapat kondisi trip yang masih aktif pada sistem proteksi pump.
-
-PLC harus memeriksa seluruh kondisi tersebut sebelum menerima **start command dari operator**.
-
-Hubungan antara start command dan permissive conditions dapat digambarkan sebagai berikut.
-
-```text id="perm_logic_structure"
-Start Command
-AND
-All Permissive Conditions
 ↓
-Start Allowed
-```
-
-Jika semua kondisi permissive terpenuhi, PLC dapat mengizinkan start command dan mengaktifkan output untuk menjalankan pump.
-
-Sebaliknya, jika salah satu kondisi permissive tidak terpenuhi, maka **start command harus ditolak** sehingga pump tidak akan dijalankan.
-
-Pendekatan ini memastikan bahwa equipment hanya dapat beroperasi ketika kondisi operasi berada dalam batas yang aman.
-
----
-
-# Section 4 — Signal Logic
-
-Dalam permissive logic, PLC harus memeriksa beberapa sinyal sebelum mengizinkan equipment untuk start.
-
-Proses ini disebut **permissive check**.
-
-Hubungan dasar antara perintah start dan pemeriksaan kondisi permissive dapat digambarkan sebagai berikut.
-
-```text id="perm_signal_logic"
-Start Command
+CMD_START_REQ
 ↓
-Permissive Check
+PERMISSIVE_OK
 ↓
-Start Allowed
-```
-
-Ketika operator memberikan **start command**, PLC tidak langsung mengaktifkan output start.
-PLC terlebih dahulu mengevaluasi seluruh sinyal permissive yang terkait dengan equipment tersebut.
-
-Beberapa contoh sinyal permissive yang umum digunakan pada sistem pump adalah:
-
-```text id="perm_signals"
-Suction Valve Limit Switch
-MCC Ready Signal
-Trip Reset Status
-```
-
-Penjelasan sinyal permissive:
-
-- **Suction Valve Limit Switch**
-  Memberikan indikasi bahwa valve pada sisi suction sudah berada pada posisi open.
-
-- **MCC Ready Signal**
-  Menunjukkan bahwa motor control center dalam kondisi siap dan tidak mengalami trip.
-
-- **Trip Reset Status**
-  Menunjukkan bahwa tidak ada kondisi trip aktif yang mencegah pump untuk beroperasi.
-
-PLC akan memeriksa seluruh sinyal tersebut selama eksekusi program.
-
-Jika semua sinyal permissive berada pada kondisi yang benar, maka sistem kontrol akan mengizinkan start command.
-
-Sebaliknya, jika salah satu sinyal permissive tidak terpenuhi, PLC tidak akan mengaktifkan output start sehingga equipment tetap dalam kondisi berhenti.
-
-Pendekatan ini memastikan bahwa equipment hanya dapat dijalankan ketika semua kondisi operasi telah terpenuhi.
-
----
-
-# Section 5 — Ladder Logic Pattern
-
-Permissive logic dalam PLC biasanya diimplementasikan menggunakan **ladder logic** yang memeriksa seluruh kondisi permissive sebelum mengizinkan equipment untuk start.
-
-Contoh ladder logic sederhana untuk permissive start dapat digambarkan sebagai berikut.
-
-```text id="perm_ladder_pattern"
-Start PB
----[ ]--------------------+
-                          |
-Suction Valve Open -------+
-                          |
-MCC Ready ----------------+
-                          |
-No Trip ------------------+
-                          |
--------------------------( Pump Start )
-```
-
-Pada ladder ini terdapat beberapa kondisi yang harus terpenuhi sebelum coil **Pump Start** dapat aktif.
-
-Elemen dalam ladder tersebut terdiri dari:
-
-- **Start PB**
-  Perintah start dari operator.
-
-- **Suction Valve Open**
-  Sinyal dari limit switch yang menunjukkan bahwa suction valve berada pada posisi open.
-
-- **MCC Ready**
-  Status bahwa motor control center siap untuk menjalankan motor.
-
-- **No Trip**
-  Menunjukkan bahwa tidak ada kondisi trip aktif pada sistem proteksi.
-
-PLC akan mengevaluasi seluruh kondisi tersebut selama eksekusi rung ladder.
-
-Logika yang diterapkan dapat dirangkum sebagai berikut.
-
-```text id="perm_logic_equation"
-Start Command
-AND
-Suction Valve Open
-AND
-MCC Ready
-AND
-No Trip
-→ Pump Start
-```
-
-Artinya **pump hanya dapat start jika semua kondisi permissive terpenuhi**.
-
-Jika salah satu kondisi permissive tidak terpenuhi, rung ladder akan bernilai FALSE sehingga coil **Pump Start** tidak akan aktif dan pump tidak akan dijalankan.
-
-Pola ladder seperti ini merupakan bentuk dasar dari **permissive logic** yang digunakan dalam berbagai sistem kontrol equipment di plant industri.
-
----
-
-# Section 6 — Practical Example
-
-Sebagai contoh implementasi permissive logic dalam sistem kontrol industri, kita dapat melihat kasus pada **Pump P-101**.
-
-Pump ini digunakan untuk memindahkan fluida dalam suatu sistem proses dan hanya boleh beroperasi ketika kondisi operasi telah memenuhi persyaratan yang aman.
-
-Beberapa kondisi permissive yang digunakan pada sistem ini adalah sebagai berikut.
-
-```text id="perm_p101"
-Suction Valve Open
-AND MCC Healthy
-AND No Trip Active
-```
-
-Penjelasan kondisi permissive:
-
-- **Suction Valve Open**
-  Limit switch pada suction valve menunjukkan bahwa valve berada pada posisi open sehingga aliran fluida dapat masuk ke pump.
-
-- **MCC Healthy**
-  Motor Control Center dalam kondisi siap dan tidak mengalami trip.
-
-- **No Trip Active**
-  Tidak terdapat kondisi trip aktif yang mencegah pump untuk beroperasi.
-
-Ketika operator menekan **Start P-101**, PLC tidak langsung mengaktifkan pump.
-
-PLC terlebih dahulu memeriksa seluruh kondisi permissive yang telah ditentukan.
-
-Alur logika kontrol dapat digambarkan sebagai berikut.
-
-```text id="perm_start_sequence"
-Start P-101 Command
+RUN_LATCH
 ↓
-Permissive Conditions Check
+MTR_START_CMD
 ↓
-Pump Start Allowed
+Motor M-101
+↓
+Pump P-101 Running
 ```
 
-Jika semua kondisi permissive terpenuhi, PLC akan mengaktifkan output start untuk pump.
+Permissive berada **di tengah alur keputusan PLC**.
 
-```text id="p101_start_output"
-Pump Start Output = ON
+---
+
+# Ladder Reference Summary
+
+Artikel ini hanya boleh merujuk:
+
+```
+FB101 Pump_Control
 ```
 
-Output ini kemudian mengaktifkan **motor contactor** sehingga pump mulai beroperasi.
+Network:
 
-Namun jika salah satu kondisi permissive tidak terpenuhi, PLC tidak akan mengaktifkan output start.
-
-Akibatnya pump tetap berada dalam kondisi berhenti meskipun operator memberikan perintah start.
-
-Pendekatan ini memastikan bahwa **Pump P-101 hanya dapat start ketika kondisi operasi berada dalam batas yang aman**.
-
----
-
-# Section 7 — Engineering Notes
-
-Beberapa prinsip penting perlu diperhatikan dalam implementasi **permissive logic** pada sistem kontrol industri.
-
----
-
-## Permissive bukan Trip
-
-Permissive logic hanya menentukan **apakah equipment diizinkan untuk start**.
-
-Permissive tidak digunakan untuk menghentikan equipment yang sudah berjalan.
-
-Dengan kata lain:
-
-```text
-Permissive → Start Authorization
-Trip → Equipment Stop
+```
+N1 Input Conditioning
+N3 Permissive Logic
 ```
 
-Jika permissive condition tidak terpenuhi, PLC hanya akan **menolak start command**.
+Rung yang boleh digunakan:
 
-Namun jika equipment sudah berjalan, permissive logic tidak akan menghentikan equipment tersebut.
+```
+N1-R1
+N1-R2
+N1-R5
+N1-R7
+N3-R1
+```
 
-Fungsi penghentian equipment biasanya ditangani oleh **trip logic** atau **interlock system**, yang akan dibahas pada artikel berikutnya.
+Tidak boleh menampilkan rung dari:
+
+```
+N2
+N4
+N5
+N6
+N7
+N8
+```
 
 ---
 
-## Permissive biasanya berasal dari Instrument
+# Diagram Reference Summary
 
-Sebagian besar permissive signal berasal dari **instrument atau status equipment** di lapangan.
+Artikel ini hanya boleh menggunakan diagram dari library:
 
-Contoh sumber permissive signal antara lain:
-
-- **valve position switch**
-- **pressure switch**
-- **MCC ready signal**
-
-Sinyal-sinyal ini memberikan informasi kepada PLC mengenai **kondisi operasi sistem**.
-
-PLC kemudian menggunakan sinyal tersebut sebagai bagian dari **permissive check** sebelum mengizinkan equipment start.
+```
+Diagram 1 — Pump System Reference
+Diagram 4 — Ladder Execution Flow
+Diagram 5 — Pump Start Logic
+```
 
 ---
 
-## Permissive membantu mencegah operasi yang tidak aman
+# Resulting Knowledge Layer
 
-Salah satu tujuan utama permissive logic adalah **mencegah equipment beroperasi dalam kondisi yang berpotensi merusak sistem**.
+Artikel 03 membangun pemahaman berikut:
 
-Sebagai contoh pada sistem pump:
+```
+Field signal
+↓
+Input conditioning (N1)
+↓
+Permissive evaluation (N3)
+↓
+Start authorization
+↓
+Run logic (N4)
+```
 
-Pump tidak boleh start jika **suction valve tertutup**.
+Pembaca mulai melihat **bagaimana PLC membuat keputusan start equipment berdasarkan kondisi proses**.
 
-Jika pump dijalankan pada kondisi tersebut, aliran fluida tidak dapat terbentuk dan dapat menyebabkan fenomena seperti **pump cavitation** atau kerusakan mekanis pada pump.
+---
 
-Dengan menggunakan permissive logic, sistem kontrol dapat memastikan bahwa pump hanya diizinkan untuk start ketika kondisi operasi telah memenuhi persyaratan yang aman.
+Jika Anda ingin, langkah berikutnya yang sangat penting adalah membuat **Outline Artikel 04 — Interlock & Trip Logic**, karena di situ pembaca akan melihat **bagaimana Network N5 menghentikan Pump P-101 ketika kondisi proses menjadi berbahaya**.
 
 ---
 
