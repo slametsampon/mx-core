@@ -1,0 +1,1450 @@
+---
+title: Centrifugal Pump Operating Point Engineering
+authors: ['sam']
+date: '2026-03-27'
+tags:
+  [
+    'centrifugal-pump',
+    'operating-point',
+    'pump-curve-system-curve',
+    'tdh-calculation',
+    'hydraulic-system-analysis',
+    'pump-engineering',
+  ]
+draft: false
+summary: Operating point pompa sentrifugal ditentukan oleh interaksi antara pump performance curve dan system curve. Pump curve menunjukkan kemampuan pompa menghasilkan head terhadap flow, sedangkan system curve merepresentasikan kebutuhan head sistem yang terdiri dari static head dan losses yang meningkat terhadap kuadrat flow. Operating point terjadi pada titik perpotongan kedua kurva tersebut. Perhitungan dilakukan dengan membangun system curve dari data lapangan dan menyamakannya dengan pump curve. Throttling valve meningkatkan resistance sistem sehingga menggeser operating point ke flow yang lebih rendah. Pemahaman ini menjadi dasar dalam desain, evaluasi, dan troubleshooting sistem pompa di industri.
+---
+
+# **_Centrifugal Pump Operating Point Engineering_**
+
+---
+
+- [**_Centrifugal Pump Operating Point Engineering_**](#centrifugal-pump-operating-point-engineering)
+- [1. Fundamental Concept of Operating Point](#1-fundamental-concept-of-operating-point)
+  - [1.1 Definition of Operating Point](#11-definition-of-operating-point)
+  - [1.2 Why Operating Point is Not Defined by Pump Alone](#12-why-operating-point-is-not-defined-by-pump-alone)
+    - [Misconception umum (engineer pemula)](#misconception-umum-engineer-pemula)
+  - [1.3 Mathematical Representation](#13-mathematical-representation)
+- [2. Pump Performance Curve](#2-pump-performance-curve)
+  - [2.1 Head vs Flow Characteristic](#21-head-vs-flow-characteristic)
+  - [2.2 Physical Meaning of Pump Curve](#22-physical-meaning-of-pump-curve)
+  - [2.3 Typical Industrial Pump Curve](#23-typical-industrial-pump-curve)
+    - [Karakteristik operasi](#karakteristik-operasi)
+- [3. System Curve (Operating Graph Sistem)](#3-system-curve-operating-graph-sistem)
+  - [3.1 Static Head](#31-static-head)
+  - [3.2 Friction Loss](#32-friction-loss)
+  - [3.3 Minor Losses](#33-minor-losses)
+  - [3.4 System Curve Formulation](#34-system-curve-formulation)
+  - [3.5 System Curve Visualization](#35-system-curve-visualization)
+  - [3.6 Physical Interpretation](#36-physical-interpretation)
+- [4. Intersection of Pump Curve and System Curve](#4-intersection-of-pump-curve-and-system-curve)
+  - [4.1 Graphical Determination of Operating Point](#41-graphical-determination-of-operating-point)
+  - [4.2 Construction of Operating Point (Step Visual)](#42-construction-of-operating-point-step-visual)
+    - [Representasi konseptual](#representasi-konseptual)
+  - [4.3 Operating Flow and Head](#43-operating-flow-and-head)
+  - [4.4 Physical Interpretation (Energy Balance)](#44-physical-interpretation-energy-balance)
+    - [Dari sisi pompa:](#dari-sisi-pompa)
+    - [Dari sisi sistem:](#dari-sisi-sistem)
+  - [4.5 Behavior of System Toward Equilibrium](#45-behavior-of-system-toward-equilibrium)
+    - [Jika flow terlalu kecil:](#jika-flow-terlalu-kecil)
+    - [Jika flow terlalu besar:](#jika-flow-terlalu-besar)
+    - [Kondisi stabil:](#kondisi-stabil)
+  - [4.6 Sensitivity of Operating Point](#46-sensitivity-of-operating-point)
+    - [Perubahan system curve](#perubahan-system-curve)
+    - [Perubahan pump curve](#perubahan-pump-curve)
+  - [4.7 Multiple System Curve Scenario](#47-multiple-system-curve-scenario)
+  - [4.8 Relation to BEP](#48-relation-to-bep)
+  - [4.9 Engineering Meaning of Intersection](#49-engineering-meaning-of-intersection)
+- [5. Step-by-Step Engineering Calculation](#5-step-by-step-engineering-calculation)
+  - [5.1 System Definition](#51-system-definition)
+    - [Konfigurasi sistem](#konfigurasi-sistem)
+  - [5.2 Field Data Preparation](#52-field-data-preparation)
+    - [Fluid data](#fluid-data)
+    - [Elevation data](#elevation-data)
+    - [Suction piping data](#suction-piping-data)
+    - [Discharge piping data](#discharge-piping-data)
+  - [5.3 Pump Performance Curve Used for Calculation](#53-pump-performance-curve-used-for-calculation)
+  - [5.4 General Form of System Curve](#54-general-form-of-system-curve)
+    - [Major loss](#major-loss)
+    - [Minor loss](#minor-loss)
+  - [5.5 Pipe Area Calculation](#55-pipe-area-calculation)
+    - [Suction pipe area](#suction-pipe-area)
+    - [Discharge pipe area](#discharge-pipe-area)
+  - [5.6 Suction Line Loss Calculation](#56-suction-line-loss-calculation)
+    - [5.6.1 Suction major loss](#561-suction-major-loss)
+    - [5.6.2 Suction minor loss](#562-suction-minor-loss)
+    - [5.6.3 Total suction loss](#563-total-suction-loss)
+  - [5.7 Discharge Line Loss Calculation](#57-discharge-line-loss-calculation)
+    - [5.7.1 Discharge major loss](#571-discharge-major-loss)
+    - [5.7.2 Discharge minor loss](#572-discharge-minor-loss)
+    - [5.7.3 Total discharge loss](#573-total-discharge-loss)
+  - [5.8 Convert Losses into Function of Flow Rate](#58-convert-losses-into-function-of-flow-rate)
+    - [5.8.1 Suction velocity term](#581-suction-velocity-term)
+    - [5.8.2 Discharge velocity term](#582-discharge-velocity-term)
+  - [5.9 Final System Curve](#59-final-system-curve)
+  - [5.10 Solve the Operating Point](#510-solve-the-operating-point)
+  - [5.11 Convert Flow into Practical Units](#511-convert-flow-into-practical-units)
+    - [In L/s](#in-ls)
+    - [In m3/h](#in-m3h)
+  - [5.12 Determine Operating Head](#512-determine-operating-head)
+  - [5.13 Final Result](#513-final-result)
+  - [5.14 Engineering Interpretation of Result](#514-engineering-interpretation-of-result)
+    - [1. Static head cukup besar](#1-static-head-cukup-besar)
+    - [2. Discharge line menjadi kontributor losses utama](#2-discharge-line-menjadi-kontributor-losses-utama)
+    - [3. Flow aktual tidak sama dengan flow bebas pompa](#3-flow-aktual-tidak-sama-dengan-flow-bebas-pompa)
+    - [4. Operating point jatuh pada head tinggi dan flow sedang](#4-operating-point-jatuh-pada-head-tinggi-dan-flow-sedang)
+  - [5.15 Field Calculation Workflow](#515-field-calculation-workflow)
+    - [Step 1](#step-1)
+    - [Step 2](#step-2)
+    - [Step 3](#step-3)
+    - [Step 4](#step-4)
+    - [Step 5](#step-5)
+    - [Step 6](#step-6)
+    - [Step 7](#step-7)
+    - [Step 8](#step-8)
+    - [Step 9](#step-9)
+  - [5.16 Practical Note for Beginner Engineer](#516-practical-note-for-beginner-engineer)
+- [6. Effect of Valve Throttling](#6-effect-of-valve-throttling)
+  - [6.1 Change in System Resistance](#61-change-in-system-resistance)
+  - [6.2 New System Curve](#62-new-system-curve)
+  - [6.3 New Operating Point](#63-new-operating-point)
+  - [6.4 Result Comparison](#64-result-comparison)
+  - [6.5 Graphical Interpretation](#65-graphical-interpretation)
+  - [6.6 Physical Meaning of Throttling](#66-physical-meaning-of-throttling)
+- [7. Engineering Interpretation](#7-engineering-interpretation)
+  - [7.1 Flow Control Mechanism](#71-flow-control-mechanism)
+  - [7.2 Energy Perspective](#72-energy-perspective)
+  - [7.3 Impact on Pump Performance](#73-impact-on-pump-performance)
+    - [Efisiensi](#efisiensi)
+    - [Hydraulic behavior](#hydraulic-behavior)
+    - [Mechanical impact](#mechanical-impact)
+  - [7.4 Deviation from BEP](#74-deviation-from-bep)
+  - [7.5 System vs Pump Responsibility](#75-system-vs-pump-responsibility)
+- [8. Practical Engineering Rules](#8-practical-engineering-rules)
+  - [8.1 Rule 1 — Operating Point Definition](#81-rule-1--operating-point-definition)
+  - [8.2 Rule 2 — Losses Behavior](#82-rule-2--losses-behavior)
+  - [8.3 Rule 3 — Throttling Effect](#83-rule-3--throttling-effect)
+  - [8.4 Rule 4 — Pipe Diameter Impact](#84-rule-4--pipe-diameter-impact)
+  - [8.5 Rule 5 — System Design Strategy](#85-rule-5--system-design-strategy)
+  - [8.6 Rule 6 — Pump Selection](#86-rule-6--pump-selection)
+  - [8.7 Rule 7 — Avoid Extreme Operation](#87-rule-7--avoid-extreme-operation)
+  - [8.8 Rule 8 — Valve as Control, Not Solution](#88-rule-8--valve-as-control-not-solution)
+  - [8.9 Rule 9 — Field Troubleshooting Logic](#89-rule-9--field-troubleshooting-logic)
+  - [8.10 Rule 10 — Engineering Mindset](#810-rule-10--engineering-mindset)
+
+---
+
+# 1. Fundamental Concept of Operating Point
+
+## 1.1 Definition of Operating Point
+
+Operating point adalah kondisi kerja aktual pompa dalam sistem, ditentukan oleh keseimbangan antara energi yang diberikan pompa dan energi yang dibutuhkan sistem.
+
+Secara matematis:
+
+$$
+H_{pump}(Q) = H_{system}(Q)
+$$
+
+Pada titik ini:
+
+- $(Q_{op})$ = flow aktual sistem
+- $(H_{op})$ = head aktual pompa
+
+---
+
+## 1.2 Why Operating Point is Not Defined by Pump Alone
+
+Pompa tidak menentukan flow secara independen.
+
+Sistem juga tidak menentukan flow secara independen.
+
+Flow aktual hanya terjadi ketika:
+
+- kemampuan pompa (pump curve)
+- kebutuhan sistem (system curve)
+
+berada dalam kondisi keseimbangan.
+
+---
+
+### Misconception umum (engineer pemula)
+
+| Asumsi Salah          | Realita                           |
+| --------------------- | --------------------------------- |
+| Pompa menentukan flow | Sistem menentukan flow            |
+| Flow sesuai nameplate | Flow tergantung system resistance |
+| Head pompa konstan    | Head berubah terhadap flow        |
+
+---
+
+## 1.3 Mathematical Representation
+
+Operating point merupakan solusi dari dua fungsi:
+
+$$
+H_{pump}(Q)
+$$
+
+$$
+H_{system}(Q)
+$$
+
+Dengan:
+
+$$
+H_{pump}(Q) = H_{system}(Q)
+$$
+
+Ini adalah **non-linear intersection problem** karena kedua fungsi bergantung pada (Q).
+
+---
+
+# 2. Pump Performance Curve
+
+## 2.1 Head vs Flow Characteristic
+
+![Image](https://media.licdn.com/dms/image/v2/D5612AQE7CY-9-r7lYg/article-cover_image-shrink_720_1280/B56ZW5adJKHoAI-/0/1742572475790?e=2147483647&t=u2l-0wLtZsqOhPuAcZg6qOmmdcRKni-lkLBhKDdfuvA&v=beta)
+
+Pump performance curve menunjukkan hubungan antara:
+
+- Flow rate (Q)
+- Head pompa (H)
+
+Karakteristik utama:
+
+- Kurva menurun (head turun saat flow naik)
+- Head maksimum pada kondisi **shut-off**
+- Flow maksimum pada kondisi **run-out**
+
+---
+
+## 2.2 Physical Meaning of Pump Curve
+
+Pump curve merepresentasikan hasil dari:
+
+- energi mekanik dari driver
+- transfer energi melalui impeller
+- konversi menjadi energi fluida
+
+Hubungan dasar:
+
+$$
+H_{pump} = \frac{U_2 V_{u2} - U_1 V_{u1}}{g}
+$$
+
+Namun secara praktis di lapangan:
+
+$$
+H_{pump} \approx H_0 - kQ^2
+$$
+
+---
+
+## 2.3 Typical Industrial Pump Curve
+
+Elemen penting pada kurva:
+
+| Area     | Description             |
+| -------- | ----------------------- |
+| Shut-off | Flow = 0, head maksimum |
+| BEP      | Efisiensi maksimum      |
+| Run-out  | Flow maksimum           |
+
+---
+
+### Karakteristik operasi
+
+| Region      | Behavior        |
+| ----------- | --------------- |
+| Kiri BEP    | Recirculation   |
+| Sekitar BEP | Stabil          |
+| Kanan BEP   | Flow separation |
+
+---
+
+# 3. System Curve (Operating Graph Sistem)
+
+## 3.1 Static Head
+
+Static head adalah perbedaan elevasi antara:
+
+- suction source
+- discharge destination
+
+$$
+H_{static} = z_{discharge} - z_{suction}
+$$
+
+---
+
+## 3.2 Friction Loss
+
+Loss akibat aliran dalam pipa:
+
+$$
+h_f = f \frac{L}{D} \frac{V^2}{2g}
+$$
+
+---
+
+## 3.3 Minor Losses
+
+Loss akibat fitting:
+
+$$
+h_m = K \frac{V^2}{2g}
+$$
+
+---
+
+## 3.4 System Curve Formulation
+
+Total system head:
+
+$$
+H_{system} = H_{static} + h_f + h_m
+$$
+
+Karena:
+
+$$
+V \propto Q
+$$
+
+Maka:
+
+$$
+H_{system} = H_{static} + kQ^2
+$$
+
+---
+
+## 3.5 System Curve Visualization
+
+![Image](https://www.pumpsandsystems.com/sites/default/files/10814/System-curve1-2-980x551.png)
+
+Karakteristik system curve:
+
+- dimulai dari **static head pada Q = 0**
+- meningkat secara **parabolik**
+- semakin curam jika resistance sistem tinggi
+
+---
+
+## 3.6 Physical Interpretation
+
+| Komponen      | Peran                         |
+| ------------- | ----------------------------- |
+| Static head   | Beban konstan                 |
+| Friction loss | Beban meningkat terhadap flow |
+| Minor loss    | Tambahan resistance           |
+
+---
+
+# 4. Intersection of Pump Curve and System Curve
+
+## 4.1 Graphical Determination of Operating Point
+
+![Image](https://datatool.pumps.org/pump-fundamentals/images/iC-1-Pump-and-system-Curve.png)
+
+![Image](https://datatool.pumps.org/pump-fundamentals/images/iC-4-Pump-and-system-Curve-with-Valve-head.png)
+
+Operating point ditentukan secara grafis dengan **overlay dua kurva**:
+
+- Pump Performance Curve → $H_{pump}(Q)$
+- System Curve → $H_{system}(Q)$
+
+Titik perpotongan kedua kurva adalah:
+
+$$
+H_{pump}(Q_{op}) = H_{system}(Q_{op})
+$$
+
+---
+
+## 4.2 Construction of Operating Point (Step Visual)
+
+Langkah konstruksi grafis:
+
+1. Plot **pump curve** (dari data OEM)
+2. Plot **system curve** (dari hasil perhitungan sistem)
+3. Identifikasi titik perpotongan
+
+---
+
+### Representasi konseptual
+
+```text id="xg4z21"
+Head (H)
+ ^
+ |
+ |\
+ | \                Pump Curve
+ |  \
+ |   \
+ |    \
+ |     \        ● Operating Point
+ |      \      /
+ |       \    /
+ |        \  /
+ |         \/
+ |         /\
+ |        /  \      System Curve
+ |       /    \
+ |      /      \
+ +---------------------------------> Flow (Q)
+```
+
+---
+
+## 4.3 Operating Flow and Head
+
+Pada titik perpotongan diperoleh:
+
+| Parameter | Description        |
+| --------- | ------------------ |
+| $Q_{op}$  | Flow aktual sistem |
+| $H_{op}$  | Head aktual pompa  |
+
+Nilai ini adalah:
+
+- flow yang benar-benar terjadi di lapangan
+- bukan flow desain
+- bukan flow nameplate
+
+---
+
+## 4.4 Physical Interpretation (Energy Balance)
+
+Operating point merepresentasikan **keseimbangan energi fluida**.
+
+### Dari sisi pompa:
+
+- pompa memberikan energi ke fluida
+
+### Dari sisi sistem:
+
+- energi tersebut dikonsumsi untuk:
+
+  - menaikkan elevasi (static head)
+  - mengatasi losses (friction + minor)
+
+Kondisi stabil tercapai saat:
+
+$$
+\text{Energy supplied} = \text{Energy required}
+$$
+
+---
+
+## 4.5 Behavior of System Toward Equilibrium
+
+Sistem secara alami akan mencari titik keseimbangan.
+
+### Jika flow terlalu kecil:
+
+- $H*{pump} > H*{system}$
+- pompa memberikan energi berlebih
+- flow akan meningkat
+
+---
+
+### Jika flow terlalu besar:
+
+- $H*{pump} < H*{system}$
+- sistem membutuhkan energi lebih besar
+- flow akan menurun
+
+---
+
+### Kondisi stabil:
+
+$$
+H_{pump} = H_{system}
+$$
+
+---
+
+## 4.6 Sensitivity of Operating Point
+
+Operating point sangat sensitif terhadap perubahan:
+
+### Perubahan system curve
+
+| Perubahan         | Dampak            |
+| ----------------- | ----------------- |
+| Valve throttling  | System curve naik |
+| Pipa lebih kecil  | Loss meningkat    |
+| Fitting bertambah | Loss meningkat    |
+
+---
+
+### Perubahan pump curve
+
+| Perubahan         | Dampak           |
+| ----------------- | ---------------- |
+| Speed naik        | Pump curve naik  |
+| Impeller trimming | Pump curve turun |
+
+---
+
+## 4.7 Multiple System Curve Scenario
+
+![Image](https://datatool.pumps.org/pump-fundamentals/images/iC-2-Pump-and-system-Curve-valve-closed.png)
+
+![Image](https://img.waimaoniu.net/2328/2328-202208221006442832.png)
+
+Beberapa system curve dapat terjadi dalam satu sistem:
+
+- valve open → system curve rendah
+- valve throttled → system curve tinggi
+
+Setiap system curve menghasilkan operating point berbeda pada pump curve yang sama.
+
+---
+
+## 4.8 Relation to BEP
+
+Operating point harus dibandingkan dengan posisi **Best Efficiency Point (BEP)**.
+
+| Posisi     | Dampak           |
+| ---------- | ---------------- |
+| Dekat BEP  | Operasi optimal  |
+| Jauh kiri  | Recirculation    |
+| Jauh kanan | Flow instability |
+
+---
+
+## 4.9 Engineering Meaning of Intersection
+
+Titik potong bukan sekadar grafik, tetapi:
+
+- kondisi operasi aktual pompa
+- kondisi beban sistem
+- titik evaluasi performa
+
+Digunakan untuk:
+
+- pump selection
+- troubleshooting
+- system optimization
+
+---
+
+# 5. Step-by-Step Engineering Calculation
+
+Section ini menunjukkan cara menentukan **operating point** dari data lapangan secara langsung. Urutan perhitungan dibuat dalam format yang bisa dipakai engineer untuk:
+
+- evaluasi existing pump
+- verifikasi operating point
+- check dampak perubahan piping
+- analisis mismatch antara design flow dan actual flow
+
+---
+
+## 5.1 System Definition
+
+Sistem yang dianalisis adalah transfer air dari suction tank terbuka ke elevated tank terbuka melalui satu centrifugal pump.
+
+### Konfigurasi sistem
+
+```text
+Suction Tank (open)
+Liquid level = 2 m above pump centerline
+        |
+        |  Suction pipe
+        |  6 in, length = 8 m
+        |  1 elbow + 1 gate valve
+        v
+   +-----------+
+   | Centrifugal|
+   |   Pump     |---- Discharge pipe -----> Elevated Tank
+   +-----------+      4 in, length = 120 m
+        ^             4 elbows + 1 check valve + 1 gate valve
+        |
+Pump centerline
+
+Elevated Tank (open)
+Liquid level = 28 m above pump centerline
+```
+
+---
+
+## 5.2 Field Data Preparation
+
+### Fluid data
+
+| Parameter | Value | Unit  |
+| --------- | ----: | ----- |
+| Fluid     | Water | -     |
+| rho       |  1000 | kg/m3 |
+| g         |  9.81 | m/s2  |
+
+---
+
+### Elevation data
+
+| Parameter                   | Value | Unit |
+| --------------------------- | ----: | ---- |
+| Suction tank liquid level   |    +2 | m    |
+| Discharge tank liquid level |   +28 | m    |
+
+Maka static head:
+
+$$
+H_{static} = 28 - 2 = 26 \text{ m}
+$$
+
+---
+
+### Suction piping data
+
+| Parameter               |    Value | Unit |
+| ----------------------- | -------: | ---- |
+| Pipe diameter           |   0.1524 | m    |
+| Pipe length             |        8 | m    |
+| Friction factor, f_s    |     0.02 | -    |
+| 1 elbow                 | K = 0.30 | -    |
+| 1 gate valve fully open | K = 0.15 | -    |
+
+Total suction minor loss coefficient:
+
+$$
+K_{suction} = 0.30 + 0.15 = 0.45
+$$
+
+---
+
+### Discharge piping data
+
+| Parameter               |    Value | Unit |
+| ----------------------- | -------: | ---- |
+| Pipe diameter           |   0.1016 | m    |
+| Pipe length             |      120 | m    |
+| Friction factor, f_d    |     0.02 | -    |
+| 4 elbows                | K = 1.20 | -    |
+| 1 check valve           | K = 2.00 | -    |
+| 1 gate valve fully open | K = 0.15 | -    |
+
+Total discharge minor loss coefficient:
+
+$$
+K_{discharge} = 1.20 + 2.00 + 0.15 = 3.35
+$$
+
+---
+
+## 5.3 Pump Performance Curve Used for Calculation
+
+Dari data OEM atau fitting kurva sederhana, dipakai kurva pompa:
+
+$$
+H_{pump} = 42 - 1200Q^2
+$$
+
+dengan:
+
+- (H) dalam m
+- (Q) dalam m3/s
+
+Ini adalah kurva yang akan dibandingkan dengan system curve.
+
+---
+
+## 5.4 General Form of System Curve
+
+System head terdiri dari:
+
+$$
+H_{system} = H_{static} + h_{suction} + h_{discharge}
+$$
+
+dengan:
+
+### Major loss
+
+$$
+h_f = f \frac{L}{D}\frac{V^2}{2g}
+$$
+
+### Minor loss
+
+$$
+h_m = K \frac{V^2}{2g}
+$$
+
+Karena:
+
+$$
+V = \frac{Q}{A}
+$$
+
+maka seluruh losses pada akhirnya menjadi fungsi (Q^2).
+
+---
+
+## 5.5 Pipe Area Calculation
+
+### Suction pipe area
+
+$$
+A_s = \frac{\pi D_s^2}{4}
+$$
+
+$$
+A_s = \frac{\pi (0.1524)^2}{4}
+$$
+
+$$
+A_s = 0.01824 \text{ m}^2
+$$
+
+---
+
+### Discharge pipe area
+
+$$
+A_d = \frac{\pi D_d^2}{4}
+$$
+
+$$
+A_d = \frac{\pi (0.1016)^2}{4}
+$$
+
+$$
+A_d = 0.00811 \text{ m}^2
+$$
+
+---
+
+## 5.6 Suction Line Loss Calculation
+
+### 5.6.1 Suction major loss
+
+$$
+h_{f,s} = f_s \frac{L_s}{D_s}\frac{V_s^2}{2g}
+$$
+
+Substitusi:
+
+$$
+h_{f,s} = 0.02 \times \frac{8}{0.1524}\times \frac{V_s^2}{2g}
+$$
+
+$$
+h_{f,s} = 1.05 \frac{V_s^2}{2g}
+$$
+
+---
+
+### 5.6.2 Suction minor loss
+
+$$
+h_{m,s} = K_{suction}\frac{V_s^2}{2g}
+$$
+
+$$
+h_{m,s} = 0.45 \frac{V_s^2}{2g}
+$$
+
+---
+
+### 5.6.3 Total suction loss
+
+$$
+h_{suction} = h_{f,s} + h_{m,s}
+$$
+
+$$
+h_{suction} = (1.05 + 0.45)\frac{V_s^2}{2g}
+$$
+
+$$
+h_{suction} = 1.50\frac{V_s^2}{2g}
+$$
+
+---
+
+## 5.7 Discharge Line Loss Calculation
+
+### 5.7.1 Discharge major loss
+
+$$
+h_{f,d} = f_d \frac{L_d}{D_d}\frac{V_d^2}{2g}
+$$
+
+Substitusi:
+
+$$
+h_{f,d} = 0.02 \times \frac{120}{0.1016}\times \frac{V_d^2}{2g}
+$$
+
+$$
+h_{f,d} = 23.62\frac{V_d^2}{2g}
+$$
+
+---
+
+### 5.7.2 Discharge minor loss
+
+$$
+h_{m,d} = K_{discharge}\frac{V_d^2}{2g}
+$$
+
+$$
+h_{m,d} = 3.35\frac{V_d^2}{2g}
+$$
+
+---
+
+### 5.7.3 Total discharge loss
+
+$$
+h_{discharge} = h_{f,d} + h_{m,d}
+$$
+
+$$
+h_{discharge} = (23.62 + 3.35)\frac{V_d^2}{2g}
+$$
+
+$$
+h_{discharge} = 26.97\frac{V_d^2}{2g}
+$$
+
+---
+
+## 5.8 Convert Losses into Function of Flow Rate
+
+Agar system curve bisa dibandingkan langsung dengan pump curve, losses harus dinyatakan sebagai fungsi (Q).
+
+---
+
+### 5.8.1 Suction velocity term
+
+$$
+V_s = \frac{Q}{A_s} = \frac{Q}{0.01824}
+$$
+
+$$
+V_s^2 = \frac{Q^2}{(0.01824)^2}
+$$
+
+$$
+V_s^2 = 3006.85Q^2
+$$
+
+Maka:
+
+$$
+\frac{V_s^2}{2g} = \frac{3006.85Q^2}{19.62}
+$$
+
+$$
+\frac{V_s^2}{2g} = 153.25Q^2
+$$
+
+Sehingga:
+
+$$
+h_{suction} = 1.50 \times 153.25Q^2
+$$
+
+$$
+h_{suction} = 229.88Q^2
+$$
+
+---
+
+### 5.8.2 Discharge velocity term
+
+$$
+V_d = \frac{Q}{A_d} = \frac{Q}{0.00811}
+$$
+
+$$
+V_d^2 = \frac{Q^2}{(0.00811)^2}
+$$
+
+$$
+V_d^2 = 15203.7Q^2
+$$
+
+Maka:
+
+$$
+\frac{V_d^2}{2g} = \frac{15203.7Q^2}{19.62}
+$$
+
+$$
+\frac{V_d^2}{2g} = 774.91Q^2
+$$
+
+Sehingga:
+
+$$
+h_{discharge} = 26.97 \times 774.91Q^2
+$$
+
+$$
+h_{discharge} = 20900.4Q^2
+$$
+
+---
+
+## 5.9 Final System Curve
+
+Gabungkan seluruh komponen head:
+
+$$
+H_{system} = H_{static} + h_{suction} + h_{discharge}
+$$
+
+$$
+H_{system} = 26 + 229.88Q^2 + 20900.4Q^2
+$$
+
+$$
+H_{system} = 26 + 21130.3Q^2
+$$
+
+Ini adalah **system curve final** untuk sistem lapangan yang dianalisis.
+
+---
+
+## 5.10 Solve the Operating Point
+
+Operating point terjadi saat:
+
+$$
+H_{pump} = H_{system}
+$$
+
+Substitusi pump curve dan system curve:
+
+$$
+42 - 1200Q^2 = 26 + 21130.3Q^2
+$$
+
+Pindahkan semua suku (Q^2) ke satu sisi:
+
+$$
+42 - 26 = 21130.3Q^2 + 1200Q^2
+$$
+
+$$
+16 = 22330.3Q^2
+$$
+
+$$
+Q^2 = \frac{16}{22330.3}
+$$
+
+$$
+Q^2 = 0.0007164
+$$
+
+$$
+Q = 0.02676 \text{ m}^3/\text{s}
+$$
+
+---
+
+## 5.11 Convert Flow into Practical Units
+
+### In L/s
+
+$$
+Q = 0.02676 \times 1000
+$$
+
+$$
+Q = 26.76 \text{ L/s}
+$$
+
+### In m3/h
+
+$$
+Q = 0.02676 \times 3600
+$$
+
+$$
+Q = 96.3 \text{ m}^3/\text{h}
+$$
+
+---
+
+## 5.12 Determine Operating Head
+
+Gunakan system curve:
+
+$$
+H = 26 + 21130.3(0.02676)^2
+$$
+
+$$
+H = 26 + 21130.3(0.0007164)
+$$
+
+$$
+H = 26 + 15.14
+$$
+
+$$
+H = 41.14 \text{ m}
+$$
+
+Verifikasi dengan pump curve:
+
+$$
+H = 42 - 1200(0.02676)^2
+$$
+
+$$
+H = 42 - 1200(0.0007164)
+$$
+
+$$
+H = 42 - 0.86
+$$
+
+$$
+H = 41.14 \text{ m}
+$$
+
+Hasil sama, sehingga operating point valid.
+
+---
+
+## 5.13 Final Result
+
+| Parameter | Result | Unit |
+| --------- | -----: | ---- |
+| Q_op      | 0.0268 | m3/s |
+| Q_op      |   26.8 | L/s  |
+| Q_op      |   96.3 | m3/h |
+| H_op      |   41.1 | m    |
+
+---
+
+## 5.14 Engineering Interpretation of Result
+
+Dari hasil di atas:
+
+### 1. Static head cukup besar
+
+$$
+H_{static} = 26 \text{ m}
+$$
+
+Ini menunjukkan sistem memang membutuhkan head dasar yang tinggi karena beda elevasi besar.
+
+### 2. Discharge line menjadi kontributor losses utama
+
+Discharge pipe 4 in dengan panjang 120 m menghasilkan friction loss dominan terhadap total losses.
+
+### 3. Flow aktual tidak sama dengan flow bebas pompa
+
+Flow aktual dibatasi oleh kombinasi:
+
+- static head
+- pipe friction
+- minor losses
+
+### 4. Operating point jatuh pada head tinggi dan flow sedang
+
+Ini tipikal untuk sistem transfer antartangki dengan discharge elevation cukup tinggi.
+
+---
+
+## 5.15 Field Calculation Workflow
+
+Urutan kerja yang bisa dipakai engineer di field:
+
+### Step 1
+
+Tentukan **suction level** dan **discharge level**
+
+### Step 2
+
+Hitung:
+
+$$
+H_{static}
+$$
+
+### Step 3
+
+Kumpulkan data piping:
+
+- diameter
+- panjang
+- jumlah elbow
+- valve
+- check valve
+- reducer / tee jika ada
+
+### Step 4
+
+Tentukan:
+
+- friction factor
+- minor loss coefficient
+
+### Step 5
+
+Hitung major loss dan minor loss sebagai fungsi (Q^2)
+
+### Step 6
+
+Bentuk:
+
+$$
+H_{system} = H_{static} + kQ^2
+$$
+
+### Step 7
+
+Ambil pump curve dari OEM
+
+### Step 8
+
+Selesaikan:
+
+$$
+H_{pump}(Q) = H_{system}(Q)
+$$
+
+### Step 9
+
+Dapatkan:
+
+- operating flow
+- operating head
+
+---
+
+## 5.16 Practical Note for Beginner Engineer
+
+Jika data OEM hanya tersedia dalam bentuk grafik, bukan persamaan:
+
+- baca beberapa titik pada pump curve
+- lakukan curve fitting sederhana
+- bentuk persamaan pendekatan
+- lalu bandingkan dengan system curve
+
+Jika tidak ingin fitting persamaan, operating point juga bisa ditentukan dengan:
+
+- plot manual dua kurva
+- baca titik potong secara grafis
+
+---
+
+# 6. Effect of Valve Throttling
+
+## 6.1 Change in System Resistance
+
+Valve throttling meningkatkan resistance sistem melalui peningkatan **minor loss coefficient (K)**.
+
+Pada kondisi awal:
+
+$$
+K_{discharge,old} = 3.35
+$$
+
+Pada kondisi valve di-throttling 50% (asumsi praktis):
+
+$$
+K_{discharge,new} = 11.2
+$$
+
+Perubahan ini langsung mempengaruhi:
+
+$$
+h_{loss} \propto K \cdot \frac{V^2}{2g}
+$$
+
+Sehingga system resistance meningkat.
+
+---
+
+## 6.2 New System Curve
+
+System curve awal:
+
+$$
+H_{system,1} = 26 + 21130.3Q^2
+$$
+
+System curve baru setelah throttling:
+
+$$
+H_{system,2} = 26 + 27225.8Q^2
+$$
+
+Perubahan utama:
+
+- slope meningkat
+- kurva menjadi lebih curam
+
+---
+
+## 6.3 New Operating Point
+
+Operating point baru ditentukan dari:
+
+$$
+H_{pump} = H_{system,2}
+$$
+
+$$
+42 - 1200Q^2 = 26 + 27225.8Q^2
+$$
+
+$$
+Q = 0.02373 \text{ m}^3/s
+$$
+
+---
+
+## 6.4 Result Comparison
+
+| Parameter   | Valve Open | Throttled 50% |
+| ----------- | ---------: | ------------: |
+| Flow (m3/s) |     0.0268 |        0.0237 |
+| Flow (m3/h) |       96.3 |          85.4 |
+| Head (m)    |       41.1 |          41.3 |
+
+---
+
+## 6.5 Graphical Interpretation
+
+![Image](https://www.pumpsandsystems.com/sites/default/files/13753/HIpumpsystemcurve.jpg)
+
+Interpretasi grafik:
+
+- Pump curve tetap
+- System curve naik
+- Operating point bergeser ke kiri
+
+---
+
+## 6.6 Physical Meaning of Throttling
+
+Valve throttling menyebabkan:
+
+- penambahan energi hilang (losses)
+- peningkatan head yang dibutuhkan sistem
+
+Secara fisik:
+
+- energi fluida didisipasikan di valve
+- bukan digunakan untuk transport fluida
+
+---
+
+# 7. Engineering Interpretation
+
+## 7.1 Flow Control Mechanism
+
+Throttling mengontrol flow dengan cara:
+
+- menaikkan resistance sistem
+- memaksa pompa bekerja pada flow lebih rendah
+
+Hubungan dasar:
+
+$$
+\text{Resistance} \uparrow \Rightarrow Q \downarrow
+$$
+
+---
+
+## 7.2 Energy Perspective
+
+Energi yang diberikan pompa:
+
+$$
+P_h = \rho g Q H
+$$
+
+Pada throttling:
+
+- (Q) turun
+- (H) relatif tetap atau sedikit naik
+- losses meningkat
+
+Artinya:
+
+- sebagian energi hilang sebagai pressure drop di valve
+- efisiensi sistem menurun
+
+---
+
+## 7.3 Impact on Pump Performance
+
+### Efisiensi
+
+- jika operating point menjauh dari BEP → efisiensi turun
+
+---
+
+### Hydraulic behavior
+
+| Kondisi     | Dampak                 |
+| ----------- | ---------------------- |
+| Flow rendah | Internal recirculation |
+| Flow tinggi | Flow separation        |
+
+---
+
+### Mechanical impact
+
+- potensi peningkatan getaran
+- peningkatan beban bearing
+- potensi kerusakan seal
+
+---
+
+## 7.4 Deviation from BEP
+
+Operating point baru dibandingkan dengan BEP:
+
+- jika bergeser ke kiri → operasi underflow
+- jika bergeser ke kanan → operasi overload
+
+Deviation dari BEP menyebabkan:
+
+- penurunan efisiensi
+- peningkatan losses internal
+- penurunan reliability
+
+---
+
+## 7.5 System vs Pump Responsibility
+
+Masalah flow tidak selalu berasal dari pompa.
+
+| Gejala              | Penyebab Umum            |
+| ------------------- | ------------------------ |
+| Flow rendah         | System resistance tinggi |
+| Flow terlalu tinggi | System resistance rendah |
+| Head mismatch       | Salah estimasi TDH       |
+
+---
+
+# 8. Practical Engineering Rules
+
+---
+
+## 8.1 Rule 1 — Operating Point Definition
+
+$$
+H_{pump} = H_{system}
+$$
+
+Tidak ada pengecualian. Semua sistem pompa mengikuti prinsip ini.
+
+---
+
+## 8.2 Rule 2 — Losses Behavior
+
+$$
+H_{loss} \propto Q^2
+$$
+
+Artinya:
+
+- sedikit kenaikan flow → loss meningkat signifikan
+
+---
+
+## 8.3 Rule 3 — Throttling Effect
+
+$$
+\text{Valve closing} \Rightarrow K \uparrow \Rightarrow H_{system} \uparrow \Rightarrow Q \downarrow
+$$
+
+---
+
+## 8.4 Rule 4 — Pipe Diameter Impact
+
+| Diameter    | Dampak     |
+| ----------- | ---------- |
+| Lebih besar | Loss turun |
+| Lebih kecil | Loss naik  |
+
+---
+
+## 8.5 Rule 5 — System Design Strategy
+
+Untuk meningkatkan flow:
+
+- kurangi resistance sistem
+- bukan hanya mengganti pompa
+
+---
+
+## 8.6 Rule 6 — Pump Selection
+
+Pump selection harus mempertimbangkan:
+
+- system curve
+- bukan hanya flow dan head nominal
+
+---
+
+## 8.7 Rule 7 — Avoid Extreme Operation
+
+Hindari operasi:
+
+| Kondisi             | Risiko             |
+| ------------------- | ------------------ |
+| Flow terlalu rendah | Recirculation      |
+| Flow terlalu tinggi | Instability        |
+| Jauh dari BEP       | Kerusakan komponen |
+
+---
+
+## 8.8 Rule 8 — Valve as Control, Not Solution
+
+Valve throttling:
+
+- adalah metode kontrol flow
+- bukan solusi efisiensi
+
+Untuk efisiensi tinggi:
+
+- gunakan VFD (speed control)
+
+---
+
+## 8.9 Rule 9 — Field Troubleshooting Logic
+
+Jika flow tidak sesuai:
+
+1. cek system curve (losses)
+2. cek valve position
+3. cek piping restriction
+4. baru evaluasi pompa
+
+---
+
+## 8.10 Rule 10 — Engineering Mindset
+
+Selalu analisis:
+
+$$
+\text{Pump behavior} + \text{System behavior}
+$$
+
+Bukan salah satu saja.
+
+---
+
+<small>
+  **_Catatan Penyusunan_** Artikel ini disusun sebagai materi edukasi dan
+  referensi umum berdasarkan berbagai sumber pustaka, praktik lapangan, serta
+  bantuan alat penulisan. Pembaca disarankan untuk melakukan verifikasi lanjutan
+  dan penyesuaian sesuai dengan kondisi serta kebutuhan masing-masing sistem.
+</small>

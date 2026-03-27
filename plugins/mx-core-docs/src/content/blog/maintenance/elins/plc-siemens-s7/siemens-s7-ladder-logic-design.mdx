@@ -1,0 +1,2727 @@
+---
+title: Siemens S7 Ladder Logic Design for Pump Control - A Structured Engineering Approach Using Master Control Logic Map
+authors: ['sam']
+date: '2026-03-27'
+tags:
+  [
+    'plc',
+    'siemens-s7',
+    'ladder-logic',
+    'pump-control',
+    'industrial-automation',
+    'control-system',
+    'process-control',
+    'logic-design',
+    'engineering-guidance',
+    'tia-portal',
+  ]
+draft: false
+summary: Artikel ini menyajikan pendekatan terstruktur dalam desain ladder logic Siemens S7 untuk kontrol Pump P-101 menggunakan Master Control Logic Map sebagai kerangka utama. Pembahasan dimulai dari arsitektur OB1–FB101–DB101, prinsip PLC scan cycle, hingga definisi signal dan naming convention yang konsisten. Selanjutnya dijelaskan alur signal, sequence operasi, serta pembentukan logic melalui 8 layer kontrol. Struktur tersebut diterjemahkan menjadi hierarchy dan network ladder yang sistematis di FB101. Dengan pendekatan ini, engineer dapat memahami hubungan antara field signal, logic, dan implementasi ladder secara menyeluruh, sehingga desain menjadi modular, konsisten, dan mudah di-maintain dalam lingkungan industri.
+---
+
+# **_Siemens S7 Ladder Logic Design for Pump Control: A Structured Engineering Approach Using Master Control Logic Map_**
+
+---
+
+- [**_Siemens S7 Ladder Logic Design for Pump Control: A Structured Engineering Approach Using Master Control Logic Map_**](#siemens-s7-ladder-logic-design-for-pump-control-a-structured-engineering-approach-using-master-control-logic-map)
+- [1. Siemens S7 Implementation Structure (ENTRY POINT LADDER DESIGN)](#1-siemens-s7-implementation-structure-entry-point-ladder-design)
+  - [1.1 Arsitektur Dasar Siemens S7](#11-arsitektur-dasar-siemens-s7)
+  - [1.2 PLC Scan Cycle (Cyclic Execution Model)](#12-plc-scan-cycle-cyclic-execution-model)
+  - [1.3 Penjelasan Block dalam Siemens S7](#13-penjelasan-block-dalam-siemens-s7)
+  - [1.4 Komparasi OB vs FB vs FC vs DB](#14-komparasi-ob-vs-fb-vs-fc-vs-db)
+  - [1.5 Struktur Implementasi pada Artikel](#15-struktur-implementasi-pada-artikel)
+- [2. PLC Reference System (Pump P-101)](#2-plc-reference-system-pump-p-101)
+  - [2.1 Sistem Referensi](#21-sistem-referensi)
+  - [2.2 Peran PLC](#22-peran-plc)
+  - [2.3 Konteks Industri](#23-konteks-industri)
+- [3. Equipment Configuration](#3-equipment-configuration)
+  - [Hubungan Antar Equipment](#hubungan-antar-equipment)
+  - [Implikasi terhadap Ladder Design](#implikasi-terhadap-ladder-design)
+  - [Hubungan dengan Struktur PLC](#hubungan-dengan-struktur-plc)
+- [4. PLC Signal Definition](#4-plc-signal-definition)
+  - [4.1 Digital Input](#41-digital-input)
+  - [Interpretasi Engineering Digital Input](#interpretasi-engineering-digital-input)
+  - [Prinsip Penting Digital Input](#prinsip-penting-digital-input)
+  - [4.2 Digital Output](#42-digital-output)
+  - [Interpretasi Engineering Digital Output](#interpretasi-engineering-digital-output)
+  - [Prinsip Penting Digital Output](#prinsip-penting-digital-output)
+  - [4.3 Analog Input](#43-analog-input)
+  - [Interpretasi Engineering Analog Input](#interpretasi-engineering-analog-input)
+  - [Karakteristik Analog Signal](#karakteristik-analog-signal)
+  - [Implikasi terhadap Ladder Design](#implikasi-terhadap-ladder-design-1)
+- [5. Signal Naming Convention (WAJIB UNTUK LADDER DESIGN)](#5-signal-naming-convention-wajib-untuk-ladder-design)
+  - [5.1 Field Signal](#51-field-signal)
+  - [5.2 Conditioned Signal](#52-conditioned-signal)
+  - [5.3 Internal Logic](#53-internal-logic)
+  - [5.4 Sequence Tag](#54-sequence-tag)
+  - [⚠️ Aturan (WAJIB DIPATUHI)](#️-aturan-wajib-dipatuhi)
+  - [Implikasi Engineering](#implikasi-engineering)
+  - [Prinsip Final Naming](#prinsip-final-naming)
+- [6. Master I/O List (BASELINE ENGINEERING)](#6-master-io-list-baseline-engineering)
+  - [6.1 Digital Input](#61-digital-input)
+  - [6.2 Analog Input](#62-analog-input)
+  - [6.3 Digital Output](#63-digital-output)
+  - [6.4 Internal Logic Tags](#64-internal-logic-tags)
+  - [Prinsip Master I/O List](#prinsip-master-io-list)
+  - [Implikasi terhadap Ladder Design](#implikasi-terhadap-ladder-design-2)
+- [7. Basic Control Logic Concept](#7-basic-control-logic-concept)
+  - [7.1 Start Logic](#71-start-logic)
+  - [7.2 Permissive Conditions](#72-permissive-conditions)
+  - [7.3 Seal-in Concept](#73-seal-in-concept)
+- [8. Signal Flow dalam PLC Siemens S7](#8-signal-flow-dalam-plc-siemens-s7)
+  - [Penjelasan Alur Signal](#penjelasan-alur-signal)
+  - [1. FIELD DEVICE](#1-field-device)
+  - [2. DI / AI Module](#2-di--ai-module)
+  - [3. Process Image Input](#3-process-image-input)
+  - [4. OB1 Execution](#4-ob1-execution)
+  - [5. FB101 Pump_Control](#5-fb101-pump_control)
+  - [6. Process Image Output](#6-process-image-output)
+  - [7. DO Module](#7-do-module)
+  - [8. Motor Starter](#8-motor-starter)
+  - [Prinsip Penting Signal Flow](#prinsip-penting-signal-flow)
+  - [Implikasi terhadap Ladder Design](#implikasi-terhadap-ladder-design-3)
+- [9. Sequence of Operation](#9-sequence-of-operation)
+  - [Interpretasi Engineering per Step](#interpretasi-engineering-per-step)
+  - [Prinsip Sequence](#prinsip-sequence)
+  - [Implikasi terhadap Ladder](#implikasi-terhadap-ladder)
+- [10. Master Control Logic Map](#10-master-control-logic-map)
+  - [10.1 Tujuan](#101-tujuan)
+  - [Fungsi Engineering](#fungsi-engineering)
+  - [10.2 Ruang Lingkup](#102-ruang-lingkup)
+  - [Interpretasi Ruang Lingkup](#interpretasi-ruang-lingkup)
+  - [Prinsip Master Logic Map](#prinsip-master-logic-map)
+  - [Peran dalam Artikel](#peran-dalam-artikel)
+  - [Implikasi terhadap Design](#implikasi-terhadap-design)
+- [Hubungan Bab 8–10 dengan Tahap Berikutnya](#hubungan-bab-810-dengan-tahap-berikutnya)
+- [11. Tag System (Complete Definition)](#11-tag-system-complete-definition)
+  - [11.1 Digital Input](#111-digital-input)
+  - [11.2 Analog Input](#112-analog-input)
+  - [11.3 Digital Output](#113-digital-output)
+  - [11.4 Internal Bits](#114-internal-bits)
+  - [Klasifikasi Engineering Internal Bits](#klasifikasi-engineering-internal-bits)
+  - [Prinsip Tag System](#prinsip-tag-system)
+- [12. Struktur 8 Layer Control Logic](#12-struktur-8-layer-control-logic)
+  - [Tujuan Pembagian Layer](#tujuan-pembagian-layer)
+  - [Prinsip Layer](#prinsip-layer)
+  - [Alur Antar Layer](#alur-antar-layer)
+  - [Implikasi terhadap Ladder](#implikasi-terhadap-ladder-1)
+- [13. Detail Layer-by-Layer](#13-detail-layer-by-layer)
+  - [13.1 Input Conditioning](#131-input-conditioning)
+  - [13.2 Command Handling](#132-command-handling)
+  - [13.3 Permissive Logic](#133-permissive-logic)
+  - [13.4 Start/Stop Latch Logic](#134-startstop-latch-logic)
+  - [13.5 Trip Logic](#135-trip-logic)
+  - [13.6 Alarm Logic](#136-alarm-logic)
+  - [13.7 Start Failure Detection](#137-start-failure-detection)
+  - [13.8 Sequence Interface](#138-sequence-interface)
+  - [Hubungan Antar Layer](#hubungan-antar-layer)
+  - [Implikasi Engineering](#implikasi-engineering-1)
+- [Hubungan Bab 11–13 dengan Tahap Berikutnya](#hubungan-bab-1113-dengan-tahap-berikutnya)
+- [14. Master Logic Hierarchy](#14-master-logic-hierarchy)
+  - [Definisi Master Logic Hierarchy](#definisi-master-logic-hierarchy)
+  - [Struktur Hierarki FB101](#struktur-hierarki-fb101)
+  - [Interpretasi Engineering](#interpretasi-engineering)
+  - [Urutan Dependency](#urutan-dependency)
+  - [Fungsi Setiap Level dalam Hierarchy](#fungsi-setiap-level-dalam-hierarchy)
+  - [Prinsip Utama Hierarchy](#prinsip-utama-hierarchy)
+  - [Implikasi terhadap Ladder Design](#implikasi-terhadap-ladder-design-4)
+- [15. FB101 Network Breakdown](#15-fb101-network-breakdown)
+  - [Tujuan Network Breakdown](#tujuan-network-breakdown)
+  - [Prinsip Mapping](#prinsip-mapping)
+  - [Network 1 – Input Conditioning](#network-1--input-conditioning)
+  - [Network 2 – Command Handling](#network-2--command-handling)
+  - [Network 3 – Permissive Logic](#network-3--permissive-logic)
+  - [Network 4 – Start/Stop Latch Logic](#network-4--startstop-latch-logic)
+  - [Network 5 – Trip Logic](#network-5--trip-logic)
+  - [Network 6 – Alarm Logic](#network-6--alarm-logic)
+  - [Network 7 – Start Failure Detection](#network-7--start-failure-detection)
+  - [Network 8 – Sequence Interface](#network-8--sequence-interface)
+  - [Prinsip Penting Network](#prinsip-penting-network)
+  - [Hubungan dengan Scan Cycle](#hubungan-dengan-scan-cycle)
+  - [Implikasi Engineering](#implikasi-engineering-2)
+- [16. Full Ladder Design (CORE DESIGN SECTION)](#16-full-ladder-design-core-design-section)
+  - [16.1 Network 1 — Input Conditioning](#161-network-1--input-conditioning)
+  - [16.2 Network 2 — Command Handling](#162-network-2--command-handling)
+  - [16.3 Network 3 — Permissive Logic](#163-network-3--permissive-logic)
+  - [16.4 Network 4 — Start/Stop Latch Logic](#164-network-4--startstop-latch-logic)
+  - [16.5 Network 5 — Trip Logic](#165-network-5--trip-logic)
+  - [16.6 Network 6 — Alarm Logic](#166-network-6--alarm-logic)
+  - [16.7 Network 7 — Start Failure Detection](#167-network-7--start-failure-detection)
+  - [16.8 Network 8 — Sequence Interface](#168-network-8--sequence-interface)
+- [17. Logic Flow Summary](#17-logic-flow-summary)
+  - [17.1 Start Path](#171-start-path)
+  - [17.2 Stop Path](#172-stop-path)
+  - [17.3 Protective (Trip) Path](#173-protective-trip-path)
+  - [17.4 Alarm Path](#174-alarm-path)
+  - [17.5 Start Failure Path](#175-start-failure-path)
+  - [17.6 Sequence Path](#176-sequence-path)
+- [18. Final Architecture](#18-final-architecture)
+
+---
+
+# 1. Siemens S7 Implementation Structure (ENTRY POINT LADDER DESIGN)
+
+## 1.1 Arsitektur Dasar Siemens S7
+
+Pada Siemens S7, desain ladder tidak dapat dipisahkan dari struktur program. Oleh karena itu, sebelum menulis ladder diagram, engineer harus memahami bagaimana PLC mengeksekusi program.
+
+Struktur dasar yang digunakan:
+
+- OB1 sebagai cyclic execution
+- FB sebagai equipment logic
+- DB sebagai instance data
+- Relasi:
+
+```text
+OB1 → FB101 → DB101
+```
+
+✓ Konteks Engineering
+
+Struktur ini menunjukkan bahwa:
+
+- **OB1** adalah titik masuk utama program
+- **FB101** berisi seluruh logic kontrol Pump P-101
+- **DB101** menyimpan seluruh data yang digunakan oleh FB tersebut
+
+Dalam konteks ladder design:
+
+- Ladder tidak ditulis langsung di OB1
+- Ladder utama ditempatkan di **FB101**
+- Semua memory (latch, timer, status) disimpan di **DB101**
+
+Pendekatan ini adalah praktik standar Siemens S7 untuk **modular equipment control**.
+
+---
+
+## 1.2 PLC Scan Cycle (Cyclic Execution Model)
+
+PLC Siemens S7 bekerja berdasarkan prinsip **cyclic scan**, yang merupakan fondasi utama dalam memahami perilaku ladder logic.
+
+```text
+1. Read Input (Process Image Input)
+2. Execute Logic (OB1 → FB101)
+3. Write Output (Process Image Output)
+```
+
+✓ Mekanisme Operasi
+
+PLC menjalankan loop berikut secara terus menerus:
+
+1. **Read Input**
+
+   - PLC membaca seluruh input (digital & analog)
+   - Disimpan dalam _Process Image Input_
+
+2. **Execute Logic**
+
+   - OB1 dieksekusi
+   - OB1 memanggil FB101
+   - Semua network ladder di dalam FB101 dijalankan berurutan
+
+3. **Write Output**
+
+   - Hasil logic ditulis ke _Process Image Output_
+   - Output dikirim ke field device
+
+---
+
+✓ Implikasi terhadap Ladder Design
+
+Beberapa prinsip penting:
+
+- PLC bekerja secara loop (cyclic)
+- Semua network ladder dieksekusi setiap scan
+- Urutan network = urutan eksekusi
+
+Artinya:
+
+- Network 1 akan selalu dieksekusi sebelum Network 2
+- Status yang dihasilkan di awal akan mempengaruhi logic berikutnya dalam scan yang sama
+
+---
+
+✓ Memory dalam Scan Cycle
+
+Memory disimpan di:
+
+- FB internal memory
+- DB instance data
+
+Contoh implikasi:
+
+- `RUN_LATCH` tetap ON karena disimpan di DB
+- Timer (`TON`) bekerja karena dievaluasi setiap scan
+- Feedback seperti `MTR_RUN_FB` dibandingkan setiap cycle
+
+Tanpa memahami scan cycle, engineer tidak dapat memahami:
+
+- bagaimana latch bekerja
+- bagaimana permissive dievaluasi
+- bagaimana trip memutus output
+
+---
+
+## 1.3 Penjelasan Block dalam Siemens S7
+
+Struktur Siemens S7 terdiri dari beberapa jenis block yang memiliki fungsi berbeda dalam desain ladder.
+
+---
+
+✓ OB (Organization Block)
+
+- Entry point eksekusi PLC
+- OB1 sebagai main cyclic scan
+
+✓ Peran dalam Artikel
+
+- OB1 hanya menjalankan program secara berulang
+- Tidak digunakan untuk menulis detail control logic pump
+
+---
+
+✓ FB (Function Block)
+
+- Logic dengan memory (stateful)
+- Digunakan untuk equipment control (Pump P-101)
+
+✓ Karakteristik
+
+- Memiliki internal memory
+- Dapat dipanggil berulang dengan instance berbeda
+- Cocok untuk equipment seperti:
+
+  - pump
+  - compressor
+  - fan
+
+✓ Peran dalam Artikel
+
+- **FB101 = seluruh logic Pump P-101**
+- Semua ladder utama berada di sini
+
+---
+
+✓ DB (Data Block)
+
+- Penyimpanan data instance
+- Menyimpan:
+
+  - latch
+  - timer
+  - parameter
+
+✓ Karakteristik
+
+- Terhubung langsung dengan FB
+- Menyimpan nilai antar scan
+
+✓ Peran dalam Artikel
+
+- **DB101 menyimpan seluruh state Pump P-101**
+- Contoh:
+
+  - `RUN_LATCH`
+  - status alarm
+  - timer start failure
+
+---
+
+✓ FC (Function)
+
+- Logic tanpa memory (stateless)
+- Digunakan untuk utility function
+
+✓ Karakteristik
+
+- Tidak menyimpan state
+- Output hanya bergantung pada input saat itu
+
+✓ Peran dalam Artikel
+
+- Tidak digunakan dalam desain ini
+- Semua logic ditempatkan di FB agar state tersimpan
+
+---
+
+## 1.4 Komparasi OB vs FB vs FC vs DB
+
+| Block | Memory | Typical Use       | Relevance di Artikel |
+| ----- | ------ | ----------------- | -------------------- |
+| OB    | No     | Program flow      | OB1 main scan        |
+| FB    | Yes    | Equipment control | FB101 Pump           |
+| FC    | No     | Utility function  | Tidak digunakan      |
+| DB    | Yes    | Data storage      | DB101                |
+
+---
+
+✓ Implikasi terhadap Design
+
+- Logic kontrol utama → FB
+- Data → DB
+- Flow eksekusi → OB
+
+Ini memastikan:
+
+- modular
+- scalable
+- mudah di-maintain
+
+---
+
+## 1.5 Struktur Implementasi pada Artikel
+
+Struktur final yang digunakan:
+
+```text
+OB1
+ └── CALL FB101, DB101
+```
+
+✓ Interpretasi Engineering
+
+- OB1 tidak mengandung logic kompleks
+- FB101 adalah pusat seluruh control
+- DB101 adalah penyimpan state
+
+✓ Konsekuensi terhadap Ladder Design
+
+- Semua network ladder berada di FB101
+- Urutan network menentukan alur logika
+- Semua variable internal harus berada di DB101
+
+---
+
+# 2. PLC Reference System (Pump P-101)
+
+## 2.1 Sistem Referensi
+
+Sistem referensi dalam artikel ini adalah:
+
+- Centrifugal Pump P-101
+- PLC Siemens S7
+
+✓ Tujuan Penggunaan Reference System
+
+- Menjaga konsistensi seluruh pembahasan
+- Menghindari perubahan equipment
+- Menjadikan artikel sebagai model tetap
+
+---
+
+## 2.2 Peran PLC
+
+PLC bertanggung jawab untuk:
+
+- membaca sinyal instrument
+- mengeksekusi ladder logic control
+- mengirim perintah ke motor starter
+
+✓ Interpretasi Engineering
+
+PLC berfungsi sebagai:
+
+- **decision maker**
+- **logic executor**
+- **interface antara field dan equipment**
+
+---
+
+## 2.3 Konteks Industri
+
+Sistem ini mewakili equipment umum di industri:
+
+- cooling water pump
+- transfer pump
+- utility pump
+
+✓ Implikasi
+
+Artinya:
+
+- logic yang dibuat bersifat generalizable
+- dapat digunakan sebagai template di berbagai plant
+
+---
+
+# 3. Equipment Configuration
+
+Konfigurasi peralatan dalam sistem:
+
+- P-101 Centrifugal Pump
+- M-101 Electric Motor
+- XV-101 Suction Valve
+- XV-102 Discharge Valve
+- Motor melalui MCC
+
+---
+
+## Hubungan Antar Equipment
+
+✓ 1. Pump (P-101)
+
+- Equipment utama
+- Digunakan untuk memindahkan fluida
+
+✓ 2. Motor (M-101)
+
+- Penggerak pump
+- Dikontrol oleh MCC
+
+✓ 3. MCC (Motor Control Center)
+
+- Interface antara PLC dan motor
+- Menerima perintah start dari PLC
+
+✓ 4. Valve
+
+- XV-101 (Suction)
+- XV-102 (Discharge)
+
+Digunakan untuk memastikan kondisi operasi aman sebelum pump dijalankan
+
+---
+
+## Implikasi terhadap Ladder Design
+
+Konfigurasi ini menentukan:
+
+- jumlah input/output
+- permissive logic
+- trip condition
+- interlock
+
+Contoh:
+
+- Pump tidak boleh start jika suction valve tidak open
+- Motor tidak boleh jalan jika MCC tidak ready
+
+---
+
+## Hubungan dengan Struktur PLC
+
+Semua equipment ini:
+
+- diwakili oleh signal (input/output)
+- diproses di FB101
+- disimpan statusnya di DB101
+
+---
+
+# 4. PLC Signal Definition
+
+Bagian ini mendefinisikan seluruh sinyal yang digunakan dalam sistem.
+Semua ladder logic yang akan dibangun pada FB101 **sepenuhnya bergantung pada definisi sinyal ini**.
+
+Tanpa pemahaman yang tepat terhadap signal definition, engineer tidak dapat:
+
+- membaca ladder
+- menelusuri fault
+- memahami hubungan antara field dan logic
+
+---
+
+## 4.1 Digital Input
+
+- PB_START (I0.0)
+- PB_STOP (I0.1)
+- MCC_RDY (I0.2)
+- OL_TRIP (I0.3)
+- XV101_OPEN (I0.4)
+- XV102_OPEN (I0.5)
+- MTR_RUN_FB (I0.6)
+- LSL101 / LOW_SUCT_PRESS (I0.7)
+
+---
+
+## Interpretasi Engineering Digital Input
+
+Digital input adalah sinyal **binary (0/1)** yang dibaca PLC dari field device.
+
+✓ 1. PB_START (I0.0)
+
+- Sumber: push button
+- Fungsi: memberikan perintah start
+- Tipe: momentary signal
+
+✓ 2. PB_STOP (I0.1)
+
+- Sumber: push button
+- Fungsi: menghentikan operasi
+- Karakteristik: memiliki prioritas tinggi (stop priority)
+
+---
+
+✓ 3. MCC_RDY (I0.2)
+
+- Menunjukkan MCC siap menerima start
+- Digunakan sebagai **permissive utama**
+
+---
+
+✓ 4. OL_TRIP (I0.3)
+
+- Sinyal overload dari motor
+- Digunakan sebagai **trip condition**
+- Harus langsung memutus operasi
+
+---
+
+✓ 5. XV101_OPEN (I0.4)
+
+- Feedback valve suction terbuka
+- Digunakan dalam permissive
+
+---
+
+✓ 6. XV102_OPEN (I0.5)
+
+- Feedback valve discharge terbuka
+- Digunakan dalam interlock/sequence
+
+---
+
+✓ 7. MTR_RUN_FB (I0.6)
+
+- Feedback motor benar-benar running
+- Digunakan untuk:
+
+  - validasi start
+  - sequence
+  - start failure detection
+
+---
+
+✓ 8. LSL101 / LOW_SUCT_PRESS (I0.7)
+
+- Indikasi kondisi tidak aman (low level / low pressure)
+- Digunakan sebagai:
+
+  - permissive (prevent start)
+  - trip (jika diklasifikasikan lebih lanjut)
+
+---
+
+## Prinsip Penting Digital Input
+
+Semua digital input adalah:
+
+```text id="dq9v4z"
+field reality → representasi di PLC
+```
+
+Artinya:
+
+- PLC tidak “mengerti” pump
+- PLC hanya membaca bit 0 atau 1
+
+---
+
+## 4.2 Digital Output
+
+- MTR_START_CMD (Q0.0)
+- ALM_P101 (Q0.1)
+- TRIP_P101 (Q0.2)
+- START_FAIL_ALM (Q0.3)
+
+---
+
+## Interpretasi Engineering Digital Output
+
+Digital output adalah sinyal dari PLC menuju equipment.
+
+---
+
+✓ 1. MTR_START_CMD (Q0.0)
+
+- Perintah start ke MCC
+- Output utama dari ladder
+- Dikontrol oleh `RUN_LATCH`
+
+---
+
+✓ 2. ALM_P101 (Q0.1)
+
+- Alarm umum pump
+- Digunakan untuk operator awareness
+- Tidak selalu menghentikan pump
+
+---
+
+✓ 3. TRIP_P101 (Q0.2)
+
+- Output trip
+- Digunakan untuk protective shutdown
+- Harus aktif pada kondisi kritis
+
+---
+
+✓ 4. START_FAIL_ALM (Q0.3)
+
+- Alarm kegagalan start
+- Diaktifkan jika motor tidak running setelah command
+
+---
+
+## Prinsip Penting Digital Output
+
+```text id="p3rw9o"
+PLC decision → aksi ke equipment
+```
+
+Semua output adalah hasil evaluasi logic di FB101.
+
+---
+
+## 4.3 Analog Input
+
+- PT101_PV (AIW64)
+
+---
+
+## Interpretasi Engineering Analog Input
+
+✓ PT101_PV (AIW64)
+
+- Sumber: pressure transmitter suction
+- Tipe: analog (continuous value)
+- Digunakan untuk:
+
+  - alarm (low pressure)
+  - trip (low-low pressure)
+
+---
+
+## Karakteristik Analog Signal
+
+Berbeda dengan digital:
+
+- tidak langsung ON/OFF
+- perlu dibandingkan dengan threshold
+
+Contoh:
+
+```text id="o7bz7g"
+PT101_PV < Low_SP → pressure low
+PT101_PV < LowLow_SP → trip
+```
+
+---
+
+## Implikasi terhadap Ladder Design
+
+- Analog input tidak langsung digunakan
+- Harus melalui:
+
+  - scaling
+  - comparison (CMP)
+  - threshold logic
+
+---
+
+# 5. Signal Naming Convention (WAJIB UNTUK LADDER DESIGN)
+
+Bagian ini adalah salah satu elemen paling kritikal dalam design ladder.
+
+Kesalahan naming akan menyebabkan:
+
+- logic sulit dibaca
+- troubleshooting sulit
+- inkonsistensi antar engineer
+
+---
+
+## 5.1 Field Signal
+
+Field signal adalah representasi langsung dari peralatan lapangan.
+
+Contoh:
+
+- PB_START
+- PB_STOP
+- MCC_RDY
+- OL_TRIP
+- XV101_OPEN
+- MTR_RUN_FB
+- PT101_PV
+
+---
+
+✓ Karakteristik
+
+- mencerminkan kondisi fisik
+- tidak mengandung interpretasi logic
+- langsung berasal dari input module
+
+---
+
+## 5.2 Conditioned Signal
+
+Conditioned signal adalah hasil interpretasi dari field signal.
+
+Contoh (akan digunakan di bab berikutnya):
+
+- MCC_HEALTHY
+- SUCT_VALVE_READY
+- MOTOR_FEEDBACK_ON
+- SUCT_PRESS_LOW
+
+---
+
+✓ Fungsi
+
+- menjembatani raw signal dengan logic
+- membuat ladder lebih readable
+- menghindari penggunaan raw signal secara langsung di semua network
+
+---
+
+## 5.3 Internal Logic
+
+Internal logic adalah hasil keputusan PLC.
+
+Contoh:
+
+- CMD_START_REQ
+- CMD_STOP_REQ
+- RUN_LATCH
+- PERMISSIVE_OK
+- TRIP_ACTIVE
+- ALARM_ACTIVE
+- START_FAIL_ACTIVE
+
+---
+
+✓ Karakteristik
+
+- tidak berasal dari field
+- dibentuk oleh ladder logic
+- disimpan di FB/DB
+
+---
+
+## 5.4 Sequence Tag
+
+Digunakan untuk integrasi dengan sequence control.
+
+Contoh:
+
+- SEQ_START_REQ
+- SEQ_READY
+- SEQ_RUNNING
+- SEQ_TRIP
+
+---
+
+✓ Fungsi
+
+- menghubungkan pump dengan sistem yang lebih besar
+- memungkinkan operasi berurutan
+
+---
+
+## ⚠️ Aturan (WAJIB DIPATUHI)
+
+- Tidak boleh rename tag
+- Konsistensi absolut
+
+---
+
+## Implikasi Engineering
+
+Jika satu tag berubah:
+
+- seluruh ladder bisa tidak sinkron
+- dokumentasi tidak valid
+- integrasi antar sistem gagal
+
+---
+
+## Prinsip Final Naming
+
+```text id="n3fd9y"
+1 signal = 1 arti = 1 nama tetap
+```
+
+---
+
+# 6. Master I/O List (BASELINE ENGINEERING)
+
+Master I/O List adalah **referensi tunggal seluruh signal dalam sistem**.
+Semua ladder logic di FB101 harus **mengacu secara langsung dan konsisten** ke daftar ini.
+
+Bagian ini bukan sekadar daftar, tetapi merupakan:
+
+- dasar desain logic
+- dasar mapping field ke PLC
+- dasar troubleshooting
+- dasar integrasi antar sistem
+
+---
+
+## 6.1 Digital Input
+
+Digital input yang digunakan dalam sistem:
+
+- PB_START (I0.0)
+- PB_STOP (I0.1)
+- MCC_RDY (I0.2)
+- OL_TRIP (I0.3)
+- XV101_OPEN (I0.4)
+- XV102_OPEN (I0.5)
+- MTR_RUN_FB (I0.6)
+- LSL101 / LOW_SUCT_PRESS (I0.7)
+
+---
+
+✓ Peran dalam Logic
+
+Digital input ini akan digunakan pada beberapa domain logic:
+
+| Signal     | Domain Penggunaan     |
+| ---------- | --------------------- |
+| PB_START   | Command handling      |
+| PB_STOP    | Stop logic            |
+| MCC_RDY    | Permissive            |
+| OL_TRIP    | Trip                  |
+| XV101_OPEN | Permissive            |
+| XV102_OPEN | Sequence              |
+| MTR_RUN_FB | Feedback & validation |
+| LSL101     | Permissive / Trip     |
+
+---
+
+## 6.2 Analog Input
+
+- PT101_PV (AIW64)
+
+---
+
+✓ Peran dalam Logic
+
+Analog input ini tidak digunakan secara langsung sebagai ON/OFF, tetapi melalui interpretasi:
+
+| Kondisi              | Penggunaan |
+| -------------------- | ---------- |
+| PT101_PV < Low_SP    | Alarm      |
+| PT101_PV < LowLow_SP | Trip       |
+
+---
+
+✓ Implikasi Engineering
+
+- Analog signal harus diproses terlebih dahulu
+- Tidak boleh langsung digunakan sebagai permissive tanpa threshold
+
+---
+
+## 6.3 Digital Output
+
+- MTR_START_CMD (Q0.0)
+- ALM_P101 (Q0.1)
+- TRIP_P101 (Q0.2)
+- START_FAIL_ALM (Q0.3)
+
+---
+
+✓ Peran dalam Sistem
+
+| Output         | Fungsi                   |
+| -------------- | ------------------------ |
+| MTR_START_CMD  | Menggerakkan motor       |
+| ALM_P101       | Memberi alarm            |
+| TRIP_P101      | Proteksi shutdown        |
+| START_FAIL_ALM | Indikasi kegagalan start |
+
+---
+
+## 6.4 Internal Logic Tags
+
+Internal tag adalah hasil dari pemrosesan logic di dalam PLC.
+
+- CMD_START_REQ
+- CMD_STOP_REQ
+- RUN_LATCH
+- PERMISSIVE_OK
+- TRIP_ACTIVE
+- ALARM_ACTIVE
+- START_FAIL_ACTIVE
+- SEQ_START_REQ
+- REMOTE_START_REQ
+- LOCAL_MODE
+- REMOTE_MODE
+- SUCT_PRESS_LOW
+- SUCT_PRESS_LOWLOW
+- TANK_LEVEL_LOW
+- MCC_HEALTHY
+- SUCT_VALVE_READY
+- DISC_VALVE_READY
+- MOTOR_FEEDBACK_ON
+- SEQ_READY
+- SEQ_RUNNING
+- SEQ_TRIP
+
+---
+
+✓ Klasifikasi Internal Tag
+
+Untuk memudahkan pemahaman:
+
+✓ 1. Command Layer
+
+- CMD_START_REQ
+- CMD_STOP_REQ
+
+✓ 2. Status Layer
+
+- RUN_LATCH
+- PERMISSIVE_OK
+- TRIP_ACTIVE
+- ALARM_ACTIVE
+- START_FAIL_ACTIVE
+
+✓ 3. Conditioned Signal
+
+- MCC_HEALTHY
+- SUCT_VALVE_READY
+- DISC_VALVE_READY
+- MOTOR_FEEDBACK_ON
+- SUCT_PRESS_LOW
+- SUCT_PRESS_LOWLOW
+- TANK_LEVEL_LOW
+
+✓ 4. Sequence Interface
+
+- SEQ_START_REQ
+- SEQ_READY
+- SEQ_RUNNING
+- SEQ_TRIP
+
+---
+
+## Prinsip Master I/O List
+
+```text id="tpmqsa"
+Semua ladder = kombinasi dari I/O + internal tag
+```
+
+Tidak ada logic di luar daftar ini.
+
+---
+
+## Implikasi terhadap Ladder Design
+
+- Semua contact dan coil harus berasal dari daftar ini
+- Tidak boleh ada tag tambahan
+- Tidak boleh ada interpretasi bebas di luar definisi
+
+---
+
+# 7. Basic Control Logic Concept
+
+Bagian ini adalah **transisi dari daftar signal menjadi cara berpikir control system**.
+
+Di sinilah engineer mulai memahami:
+
+- bagaimana PLC mengambil keputusan
+- bagaimana signal diubah menjadi aksi
+- bagaimana ladder akan dibentuk
+
+---
+
+## 7.1 Start Logic
+
+Logika dasar start:
+
+```text id="8x5b8l"
+START command
+AND permissive satisfied
+→ motor start
+```
+
+---
+
+✓ Struktur Engineering
+
+Start tidak langsung mengaktifkan motor.
+Harus melalui dua tahap:
+
+1. **Command diterima**
+2. **Permissive diverifikasi**
+
+---
+
+✓ Representasi Konseptual
+
+```text id="sqk4n6"
+CMD_START_REQ AND PERMISSIVE_OK → RUN
+```
+
+---
+
+✓ Implikasi
+
+- PB_START tidak langsung mengaktifkan motor
+- Harus melalui logic internal (`CMD_START_REQ`)
+- Harus melewati permissive (`PERMISSIVE_OK`)
+
+---
+
+## 7.2 Permissive Conditions
+
+Permissive adalah kondisi yang harus terpenuhi sebelum start diizinkan.
+
+---
+
+✓ Definisi
+
+```text id="3c7p3k"
+Motor hanya boleh start jika semua kondisi aman terpenuhi
+```
+
+---
+
+✓ Contoh Permissive
+
+- MCC ready
+- Suction valve open
+- Tidak ada overload
+- Suction pressure normal
+
+---
+
+✓ Representasi Logic
+
+```text id="qnt5zb"
+PERMISSIVE_OK =
+MCC_RDY
+AND XV101_OPEN
+AND NOT OL_TRIP
+AND pressure normal
+```
+
+---
+
+✓ Prinsip Penting
+
+Permissive adalah:
+
+- **authorization**, bukan proteksi
+- diperiksa sebelum start
+- tidak selalu menghentikan motor saat running
+
+---
+
+✓ Perbedaan dengan Trip
+
+| Aspek  | Permissive    | Trip          |
+| ------ | ------------- | ------------- |
+| Waktu  | sebelum start | saat running  |
+| Fungsi | izin start    | paksa stop    |
+| Efek   | block start   | stop langsung |
+
+---
+
+## 7.3 Seal-in Concept
+
+Seal-in adalah konsep dasar dalam ladder untuk mempertahankan kondisi ON.
+
+---
+
+✓ Struktur Dasar
+
+```text id="yazx3u"
+START PB                  STOP PB
+----] [---------------+----]/[------( )---- MTR_START
+                      |
+ seal-in ----] [------+
+```
+
+---
+
+✓ Prinsip Kerja
+
+1. START ditekan → coil aktif
+2. Contact dari coil sendiri menjaga tetap ON
+3. STOP memutus rangkaian
+
+---
+
+✓ Interpretasi Engineering
+
+Seal-in menghasilkan:
+
+```text id="i3z8n6"
+memory state (RUN_LATCH)
+```
+
+---
+
+✓ Hubungan dengan Internal Tag
+
+Dalam sistem ini:
+
+- Seal-in direpresentasikan oleh `RUN_LATCH`
+- Bukan langsung coil output
+
+---
+
+✓ Implikasi terhadap Design
+
+- Motor tetap running tanpa harus menahan tombol START
+- Status disimpan di DB (bukan hanya kondisi input)
+
+---
+
+✓ Hubungan dengan Scan Cycle
+
+Karena PLC bekerja secara cyclic:
+
+- Seal-in harus disimpan dalam memory
+- Jika tidak, output akan mati di scan berikutnya
+
+---
+
+# 8. Signal Flow dalam PLC Siemens S7
+
+```text id="yqz4m1"
+FIELD DEVICE
+↓
+DI / AI module
+↓
+Process Image Input
+↓
+OB1 execution
+↓
+FB101 Pump_Control
+↓
+Process Image Output
+↓
+DO module
+↓
+Motor Starter
+```
+
+---
+
+## Penjelasan Alur Signal
+
+Bagian ini menunjukkan bagaimana sinyal bergerak dari dunia fisik hingga menjadi aksi pada equipment.
+
+---
+
+## 1. FIELD DEVICE
+
+Sumber sinyal berasal dari peralatan lapangan:
+
+- Push button (PB_START, PB_STOP)
+- Valve limit switch (XV101_OPEN, XV102_OPEN)
+- Motor feedback (MTR_RUN_FB)
+- Protection (OL_TRIP)
+- Transmitter (PT101_PV)
+
+---
+
+## 2. DI / AI Module
+
+Sinyal dari field masuk ke PLC melalui:
+
+- Digital Input Module (DI)
+- Analog Input Module (AI)
+
+✓ Fungsi:
+
+- Mengkonversi sinyal fisik menjadi sinyal listrik
+- Mengubah sinyal menjadi format yang bisa dibaca CPU
+
+---
+
+## 3. Process Image Input
+
+Semua input dikumpulkan dalam memori internal PLC:
+
+```text id="cz1q8l"
+Process Image Input (PII)
+```
+
+✓ Karakteristik:
+
+- Snapshot kondisi input pada awal scan
+- Tidak berubah selama satu scan berlangsung
+
+---
+
+## 4. OB1 Execution
+
+PLC mulai mengeksekusi program:
+
+- OB1 dipanggil
+- OB1 menjalankan seluruh program secara cyclic
+
+---
+
+## 5. FB101 Pump_Control
+
+Di dalam OB1:
+
+```text id="3s4r5a"
+CALL FB101, DB101
+```
+
+✓ Fungsi:
+
+- Seluruh logic pump dijalankan di sini
+- Semua network (1–8) dieksekusi berurutan
+
+---
+
+## 6. Process Image Output
+
+Hasil dari logic disimpan di:
+
+```text id="6xy9l0"
+Process Image Output (PIQ)
+```
+
+✓ Karakteristik:
+
+- Buffer output sebelum dikirim ke field
+- Berisi status akhir setelah semua network dieksekusi
+
+---
+
+## 7. DO Module
+
+Digital Output Module:
+
+- Mengirim sinyal dari PIQ ke peralatan
+- Contoh:
+
+  - MTR_START_CMD → MCC
+
+---
+
+## 8. Motor Starter
+
+Output akhir:
+
+- MCC menerima command
+- Motor mulai beroperasi
+
+---
+
+## Prinsip Penting Signal Flow
+
+```text id="5j9k3d"
+Input tidak langsung mempengaruhi output
+→ harus melewati logic di FB101
+```
+
+---
+
+## Implikasi terhadap Ladder Design
+
+1. Semua keputusan terjadi di FB101
+2. Input tidak real-time berubah dalam satu scan
+3. Output hanya berubah setelah seluruh logic selesai
+
+---
+
+# 9. Sequence of Operation
+
+1. Operator menekan START
+2. PLC membaca input pada scan cycle
+3. FB101 mengevaluasi permissive
+4. PLC mengirim output start
+5. Motor running feedback muncul
+6. Pump beroperasi
+
+---
+
+## Interpretasi Engineering per Step
+
+✓ 1. Operator menekan START
+
+- PB_START berubah dari 0 → 1
+- Masuk ke DI module
+
+---
+
+✓ 2. PLC membaca input pada scan cycle
+
+- PB_START masuk ke Process Image Input
+- Dibaca pada awal scan
+
+---
+
+✓ 3. FB101 mengevaluasi permissive
+
+Logic berikut terjadi:
+
+```text id="d9q2xr"
+CMD_START_REQ terbentuk
+→ PERMISSIVE_OK diperiksa
+```
+
+Jika tidak terpenuhi:
+
+- start ditolak
+
+---
+
+✓ 4. PLC mengirim output start
+
+Jika semua kondisi terpenuhi:
+
+```text id="a7p4lm"
+RUN_LATCH = 1
+→ MTR_START_CMD = 1
+```
+
+---
+
+✓ 5. Motor running feedback muncul
+
+- MCC mengaktifkan motor
+- MTR_RUN_FB berubah menjadi 1
+
+---
+
+✓ 6. Pump beroperasi
+
+- Sistem masuk kondisi steady state
+- Logic tetap dievaluasi setiap scan
+
+---
+
+## Prinsip Sequence
+
+```text id="0w9k2s"
+Command → Validation → Action → Feedback
+```
+
+---
+
+## Implikasi terhadap Ladder
+
+- Ladder harus:
+
+  - menangkap command
+  - memverifikasi permissive
+  - menghasilkan output
+  - memvalidasi feedback
+
+---
+
+# 10. Master Control Logic Map
+
+## 10.1 Tujuan
+
+- kerangka logika utama
+- peta hubungan antar fungsi kontrol
+
+---
+
+## Fungsi Engineering
+
+Master Control Logic Map adalah:
+
+- blueprint sebelum ladder ditulis
+- struktur tetap seluruh sistem
+- referensi semua network di FB101
+
+---
+
+## 10.2 Ruang Lingkup
+
+- start / stop
+- permissive
+- trip
+- alarm
+- start failure
+- sequence
+
+---
+
+## Interpretasi Ruang Lingkup
+
+✓ 1. Start / Stop
+
+- bagaimana command diterima
+- bagaimana motor dinyalakan/dimatikan
+
+---
+
+✓ 2. Permissive
+
+- kondisi yang harus terpenuhi sebelum start
+
+---
+
+✓ 3. Trip
+
+- kondisi proteksi yang memaksa stop
+
+---
+
+✓ 4. Alarm
+
+- kondisi abnormal tanpa shutdown
+
+---
+
+✓ 5. Start Failure
+
+- deteksi kegagalan start
+
+---
+
+✓ 6. Sequence
+
+- integrasi dengan sistem operasi berurutan
+
+---
+
+## Prinsip Master Logic Map
+
+```text id="7k2p4m"
+Semua ladder = implementasi dari logic map
+```
+
+---
+
+## Peran dalam Artikel
+
+Bagian ini menjadi:
+
+- penghubung antara konsep dasar dan implementasi
+- dasar untuk:
+
+  - layer logic (Bab 12–13)
+  - network ladder (Bab 15–16)
+
+---
+
+## Implikasi terhadap Design
+
+Tanpa logic map:
+
+- ladder menjadi tidak terstruktur
+- sulit dikembangkan
+- sulit di-maintain
+
+Dengan logic map:
+
+- setiap fungsi punya tempat jelas
+- setiap network punya tujuan spesifik
+- seluruh sistem konsisten
+
+---
+
+# Hubungan Bab 8–10 dengan Tahap Berikutnya
+
+Bagian ini menyatukan:
+
+```text id="z4n8qb"
+Signal → Flow → Sequence → Logic Map
+```
+
+Yang akan dilanjutkan menjadi:
+
+```text
+Logic Map → Layer → Network → Ladder
+```
+
+---
+
+# 11. Tag System (Complete Definition)
+
+Bagian ini mengkonsolidasikan seluruh tag yang digunakan dalam sistem menjadi satu struktur yang konsisten dan siap digunakan dalam logic map dan ladder.
+
+Semua tag yang digunakan pada FB101 harus berada dalam sistem ini.
+
+---
+
+## 11.1 Digital Input
+
+Digital input yang digunakan:
+
+- PB_START
+- PB_STOP
+- MCC_RDY
+- OL_TRIP
+- XV101_OPEN
+- XV102_OPEN
+- MTR_RUN_FB
+- LSL101
+
+---
+
+✓ Fungsi dalam Logic
+
+Digital input digunakan sebagai:
+
+- sumber command (PB_START, PB_STOP)
+- permissive (MCC_RDY, XV101_OPEN)
+- trip (OL_TRIP)
+- feedback (MTR_RUN_FB)
+- proteksi kondisi proses (LSL101)
+
+---
+
+## 11.2 Analog Input
+
+- PT101_PV
+
+---
+
+✓ Fungsi dalam Logic
+
+Analog input digunakan untuk membentuk:
+
+- SUCT_PRESS_LOW
+- SUCT_PRESS_LOWLOW
+
+melalui perbandingan dengan threshold.
+
+---
+
+## 11.3 Digital Output
+
+- MTR_START_CMD
+- ALM_P101
+- TRIP_P101
+- START_FAIL_ALM
+
+---
+
+✓ Fungsi dalam Sistem
+
+- MTR_START_CMD → command utama ke motor
+- ALM_P101 → alarm operator
+- TRIP_P101 → shutdown protektif
+- START_FAIL_ALM → indikasi kegagalan start
+
+---
+
+## 11.4 Internal Bits
+
+- CMD_START_REQ
+- CMD_STOP_REQ
+- RUN_LATCH
+- PERMISSIVE_OK
+- TRIP_ACTIVE
+- ALARM_ACTIVE
+- START_FAIL_ACTIVE
+- SEQ_START_REQ
+- REMOTE_START_REQ
+- LOCAL_MODE
+- REMOTE_MODE
+- SUCT_PRESS_LOW
+- SUCT_PRESS_LOWLOW
+- TANK_LEVEL_LOW
+- MCC_HEALTHY
+- SUCT_VALVE_READY
+- DISC_VALVE_READY
+- MOTOR_FEEDBACK_ON
+- SEQ_READY
+- SEQ_RUNNING
+- SEQ_TRIP
+
+---
+
+## Klasifikasi Engineering Internal Bits
+
+✓ 1. Command Logic
+
+- CMD_START_REQ
+- CMD_STOP_REQ
+
+✓ 2. State / Memory
+
+- RUN_LATCH
+- TRIP_ACTIVE
+- ALARM_ACTIVE
+- START_FAIL_ACTIVE
+
+✓ 3. Conditioned Signal
+
+- MCC_HEALTHY
+- SUCT_VALVE_READY
+- DISC_VALVE_READY
+- MOTOR_FEEDBACK_ON
+- SUCT_PRESS_LOW
+- SUCT_PRESS_LOWLOW
+- TANK_LEVEL_LOW
+
+✓ 4. System Interface
+
+- SEQ_START_REQ
+- SEQ_READY
+- SEQ_RUNNING
+- SEQ_TRIP
+
+---
+
+## Prinsip Tag System
+
+```text
+Semua logic hanya boleh menggunakan tag yang sudah didefinisikan
+```
+
+Tidak ada tag tambahan di luar sistem ini.
+
+---
+
+# 12. Struktur 8 Layer Control Logic
+
+Struktur control logic dibagi menjadi 8 layer tetap:
+
+1. Input Conditioning
+2. Command Handling
+3. Permissive Logic
+4. Start/Stop Latch Logic
+5. Trip / Interlock Logic
+6. Alarm Logic
+7. Start Failure Detection
+8. Sequence Interface
+
+---
+
+## Tujuan Pembagian Layer
+
+Pembagian ini bertujuan untuk:
+
+- memisahkan fungsi logic
+- menghindari pencampuran keputusan
+- membuat ladder modular dan terstruktur
+
+---
+
+## Prinsip Layer
+
+```text
+Setiap layer memiliki fungsi tunggal dan output spesifik
+```
+
+---
+
+## Alur Antar Layer
+
+```text
+Input → Command → Permissive → Latch → Trip → Alarm → StartFail → Sequence
+```
+
+---
+
+## Implikasi terhadap Ladder
+
+- Setiap layer akan menjadi group network
+- Urutan layer = urutan network di FB101
+- Tidak boleh diacak
+
+---
+
+# 13. Detail Layer-by-Layer
+
+Bagian ini menjelaskan setiap layer secara detail sebagai dasar desain ladder.
+
+---
+
+## 13.1 Input Conditioning
+
+✓ Tujuan
+
+Mengubah raw signal menjadi status logic yang siap digunakan.
+
+---
+
+✓ Input
+
+- MCC_RDY
+- XV101_OPEN
+- XV102_OPEN
+- MTR_RUN_FB
+- LSL101
+- PT101_PV
+
+---
+
+✓ Output
+
+- MCC_HEALTHY
+- SUCT_VALVE_READY
+- DISC_VALVE_READY
+- MOTOR_FEEDBACK_ON
+- TANK_LEVEL_LOW
+- SUCT_PRESS_LOW
+- SUCT_PRESS_LOWLOW
+
+---
+
+✓ Contoh Hubungan
+
+```text
+MCC_RDY = 1 → MCC_HEALTHY
+XV101_OPEN = 1 → SUCT_VALVE_READY
+MTR_RUN_FB = 1 → MOTOR_FEEDBACK_ON
+PT101_PV < Low_SP → SUCT_PRESS_LOW
+```
+
+---
+
+## 13.2 Command Handling
+
+✓ Tujuan
+
+Menggabungkan semua sumber command menjadi satu sinyal internal.
+
+---
+
+✓ Start Request
+
+```text
+CMD_START_REQ =
+(PB_START OR REMOTE_START_REQ OR SEQ_START_REQ)
+AND NOT CMD_STOP_REQ
+```
+
+---
+
+✓ Stop Request
+
+```text
+CMD_STOP_REQ =
+PB_STOP
+OR TRIP_ACTIVE
+```
+
+---
+
+✓ Prinsip
+
+- command tidak langsung menggerakkan output
+- harus melalui internal bit
+
+---
+
+## 13.3 Permissive Logic
+
+✓ Tujuan
+
+Menentukan apakah pump boleh start.
+
+---
+
+✓ Logic
+
+```text
+PERMISSIVE_OK =
+MCC_HEALTHY
+AND SUCT_VALVE_READY
+AND NOT TANK_LEVEL_LOW
+AND NOT SUCT_PRESS_LOWLOW
+AND NOT OL_TRIP
+AND NOT TRIP_ACTIVE
+```
+
+---
+
+✓ Prinsip
+
+- permissive = authorization
+- bukan proteksi langsung
+
+---
+
+## 13.4 Start/Stop Latch Logic
+
+✓ Tujuan
+
+Menyimpan status run secara persistent.
+
+---
+
+✓ Set Latch
+
+```text
+RUN_LATCH =
+CMD_START_REQ
+AND PERMISSIVE_OK
+AND NOT TRIP_ACTIVE
+```
+
+---
+
+✓ Reset Latch
+
+```text
+RUN_LATCH reset jika:
+CMD_STOP_REQ
+OR TRIP_ACTIVE
+```
+
+---
+
+✓ Output
+
+```text
+MTR_START_CMD = RUN_LATCH AND NOT TRIP_ACTIVE
+```
+
+---
+
+## 13.5 Trip Logic
+
+✓ Tujuan
+
+Menghentikan pump secara protektif.
+
+---
+
+✓ Logic
+
+```text
+TRIP_ACTIVE =
+OL_TRIP
+OR SUCT_PRESS_LOWLOW
+OR (RUN_LATCH AND NOT MCC_HEALTHY)
+```
+
+---
+
+✓ Response
+
+- reset RUN_LATCH
+- aktifkan TRIP_P101
+
+---
+
+## 13.6 Alarm Logic
+
+✓ Tujuan
+
+Memberikan warning tanpa menghentikan operasi.
+
+---
+
+✓ Logic
+
+```text
+ALARM_ACTIVE =
+SUCT_PRESS_LOW
+OR START_FAIL_ACTIVE
+OR (CMD_START_REQ AND NOT PERMISSIVE_OK)
+```
+
+---
+
+✓ Output
+
+```text
+ALM_P101 = ALARM_ACTIVE
+```
+
+---
+
+## 13.7 Start Failure Detection
+
+✓ Tujuan
+
+Mendeteksi motor gagal running setelah start.
+
+---
+
+✓ Logic
+
+```text
+START_FAIL_ACTIVE =
+(MTR_START_CMD AND NOT MOTOR_FEEDBACK_ON)
+for certain delay
+```
+
+---
+
+✓ Implementasi
+
+- menggunakan timer TON
+- delay = StartFailDelay
+
+---
+
+✓ Response
+
+- aktifkan alarm
+- reset RUN_LATCH
+
+---
+
+## 13.8 Sequence Interface
+
+✓ Tujuan
+
+Menghubungkan pump ke sistem sequence.
+
+---
+
+✓ Logic
+
+```text
+SEQ_READY =
+PERMISSIVE_OK
+AND NOT TRIP_ACTIVE
+```
+
+```text
+SEQ_RUNNING =
+MOTOR_FEEDBACK_ON
+```
+
+```text
+SEQ_TRIP =
+TRIP_ACTIVE
+OR START_FAIL_ACTIVE
+```
+
+---
+
+## Hubungan Antar Layer
+
+```text
+Input Conditioning
+→ Command Handling
+→ Permissive
+→ Latch
+→ Trip
+→ Alarm
+→ Start Failure
+→ Sequence
+```
+
+---
+
+## Implikasi Engineering
+
+- Tidak boleh menggabungkan layer
+- Tidak boleh melewati layer
+- Setiap layer harus selesai sebelum layer berikutnya
+
+---
+
+# Hubungan Bab 11–13 dengan Tahap Berikutnya
+
+Bagian ini membentuk:
+
+```text
+Tag → Layer → Logic Structure
+```
+
+Yang akan diterjemahkan menjadi:
+
+```text
+Logic Structure → Network → Ladder Implementation
+```
+
+---
+
+# 14. Master Logic Hierarchy
+
+Struktur lengkap FB101 Pump_Control
+
+---
+
+## Definisi Master Logic Hierarchy
+
+Master Logic Hierarchy adalah representasi struktur logika secara keseluruhan di dalam FB101 yang menunjukkan:
+
+- hubungan antar layer
+- urutan eksekusi logic
+- grouping fungsi kontrol
+
+---
+
+## Struktur Hierarki FB101
+
+```text id="r4pz2x"
+FB101 Pump_Control
+│
+├─ A. Input Conditioning
+│   ├─ MCC_HEALTHY
+│   ├─ SUCT_VALVE_READY
+│   ├─ DISC_VALVE_READY
+│   ├─ MOTOR_FEEDBACK_ON
+│   ├─ SUCT_PRESS_LOW
+│   ├─ SUCT_PRESS_LOWLOW
+│   └─ TANK_LEVEL_LOW
+│
+├─ B. Command Handling
+│   ├─ CMD_START_REQ
+│   └─ CMD_STOP_REQ
+│
+├─ C. Permissive Logic
+│   └─ PERMISSIVE_OK
+│
+├─ D. Start/Stop Latch Logic
+│   ├─ RUN_LATCH
+│   └─ MTR_START_CMD
+│
+├─ E. Trip Logic
+│   ├─ TRIP_ACTIVE
+│   └─ TRIP_P101
+│
+├─ F. Alarm Logic
+│   ├─ ALARM_ACTIVE
+│   └─ ALM_P101
+│
+├─ G. Start Failure Detection
+│   ├─ START_FAIL_ACTIVE
+│   └─ START_FAIL_ALM
+│
+└─ H. Sequence Interface
+    ├─ SEQ_READY
+    ├─ SEQ_RUNNING
+    └─ SEQ_TRIP
+```
+
+---
+
+## Interpretasi Engineering
+
+Hierarchy ini menunjukkan bahwa:
+
+- Logic tidak berdiri sendiri
+- Setiap bagian memiliki dependency terhadap bagian sebelumnya
+
+---
+
+## Urutan Dependency
+
+```text id="0mqv9s"
+Input → Command → Permissive → Latch → Trip → Alarm → StartFail → Sequence
+```
+
+---
+
+## Fungsi Setiap Level dalam Hierarchy
+
+✓ A. Input Conditioning
+
+- Membentuk semua status dasar
+
+✓ B. Command Handling
+
+- Membentuk request start/stop
+
+✓ C. Permissive
+
+- Menentukan izin start
+
+✓ D. Latch Logic
+
+- Menyimpan status running
+
+✓ E. Trip Logic
+
+- Proteksi sistem
+
+✓ F. Alarm Logic
+
+- Informasi ke operator
+
+✓ G. Start Failure
+
+- Validasi keberhasilan start
+
+✓ H. Sequence
+
+- Integrasi sistem
+
+---
+
+## Prinsip Utama Hierarchy
+
+```text id="t1y3p9"
+Tidak ada layer yang boleh menggunakan data dari layer setelahnya
+```
+
+Artinya:
+
+- Permissive tidak boleh bergantung pada latch
+- Input conditioning harus selesai sebelum command handling
+- Trip harus dievaluasi setelah latch tersedia
+
+---
+
+## Implikasi terhadap Ladder Design
+
+- Setiap level hierarchy akan menjadi kelompok network
+- Urutan hierarchy = urutan network di FB101
+- Tidak boleh diubah tanpa mengubah behaviour sistem
+
+---
+
+# 15. FB101 Network Breakdown
+
+Network 1 – Input Conditioning
+Network 2 – Command Handling
+Network 3 – Permissive Logic
+Network 4 – Start/Stop Latch Logic
+Network 5 – Trip Logic
+Network 6 – Alarm Logic
+Network 7 – Start Failure Detection
+Network 8 – Sequence Interface
+
+---
+
+## Tujuan Network Breakdown
+
+Network breakdown adalah proses:
+
+```text id="q8d9j2"
+Logic Layer → Ladder Network
+```
+
+---
+
+## Prinsip Mapping
+
+| Layer              | Network   |
+| ------------------ | --------- |
+| Input Conditioning | Network 1 |
+| Command Handling   | Network 2 |
+| Permissive         | Network 3 |
+| Latch              | Network 4 |
+| Trip               | Network 5 |
+| Alarm              | Network 6 |
+| Start Failure      | Network 7 |
+| Sequence           | Network 8 |
+
+---
+
+## Network 1 – Input Conditioning
+
+✓ Fungsi
+
+Mengubah semua raw input menjadi status internal.
+
+✓ Output utama
+
+- MCC_HEALTHY
+- SUCT_VALVE_READY
+- DISC_VALVE_READY
+- MOTOR_FEEDBACK_ON
+- SUCT_PRESS_LOW
+- SUCT_PRESS_LOWLOW
+- TANK_LEVEL_LOW
+
+---
+
+## Network 2 – Command Handling
+
+✓ Fungsi
+
+Menggabungkan semua sumber command.
+
+✓ Output utama
+
+- CMD_START_REQ
+- CMD_STOP_REQ
+
+---
+
+## Network 3 – Permissive Logic
+
+✓ Fungsi
+
+Menentukan apakah start diperbolehkan.
+
+✓ Output utama
+
+- PERMISSIVE_OK
+
+---
+
+## Network 4 – Start/Stop Latch Logic
+
+✓ Fungsi
+
+Menyimpan status running dan menghasilkan output.
+
+✓ Output utama
+
+- RUN_LATCH
+- MTR_START_CMD
+
+---
+
+## Network 5 – Trip Logic
+
+✓ Fungsi
+
+Melakukan proteksi sistem.
+
+✓ Output utama
+
+- TRIP_ACTIVE
+- TRIP_P101
+
+---
+
+## Network 6 – Alarm Logic
+
+✓ Fungsi
+
+Membangkitkan alarm.
+
+✓ Output utama
+
+- ALARM_ACTIVE
+- ALM_P101
+
+---
+
+## Network 7 – Start Failure Detection
+
+✓ Fungsi
+
+Mendeteksi kegagalan start.
+
+✓ Output utama
+
+- START_FAIL_ACTIVE
+- START_FAIL_ALM
+
+---
+
+## Network 8 – Sequence Interface
+
+✓ Fungsi
+
+Menghubungkan pump ke sequence system.
+
+✓ Output utama
+
+- SEQ_READY
+- SEQ_RUNNING
+- SEQ_TRIP
+
+---
+
+## Prinsip Penting Network
+
+✓ 1. Urutan Network = Urutan Eksekusi
+
+```text id="y9m4rc"
+Network 1 dieksekusi lebih dulu dari Network 2
+```
+
+---
+
+✓ 2. Tidak boleh lompat dependency
+
+Contoh:
+
+- Network 3 (Permissive) tidak boleh sebelum Network 1
+- Network 5 (Trip) membutuhkan RUN_LATCH dari Network 4
+
+---
+
+✓ 3. Setiap Network harus punya fungsi tunggal
+
+- Tidak boleh mencampur:
+
+  - permissive + trip dalam satu network
+  - alarm + latch dalam satu network
+
+---
+
+## Hubungan dengan Scan Cycle
+
+Setiap scan:
+
+```text id="6lh3pk"
+Network 1 → Network 2 → ... → Network 8
+```
+
+Semua logic dihitung ulang setiap cycle.
+
+---
+
+## Implikasi Engineering
+
+Dengan struktur ini:
+
+- ladder menjadi predictable
+- troubleshooting menjadi sistematis
+- perubahan logic tidak merusak keseluruhan sistem
+
+---
+
+# 16. Full Ladder Design (CORE DESIGN SECTION)
+
+Bagian ini merupakan translasi langsung dari:
+
+```text
+Layer → Hierarchy → Network → Ladder
+```
+
+Semua network berada di dalam:
+
+```text
+FB101 Pump_Control
+```
+
+---
+
+## 16.1 Network 1 — Input Conditioning
+
+✓ Tujuan
+
+Mengubah raw signal menjadi internal status.
+
+---
+
+✓ Network 1.1 — MCC healthy
+
+```text id="n1_1"
+| MCC_RDY |
+|----[ ]-----------------------------------------( ) MCC_HEALTHY |
+```
+
+---
+
+✓ Network 1.2 — Suction valve ready
+
+```text id="n1_2"
+| XV101_OPEN |
+|----[ ]------------------------------------( ) SUCT_VALVE_READY |
+```
+
+---
+
+✓ Network 1.3 — Discharge valve ready
+
+```text id="n1_3"
+| XV102_OPEN |
+|----[ ]------------------------------------( ) DISC_VALVE_READY |
+```
+
+---
+
+✓ Network 1.4 — Motor feedback on
+
+```text id="n1_4"
+| MTR_RUN_FB |
+|----[ ]------------------------------------( ) MOTOR_FEEDBACK_ON |
+```
+
+---
+
+✓ Network 1.5 — Tank level low
+
+```text id="n1_5"
+| LSL101 |
+|----[ ]--------------------------------------( ) TANK_LEVEL_LOW |
+```
+
+---
+
+✓ Network 1.6 — Suction pressure low
+
+```text id="n1_6"
+| PT101_PV < Low_SP |
+|----[CMP<]-------------------------------( ) SUCT_PRESS_LOW |
+```
+
+---
+
+✓ Network 1.7 — Suction pressure low-low
+
+```text id="n1_7"
+| PT101_PV < LowLow_SP |
+|----[CMP<]----------------------------( ) SUCT_PRESS_LOWLOW |
+```
+
+---
+
+## 16.2 Network 2 — Command Handling
+
+✓ Network 2.1 — Stop request
+
+```text id="n2_1"
+| PB_STOP |
+|----[ ]--------------------------------------|
+|                                             |----( ) CMD_STOP_REQ |
+| TRIP_ACTIVE |
+|----[ ]--------------------------------------|
+```
+
+---
+
+✓ Network 2.2 — Start request
+
+```text id="n2_2"
+| PB_START |
+|----[ ]--------------------------------------|
+|                                             |
+| REMOTE_START_REQ |
+|----[ ]--------------------------------------|----[/]----( ) CMD_START_REQ |
+|                                             | CMD_STOP_REQ
+| SEQ_START_REQ |
+|----[ ]--------------------------------------|
+```
+
+---
+
+## 16.3 Network 3 — Permissive Logic
+
+```text id="n3"
+| MCC_HEALTHY | SUCT_VALVE_READY | /TANK_LEVEL_LOW | /SUCT_PRESS_LOWLOW | /OL_TRIP | /TRIP_ACTIVE |
+|----[ ]-------------[ ]---------------[/]----------------[/]---------------[/]-----------[/]----( ) PERMISSIVE_OK |
+```
+
+---
+
+## 16.4 Network 4 — Start/Stop Latch Logic
+
+✓ Network 4.1 — Set RUN_LATCH
+
+```text id="n4_1"
+| CMD_START_REQ | PERMISSIVE_OK | /TRIP_ACTIVE |
+|----[ ]-------------[ ]------------[/]--------------------(S) RUN_LATCH |
+```
+
+---
+
+✓ Network 4.2 — Reset RUN_LATCH
+
+```text id="n4_2"
+| CMD_STOP_REQ |
+|----[ ]--------------------------------------------(R) RUN_LATCH |
+```
+
+Tambahan:
+
+```text id="n4_2b"
+| START_FAIL_ACTIVE |
+|----[ ]--------------------------------------------(R) RUN_LATCH |
+```
+
+---
+
+✓ Network 4.3 — Motor command
+
+```text id="n4_3"
+| RUN_LATCH | /TRIP_ACTIVE |
+|----[ ]---------[/]----------------------------( ) MTR_START_CMD |
+```
+
+---
+
+## 16.5 Network 5 — Trip Logic
+
+✓ Network 5.1 — Trip active
+
+```text id="n5_1"
+| OL_TRIP |
+|----[ ]-------------------------------------------|
+|                                                  |
+| SUCT_PRESS_LOWLOW |
+|----[ ]-------------------------------------------|----( ) TRIP_ACTIVE |
+|                                                  |
+| RUN_LATCH | /MCC_HEALTHY |
+|----[ ]--------[/]--------------------------------|
+```
+
+---
+
+✓ Network 5.2 — Trip output
+
+```text id="n5_2"
+| TRIP_ACTIVE |
+|----[ ]--------------------------------------------( ) TRIP_P101 |
+```
+
+---
+
+## 16.6 Network 6 — Alarm Logic
+
+✓ Network 6.1 — Alarm active
+
+```text id="n6_1"
+| SUCT_PRESS_LOW |
+|----[ ]--------------------------------------------|
+|                                                    |
+| START_FAIL_ACTIVE |
+|----[ ]--------------------------------------------|----( ) ALARM_ACTIVE |
+|                                                    |
+| CMD_START_REQ | /PERMISSIVE_OK |
+|----[ ]------------[/]-----------------------------|
+```
+
+---
+
+✓ Network 6.2 — Alarm output
+
+```text id="n6_2"
+| ALARM_ACTIVE |
+|----[ ]----------------------------------------------( ) ALM_P101 |
+```
+
+---
+
+## 16.7 Network 7 — Start Failure Detection
+
+✓ Network 7.1 — TON
+
+```text id="n7_1"
+| MTR_START_CMD | /MOTOR_FEEDBACK_ON | /TRIP_ACTIVE |
+|----[ ]--------------[/]----------------[/]----------------( TON ) |
+|                                                           PT = StartFailDelay
+```
+
+---
+
+✓ Network 7.2 — Start fail active
+
+```text id="n7_2"
+| TON.Q |
+|----[ ]------------------------------------( ) START_FAIL_ACTIVE |
+```
+
+---
+
+✓ Network 7.3 — Alarm
+
+```text id="n7_3"
+| START_FAIL_ACTIVE |
+|----[ ]--------------------------------------( ) START_FAIL_ALM |
+```
+
+---
+
+## 16.8 Network 8 — Sequence Interface
+
+✓ Network 8.1 — Ready
+
+```text id="n8_1"
+| PERMISSIVE_OK | /TRIP_ACTIVE |
+|----[ ]-------------[/]----------------------------( ) SEQ_READY |
+```
+
+---
+
+✓ Network 8.2 — Running
+
+```text id="n8_2"
+| MOTOR_FEEDBACK_ON |
+|----[ ]-----------------------------------------( ) SEQ_RUNNING |
+```
+
+---
+
+✓ Network 8.3 — Trip
+
+```text id="n8_3"
+| TRIP_ACTIVE |
+|----[ ]-------------------------------------------|
+|                                                  |----( ) SEQ_TRIP |
+| START_FAIL_ACTIVE |
+|----[ ]-------------------------------------------|
+```
+
+---
+
+# 17. Logic Flow Summary
+
+## 17.1 Start Path
+
+```text id="flow_start"
+PB_START / REMOTE / SEQ
+→ CMD_START_REQ
+→ PERMISSIVE_OK
+→ RUN_LATCH
+→ MTR_START_CMD
+```
+
+---
+
+## 17.2 Stop Path
+
+```text id="flow_stop"
+PB_STOP / TRIP_ACTIVE
+→ CMD_STOP_REQ
+→ RUN_LATCH reset
+→ MTR_START_CMD off
+```
+
+---
+
+## 17.3 Protective (Trip) Path
+
+```text id="flow_trip"
+OL_TRIP / SUCT_PRESS_LOWLOW / MCC fault
+→ TRIP_ACTIVE
+→ TRIP_P101
+→ RUN_LATCH reset
+→ motor stop
+```
+
+---
+
+## 17.4 Alarm Path
+
+```text id="flow_alarm"
+SUCT_PRESS_LOW / START_FAIL / permissive fail
+→ ALARM_ACTIVE
+→ ALM_P101
+```
+
+---
+
+## 17.5 Start Failure Path
+
+```text id="flow_startfail"
+MTR_START_CMD ON
+AND no feedback
+within delay
+→ START_FAIL_ACTIVE
+→ START_FAIL_ALM
+→ reset RUN_LATCH
+```
+
+---
+
+## 17.6 Sequence Path
+
+```text id="flow_seq"
+PERMISSIVE_OK → SEQ_READY
+MOTOR_FEEDBACK_ON → SEQ_RUNNING
+TRIP / START_FAIL → SEQ_TRIP
+```
+
+---
+
+# 18. Final Architecture
+
+```text id="final_arch"
+OB1
+ └── FB101 Pump_Control
+      ├── Network 1  Input Conditioning
+      ├── Network 2  Command Handling
+      ├── Network 3  Permissive Logic
+      ├── Network 4  Start/Stop Latch Logic
+      ├── Network 5  Trip Logic
+      ├── Network 6  Alarm Logic
+      ├── Network 7  Start Failure Detection
+      └── Network 8  Sequence Interface
+```
+
+---
+
+<small>
+  **_Catatan Penyusunan_** Artikel ini disusun sebagai materi edukasi dan
+  referensi umum berdasarkan berbagai sumber pustaka, praktik lapangan, serta
+  bantuan alat penulisan. Pembaca disarankan untuk melakukan verifikasi lanjutan
+  dan penyesuaian sesuai dengan kondisi serta kebutuhan masing-masing sistem.
+</small>

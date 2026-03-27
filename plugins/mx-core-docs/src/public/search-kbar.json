@@ -1,5 +1,39 @@
 [
   {
+    "id": "maintenance/elins/plc-siemens-s7/siemens-s7-ladder-logic-design",
+    "name": "Siemens S7 Ladder Logic Design for Pump Control - A Structured Engineering Approach Using Master Control Logic Map",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/elins/plc-siemens-s7/siemens-s7-ladder-logic-design",
+    "subtitle": "March 27, 2026",
+    "keywords": [
+      "plc",
+      "siemens-s7",
+      "ladder-logic",
+      "pump-control",
+      "industrial-automation",
+      "control-system",
+      "process-control",
+      "logic-design",
+      "engineering-guidance",
+      "tia-portal"
+    ]
+  },
+  {
+    "id": "maintenance/mechanical/centrifugal-pump-operating-point-engineering",
+    "name": "Centrifugal Pump Operating Point Engineering",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/mechanical/centrifugal-pump-operating-point-engineering",
+    "subtitle": "March 27, 2026",
+    "keywords": [
+      "centrifugal-pump",
+      "operating-point",
+      "pump-curve-system-curve",
+      "tdh-calculation",
+      "hydraulic-system-analysis",
+      "pump-engineering"
+    ]
+  },
+  {
     "id": "maintenance/mechanical/machine-elements/01-shaft-and-power-transmission",
     "name": "Shaft & Power Transmission Fundamentals",
     "section": "CONTENT",

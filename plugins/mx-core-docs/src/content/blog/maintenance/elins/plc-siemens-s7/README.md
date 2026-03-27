@@ -32,6 +32,34 @@ summary: Serial PLC Control Engineering Series menjelaskan bagaimana PLC ladder 
   - [Prinsip Sistem](#prinsip-sistem)
   - [Signal Flow](#signal-flow)
   - [Lock Rule](#lock-rule)
+- [**2A. PLC Program Block Architecture (OB, FB, FC, DB)**](#2a-plc-program-block-architecture-ob-fb-fc-db)
+  - [Tujuan](#tujuan)
+  - [1. Organization Block (OB)](#1-organization-block-ob)
+    - [Definisi](#definisi)
+    - [Karakteristik](#karakteristik)
+    - [Dalam sistem referensi](#dalam-sistem-referensi)
+    - [Peran OB1](#peran-ob1)
+    - [Engineering Insight](#engineering-insight)
+  - [2. Function Block (FB)](#2-function-block-fb)
+    - [Definisi](#definisi-1)
+    - [Karakteristik](#karakteristik-1)
+    - [Dalam sistem referensi](#dalam-sistem-referensi-1)
+    - [Fungsi FB101](#fungsi-fb101)
+    - [Engineering Insight](#engineering-insight-1)
+  - [3. Function (FC)](#3-function-fc)
+    - [Definisi](#definisi-2)
+    - [Karakteristik](#karakteristik-2)
+    - [Contoh penggunaan (tidak digunakan dalam model referensi utama)](#contoh-penggunaan-tidak-digunakan-dalam-model-referensi-utama)
+    - [Posisi dalam arsitektur](#posisi-dalam-arsitektur)
+    - [Engineering Insight](#engineering-insight-2)
+  - [4. Data Block (DB)](#4-data-block-db)
+    - [Definisi](#definisi-3)
+    - [Jenis DB](#jenis-db)
+    - [Dalam sistem referensi](#dalam-sistem-referensi-2)
+    - [Isi DB101](#isi-db101)
+    - [Engineering Insight](#engineering-insight-3)
+  - [5. Hubungan Antar Blok](#5-hubungan-antar-blok)
+  - [6. Lock Compliance Statement](#6-lock-compliance-statement)
 - [3. Master Control Logic Map (Locked)](#3-master-control-logic-map-locked)
   - [Struktur Utama](#struktur-utama)
   - [Hierarki Logika](#hierarki-logika)
@@ -67,11 +95,6 @@ summary: Serial PLC Control Engineering Series menjelaskan bagaimana PLC ladder 
 - [Final Lock Statement](#final-lock-statement)
   - [Mandatory Rules](#mandatory-rules)
 - [Status Serial](#status-serial)
-
----
-
-Berikut README yang telah dirapikan, dinormalisasi, dan dikunci sebagai **Master Control Document** sesuai seluruh artefak yang Anda berikan.
-Struktur mengikuti persis 7 poin yang Anda definisikan, tanpa menambah atau mengubah konten teknis.
 
 ---
 
@@ -171,6 +194,232 @@ Motor Starter
 ```text
 PLC Reference System ini bersifat tetap dan tidak boleh diubah.
 Semua artikel wajib menggunakan sistem ini.
+```
+
+---
+
+# **2A. PLC Program Block Architecture (OB, FB, FC, DB)**
+
+## Tujuan
+
+Section ini menjelaskan **struktur dasar program PLC Siemens S7** yang menjadi fondasi dari arsitektur:
+
+```text
+OB1 → FB101 → DB101
+```
+
+Penjelasan ini bersifat **fundamental awareness** dan tidak mengubah sistem referensi yang telah di-lock.
+
+---
+
+## 1. Organization Block (OB)
+
+### Definisi
+
+**OB (Organization Block)** adalah blok yang mengatur **kapan dan bagaimana program PLC dieksekusi oleh CPU**.
+
+### Karakteristik
+
+- Dieksekusi oleh sistem (tidak dipanggil manual)
+- Bersifat **event-driven**
+- Menjadi entry point program
+
+### Dalam sistem referensi
+
+```text
+OB1 = Main Scan Cycle
+```
+
+### Peran OB1
+
+```text
+Read Input
+↓
+Execute Logic (FB101)
+↓
+Write Output
+```
+
+### Engineering Insight
+
+OB memastikan bahwa:
+
+- seluruh logic berjalan **deterministic**
+- urutan eksekusi tetap konsisten
+- scan cycle dapat dianalisis untuk troubleshooting
+
+---
+
+## 2. Function Block (FB)
+
+### Definisi
+
+**FB (Function Block)** adalah blok program yang memiliki **memory internal (stateful logic)**.
+
+### Karakteristik
+
+- Memerlukan **Instance DB**
+- Data tersimpan antar scan cycle
+- Cocok untuk **equipment control module**
+
+### Dalam sistem referensi
+
+```text
+FB101 = Pump_Control
+DB101 = Pump_Data
+```
+
+### Fungsi FB101
+
+FB101 menangani seluruh logika:
+
+- permissive
+- start/stop latch
+- trip & interlock
+- alarm
+- start failure detection
+- sequence interface
+
+### Engineering Insight
+
+FB digunakan karena:
+
+- equipment memiliki **state (RUN, STOP, TRIP)**
+- membutuhkan **memory antar scan**
+- mendukung modularisasi (1 equipment = 1 FB)
+
+---
+
+## 3. Function (FC)
+
+### Definisi
+
+**FC (Function)** adalah blok program yang **tidak memiliki memory internal (stateless logic)**.
+
+### Karakteristik
+
+- Tidak memiliki instance DB
+- Semua input/output melalui parameter
+- Tidak menyimpan kondisi sebelumnya
+
+### Contoh penggunaan (tidak digunakan dalam model referensi utama)
+
+- scaling analog signal (4–20 mA → engineering unit)
+- kalkulasi flow / pressure
+- unit conversion
+- reusable utility logic
+
+### Posisi dalam arsitektur
+
+Walaupun tidak digunakan dalam struktur utama:
+
+```text
+OB1 → FB101 → DB101
+```
+
+FC tetap merupakan bagian penting dalam:
+
+- pengembangan sistem skala besar
+- modular reusable logic
+- optimasi program
+
+### Engineering Insight
+
+Gunakan FC untuk:
+
+```text
+calculation
+data processing
+signal normalization
+```
+
+Hindari menggunakan FB untuk logic yang tidak membutuhkan memory.
+
+---
+
+## 4. Data Block (DB)
+
+### Definisi
+
+**DB (Data Block)** adalah blok yang digunakan untuk **menyimpan data dalam PLC**.
+
+### Jenis DB
+
+✓ a. Instance DB
+
+- Terhubung langsung dengan FB
+- Menyimpan state FB
+
+```text
+FB101 ↔ DB101
+```
+
+✓ b. Global DB
+
+- Dapat diakses oleh seluruh blok
+- Menyimpan data umum
+
+### Dalam sistem referensi
+
+```text
+DB101 = Pump_Data
+```
+
+### Isi DB101
+
+- RUN status
+- TRIP status
+- timer data
+- alarm state
+- internal flags
+
+### Engineering Insight
+
+DB adalah implementasi nyata dari:
+
+```text
+Single Source of Truth (SSOT)
+```
+
+Semua status penting disimpan di DB untuk:
+
+- integrasi ke DCS
+- troubleshooting
+- data consistency
+
+---
+
+## 5. Hubungan Antar Blok
+
+Struktur final tetap:
+
+```text
+OB1
+ └── FB101 Pump_Control
+        └── DB101 Pump_Data
+```
+
+Dengan tambahan pemahaman:
+
+- OB → eksekusi
+- FB → logic + state
+- DB → storage
+- FC → utility (opsional, tidak digunakan dalam model ini)
+
+---
+
+## 6. Lock Compliance Statement
+
+```text
+Penambahan penjelasan ini:
+
+- tidak mengubah struktur OB1–FB101–DB101
+- tidak menambahkan blok baru ke sistem referensi
+- tidak mengubah logic map
+- tidak mengubah I/O
+- tidak mengubah ladder
+
+Hanya bersifat explanatory untuk meningkatkan pemahaman engineer.
 ```
 
 ---
