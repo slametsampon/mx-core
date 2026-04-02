@@ -1523,7 +1523,7 @@ $$
 
 # **6. Pressure Drop Calculation (Detailed)**
 
-Bab ini mengubah konsep pada Bab 5 menjadi **perhitungan numerik** untuk dua studi kasus. Untuk liquid, saya gunakan hubungan **Cv–ΔP** standar untuk fluida incompressible. Untuk gas, saya gunakan pendekatan **ISA/IEC-style compressible flow** dengan parameter **pressure-drop ratio (x)** dan **expansion factor (Y)**. Pada aliran gas, kondisi kritis terjadi saat (x) mencapai batas **(F_k x_T)**, sehingga evaluasi choke tidak boleh diabaikan. ($$Emerson$$$$1$$)
+Bab ini mengubah konsep pada Bab 5 menjadi **perhitungan numerik** untuk dua studi kasus. Untuk liquid, saya gunakan hubungan **Cv–ΔP** standar untuk fluida incompressible. Untuk gas, saya gunakan pendekatan **ISA/IEC-style compressible flow** dengan parameter **pressure-drop ratio (x)** dan **expansion factor (Y)**. Pada aliran gas, kondisi kritis terjadi saat (x) mencapai batas **(F_k x_T)**, sehingga evaluasi choke tidak boleh diabaikan. ([Emerson][1])
 
 ---
 
@@ -1548,7 +1548,7 @@ $$
 \Delta P = SG \left(\frac{Q}{C_v}\right)^2
 $$
 
-dengan (Q) dalam **gpm**, (\Delta P) dalam **psi**, dan (SG) relatif terhadap air. Bentuk ini konsisten dengan praktik sizing valve untuk liquid. ($$Emerson$$$$1$$)
+dengan (Q) dalam **gpm**, (\Delta P) dalam **psi**, dan (SG) relatif terhadap air. Bentuk ini konsisten dengan praktik sizing valve untuk liquid. ([Emerson][1])
 
 ✔ **Step 1 – Konversi flow ke gpm**
 
@@ -1626,7 +1626,7 @@ Dengan kata lain:
 
 ## **6.2 Case B – Gas Calculation**
 
-Untuk gas, kita tidak boleh memakai persamaan liquid. Emerson menjelaskan bahwa sizing gas harus mempertimbangkan **absolute pressure**, **temperature**, **molecular weight atau specific gravity**, **compressibility factor (Z)**, serta **pressure-drop ratio (x)** dan **expansion factor (Y)**. Batas critical flow dicapai saat (x) mendekati atau melampaui **(F_k x_T)**, dan pada titik itu penurunan outlet pressure tidak lagi menaikkan flow secara proporsional. ($$Emerson$$$$2$$)
+Untuk gas, kita tidak boleh memakai persamaan liquid. Emerson menjelaskan bahwa sizing gas harus mempertimbangkan **absolute pressure**, **temperature**, **molecular weight atau specific gravity**, **compressibility factor (Z)**, serta **pressure-drop ratio (x)** dan **expansion factor (Y)**. Batas critical flow dicapai saat (x) mendekati atau melampaui **(F_k x_T)**, dan pada titik itu penurunan outlet pressure tidak lagi menaikkan flow secara proporsional. ([Emerson][2])
 
 ✔ **Data yang digunakan**
 
@@ -1648,7 +1648,7 @@ $$
 P_2 = 18.013 \text{ bar(a)}
 $$
 
-Karena gas sizing selalu harus memakai tekanan absolut, inilah basis yang dipakai untuk seluruh perhitungan berikutnya. ($$Emerson$$$$1$$)
+Karena gas sizing selalu harus memakai tekanan absolut, inilah basis yang dipakai untuk seluruh perhitungan berikutnya. ([Emerson][1])
 
 ✔ **Step 2 – Hitung pressure-drop ratio**
 
@@ -1664,7 +1664,7 @@ Nilai **(x \approx 0.143)**.
 
 ✔ **Step 3 – Evaluasi subcritical vs choked**
 
-Menurut metode ISA/IEC yang diringkas Emerson, aliran gas mencapai critical condition saat (x) menyamai atau melebihi **(F_k x_T)**, dengan (Y = 1 - x/(3F_kx_T)) dan (Y) tidak boleh turun di bawah 0.667. Karena **(x_T)** adalah parameter vendor/valve-specific, evaluasi final tetap harus memakai data pabrikan. Namun untuk screening awal, (x = 0.143) masih jauh di bawah nilai kritis yang lazim dijumpai pada valve body umum, sehingga **kasus ini secara preliminary tergolong subcritical**. ($$Emerson$$$$2$$)
+Menurut metode ISA/IEC yang diringkas Emerson, aliran gas mencapai critical condition saat (x) menyamai atau melebihi **(F_k x_T)**, dengan (Y = 1 - x/(3F_kx_T)) dan (Y) tidak boleh turun di bawah 0.667. Karena **(x_T)** adalah parameter vendor/valve-specific, evaluasi final tetap harus memakai data pabrikan. Namun untuk screening awal, (x = 0.143) masih jauh di bawah nilai kritis yang lazim dijumpai pada valve body umum, sehingga **kasus ini secara preliminary tergolong subcritical**. ([Emerson][2])
 
 ✔ **Step 4 – Estimasi required (C_v) bila full 3 bar drop dianggap tersedia di valve**
 
@@ -1674,7 +1674,7 @@ $$
 C_v=\frac{w}{N_8,F_p,P_1,Y,\sqrt{\frac{xM}{T_1 Z}}}
 $$
 
-dengan (N_8) sebagai konstanta satuan, (F_p) faktor piping geometry, dan (Y) expansion factor. Persamaan ini ditampilkan di referensi Emerson untuk compressible flow sizing. ($$Emerson$$$$2$$)
+dengan (N_8) sebagai konstanta satuan, (F_p) faktor piping geometry, dan (Y) expansion factor. Persamaan ini ditampilkan di referensi Emerson untuk compressible flow sizing. ([Emerson][2])
 
 Untuk screening ini saya ambil:
 
@@ -1725,7 +1725,7 @@ $$
 didapat:
 
 - ($\rho_1 \approx 15.17 \text{ kg/m}^3$) pada inlet
-- ($\rho_2 \approx 13.01 \text{ kg/m}^3$) pada outlet. ($$Emerson$$$$1$$)
+- ($\rho_2 \approx 13.01 \text{ kg/m}^3$) pada outlet. ([Emerson][1])
 
 Ini menegaskan bahwa pada gas, walaupun pressure drop valve sangat kecil, densitas tetap berubah dengan tekanan sistem dan memengaruhi gaya hidrodinamik pada disc.
 
@@ -1749,7 +1749,7 @@ $$
 M = \frac{V}{a}
 $$
 
-dengan (a) adalah kecepatan suara. Compressibility effects menjadi semakin penting saat Mach number meningkat menuju kondisi transonik. ($$NASA Glenn Research Center$$$$3$$)
+dengan (a) adalah kecepatan suara. Compressibility effects menjadi semakin penting saat Mach number meningkat menuju kondisi transonik. ([NASA Glenn Research Center][3])
 
 Dengan pendekatan:
 
@@ -1782,7 +1782,7 @@ Dari dua perhitungan di atas, pelajaran desainnya sangat jelas.
 
 Pada **liquid system**, desain awal tampak baik karena pressure drop check valve masih moderat, yaitu sekitar **0.160 bar** pada normal flow dan **0.361 bar** pada max flow. Jadi failure mode pada Case A bukan berasal dari kerugian energi steady-state, melainkan dari **transient closure behavior** saat pump trip.
 
-Pada **gas system**, analisis harus melampaui sekadar ΔP. Walaupun screening menunjukkan **subcritical flow**, valve line-size yang terlalu besar dapat memiliki ΔP aktual yang hampir nol dan tetap gagal di lapangan akibat **compressibility, density variation, turndown sensitivity, dan pulsation-driven chatter**. ($$Emerson$$$$2$$)
+Pada **gas system**, analisis harus melampaui sekadar ΔP. Walaupun screening menunjukkan **subcritical flow**, valve line-size yang terlalu besar dapat memiliki ΔP aktual yang hampir nol dan tetap gagal di lapangan akibat **compressibility, density variation, turndown sensitivity, dan pulsation-driven chatter**. ([Emerson][2])
 
 Maka ringkasan engineering-nya adalah:
 
@@ -2485,7 +2485,7 @@ Bab ini mengubah diagnosis pada Bab 8 menjadi **tindakan desain yang konkret**. 
 - memenuhi kebutuhan kapasitas,
 - tetap stabil pada **minimum flow**,
 - dan memiliki respons dinamik yang sesuai dengan skenario transien sistem.
-  Untuk layanan pompa dan kompresor, OEM non-slam check valve umumnya menekankan bahwa desain **spring-assisted axial flow** menutup sebelum flow reversal berkembang penuh, sehingga membantu mengurangi slam dan water hammer. Untuk discharge reciprocating compressor, ada pula model khusus dengan **pulse-damping chamber** karena pulsation dapat mempercepat chatter dan seat wear. ($$DFT® Inc$$$$1$$)
+  Untuk layanan pompa dan kompresor, OEM non-slam check valve umumnya menekankan bahwa desain **spring-assisted axial flow** menutup sebelum flow reversal berkembang penuh, sehingga membantu mengurangi slam dan water hammer. Untuk discharge reciprocating compressor, ada pula model khusus dengan **pulse-damping chamber** karena pulsation dapat mempercepat chatter dan seat wear. ([DFT® Inc][1])
 
 $$!$$All Category - DFT - Axial Flow Check Valves - Gamako Ekakarsa ...$$(https://tse1.mm.bing.net/th/id/OIP.Ntw4FZ_O-XHVkzdu63-fbQHaFj?pid=Api)$$(https://www.gamako.co.id/product/all-category/dft?utm_source=chatgpt.com)
 
@@ -2509,8 +2509,8 @@ OEM literature menunjukkan bahwa check valve **dual plate non-slam** memakai spr
 
 Untuk Case A, dua opsi redesign yang layak adalah:
 
-- **Dual plate non-slam check valve** sebagai opsi ekonomis dan kompak. OEM DUO-CHEK menyatakan desain dua plate berpegas memberi respons lebih cepat dan membantu mengurangi water hammer. ($$CRANE ChemPharma & Energy$$$$2$$)
-- **Axial flow / nozzle check valve** sebagai opsi yang lebih kuat secara dinamik, terutama bila histori plant menunjukkan slam berulang atau trip event sering terjadi. DFT menyatakan desain axial-flow spring-assisted mereka menutup saat flow menurun dan ditujukan untuk mencegah water hammer. ($$DFT® Inc$$$$1$$)
+- **Dual plate non-slam check valve** sebagai opsi ekonomis dan kompak. OEM DUO-CHEK menyatakan desain dua plate berpegas memberi respons lebih cepat dan membantu mengurangi water hammer. ([CRANE ChemPharma & Energy][2])
+- **Axial flow / nozzle check valve** sebagai opsi yang lebih kuat secara dinamik, terutama bila histori plant menunjukkan slam berulang atau trip event sering terjadi. DFT menyatakan desain axial-flow spring-assisted mereka menutup saat flow menurun dan ditujukan untuk mencegah water hammer. ([DFT® Inc][1])
 
 **Rekomendasi engineering saya untuk artikel ini:**
 
@@ -2701,11 +2701,11 @@ Untuk **liquid pump discharge**, tujuan utama adalah:
 - menurunkan reverse velocity,
 - mempercepat closure,
 - meminimalkan slam.
-  Karena itu, **dual plate** bisa memadai, tetapi **axial flow** lebih kuat bila severity transien tinggi. ($$CRANE ChemPharma & Energy$$$$2$$)gas compressor discharge\*\*, tujuan utamanya adalah:
+  Karena itu, **dual plate** bisa memadai, tetapi **axial flow** lebih kuat bila severity transien tinggi. ([CRANE ChemPharma & Energy][2])gas compressor discharge\*\*, tujuan utamanya adalah:
 - stabil pada minimum flow,
 - tahan pulsation,
 - tidak chatter.
-  Karena itu, **axial flow spring-assisted** praktis menjadi pilihan utama, dan dual plate tidak ideal untuk pulsating reciprocating duty. ($$Prestec Sales, Inc.™$$$$5$$)ya:
+  Karena itu, **axial flow spring-assisted** praktis menjadi pilihan utama, dan dual plate tidak ideal untuk pulsating reciprocating duty. ([Prestec Sales, Inc.™][5])ya:
 
 $$
 \text{Case A: } \text{Hydraulic + fast closure}
