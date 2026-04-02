@@ -1,5 +1,24 @@
 [
   {
+    "id": "maintenance/mechanical/check-valve-design-sizing-application",
+    "name": "Design, Sizing, and Application of Check Valves in Petrochemical Systems - A Case-Driven Engineering Approach",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/mechanical/check-valve-design-sizing-application",
+    "subtitle": "April 2, 2026",
+    "keywords": [
+      "check-valve-design",
+      "petrochemical-engineering",
+      "pump-vs-compressor",
+      "dynamic-behavior-analysis",
+      "pressure-drop-calculation",
+      "chatter-water-hammer",
+      "valve-sizing",
+      "process-safety-hazop-lopa",
+      "axial-flow-check-valve",
+      "engineering-best-practice"
+    ]
+  },
+  {
     "id": "maintenance/elins/plc-siemens-s7/siemens-s7-ladder-logic-design",
     "name": "Siemens S7 Ladder Logic Design for Pump Control - A Structured Engineering Approach Using Master Control Logic Map",
     "section": "CONTENT",
