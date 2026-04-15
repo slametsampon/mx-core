@@ -1,5 +1,41 @@
 [
   {
+    "id": "maintenance/mechanical/Repair-Hub-Coupling-Rigid-Connection",
+    "name": "Repair Hub dan Shaft pada Rigid Flange Coupling SUS304",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/mechanical/Repair-Hub-Coupling-Rigid-Connection",
+    "subtitle": "April 15, 2026",
+    "keywords": [
+      "rigid-flange-coupling",
+      "hub-rebushing",
+      "shaft-re-machining",
+      "H7-k6-fit",
+      "H7-m6-fit",
+      "SUS304",
+      "keyway-repair",
+      "maintenance-engineering"
+    ]
+  },
+  {
+    "id": "maintenance/mechanical/Studi-Perhitungan-Hub-Coupling-Rigid-Connection",
+    "name": "Studi Perhitungan Hub-Coupling Rigid Connection",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/mechanical/Studi-Perhitungan-Hub-Coupling-Rigid-Connection",
+    "subtitle": "April 14, 2026",
+    "keywords": [
+      "check-valve-design",
+      "petrochemical-engineering",
+      "pump-vs-compressor",
+      "dynamic-behavior-analysis",
+      "pressure-drop-calculation",
+      "chatter-water-hammer",
+      "valve-sizing",
+      "process-safety-hazop-lopa",
+      "axial-flow-check-valve",
+      "engineering-best-practice"
+    ]
+  },
+  {
     "id": "maintenance/mechanical/check-valve-design-sizing-application",
     "name": "Design, Sizing, and Application of Check Valves in Petrochemical Systems - A Case-Driven Engineering Approach",
     "section": "CONTENT",

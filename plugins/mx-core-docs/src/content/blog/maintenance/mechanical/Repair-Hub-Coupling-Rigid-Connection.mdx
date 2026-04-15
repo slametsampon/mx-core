@@ -1,0 +1,709 @@
+---
+title: Repair Hub dan Shaft pada Rigid Flange Coupling SUS304
+authors: ['sam']
+date: '2026-04-15'
+tags:
+  [
+    'rigid-flange-coupling',
+    'hub-rebushing',
+    'shaft-re-machining',
+    'H7-k6-fit',
+    'H7-m6-fit',
+    'SUS304',
+    'keyway-repair',
+    'maintenance-engineering',
+  ]
+draft: false
+summary: Repair rigid flange coupling SUS304 harus mengembalikan geometri, fungsi mekanik, dan maintainability, bukan sekadar membuat komponen terpasang kembali. Data kasus - 22 kW, 115 rpm, shaft 95 mm, keyed connection, 8×M24, material hub-shaft-blade SUS304. Metode utama yang direkomendasikan adalah hub rebushing full-length dan shaft re-machining, lalu final machining ke fit H7/k6 atau H7/m6 pada nominal akhir yang sama. Ketebalan bush ideal 3–4 mm radial agar keyway tetap menggigit parent hub. Shaft sebaiknya dipertahankan ≥90 mm. Lakukan PT, dimensional mapping, kontrol runout, machining keyway setelah bush terpasang, serta reassembly memakai heater dan anti-seize untuk mencegah fretting, galling, misalignment, dan kerusakan ulang.
+---
+
+# **_Repair Hub dan Shaft pada Rigid Flange Coupling SUS304_**
+
+_One-stop reference untuk engineer muda_
+
+---
+
+- [**_Repair Hub dan Shaft pada Rigid Flange Coupling SUS304_**](#repair-hub-dan-shaft-pada-rigid-flange-coupling-sus304)
+  - [1. Latar belakang](#1-latar-belakang)
+  - [2. Data teknis kasus](#2-data-teknis-kasus)
+  - [3. Tujuan repair](#3-tujuan-repair)
+  - [4. Nomenklatur yang perlu dipahami engineer muda](#4-nomenklatur-yang-perlu-dipahami-engineer-muda)
+  - [5. Langkah pertama: hitung beban, bukan langsung memilih metode repair](#5-langkah-pertama-hitung-beban-bukan-langsung-memilih-metode-repair)
+  - [6. Mengapa keyed coupling tetap butuh fit yang benar](#6-mengapa-keyed-coupling-tetap-butuh-fit-yang-benar)
+  - [7. Target fit setelah repair](#7-target-fit-setelah-repair)
+  - [8. Evaluasi awal sebelum repair](#8-evaluasi-awal-sebelum-repair)
+  - [9. Alternatif repair pada hub](#9-alternatif-repair-pada-hub)
+    - [9.1 Rebushing / sleeve insert lalu finish machining](#91-rebushing--sleeve-insert-lalu-finish-machining)
+    - [9.2 Weld build-up pada bore hub lalu rebore](#92-weld-build-up-pada-bore-hub-lalu-rebore)
+    - [9.3 Retaining compound saja](#93-retaining-compound-saja)
+    - [9.4 Replace hub](#94-replace-hub)
+  - [10. Alternatif repair pada shaft](#10-alternatif-repair-pada-shaft)
+    - [10.1 Re-machining shaft journal](#101-re-machining-shaft-journal)
+    - [10.2 Laser cladding lalu finish machining](#102-laser-cladding-lalu-finish-machining)
+    - [10.3 Cold spray / thermal spray lalu finish machining](#103-cold-spray--thermal-spray-lalu-finish-machining)
+    - [10.4 Weld build-up konvensional lalu remachine](#104-weld-build-up-konvensional-lalu-remachine)
+    - [10.5 Replace shaft](#105-replace-shaft)
+  - [11. Metode paling optimal untuk kasus keyed-way ini](#11-metode-paling-optimal-untuk-kasus-keyed-way-ini)
+  - [12. Desain awal rigid flange coupling untuk kasus ini](#12-desain-awal-rigid-flange-coupling-untuk-kasus-ini)
+  - [13. Kekuatan hub dan flange bukan pembatas utama](#13-kekuatan-hub-dan-flange-bukan-pembatas-utama)
+  - [14. Mengapa bush thickness harus dihitung dengan mempertimbangkan keyway depth](#14-mengapa-bush-thickness-harus-dihitung-dengan-mempertimbangkan-keyway-depth)
+  - [15. Perhitungan bush thickness yang benar](#15-perhitungan-bush-thickness-yang-benar)
+    - [15.1 Batas preferred](#151-batas-preferred)
+    - [15.2 Batas minimum acceptable](#152-batas-minimum-acceptable)
+    - [15.3 Evaluasi beberapa skenario bush](#153-evaluasi-beberapa-skenario-bush)
+  - [16. Rekomendasi final bush thickness](#16-rekomendasi-final-bush-thickness)
+  - [17. Apakah interface bush–hub cukup kuat](#17-apakah-interface-bushhub-cukup-kuat)
+  - [18. Retaining compound: boleh, tetapi hanya sebagai pelengkap](#18-retaining-compound-boleh-tetapi-hanya-sebagai-pelengkap)
+  - [19. Urutan repair hub yang benar](#19-urutan-repair-hub-yang-benar)
+  - [20. Batas aman machining pada shaft](#20-batas-aman-machining-pada-shaft)
+  - [21. Apakah key masih aman bila shaft turun menjadi 90 mm](#21-apakah-key-masih-aman-bila-shaft-turun-menjadi-90-mm)
+  - [22. Rule of decision yang praktis untuk engineer muda](#22-rule-of-decision-yang-praktis-untuk-engineer-muda)
+  - [23. Acceptance criteria setelah repair](#23-acceptance-criteria-setelah-repair)
+  - [24. Reassembly: jangan ulangi akar masalah](#24-reassembly-jangan-ulangi-akar-masalah)
+  - [25. Rekomendasi final untuk kasus ini](#25-rekomendasi-final-untuk-kasus-ini)
+  - [26. Penutup](#26-penutup)
+
+---
+
+## 1. Latar belakang
+
+Kasus ini bermula dari pemasangan hub-coupling yang tidak dilakukan dengan metode yang benar. Hub seharusnya dipasang dengan **controlled heating** agar bore hub mengembang secukupnya, tetapi di lapangan pemasangan dipaksa tanpa heater yang memadai. Akibatnya terjadi **scuffing, galling, tearing**, lalu dilakukan corrective machining pada **inner diameter hub** dan **shaft journal**. Hasil akhirnya adalah suaian tidak lagi mengikuti fit standar dan cenderung **oversize / terlalu longgar**.
+
+Pada sambungan seperti ini, walaupun torsi utama ditransmisikan oleh **key**, fit shaft–hub tetap sangat penting untuk **centering, alignment, runout control, dan pencegahan fretting**. Untuk material **SUS304**, data tipikal yang relevan sebagai basis engineering adalah modulus elastisitas sekitar **193 GPa**, koefisien muai panjang sekitar **17.2 × 10⁻⁶/K**, dan yield strength minimum sekitar **205 MPa**. Data ini membuat perilaku komponen saat dipanaskan, dimachining, atau direpair masih dapat diprediksi dengan baik.
+
+![a310-hub-coupling.jpeg](/static/images/artikel/a310-hub-coupling.jpeg)
+
+## 2. Data teknis kasus
+
+Data lapangan yang menjadi basis studi ini adalah sebagai berikut:
+
+- daya motor = **22 kW**
+- putaran shaft / blade = **115 rpm**
+- diameter shaft nominal awal = **95 mm**
+- tipe coupling = **direct rigid flange coupling**
+- koneksi shaft–hub = **parallel keyed connection**
+- flange bolting = **8 × M24 SUS304**
+- material hub = **SUS304**
+- material shaft = **SUS304**
+- material blade = **SUS304**
+- temperatur operasi = **70°C**
+
+Untuk shaft pada rentang sekitar **85–95 mm**, tabel standard key/keyway menunjukkan ukuran key yang sesuai adalah **25 × 14 mm**, dengan **hub keyway depth ($T_2$)** sekitar **5.4–5.6 mm** dan radius dasar keyway sekitar **0.40–0.60 mm**. Untuk rigid flange coupling, proporsi geometri awal yang umum digunakan adalah hub OD sekitar **$2d$**, hub length sekitar **$1.5d$**, bolt PCD sekitar **$3d$**, flange thickness sekitar **$0.5d$**, dan flange OD sekitar **$4d$**.
+
+## 3. Tujuan repair
+
+Tujuan repair bukan sekadar membuat komponen “bisa dipasang lagi”. Tujuan yang benar adalah mengembalikan tiga hal sekaligus:
+
+- **geometri**, yaitu bore hub dan shaft journal kembali round, lurus, dan konsentris;
+- **fungsi mekanik**, yaitu key bekerja normal, fit kembali sehat, dan tidak muncul titik lemah baru;
+- **maintainability**, yaitu komponen masih bisa dirakit dan dibongkar di masa depan dengan metode yang benar.
+
+Pada kasus ini, repair yang paling masuk akal bukan sekadar oversize machining lalu dipasang paksa, tetapi mengembalikan **hubungan toleransi** antara hub dan shaft ke sistem fit yang sehat.
+
+## 4. Nomenklatur yang perlu dipahami engineer muda
+
+Agar pembahasan tidak membingungkan, simbol utama berikut harus dipahami sejak awal.
+
+Untuk perhitungan mekanik:
+
+$$
+P = \text{daya, kW}
+$$
+
+$$
+n = \text{putaran, rpm}
+$$
+
+$$
+T = \text{torsi, N·m}
+$$
+
+$$
+d = \text{diameter shaft / bore hub, mm}
+$$
+
+$$
+D = \text{diameter luar hub, mm}
+$$
+
+$$
+L = \text{panjang hub, mm}
+$$
+
+$$
+D_1 = \text{bolt pitch circle diameter, mm}
+$$
+
+$$
+D_2 = \text{diameter luar flange, mm}
+$$
+
+$$
+t_f = \text{tebal flange, mm}
+$$
+
+$$
+w = \text{lebar key, mm}
+$$
+
+$$
+h = \text{tinggi key, mm}
+$$
+
+$$
+l = \text{panjang key, mm}
+$$
+
+Untuk sistem fit ISO 286:
+
+$$
+IT = \text{International Tolerance grade}
+$$
+
+$$
+ES = \text{upper deviation hole}
+$$
+
+$$
+EI = \text{lower deviation hole}
+$$
+
+$$
+es = \text{upper deviation shaft}
+$$
+
+$$
+ei = \text{lower deviation shaft}
+$$
+
+Arti kode yang sering muncul adalah sebagai berikut.
+
+**H7** berarti hole dengan posisi toleransi **H** dan grade **7**. Untuk hole posisi **H**, berlaku:
+
+$$
+EI = 0
+$$
+
+Artinya batas bawah hole tepat berada di nominal size.
+
+**k6, m6, n6, s6** berarti shaft dengan posisi toleransi **k, m, n, s** dan grade **6**. Grade menunjukkan **lebar zona toleransi**, sedangkan huruf menunjukkan **letak zona toleransi** terhadap nominal size. Makin ke kanan posisi huruf shaft, makin besar kecenderungan interference terhadap hole H. Sistem deviasi dan tolerance zone ini ditetapkan dalam ISO 286.
+
+## 5. Langkah pertama: hitung beban, bukan langsung memilih metode repair
+
+Torsi nominal dihitung dari:
+
+$$
+T = \frac{9550P}{n}
+$$
+
+Dengan $P = 22$ kW dan $n = 115$ rpm:
+
+$$
+T_n = \frac{9550 \times 22}{115} = 1826.96 \text{ N·m}
+$$
+
+Untuk preliminary design basis, digunakan **service factor 1.5** karena belum tersedia data detail mengenai blade drag, shock load, atau kemungkinan jamming. Maka:
+
+$$
+T_d = 1.5 \times 1826.96 = 2740.43 \text{ N·m}
+$$
+
+Jadi basis desain yang digunakan adalah:
+
+- **torsi nominal = 1.827 kN·m**
+- **torsi desain = 2.740 kN·m**
+
+Gaya tangensial pada shaft Ø95 mm dihitung dengan:
+
+$$
+F_t = \frac{2T}{d}
+$$
+
+Sehingga diperoleh:
+
+- **38.46 kN** pada torsi nominal
+- **57.69 kN** pada torsi desain
+
+Ini adalah angka dasar yang harus diingat, karena semua evaluasi hub, key, bush, dan shaft bermula dari sini.
+
+## 6. Mengapa keyed coupling tetap butuh fit yang benar
+
+Kesalahan umum engineer muda adalah menganggap bahwa karena sambungan memakai key, maka fit shaft–hub boleh longgar. Ini tidak tepat.
+
+Pada keyed rigid flange coupling, **key memang elemen utama transmisi torsi**, tetapi fit tetap memegang peranan penting untuk:
+
+- centering,
+- alignment,
+- kontrol runout,
+- distribusi kontak,
+- reduksi fretting.
+
+Karena itu, walaupun repair dilakukan dengan rebushing dan remachining, target akhirnya tetap harus berupa **fit standard yang benar**, bukan sekadar “asal masuk”.
+
+## 7. Target fit setelah repair
+
+Untuk nominal **95 mm**, hole **95 H7** berada pada:
+
+$$
+95.000 \text{ s.d. } 95.035 \text{ mm}
+$$
+
+Untuk shaft di size range yang sama, filosofi fit yang paling cocok untuk keyed hub adalah:
+
+- **H7/k6** sebagai pilihan utama,
+- **H7/m6** sebagai alternatif bila ingin centering sedikit lebih ketat.
+
+Yang penting dipahami: bila shaft setelah clean-up tidak lagi 95.000 mm, maka bore bush tidak perlu dipaksa tetap 95.000 mm. Yang harus dipertahankan adalah **fit philosophy** pada nominal akhir yang sama. Misalnya, bila shaft final paling rasional menjadi **94.20 mm**, maka targetnya menjadi:
+
+- **94.20 H7** pada bore,
+- **94.20 k6** atau **94.20 m6** pada shaft.
+
+Inilah inti repair yang benar: **mengembalikan hubungan toleransi**, bukan sekadar mengejar nominal awal.
+
+## 8. Evaluasi awal sebelum repair
+
+Sebelum memilih metode repair, lakukan empat langkah dasar:
+
+Pertama, **dimensional mapping** pada hub bore dan shaft journal. Ukur pada beberapa bidang dan arah untuk mengetahui total oversize, taper, ovality, dan eccentricity.
+
+Kedua, **damage classification**. Bedakan apakah kerusakan hanya berupa scuffing ringan, tearing material, battered keyway, atau sudah sampai crack.
+
+Ketiga, lakukan **PT / dye penetrant** pada area bore, keyway root, fillet, dan area rusak.
+
+Keempat, tetapkan **decision gate**. Bila ditemukan crack, flange face distortion berat, atau kebutuhan repair yang membuat geometri menjadi tidak rasional, maka opsi **replacement** harus dipertimbangkan sejak awal.
+
+## 9. Alternatif repair pada hub
+
+### 9.1 Rebushing / sleeve insert lalu finish machining
+
+Ini adalah **opsi terbaik untuk sisi hub**.
+
+Metodenya: bore hub dibersihkan sampai seluruh damage hilang, lalu dipasang **solid full-length bush**, kemudian dilakukan finish boring ke ukuran final, dan **keyway dipotong setelah bush terpasang**.
+
+Keunggulannya adalah geometri final paling mudah dikendalikan. Roundness, concentricity, dan hubungan bore terhadap flange face bisa dipulihkan dengan baik. Distorsi juga sangat kecil, karena tidak ada heat input besar seperti pada welding.
+
+Kekurangannya: perlu machining tambahan, perlu disiplin pada desain interference bush–hub, dan bila bush dibuat terlalu tebal maka keyway bisa “hidup” hanya di bush.
+
+Untuk kasus keyed rigid flange coupling seperti ini, rebushing adalah **metode paling optimal**, selama bush tetap cukup tipis sehingga keyway akhir masih menggigit parent hub.
+
+### 9.2 Weld build-up pada bore hub lalu rebore
+
+Secara material, SUS304 memang **mudah dilas**, dan filler seperti **308L** lazim dipakai untuk 304/304L. Tetapi pada komponen presisi seperti coupling hub, repair weld pada bore internal membawa konsekuensi distorsi, residual stress, dan kebutuhan machining ulang yang lebih berat. Data grade 304/304L menunjukkan weldability yang baik, tetapi itu tidak berarti repair weld selalu menjadi opsi terbaik untuk komponen presisi.
+
+Keunggulannya adalah tidak menambah interface sleeve.
+
+Kekurangannya adalah bore lebih sulit dikontrol tetap round dan konsentris, flange face bisa ikut lari, dan final machining menjadi lebih berat.
+
+Untuk kasus ini, weld build-up pada bore **bukan opsi pertama**.
+
+### 9.3 Retaining compound saja
+
+Produk seperti **LOCTITE 620** memang dirancang untuk cylindrical fitting parts seperti sleeve, bushing, dan retaining seats. Ia berguna untuk mengurangi micro-movement, fretting, dan membantu sealing pada interface bush–hub.
+
+Keunggulannya adalah cepat dan sederhana.
+
+Kekurangannya adalah ia **tidak mengoreksi geometri**. Bila bore sudah oval, taper, atau offset, compound tidak menyelesaikan masalah inti.
+
+Karena itu, retaining compound **bukan solusi utama** untuk hub oversize. Ia hanya pelengkap.
+
+### 9.4 Replace hub
+
+Bila ditemukan crack, keyway root rusak berat, flange face deformation, atau kebutuhan bush terlalu tebal sehingga repair sudah tidak lagi bersih secara engineering, maka **replace hub** menjadi pilihan yang paling aman.
+
+Keunggulannya adalah hasil paling rapi dan paling dapat dipertanggungjawabkan.
+
+Kekurangannya adalah biaya dan lead time.
+
+## 10. Alternatif repair pada shaft
+
+### 10.1 Re-machining shaft journal
+
+Ini adalah **opsi yang dipilih pada kasus Anda**, dan masih sangat layak selama kerusakan terbatas pada permukaan fit dan shaft tidak perlu diturunkan terlalu jauh.
+
+Dari sisi torsi murni:
+
+- pada **95 mm**, tegangan torsi shaft sekitar **16.28 MPa**
+- pada **90 mm**, sekitar **19.15 MPa**
+- pada **85 mm**, sekitar **22.73 MPa**
+
+Artinya, secara torsi murni sedikit pengurangan diameter masih aman.
+
+Keunggulannya adalah sederhana, murah, cepat, dan geometri mudah dikontrol.
+
+Kekurangannya adalah diameter shaft berkurang permanen, sehingga batasnya harus dijaga agar keyway, straightness, dan margin terhadap bending/fatigue tidak terganggu.
+
+Untuk kasus ini, re-machining shaft adalah **opsi optimal**, selama final shaft masih dapat dipertahankan **≥ 90 mm**, dan lebih ideal lagi bila **≥ 94 mm**.
+
+### 10.2 Laser cladding lalu finish machining
+
+Laser cladding adalah opsi repair premium untuk shaft journal. Karakter utamanya adalah **heat input rendah**, **distorsi kecil**, dan **metallurgical bond** yang baik. Ini sangat cocok untuk restorasi journal presisi.
+
+Keunggulannya adalah hasil repair sangat baik secara geometri dan metalurgi.
+
+Kekurangannya adalah vendor lebih terbatas dan biaya lebih tinggi.
+
+Untuk kasus ini, laser cladding menjadi **opsi kedua terbaik** bila shaft tidak bisa diselamatkan dengan machining-only.
+
+### 10.3 Cold spray / thermal spray lalu finish machining
+
+Cold spray adalah proses **solid-state deposition** dengan thermal load sangat rendah, sehingga HAZ hampir tidak ada. Ini menjadikannya baik untuk build-up lokal tanpa distorsi besar.
+
+Keunggulannya adalah distorsi sangat rendah dan cocok untuk restorasi dimensi.
+
+Kekurangannya adalah kualitas akhir sangat bergantung pada vendor dan persiapan permukaan.
+
+Untuk shaft journal coupling, opsi ini layak, tetapi saya tetap menempatkannya di bawah laser cladding.
+
+### 10.4 Weld build-up konvensional lalu remachine
+
+Secara teknis bisa, karena 304/304L readily weldable. Namun untuk precision journal, risiko shaft bengkok, runout lari, dan residual stress jauh lebih besar. Karena itu, weld build-up konvensional saya tempatkan sebagai **last resort**, bukan opsi utama.
+
+### 10.5 Replace shaft
+
+Bila damage melibatkan crack, battered keyway berat, fillet rusak, atau machining harus menurunkan shaft terlalu jauh, maka **replace shaft** adalah opsi yang paling aman.
+
+## 11. Metode paling optimal untuk kasus keyed-way ini
+
+Dengan semua alternatif di atas, urutan pilihan paling rasional untuk kasus **rigid keyed flange coupling SUS304** ini adalah:
+
+**Pilihan terbaik saat ini:**
+**hub rebush + shaft re-machining + final fit kembali ke H7/k6 atau H7/m6.**
+
+Alasannya:
+
+- torsi sistem relatif kecil dibanding kapasitas geometri hub dan shaft yang ada,
+- damage yang terjadi adalah oversize akibat improper assembly dan corrective machining, bukan indikasi awal kerusakan struktural berat,
+- keyed connection tidak memerlukan heavy force fit,
+- rebush memberi pemulihan bore paling bersih, dan re-machining shaft masih layak selama diameter akhir tidak turun terlalu jauh.
+
+Bila hasil survey aktual menunjukkan shaft harus turun **di bawah 90 mm**, maka pilihan terbaik berikutnya menjadi:
+
+**hub rebush + shaft laser cladding + finish machining.**
+
+## 12. Desain awal rigid flange coupling untuk kasus ini
+
+Dengan diameter shaft **95 mm**, proporsi klasik rigid flange coupling menghasilkan geometri awal:
+
+$$
+D = 2d = 190 \text{ mm}
+$$
+
+$$
+L = 1.5d = 142.5 \text{ mm}
+$$
+
+$$
+D_1 = 3d = 285 \text{ mm}
+$$
+
+$$
+D_2 = 4d = 380 \text{ mm}
+$$
+
+$$
+t_f = 0.5d = 47.5 \text{ mm}
+$$
+
+Sehingga rekomendasi geometri preliminary adalah:
+
+- **hub OD = 190 mm**
+- **hub length = 143 mm**
+- **bolt PCD = 285 mm**
+- **flange thickness = 48 mm**
+- **flange OD = 380 mm**
+
+Dimensi ini cukup konservatif untuk torsi yang ada.
+
+## 13. Kekuatan hub dan flange bukan pembatas utama
+
+Jika hub dengan OD 190 mm dan bore 95 mm dihitung sebagai hollow shaft, tegangan torsinya sangat rendah. Bahkan bila parent hub dibore ulang untuk menerima bush yang lebih tebal, tegangan torsi hub masih tetap kecil:
+
+- pada **ID 101 mm** → sekitar **2.21 MPa**
+- pada **ID 105 mm** → sekitar **2.24 MPa**
+- pada **ID 111 mm** → sekitar **2.30 MPa**
+
+Artinya, batas repair **bukan** ditentukan oleh kekuatan torsi hub murni. Batas sesungguhnya justru ditentukan oleh:
+
+- geometri keyway,
+- ketebalan bush,
+- kualitas interface bush–hub,
+- dan final alignment.
+
+## 14. Mengapa bush thickness harus dihitung dengan mempertimbangkan keyway depth
+
+Di sinilah banyak repair gagal.
+
+Untuk shaft **95 mm**, data standard key menunjukkan bahwa **hub keyway depth ($T_2$)** adalah sekitar **5.4–5.6 mm**. Bila bush dipasang pada bore hub, lalu keyway akhir dipotong, maka sebagian kedalaman keyway akan melewati bush dan sebagian lagi akan masuk ke parent hub.
+
+Misalkan:
+
+- $t_b$ = ketebalan radial bush
+- $e$ = sisa kedalaman keyway yang masih masuk ke **parent hub**
+
+Maka secara geometrik:
+
+$$
+e = T_2 - t_b
+$$
+
+Agar bush tidak berubah menjadi pembawa torsi utama, saya tetapkan kriteria engineering berikut:
+
+- **preferred:** $e \ge 2.0$ mm
+- **minimum acceptable:** $e \ge 1.5$ mm
+
+Ini adalah kriteria engineering repair, bukan angka literal dari standar, tetapi langsung diturunkan dari data keyway standard untuk menjaga agar keyway final tetap menggigit parent hub.
+
+## 15. Perhitungan bush thickness yang benar
+
+### 15.1 Batas preferred
+
+Dengan target:
+
+$$
+e \ge 2.0 \text{ mm}
+$$
+
+dan $T_2 = 5.4–5.6$ mm:
+
+$$
+t_b \le 5.4 - 2.0 = 3.4 \text{ mm}
+$$
+
+sampai
+
+$$
+t_b \le 5.6 - 2.0 = 3.6 \text{ mm}
+$$
+
+Secara konservatif, untuk target preferred saya tetapkan:
+
+$$
+t_b \le 3.4 \text{ mm}
+$$
+
+### 15.2 Batas minimum acceptable
+
+Dengan target:
+
+$$
+e \ge 1.5 \text{ mm}
+$$
+
+maka:
+
+$$
+t_b \le 5.4 - 1.5 = 3.9 \text{ mm}
+$$
+
+sampai
+
+$$
+t_b \le 5.6 - 1.5 = 4.1 \text{ mm}
+$$
+
+Secara konservatif, untuk batas minimum acceptable saya tetapkan:
+
+$$
+t_b \le 3.9 \text{ mm}
+$$
+
+### 15.3 Evaluasi beberapa skenario bush
+
+Bila bush radial **3.0 mm**:
+
+$$
+e = 2.4 \text{ s.d. } 2.6 \text{ mm}
+$$
+
+Ini sangat baik.
+
+Bila bush radial **3.5 mm**:
+
+$$
+e = 1.9 \text{ s.d. } 2.1 \text{ mm}
+$$
+
+Ini masih baik.
+
+Bila bush radial **4.0 mm**:
+
+$$
+e = 1.4 \text{ s.d. } 1.6 \text{ mm}
+$$
+
+Ini masih mungkin diterima, tetapi sudah masuk batas minimum.
+
+Bila bush radial **5.0 mm**:
+
+$$
+e = 0.4 \text{ s.d. } 0.6 \text{ mm}
+$$
+
+Ini marginal dan tidak saya sukai untuk keyed hub.
+
+Bila bush radial **5.6 mm**:
+
+$$
+e = -0.2 \text{ mm pada kondisi terburuk}
+$$
+
+Artinya keyway praktis tidak lagi menggigit parent hub. Ini harus dihindari.
+
+## 16. Rekomendasi final bush thickness
+
+Dengan mempertimbangkan keyway depth, saya menetapkan:
+
+- **ketebalan bush radial terbaik:** **3.0–3.5 mm**
+- **masih acceptable:** sampai **4.0 mm**
+- **marginal:** **4.0–5.0 mm**
+- **tidak direkomendasikan:** **> 5.0 mm**
+- **harus dihindari tanpa redesign:** **≥ 5.4–5.6 mm**
+
+Dengan kata lain, rekomendasi bush untuk keyed-way **tidak boleh ditentukan hanya dari kekuatan torsi hub**, tetapi harus ditentukan terutama dari **keyway engagement ke parent hub**.
+
+## 17. Apakah interface bush–hub cukup kuat
+
+Bila bush dipasang dengan shrink/interference fit, tekanan kontak minimum untuk mentransmisikan torsi desain berbasis gesekan ternyata relatif rendah. Dengan panjang hub sekitar **143 mm**, diameter interface sekitar **101–111 mm**, dan asumsi $\mu \approx 0.12$ untuk kontak lightly oiled, tekanan minimum yang dibutuhkan berada di kisaran **8.25–9.97 MPa**. Ini menunjukkan bahwa rebush sangat feasible secara torsi. Namun tetap saya tekankan: bush tidak boleh dirancang sebagai pembawa torsi utama. Ia harus dipandang sebagai **lapisan restorasi** yang dibantu oleh interference fit dan, bila perlu, compound sebagai pelengkap.
+
+## 18. Retaining compound: boleh, tetapi hanya sebagai pelengkap
+
+Retaining compound seperti LOCTITE 620 dapat dipakai untuk membantu:
+
+- mengurangi micro-movement,
+- mengurangi fretting,
+- membantu sealing pada interface bush–hub.
+
+Tetapi compound **bukan pengganti geometri yang benar**. Ia tidak akan memperbaiki ovality, taper, atau eccentricity. Pada stainless, curing juga bisa lebih lambat karena permukaan termasuk passive metal. Karena itu, pada repair ini compound hanya boleh dipakai sebagai **auxiliary**, bukan sebagai penentu utama kekuatan repair.
+
+## 19. Urutan repair hub yang benar
+
+Urutan repair hub yang saya rekomendasikan adalah:
+
+Pertama, bore hub dibersihkan dengan boring sampai seluruh damage hilang dan bore menjadi round serta konsentris terhadap flange face.
+
+Kedua, buat **solid full-length bush**, bukan split bush.
+
+Ketiga, pasang bush ke hub dengan shrink fit atau controlled interference.
+
+Keempat, setelah bush terpasang, lakukan **finish boring** ke ukuran final.
+
+Kelima, **potong keyway final setelah bush terpasang**, dalam setup yang mengacu pada datum yang sama. Ini penting agar bore, keyway, dan flange face tetap sejajar.
+
+Keenam, cek kembali runout, concentricity, dan kondisi root keyway.
+
+## 20. Batas aman machining pada shaft
+
+Dari sudut pandang torsi murni, shaft masih aman meskipun diturunkan cukup jauh. Namun keputusan repair tidak boleh diambil dari torsi murni saja. Faktor yang harus dipertimbangkan adalah:
+
+- stress concentration di keyway,
+- bending dari blade,
+- straightness,
+- fatigue margin.
+
+Karena itu, saya menetapkan dua batas praktis:
+
+**Preferred clean-up limit**
+pengurangan diameter total **maksimum 1.0 mm**
+sehingga shaft final **≥ 94.0 mm**
+
+**Maximum practical limit**
+pengurangan diameter total **maksimum 5.0 mm**
+sehingga shaft final **≥ 90.0 mm**
+
+Bila untuk membersihkan seluruh damage shaft harus turun **di bawah 90 mm**, saya tidak menyarankan machining-only. Pada kondisi itu, keputusan harus naik ke **laser cladding** atau **replacement**.
+
+## 21. Apakah key masih aman bila shaft turun menjadi 90 mm
+
+Ya. Dengan key **25 × 14 mm** dan panjang efektif sekitar **143 mm**, tegangan key pada shaft **90 mm** tetap rendah:
+
+- shear sekitar **17.03 MPa**
+- bearing sekitar **60.84 MPa**
+
+Artinya, batas **90 mm** bukan dibentuk oleh torsi murni, tetapi oleh good engineering practice dan margin terhadap efek bending/fatigue yang belum sepenuhnya diketahui.
+
+## 22. Rule of decision yang praktis untuk engineer muda
+
+Agar mudah dipakai di lapangan, saya sarankan aturan keputusan berikut.
+
+Bila hasil clean-up memungkinkan **bush radial ≤ 3.5 mm**, lanjutkan **hub rebush** tanpa ragu.
+
+Bila bush menjadi **3.5–4.0 mm**, repair masih layak, tetapi keyway final wajib dipotong setelah bush terpasang dan engagement ke parent hub harus diverifikasi.
+
+Bila bush menjadi **4–5 mm**, repair harus masuk engineering review khusus. Secara pribadi, saya mulai berhati-hati di zona ini.
+
+Bila bush harus **> 5 mm radial**, saya condong ke **replace hub**.
+
+Untuk shaft, bila final diameter masih **≥ 90 mm**, re-machining masih layak. Bila harus **< 90 mm**, naikkan keputusan ke **cladding atau replacement**.
+
+## 23. Acceptance criteria setelah repair
+
+Setelah repair selesai, acceptance criteria minimal harus mencakup:
+
+- bore final bush sesuai nominal dan fit yang dipilih,
+- shaft journal sesuai nominal final dan kelas fit yang dipilih,
+- keyway lurus, tidak battered, dan root condition baik,
+- runout dan concentricity terhadap flange face berada dalam batas yang disepakati,
+- PT pada keyway root dan area sebelumnya rusak menunjukkan hasil bersih,
+- trial fit menunjukkan seating yang benar tanpa forcing abnormal.
+
+Pada repair seperti ini, keberhasilan tidak boleh diukur hanya dari “komponen masuk”. Keberhasilan diukur dari **masuk lurus, duduk sentris, key bekerja penuh, dan tidak menimbulkan fretting baru**.
+
+## 24. Reassembly: jangan ulangi akar masalah
+
+Akar kerusakan awal adalah pemasangan tanpa heating yang benar. Karena hub dan shaft sama-sama SUS304, pemanasan hub yang moderat sudah cukup memberi ekspansi bore yang dibutuhkan untuk assembly fit ringan seperti **H7/k6** atau **H7/m6**. Hub harus dipasang dengan heater atau thermal method yang terkontrol, bukan dipaksa dengan hammering atau jacking kasar.
+
+Untuk flange bolting **M24 SUS304**, gunakan **anti-seize** pada ulir. Austenitic stainless sangat rentan **galling** pada thread, sehingga metode tightening bertahap dan silang harus dipakai saat assembly.
+
+## 25. Rekomendasi final untuk kasus ini
+
+Untuk kasus rigid flange coupling keyed SUS304 ini, rekomendasi saya adalah sebagai berikut.
+
+Hub direpair dengan **full-length rebushing**. Ketebalan bush radial ditargetkan **3.0–3.5 mm**, masih dapat diterima sampai **4.0 mm**. Keyway final dipotong **setelah bush terpasang** dan harus tetap menggigit parent hub.
+
+Shaft direpair dengan **re-machining** bila final diameter masih dapat dipertahankan **≥ 90 mm**, dan lebih baik lagi bila **≥ 94 mm**. Bila harus lebih kecil dari itu, naikkan keputusan ke **laser cladding** atau **replacement**.
+
+Target fit akhir adalah kembali ke:
+
+- **H7/k6** sebagai pilihan utama,
+- **H7/m6** bila perlu centering sedikit lebih ketat,
+
+dengan catatan bahwa nominal final boleh berubah dari 95 mm selama bore dan shaft diselaraskan pada nominal yang sama.
+
+## 26. Penutup
+
+Pelajaran terbesar dari kasus ini adalah bahwa pada rigid flange coupling, kerusakan akibat assembly yang salah hampir tidak pernah hanya soal “diameter rusak”. Yang sesungguhnya terganggu adalah **sistem hubungan geometrik** antara shaft, key, hub, dan flange.
+
+Karena itu, repair yang baik harus:
+
+- dimulai dari **pemahaman beban**,
+- diteruskan dengan **pemilihan metode repair yang tepat**,
+- dikunci dengan **batas numerik yang jelas**,
+- dan diakhiri dengan **assembly yang benar**.
+
+Untuk engineer muda, urutan berpikir yang sehat adalah:
+hitung torsi dulu, pahami fungsi key dan fit, nilai alternatif repair beserta untung-ruginya, tentukan batas bush dan shaft yang masih sehat, lalu keluarkan repair plan yang bisa diperiksa dan dipertanggungjawabkan.
+
+Dalam kasus ini, pilihan paling optimal adalah:
+
+$$
+\boxed{\text{Hub rebush + shaft re-machine + final fit H7/k6 atau H7/m6}}
+$$
+
+dengan bush radial **3.0–3.5 mm** dan keyway final tetap masuk ke parent hub.
+
+---
+
+[1]: https://www.dm-consultancy.com/TR/dosya/1-59/h/aisi-340-info.pdf?utm_source=chatgpt.com 'Stainless Steel - Grade 304'
+[2]: https://www.rexnord.com/contentitems/techlibrary/documents/427-140_manual?utm_source=chatgpt.com 'Metric Key & Keyway Dimensions Per ISO/R773'
+[3]: https://cdn.standards.iteh.ai/samples/54915/7d6147c29fed4e31af36b60561e88752/ISO-286-2-2010.pdf?utm_source=chatgpt.com 'ISO 286-2'
+[4]: https://www.rcet.org.in/uploads/academics/rohini_19382589089.pdf?utm_source=chatgpt.com 'UNIT II SHAFTS AND COUPLINGS CHAPTER 4 Flange ...'
+[5]: https://next.henkel-adhesives.com/us/en/products/industrial-adhesives/central-pdp.html/loctite-620/BP000000153472.html?utm_source=chatgpt.com 'LOCTITE® 620 | Henkel Adhesives'
+
+---
+
+<small>
+  **_Catatan Penyusunan_** Artikel ini disusun sebagai materi edukasi dan
+  referensi umum berdasarkan berbagai sumber pustaka, praktik lapangan, serta
+  bantuan alat penulisan. Pembaca disarankan untuk melakukan verifikasi lanjutan
+  dan penyesuaian sesuai dengan kondisi serta kebutuhan masing-masing sistem.
+</small>

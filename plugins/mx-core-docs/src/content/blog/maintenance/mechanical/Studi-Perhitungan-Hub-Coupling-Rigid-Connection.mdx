@@ -1,0 +1,630 @@
+---
+title: Studi Perhitungan Hub-Coupling Rigid Connection
+authors: ['sam']
+date: '2026-04-14'
+tags:
+  [
+    'check-valve-design',
+    'petrochemical-engineering',
+    'pump-vs-compressor',
+    'dynamic-behavior-analysis',
+    'pressure-drop-calculation',
+    'chatter-water-hammer',
+    'valve-sizing',
+    'process-safety-hazop-lopa',
+    'axial-flow-check-valve',
+    'engineering-best-practice',
+  ]
+draft: false
+summary: This article presents a case-driven engineering approach to designing check valves in petrochemical systems, covering fundamentals, hydraulic calculations, dynamic behavior, and practical implementation. Two real scenarios—centrifugal pump (liquid) and reciprocating compressor (gas)—demonstrate how improper sizing and valve selection lead to slam or chatter failures. It emphasizes that check valves must be treated as dynamic devices, not passive components. Key design factors include Cv sizing, minimum flow, cracking pressure, and pulsation effects. The work integrates HAZOP/LOPA considerations, datasheet development, and layout validation, culminating in actionable redesign strategies and a field-ready checklist to ensure reliable, stable, and safe operation across varying process conditions.
+---
+
+# **_Studi Perhitungan Hub-Coupling Rigid Connection_**
+
+---
+
+- [**_Studi Perhitungan Hub-Coupling Rigid Connection_**](#studi-perhitungan-hub-coupling-rigid-connection)
+  - [1. Data desain yang diketahui](#1-data-desain-yang-diketahui)
+  - [2. Asumsi desain yang dipakai](#2-asumsi-desain-yang-dipakai)
+  - [3. Alur beban pada rigid flange coupling](#3-alur-beban-pada-rigid-flange-coupling)
+  - [4. Nomenklatur yang dipakai](#4-nomenklatur-yang-dipakai)
+  - [5. Langkah 1 — Hitung torsi nominal dan torsi desain](#5-langkah-1--hitung-torsi-nominal-dan-torsi-desain)
+  - [6. Langkah 2 — Hitung gaya tangensial pada shaft](#6-langkah-2--hitung-gaya-tangensial-pada-shaft)
+  - [7. Langkah 3 — Cek cepat kekuatan shaft](#7-langkah-3--cek-cepat-kekuatan-shaft)
+  - [8. Langkah 4 — Tentukan key standar](#8-langkah-4--tentukan-key-standar)
+  - [9. Langkah 5 — Cek tegangan key](#9-langkah-5--cek-tegangan-key)
+    - [9.1 Bila dipilih panjang hub/key 100 mm](#91-bila-dipilih-panjang-hubkey-100-mm)
+    - [9.2 Bila dipilih panjang hub/key 90 mm](#92-bila-dipilih-panjang-hubkey-90-mm)
+  - [10. Langkah 6 — Tentukan geometri awal hub dan flange](#10-langkah-6--tentukan-geometri-awal-hub-dan-flange)
+  - [11. Langkah 7 — Cek hub sebagai hollow shaft](#11-langkah-7--cek-hub-sebagai-hollow-shaft)
+  - [12. Langkah 8 — Cek shear pada flange](#12-langkah-8--cek-shear-pada-flange)
+  - [13. Langkah 9 — Cek bolt flange](#13-langkah-9--cek-bolt-flange)
+  - [14. Langkah 10 — Sistem toleransi dan fit ISO 286](#14-langkah-10--sistem-toleransi-dan-fit-iso-286)
+    - [14.1 Arti kode H7](#141-arti-kode-h7)
+    - [14.2 Arti kode k6, m6, n6, s6](#142-arti-kode-k6-m6-n6-s6)
+    - [14.3 Nilai shaft untuk 95 mm](#143-nilai-shaft-untuk-95-mm)
+  - [15. Langkah 11 — Hitung range fit untuk 95 H7](#15-langkah-11--hitung-range-fit-untuk-95-h7)
+    - [15.1 Fit 95 H7 / k6](#151-fit-95-h7--k6)
+    - [15.2 Fit 95 H7 / m6](#152-fit-95-h7--m6)
+    - [15.3 Fit 95 H7 / n6](#153-fit-95-h7--n6)
+  - [16. Langkah 12 — Pilih fit yang paling tepat](#16-langkah-12--pilih-fit-yang-paling-tepat)
+  - [17. Langkah 13 — Pengaruh temperatur dan assembly heating](#17-langkah-13--pengaruh-temperatur-dan-assembly-heating)
+  - [18. Hasil akhir rekomendasi desain](#18-hasil-akhir-rekomendasi-desain)
+  - [19. Kesimpulan untuk engineer muda](#19-kesimpulan-untuk-engineer-muda)
+
+---
+
+**Kasus:** direct-coupling flange, keyed connection, material **SUS304** untuk **hub, shaft, blade**, serta **8 × M24 SUS304 bolt-nut**. Data material SUS304 yang saya pakai sebagai basis adalah yield sekitar **205 MPa**, modulus elastisitas **193 GPa**, dan koefisien muai panjang **17.2 × 10⁻⁶/K**. Untuk stainless fastener, property class yang umum adalah **A2-70**, dengan minimum tensile strength **700 MPa** dan proof stress **450 MPa**, tetapi angka fastener ini hanya boleh dipakai jika baut benar-benar tersertifikasi sebagai **A2-70** atau setara.
+
+## 1. Data desain yang diketahui
+
+![a310-hub-coupling.jpeg](/static/images/artikel/a310-hub-coupling.jpeg)
+
+Motor penggerak = **22 kW**, putaran shaft output/blade = **115 rpm**, diameter shaft = **95 mm**, tipe coupling = **rigid direct flange coupling**, jumlah bolt = **8 × M24**, temperatur operasi = **70°C**, dan semua komponen utama yang disebutkan menggunakan **SUS304**. Untuk key dan keyway, tabel standard coupling/keyway menunjukkan bahwa untuk shaft **lebih dari 85 mm sampai 95 mm**, ukuran key adalah **25 × 14 mm**, dengan keyway depth hub **5.4–5.6 mm** dan radius dasar keyway **0.40–0.60 mm**.
+
+## 2. Asumsi desain yang dipakai
+
+Saya anggap coupling berada pada **shaft 115 rpm**, bukan di sisi motor 1460 rpm. Saya juga pakai **service factor 1.5** sebagai asumsi preliminary design, karena belum ada data detail mengenai shock load, cyclic reversal, kemungkinan blade jam, dan duty start-stop. Nilai 1.5 ini adalah **asumsi engineering**, bukan angka yang saya ambil dari standar tertentu. Dengan asumsi ini, hasil studi cocok untuk **preliminary sizing** dan **basis workshop drawing**, tetapi belum menggantikan verifikasi final bila nantinya tersedia data beban blade yang lebih rinci.
+
+## 3. Alur beban pada rigid flange coupling
+
+Urutan aliran torsi pada sistem ini adalah:
+**shaft penggerak → hub pertama melalui key + fit → flange pertama → bolt circle → flange kedua → hub kedua melalui key + fit → shaft/blade**. Pada konfigurasi ini, **key** tetap menjadi elemen utama pemindah torsi antara shaft dan hub, sedangkan **fit shaft-hub** berfungsi terutama untuk **centering, alignment, dan mengurangi fretting**. Baut flange mentransmisikan torsi dari satu flange ke flange lawan melalui gaya tangensial pada bolt circle.
+
+## 4. Nomenklatur yang dipakai
+
+Agar mudah diikuti, berikut simbol-simbol utama dalam studi ini:
+
+- (P) = daya, kW
+- (n) = putaran, rpm
+- (T) = torsi, N·m
+- (d) = diameter shaft / bore hub, mm
+- (D) = outer diameter hub, mm
+- (L) = panjang hub, mm
+- (D_1) = pitch circle diameter bolt, mm
+- (D_2) = outside diameter flange, mm
+- (t_f) = thickness flange, mm
+- (n_b) = jumlah bolt
+- (d_b) = diameter bolt
+- (w) = lebar key
+- (h) = tinggi key
+- (l) = panjang key
+
+Untuk sistem fit ISO 286:
+
+- **Basic size / nominal size** = ukuran nominal, misalnya **95 mm**
+- **Zero line** = garis acuan pada ukuran nominal
+- **IT** = _International Tolerance grade_, yaitu lebar zona toleransi
+- **EI** = lower deviation untuk **hole**
+- **ES** = upper deviation untuk **hole**
+- **ei** = lower deviation untuk **shaft**
+- **es** = upper deviation untuk **shaft**
+- **H7** = hole, posisi zona **H**, grade **7**
+- **k6, m6, n6, s6** = shaft, posisi zona **k/m/n/s**, grade **6**
+
+ISO 286 menjelaskan bahwa deviasi untuk hole memakai simbol **ES** dan **EI**, sedangkan untuk shaft memakai **es** dan **ei**. Pada sistem **basic hole**, huruf **H** berarti **EI = 0**. Pada sistem **basic shaft**, huruf **h** berarti **es = 0**. Diagram ISO juga menunjukkan bahwa kelas shaft seperti **k, m, n, s** berada makin ke atas zero line, sehingga kecenderungan interference makin besar ketika huruf bergeser ke kanan.
+
+## 5. Langkah 1 — Hitung torsi nominal dan torsi desain
+
+Rumus dasar:
+
+$$
+T = \frac{9550,P}{n}
+$$
+
+Dengan (P = 22) kW dan (n = 115) rpm:
+
+$$
+T_n = \frac{9550 \times 22}{115} = 1826.96 \text{ N·m}
+$$
+
+Dengan service factor 1.5:
+
+$$
+T_d = 1.5 \times 1826.96 = 2740.43 \text{ N·m}
+$$
+
+Jadi pada studi ini saya pakai:
+
+- **Torsi nominal** = **1.827 kN·m**
+- **Torsi desain** = **2.740 kN·m**
+
+## 6. Langkah 2 — Hitung gaya tangensial pada shaft
+
+Gaya tangensial ekuivalen di permukaan shaft:
+
+$$
+F_t = \frac{2T}{d}
+$$
+
+Untuk (d = 95) mm = 0.095 m:
+
+Nominal:
+
+$$
+F_{t,n} = \frac{2 \times 1826.96}{0.095} = 38.46 \text{ kN}
+$$
+
+Desain:
+
+$$
+F_{t,d} = \frac{2 \times 2740.43}{0.095} = 57.69 \text{ kN}
+$$
+
+Angka **57.69 kN** ini penting karena nanti menjadi basis cek **key**, dan secara tidak langsung menunjukkan beban yang harus dipikul sambungan shaft-hub.
+
+## 7. Langkah 3 — Cek cepat kekuatan shaft
+
+Untuk shaft solid:
+
+$$
+\tau_{shaft} = \frac{16T}{\pi d^3}
+$$
+
+Dengan (T = 2740.43) N·m dan (d = 95) mm:
+
+$$
+\tau_{shaft} = 16.28 \text{ MPa}
+$$
+
+Dibanding yield SUS304 sekitar **205 MPa**, nilai ini rendah. Artinya, **shaft Ø95 mm secara torsional masih cukup longgar** untuk torsi desain yang ada. Tentu ini baru cek torsi murni; bila blade menghasilkan bending besar, maka perlu evaluasi gabungan torsi + bending.
+
+## 8. Langkah 4 — Tentukan key standar
+
+Untuk shaft **85–95 mm**, key standar adalah:
+
+- **key size = 25 × 14 mm**
+- **hub keyway depth (T_2) = 5.4–5.6 mm**
+- **keyway radius (R) = 0.40–0.60 mm**
+
+Jadi untuk desain ini saya pakai:
+
+$$
+w = 25 \text{ mm}, \quad h = 14 \text{ mm}
+$$
+
+Ini bukan hasil asumsi, melainkan hasil pembacaan tabel keyway standard untuk coupling bore metric.
+
+## 9. Langkah 5 — Cek tegangan key
+
+Untuk rectangular key, cek umum yang dipakai adalah:
+
+Shear key:
+
+$$
+\tau_{key} = \frac{2T}{dwl}
+$$
+
+Bearing/crushing key:
+
+$$
+\sigma_{c,key} = \frac{4T}{dhl}
+$$
+
+### 9.1 Bila dipilih panjang hub/key 100 mm
+
+$$
+\tau_{key} = 23.08 \text{ MPa}
+$$
+
+$$
+\sigma_{c,key} = 82.42 \text{ MPa}
+$$
+
+### 9.2 Bila dipilih panjang hub/key 90 mm
+
+$$
+\tau_{key} = 25.64 \text{ MPa}
+$$
+
+$$
+\sigma_{c,key} = 91.58 \text{ MPa}
+$$
+
+Artinya, **secara kekuatan murni**, panjang key sekitar **90–100 mm** saja sebenarnya sudah cukup untuk torsi desain ini. Namun karena sekarang sudah jelas bahwa coupling-nya adalah **rigid flange coupling**, saya tidak hanya mengikuti minimum kekuatan key; saya juga mengikuti **proporsi geometri klasik flange coupling** pada langkah berikutnya.
+
+## 10. Langkah 6 — Tentukan geometri awal hub dan flange
+
+Referensi machine design untuk **unprotected rigid flange coupling** memberikan proporsi awal berikut, terhadap diameter shaft (d):
+
+$$
+D = 2d
+$$
+
+$$
+L = 1.5d
+$$
+
+$$
+D_1 = 3d
+$$
+
+$$
+D_2 = 4d
+$$
+
+$$
+t_f = 0.5d
+$$
+
+Dengan (d = 95) mm, didapat:
+
+$$
+D = 190 \text{ mm}
+$$
+
+$$
+L = 142.5 \text{ mm}
+$$
+
+$$
+D_1 = 285 \text{ mm}
+$$
+
+$$
+D_2 = 380 \text{ mm}
+$$
+
+$$
+t_f = 47.5 \text{ mm}
+$$
+
+Jadi walaupun panjang hub minimum dari cek key hanya sekitar 90–100 mm, untuk **rigid flange coupling** saya pilih **hub length 142.5 mm** karena mengikuti proporsi desain klasik yang memberi kekakuan lebih baik dan geometri flange yang seimbang. Untuk drawing workshop, angka ini dapat dibulatkan praktis menjadi:
+
+- **Hub OD = 190 mm**
+- **Hub length = 143 mm**
+- **Bolt PCD = 285 mm**
+- **Flange thickness = 48 mm**
+- **Flange OD = 380 mm**
+
+## 11. Langkah 7 — Cek hub sebagai hollow shaft
+
+Secara klasik, hub dapat dicek sebagai hollow shaft:
+
+$$
+T = \frac{\pi}{16},\tau_{hub},\frac{D^4-d^4}{D}
+$$
+
+Sehingga:
+
+$$
+\tau_{hub} = \frac{T}{\frac{\pi}{16}\left(\frac{D^4-d^4}{D}\right)}
+$$
+
+Dengan (D = 190) mm, (d = 95) mm, dan (T = 2740.43) N·m:
+
+$$
+\tau_{hub} = 2.17 \text{ MPa}
+$$
+
+Nilai ini sangat kecil. Artinya, **hub OD 190 mm untuk torsi ini sangat aman secara torsional**. Secara praktis, dimensi ini lebih ditentukan oleh **proporsi flange coupling** dan **rigidity**, bukan oleh batas kekuatan torsi hub itu sendiri. Tebal radial hub adalah:
+
+$$
+\frac{190-95}{2} = 47.5 \text{ mm}
+$$
+
+Setelah dikurangi keyway depth hub sekitar 5.5 mm, sisa crown material di atas dasar keyway masih sekitar **42 mm**, yang sangat tebal untuk beban ini.
+
+## 12. Langkah 8 — Cek shear pada flange
+
+Untuk flange pada junction hub-flange, model cek klasiknya:
+
+$$
+T = \pi D^2 t_f \tau_f / 2
+$$
+
+Sehingga:
+
+$$
+\tau_f = \frac{2T}{\pi D^2 t_f}
+$$
+
+Dengan (D = 190) mm dan (t_f = 47.5) mm:
+
+$$
+\tau_f = 2.03 \text{ MPa}
+$$
+
+Artinya **flange thickness 47.5 mm** juga sangat cukup dari sisi shear torsional. Jadi lagi-lagi, geometri ini tergolong **kaku dan konservatif** untuk torsi 2.74 kN·m.
+
+## 13. Langkah 9 — Cek bolt flange
+
+Gaya tangensial total pada bolt circle:
+
+$$
+F_{bolt,total} = \frac{2T}{D_1}
+$$
+
+Dengan (D_1 = 285) mm:
+
+$$
+F_{bolt,total} = 19.23 \text{ kN}
+$$
+
+Untuk **8 bolt**:
+
+$$
+F_{per,bolt} = \frac{19.23}{8} = 2.404 \text{ kN}
+$$
+
+Bila dihitung dengan area batang polos M24 ($\pi d^2/4$), tegangan geser rata-ratanya sekitar:
+
+$$
+\tau_{bolt,shank} \approx 5.31 \text{ MPa}
+$$
+
+Bila dihitung lebih konservatif dengan **stress area ulir M24 = 353 mm²**, tegangan geser per bolt sekitar:
+
+$$
+\tau_{bolt,thread} \approx 6.81 \text{ MPa}
+$$
+
+Angka ini sangat rendah. Jadi **8 × M24 jauh lebih dari cukup** untuk mentransmisikan torsi desain ini. Kalau bolt benar-benar property class **A2-70**, maka proof load teoritis per bolt sekitar:
+
+$$
+F_{proof} = A_s \times 450 = 158.85 \text{ kN per bolt}
+$$
+
+yang jelas sangat jauh di atas gaya tangensial **2.404 kN per bolt**. Kesimpulan praktisnya: pada desain ini, **bolt bukan elemen pembatas**. Yang lebih penting justru alignment, detail flange, dan kualitas assembly. ([EurocodeApplied.com][1])
+
+## 14. Langkah 10 — Sistem toleransi dan fit ISO 286
+
+Sekarang masuk ke bagian yang Anda minta secara khusus: **H7, EI, ES, k6, m6, s6, IT**, dan bagaimana membacanya.
+
+### 14.1 Arti kode H7
+
+**H7** adalah kode untuk **hole**.
+
+- **H** = posisi zona toleransi hole terhadap zero line
+- **7** = grade toleransi, yaitu **IT7**
+
+Pada hole dengan huruf **H**, berlaku:
+
+$$
+EI = 0
+$$
+
+Artinya batas bawah hole tepat berada di nominal size. ISO 286 menyatakan bahwa untuk hole dipakai simbol **ES** dan **EI**, dan untuk shaft dipakai **es** dan **ei**. Untuk ukuran nominal **80–120 mm**, tabel IT memberikan:
+
+$$
+IT6 = 22 ,\mu m
+$$
+
+$$
+IT7 = 35 ,\mu m
+$$
+
+Karena untuk H berlaku (EI = 0), maka untuk **95 H7**:
+
+$$
+EI = 0 ,\mu m
+$$
+
+$$
+ES = +35 ,\mu m
+$$
+
+Jadi:
+
+$$
+95,H7 = 95.000 \text{ s.d. } 95.035 \text{ mm}
+$$
+
+### 14.2 Arti kode k6, m6, n6, s6
+
+Huruf kecil adalah untuk **shaft**.
+
+- **k, m, n, s** = posisi zona toleransi shaft
+- **6** = grade toleransi **IT6**
+
+Jadi **k6**, **m6**, **n6**, **s6** sama-sama punya lebar zona **IT6**, tetapi posisi zonanya berbeda. Semakin hurufnya bergeser ke kanan, zona shaft cenderung makin di atas nominal, sehingga interference terhadap hole H makin besar. ISO menampilkan kelas **k6, m6, n6, p6, r6, s6, t6, u6** dalam kelompok shaft yang makin bergerak ke area interference. Dalam panduan fit umum, **H7/k6** biasanya disebut **slight interference**, **H7/n6** sebagai **transition**, dan **H7/s6** sebagai **medium fit**.
+
+### 14.3 Nilai shaft untuk 95 mm
+
+Untuk rentang nominal **lebih dari 80 mm sampai 100 mm**, data fit shaft menunjukkan:
+
+Untuk **95 k6**:
+
+$$
+ei = +4 ,\mu m,\quad es = +33 ,\mu m
+$$
+
+maka:
+
+$$
+95,k6 = 95.004 \text{ s.d. } 95.033 \text{ mm}
+$$
+
+Untuk **95 m6**:
+
+$$
+ei = +17 ,\mu m,\quad es = +46 ,\mu m
+$$
+
+maka:
+
+$$
+95,m6 = 95.017 \text{ s.d. } 95.046 \text{ mm}
+$$
+
+Untuk **95 n6**:
+
+$$
+ei = +31 ,\mu m,\quad es = +60 ,\mu m
+$$
+
+maka:
+
+$$
+95,n6 = 95.031 \text{ s.d. } 95.060 \text{ mm}
+$$
+
+## 15. Langkah 11 — Hitung range fit untuk 95 H7
+
+Pada studi ini saya definisikan:
+
+$$
+\Delta = \text{hole} - \text{shaft}
+$$
+
+Sehingga:
+
+- (Delta > 0) = clearance
+- (Delta < 0) = interference
+
+### 15.1 Fit 95 H7 / k6
+
+Hole:
+
+$$
+95.000 \text{ s.d. } 95.035
+$$
+
+Shaft:
+
+$$
+95.004 \text{ s.d. } 95.033
+$$
+
+Maka:
+
+- minimum fit = (95.000 - 95.033 = -0.033) mm
+- maximum fit = (95.035 - 95.004 = +0.031) mm
+
+Jadi:
+
+$$
+95,H7/k6 = -0.033 \text{ s.d. } +0.031 \text{ mm}
+$$
+
+Ini adalah **light transition / slight interference region**.
+
+### 15.2 Fit 95 H7 / m6
+
+Shaft:
+
+$$
+95.017 \text{ s.d. } 95.046
+$$
+
+Maka:
+
+- minimum fit = (95.000 - 95.046 = -0.046) mm
+- maximum fit = (95.035 - 95.017 = +0.018) mm
+
+Jadi:
+
+$$
+95,H7/m6 = -0.046 \text{ s.d. } +0.018 \text{ mm}
+$$
+
+Ini lebih rapat daripada k6, dan lebih cocok bila alignment ingin lebih ketat dan pembongkaran tidak terlalu sering.
+
+### 15.3 Fit 95 H7 / n6
+
+Shaft:
+
+$$
+95.031 \text{ s.d. } 95.060
+$$
+
+Maka:
+
+- minimum fit = (95.000 - 95.060 = -0.060) mm
+- maximum fit = (95.035 - 95.031 = +0.004) mm
+
+Jadi:
+
+$$
+95,H7/n6 = -0.060 \text{ s.d. } +0.004 \text{ mm}
+$$
+
+Ini sudah sangat mendekati **interference dominan**, dan untuk hub keyed seperti kasus Anda biasanya saya anggap terlalu ketat kecuali memang ada alasan khusus.
+
+## 16. Langkah 12 — Pilih fit yang paling tepat
+
+Karena sambungan ini **pakai key**, maka torsi utama dipindahkan oleh **key**, bukan oleh interference fit. Maka saya tidak memilih fit berat seperti **s6** atau **u6**. Untuk kasus Anda, pilihan engineering yang paling masuk akal adalah:
+
+- **utama:** **95 H7 / k6**
+- **alternatif lebih ketat:** **95 H7 / m6**
+
+Alasan memilih **H7/k6**:
+
+1. cukup baik untuk centering,
+2. tidak terlalu agresif saat assembly/disassembly,
+3. cocok untuk keyed rigid flange coupling,
+4. cukup menekan risiko fretting tanpa membuat maintenance terlalu sulit.
+
+Bila Anda menargetkan runout lebih ketat dan coupling jarang dibongkar, **H7/m6** juga masih layak. Untuk sambungan keyed ini saya **tidak merekomendasikan H7/s6** sebagai default. Kelas **s6** memang ada dalam sistem ISO, tetapi posisinya jauh lebih ke area interference dan lebih cocok untuk sambungan yang memang membutuhkan medium interference.
+
+## 17. Langkah 13 — Pengaruh temperatur dan assembly heating
+
+Karena shaft dan hub sama-sama **SUS304**, pada operasi **70°C** keduanya memuai hampir sama. Jadi fit operasional tidak berubah banyak hanya karena temperatur operasi ini. Untuk assembly, kebutuhan kenaikan temperatur dapat diperkirakan dari:
+
+$$
+\Delta T = \frac{\Delta d}{\alpha d}
+$$
+
+Dengan ($\alpha = 17.2 \times 10^{-6}/K$), (d = 95) mm:
+
+Untuk ekspansi bore **0.060 mm**:
+
+$$
+\Delta T = 36.7^\circ C
+$$
+
+Untuk ekspansi bore **0.080 mm**:
+
+$$
+\Delta T = 49.0^\circ C
+$$
+
+Artinya, bila shaft berada di sekitar **30°C**, maka pemanasan hub ke kisaran **70–80°C** biasanya sudah cukup nyaman untuk assembly pada fit ringan seperti **H7/k6** atau **H7/m6**.
+
+## 18. Hasil akhir rekomendasi desain
+
+Untuk studi preliminary ini, rekomendasi saya adalah:
+
+- **Shaft**: Ø95 mm, SUS304
+- **Hub bore**: **Ø95 H7**
+- **Shaft journal tolerance**: **k6**
+- **Alternative tighter fit**: **m6**
+- **Key**: **25 × 14 mm**
+- **Hub keyway depth (T_2)**: **5.4–5.6 mm**
+- **Keyway radius (R)**: **0.40–0.60 mm**
+- **Hub OD (D)**: **190 mm**
+- **Hub length (L)**: **142.5 mm**, praktis dapat dibulatkan **143 mm**
+- **Bolt circle (D_1)**: **285 mm**
+- **Flange thickness (t_f)**: **47.5 mm**, praktis dapat dibulatkan **48 mm**
+- **Flange OD (D_2)**: **380 mm**
+- **Bolting**: **8 × M24 SUS304**
+- **Temperatur assembly hub**: target awal **70–80°C** untuk fit ringan.
+
+## 19. Kesimpulan untuk engineer muda
+
+Urutan berpikir yang benar untuk desain seperti ini adalah:
+
+1. **Hitung torsi dari power dan rpm.**
+2. **Naikkan menjadi design torque** dengan service factor yang masuk akal.
+3. **Hitung gaya tangensial** pada shaft.
+4. **Pilih key standar** dari diameter shaft, jangan mengira-ngira.
+5. **Cek key** terhadap shear dan bearing.
+6. **Tentukan geometri awal hub dan flange** dari proporsi rigid flange coupling.
+7. **Cek hub**, **flange**, dan **bolt** agar tahu elemen mana yang kritis.
+8. **Baru setelah itu pilih fit ISO**, dengan memahami arti **H7, EI, ES, k6, m6, s6, IT6, IT7**.
+9. Untuk sambungan **keyed**, jangan otomatis memilih force fit berat; biasanya **H7/k6** atau **H7/m6** sudah lebih tepat.
+
+Pada kasus Anda, hasil studi menunjukkan bahwa **torsi sistem relatif kecil dibanding dimensi flange dan bolt yang tersedia**, sehingga desain ini **tidak dibatasi oleh kekuatan bolt**. Elemen yang paling penting justru **keyed shaft-hub detail**, **alignment**, dan **pemilihan fit yang tidak terlalu agresif**.
+
+Kalau Anda setuju, langkah berikutnya saya bisa ubah studi ini menjadi **draft engineering calculation sheet + basis drawing note** lengkap dengan format yang siap dipakai untuk review internal atau dikirim ke workshop/fabricator.
+
+[1]: https://eurocodeapplied.com/design/en1993/bolt-design-properties 'Table of design properties for metric steel bolts M5 to M39 - Eurocode 3'
+
+---
+
+<small>
+  **_Catatan Penyusunan_** Artikel ini disusun sebagai materi edukasi dan
+  referensi umum berdasarkan berbagai sumber pustaka, praktik lapangan, serta
+  bantuan alat penulisan. Pembaca disarankan untuk melakukan verifikasi lanjutan
+  dan penyesuaian sesuai dengan kondisi serta kebutuhan masing-masing sistem.
+</small>
