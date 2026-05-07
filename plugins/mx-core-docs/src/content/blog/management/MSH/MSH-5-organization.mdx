@@ -17,10 +17,11 @@ draft: false
 summary: Module 5 menegaskan bahwa keberhasilan sistem pemeliharaan tidak hanya ditentukan oleh metode teknis seperti RBM, tetapi oleh kejelasan organisasi, akuntabilitas, dan pengukuran kinerja yang tepat. Modul ini menjabarkan bagaimana Job Description menjadi fondasi sistem, KPI harus disesuaikan dengan peran, serta setiap keputusan teknis dan biaya wajib memiliki pemilik yang jelas. Dengan governance dan jalur otoritas yang tegas, organisasi pemeliharaan menjadi sistem kerja yang transparan, terukur, dan dapat diaudit. Pendekatan ini memastikan bahwa keputusan berbasis risiko (Module 2) dan strategi RBM (Module 3) benar-benar dijalankan secara sah, konsisten, dan bertanggung jawab dalam kerangka manajemen aset jangka panjang.
 ---
 
-**_Organisasi, KPI, dan Akuntabilitas dalam Sistem Pemeliharaan_**
+# **_Organisasi, KPI, dan Akuntabilitas dalam Sistem Pemeliharaan_**
 
 ---
 
+- [**_Organisasi, KPI, dan Akuntabilitas dalam Sistem Pemeliharaan_**](#organisasi-kpi-dan-akuntabilitas-dalam-sistem-pemeliharaan)
 - [📌 Prolog Modul](#-prolog-modul)
 - [5.1 Organisasi Pemeliharaan sebagai Sistem, Bukan Sekadar Struktur](#51-organisasi-pemeliharaan-sebagai-sistem-bukan-sekadar-struktur)
 - [5.2 Job Description sebagai Fondasi Akuntabilitas](#52-job-description-sebagai-fondasi-akuntabilitas)
@@ -43,11 +44,11 @@ summary: Module 5 menegaskan bahwa keberhasilan sistem pemeliharaan tidak hanya 
   - [Kesesuaian dengan Audit Internal dan Eksternal](#kesesuaian-dengan-audit-internal-dan-eksternal)
   - [Kesiapan terhadap Standar dan Sistem SHE](#kesiapan-terhadap-standar-dan-sistem-she)
 - [🧠 Kesimpulan Module 4](#-kesimpulan-module-4)
-- [📚 Referensi Module 4](#-referensi-module-4)
+- [📚 Referensi Module 5](#-referensi-module-5)
 
 ---
 
-## 📌 Prolog Modul
+# 📌 Prolog Modul
 
 Modul ini merupakan bagian integral dari **Maintenance System Handbook (MSH)** yang secara khusus dirancang untuk menjawab pertanyaan fundamental dalam organisasi pemeliharaan:
 
@@ -68,6 +69,33 @@ Dalam praktik industri, banyak kegagalan sistem pemeliharaan bukan disebabkan ol
 - dan masalah yang sama berulang tanpa kejelasan siapa yang harus memperbaiki sistemnya.
 
 Melalui Modul 4, organisasi pemeliharaan diposisikan sebagai **sistem kerja yang terstruktur**, di mana **job description, KPI, kepemilikan anggaran, dan governance** saling terhubung secara logis dan dapat ditelusuri. Dengan demikian, keputusan teknis dan risiko yang telah ditetapkan pada modul sebelumnya dapat **dijalankan secara konsisten, terkontrol, dan dapat dipertanggungjawabkan**.
+
+```mermaid id="msh-5-organization-accountability-overview-mobile"
+flowchart TD
+    A["Module 1<br/>Maintenance Philosophy"] --> B["Module 2<br/>Risk Decision Logic"]
+    B --> C["Module 3<br/>RBM Practical Execution"]
+    C --> D["Module 5<br/>Organization & Accountability"]
+
+    D --> E["Job Description<br/>Clear Role"]
+    D --> F["KPI<br/>Relevant Measure"]
+    D --> G["Authority<br/>Decision Boundary"]
+    D --> H["Governance<br/>Auditability"]
+
+    E --> I["Accountable<br/>Maintenance System"]
+    F --> I
+    G --> I
+    H --> I
+
+    classDef foundation fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef module fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef element fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef output fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+
+    class A,B,C foundation;
+    class D module;
+    class E,F,G,H element;
+    class I output;
+```
 
 <ResourceBox
   title="Korelasi internal-link modul:"
@@ -107,7 +135,7 @@ Melalui Modul 4, organisasi pemeliharaan diposisikan sebagai **sistem kerja yang
 
 ---
 
-## 5.1 Organisasi Pemeliharaan sebagai Sistem, Bukan Sekadar Struktur
+# 5.1 Organisasi Pemeliharaan sebagai Sistem, Bukan Sekadar Struktur
 
 Sub-bab ini menegaskan bahwa organisasi pemeliharaan **tidak boleh dipahami sebatas bagan jabatan atau hirarki administratif**, melainkan sebagai **sistem kerja terintegrasi** yang secara langsung memengaruhi keandalan aset, keselamatan operasi, dan kinerja biaya. Dalam konteks industri petrokimia yang berisiko tinggi dan beroperasi secara kontinu, cara organisasi disusun akan menentukan **bagaimana keputusan teknis dibuat, dikomunikasikan, dan dieksekusi**.
 
@@ -124,9 +152,40 @@ Dalam kerangka **Maintenance System Handbook**, organisasi pemeliharaan diposisi
 📌 **Prinsip kunci:**
 Struktur organisasi menentukan **bagaimana keputusan teknis diambil dan dijalankan**. Organisasi yang tepat akan memperkuat sistem pemeliharaan; organisasi yang kabur akan melemahkan bahkan strategi teknis terbaik sekalipun.
 
+```mermaid id="maintenance-organization-as-system-mobile"
+flowchart TD
+    A["Maintenance<br/>Organization"] --> B["Clear<br/>Role"]
+    A --> C["Clear<br/>Decision Flow"]
+    A --> D["Clear<br/>Authority"]
+    A --> E["Clear<br/>Accountability"]
+
+    B --> F["Fast Technical<br/>Decision"]
+    C --> F
+    D --> G["Controlled<br/>Execution"]
+    E --> H["Traceable<br/>Responsibility"]
+
+    F --> I["Higher<br/>Reliability"]
+    G --> I
+    H --> I
+
+    I --> J["Lower Downtime<br/>Lower Risk<br/>Better Cost Control"]
+
+    classDef org fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef clarity fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef action fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef result fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+    classDef impact fill:#FFEBEE,stroke:#C62828,color:#111;
+
+    class A org;
+    class B,C,D,E clarity;
+    class F,G,H action;
+    class I result;
+    class J impact;
+```
+
 ---
 
-## 5.2 Job Description sebagai Fondasi Akuntabilitas
+# 5.2 Job Description sebagai Fondasi Akuntabilitas
 
 Sub-bab ini menegaskan bahwa **Job Description (JobDesc)** dalam sistem pemeliharaan **bukan sekadar dokumen administratif**, melainkan **alat kontrol sistem** yang menentukan bagaimana akuntabilitas ditegakkan di seluruh organisasi. Dalam konteks _Maintenance System Handbook_, JobDesc berfungsi sebagai **titik awal pembagian peran, batas tanggung jawab, dan legitimasi pengambilan keputusan**.
 
@@ -171,13 +230,37 @@ Yang tidak kalah penting, JobDesc berperan langsung dalam **penegakan akuntabili
 
 Rantai ini memastikan bahwa seseorang hanya dinilai berdasarkan KPI yang relevan dengan perannya, memiliki kewenangan yang sesuai untuk mencapai KPI tersebut, dan bertanggung jawab penuh atas keputusan yang diambil. Tanpa JobDesc yang tegas, KPI menjadi tidak bermakna, otoritas menjadi kabur, dan akuntabilitas sistem pemeliharaan tidak pernah benar-benar terwujud.
 
+```mermaid id="jobdesc-kpi-authority-accountability-chain-mobile"
+flowchart TD
+    A["Job Description<br/>Mandate & Boundary"] --> B["KPI<br/>Relevant to Role"]
+    B --> C["Authority<br/>Right to Decide"]
+    C --> D["Accountability<br/>Owner of Result"]
+
+    D --> E{"Decision<br/>Traceable?"}
+    E -- "Yes" --> F["System<br/>Defensible"]
+    E -- "No" --> G["Grey Area<br/>No Clear Owner"]
+
+    classDef job fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef kpi fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef auth fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef acc fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+    classDef bad fill:#FFEBEE,stroke:#C62828,color:#111;
+
+    class A job;
+    class B kpi;
+    class C auth;
+    class D,E acc;
+    class F acc;
+    class G bad;
+```
+
 ---
 
-## 5.3 Pembagian Peran dan Tanggung Jawab per Level Jabatan
+# 5.3 Pembagian Peran dan Tanggung Jawab per Level Jabatan
 
 Sub-bab ini menguraikan pembagian peran dan tanggung jawab dalam organisasi pemeliharaan secara **vertikal dan fungsional**, dengan tujuan utama menghilangkan area abu-abu dalam pengambilan keputusan dan eksekusi pekerjaan. Dalam sistem pemeliharaan berbasis risiko, **kejelasan “siapa melakukan apa”** sama pentingnya dengan kejelasan metode teknis yang digunakan.
 
-### Struktur Jabatan dan Mandat Utama
+## Struktur Jabatan dan Mandat Utama
 
 **1. Manager Maintenance**
 Manager Maintenance berperan sebagai **pemilik sistem dan kebijakan**. Tanggung jawab utamanya meliputi penetapan arah strategis pemeliharaan, legitimasi kebijakan berbasis risiko, serta pengesahan keputusan-keputusan besar yang berdampak pada keselamatan, keandalan, dan biaya. Manager memastikan bahwa sistem pemeliharaan selaras dengan tujuan bisnis, standar industri, dan kebijakan perusahaan.
@@ -200,15 +283,44 @@ Teknisi adalah **pemilik kualitas eksekusi**. Peran ini memastikan bahwa pekerja
 📌 **Anti-abu-abu rule:**
 Dalam struktur ini, setiap keputusan—baik teknis, operasional, maupun biaya—harus **memiliki satu owner utama** sesuai dengan level jabatannya. Pembagian peran yang tegas mencegah tumpang tindih kewenangan, mempercepat pengambilan keputusan, dan memastikan bahwa setiap kegagalan atau keberhasilan dapat ditelusuri secara jelas dalam sistem pemeliharaan.
 
+```mermaid id="maintenance-role-ownership-ladder-mobile"
+flowchart TD
+    A["Manager Maintenance<br/>System & Policy Owner"] --> B["Superintendent<br/>Operational Execution Owner"]
+    B --> C["Supervisor<br/>Daily Control Owner"]
+    C --> D["Foreman<br/>Field Coordination Owner"]
+    D --> E["Technician<br/>Execution Quality Owner"]
+
+    F["Engineer / Senior Engineer<br/>Technical Solution Owner"] --> C
+    F --> B
+
+    A -. "Policy & Risk Direction" .-> F
+    F -. "Technical Recommendation" .-> D
+    C -. "Daily Control" .-> E
+
+    classDef manager fill:#FFEBEE,stroke:#C62828,color:#111;
+    classDef superintendent fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+    classDef supervisor fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef foreman fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef tech fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef engineer fill:#E0F2F1,stroke:#00796B,color:#111;
+
+    class A manager;
+    class B superintendent;
+    class C supervisor;
+    class D foreman;
+    class E tech;
+    class F engineer;
+```
+
 ---
 
-## 5.4 KPI Berbasis Peran: Mengukur yang Relevan
+# 5.4 KPI Berbasis Peran: Mengukur yang Relevan
 
 Sub-bab ini menegaskan bahwa **Key Performance Indicator (KPI)** dalam sistem pemeliharaan **harus dirancang berbasis peran**, bukan diseragamkan untuk seluruh level jabatan. KPI yang tidak mencerminkan mandat dan tanggung jawab jabatan justru akan menciptakan distorsi perilaku, fokus kerja yang keliru, serta pengambilan keputusan yang tidak selaras dengan tujuan sistem pemeliharaan.
 
 Tujuan utama KPI berbasis peran adalah memastikan bahwa **setiap individu dinilai berdasarkan hal yang benar-benar berada dalam kendali dan pengaruhnya**. Dengan demikian, KPI tidak hanya menjadi alat pelaporan, tetapi menjadi **mekanisme pengarah perilaku organisasi**.
 
-### Prinsip Perancangan KPI Berbasis Peran
+## Prinsip Perancangan KPI Berbasis Peran
 
 Dalam kerangka _Maintenance System Handbook_, KPI harus memenuhi tiga prinsip utama:
 
@@ -216,7 +328,7 @@ Dalam kerangka _Maintenance System Handbook_, KPI harus memenuhi tiga prinsip ut
 2. **Dapat dikendalikan** – Individu yang dinilai memiliki pengaruh langsung terhadap capaian KPI.
 3. **Terhubung dengan risiko dan keandalan** – KPI mendukung tujuan pengendalian risiko dan peningkatan keandalan aset.
 
-### Contoh KPI per Level Jabatan
+## Contoh KPI per Level Jabatan
 
 - **Manager Maintenance**
   Fokus pada **kesehatan sistem secara keseluruhan**, antara lain:
@@ -258,9 +370,34 @@ Dalam kerangka _Maintenance System Handbook_, KPI harus memenuhi tiga prinsip ut
 📌 **Prinsip kunci:**
 Tidak semua KPI cocok untuk semua jabatan. KPI yang tepat akan memperkuat akuntabilitas dan fokus kerja; KPI yang salah akan merusak perilaku sistem. Oleh karena itu, KPI harus diperlakukan sebagai **instrumen desain organisasi**, bukan sekadar indikator statistik.
 
+```mermaid id="role-based-kpi-map-mobile"
+flowchart TD
+    A["Role-Based<br/>Maintenance KPI"] --> B["Manager<br/>System Health"]
+    A --> C["Superintendent<br/>Execution Consistency"]
+    A --> D["Supervisor<br/>Daily Performance"]
+    A --> E["Foreman<br/>Field Effectiveness"]
+    A --> F["Technician<br/>Work Quality"]
+    A --> G["Engineer<br/>Systemic Problem Solving"]
+
+    B --> B1["Budget Compliance<br/>Availability"]
+    C --> C1["Schedule Compliance<br/>CM vs PM Ratio"]
+    D --> D1["MTTR / MTBF<br/>WO Accuracy"]
+    E --> E1["Job Completion<br/>First-Time Fix"]
+    F --> F1["Quality Execution<br/>Standard Compliance"]
+    G --> G1["Failure Recurrence<br/>RCA Quality"]
+
+    classDef kpi fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef role fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef metric fill:#FFF8E1,stroke:#F9A825,color:#111;
+
+    class A kpi;
+    class B,C,D,E,F,G role;
+    class B1,C1,D1,E1,F1,G1 metric;
+```
+
 ---
 
-## 5.5 KPI sebagai Alat Pengambilan Keputusan, Bukan Sekadar Laporan
+# 5.5 KPI sebagai Alat Pengambilan Keputusan, Bukan Sekadar Laporan
 
 Sub-bab ini menegaskan pergeseran fungsi **Key Performance Indicator (KPI)** dari sekadar **alat pelaporan kinerja** menjadi **instrumen pengambilan keputusan manajerial dan teknis**. Dalam sistem pemeliharaan berbasis risiko, KPI harus dibaca sebagai **indikator kesehatan sistem**, bukan sebagai angka historis yang berdiri sendiri.
 
@@ -271,9 +408,40 @@ Dalam konteks pengambilan keputusan, KPI digunakan untuk tiga tujuan utama. Pert
 📌 **Penegasan penting:**
 KPI yang tidak digunakan untuk pengambilan keputusan adalah **KPI mati**. KPI semacam ini hanya menambah beban administrasi tanpa memberikan nilai tambah bagi keandalan, keselamatan, maupun kinerja bisnis. Oleh karena itu, setiap KPI dalam sistem pemeliharaan harus memiliki **jalur keputusan yang jelas**: dibaca, dianalisis, dan ditindaklanjuti dalam kerangka manajemen risiko dan tata kelola organisasi.
 
+```mermaid id="kpi-as-decision-tool-mobile"
+flowchart TD
+    A["KPI Data<br/>Maintenance Performance"] --> B["Trend<br/>Analysis"]
+    B --> C{"Signal<br/>Detected?"}
+
+    C -- "No" --> D["Continue<br/>Monitoring"]
+    C -- "Yes" --> E["System<br/>Diagnosis"]
+
+    E --> F["Prioritize<br/>Asset / Area"]
+    E --> G["Allocate<br/>Resource"]
+    E --> H["Improve<br/>Maintenance Strategy"]
+
+    F --> I["Decision<br/>Action Plan"]
+    G --> I
+    H --> I
+
+    I --> J["Follow Up<br/>and Review"]
+
+    classDef data fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef analysis fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef decision fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef action fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+    classDef alert fill:#FFEBEE,stroke:#C62828,color:#111;
+
+    class A data;
+    class B,E analysis;
+    class C decision;
+    class D,J action;
+    class F,G,H,I alert;
+```
+
 ---
 
-## 5.6 Kepemilikan Anggaran dan Tanggung Jawab Biaya
+# 5.6 Kepemilikan Anggaran dan Tanggung Jawab Biaya
 
 Sub-bab ini membahas aspek yang sering menjadi sumber konflik dalam organisasi pemeliharaan, yaitu **kepemilikan anggaran dan tanggung jawab biaya**. Pertanyaan klasik _“siapa yang menghabiskan anggaran, dan siapa yang bertanggung jawab?”_ harus dijawab secara tegas agar sistem pemeliharaan dapat berjalan disiplin, transparan, dan selaras dengan risiko bisnis.
 
@@ -291,18 +459,18 @@ Dalam kerangka **Maintenance System Handbook**, anggaran pemeliharaan dipandang 
   ]}
 />
 
-### Budget Ownership per Level
+## Budget Ownership per Level
 
 - **Manager Maintenance** bertindak sebagai **pemilik anggaran sistem**, bertanggung jawab atas keselarasan total anggaran dengan profil risiko aset, target keandalan, dan kebijakan perusahaan.
 - **Superintendent** memiliki tanggung jawab terhadap **penggunaan anggaran operasional**, memastikan bahwa alokasi biaya sesuai dengan prioritas risiko dan rencana pemeliharaan.
 - **Supervisor dan Foreman** bertanggung jawab pada **pengendalian biaya harian**, termasuk efisiensi penggunaan tenaga kerja, material, dan waktu kerja lembur.
 - **Engineer** bertanggung jawab atas **justifikasi teknis biaya**, terutama yang berkaitan dengan solusi jangka panjang, modifikasi, atau penggantian aset.
 
-### Hubungan Risiko, Prioritas, dan Anggaran
+## Hubungan Risiko, Prioritas, dan Anggaran
 
 Pengeluaran pemeliharaan harus selalu ditautkan dengan **risiko yang dikendalikan**. Aset dengan risiko tinggi secara logis memerlukan alokasi anggaran yang lebih besar, baik untuk inspeksi, pemantauan kondisi, maupun pencegahan kegagalan. Sebaliknya, pengeluaran pada aset berisiko rendah harus dikendalikan agar tidak terjadi over-maintenance dan pemborosan sumber daya.
 
-### Akuntabilitas Biaya Kritis
+## Akuntabilitas Biaya Kritis
 
 Akuntabilitas biaya mencakup area-area utama yang sering menjadi penyumbang pembengkakan anggaran, yaitu:
 
@@ -313,13 +481,41 @@ Akuntabilitas biaya mencakup area-area utama yang sering menjadi penyumbang pemb
 📌 **Prinsip kunci:**
 **Tidak ada biaya tanpa owner.** Setiap rupiah yang dibelanjakan dalam sistem pemeliharaan harus dapat ditelusuri kepada pemilik keputusan yang jelas, dengan justifikasi risiko dan manfaat yang dapat dipertanggungjawabkan. Prinsip ini memastikan bahwa anggaran menjadi alat kendali sistem, bukan sekadar angka dalam laporan keuangan.
 
+```mermaid id="budget-ownership-accountability-mobile"
+flowchart TD
+    A["Maintenance Budget<br/>as Risk Control Resource"] --> B["Manager<br/>System Budget Owner"]
+    A --> C["Superintendent<br/>Operational Budget Owner"]
+    A --> D["Supervisor / Foreman<br/>Daily Cost Control"]
+    A --> E["Engineer<br/>Technical Cost Justification"]
+
+    B --> F["Risk-Based<br/>Budget Alignment"]
+    C --> G["Priority & Resource<br/>Allocation"]
+    D --> H["Material / Overtime<br/>Control"]
+    E --> I["Repair / Replace<br/>Justification"]
+
+    F --> J["Cost Decision<br/>Traceable to Owner"]
+    G --> J
+    H --> J
+    I --> J
+
+    classDef budget fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef owner fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef control fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef output fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+
+    class A budget;
+    class B,C,D,E owner;
+    class F,G,H,I control;
+    class J output;
+```
+
 ---
 
-## 5.7 Governance, Authority, dan Jalur Keputusan
+# 5.7 Governance, Authority, dan Jalur Keputusan
 
 Sub-bab ini menjelaskan bahwa **governance** dalam sistem pemeliharaan berfungsi sebagai **kerangka pengaman keputusan**—menentukan **siapa berwenang memutuskan apa**, **sampai batas mana**, dan **melalui jalur eskalasi apa** ketika keputusan berdampak pada risiko, biaya, atau keselamatan. Tanpa governance yang jelas, keputusan pemeliharaan berpotensi menjadi inkonsisten, tidak sah, atau bertentangan dengan kebijakan perusahaan.
 
-### Batas Kewenangan Tiap Jabatan
+## Batas Kewenangan Tiap Jabatan
 
 Governance menetapkan **batas kewenangan (authority boundary)** per level jabatan agar keputusan tidak melampaui mandatnya:
 
@@ -330,7 +526,7 @@ Governance menetapkan **batas kewenangan (authority boundary)** per level jabata
 
 Pembatasan ini mencegah **overreach** (keputusan melampaui kewenangan) sekaligus **under-decision** (menunda keputusan karena ketidakjelasan otoritas).
 
-### Eskalasi Keputusan Teknis dan Biaya
+## Eskalasi Keputusan Teknis dan Biaya
 
 Governance juga menetapkan **jalur eskalasi** yang jelas untuk keputusan:
 
@@ -340,7 +536,7 @@ Governance juga menetapkan **jalur eskalasi** yang jelas untuk keputusan:
 
 Eskalasi bukan tanda kelemahan, melainkan **mekanisme kontrol risiko** agar keputusan signifikan diambil pada level yang tepat.
 
-### Hubungan Maintenance dengan SHE, Produksi, dan Manajemen Puncak
+## Hubungan Maintenance dengan SHE, Produksi, dan Manajemen Puncak
 
 Governance memastikan integrasi keputusan pemeliharaan dengan fungsi lain:
 
@@ -351,13 +547,45 @@ Governance memastikan integrasi keputusan pemeliharaan dengan fungsi lain:
 📌 **Keterkaitan dengan modul lain:**
 Governance yang tegas memastikan bahwa **keputusan risiko (Module 2)** dan **strategi RBM (Module 3)** tidak hanya benar secara teknis, tetapi **dijalankan secara sah, konsisten, dan dapat dipertanggungjawabkan** dalam kerangka organisasi dan kebijakan perusahaan.
 
+```mermaid id="maintenance-governance-decision-path-mobile"
+flowchart TD
+    A["Maintenance<br/>Issue / Proposal"] --> B{"Decision<br/>Type?"}
+
+    B -- "Technical" --> C["Engineer<br/>Recommendation"]
+    B -- "Cost" --> D["Supervisor / Superintendent<br/>Cost Review"]
+    B -- "Risk / SHE" --> E["SHE + Maintenance<br/>Risk Review"]
+
+    C --> F{"Impact<br/>High?"}
+    D --> F
+    E --> F
+
+    F -- "No" --> G["Approved at<br/>Operational Level"]
+    F -- "Yes" --> H["Escalate to<br/>Manager Maintenance"]
+
+    H --> I["Policy / Budget / Risk<br/>Approval"]
+    G --> J["Execute<br/>and Document"]
+    I --> J
+
+    classDef issue fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef decision fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef review fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef escalate fill:#FFEBEE,stroke:#C62828,color:#111;
+    classDef output fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+
+    class A issue;
+    class B,F decision;
+    class C,D,E,G review;
+    class H,I escalate;
+    class J output;
+```
+
 ---
 
-## 5.8 Organisasi Pemeliharaan sebagai Sistem yang Dapat Diaudit
+# 5.8 Organisasi Pemeliharaan sebagai Sistem yang Dapat Diaudit
 
 Sub-bab ini menempatkan organisasi pemeliharaan sebagai **sistem yang harus dapat diaudit (audit-ready)**, baik untuk kepentingan pengendalian internal maupun kepatuhan terhadap standar eksternal. Dalam konteks industri petrokimia, audit bukan sekadar aktivitas periodik, melainkan **mekanisme verifikasi bahwa keputusan teknis, biaya, dan risiko telah dikelola secara sah dan konsisten**.
 
-### Traceability Keputusan
+## Traceability Keputusan
 
 Prasyarat utama organisasi yang dapat diaudit adalah **traceability keputusan**. Setiap keputusan pemeliharaan—mulai dari penetapan prioritas aset, perubahan strategi, penggunaan anggaran, hingga penerimaan risiko—harus dapat ditelusuri secara jelas:
 
@@ -367,13 +595,13 @@ Prasyarat utama organisasi yang dapat diaudit adalah **traceability keputusan**.
 
 Traceability ini dibangun melalui keterkaitan yang konsisten antara **Job Description, KPI berbasis peran, governance, dan dokumentasi keputusan**. Tanpa rantai ini, audit akan berhenti pada temuan administratif, bukan evaluasi sistemik.
 
-### Kesesuaian dengan Audit Internal dan Eksternal
+## Kesesuaian dengan Audit Internal dan Eksternal
 
 Organisasi pemeliharaan yang rapi memudahkan pelaksanaan **audit internal** untuk menilai efektivitas sistem, serta **audit eksternal** untuk memastikan kepatuhan terhadap standar, regulasi, dan kebijakan perusahaan. Auditor tidak lagi hanya melihat hasil akhir (misalnya angka downtime), tetapi dapat menilai **proses pengambilan keputusan** yang melatarbelakanginya.
 
 Dengan struktur organisasi, KPI, dan governance yang jelas, temuan audit dapat diarahkan pada **perbaikan sistem**, bukan sekadar koreksi individu. Hal ini meningkatkan nilai audit sebagai alat peningkatan berkelanjutan, bukan sekadar fungsi pengawasan.
 
-### Kesiapan terhadap Standar dan Sistem SHE
+## Kesiapan terhadap Standar dan Sistem SHE
 
 Organisasi pemeliharaan yang terstruktur juga memastikan kesiapan terhadap standar manajemen aset seperti **ISO 55000**, serta integrasi yang kuat dengan **sistem SHE**. Dalam kerangka ini:
 
@@ -384,15 +612,70 @@ Organisasi pemeliharaan yang terstruktur juga memastikan kesiapan terhadap stand
 📌 **Nilai strategis:**
 **Organisasi yang rapi = sistem yang defensible di audit.** Kejelasan peran, KPI, dan jalur keputusan menjadikan sistem pemeliharaan tidak hanya efektif secara operasional, tetapi juga **kuat secara tata kelola**, mampu bertahan terhadap audit, dan kredibel di mata manajemen puncak serta regulator.
 
+```mermaid id="audit-ready-maintenance-organization-mobile"
+flowchart TD
+    A["Audit-Ready<br/>Maintenance Organization"] --> B["Job Description<br/>Role Clarity"]
+    A --> C["KPI<br/>Performance Evidence"]
+    A --> D["Governance<br/>Decision Path"]
+    A --> E["Documentation<br/>Decision Record"]
+
+    B --> F["Who Decided?"]
+    C --> G["Why Action<br/>Was Needed?"]
+    D --> H["With What<br/>Authority?"]
+    E --> I["Where is<br/>the Evidence?"]
+
+    F --> J["Traceable<br/>Decision Chain"]
+    G --> J
+    H --> J
+    I --> J
+
+    J --> K["Defensible<br/>in Audit"]
+
+    classDef audit fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef element fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef question fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef chain fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+    classDef output fill:#FFEBEE,stroke:#C62828,color:#111;
+
+    class A audit;
+    class B,C,D,E element;
+    class F,G,H,I question;
+    class J chain;
+    class K output;
+```
+
 ---
 
-## 🧠 Kesimpulan Module 4
+# 🧠 Kesimpulan Module 4
 
 Modul ini menegaskan bahwa **keandalan sistem pemeliharaan tidak hanya ditentukan oleh metode teknis**, melainkan oleh **kejelasan peran, ukuran kinerja, dan garis tanggung jawab yang tegas** di dalam organisasi. Tanpa fondasi organisasi yang kuat, filosofi risk-based thinking dan strategi RBM yang baik sekalipun akan kehilangan daya eksekusinya.
 
 Melalui Job Description yang jelas, KPI berbasis peran, kepemilikan anggaran yang tegas, serta governance dan jalur keputusan yang terdefinisi, organisasi pemeliharaan bertransformasi menjadi **sistem kerja yang transparan, terkendali, dan dapat diaudit**. Setiap keputusan memiliki pemilik, setiap kinerja dapat diukur, dan setiap biaya dapat dipertanggungjawabkan.
 
 Dengan demikian, Modul 4 memastikan bahwa sistem pemeliharaan tidak bergantung pada individu, tetapi berdiri sebagai **arsitektur organisasi yang kokoh dan berkelanjutan**.
+
+```mermaid id="organization-kpi-accountability-final-summary-mobile"
+flowchart TD
+    A["Clear<br/>Organization"] --> B["Clear<br/>Job Description"]
+    B --> C["Relevant<br/>Role-Based KPI"]
+    C --> D["Defined<br/>Authority"]
+    D --> E["Clear<br/>Budget Ownership"]
+    E --> F["Strong<br/>Governance"]
+    F --> G["Audit-Ready<br/>Maintenance System"]
+
+    G --> H["Reliable<br/>Defensible<br/>Sustainable"]
+
+    classDef org fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef job fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef kpi fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef gov fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+    classDef output fill:#FFEBEE,stroke:#C62828,color:#111;
+
+    class A,B org;
+    class C kpi;
+    class D,E,F gov;
+    class G,H output;
+```
 
 ---
 
@@ -434,7 +717,7 @@ Dengan demikian, Modul 4 memastikan bahwa sistem pemeliharaan tidak bergantung p
 
 ---
 
-## 📚 Referensi Module 5
+# 📚 Referensi Module 5
 
 1. **Artikel 2 (Full)** – _Efisiensi dan Keandalan dalam Manajemen Pemeliharaan_
 2. **ISO 55000** – _Asset Management_

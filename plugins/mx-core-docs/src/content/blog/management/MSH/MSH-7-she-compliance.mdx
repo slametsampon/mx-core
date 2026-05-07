@@ -19,10 +19,11 @@ draft: false
 summary: Module 7 menempatkan SHE (Safety, Health, and Environment) sebagai batas keras (hard boundary) dalam seluruh sistem pengambilan keputusan pemeliharaan. Modul ini menegaskan bahwa tidak semua keputusan yang tampak optimal secara teknis atau ekonomis dapat dibenarkan apabila melanggar aspek keselamatan, kesehatan kerja, dan perlindungan lingkungan. SHE diposisikan sebagai system constraint yang membatasi risk acceptance, strategi RBM, hingga eksekusi lapangan. Melalui integrasi ESC, peran lintas jabatan, serta keterkaitan dengan audit dan regulasi, modul ini memberikan legitimasi kuat bagi keputusan konservatif demi menjaga keberlanjutan operasi, kepatuhan hukum, dan integritas sistem pemeliharaan jangka panjang.
 ---
 
-**_SHE sebagai Batas Sistem dalam Pengambilan Keputusan Pemeliharaan_**
+# **_SHE sebagai Batas Sistem dalam Pengambilan Keputusan Pemeliharaan_**
 
 ---
 
+- [**_SHE sebagai Batas Sistem dalam Pengambilan Keputusan Pemeliharaan_**](#she-sebagai-batas-sistem-dalam-pengambilan-keputusan-pemeliharaan)
 - [📌 Prolog Modul](#-prolog-modul)
 - [7.1 SHE dalam Sistem Pemeliharaan: Dari Kewajiban ke Batas Keputusan](#71-she-dalam-sistem-pemeliharaan-dari-kewajiban-ke-batas-keputusan)
   - [Tujuan Sub-Bab](#tujuan-sub-bab)
@@ -88,7 +89,7 @@ summary: Module 7 menempatkan SHE (Safety, Health, and Environment) sebagai bata
 
 ---
 
-## 📌 Prolog Modul
+# 📌 Prolog Modul
 
 Modul ini merupakan bagian **paling kritikal** dalam _Maintenance System Handbook_ karena mendefinisikan **batas absolut** dari seluruh sistem pengambilan keputusan pemeliharaan. Pertanyaan yang dijawab pada modul ini bukan lagi _bagaimana_ atau _seberapa efisien_, melainkan:
 
@@ -149,15 +150,74 @@ Dengan menempatkan SHE sebagai _ultimate constraint_, modul ini memastikan bahwa
 
 Modul ini menjadi **penjaga gerbang sistem**—memastikan bahwa sistem pemeliharaan yang cerdas tidak berubah menjadi sistem yang berbahaya.
 
+```mermaid id="she-as-hard-boundary-overview-mobile"
+flowchart TD
+    A["Maintenance<br/>Decision System"] --> B["Risk Logic<br/>Module 2"]
+    A --> C["RBM Strategy<br/>Module 3"]
+    A --> D["Authority<br/>Module 5"]
+    A --> E["Execution Learning<br/>Module 6"]
+
+    B --> F["SHE<br/>Hard Boundary"]
+    C --> F
+    D --> F
+    E --> F
+
+    F --> G{"Decision<br/>Allowed?"}
+    G -- "Inside SHE Boundary" --> H["Proceed<br/>with Control"]
+    G -- "Violates SHE" --> I["Reject / Stop / Escalate"]
+
+    classDef system fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef module fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef boundary fill:#FFEBEE,stroke:#C62828,color:#111;
+    classDef decision fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef stop fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+
+    class A system;
+    class B,C,D,E module;
+    class F boundary;
+    class G decision;
+    class H module;
+    class I stop;
+```
+
 ---
 
-## 7.1 SHE dalam Sistem Pemeliharaan: Dari Kewajiban ke Batas Keputusan
+# 7.1 SHE dalam Sistem Pemeliharaan: Dari Kewajiban ke Batas Keputusan
 
-### Tujuan Sub-Bab
+## Tujuan Sub-Bab
 
 Sub-bab ini bertujuan **menggeser paradigma SHE** dari sekadar **kepatuhan administratif** menjadi **pembatas sistemik (decision boundary)** dalam seluruh pengambilan keputusan pemeliharaan. SHE tidak lagi diperlakukan sebagai “syarat tambahan”, tetapi sebagai **fondasi keberlanjutan operasi** yang menentukan boleh atau tidaknya suatu keputusan dijalankan.
 
-### SHE sebagai Fondasi Keberlanjutan Operasi
+```mermaid id="she-from-compliance-to-decision-boundary-mobile"
+flowchart TD
+    A["SHE<br/>Conventional View"] --> B["Administrative<br/>Compliance"]
+    B --> C["Permit<br/>Checklist<br/>Toolbox"]
+
+    D["SHE<br/>System View"] --> E["Decision<br/>Boundary"]
+    E --> F["Worker Safety"]
+    E --> G["Health Protection"]
+    E --> H["Environment"]
+    E --> I["License to Operate"]
+
+    F --> J["Decision<br/>Valid / Invalid"]
+    G --> J
+    H --> J
+    I --> J
+
+    classDef conventional fill:#FFEBEE,stroke:#C62828,color:#111;
+    classDef system fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef boundary fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef dimension fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef output fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+
+    class A,B,C conventional;
+    class D system;
+    class E boundary;
+    class F,G,H,I dimension;
+    class J output;
+```
+
+## SHE sebagai Fondasi Keberlanjutan Operasi
 
 Dalam industri petrokimia, sistem pemeliharaan beroperasi di lingkungan dengan:
 
@@ -170,7 +230,7 @@ Dalam konteks ini, **SHE bukan pelengkap sistem pemeliharaan**, melainkan **pras
 
 Keputusan pemeliharaan yang tampak optimal dari sisi biaya atau ketersediaan aset dapat menjadi **keputusan yang salah secara sistem**, apabila melanggar batas SHE.
 
-### Dampak Keputusan Maintenance terhadap Dimensi SHE
+## Dampak Keputusan Maintenance terhadap Dimensi SHE
 
 Setiap keputusan pemeliharaan—baik penundaan, perubahan scope, maupun modifikasi metode—memiliki implikasi langsung terhadap empat dimensi utama:
 
@@ -186,7 +246,7 @@ Setiap keputusan pemeliharaan—baik penundaan, perubahan scope, maupun modifika
 4. **Lisensi Operasi**
    Pelanggaran SHE berulang atau insiden besar dapat berujung pada sanksi regulator, denda, pembatasan operasi, hingga pencabutan izin. Pada titik ini, keandalan teknis aset menjadi tidak relevan karena operasi secara hukum tidak lagi diperbolehkan.
 
-### SHE sebagai Batas Keputusan, Bukan Variabel Optimasi
+## SHE sebagai Batas Keputusan, Bukan Variabel Optimasi
 
 Berbeda dengan biaya, waktu, atau efisiensi, **SHE bukan variabel yang boleh dioptimasi atau dinegosiasikan**. SHE adalah **constraint**—batas keras yang tidak boleh dilampaui oleh logika risiko, strategi RBM, maupun pertimbangan bisnis.
 
@@ -198,7 +258,7 @@ Dalam kerangka _Maintenance System Handbook_:
   - dampak finansial dianggap dapat ditoleransi,
   - atau tekanan produksi sangat tinggi.
 
-### Prinsip Kunci
+## Prinsip Kunci
 
 📌 **Keputusan yang melanggar SHE bukan keputusan, melainkan pelanggaran.**
 
@@ -206,13 +266,39 @@ Prinsip ini menjadi fondasi bagi seluruh sub-bab berikutnya dalam Modul 6, dan b
 
 ---
 
-## 7.2 SHE Bukan Checklist, tetapi _Decision Boundary_
+# 7.2 SHE Bukan Checklist, tetapi _Decision Boundary_
 
-### Tujuan Sub-Bab
+## Tujuan Sub-Bab
 
 Sub-bab ini bertujuan **meluruskan praktik keliru yang umum terjadi di lapangan**, di mana SHE diperlakukan sebagai **formalitas administratif** yang selesai setelah dokumen ditandatangani, bukan sebagai **batas pengambilan keputusan** yang aktif dan mengikat sepanjang siklus pemeliharaan.
 
-### Bahaya Menjadikan SHE sebagai Formalitas
+```mermaid id="she-no-go-line-maintenance-mobile"
+flowchart TD
+    A["Maintenance<br/>Decision"] --> B{"Touches<br/>SHE Risk?"}
+
+    B -- "No" --> C["Evaluate<br/>Technical + Cost"]
+    B -- "Yes" --> D{"Within<br/>SHE Boundary?"}
+
+    D -- "Yes" --> E["Proceed<br/>with Control"]
+    D -- "No" --> F["NO-GO<br/>Decision Rejected"]
+
+    F --> G["Stop Work<br/>or Escalate"]
+    G --> H["Reassess<br/>Method / Scope / Timing"]
+
+    classDef input fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef decision fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef proceed fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef nogo fill:#FFEBEE,stroke:#C62828,color:#111;
+    classDef action fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+
+    class A input;
+    class B,D decision;
+    class C,E proceed;
+    class F,G nogo;
+    class H action;
+```
+
+## Bahaya Menjadikan SHE sebagai Formalitas
 
 Dalam praktik sehari-hari, SHE sering direduksi menjadi:
 
@@ -230,7 +316,7 @@ tanpa mempertimbangkan apakah keputusan tersebut **masih berada dalam batas aman
 
 Akibatnya, organisasi secara tidak sadar **menormalisasi deviasi**, sampai akhirnya insiden besar terjadi.
 
-### _Comply then Forget_ vs _Design with SHE_
+## _Comply then Forget_ vs _Design with SHE_
 
 Perbedaan mendasar dalam cara pandang terhadap SHE dapat diringkas sebagai berikut:
 
@@ -248,7 +334,7 @@ Perbedaan mendasar dalam cara pandang terhadap SHE dapat diringkas sebagai berik
 
 Pendekatan kedua inilah yang selaras dengan filosofi **SHE sebagai decision boundary**, bukan sekadar kewajiban awal.
 
-### SHE sebagai “NO-GO Line” dalam Keputusan Pemeliharaan
+## SHE sebagai “NO-GO Line” dalam Keputusan Pemeliharaan
 
 Dalam _Maintenance System Handbook_, SHE didefinisikan sebagai **garis larangan absolut (NO-GO line)** yang tidak boleh dilewati oleh keputusan apa pun, termasuk dalam konteks:
 
@@ -263,7 +349,7 @@ Dalam _Maintenance System Handbook_, SHE didefinisikan sebagai **garis larangan 
 
 Dalam konteks ini, SHE berfungsi sebagai **filter terakhir** yang memveto keputusan, bukan sekadar memberi rekomendasi.
 
-### Anti-Abu-Abu Rule
+## Anti-Abu-Abu Rule
 
 📌 **Jika keputusan menyentuh keselamatan → tidak ada kompromi.**
 
@@ -273,13 +359,46 @@ Sub-bab ini menjadi penguat bahwa dalam sistem pemeliharaan modern, **SHE bukan 
 
 ---
 
-## 7.3 ESC sebagai Integrator Risiko Teknik dan SHE
+# 7.3 ESC sebagai Integrator Risiko Teknik dan SHE
 
-### Tujuan Sub-Bab
+## Tujuan Sub-Bab
 
 Sub-bab ini bertujuan menunjukkan bagaimana **SHE diintegrasikan secara struktural ke dalam logika risiko**, bukan ditempatkan sebagai lapisan terpisah. Konsep **ESC (Environmental – Safety – Continuous Running)** berfungsi sebagai **jembatan operasional** antara analisis teknis kegagalan dan konsekuensi yang relevan bagi keselamatan, lingkungan, serta keberlangsungan bisnis.
 
-### Konsep Dasar ESC
+```mermaid id="esc-integrator-technical-she-business-mobile"
+flowchart TD
+    A["Technical<br/>Failure Scenario"] --> B["ESC<br/>Consequence Lens"]
+
+    B --> C["Environmental"]
+    B --> D["Safety"]
+    B --> E["Continuous<br/>Running"]
+
+    C --> F["Pollution<br/>Regulatory Impact"]
+    D --> G["Injury<br/>Fire / Explosion"]
+    E --> H["Shutdown<br/>Business Loss"]
+
+    F --> I["Integrated<br/>Risk Decision"]
+    G --> I
+    H --> I
+
+    I --> J["Engineer + SHE + Management<br/>Common Language"]
+
+    classDef technical fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef esc fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef env fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef safety fill:#FFEBEE,stroke:#C62828,color:#111;
+    classDef running fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+    classDef output fill:#ECEFF1,stroke:#455A64,color:#111;
+
+    class A technical;
+    class B esc;
+    class C,F env;
+    class D,G safety;
+    class E,H running;
+    class I,J output;
+```
+
+## Konsep Dasar ESC
 
 ESC merupakan bentuk penyederhanaan **Consequences of Failure (CoF)** yang dirancang agar:
 
@@ -289,7 +408,7 @@ ESC merupakan bentuk penyederhanaan **Consequences of Failure (CoF)** yang diran
 
 Alih-alih menggunakan konsekuensi yang terlalu abstrak atau finansial semata, ESC memfokuskan penilaian dampak pada tiga dimensi yang **paling menentukan legitimasi keputusan**.
 
-### Dimensi ESC
+## Dimensi ESC
 
 1. **Environmental (Lingkungan)**
    Dimensi ini mengevaluasi potensi dampak kegagalan terhadap lingkungan, antara lain:
@@ -326,7 +445,7 @@ Alih-alih menggunakan konsekuensi yang terlalu abstrak atau finansial semata, ES
 
    Continuous Running memastikan bahwa **dampak operasional dan bisnis** diperlakukan setara dengan dampak keselamatan dan lingkungan dalam logika risiko.
 
-### ESC sebagai Bentuk Konkret CoF
+## ESC sebagai Bentuk Konkret CoF
 
 Dengan ESC, konsekuensi kegagalan tidak lagi dinilai sebagai angka abstrak, melainkan sebagai **narasi dampak nyata**:
 
@@ -340,7 +459,7 @@ Pendekatan ini membuat CoF:
 - lebih defensible di audit,
 - dan lebih relevan bagi pengambil keputusan non-teknis.
 
-### Menghubungkan Risiko Teknik dengan SHE dan Bisnis
+## Menghubungkan Risiko Teknik dengan SHE dan Bisnis
 
 ESC memungkinkan satu kegagalan teknis diterjemahkan ke dalam **bahasa bersama**:
 
@@ -350,7 +469,7 @@ ESC memungkinkan satu kegagalan teknis diterjemahkan ke dalam **bahasa bersama**
 
 Dengan demikian, diskusi risiko tidak lagi terfragmentasi, melainkan terintegrasi dalam satu kerangka penilaian.
 
-### Menghindari Silo Organisasi
+## Menghindari Silo Organisasi
 
 Tanpa ESC, organisasi cenderung terjebak dalam silo:
 
@@ -369,9 +488,9 @@ ESC menyatukan bahasa engineer, SHE officer, dan manajemen, sehingga keputusan p
 
 ---
 
-## 7.4 SHE sebagai Alasan Sah Mengabaikan Optimasi Biaya
+# 7.4 SHE sebagai Alasan Sah Mengabaikan Optimasi Biaya
 
-### Tujuan Sub-Bab
+## Tujuan Sub-Bab
 
 Sub-bab ini bertujuan memberikan **legitimasi teknis dan manajerial** bahwa dalam sistem pemeliharaan modern, **optimasi biaya bukanlah tujuan absolut**. Ketika keputusan menyentuh aspek **keselamatan, kesehatan, dan lingkungan**, maka pertimbangan biaya **harus tunduk** pada batas SHE.
 
@@ -383,7 +502,38 @@ Dengan kerangka ini, keputusan konservatif tidak lagi dipersepsikan sebagai:
 
 melainkan sebagai **keputusan yang sah, defensible, dan bertanggung jawab**.
 
-### SHE vs Optimasi Biaya: Kesalahan Paradigma Umum
+```mermaid id="she-overrides-cost-optimization-mobile"
+flowchart TD
+    A["Cost Optimization<br/>Proposal"] --> B{"SHE Impact<br/>Present?"}
+
+    B -- "No Significant Impact" --> C["Optimize<br/>with Control"]
+    B -- "Yes" --> D{"Risk<br/>Acceptable?"}
+
+    D -- "Acceptable" --> E["Proceed<br/>with Mitigation"]
+    D -- "Not Acceptable" --> F["Reject<br/>Cost Saving"]
+
+    F --> G["Tighten<br/>Maintenance"]
+    F --> H["Early<br/>Replacement"]
+    F --> I["Increase<br/>Inspection / Protection"]
+
+    G --> J["Defensible<br/>SHE Decision"]
+    H --> J
+    I --> J
+
+    classDef proposal fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef decision fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef safe fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef reject fill:#FFEBEE,stroke:#C62828,color:#111;
+    classDef output fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+
+    class A proposal;
+    class B,D decision;
+    class C,E safe;
+    class F,G,H,I reject;
+    class J output;
+```
+
+## SHE vs Optimasi Biaya: Kesalahan Paradigma Umum
 
 Dalam praktik, konflik sering muncul antara:
 
@@ -396,7 +546,7 @@ Kesalahan paradigma yang umum terjadi adalah:
 
 Pendekatan ini mengabaikan fakta bahwa **biaya kegagalan akibat pelanggaran SHE hampir selalu melampaui biaya pencegahan**, baik secara finansial, hukum, maupun reputasi.
 
-### Kasus Keputusan yang Sah Mengabaikan Optimasi Biaya
+## Kasus Keputusan yang Sah Mengabaikan Optimasi Biaya
 
 Dalam konteks sistem pemeliharaan berbasis risiko, SHE menjadi dasar sah untuk:
 
@@ -430,7 +580,7 @@ Dalam konteks sistem pemeliharaan berbasis risiko, SHE menjadi dasar sah untuk:
 
    maka **early replacement menjadi justifikasi teknis yang kuat**, bukan pemborosan.
 
-### Alasan Utama: Risiko yang Tidak Dapat Diterima
+## Alasan Utama: Risiko yang Tidak Dapat Diterima
 
 Keputusan mengabaikan optimasi biaya selalu berakar pada **risiko yang tidak dapat diterima**, antara lain:
 
@@ -450,7 +600,7 @@ Keputusan mengabaikan optimasi biaya selalu berakar pada **risiko yang tidak dap
   - kerugian finansial bersifat diskrit dan besar,
   - restart membawa risiko tambahan.
 
-### Legitimasi di Hadapan Manajemen dan Audit
+## Legitimasi di Hadapan Manajemen dan Audit
 
 Keputusan mahal yang didorong oleh SHE memiliki posisi kuat karena:
 
@@ -465,17 +615,49 @@ Keputusan yang mahal **bisa menjadi keputusan yang paling benar**, jika didorong
 
 ---
 
-## 7.5 Integrasi SHE dalam RBM dan Strategi Pemeliharaan
+# 7.5 Integrasi SHE dalam RBM dan Strategi Pemeliharaan
 
-### Tujuan Sub-Bab
+## Tujuan Sub-Bab
 
 Sub-bab ini bertujuan menegaskan prinsip fundamental bahwa **Risk-Based Maintenance (RBM tidak pernah bersifat netral terhadap keselamatan)**. RBM bukan alat optimasi teknis semata, melainkan **mekanisme pengambilan keputusan yang secara inheren tunduk pada batas SHE**.
 
 Dengan kata lain, RBM **bukan instrumen untuk membenarkan pengurangan proteksi**, tetapi **alat untuk memastikan risiko SHE dikenali, diprioritaskan, dan dikendalikan secara sistematis**.
 
+```mermaid id="she-integrated-rbm-strategy-mobile"
+flowchart TD
+    A["RBM<br/>Risk-Based Strategy"] --> B["Assess<br/>Asset Risk"]
+    B --> C{"Has SHE<br/>Consequence?"}
+
+    C -- "Yes" --> D["Classify as<br/>Critical Asset"]
+    C -- "No" --> E["Classify by<br/>Operational Risk"]
+
+    D --> F["Stricter<br/>Inspection"]
+    D --> G["CBM / PdM<br/>Preferred"]
+    D --> H["MOC + SHE<br/>Review Required"]
+
+    E --> I["Proportional<br/>Maintenance Strategy"]
+
+    F --> J["RBM Works<br/>Inside SHE Boundary"]
+    G --> J
+    H --> J
+    I --> J
+
+    classDef rbm fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef decision fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef critical fill:#FFEBEE,stroke:#C62828,color:#111;
+    classDef normal fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef output fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+
+    class A,B rbm;
+    class C decision;
+    class D,F,G,H critical;
+    class E,I normal;
+    class J output;
+```
+
 ---
 
-### Posisi SHE dalam Kerangka RBM
+## Posisi SHE dalam Kerangka RBM
 
 Dalam kerangka RBM yang sah dan defensible:
 
@@ -496,7 +678,7 @@ bukan:
 
 ---
 
-### RBM sebagai Alat Prioritisasi Risiko SHE
+## RBM sebagai Alat Prioritisasi Risiko SHE
 
 Integrasi SHE ke dalam RBM terjadi pada level **klasifikasi risiko**, bukan pada tahap akhir eksekusi.
 
@@ -519,7 +701,7 @@ difokuskan pada titik-titik yang **paling berbahaya jika gagal**, bukan sekadar 
 
 ---
 
-### Aset dengan Dampak SHE sebagai Aset Kritis
+## Aset dengan Dampak SHE sebagai Aset Kritis
 
 Dalam sistem RBM yang selaras dengan SHE:
 
@@ -540,7 +722,7 @@ Dengan pendekatan ini, klasifikasi kritis **bukan opini**, tetapi hasil logis da
 
 ---
 
-### Menghindari Penyalahgunaan RBM
+## Menghindari Penyalahgunaan RBM
 
 Tanpa integrasi SHE yang eksplisit, RBM berisiko disalahgunakan sebagai:
 
@@ -559,7 +741,7 @@ Artinya:
 
 ---
 
-### Implikasi Strategis terhadap Sistem Pemeliharaan
+## Implikasi Strategis terhadap Sistem Pemeliharaan
 
 Dengan integrasi SHE yang konsisten ke dalam RBM:
 
@@ -579,17 +761,53 @@ RBM yang terintegrasi dengan SHE menjadikan sistem pemeliharaan **bukan hanya ef
 
 ---
 
-## 7.6 Peran Jabatan dalam Menjaga Batas SHE
+# 7.6 Peran Jabatan dalam Menjaga Batas SHE
 
-### Tujuan Sub-Bab
+## Tujuan Sub-Bab
 
 Sub-bab ini menegaskan bahwa **SHE bukan domain eksklusif satu departemen atau satu jabatan**, melainkan **tanggung jawab sistemik yang melekat pada setiap peran dalam organisasi pemeliharaan**. Batas SHE hanya efektif jika **setiap level organisasi memahami perannya dan bertindak konsisten** dalam koridor kewenangannya.
 
 Tanpa pembagian peran yang jelas, SHE akan tereduksi menjadi slogan, bukan pengendali keputusan.
 
+```mermaid id="role-layered-defense-she-mobile"
+flowchart TD
+    A["Manager<br/>Policy + Resource"] --> B["Superintendent<br/>Operational Gatekeeper"]
+    B --> C["Supervisor<br/>Direct Control"]
+    C --> D["Foreman<br/>Field Discipline"]
+    D --> E["Technician<br/>SOP + Hazard Report"]
+
+    F["Engineer / Senior Engineer<br/>Inherently Safe Solution"] --> B
+    F --> C
+
+    A --> G["Layered<br/>SHE Defense"]
+    B --> G
+    C --> G
+    D --> G
+    E --> G
+    F --> G
+
+    G --> H["SHE Boundary<br/>Maintained"]
+
+    classDef manager fill:#FFEBEE,stroke:#C62828,color:#111;
+    classDef superintendent fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+    classDef supervisor fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef foreman fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef tech fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef engineer fill:#E0F2F1,stroke:#00796B,color:#111;
+    classDef output fill:#ECEFF1,stroke:#455A64,color:#111;
+
+    class A manager;
+    class B superintendent;
+    class C supervisor;
+    class D foreman;
+    class E tech;
+    class F engineer;
+    class G,H output;
+```
+
 ---
 
-### Prinsip Dasar Akuntabilitas SHE
+## Prinsip Dasar Akuntabilitas SHE
 
 Dalam sistem pemeliharaan yang matang:
 
@@ -606,9 +824,9 @@ _“Jika semua bertanggung jawab, semua harus bertindak.”_
 
 ---
 
-### Peran dan Tanggung Jawab SHE per Level Jabatan
+## Peran dan Tanggung Jawab SHE per Level Jabatan
 
-#### **Manager Maintenance**
+### **Manager Maintenance**
 
 - Menetapkan **kebijakan SHE** dalam sistem pemeliharaan.
 - Menyediakan **resource yang memadai** (anggaran, personel, waktu kerja aman).
@@ -624,7 +842,7 @@ Tidak ada kegagalan SHE yang netral terhadap kebijakan manajemen.
 
 ---
 
-#### **Superintendent**
+### **Superintendent**
 
 - Mengendalikan **implementasi kebijakan SHE di level operasional**.
 - Memastikan strategi RBM dan rencana kerja:
@@ -639,7 +857,7 @@ Superintendent adalah _gatekeeper_ antara kebijakan dan praktik lapangan.
 
 ---
 
-#### **Supervisor**
+### **Supervisor**
 
 - Melakukan **pengawasan langsung** terhadap pekerjaan pemeliharaan.
 - Memastikan:
@@ -655,7 +873,7 @@ Supervisor yang permisif = celah terbesar kegagalan SHE.
 
 ---
 
-#### **Foreman**
+### **Foreman**
 
 - Menjaga **disiplin kerja aman** di level tim.
 - Mengontrol:
@@ -671,7 +889,7 @@ Foreman menentukan apakah prosedur benar-benar dijalankan atau hanya dibaca.
 
 ---
 
-#### **Engineer / Senior Engineer**
+### **Engineer / Senior Engineer**
 
 - Merancang **solusi teknis yang inherently safe**, bukan sekadar berfungsi.
 - Memastikan bahwa:
@@ -689,7 +907,7 @@ Masalah keselamatan yang “dikompensasi di lapangan” adalah kegagalan desain.
 
 ---
 
-#### **Teknisi**
+### **Teknisi**
 
 - Mematuhi **SOP, instruksi kerja, dan permit** secara disiplin.
 - Menggunakan APD sesuai risiko aktual, bukan sekadar formalitas.
@@ -706,7 +924,7 @@ SHE runtuh jika teknisi diam terhadap bahaya.
 
 ---
 
-### Integrasi Peran sebagai Sistem Pertahanan Berlapis
+## Integrasi Peran sebagai Sistem Pertahanan Berlapis
 
 Jika setiap jabatan menjalankan perannya dengan benar, maka sistem pemeliharaan memiliki **lapisan pertahanan berlapis (layered defense)** terhadap kegagalan SHE:
 
@@ -721,7 +939,7 @@ Kegagalan SHE hampir selalu terjadi **bukan karena satu orang**, tetapi karena *
 
 ---
 
-### Penegasan Akhir
+## Penegasan Akhir
 
 Menjaga batas SHE bukan pekerjaan tambahan, melainkan **bagian inti dari peran setiap jabatan** dalam sistem pemeliharaan. Organisasi yang matang tidak bertanya:
 
@@ -735,15 +953,43 @@ Dengan pendekatan ini, SHE berfungsi sebagai **pagar sistem yang hidup**, bukan 
 
 ---
 
-## 7.7 SHE dalam Konteks Audit, Regulasi, dan Lisensi Operasi
+# 7.7 SHE dalam Konteks Audit, Regulasi, dan Lisensi Operasi
 
-### Tujuan Sub-Bab
+## Tujuan Sub-Bab
 
 Sub-bab ini menempatkan **SHE sebagai pilar defensif organisasi** dalam menghadapi audit, regulasi, dan pengawasan eksternal. Pada industri petrokimia, kegagalan pemeliharaan **tidak hanya berdampak teknis**, tetapi dapat berujung pada **sanksi hukum, penghentian operasi, hingga pencabutan izin**. Oleh karena itu, keputusan pemeliharaan harus **audit-ready** sejak awal.
 
+```mermaid id="she-audit-regulation-license-mobile"
+flowchart TD
+    A["Maintenance<br/>Decision"] --> B["SHE<br/>Justification"]
+    B --> C["Traceable<br/>Evidence"]
+    C --> D["Audit<br/>Readiness"]
+
+    D --> E["Internal<br/>Audit"]
+    D --> F["External<br/>Regulator"]
+    D --> G["License to<br/>Operate"]
+
+    B --> H{"SHE Basis<br/>Clear?"}
+    H -- "Yes" --> I["Decision<br/>Defensible"]
+    H -- "No" --> J["High Audit<br/>and Legal Risk"]
+
+    classDef decision fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef she fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef audit fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef good fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+    classDef bad fill:#FFEBEE,stroke:#C62828,color:#111;
+
+    class A decision;
+    class B,C she;
+    class D,E,F,G audit;
+    class H good;
+    class I good;
+    class J bad;
+```
+
 ---
 
-### SHE sebagai Fokus Utama Audit
+## SHE sebagai Fokus Utama Audit
 
 Dalam audit internal maupun eksternal, SHE menjadi **titik perhatian pertama** karena:
 
@@ -761,7 +1007,7 @@ Keputusan pemeliharaan tanpa justifikasi SHE yang jelas akan sulit dipertahankan
 
 ---
 
-### Keterkaitan dengan Standar dan Praktik Internasional
+## Keterkaitan dengan Standar dan Praktik Internasional
 
 Keputusan berbasis SHE memperoleh legitimasi kuat karena selaras dengan standar internasional, antara lain:
 
@@ -782,7 +1028,7 @@ Keputusan pemeliharaan yang memprioritaskan SHE **selaras dengan best practice g
 
 ---
 
-### Risiko Non-Teknis akibat Kegagalan SHE
+## Risiko Non-Teknis akibat Kegagalan SHE
 
 Kegagalan mematuhi batas SHE berpotensi memicu risiko non-teknis yang sering kali **lebih merusak** daripada kerusakan peralatan, antara lain:
 
@@ -799,7 +1045,7 @@ Risiko-risiko ini umumnya:
 
 ---
 
-### SHE sebagai Alat Pertahanan Keputusan (Decision Defense)
+## SHE sebagai Alat Pertahanan Keputusan (Decision Defense)
 
 Keputusan pemeliharaan yang didasarkan pada pertimbangan SHE memiliki keunggulan defensif karena:
 
@@ -815,7 +1061,7 @@ Jika jawabannya **ya**, maka keputusan tersebut **defensible**, meskipun berdamp
 
 ---
 
-### Penegasan Akhir
+## Penegasan Akhir
 
 Dalam konteks audit, regulasi, dan lisensi operasi, **SHE bukan beban kepatuhan**, melainkan **perisai organisasi**. Sistem pemeliharaan yang menempatkan SHE sebagai batas keputusan akan:
 
@@ -828,15 +1074,46 @@ Keputusan berbasis SHE adalah keputusan yang **paling mudah dipertahankan ketika
 
 ---
 
-## 7.8 SHE sebagai Sistem Penjaga Keputusan Maintenance
+# 7.8 SHE sebagai Sistem Penjaga Keputusan Maintenance
 
-### Tujuan Sub-Bab
+## Tujuan Sub-Bab
 
 Sub-bab ini merangkum dan menegaskan posisi **SHE sebagai mekanisme penjaga (guardrail) keputusan pemeliharaan**, bukan sekadar fungsi pendukung atau persyaratan kepatuhan. Dalam kerangka _Maintenance System Handbook_, SHE berfungsi sebagai **ultimate constraint** yang membatasi seluruh spektrum keputusan—dari perencanaan hingga eksekusi.
 
+```mermaid id="she-guardrail-maintenance-system-mobile"
+flowchart TD
+    A["Maintenance<br/>Decision"] --> B["Technical<br/>Logic"]
+    A --> C["Cost<br/>Logic"]
+    A --> D["Schedule<br/>Logic"]
+
+    B --> E["SHE<br/>Guardrail"]
+    C --> E
+    D --> E
+
+    E --> F{"Inside<br/>Guardrail?"}
+    F -- "Yes" --> G["Decision<br/>Can Proceed"]
+    F -- "No" --> H["Decision<br/>Invalid"]
+
+    H --> I["Stop<br/>Reject<br/>Escalate"]
+    G --> J["Execute<br/>and Document"]
+
+    classDef input fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef logic fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef guard fill:#FFEBEE,stroke:#C62828,color:#111;
+    classDef decision fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef action fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+
+    class A input;
+    class B,C,D logic;
+    class E guard;
+    class F decision;
+    class G,J action;
+    class H,I guard;
+```
+
 ---
 
-### SHE sebagai _Ultimate Constraint_ dalam Sistem Pemeliharaan
+## SHE sebagai _Ultimate Constraint_ dalam Sistem Pemeliharaan
 
 Dalam sistem pemeliharaan modern, keputusan teknis dan ekonomi **selalu memiliki batas**. Batas tersebut bukan ditentukan oleh efisiensi biaya, ketersediaan sumber daya, atau tekanan produksi, melainkan oleh **keselamatan, kesehatan, dan lingkungan**.
 
@@ -851,7 +1128,7 @@ Keputusan maintenance yang melanggar SHE secara otomatis **tidak valid**, meskip
 
 ---
 
-### Hubungan SHE dengan Risk Acceptance (Module 2)
+## Hubungan SHE dengan Risk Acceptance (Module 2)
 
 Dalam **Module 2**, risk acceptance didefinisikan sebagai keputusan sadar terhadap risiko yang tersisa. Modul 6 menegaskan bahwa:
 
@@ -868,7 +1145,7 @@ Risk acceptance tunduk pada SHE, bukan hasil kompromi teknis.
 
 ---
 
-### Hubungan SHE dengan Strategi RBM (Module 3)
+## Hubungan SHE dengan Strategi RBM (Module 3)
 
 RBM berfungsi untuk memprioritaskan perhatian dan sumber daya berdasarkan risiko. Namun, modul ini menegaskan bahwa:
 
@@ -885,7 +1162,7 @@ Tidak ada RBM yang sah jika bertentangan dengan batas SHE.
 
 ---
 
-### Hubungan SHE dengan Disiplin Eksekusi (Module 5)
+## Hubungan SHE dengan Disiplin Eksekusi (Module 5)
 
 Pada **Module 5**, kualitas sistem ditentukan di titik eksekusi. Modul 6 menambahkan dimensi bahwa:
 
@@ -909,7 +1186,7 @@ Kecepatan eksekusi tidak pernah menjadi alasan untuk melanggar SHE.
 
 ---
 
-### SHE sebagai Pagar Sistem, Bukan Rambu Opsional
+## SHE sebagai Pagar Sistem, Bukan Rambu Opsional
 
 Rambu dapat diabaikan, tetapi pagar **menghentikan pergerakan**. Dalam konteks ini:
 
@@ -925,7 +1202,7 @@ SHE menjaga agar:
 
 ---
 
-### Penegasan Akhir
+## Penegasan Akhir
 
 Dengan menempatkan SHE sebagai sistem penjaga keputusan, organisasi pemeliharaan memperoleh kejelasan yang tegas:
 
@@ -937,7 +1214,7 @@ Dengan menempatkan SHE sebagai sistem penjaga keputusan, organisasi pemeliharaan
 
 ---
 
-## 🧠 Kesimpulan Module 7
+# 🧠 Kesimpulan Module 7
 
 Modul ini menegaskan bahwa **SHE merupakan batas keras (_hard boundary_) dalam seluruh sistem pemeliharaan**, bukan sekadar aspek pendukung atau persyaratan administratif. Tidak ada strategi teknis, efisiensi biaya, maupun inovasi pemeliharaan yang dapat dibenarkan apabila melampaui batas **keselamatan, kesehatan, dan lingkungan**.
 
@@ -948,6 +1225,33 @@ Dengan menempatkan SHE sebagai **_system constraint_**, organisasi pemeliharaan 
 - serta menjaga keberlanjutan operasi secara **legal, etis, dan dapat dipertanggungjawabkan**.
 
 Pendekatan ini memastikan bahwa sistem pemeliharaan tidak hanya andal secara teknis, tetapi juga kokoh dari perspektif keselamatan dan kepatuhan jangka panjang.
+
+```mermaid id="module-7-she-final-logic-mobile"
+flowchart TD
+    A["SHE<br/>Hard Boundary"] --> B["Rejects<br/>Unsafe Decision"]
+    A --> C["Overrides<br/>Cost Optimization"]
+    A --> D["Limits<br/>Risk Acceptance"]
+    A --> E["Guides<br/>RBM Strategy"]
+    A --> F["Protects<br/>License to Operate"]
+
+    B --> G["Safe<br/>Maintenance System"]
+    C --> G
+    D --> G
+    E --> G
+    F --> G
+
+    G --> H["Legal<br/>Ethical<br/>Defensible"]
+
+    classDef she fill:#FFEBEE,stroke:#C62828,color:#111;
+    classDef function fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef system fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef output fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+
+    class A she;
+    class B,C,D,E,F function;
+    class G system;
+    class H output;
+```
 
 ---
 
@@ -993,9 +1297,29 @@ Pendekatan ini memastikan bahwa sistem pemeliharaan tidak hanya andal secara tek
   ]}
 />
 
+```mermaid id="module-7-connection-to-msh-mobile"
+flowchart TD
+    A["Module 2<br/>Risk Acceptance"] --> B["Module 7<br/>SHE Hard Boundary"]
+    C["Module 3<br/>RBM Strategy"] --> B
+    D["Module 5<br/>Authority & Accountability"] --> B
+    E["Module 6<br/>Execution & Learning"] --> B
+
+    B --> F["Defines<br/>Where Decision Must Stop"]
+    F --> G["Module 8<br/>Lifecycle & Continuous Improvement"]
+
+    classDef previous fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef she fill:#FFEBEE,stroke:#C62828,color:#111;
+    classDef output fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+    classDef lifecycle fill:#E8F5E9,stroke:#2E7D32,color:#111;
+
+    class A,C,D,E previous;
+    class B,F she;
+    class G lifecycle;
+```
+
 ---
 
-## 📚 Referensi Module 7
+# 📚 Referensi Module 7
 
 1. **Artikel 2** – _Efisiensi dan Keandalan dalam Manajemen Pemeliharaan_ (Bab SHE)
 2. **Artikel 3** – _Risk-Based Maintenance – ESC & Risk Governance_

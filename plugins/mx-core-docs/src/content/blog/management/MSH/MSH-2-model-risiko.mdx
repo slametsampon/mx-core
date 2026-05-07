@@ -18,7 +18,7 @@ draft: false
 summary: Modul 2 merupakan inti konseptual Maintenance System Handbook yang menjelaskan bagaimana risiko diterjemahkan menjadi keputusan pemeliharaan yang sah, konsisten, dan dapat dipertanggungjawabkan. Modul ini menegaskan bahwa pemeliharaan modern adalah sistem pengambilan keputusan berbasis risiko, bukan sekadar penerapan metode teknis. Model klasik PoF × CoF digunakan sebagai kerangka awal prioritisasi, namun tidak bersifat absolut dan harus tunduk pada realitas operasi industri proses kontinu. Konsep ESC (Environmental–Safety–Continuous Running) serta studi kasus PT Petro Oxo Nusantara menunjukkan bahwa dalam kondisi konsekuensi absolut, keputusan tanpa PoF tetap sah secara teknis dan normatif. Fokus utama modul ini adalah perlindungan keselamatan, lingkungan, dan kontinuitas bisnis.
 ---
 
-## **_Model Risiko dan Logika Pengambilan Keputusan Pemeliharaan_**
+# **_Model Risiko dan Logika Pengambilan Keputusan Pemeliharaan_**
 
 ---
 
@@ -37,7 +37,7 @@ summary: Modul 2 merupakan inti konseptual Maintenance System Handbook yang menj
 
 ---
 
-## 📌 Prolog Modul
+# 📌 Prolog Modul
 
 Modul ini merupakan **inti konseptual** dari _Maintenance System Handbook (MSH)_. Jika Modul 1 menetapkan **fondasi filosofis dan normatif** sistem pemeliharaan, maka Modul 2 berfungsi sebagai **mekanisme operasional pengambilan keputusan** yang menjembatani filosofi tersebut dengan tindakan nyata di lapangan.
 
@@ -50,6 +50,26 @@ Pada titik inilah _risk-based thinking_ tidak lagi berhenti sebagai prinsip abst
 Modul ini juga menempatkan diri sebagai **titik temu antara standar industri dan realitas operasional**. Di satu sisi, model risiko klasik seperti _Probabilitas of Failure × Consequences of Failure (PoF × CoF)_ memberikan kerangka baku yang diakui secara internasional. Di sisi lain, studi kasus PT Petro Oxo Nusantara menunjukkan bahwa dalam industri proses kontinu dengan **konsekuensi kegagalan absolut**, model tersebut perlu **diadaptasi secara sadar dan terjustifikasi**, tanpa kehilangan legitimasi teknis maupun normatif.
 
 Dengan demikian, Modul 2 memastikan bahwa keputusan pemeliharaan tidak bersifat intuitif, personal, atau ad-hoc, melainkan merupakan hasil dari **logika risiko yang eksplisit, terdokumentasi, dan selaras dengan tujuan keselamatan, lingkungan, serta keberlangsungan bisnis**.
+
+```mermaid id="msh-2-risk-decision-core-mobile"
+flowchart TD
+    A["Module 1<br/>Risk-Based Philosophy"] --> B["Module 2<br/>Risk Model & Decision Logic"]
+    B --> C["Risk<br/>Assessment"]
+    C --> D["Decision<br/>Boundary"]
+    D --> E["Maintenance<br/>Decision"]
+    E --> F["Resource<br/>Allocation"]
+    F --> G["Module 3<br/>RBM Execution"]
+
+    classDef foundation fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef core fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef decision fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef execution fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+
+    class A foundation;
+    class B,C,D core;
+    class E,F decision;
+    class G execution;
+```
 
 <ResourceBox
   title="Korelasi internal-link modul:"
@@ -76,7 +96,7 @@ Dengan demikian, Modul 2 memastikan bahwa keputusan pemeliharaan tidak bersifat 
 
 ---
 
-## 2.1 Risiko sebagai Dasar Pengambilan Keputusan Teknis
+# 2.1 Risiko sebagai Dasar Pengambilan Keputusan Teknis
 
 Dalam konteks sistem pemeliharaan modern, **risiko** dan **kegagalan** merupakan dua konsep yang berbeda namun sering kali disalahartikan sebagai hal yang sama. **Kegagalan teknis** merujuk pada kondisi ketika suatu peralatan tidak lagi mampu menjalankan fungsi desainnya. Sementara itu, **risiko** merepresentasikan **besarnya ancaman yang ditimbulkan oleh kegagalan tersebut terhadap sistem secara keseluruhan**, yang ditentukan oleh kombinasi antara **kemungkinan terjadinya kegagalan** dan **dampak yang ditimbulkannya**.
 
@@ -89,9 +109,34 @@ Konsekuensinya, **keputusan pemeliharaan harus selalu menjawab satu pertanyaan m
 📌 **Chain logic:**
 **Risiko → prioritas → keputusan → alokasi sumber daya**
 
+```mermaid id="risk-to-maintenance-decision-mobile"
+flowchart TD
+    A["Technical<br/>Failure"] --> B["Risk<br/>Exposure"]
+    B --> C["Priority<br/>Setting"]
+    C --> D["Maintenance<br/>Decision"]
+    D --> E["Resource<br/>Allocation"]
+
+    B --> F{"Most Dangerous<br/>If It Fails?"}
+    F -- "Yes" --> G["Higher<br/>Attention"]
+    F -- "No" --> H["Proportional<br/>Control"]
+
+    G --> D
+    H --> D
+
+    classDef failure fill:#FFEBEE,stroke:#C62828,color:#111;
+    classDef risk fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef decision fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef resource fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+
+    class A failure;
+    class B,F risk;
+    class C,D,G,H decision;
+    class E resource;
+```
+
 ---
 
-## 2.2 Model Risiko Klasik: Probabilitas × Konsekuensi (PoF × CoF)
+# 2.2 Model Risiko Klasik: Probabilitas × Konsekuensi (PoF × CoF)
 
 Model risiko klasik yang paling luas digunakan dalam industri proses adalah pendekatan **Probabilitas of Failure × Consequences of Failure (PoF × CoF)**. Model ini menyediakan **kerangka logika sederhana namun kuat** untuk menerjemahkan ketidakpastian teknis menjadi prioritas pemeliharaan yang dapat dikelola secara sistematis.
 
@@ -109,9 +154,36 @@ Kombinasi PoF dan CoF menghasilkan **tingkat risiko relatif** yang digunakan unt
 📌 **Catatan penting:**
 Model PoF × CoF **bukan alat prediksi absolut** dan tidak dimaksudkan untuk meramalkan kapan kegagalan akan terjadi secara presisi. Fungsinya adalah sebagai **alat bantu keputusan** yang membantu organisasi mengalokasikan sumber daya pemeliharaan secara rasional, transparan, dan dapat dipertanggungjawabkan. Validitas model ini terletak pada **konsistensi logika dan justifikasi keputusan**, bukan pada ketepatan matematis semata.
 
+```mermaid id="pof-cof-risk-model-mobile"
+flowchart TD
+    A["Risk Model<br/>PoF x CoF"] --> B["PoF<br/>Probability of Failure"]
+    A --> C["CoF<br/>Consequences of Failure"]
+
+    B --> D["Failure History<br/>Age<br/>Inspection Data"]
+    C --> E["Safety<br/>Environment<br/>Production<br/>Cost"]
+
+    D --> F["Risk<br/>Level"]
+    E --> F
+
+    F --> G["Risk Matrix<br/>Relative Priority"]
+    G --> H["Inspection Interval<br/>Maintenance Strategy<br/>Resource Focus"]
+
+    classDef model fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef factor fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef data fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef risk fill:#FFEBEE,stroke:#C62828,color:#111;
+    classDef output fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+
+    class A model;
+    class B,C factor;
+    class D,E data;
+    class F,G risk;
+    class H output;
+```
+
 ---
 
-## 2.3 Keterbatasan Model PoF × CoF dalam Proses Kontinu
+# 2.3 Keterbatasan Model PoF × CoF dalam Proses Kontinu
 
 Meskipun model **PoF × CoF** banyak digunakan sebagai kerangka standar dalam penilaian risiko, penerapannya pada **industri proses kontinu** memiliki keterbatasan yang signifikan. Keterbatasan ini bukan disebabkan oleh kelemahan konseptual model, melainkan oleh **ketidaksesuaian antara asumsi model dan realitas operasional** fasilitas proses berisiko tinggi.
 
@@ -129,9 +201,38 @@ Ketidakseimbangan antara probabilitas dan dampak inilah yang menyebabkan **ketid
 📌 **Penekanan penting:**
 Dalam sistem pemeliharaan modern, **model risiko harus tunduk pada realitas operasional**, bukan sebaliknya. Ketika karakter proses menunjukkan bahwa setiap kegagalan membawa konsekuensi besar dan tidak dapat ditoleransi, maka pendekatan risiko perlu disesuaikan secara sadar, terjustifikasi, dan terdokumentasi—meskipun itu berarti menyimpang dari penerapan matematis PoF × CoF yang konvensional.
 
+```mermaid id="pof-cof-limitation-continuous-process-mobile"
+flowchart TD
+    A["Continuous Process<br/>Petrochemical Plant"] --> B["Critical Equipment<br/>Rare Failure"]
+    B --> C["Low PoF<br/>Mathematically"]
+    C --> D["Risk Score<br/>May Look Lower"]
+
+    B --> E["Failure Consequence<br/>Very High"]
+    E --> F["Shutdown<br/>Production Loss<br/>SHE Exposure"]
+    F --> G["Risk Not<br/>Acceptable"]
+
+    D --> H{"Model Output<br/>Matches Reality?"}
+    G --> H
+
+    H -- "No" --> I["Adapt Risk Model<br/>to Operational Reality"]
+    H -- "Yes" --> J["Use Classical<br/>PoF x CoF"]
+
+    classDef process fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef pof fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef consequence fill:#FFEBEE,stroke:#C62828,color:#111;
+    classDef decision fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef output fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+
+    class A process;
+    class B,C,D pof;
+    class E,F,G consequence;
+    class H decision;
+    class I,J output;
+```
+
 ---
 
-## 2.4 Konsep ESC (Environmental – Safety – Continuous Running)
+# 2.4 Konsep ESC (Environmental – Safety – Continuous Running)
 
 Dalam konteks industri proses kontinu, kompleksitas dampak kegagalan sering kali sulit diterjemahkan secara efektif ke dalam angka atau formula matematis. Untuk menjembatani kebutuhan analisis risiko dengan realitas pengambilan keputusan di lapangan, digunakan konsep **ESC (Environmental – Safety – Continuous Running)** sebagai bentuk **konkret dan operasional dari Consequences of Failure (CoF)**.
 
@@ -146,9 +247,36 @@ Dimensi **Continuous Running** menyoroti dampak kegagalan terhadap **kontinuitas
 📌 **Fungsi dalam handbook:**
 Konsep ESC berperan sebagai **bahasa operasional bersama** yang menyatukan perspektif engineer, fungsi SHE, dan manajemen. Dengan ESC, diskusi risiko tidak lagi terjebak pada terminologi teknis atau angka probabilitas semata, melainkan berfokus pada **dampak nyata yang harus dikendalikan oleh sistem pemeliharaan**.
 
+```mermaid id="esc-consequence-framework-mobile"
+flowchart TD
+    A["ESC<br/>Operational CoF"] --> B["Environmental"]
+    A --> C["Safety"]
+    A --> D["Continuous<br/>Running"]
+
+    B --> E["Pollution<br/>Release<br/>Regulatory Impact"]
+    C --> F["Injury<br/>Fire<br/>Explosion"]
+    D --> G["Shutdown<br/>Production Loss<br/>Supply Chain Impact"]
+
+    E --> H["Consequence<br/>Classification"]
+    F --> H
+    G --> H
+
+    H --> I["Common Language<br/>Engineering + SHE + Management"]
+
+    classDef esc fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef dimension fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef impact fill:#FFEBEE,stroke:#C62828,color:#111;
+    classDef output fill:#E8F5E9,stroke:#2E7D32,color:#111;
+
+    class A esc;
+    class B,C,D dimension;
+    class E,F,G impact;
+    class H,I output;
+```
+
 ---
 
-## 2.5 Batas Penerimaan Risiko (Risk Acceptance & Decision Boundary)
+# 2.5 Batas Penerimaan Risiko (Risk Acceptance & Decision Boundary)
 
 Dalam sistem pemeliharaan berbasis risiko, tidak semua risiko diperlakukan dengan cara yang sama. Salah satu elemen paling krusial dalam pengambilan keputusan adalah penetapan **batas penerimaan risiko (risk acceptance)**, yaitu tingkat risiko yang secara sadar **dapat diterima, harus dikurangi, atau sama sekali tidak boleh diterima** oleh organisasi. Konsep ini dikenal sebagai **decision boundary**, dan berfungsi sebagai garis pemisah yang menentukan arah tindakan pemeliharaan.
 
@@ -159,9 +287,38 @@ Terdapat pula kategori risiko yang **tidak boleh diterima sama sekali**, terutam
 📌 **Catatan penting:**
 Penetapan risk acceptance dan decision boundary **bukan keputusan teknis semata**. Keputusan ini mencerminkan **kebijakan manajemen risiko perusahaan**, yang melibatkan pertimbangan strategis, regulasi, toleransi bisnis, serta komitmen terhadap keselamatan dan lingkungan. Oleh karena itu, batas penerimaan risiko harus didefinisikan secara eksplisit, disepakati lintas fungsi, dan terdokumentasi sebagai bagian integral dari sistem pemeliharaan.
 
+```mermaid id="risk-acceptance-decision-boundary-mobile"
+flowchart TD
+    A["Risk<br/>Assessment Result"] --> B{"Against<br/>Decision Boundary"}
+
+    B -- "Below Boundary" --> C["Acceptable<br/>Routine Control"]
+    B -- "Above Boundary" --> D["Not Acceptable<br/>Risk Reduction Required"]
+    B -- "Intolerable" --> E["Immediate Action<br/>No Deferral"]
+
+    C --> F["Monitor<br/>Periodic Review"]
+    D --> G["Increase Inspection<br/>CBM / PdM<br/>Mitigation"]
+    E --> H["Stop / Repair<br/>Shutdown if Required"]
+
+    F --> I["Documented<br/>Risk Decision"]
+    G --> I
+    H --> I
+
+    classDef input fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef decision fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef accept fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef reduce fill:#FFEBEE,stroke:#C62828,color:#111;
+    classDef output fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+
+    class A input;
+    class B decision;
+    class C,F accept;
+    class D,E,G,H reduce;
+    class I output;
+```
+
 ---
 
-## 2.6 Keputusan Tanpa PoF: Justifikasi Teknik dan Bisnis (Kasus PT PON)
+# 2.6 Keputusan Tanpa PoF: Justifikasi Teknik dan Bisnis (Kasus PT PON)
 
 Dalam kondisi operasional tertentu, penggunaan **Probabilitas of Failure (PoF)** sebagai variabel penentu risiko dapat kehilangan relevansinya secara praktis. Hal inilah yang menjadi dasar keputusan PT Petro Oxo Nusantara (PT PON) untuk **secara sadar menghilangkan PoF** dalam sistem _Risk-Based Maintenance_ yang diterapkannya. Keputusan ini bukan diambil secara intuitif, melainkan didasarkan pada **justifikasi teknik dan bisnis yang kuat**.
 
@@ -172,9 +329,38 @@ Secara operasional, setiap kegagalan signifikan akan menyebabkan **shutdown pros
 📌 **Penegasan penting:**
 Penghilangan PoF dalam kasus PT PON **bukan merupakan penyimpangan terhadap standar industri**, melainkan **adaptasi yang sah dan rasional berbasis risiko absolut**. Selama keputusan tersebut didukung oleh analisis konsekuensi yang jelas, justifikasi terdokumentasi, serta selaras dengan tujuan perlindungan keselamatan, lingkungan, dan kontinuitas bisnis, pendekatan ini tetap konsisten dengan prinsip _risk-based thinking_ sebagaimana diamanatkan dalam standar industri.
 
+```mermaid id="decision-without-pof-ptpon-mobile"
+flowchart TD
+    A["PT PON<br/>Continuous Process"] --> B["Absolute<br/>Consequence Regime"]
+    B --> C["Every Significant Failure<br/>Creates Major Impact"]
+
+    C --> D["Minimum Shutdown<br/>~3 Days"]
+    C --> E["Material Loss<br/>> USD 500k"]
+    C --> F["SHE + Supply Chain<br/>Exposure"]
+
+    D --> G["PoF Becomes<br/>Less Decisive"]
+    E --> G
+    F --> G
+
+    G --> H["Consequence-Based<br/>Decision"]
+    H --> I["Valid if<br/>Justified + Documented"]
+
+    classDef plant fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef consequence fill:#FFEBEE,stroke:#C62828,color:#111;
+    classDef impact fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef decision fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef valid fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+
+    class A plant;
+    class B,C consequence;
+    class D,E,F impact;
+    class G,H decision;
+    class I valid;
+```
+
 ---
 
-## 2.7 Legitimasi Keputusan Berbasis Risiko dalam Standar Industri
+# 2.7 Legitimasi Keputusan Berbasis Risiko dalam Standar Industri
 
 Keputusan pemeliharaan berbasis risiko memperoleh **legitimasi normatif** yang kuat melalui standar industri internasional, khususnya **API Recommended Practice 580 – Risk-Based Inspection (RBI)**. Standar ini secara eksplisit mengakui bahwa **tidak terdapat satu metode tunggal** yang harus diterapkan secara seragam pada seluruh fasilitas, mengingat perbedaan karakter proses, tingkat bahaya, ketersediaan data, serta tujuan bisnis masing-masing organisasi.
 
@@ -185,9 +371,35 @@ Prinsip kunci yang ditekankan dalam standar ini adalah **_engineering judgment_*
 📌 **Penegasan normatif:**
 Dalam kerangka API RP 580, **justifikasi keputusan lebih penting daripada formula matematis**. Standar tidak menuntut keseragaman metode, tetapi menuntut **konsistensi logika, keterlacakan keputusan, dan kesesuaian dengan konteks risiko aktual**. Prinsip inilah yang memberikan dasar normatif bagi adaptasi seperti penghilangan PoF pada kasus PT PON, tanpa kehilangan legitimasi teknis maupun audit-ready.
 
+```mermaid id="api580-legitimacy-risk-decision-mobile"
+flowchart TD
+    A["API RP 580<br/>Risk-Based Inspection"] --> B["Allows<br/>Flexible Method"]
+    B --> C["Qualitative"]
+    B --> D["Semi-Quantitative"]
+    B --> E["Quantitative"]
+
+    C --> F["Engineering<br/>Judgment"]
+    D --> F
+    E --> F
+
+    F --> G["Consistent<br/>Risk Logic"]
+    G --> H["Traceable<br/>Decision"]
+    H --> I["Audit-Ready<br/>Justification"]
+
+    classDef api fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef method fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef judgment fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef audit fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+
+    class A api;
+    class B,C,D,E method;
+    class F,G judgment;
+    class H,I audit;
+```
+
 ---
 
-## 2.8 Dari Model Risiko ke Keputusan Pemeliharaan
+# 2.8 Dari Model Risiko ke Keputusan Pemeliharaan
 
 Nilai utama dari model risiko tidak terletak pada formulanya, melainkan pada **kemampuannya untuk diterjemahkan menjadi keputusan pemeliharaan yang konkret dan dapat dieksekusi**. Pada tahap ini, risiko tidak lagi diperlakukan sebagai konsep analitis, tetapi sebagai **dasar langsung penentuan tindakan teknis dan manajerial**.
 
@@ -200,13 +412,65 @@ Akhirnya, seluruh keputusan tersebut bermuara pada **alokasi sumber daya**—man
 📌 **Jembatan ke Modul 3:**
 Pada titik inilah **Risk-Based Maintenance (RBM)** muncul sebagai **strategi praktis** yang mengoperasionalkan keputusan berbasis risiko ke dalam program pemeliharaan harian, periodik, dan jangka panjang, sehingga risiko tidak hanya dianalisis, tetapi benar-benar **dikendalikan secara sistematis**.
 
+```mermaid id="risk-model-to-maintenance-action-mobile"
+flowchart TD
+    A["Risk Model<br/>PoF-CoF / ESC"] --> B["Maintenance<br/>Priority"]
+    B --> C["Inspection<br/>Interval"]
+    C --> D["Maintenance<br/>Strategy"]
+
+    D --> E{"Risk Control<br/>Needed?"}
+    E -- "Routine" --> F["TBM<br/>Preventive"]
+    E -- "Condition Sensitive" --> G["CBM / PdM<br/>Monitoring"]
+    E -- "Unacceptable Risk" --> H["Redesign<br/>Replace<br/>Immediate Repair"]
+
+    F --> I["Resource<br/>Allocation"]
+    G --> I
+    H --> I
+
+    I --> J["Executable<br/>RBM Program"]
+
+    classDef model fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef decision fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef strategy fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef high fill:#FFEBEE,stroke:#C62828,color:#111;
+    classDef output fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+
+    class A model;
+    class B,C,D,E decision;
+    class F,G strategy;
+    class H high;
+    class I,J output;
+```
+
 ---
 
-## 🧠 Kesimpulan Module 2
+# 🧠 Kesimpulan Module 2
 
 Modul 2 menegaskan bahwa **pemeliharaan modern pada industri petrokimia merupakan sistem pengambilan keputusan berbasis risiko**, bukan sekadar penerapan metode teknis atau pemenuhan jadwal kerja. Model klasik **Probabilitas of Failure × Consequences of Failure (PoF × CoF)** menyediakan kerangka awal yang penting untuk memahami dan memetakan risiko, namun **tidak bersifat absolut** dan tidak boleh diterapkan secara mekanis tanpa mempertimbangkan konteks operasional yang sesungguhnya.
 
 Pendekatan **ESC (Environmental – Safety – Continuous Running)** serta keputusan untuk menghilangkan PoF pada kasus PT Petro Oxo Nusantara menunjukkan bahwa **keputusan pemeliharaan yang sah adalah keputusan yang mampu melindungi keselamatan manusia, lingkungan, dan kontinuitas bisnis**, meskipun hal tersebut menuntut penyimpangan yang terjustifikasi dari model matematis klasik. Dengan demikian, legitimasi keputusan pemeliharaan tidak ditentukan oleh kompleksitas formula, melainkan oleh **kekuatan logika risiko, konsistensi kebijakan, dan keterlacakan keputusan**.
+
+```mermaid id="module-2-final-logic-mobile"
+flowchart TD
+    A["Risk-Based<br/>Thinking"] --> B["Risk Model<br/>PoF x CoF"]
+    B --> C["Operational Adaptation<br/>ESC"]
+    C --> D["Decision Boundary<br/>Risk Acceptance"]
+    D --> E["Context-Based<br/>Engineering Judgment"]
+    E --> F["Maintenance<br/>Decision"]
+    F --> G["Defensible<br/>Risk-Based System"]
+
+    classDef thinking fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef model fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef esc fill:#FFEBEE,stroke:#C62828,color:#111;
+    classDef decision fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef output fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+
+    class A thinking;
+    class B model;
+    class C esc;
+    class D,E,F decision;
+    class G output;
+```
 
 ---
 
@@ -240,9 +504,35 @@ Pendekatan **ESC (Environmental – Safety – Continuous Running)** serta keput
   note="Module 8 berfungsi sebagai penutup sekaligus pengunci seluruh sistem, memastikan bahwa _Maintenance System Handbook_ tidak hanya menjadi dokumen referensi, tetapi kerangka kerja yang relevan dan bernilai sepanjang umur aset."
 />
 
+```mermaid id="module-2-connection-to-rbm-mobile"
+flowchart TD
+    A["Module 1<br/>Risk-Based Philosophy"] --> B["Module 2<br/>Risk Model & Decision Logic"]
+    B --> C["Module 3<br/>RBM Practical Strategy"]
+    C --> D["Module 5<br/>Organization & Accountability"]
+    C --> E["Module 7<br/>SHE Decision Boundary"]
+    C --> F["Module 8<br/>Lifecycle & Continuous Improvement"]
+
+    B --> G["Defines<br/>How Risk Becomes Decision"]
+    C --> H["Defines<br/>How Decision Becomes Work"]
+    D --> I["Defines<br/>Who Owns Decision"]
+    E --> J["Defines<br/>Hard Safety Boundary"]
+    F --> K["Defines<br/>How System Learns"]
+
+    classDef m1 fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef m2 fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef m3 fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef next fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+    classDef note fill:#ECEFF1,stroke:#455A64,color:#111;
+
+    class A m1;
+    class B,G m2;
+    class C,H m3;
+    class D,E,F,I,J,K next;
+```
+
 ---
 
-## 📚 Referensi Module 2
+# 📚 Referensi Module 2
 
 1. **Artikel 1** – _Maintenance System berbasis API RP 580_
 2. **Artikel 3** – _Risk-Based Maintenance di Industri Petrokimia (Bab II & IV)_

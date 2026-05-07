@@ -16,10 +16,12 @@ draft: false
 summary: Budgeting maintenance berbasis Risk-Based Maintenance (RBM) merupakan pendekatan penganggaran yang menempatkan risiko sebagai dasar utama pengambilan keputusan biaya pemeliharaan di pabrik petrokimia. Dalam kerangka ini, budgeting tidak dipahami sebagai aktivitas finansial semata, melainkan sebagai output dari proses penilaian risiko aset yang mencakup asset criticality, consequence of failure, dan probability of failure. RBM memastikan bahwa biaya dialokasikan secara prioritas pada pengendalian risiko process safety dan keandalan aset kritikal, sementara area berisiko rendah dapat dioptimasi. Dengan demikian, budgeting menjadi defensible secara engineering, SHE, dan manajerial, serta mampu menjaga keseimbangan antara keselamatan, keandalan operasi, dan efisiensi biaya jangka panjang.
 ---
 
-**_Budgeting Maintenance Berbasis Risk-Based Maintenance (RBM) di Pabrik Petrokimia_**
+# **_Budgeting Maintenance Berbasis Risk-Based Maintenance (RBM) di Pabrik Petrokimia_**
 
 ---
 
+- [**_Budgeting Maintenance Berbasis Risk-Based Maintenance (RBM) di Pabrik Petrokimia_**](#budgeting-maintenance-berbasis-risk-based-maintenance-rbm-di-pabrik-petrokimia)
+- [📌 Prolog Modul](#-prolog-modul)
 - [I. Pendahuluan](#i-pendahuluan)
   - [1. Latar Belakang](#1-latar-belakang)
   - [2. Posisi RBM dalam Pengambilan Keputusan Maintenance](#2-posisi-rbm-dalam-pengambilan-keputusan-maintenance)
@@ -77,7 +79,7 @@ summary: Budgeting maintenance berbasis Risk-Based Maintenance (RBM) merupakan p
 
 ---
 
-## 📌 Prolog Modul
+# 📌 Prolog Modul
 
 Modul ini merupakan **lapisan konsekuensial** dalam _Maintenance System Handbook (MSH)_.
 Jika **Modul 1–3** membangun **fondasi filosofis, logika risiko, dan strategi pemeliharaan berbasis Risk-Based Maintenance (RBM)**, maka **Modul 4** menjawab pertanyaan yang jauh lebih menentukan keberlangsungan sistem:
@@ -99,6 +101,29 @@ Dengan demikian, modul ini berfungsi sebagai **decision consequence layer** yang
 - serta mencegah degradasi sistem pemeliharaan akibat tekanan efisiensi jangka pendek.
 
 Modul ini juga menjadi **jembatan struktural** menuju modul berikutnya. Tanpa kejelasan dan disiplin dalam budgeting berbasis risiko, **organisasi, KPI, eksekusi, dan pembelajaran sistem (Modul 5–8)** tidak akan pernah berjalan konsisten, meskipun konsep dan prosedurnya tampak lengkap di atas kertas.
+
+```mermaid id="msh-4-budgeting-consequence-layer-mobile"
+flowchart TD
+    A["Module 1-3<br/>Risk Philosophy + RBM Strategy"] --> B["Module 4<br/>RBM-Based Budgeting"]
+    B --> C["Risk Decision<br/>Has Cost Consequence"]
+    C --> D["Budget Line<br/>Linked to Risk"]
+    D --> E["Risk Barrier Cost<br/>Locked"]
+    D --> F["Optimizable Cost<br/>Controlled"]
+    E --> G["Defensible<br/>Maintenance Budget"]
+    F --> G
+
+    classDef foundation fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef budget fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef risk fill:#FFEBEE,stroke:#C62828,color:#111;
+    classDef control fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef output fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+
+    class A foundation;
+    class B,C,D budget;
+    class E risk;
+    class F control;
+    class G output;
+```
 
 <ResourceBox
   title="Korelasi internal-link modul:"
@@ -132,9 +157,9 @@ Modul ini juga menjadi **jembatan struktural** menuju modul berikutnya. Tanpa ke
 
 ---
 
-## I. Pendahuluan
+# I. Pendahuluan
 
-### 1. Latar Belakang
+## 1. Latar Belakang
 
 Pabrik petrokimia beroperasi dalam lingkungan dengan **tingkat risiko inheren yang tinggi**, ditandai oleh fluida berbahaya, tekanan dan temperatur ekstrem, serta keterkaitan antar-aset yang kompleks. Kegagalan satu peralatan—terutama yang berada pada **process safety boundary**—dapat bereskalasi menjadi insiden keselamatan, dampak lingkungan, kehilangan produksi signifikan, hingga konsekuensi hukum dan reputasi. Dalam konteks ini, fungsi pemeliharaan tidak hanya dituntut menjaga keandalan aset, tetapi juga **mengendalikan risiko secara sistemik dan berkelanjutan**.
 
@@ -145,6 +170,33 @@ Namun, praktik budgeting maintenance yang masih lazim ditemui sering kali **tida
 - serta mendorong penghematan jangka pendek dengan **meningkatkan eksposur risiko jangka menengah–panjang**.
 
 Akibatnya, pengurangan biaya yang tampak efisien di atas kertas sering berujung pada peningkatan _corrective maintenance_, _unplanned shutdown_, dan temuan audit SHE. Kondisi ini menegaskan kebutuhan akan pendekatan budgeting yang **defensible secara teknis, finansial, dan SHE**—yakni mampu dipertanggungjawabkan di hadapan fungsi engineering, manajemen, auditor, dan regulator.
+
+```mermaid id="conventional-budgeting-risk-gap-mobile"
+flowchart TD
+    A["Conventional<br/>Maintenance Budget"] --> B["Flat Budgeting"]
+    A --> C["Historical<br/>Roll-Over"]
+    A --> D["Cost-Driven<br/>Cutting"]
+
+    B --> E["Criticality<br/>Ignored"]
+    C --> E
+    D --> F["Risk Barrier<br/>May Be Cut"]
+
+    E --> G["Under-Protected<br/>Critical Assets"]
+    F --> G
+
+    G --> H["Corrective<br/>Maintenance Up"]
+    H --> I["Unplanned Shutdown<br/>SHE Finding<br/>Business Loss"]
+
+    classDef conventional fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef weak fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef risk fill:#FFEBEE,stroke:#C62828,color:#111;
+    classDef impact fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+
+    class A,B,C,D conventional;
+    class E,F weak;
+    class G,H risk;
+    class I impact;
+```
 
 <ResourceBox
   title="Korelasi internal-link modul:"
@@ -183,7 +235,7 @@ Akibatnya, pengurangan biaya yang tampak efisien di atas kertas sering berujung 
 
 ---
 
-### 2. Posisi RBM dalam Pengambilan Keputusan Maintenance
+## 2. Posisi RBM dalam Pengambilan Keputusan Maintenance
 
 **Risk-Based Maintenance (RBM)** hadir sebagai kerangka berpikir yang menjawab kesenjangan tersebut. Penting untuk ditegaskan bahwa RBM **bukan metode teknis pemeliharaan** (seperti PM, CBM, atau RBI), melainkan **logika pengambilan keputusan** yang menempatkan risiko sebagai variabel utama. RBM mengintegrasikan penilaian _Consequence of Failure_ (CoF) dan _Probability of Failure_ (PoF) untuk menentukan **prioritas, strategi, dan tingkat pengendalian** yang diperlukan pada setiap aset.
 
@@ -195,11 +247,39 @@ Pendekatan ini memastikan bahwa:
 - area berisiko lebih rendah **dapat dioptimasi secara rasional**,
 - dan keseluruhan keputusan anggaran menjadi **konsisten, transparan, serta defensible** dalam kerangka tata kelola pemeliharaan pabrik petrokimia.
 
+```mermaid id="rbm-budgeting-position-mobile"
+flowchart TD
+    A["Risk-Based<br/>Maintenance"] --> B["Assess Risk<br/>CoF + PoF"]
+    B --> C["Define<br/>Control Strategy"]
+    C --> D["Translate to<br/>Budget Need"]
+    D --> E{"Budget<br/>Type?"}
+
+    E --> F["Mandatory<br/>Risk Barrier Cost"]
+    E --> G["Controlled<br/>Operational Cost"]
+    E --> H["Optimizable<br/>Low-Risk Cost"]
+
+    F --> I["Budget Reflects<br/>Risk Appetite"]
+    G --> I
+    H --> I
+
+    classDef rbm fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef process fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef mandatory fill:#FFEBEE,stroke:#C62828,color:#111;
+    classDef controlled fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef output fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+
+    class A,B,C,D process;
+    class E rbm;
+    class F mandatory;
+    class G,H controlled;
+    class I output;
+```
+
 ---
 
-## II. Definisi dan Tujuan Budgeting Maintenance Berbasis RBM
+# II. Definisi dan Tujuan Budgeting Maintenance Berbasis RBM
 
-### 2.1 Definisi Formal
+## 2.1 Definisi Formal
 
 **Budgeting Maintenance Berbasis Risk-Based Maintenance (RBM)** adalah proses **perencanaan, pengalokasian, penguncian, dan pengendalian biaya pemeliharaan** yang diturunkan secara langsung dari hasil **penilaian risiko aset**. Risiko dalam konteks ini dipahami sebagai kombinasi antara **Consequence of Failure (CoF)** dan **Probability of Failure (PoF)**, yang menentukan tingkat prioritas dan kebutuhan pengendalian pada setiap peralatan.
 
@@ -207,33 +287,83 @@ Berbeda dengan budgeting konvensional yang berfokus pada histori biaya atau targ
 
 Dengan definisi ini, budgeting tidak lagi diperlakukan sebagai dokumen finansial semata, melainkan sebagai **artefak teknis-manajerial** yang menghubungkan analisis risiko, strategi pemeliharaan, dan tata kelola keselamatan dalam satu kerangka yang konsisten.
 
+```mermaid id="rbm-budgeting-definition-mobile"
+flowchart TD
+    A["Risk Assessment<br/>CoF + PoF"] --> B["Maintenance<br/>Strategy"]
+    B --> C["Budget<br/>Planning"]
+    C --> D["Budget<br/>Allocation"]
+    D --> E["Budget<br/>Locking"]
+    E --> F["Budget<br/>Control"]
+
+    F --> G["Technical + Financial<br/>Governance Artifact"]
+
+    classDef risk fill:#FFEBEE,stroke:#C62828,color:#111;
+    classDef strategy fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef budget fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef control fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef output fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+
+    class A risk;
+    class B strategy;
+    class C,D,E,F budget;
+    class G output;
+```
+
 ---
 
-### 2.2 Tujuan Utama
+## 2.2 Tujuan Utama
 
-#### a. Pengendalian _Process Safety Risk_
+### a. Pengendalian _Process Safety Risk_
 
 Tujuan utama budgeting berbasis RBM adalah memastikan bahwa **risiko keselamatan proses** dikendalikan hingga tingkat yang dapat diterima. Anggaran dialokasikan secara prioritas pada aktivitas yang menjaga **integritas pressure boundary, sistem proteksi, dan instrumen keselamatan**, sehingga pengendalian risiko tidak bergantung pada tekanan efisiensi jangka pendek.
 
-#### b. Penjagaan Keandalan Aset Kritikal
+### b. Penjagaan Keandalan Aset Kritikal
 
 RBM memastikan bahwa aset dengan **criticality tinggi** memperoleh dukungan biaya yang memadai untuk mempertahankan _availability_ dan _reliability_. Dengan demikian, kegagalan berulang dan _unplanned downtime_ dapat dicegah melalui pengendalian yang tepat sasaran, bukan melalui reaksi korektif yang mahal.
 
-#### c. Efisiensi OPEX yang _Defensible_
+### c. Efisiensi OPEX yang _Defensible_
 
 Efisiensi dalam kerangka RBM tidak dimaknai sebagai pengurangan biaya semata, melainkan sebagai **optimalisasi biaya terhadap penurunan risiko**. Anggaran dapat diturunkan pada area berisiko rendah tanpa mengorbankan keselamatan atau keandalan, sehingga setiap keputusan efisiensi dapat **dipertanggungjawabkan secara teknis dan audit-able**.
 
-#### d. Keselarasan dengan Strategi Bisnis dan Toleransi Risiko
+### d. Keselarasan dengan Strategi Bisnis dan Toleransi Risiko
 
 Budgeting berbasis RBM menyelaraskan keputusan pemeliharaan dengan **risk appetite** dan strategi bisnis perusahaan. Dengan memahami risiko yang diterima dan yang tidak dapat ditoleransi, manajemen memperoleh transparansi bahwa alokasi biaya pemeliharaan merupakan bagian integral dari **keputusan strategis**, bukan sekadar biaya operasional rutin.
 
 > **Dengan demikian, tujuan budgeting maintenance berbasis RBM adalah menjadikan anggaran sebagai alat pengendalian risiko dan penjaga keandalan, bukan sekadar instrumen pengendalian biaya.**
 
+```mermaid id="rbm-budgeting-objectives-mobile"
+flowchart TD
+    A["RBM-Based<br/>Maintenance Budget"] --> B["Control<br/>Process Safety Risk"]
+    A --> C["Protect<br/>Critical Asset Reliability"]
+    A --> D["Enable<br/>Defensible OPEX"]
+    A --> E["Align with<br/>Risk Appetite"]
+
+    B --> F["Safety + Compliance<br/>Protected"]
+    C --> G["Availability + Reliability<br/>Maintained"]
+    D --> H["Cost Optimized<br/>Without Risk Increase"]
+    E --> I["Business Strategy<br/>Supported"]
+
+    F --> J["Budget as<br/>Risk Control Tool"]
+    G --> J
+    H --> J
+    I --> J
+
+    classDef budget fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef objective fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef result fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef output fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+
+    class A budget;
+    class B,C,D,E objective;
+    class F,G,H,I result;
+    class J output;
+```
+
 ---
 
-## III. Posisi Budgeting dalam Maintenance System (RBM Perspective)
+# III. Posisi Budgeting dalam Maintenance System (RBM Perspective)
 
-### 3.1 Budgeting sebagai Output Sistem, Bukan Fungsi Terpisah
+## 3.1 Budgeting sebagai Output Sistem, Bukan Fungsi Terpisah
 
 Dalam perspektif **Risk-Based Maintenance (RBM)**, budgeting **tidak berdiri sebagai fungsi finansial yang terisolasi**, melainkan merupakan **output terintegrasi dari Maintenance System secara keseluruhan**. Artinya, angka anggaran bukan ditentukan terlebih dahulu, melainkan **diturunkan** dari rangkaian keputusan teknis yang saling terkait sebagai berikut:
 
@@ -251,9 +381,31 @@ Dalam perspektif **Risk-Based Maintenance (RBM)**, budgeting **tidak berdiri seb
 
 Pendekatan ini memastikan bahwa **setiap pos anggaran memiliki akar teknis yang jelas**. Jika salah satu elemen di hulu (asset management, risk assessment, atau strategy) berubah, maka implikasi biaya di hilir **harus ikut disesuaikan**. Inilah yang membedakan budgeting berbasis RBM dari pendekatan konvensional yang cenderung statis dan historis.
 
+```mermaid id="budgeting-as-system-output-mobile"
+flowchart TD
+    A["Asset<br/>Management"] --> B["Risk<br/>Assessment"]
+    B --> C["Maintenance<br/>Strategy"]
+    C --> D["Budget<br/>Allocation"]
+
+    D --> E["Cost Rooted in<br/>Technical Risk"]
+    E --> F["If Risk Changes<br/>Budget Must Change"]
+
+    classDef asset fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef risk fill:#FFEBEE,stroke:#C62828,color:#111;
+    classDef strategy fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef budget fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef output fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+
+    class A asset;
+    class B risk;
+    class C strategy;
+    class D budget;
+    class E,F output;
+```
+
 ---
 
-### 3.2 Siklus RBM → Budget → Execution → Feedback
+## 3.2 Siklus RBM → Budget → Execution → Feedback
 
 Budgeting dalam RBM bekerja dalam **siklus tertutup (closed-loop)** yang berkesinambungan:
 
@@ -285,11 +437,36 @@ Sebaliknya, jika **budgeting dilakukan sebelum risk assessment**, konsekuensi ya
 > **Dengan demikian, dalam kerangka RBM, urutannya bersifat mutlak:
 > risiko dinilai terlebih dahulu, strategi ditetapkan, baru kemudian anggaran disusun dan dievaluasi secara siklik.**
 
+```mermaid id="rbm-budget-execution-feedback-loop-mobile"
+flowchart TD
+    A["RBM<br/>Risk Assessment & Strategy"] --> B["Budget<br/>Risk-Based Allocation"]
+    B --> C["Execution<br/>Maintenance Work"]
+    C --> D["Feedback<br/>Failure / Cost / CBM Data"]
+    D --> E["Update<br/>PoF / CoF / Strategy"]
+    E --> A
+
+    B --> F["Locked<br/>Risk Barrier Cost"]
+    B --> G["Optimized<br/>Low-Risk Cost"]
+
+    classDef rbm fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef budget fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef execute fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef feedback fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+    classDef locked fill:#FFEBEE,stroke:#C62828,color:#111;
+
+    class A,E rbm;
+    class B budget;
+    class C execute;
+    class D feedback;
+    class F locked;
+    class G execute;
+```
+
 ---
 
-## IV. Prinsip Inti RBM dalam Budgeting
+# IV. Prinsip Inti RBM dalam Budgeting
 
-### 4.1 Pertanyaan Kunci RBM
+## 4.1 Pertanyaan Kunci RBM
 
 Prinsip paling fundamental dalam **budgeting berbasis Risk-Based Maintenance (RBM)** dirangkum dalam satu pertanyaan kunci:
 
@@ -307,9 +484,34 @@ Sebaliknya, jika suatu risiko signifikan **tidak memiliki representasi biaya**, 
 - **proporsional** (biaya sebanding dengan tingkat risiko),
 - dan **defensible** (dapat dijelaskan secara teknis dan audit-able).
 
+```mermaid id="budget-line-risk-question-mobile"
+flowchart TD
+    A["Budget<br/>Line Item"] --> B{"What Risk<br/>Does It Control?"}
+
+    B -- "Clear Risk" --> C["Keep / Protect<br/>Budget"]
+    B -- "Weak Risk Link" --> D["Review<br/>Justification"]
+    B -- "No Risk Link" --> E["Candidate for<br/>Optimization"]
+
+    C --> F["Defensible<br/>Budget"]
+    D --> G["Engineering<br/>Clarification"]
+    E --> H["Remove / Reduce<br/>If Safe"]
+
+    classDef budget fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef decision fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef keep fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef review fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+    classDef reduce fill:#FFEBEE,stroke:#C62828,color:#111;
+
+    class A budget;
+    class B decision;
+    class C,F keep;
+    class D,G review;
+    class E,H reduce;
+```
+
 ---
 
-### 4.2 Konsep _Risk Exposure_ dan _Risk Control Cost_
+## 4.2 Konsep _Risk Exposure_ dan _Risk Control Cost_
 
 Dalam RBM, budgeting bertumpu pada pemahaman yang jelas mengenai **risk exposure** dan **risk control cost**.
 
@@ -329,11 +531,42 @@ Pendekatan RBM menegaskan bahwa **biaya maintenance yang terlihat lebih besar ti
 
 > **Dengan demikian, prinsip inti RBM dalam budgeting adalah mengoptimalkan hubungan antara risk exposure dan risk control cost, bukan meminimalkan biaya maintenance secara absolut.**
 
+```mermaid id="risk-exposure-vs-control-cost-mobile"
+flowchart TD
+    A["Risk Exposure"] --> B["Consequence<br/>of Failure"]
+    A --> C["Probability<br/>of Failure"]
+
+    B --> D["Uncontrolled<br/>Risk Cost"]
+    C --> D
+
+    E["Risk Control<br/>Cost"] --> F["Inspection"]
+    E --> G["PM / CBM"]
+    E --> H["Critical Spare"]
+    E --> I["TA / Shutdown"]
+
+    F --> J["Reduced<br/>Risk Exposure"]
+    G --> J
+    H --> J
+    I --> J
+
+    J --> K["Optimized<br/>Cost-Risk-Reliability"]
+
+    classDef risk fill:#FFEBEE,stroke:#C62828,color:#111;
+    classDef cost fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef control fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef output fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+
+    class A,B,C,D risk;
+    class E cost;
+    class F,G,H,I,J control;
+    class K output;
+```
+
 ---
 
-## V. Alur Teknis RBM Menuju Budgeting
+# V. Alur Teknis RBM Menuju Budgeting
 
-### 5.1 Asset Criticality Assessment
+## 5.1 Asset Criticality Assessment
 
 **Asset Criticality Assessment** merupakan langkah awal yang menentukan _arah_ budgeting dalam kerangka RBM. Pada tahap ini, setiap aset dievaluasi berdasarkan dua dimensi utama:
 
@@ -369,9 +602,34 @@ Pada titik ini, prinsip RBM mulai berlaku tegas:
 - aset **Medium Risk** memperoleh alokasi terkontrol,
 - aset **Low Risk** menjadi kandidat utama optimasi.
 
+```mermaid id="asset-criticality-budget-right-mobile"
+flowchart TD
+    A["Asset Criticality<br/>Assessment"] --> B["Evaluate<br/>CoF"]
+    A --> C["Evaluate<br/>PoF"]
+
+    B --> D{"Risk<br/>Class"}
+    C --> D
+
+    D -- "High Risk" --> E["Priority Budget<br/>Protected"]
+    D -- "Medium Risk" --> F["Controlled Budget<br/>Selective"]
+    D -- "Low Risk" --> G["Optimizable Budget<br/>Minimum"]
+
+    classDef assess fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef risk fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef high fill:#FFEBEE,stroke:#C62828,color:#111;
+    classDef medium fill:#FFF3E0,stroke:#EF6C00,color:#111;
+    classDef low fill:#E8F5E9,stroke:#2E7D32,color:#111;
+
+    class A,B,C assess;
+    class D risk;
+    class E high;
+    class F medium;
+    class G low;
+```
+
 ---
 
-### 5.2 Risk Ranking dan Risk Class
+## 5.2 Risk Ranking dan Risk Class
 
 Setelah criticality ditentukan, aset ditempatkan dalam **risk matrix** untuk memperoleh **risk ranking** yang lebih operasional. Risk ranking ini bukan sekadar visualisasi, tetapi **alat pengambilan keputusan biaya**.
 
@@ -391,11 +649,37 @@ Penempatan aset dalam risk matrix memiliki implikasi langsung terhadap:
 
 ---
 
-### 5.3 Penentuan _Risk Control Strategy_
+## 5.3 Penentuan _Risk Control Strategy_
 
 Tahap berikutnya adalah menentukan **strategi pengendalian risiko** yang paling efektif untuk tiap kelas risiko. RBM menggeser fokus dari _“apa pekerjaan maintenance-nya”_ menjadi _“bagaimana risiko ini dikendalikan”_.
 
-#### a. Aset **High Risk**
+```mermaid id="risk-class-to-budget-strategy-mobile"
+flowchart TD
+    A["Risk Class"] --> B["High Risk"]
+    A --> C["Medium Risk"]
+    A --> D["Low Risk"]
+
+    B --> E["RBI<br/>CBM<br/>Redundancy<br/>Statutory Test"]
+    C --> F["Structured PM<br/>Selective CBM<br/>Interval Optimization"]
+    D --> G["Minimal PM<br/>Managed Run-to-Failure<br/>Planned Corrective"]
+
+    E --> H["Mandatory<br/>Risk Barrier Cost"]
+    F --> I["Controlled<br/>Budget"]
+    G --> J["Optimized<br/>Budget"]
+
+    classDef risk fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef high fill:#FFEBEE,stroke:#C62828,color:#111;
+    classDef medium fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef low fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef budget fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+
+    class A risk;
+    class B,E,H high;
+    class C,F,I medium;
+    class D,G,J low;
+```
+
+### a. Aset **High Risk**
 
 - Strategi:
 
@@ -409,7 +693,7 @@ Tahap berikutnya adalah menentukan **strategi pengendalian risiko** yang paling 
   - **Mandatory**, tidak boleh dipotong
   - Dikategorikan sebagai _risk barrier cost_
 
-#### b. Aset **Medium Risk**
+### b. Aset **Medium Risk**
 
 - Strategi:
 
@@ -422,7 +706,7 @@ Tahap berikutnya adalah menentukan **strategi pengendalian risiko** yang paling 
   - Moderat dan terkontrol
   - Dapat dioptimasi dengan data pendukung
 
-#### c. Aset **Low Risk**
+### c. Aset **Low Risk**
 
 - Strategi:
 
@@ -446,9 +730,9 @@ Tahap ini merupakan **jembatan kritis** antara analisis risiko dan struktur angg
 
 ---
 
-## VI. Struktur Budget Maintenance dalam Kerangka RBM
+# VI. Struktur Budget Maintenance dalam Kerangka RBM
 
-### 6.1 Routine / Preventive Maintenance (PM) Budget
+## 6.1 Routine / Preventive Maintenance (PM) Budget
 
 Dalam kerangka RBM, **Routine/Preventive Maintenance (PM)** tidak lagi disusun seragam berdasarkan jenis peralatan, melainkan **dipisahkan berdasarkan kelas risiko aset**. Pemisahan ini penting untuk memastikan bahwa PM benar-benar berfungsi sebagai **pengendali risiko**, bukan sekadar rutinitas kalender.
 
@@ -465,7 +749,7 @@ Dalam kerangka RBM, **Routine/Preventive Maintenance (PM)** tidak lagi disusun s
 
 ---
 
-### 6.2 Corrective Maintenance Budget
+## 6.2 Corrective Maintenance Budget
 
 Dalam RBM, **corrective maintenance bukan strategi**, melainkan **indikator kegagalan pengendalian risiko**. Oleh karena itu, perannya dalam struktur budget **dibatasi dan diawasi ketat**.
 
@@ -483,7 +767,7 @@ Dalam RBM, **corrective maintenance bukan strategi**, melainkan **indikator kega
 
 ---
 
-### 6.3 Predictive / Condition-Based Maintenance (CBM) Budget
+## 6.3 Predictive / Condition-Based Maintenance (CBM) Budget
 
 **CBM** dalam RBM diposisikan sebagai **risk barrier cost**, terutama untuk aset dengan **CoF tinggi**.
 
@@ -500,7 +784,7 @@ Dalam RBM, **corrective maintenance bukan strategi**, melainkan **indikator kega
 
 ---
 
-### 6.4 Turn Around (TA) / Shutdown Budget
+## 6.4 Turn Around (TA) / Shutdown Budget
 
 Dalam RBM, **Turn Around (TA)** dipahami sebagai **window pengendalian risiko besar**, bukan sekadar kegiatan overhaul berkala.
 
@@ -519,7 +803,7 @@ Dalam RBM, **Turn Around (TA)** dipahami sebagai **window pengendalian risiko be
 
 ---
 
-### 6.5 Spare Parts dan Inventory Budget
+## 6.5 Spare Parts dan Inventory Budget
 
 RBM menata **spare parts & inventory** berdasarkan konsekuensi kegagalan, bukan sekadar nilai item.
 
@@ -538,19 +822,44 @@ RBM menata **spare parts & inventory** berdasarkan konsekuensi kegagalan, bukan 
   - Item low risk dapat dioptimasi melalui _just-in-time_ atau kontrak vendor.
   - Area utama efisiensi tanpa peningkatan risk exposure signifikan.
 
+```mermaid id="rbm-budget-structure-mobile"
+flowchart TD
+    A["RBM Maintenance<br/>Budget Structure"] --> B["Routine / PM<br/>Budget"]
+    A --> C["Corrective<br/>Budget"]
+    A --> D["Predictive / CBM<br/>Budget"]
+    A --> E["TA / Shutdown<br/>Budget"]
+    A --> F["Spare Parts<br/>Inventory Budget"]
+
+    B --> G["Risk-Class<br/>Based PM"]
+    C --> H["Residual<br/>Uncertainty Buffer"]
+    D --> I["Risk Barrier<br/>for High CoF"]
+    E --> J["Risk Reset<br/>Window"]
+    F --> K["Critical / Insurance<br/>Spare"]
+
+    classDef structure fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef budget fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef note fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef critical fill:#FFEBEE,stroke:#C62828,color:#111;
+
+    class A structure;
+    class B,C,D,E,F budget;
+    class G,H,J,K note;
+    class I critical;
+```
+
 ---
 
 > **Dengan struktur ini, setiap komponen budget maintenance dalam kerangka RBM memiliki justifikasi risiko yang jelas—mana yang wajib dilindungi, mana yang dikendalikan, dan mana yang dapat dioptimasi tanpa mengorbankan keselamatan dan keandalan.**
 
 ---
 
-## VII. Dampak RBM terhadap Struktur dan Distribusi Budget
+# VII. Dampak RBM terhadap Struktur dan Distribusi Budget
 
-### 7.1 Perbandingan Budget Tanpa RBM vs Dengan RBM
+## 7.1 Perbandingan Budget Tanpa RBM vs Dengan RBM
 
 Penerapan **Risk-Based Maintenance (RBM)** membawa perubahan mendasar pada cara anggaran pemeliharaan disusun dan didistribusikan. Perbedaan ini tidak hanya bersifat teknis, tetapi juga mencerminkan **pergeseran paradigma** dari pengendalian biaya ke pengendalian risiko.
 
-#### a. Distorsi Umum pada Budgeting Non-RBM
+### a. Distorsi Umum pada Budgeting Non-RBM
 
 Pada budgeting yang tidak berbasis RBM, distorsi yang sering muncul antara lain:
 
@@ -561,7 +870,7 @@ Pada budgeting yang tidak berbasis RBM, distorsi yang sering muncul antara lain:
 
 Distorsi tersebut menyebabkan anggaran tampak terkendali di atas kertas, namun **meningkatkan risk exposure operasional** dan menurunkan keandalan sistem secara keseluruhan.
 
-#### b. Perubahan pada Budgeting Berbasis RBM
+### b. Perubahan pada Budgeting Berbasis RBM
 
 Sebaliknya, budgeting berbasis RBM menampilkan perubahan yang terstruktur:
 
@@ -574,7 +883,7 @@ Perubahan ini menjadikan struktur anggaran **lebih tajam, fokus, dan defensible*
 
 ---
 
-### 7.2 Contoh Redistribusi Budget Berbasis Risiko
+## 7.2 Contoh Redistribusi Budget Berbasis Risiko
 
 Untuk menggambarkan dampak RBM secara konkret, berikut contoh redistribusi anggaran berdasarkan kelas risiko aset:
 
@@ -584,19 +893,19 @@ Untuk menggambarkan dampak RBM secara konkret, berikut contoh redistribusi angga
 | **Aset Medium-Risk (Reliability / Production)** | CoF menengah, PoF signifikan | Budget **stabil atau disesuaikan** berdasarkan efektivitas pemeliharaan |
 | **Aset Low-Risk (Economic)**                    | CoF rendah                   | **Budget diturunkan atau dioptimasi** melalui pengurangan PM berlebih   |
 
-#### a. Aset yang Budget-nya Naik
+### a. Aset yang Budget-nya Naik
 
 - Kompresor utama, reaktor, pressure vessel kritikal
 - Sistem proteksi kebakaran dan instrumen keselamatan
   Peningkatan biaya diarahkan untuk **menurunkan PoF dan mengendalikan CoF**.
 
-#### b. Aset yang Budget-nya Dikunci
+### b. Aset yang Budget-nya Dikunci
 
 - Pressure safety valve (PSV)
 - Peralatan inspeksi wajib dan statutory
   Biaya ini diperlakukan sebagai **risk barrier cost** dan tidak tunduk pada pemotongan umum.
 
-#### c. Aset yang Budget-nya Diturunkan
+### c. Aset yang Budget-nya Diturunkan
 
 - Utility non-kritikal
 - Peralatan dengan konsekuensi kegagalan rendah
@@ -604,11 +913,37 @@ Untuk menggambarkan dampak RBM secara konkret, berikut contoh redistribusi angga
 
 > **Dengan redistribusi ini, RBM tidak selalu menaikkan total anggaran, tetapi memastikan bahwa setiap rupiah dialokasikan pada area yang paling efektif dalam menurunkan risiko dan menjaga keandalan sistem.**
 
+```mermaid id="budget-redistribution-rbm-mobile"
+flowchart TD
+    A["Total Maintenance<br/>Budget"] --> B["High-Risk Assets"]
+    A --> C["Medium-Risk Assets"]
+    A --> D["Low-Risk Assets"]
+
+    B --> E["Budget Locked<br/>or Increased"]
+    C --> F["Budget Stable<br/>or Adjusted"]
+    D --> G["Budget Reduced<br/>or Optimized"]
+
+    E --> H["Process Safety<br/>and Legal Protection"]
+    F --> I["Reliability<br/>and Production Stability"]
+    G --> J["Efficiency<br/>Without Risk Increase"]
+
+    classDef total fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef high fill:#FFEBEE,stroke:#C62828,color:#111;
+    classDef medium fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef low fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef output fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+
+    class A total;
+    class B,E,H high;
+    class C,F,I medium;
+    class D,G,J low;
+```
+
 ---
 
-## VIII. Governance dan Penguncian Budget dalam RBM
+# VIII. Governance dan Penguncian Budget dalam RBM
 
-### 8.1 Budget yang Tidak Boleh Dipotong
+## 8.1 Budget yang Tidak Boleh Dipotong
 
 Dalam kerangka **Risk-Based Maintenance (RBM)**, governance budgeting berfungsi untuk **melindungi elemen pengendalian risiko kritikal** dari tekanan efisiensi jangka pendek. Oleh karena itu, terdapat kategori biaya yang secara eksplisit **tidak boleh dipotong**, karena berperan langsung sebagai **risk barrier** terhadap konsekuensi keselamatan, lingkungan, dan hukum.
 
@@ -630,7 +965,7 @@ Kategori tersebut meliputi:
 
 ---
 
-### 8.2 Budget yang Boleh Dioptimasi
+## 8.2 Budget yang Boleh Dioptimasi
 
 RBM tidak meniadakan efisiensi, namun **mengarahkannya secara selektif**. Area yang boleh dioptimasi adalah aktivitas dengan **nilai pengendalian risiko rendah atau berlebihan**, antara lain:
 
@@ -647,7 +982,7 @@ RBM tidak meniadakan efisiensi, namun **mengarahkannya secara selektif**. Area y
 
 ---
 
-### 8.3 Posisi RBM dalam Audit dan Management Review
+## 8.3 Posisi RBM dalam Audit dan Management Review
 
 RBM memberikan fondasi yang kuat bagi **audit dan management review** karena setiap keputusan budget memiliki **jejak risiko yang jelas**.
 
@@ -667,11 +1002,40 @@ RBM memberikan fondasi yang kuat bagi **audit dan management review** karena set
 
 > **Dengan governance berbasis RBM, budgeting maintenance berubah dari objek negosiasi biaya menjadi instrumen pengendalian risiko yang transparan, konsisten, dan dapat dipertanggungjawabkan.**
 
+```mermaid id="budget-governance-locking-mobile"
+flowchart TD
+    A["Budget<br/>Governance"] --> B{"Budget<br/>Category?"}
+
+    B -- "Risk Barrier Cost" --> C["Do Not Cut<br/>Without Validated Risk Change"]
+    B -- "Operational Control Cost" --> D["Review<br/>Against Strategy"]
+    B -- "Low-Risk Discretionary Cost" --> E["Optimize<br/>With Data"]
+
+    C --> F["Pressure Equipment<br/>PSV<br/>Fire Protection<br/>Safety Instrument"]
+    D --> G["PM / CBM<br/>Medium Risk Asset"]
+    E --> H["Over-PM<br/>Redundant Inspection<br/>Noncritical Spare"]
+
+    F --> I["Audit-Ready<br/>Budget Decision"]
+    G --> I
+    H --> I
+
+    classDef gov fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef decision fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef locked fill:#FFEBEE,stroke:#C62828,color:#111;
+    classDef review fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef audit fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+
+    class A gov;
+    class B decision;
+    class C,F locked;
+    class D,E,G,H review;
+    class I audit;
+```
+
 ---
 
-## IX. KPI dan Evaluasi Budget dalam Perspektif RBM
+# IX. KPI dan Evaluasi Budget dalam Perspektif RBM
 
-### 9.1 Interpretasi KPI Tradisional dengan Kacamata RBM
+## 9.1 Interpretasi KPI Tradisional dengan Kacamata RBM
 
 Dalam kerangka **Risk-Based Maintenance (RBM)**, Key Performance Indicator (KPI) tidak dinilai secara terpisah dari konteks risiko. KPI yang sama dapat memiliki makna **berlawanan** tergantung pada perubahan _risk exposure_ yang menyertainya. Oleh karena itu, interpretasi KPI harus selalu dikaitkan dengan **CoF, PoF, dan efektivitas risk control**.
 
@@ -696,9 +1060,37 @@ Dalam kerangka **Risk-Based Maintenance (RBM)**, Key Performance Indicator (KPI)
   - Jika terkait penutupan _deferred risk_, temuan RBI, atau perpanjangan umur aset → **defensible**
   - Jika akibat scope creep tanpa justifikasi risiko → **perlu dikoreksi**
 
+```mermaid id="budget-kpi-rbm-interpretation-mobile"
+flowchart TD
+    A["Budget KPI<br/>Observed"] --> B{"Risk Exposure<br/>Condition?"}
+
+    B -- "Risk Stable / Down" --> C["Budget Reduction<br/>May Be Positive"]
+    B -- "Risk Up" --> D["Budget Reduction<br/>Unsafe Signal"]
+
+    A --> E{"Corrective<br/>Increasing?"}
+    E -- "Yes" --> F["Risk Control<br/>Failure Alarm"]
+    E -- "No" --> G["Preventive / CBM<br/>Likely Effective"]
+
+    C --> H["Healthy<br/>Cost-Risk-Reliability"]
+    D --> I["Management<br/>Review Required"]
+    F --> I
+    G --> H
+
+    classDef kpi fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef decision fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef good fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef bad fill:#FFEBEE,stroke:#C62828,color:#111;
+    classDef output fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+
+    class A kpi;
+    class B,E decision;
+    class C,G,H good;
+    class D,F,I bad;
+```
+
 ---
 
-### 9.2 Indikator Budget Maintenance yang Sehat
+## 9.2 Indikator Budget Maintenance yang Sehat
 
 Budget maintenance yang sehat dalam perspektif RBM ditandai oleh **keseimbangan yang konsisten** antara biaya, risiko, dan keandalan. Indikator utamanya meliputi:
 
@@ -733,7 +1125,7 @@ Budget maintenance yang sehat dalam perspektif RBM ditandai oleh **keseimbangan 
 
 ---
 
-## X. Penegasan Akhir
+# X. Penegasan Akhir
 
 **Risk-Based Maintenance (RBM)** harus dipahami dan diposisikan secara tepat sebagai **kerangka pengambilan keputusan**, bukan sebagai alat teknis pemeliharaan. RBM tidak menggantikan Preventive Maintenance, Condition-Based Maintenance, atau Risk-Based Inspection, melainkan **mengatur kapan, di mana, dan sejauh mana** metode-metode tersebut diterapkan berdasarkan tingkat risiko yang dihadapi. Dengan pemahaman ini, RBM menjadi fondasi logis yang menyatukan analisis risiko, strategi pemeliharaan, dan tata kelola biaya dalam satu sistem yang koheren.
 
@@ -747,15 +1139,68 @@ Peran **maintenance manager** menjadi sangat strategis sebagai **penjaga keseimb
 
 > **Dengan RBM sebagai landasan, budgeting maintenance tidak lagi sekadar dokumen finansial tahunan, melainkan instrumen pengendalian risiko dan keandalan yang mencerminkan kematangan sistem pemeliharaan pabrik petrokimia secara menyeluruh.**
 
+```mermaid id="rbm-budgeting-final-statement-mobile"
+flowchart TD
+    A["RBM<br/>Decision Framework"] --> B["Risk Appetite<br/>Company Commitment"]
+    B --> C["Budget<br/>Structure"]
+    C --> D["Locked Cost<br/>Safety & Compliance"]
+    C --> E["Optimized Cost<br/>Low-Risk Area"]
+
+    D --> F["Maintenance Manager<br/>Balances"]
+    E --> F
+
+    F --> G["Safety"]
+    F --> H["Reliability"]
+    F --> I["Cost Efficiency"]
+
+    G --> J["Mature<br/>Maintenance System"]
+    H --> J
+    I --> J
+
+    classDef rbm fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef budget fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef locked fill:#FFEBEE,stroke:#C62828,color:#111;
+    classDef balance fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef output fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+
+    class A,B rbm;
+    class C,E budget;
+    class D locked;
+    class F,G,H,I balance;
+    class J output;
+```
+
 ---
 
-## XI. Arah Pengembangan Lanjutan (Opsional Modul)
+# XI. Arah Pengembangan Lanjutan (Opsional Modul)
 
 Bagian ini disiapkan sebagai **kelanjutan praktis** bagi organisasi yang telah mengunci kerangka budgeting maintenance berbasis RBM dan ingin menaikkannya ke level implementasi, standardisasi, dan komunikasi manajerial. Modul-modul berikut bersifat opsional, namun **sangat direkomendasikan** untuk memastikan konsistensi dan keberlanjutan sistem.
 
+```mermaid id="rbm-budgeting-development-roadmap-mobile"
+flowchart TD
+    A["RBM Budgeting<br/>Framework Locked"] --> B["Template Budget<br/>OPEX + TA"]
+    B --> C["Mapping<br/>RBI / FMEA / Criticality"]
+    C --> D["Budget Line<br/>Risk Traceability"]
+    D --> E["BOD / Finance<br/>Presentation Framework"]
+    E --> F["Management Review<br/>Risk-Based Decision"]
+    F --> G["Standardized<br/>Budget Governance"]
+
+    classDef start fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef template fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef mapping fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef presentation fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+    classDef output fill:#FFEBEE,stroke:#C62828,color:#111;
+
+    class A start;
+    class B template;
+    class C,D mapping;
+    class E,F presentation;
+    class G output;
+```
+
 ---
 
-### 11.1 Template Maintenance Budget Berbasis RBM (OPEX & TA)
+## 11.1 Template Maintenance Budget Berbasis RBM (OPEX & TA)
 
 Pengembangan **template anggaran standar** bertujuan untuk menerjemahkan kerangka RBM ke dalam format operasional yang mudah digunakan lintas fungsi.
 
@@ -781,7 +1226,7 @@ Template ini memastikan bahwa proses penyusunan anggaran **tidak kembali ke pend
 
 ---
 
-### 11.2 Mapping RBI / FMEA / Criticality ke Budget Line Item
+## 11.2 Mapping RBI / FMEA / Criticality ke Budget Line Item
 
 Untuk memperkuat _traceability_, diperlukan pemetaan langsung antara **hasil analisis risiko** dan **alokasi biaya**.
 
@@ -805,7 +1250,7 @@ Dengan pendekatan ini, setiap baris anggaran memiliki **jejak teknis yang jelas*
 
 ---
 
-### 11.3 Framework Presentasi RBM-Based Budgeting ke BOD dan Finance
+## 11.3 Framework Presentasi RBM-Based Budgeting ke BOD dan Finance
 
 Agar budgeting berbasis RBM efektif secara organisasi, diperlukan **framework komunikasi** yang mampu menjembatani perspektif teknis dan bisnis.
 
@@ -833,13 +1278,13 @@ Dengan framework ini, diskusi anggaran bergeser dari _“berapa yang bisa dipoto
 
 ---
 
-## Referensi :
+# Referensi :
 
 Berikut adalah **referensi teknis utama** yang relevan dan lazim digunakan sebagai landasan konseptual maupun praktis dalam penyusunan **budgeting maintenance berbasis Risk-Based Maintenance (RBM)** untuk pabrik petrokimia. Daftar ini disusun agar **defensible secara engineering, SHE, dan audit**, serta selaras dengan praktik industri internasional.
 
 ---
 
-### Referensi Utama (Standar & Praktik Industri)
+## Referensi Utama (Standar & Praktik Industri)
 
 1. **ISO 55000 / 55001 / 55002 — _Asset Management_**
 
@@ -866,7 +1311,7 @@ Berikut adalah **referensi teknis utama** yang relevan dan lazim digunakan sebag
 
 ---
 
-### Referensi Keandalan & Risk-Based Maintenance
+## Referensi Keandalan & Risk-Based Maintenance
 
 6. **SMRP — _Best Practices in Maintenance & Reliability_**
 
@@ -882,7 +1327,7 @@ Berikut adalah **referensi teknis utama** yang relevan dan lazim digunakan sebag
 
 ---
 
-### Referensi Turn Around, Shutdown, dan Budget Governance
+## Referensi Turn Around, Shutdown, dan Budget Governance
 
 9. **IOGP — _Asset Integrity Key Performance Indicators_**
 
@@ -894,7 +1339,7 @@ Berikut adalah **referensi teknis utama** yang relevan dan lazim digunakan sebag
 
 ---
 
-### Referensi Akademik Pendukung
+## Referensi Akademik Pendukung
 
 11. Dorotinsky, W. & Back, D. — _The Process of Developing a Maintenance Budget_
 

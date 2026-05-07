@@ -16,11 +16,13 @@ draft: false
 summary: Artikel ini merupakan pelengkap yang tidak terpisahkan dari Maintenance System Handbook (MSH), khususnya MSH-3 (Risk-Based Maintenance) dan MSH-5 (Organization & Accountability). Fokus utama artikel adalah menegaskan bahwa manpower dalam ekosistem RBM bukan sekadar sumber daya, melainkan active risk control yang menentukan apakah keputusan berbasis risiko benar-benar dijalankan di lapangan. Strategi manpower diturunkan langsung dari profil risiko aset (ESC), mencakup penetapan kompetensi, kewenangan, eskalasi, dan pelatihan yang sebanding dengan konsekuensi kegagalan. Dengan pendekatan ini, RBM tidak berhenti sebagai sistem yang dideklarasikan, tetapi menjadi sistem hidup yang defensible, konsisten, dan berkelanjutan.
 ---
 
-**_Strategi Manpower dalam Ekosistem Risk-Based Maintenance (RBM)_**
+# **_Strategi Manpower dalam Ekosistem Risk-Based Maintenance (RBM)_**
+
 _Manusia sebagai Risk Control, Bukan Sekadar Sumber Daya_
 
 ---
 
+- [**_Strategi Manpower dalam Ekosistem Risk-Based Maintenance (RBM)_**](#strategi-manpower-dalam-ekosistem-risk-based-maintenance-rbm)
 - [📌 Prolog Artikel](#-prolog-artikel)
 - [**1. Pendahuluan — Mengapa Manpower Perlu Dibahas Terpisah dari MSH**](#1-pendahuluan--mengapa-manpower-perlu-dibahas-terpisah-dari-msh)
 - [**2. Posisi Manpower dalam RBM — Manusia sebagai Barrier Aktif**](#2-posisi-manpower-dalam-rbm--manusia-sebagai-barrier-aktif)
@@ -40,10 +42,23 @@ _Manusia sebagai Risk Control, Bukan Sekadar Sumber Daya_
   - [📗 Referensi Maintenance, Reliability, dan Organization](#-referensi-maintenance-reliability-dan-organization)
   - [📕 Referensi Authority, Escalation, dan Stop-Work](#-referensi-authority-escalation-dan-stop-work)
   - [📙 Referensi Tambahan (Pendukung \& Studi Konseptual)](#-referensi-tambahan-pendukung--studi-konseptual)
+  - [Lokasi: Setelah **Prolog Artikel**, sebelum Bab 1](#lokasi-setelah-prolog-artikel-sebelum-bab-1)
+  - [Lokasi: Setelah Bab **1. Pendahuluan — Mengapa Manpower Perlu Dibahas Terpisah dari MSH**](#lokasi-setelah-bab-1-pendahuluan--mengapa-manpower-perlu-dibahas-terpisah-dari-msh)
+  - [Lokasi: Setelah Bab **2. Posisi Manpower dalam RBM — Manusia sebagai Barrier Aktif**](#lokasi-setelah-bab-2-posisi-manpower-dalam-rbm--manusia-sebagai-barrier-aktif)
+  - [Lokasi: Setelah Bab **3. Keterkaitan Artikel Ini dengan MSH-3**](#lokasi-setelah-bab-3-keterkaitan-artikel-ini-dengan-msh-3)
+  - [Lokasi: Setelah Bab **4. Keterkaitan Artikel Ini dengan MSH-5**](#lokasi-setelah-bab-4-keterkaitan-artikel-ini-dengan-msh-5)
+  - [Lokasi: Setelah Bab **5. Risk-Based Manpower Tiering**](#lokasi-setelah-bab-5-risk-based-manpower-tiering)
+  - [Lokasi: Setelah Bab **6. Competency Design Berbasis Risiko**](#lokasi-setelah-bab-6-competency-design-berbasis-risiko)
+  - [Lokasi: Setelah Bab **7. Training Strategy dalam Ekosistem RBM**](#lokasi-setelah-bab-7-training-strategy-dalam-ekosistem-rbm)
+  - [Lokasi: Setelah Bab **8. Authority, Escalation, dan Stop-Work dalam RBM**](#lokasi-setelah-bab-8-authority-escalation-dan-stop-work-dalam-rbm)
+  - [Lokasi: Setelah Bab **9. Manpower dalam Evaluation Loop RBM**](#lokasi-setelah-bab-9-manpower-dalam-evaluation-loop-rbm)
+  - [Lokasi: Setelah Bab **10. KPI Manpower yang Selaras dengan RBM**](#lokasi-setelah-bab-10-kpi-manpower-yang-selaras-dengan-rbm)
+  - [Lokasi: Setelah Bab **11. Penutup — Manpower sebagai Penentu Hidup-Matinya RBM**](#lokasi-setelah-bab-11-penutup--manpower-sebagai-penentu-hidup-matinya-rbm)
+  - [Lokasi: Setelah Bab **12. Rekomendasi Pembaca \& Integrasi**](#lokasi-setelah-bab-12-rekomendasi-pembaca--integrasi)
 
 ---
 
-## 📌 Prolog Artikel
+# 📌 Prolog Artikel
 
 Artikel ini disusun sebagai **lapisan konsekuensial manusia (human consequence layer)** yang **melengkapi dan tidak dapat dipisahkan** dari _Maintenance System Handbook (MSH)_.
 Jika **MSH-3 (Risk-Based Maintenance)** menetapkan **apa keputusan pemeliharaan yang benar secara risiko**, dan **MSH-5 (Organization & Accountability)** mengatur **struktur, peran, dan akuntabilitas formal**, maka artikel ini menjawab pertanyaan yang sering kali menjadi penentu nyata keberhasilan sistem:
@@ -61,6 +76,32 @@ Sebagai pelengkap MSH, artikel ini berfungsi untuk:
 - serta memastikan bahwa sistem pemeliharaan yang telah dirancang secara konseptual benar-benar **hidup dan bekerja melalui manusia yang tepat, di tempat yang tepat, dengan otoritas yang tepat**.
 
 Tanpa kejelasan strategi manpower berbasis risiko, **RBM akan berhenti sebagai sistem yang dideklarasikan**, bukan sistem yang dijalankan. Oleh karena itu, artikel ini dimaksudkan untuk dibaca **bersamaan dengan MSH-3 dan MSH-5**, sebagai pasangan yang tidak terpisahkan dalam membangun sistem pemeliharaan yang **defensible, konsisten, dan berkelanjutan**.
+
+```mermaid id="manpower-rbm-human-consequence-layer-mobile"
+flowchart TD
+    A["MSH-3<br/>Risk-Based Maintenance"] --> C["Human<br/>Consequence Layer"]
+    B["MSH-5<br/>Organization & Accountability"] --> C
+
+    C --> D["Competency<br/>Aligned with Risk"]
+    C --> E["Authority<br/>Aligned with Risk"]
+    C --> F["Behavior<br/>Aligned with Risk"]
+
+    D --> G["Manpower as<br/>Active Risk Control"]
+    E --> G
+    F --> G
+
+    G --> H["RBM Lives<br/>in the Field"]
+
+    classDef msh fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef layer fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef control fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef output fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+
+    class A,B msh;
+    class C layer;
+    class D,E,F,G control;
+    class H output;
+```
 
 ---
 
@@ -96,9 +137,7 @@ Tanpa kejelasan strategi manpower berbasis risiko, **RBM akan berhenti sebagai s
 
 ---
 
----
-
-## **1. Pendahuluan — Mengapa Manpower Perlu Dibahas Terpisah dari MSH**
+# **1. Pendahuluan — Mengapa Manpower Perlu Dibahas Terpisah dari MSH**
 
 Dalam _Maintenance System Handbook (MSH)_, elemen **Man** telah ditempatkan secara tepat sebagai bagian dari kerangka **5M + 1E** dalam perencanaan pemeliharaan berbasis risiko. Namun, pengalaman implementasi di industri proses menunjukkan bahwa **membahas manpower hanya sebagai salah satu variabel sumber daya tidaklah memadai** untuk menjamin berjalannya _Risk-Based Maintenance (RBM)_ secara nyata dan konsisten.
 
@@ -130,9 +169,37 @@ Ruang di antara keduanya adalah **ruang manusia**: bagaimana kompetensi dirancan
 
 Dengan demikian, artikel ini perlu dibaca **bersamaan dengan MSH-3 dan MSH-5**, sebagai **referensi terpadu** bagi pelaksana teknis maupun pengambil keputusan yang bertanggung jawab memastikan bahwa sistem pemeliharaan berjalan tidak hanya benar secara konsep, tetapi juga **efektif, aman, dan defensible di lapangan**.
 
+```mermaid id="why-manpower-separate-from-msh-mobile"
+flowchart TD
+    A["MSH<br/>System Design"] --> B["Correct Risk<br/>Decision"]
+    B --> C{"Executed<br/>Correctly?"}
+
+    C -- "No" --> D["Competency<br/>Gap"]
+    C -- "No" --> E["Authority<br/>Gap"]
+    C -- "No" --> F["Escalation<br/>Gap"]
+
+    D --> G["RBM Becomes<br/>Weak in Field"]
+    E --> G
+    F --> G
+
+    C -- "Yes" --> H["RBM Becomes<br/>Living System"]
+
+    classDef system fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef decision fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef gap fill:#FFEBEE,stroke:#C62828,color:#111;
+    classDef weak fill:#FCE4EC,stroke:#AD1457,color:#111;
+    classDef good fill:#E8F5E9,stroke:#2E7D32,color:#111;
+
+    class A,B system;
+    class C decision;
+    class D,E,F gap;
+    class G weak;
+    class H good;
+```
+
 ---
 
-## **2. Posisi Manpower dalam RBM — Manusia sebagai Barrier Aktif**
+# **2. Posisi Manpower dalam RBM — Manusia sebagai Barrier Aktif**
 
 Dalam pendekatan pemeliharaan konvensional, manpower umumnya diperlakukan sebagai **variabel kapasitas**—berapa jumlah teknisi tersedia, berapa jam kerja dapat dialokasikan, dan bagaimana sumber daya manusia didistribusikan untuk memenuhi rencana pekerjaan. Pendekatan ini menempatkan manusia terutama dalam kerangka **_resource planning_**, yang berfokus pada efisiensi utilisasi dan pemenuhan beban kerja. Dalam konteks **Risk-Based Maintenance (RBM)**, paradigma tersebut tidak lagi memadai.
 
@@ -147,9 +214,39 @@ Hubungan antara manpower dan risiko dalam RBM bersifat **langsung dan tidak terp
 📌 **Penegasan kunci:**
 Dalam ekosistem RBM, manusia harus diperlakukan sebagai **_active barrier_** dalam pengendalian risiko, bukan sebagai variabel pasif dalam perencanaan sumber daya. Selama manusia belum dirancang, dikembangkan, dan diberi kewenangan sebagai bagian integral dari sistem pengendalian risiko, RBM akan selalu menyisakan celah kritis antara keputusan yang benar secara konseptual dan realitas operasional di lapangan.
 
+```mermaid id="manpower-active-barrier-rbm-mobile"
+flowchart TD
+    A["Manpower<br/>Quality"] --> B["Technical<br/>Competency"]
+    A --> C["Risk<br/>Awareness"]
+    A --> D["Decision<br/>Authority"]
+
+    B --> E["Better Inspection<br/>& Diagnosis"]
+    C --> F["Faster Escalation<br/>of Abnormality"]
+    D --> G["Stop-Work<br/>When Trigger Appears"]
+
+    E --> H["Lower<br/>Probability of Failure"]
+    F --> I["Limit<br/>ESC Consequence"]
+    G --> I
+
+    H --> J["Controlled<br/>Residual Risk"]
+    I --> J
+
+    classDef input fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef capability fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef action fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef risk fill:#FFEBEE,stroke:#C62828,color:#111;
+    classDef output fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+
+    class A input;
+    class B,C,D capability;
+    class E,F,G action;
+    class H,I risk;
+    class J output;
+```
+
 ---
 
-## **3. Keterkaitan Artikel Ini dengan MSH-3 (Risk-Based Maintenance)**
+# **3. Keterkaitan Artikel Ini dengan MSH-3 (Risk-Based Maintenance)**
 
 **MSH-3 — Risk-Based Maintenance (RBM)** menetapkan kerangka pengambilan keputusan pemeliharaan berbasis risiko yang **sah, rasional, dan defensible**. Modul tersebut menjawab pertanyaan mendasar tentang **apa keputusan yang benar** dalam konteks pemeliharaan aset berisiko tinggi: strategi apa yang dipilih, tingkat perhatian apa yang diberikan, serta batas toleransi risiko apa yang dapat diterima oleh organisasi. Namun, penetapan keputusan yang benar secara sistem **tidak serta-merta menjamin keputusan tersebut dijalankan dengan benar di lapangan**.
 
@@ -173,9 +270,36 @@ Dengan demikian, artikel ini menempatkan strategi manpower sebagai **komponen pe
 
 **Outcome yang diharapkan** dari keterkaitan ini adalah pemahaman yang jelas bahwa **RBM tanpa strategi manpower akan selalu berisiko tereduksi menjadi _paper system_**. Tanpa manusia yang dirancang sebagai bagian dari pengendalian risiko, RBM akan tampak lengkap di atas kertas, tetapi rapuh ketika dihadapkan pada tekanan operasional, konflik kepentingan, dan situasi abnormal yang menuntut keputusan cepat dan tegas.
 
+```mermaid id="msh3-to-manpower-execution-mobile"
+flowchart TD
+    A["MSH-3<br/>Risk Decision"] --> B["Maintenance<br/>Strategy"]
+    B --> C["Risk-Based<br/>Action Required"]
+    C --> D{"Who Executes<br/>the Decision?"}
+
+    D --> E["Competent<br/>Person"]
+    D --> F["Authorized<br/>Person"]
+    D --> G["Risk-Aware<br/>Person"]
+
+    E --> H["Correct<br/>Field Execution"]
+    F --> H
+    G --> H
+
+    H --> I["RBM Decision<br/>Becomes Real"]
+
+    classDef msh fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef decision fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef people fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef output fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+
+    class A,B msh;
+    class C,D decision;
+    class E,F,G,H people;
+    class I output;
+```
+
 ---
 
-## **4. Keterkaitan Artikel Ini dengan MSH-5 (Organization & Accountability)**
+# **4. Keterkaitan Artikel Ini dengan MSH-5 (Organization & Accountability)**
 
 **MSH-5 — Organization & Accountability** mengatur bagaimana organisasi pemeliharaan disusun, peran didefinisikan, serta akuntabilitas ditetapkan secara formal. Modul ini memastikan bahwa setiap fungsi memiliki tanggung jawab yang jelas dan dapat dipertanggungjawabkan dalam kerangka tata kelola perusahaan. Namun, dalam konteks **Risk-Based Maintenance (RBM)**, keberadaan struktur organisasi formal **belum tentu menjamin** bahwa kewenangan pengambilan keputusan di lapangan selaras dengan tingkat risiko yang dihadapi.
 
@@ -219,9 +343,35 @@ Artikel ini melengkapi MSH-5 dengan memperkenalkan dan menegaskan **logika kewen
 
 Dengan memahami perbedaan dan keterkaitan antara struktur organisasi dan struktur kewenangan berbasis risiko, pembaca diharapkan mampu melihat bahwa **penguatan RBM tidak cukup dilakukan melalui perbaikan bagan organisasi**, melainkan melalui **desain kewenangan dan eskalasi yang selaras dengan risiko nyata di lapangan**.
 
+```mermaid id="formal-organization-vs-risk-authority-mobile"
+flowchart TD
+    A["Formal<br/>Organization"] --> B["Who Reports<br/>to Whom"]
+    C["Risk-Based<br/>Authority"] --> D["Who Must Act<br/>When Risk Rises"]
+
+    B --> E{"Authority<br/>Aligned?"}
+    D --> E
+
+    E -- "No" --> F["Ambiguity<br/>of Authority"]
+    F --> G["Late Escalation<br/>or No Stop-Work"]
+
+    E -- "Yes" --> H["Fast Decision<br/>Based on Risk Trigger"]
+    H --> I["Accountable<br/>Risk Control"]
+
+    classDef formal fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef risk fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef bad fill:#FFEBEE,stroke:#C62828,color:#111;
+    classDef good fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef output fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+
+    class A,B formal;
+    class C,D,E risk;
+    class F,G bad;
+    class H,I good;
+```
+
 ---
 
-## **5. Risk-Based Manpower Tiering**
+# **5. Risk-Based Manpower Tiering**
 
 _(Selaras dengan Tiering Aset RBM)_
 
@@ -236,9 +386,40 @@ Sebaliknya, aset **Tier 3 (normal atau berisiko rendah)** dapat dikelola secara 
 📌 **Penegasan penting:**
 Risk-based manpower tiering **bukanlah kebijakan HR** yang mengatur jenjang karier, remunerasi, atau administrasi personalia. Ia merupakan **prinsip desain sistem RBM**, yang bertujuan memastikan bahwa **tingkat risiko aset selalu diimbangi oleh kualitas manusia dan kewenangan pengambilan keputusan yang sesuai**. Tanpa penyesuaian ini, RBM berisiko tereduksi menjadi sistem yang tidak proporsional—terlalu berat pada aset berisiko rendah dan terlalu lemah pada aset yang paling menentukan keselamatan dan keberlangsungan operasi.
 
+```mermaid id="risk-based-manpower-tiering-mobile"
+flowchart TD
+    A["Asset<br/>Risk Tiering"] --> B{"Asset<br/>Tier?"}
+
+    B -- "Tier 1<br/>Very Critical" --> C["Senior Engineer<br/>Full Stop-Work Authority"]
+    B -- "Tier 2<br/>Critical Support" --> D["Engineer + Supervisor<br/>Controlled Escalation"]
+    B -- "Tier 3<br/>Normal Asset" --> E["Technician<br/>Strict SOP Execution"]
+
+    C --> F["High Competency<br/>High Authority"]
+    D --> G["Moderate Competency<br/>Defined Authority"]
+    E --> H["Standard Competency<br/>Procedure-Based Control"]
+
+    F --> I["Manpower<br/>Proportional to Risk"]
+    G --> I
+    H --> I
+
+    classDef asset fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef decision fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef tier1 fill:#FFEBEE,stroke:#C62828,color:#111;
+    classDef tier2 fill:#FFF3E0,stroke:#EF6C00,color:#111;
+    classDef tier3 fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef output fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+
+    class A asset;
+    class B decision;
+    class C,F tier1;
+    class D,G tier2;
+    class E,H tier3;
+    class I output;
+```
+
 ---
 
-## **6. Competency Design Berbasis Risiko (Bukan Jabatan)**
+# **6. Competency Design Berbasis Risiko (Bukan Jabatan)**
 
 Dalam banyak organisasi pemeliharaan, penugasan pekerjaan masih didasarkan pada **jabatan struktural atau jenjang senioritas**, dengan asumsi bahwa posisi formal secara otomatis merepresentasikan kemampuan dan kewenangan yang diperlukan. Dalam kerangka **Risk-Based Maintenance (RBM)**, pendekatan tersebut tidak lagi memadai. RBM menuntut pergeseran logika yang lebih mendasar, dari pertanyaan **“siapa jabatannya?”** menjadi **“apa konsekuensi jika keputusan atau tindakannya keliru?”**.
 
@@ -252,9 +433,38 @@ Ketiga, **decision and stop-work authority**, yaitu kewenangan formal dan psikol
 
 Nilai tambah utama dari pendekatan ini adalah kemampuannya membantu plant melakukan penilaian **_fitness for task_** secara objektif dan konsisten. Dengan mendasarkan penugasan pada konsekuensi risiko dan elemen kompetensi yang terukur, organisasi dapat memastikan bahwa setiap pekerjaan pada aset kritis ditangani oleh personel yang **paling layak secara teknis dan paling tepat secara risiko**, terlepas dari jabatan formal yang disandang. Pendekatan ini tidak hanya meningkatkan kualitas keputusan operasional, tetapi juga memperkuat _defensibility_ sistem pemeliharaan ketika diuji melalui audit, investigasi, atau evaluasi manajemen.
 
+```mermaid id="risk-based-competency-design-mobile"
+flowchart TD
+    A["Risk Consequence<br/>ESC"] --> B["Required<br/>Competency Level"]
+
+    B --> C["Technical<br/>Understanding"]
+    B --> D["Risk<br/>Awareness"]
+    B --> E["Decision & Stop-Work<br/>Authority"]
+
+    C --> F["Understand<br/>Failure Mechanism"]
+    D --> G["Recognize<br/>System Consequence"]
+    E --> H["Act When<br/>Risk Trigger Appears"]
+
+    F --> I["Fitness<br/>for Task"]
+    G --> I
+    H --> I
+
+    classDef risk fill:#FFEBEE,stroke:#C62828,color:#111;
+    classDef comp fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef element fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef action fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef output fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+
+    class A risk;
+    class B comp;
+    class C,D,E element;
+    class F,G,H action;
+    class I output;
+```
+
 ---
 
-## **7. Training Strategy dalam Ekosistem Risk-Based Maintenance (RBM)**
+# **7. Training Strategy dalam Ekosistem Risk-Based Maintenance (RBM)**
 
 Dalam banyak organisasi, program pelatihan pemeliharaan dirancang sebagai **paket seragam** yang diterapkan secara luas tanpa diferensiasi yang memadai. Pendekatan ini mungkin efisien dari sudut pandang administrasi, namun **tidak sejalan dengan prinsip dasar Risk-Based Maintenance (RBM)**. RBM menuntut bahwa **setiap intervensi—termasuk pelatihan—harus proporsional dengan tingkat risiko dan peran dalam rantai pengambilan keputusan**.
 
@@ -271,9 +481,37 @@ Sementara itu, pada level **management**, pelatihan diarahkan pada **pemahaman t
 📌 **Penegasan penting:**
 Artikel ini **melengkapi**, bukan mengulang, materi pelatihan yang telah dibahas dalam MSH. Fokusnya adalah memastikan bahwa strategi pelatihan dalam RBM dirancang sebagai **instrumen pengendalian risiko yang berlapis**, sehingga setiap level organisasi memiliki kapasitas dan kejelasan peran yang memadai untuk menjalankan keputusan RBM secara konsisten dan defensible.
 
+```mermaid id="rbm-training-ladder-mobile"
+flowchart TD
+    A["RBM<br/>Training Ladder"] --> B["Technician<br/>Detect Abnormality"]
+    A --> C["Engineer<br/>Analyze Failure & ESC"]
+    A --> D["Supervisor<br/>Manage Escalation"]
+    A --> E["Management<br/>Risk Acceptance"]
+
+    B --> F["Early Detection<br/>and SOP Discipline"]
+    C --> G["Risk-Based<br/>Technical Decision"]
+    D --> H["Correct<br/>Decision Threshold"]
+    E --> I["Support<br/>Defensible Decision"]
+
+    F --> J["Layered<br/>Risk Control"]
+    G --> J
+    H --> J
+    I --> J
+
+    classDef ladder fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef role fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef output fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef control fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+
+    class A ladder;
+    class B,C,D,E role;
+    class F,G,H,I output;
+    class J control;
+```
+
 ---
 
-## **8. Authority, Escalation, dan Stop-Work dalam Risk-Based Maintenance (RBM)**
+# **8. Authority, Escalation, dan Stop-Work dalam Risk-Based Maintenance (RBM)**
 
 Salah satu temuan paling konsisten dalam investigasi insiden besar di industri proses adalah bahwa kegagalan sering kali **bukan terjadi karena tidak adanya data, prosedur, atau kompetensi teknis**, melainkan karena **manusia ragu menghentikan sistem** pada saat risiko meningkat. Keraguan ini jarang bersumber dari ketidaktahuan semata, tetapi lebih sering disebabkan oleh **ketidakjelasan kewenangan, ambiguitas eskalasi, dan tekanan struktural yang tidak dirancang berbasis risiko**.
 
@@ -285,9 +523,37 @@ Konsep **stop-work** dalam RBM juga perlu ditempatkan secara tepat. Stop-work bu
 
 Dengan menempatkan authority, escalation, dan stop-work sebagai bagian dari **desain teknis RBM**, organisasi dapat menghilangkan keraguan yang sering melumpuhkan pengambilan keputusan di lapangan. Kejelasan ini memastikan bahwa setiap individu memahami **kapan harus bertindak, sejauh mana kewenangannya, dan bagaimana eskalasi dilakukan**, sehingga keputusan yang diambil tidak hanya cepat, tetapi juga **selaras dengan tingkat risiko dan dapat dipertanggungjawabkan secara sistemik**.
 
+```mermaid id="authority-escalation-stopwork-rbm-mobile"
+flowchart TD
+    A["Field<br/>Abnormality"] --> B{"Risk Trigger<br/>Reached?"}
+
+    B -- "No" --> C["Continue Work<br/>Within SOP"]
+    B -- "Yes" --> D["Activate<br/>Risk-Based Authority"]
+
+    D --> E{"Can Risk<br/>Be Controlled?"}
+    E -- "Yes" --> F["Apply Control<br/>and Monitor"]
+    E -- "No" --> G["Stop-Work<br/>Immediately"]
+
+    G --> H["Escalate to<br/>Competent Authority"]
+    H --> I["Technical / Operational<br/>Decision"]
+    I --> J["Document<br/>Decision & Learning"]
+
+    classDef input fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef decision fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef control fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef stop fill:#FFEBEE,stroke:#C62828,color:#111;
+    classDef close fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+
+    class A input;
+    class B,E decision;
+    class C,F control;
+    class D,G,H,I stop;
+    class J close;
+```
+
 ---
 
-## **9. Manpower dalam _Evaluation Loop_ Risk-Based Maintenance (RBM)**
+# **9. Manpower dalam _Evaluation Loop_ Risk-Based Maintenance (RBM)**
 
 Salah satu karakteristik utama **Risk-Based Maintenance (RBM)** yang matang adalah keberadaan **_evaluation loop_** yang berjalan secara disiplin dan berkelanjutan. Dalam MSH-3, _evaluation loop_ diposisikan sebagai mekanisme pembelajaran sistem untuk menilai efektivitas strategi pemeliharaan terhadap risiko aktual. Artikel ini menegaskan bahwa mekanisme tersebut **tidak boleh berhenti pada sistem dan aset semata**, tetapi harus secara eksplisit mencakup **manusia sebagai bagian dari sistem pengendalian risiko**.
 
@@ -300,9 +566,42 @@ Hasil evaluasi manpower tidak dimaksudkan untuk mencari kesalahan individu, mela
 📌 **Penegasan kunci:**
 Dengan memasukkan manpower secara eksplisit ke dalam _evaluation loop_ RBM, organisasi memastikan bahwa **kualitas manusia sebagai pengendali risiko berkembang seiring dengan perubahan kondisi aset dan operasi**. Pendekatan ini menjaga konsistensi antara desain sistem dan realitas lapangan, serta memastikan bahwa RBM tetap berfungsi sebagai **sistem hidup** yang adaptif, defensible, dan selaras dengan prinsip yang telah ditetapkan dalam MSH-3.
 
+```mermaid id="manpower-evaluation-loop-rbm-mobile"
+flowchart TD
+    A["Field Execution<br/>by Manpower"] --> B["Collect Evidence<br/>Decision / Response / Near-Miss"]
+    B --> C["Evaluate<br/>Manpower Barrier Quality"]
+    C --> D{"Gap<br/>Found?"}
+
+    D -- "No" --> E["Maintain<br/>Current Assignment"]
+    D -- "Yes" --> F["Systemic<br/>Improvement Action"]
+
+    F --> G["Retraining"]
+    F --> H["Repositioning"]
+    F --> I["Authority<br/>Redesign"]
+
+    G --> J["Updated<br/>Manpower Strategy"]
+    H --> J
+    I --> J
+
+    J --> A
+    E --> A
+
+    classDef execution fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef data fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef decision fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+    classDef gap fill:#FFEBEE,stroke:#C62828,color:#111;
+    classDef action fill:#E8F5E9,stroke:#2E7D32,color:#111;
+
+    class A execution;
+    class B,C data;
+    class D decision;
+    class F gap;
+    class E,G,H,I,J action;
+```
+
 ---
 
-## **10. KPI Manpower yang Selaras dengan Risk-Based Maintenance (RBM)**
+# **10. KPI Manpower yang Selaras dengan Risk-Based Maintenance (RBM)**
 
 Dalam banyak organisasi, kinerja manpower masih diukur melalui **indikator aktivitas** seperti jumlah pekerjaan yang diselesaikan, jam kerja yang terserap, atau kepatuhan terhadap jadwal. Meskipun indikator tersebut mudah diukur, pendekatan ini berisiko menciptakan **ilusi kinerja**, di mana organisasi terlihat produktif tetapi sebenarnya **rentan terhadap risiko yang tidak terkelola**. Dalam konteks **Risk-Based Maintenance (RBM)**, KPI semacam ini tidak lagi memadai.
 
@@ -315,9 +614,37 @@ KPI berbasis risiko ini memiliki keterkaitan langsung dengan **governance dan ac
 📌 **Penegasan penting:**
 KPI manpower yang selaras dengan RBM tidak bertujuan untuk mendorong orang bekerja lebih banyak, melainkan **bekerja lebih benar terhadap risiko**. Dengan meninggalkan KPI “sibuk tapi tidak aman” dan beralih ke indikator berbasis risiko, organisasi memastikan bahwa sistem pemeliharaan tidak hanya efisien secara operasional, tetapi juga **defensible secara keselamatan, lingkungan, dan tata kelola**.
 
+```mermaid id="risk-based-manpower-kpi-mobile"
+flowchart TD
+    A["Manpower KPI<br/>in RBM"] --> B["Risk<br/>Response"]
+    A --> C["Escalation<br/>Quality"]
+    A --> D["Decision<br/>Accuracy"]
+    A --> E["Near-Miss<br/>Handling"]
+
+    B --> F["How Fast<br/>Risk is Recognized"]
+    C --> G["How Correct<br/>Escalation Path is Used"]
+    D --> H["How Suitable<br/>Decision vs Risk"]
+    E --> I["How Strong<br/>Learning is Captured"]
+
+    F --> J["Risk-Based<br/>Performance"]
+    G --> J
+    H --> J
+    I --> J
+
+    classDef kpi fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef metric fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef meaning fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef output fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+
+    class A kpi;
+    class B,C,D,E metric;
+    class F,G,H,I meaning;
+    class J output;
+```
+
 ---
 
-## **11. Penutup — Manpower sebagai Penentu Hidup-Matinya Risk-Based Maintenance (RBM)**
+# **11. Penutup — Manpower sebagai Penentu Hidup-Matinya Risk-Based Maintenance (RBM)**
 
 Risk-Based Maintenance (RBM) dapat dirancang secara komprehensif dan defensible, dengan model risiko yang matang, strategi pemeliharaan yang tepat, serta kerangka organisasi yang rapi. Namun, seluruh desain tersebut **tidak memiliki daya kendali nyata** apabila tidak dijalankan oleh manusia yang **kompetensinya selaras dengan risiko, kewenangannya jelas, dan keberaniannya didukung oleh sistem**. Pada titik inilah peran manpower menjadi faktor penentu hidup-matinya RBM.
 
@@ -350,9 +677,37 @@ Dengan demikian, artikel ini **tidak dimaksudkan sebagai modul tambahan dalam MS
 
 Penutup ini sekaligus menjadi pengingat bahwa keberlanjutan sistem pemeliharaan **tidak ditentukan oleh kelengkapan dokumen atau kecanggihan metode**, melainkan oleh kemampuan organisasi dalam **menyatukan sistem, struktur, dan manusia ke dalam satu garis logika risiko yang konsisten, defensible, dan dapat dijalankan di lapangan**.
 
+```mermaid id="rbm-lives-through-manpower-mobile"
+flowchart TD
+    A["RBM<br/>Model & Strategy"] --> B["Organization<br/>and Accountability"]
+    B --> C["Risk-Based<br/>Manpower Strategy"]
+
+    C --> D["Right Person"]
+    C --> E["Right Competency"]
+    C --> F["Right Authority"]
+    C --> G["Right Escalation"]
+
+    D --> H["Correct<br/>Risk Decision"]
+    E --> H
+    F --> H
+    G --> H
+
+    H --> I["RBM Becomes<br/>Operationally Alive"]
+
+    classDef rbm fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef manpower fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef element fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef output fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+
+    class A,B rbm;
+    class C manpower;
+    class D,E,F,G,H element;
+    class I output;
+```
+
 ---
 
-## **12. Rekomendasi Pembaca & Integrasi**
+# **12. Rekomendasi Pembaca & Integrasi**
 
 Artikel ini tidak dimaksudkan untuk dibaca sebagai wacana konseptual semata, melainkan sebagai **alat refleksi dan tindakan** bagi organisasi yang telah atau sedang menerapkan **Risk-Based Maintenance (RBM)**. Pembaca—baik pada level engineer, supervisor, maupun manajemen—didorong untuk menggunakan kerangka dalam artikel ini sebagai **checklist strategis** guna menilai apakah sistem RBM yang ada benar-benar hidup di lapangan.
 
@@ -394,15 +749,38 @@ Untuk memperoleh manfaat maksimal, artikel ini sebaiknya dibaca dan digunakan be
 
 Dengan mengintegrasikan artikel ini ke dalam praktik evaluasi dan pengambilan keputusan, organisasi dapat memastikan bahwa RBM tidak hanya lengkap secara sistem dan struktur, tetapi juga **dijalankan oleh manusia yang tepat, dengan kewenangan yang tepat, dan pada saat yang tepat**.
 
+```mermaid id="manpower-rbm-integration-roadmap-mobile"
+flowchart TD
+    A["Start<br/>RBM Manpower Review"] --> B["Evaluate<br/>Asset Tier vs Manpower"]
+    B --> C["Review<br/>Authority & Escalation"]
+    C --> D["Check<br/>Stop-Work Clarity"]
+    D --> E["Redesign<br/>Training Ladder"]
+    E --> F["Set<br/>Risk-Based KPI"]
+    F --> G["Feed into<br/>Evaluation Loop"]
+    G --> H["Improve<br/>RBM Execution"]
+
+    classDef start fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef review fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef redesign fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef loop fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+    classDef output fill:#FFEBEE,stroke:#C62828,color:#111;
+
+    class A start;
+    class B,C,D review;
+    class E,F redesign;
+    class G loop;
+    class H output;
+```
+
 ---
 
-## 📚 Daftar Referensi :
+# 📚 Daftar Referensi :
 
 Berikut **daftar referensi teknis dan normatif** yang **selaras dengan isi artikel**, **defensible untuk audit**, dan **relevan bagi pengambil keputusan maupun pelaksana**.
 
 ---
 
-### 📚 Referensi Utama (Core References)
+## 📚 Referensi Utama (Core References)
 
 1. **ISO 55000 / 55001 / 55002**
    _Asset Management — Overview, principles and terminology_
@@ -418,7 +796,7 @@ Berikut **daftar referensi teknis dan normatif** yang **selaras dengan isi artik
 
 ---
 
-### 📘 Referensi Risk, Human Factors, dan Decision-Making
+## 📘 Referensi Risk, Human Factors, dan Decision-Making
 
 4. **CCPS**
    _Guidelines for Risk Based Process Safety_
@@ -434,7 +812,7 @@ Berikut **daftar referensi teknis dan normatif** yang **selaras dengan isi artik
 
 ---
 
-### 📗 Referensi Maintenance, Reliability, dan Organization
+## 📗 Referensi Maintenance, Reliability, dan Organization
 
 7. **SMRP**
    _SMRP Body of Knowledge_
@@ -450,7 +828,7 @@ Berikut **daftar referensi teknis dan normatif** yang **selaras dengan isi artik
 
 ---
 
-### 📕 Referensi Authority, Escalation, dan Stop-Work
+## 📕 Referensi Authority, Escalation, dan Stop-Work
 
 10. **ILO**
     _Guidelines on occupational safety and health management systems_
@@ -462,7 +840,7 @@ Berikut **daftar referensi teknis dan normatif** yang **selaras dengan isi artik
 
 ---
 
-### 📙 Referensi Tambahan (Pendukung & Studi Konseptual)
+## 📙 Referensi Tambahan (Pendukung & Studi Konseptual)
 
 12. Khan, F. I., & Haddara, M. M.
     _Risk-Based Maintenance in the Process Industry_

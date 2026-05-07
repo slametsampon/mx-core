@@ -17,10 +17,11 @@ draft: false
 summary: Modul 1 merupakan anchor module dalam Maintenance System Handbook yang menetapkan fondasi filosofis dan normatif sistem pemeliharaan modern. Modul ini menegaskan bahwa pemeliharaan di industri petrokimia harus dipahami sebagai sistem pengendalian risiko, bukan sekadar aktivitas teknis berbasis jadwal. Evolusi dari pendekatan reaktif, preventif, hingga prediktif menunjukkan bahwa tidak ada satu metode tunggal yang memadai tanpa kerangka risiko. Risk-based thinking menjadi bahasa utama untuk menghubungkan keandalan peralatan, keselamatan, lingkungan, dan keberlanjutan operasi. API RP 580 (Risk-Based Inspection) memberikan legitimasi formal dan audit-ready, menjadikan sistem pemeliharaan terstruktur, terukur, dan dapat dipertanggungjawabkan secara teknis maupun manajerial.
 ---
 
-**_Filosofi Sistem Pemeliharaan dan Fondasi Risiko_**
+# **_Filosofi Sistem Pemeliharaan dan Fondasi Risiko_**
 
 ---
 
+- [**_Filosofi Sistem Pemeliharaan dan Fondasi Risiko_**](#filosofi-sistem-pemeliharaan-dan-fondasi-risiko)
 - [📌 Prolog Modul](#-prolog-modul)
   - [1.1 Sistem Pemeliharaan dalam Konteks Industri Petrokimia](#11-sistem-pemeliharaan-dalam-konteks-industri-petrokimia)
   - [1.2 Evolusi Pendekatan Pemeliharaan: Dari Reaktif ke Sistemik](#12-evolusi-pendekatan-pemeliharaan-dari-reaktif-ke-sistemik)
@@ -29,12 +30,11 @@ summary: Modul 1 merupakan anchor module dalam Maintenance System Handbook yang 
   - [1.5 _Risk-Based Inspection (RBI)_ sebagai Landasan Normatif](#15-risk-based-inspection-rbi-sebagai-landasan-normatif)
   - [1.6 Hubungan Sistem Pemeliharaan dengan Keselamatan dan Lingkungan](#16-hubungan-sistem-pemeliharaan-dengan-keselamatan-dan-lingkungan)
   - [🧠 Kesimpulan Module 1](#-kesimpulan-module-1)
-  - [🔗 Korelasi dengan Modul Lain](#-korelasi-dengan-modul-lain)
   - [📚 Referensi Module 1](#-referensi-module-1)
 
 ---
 
-## 📌 Prolog Modul
+# 📌 Prolog Modul
 
 Modul ini merupakan **anchor module** dalam **Maintenance System Handbook (MSH)**, karena seluruh modul berikutnya—baik yang membahas _Risk-Based Maintenance (RBM)_, struktur organisasi, Key Performance Indicator (KPI), hingga _Turn Around (TA)_—**dibangun di atas filosofi dan fondasi konseptual yang dijelaskan pada modul ini**. Dengan kata lain, Modul 1 berfungsi sebagai **kerangka rujukan utama** yang menentukan arah, batas, dan legitimasi sistem pemeliharaan secara keseluruhan.
 
@@ -45,6 +45,28 @@ Modul 1 secara eksplisit menjawab pertanyaan mendasar:
 Pertanyaan ini bersifat fundamental, karena tanpa jawaban yang jelas dan konsisten, sistem pemeliharaan akan mudah tereduksi menjadi **sekadar kumpulan aktivitas teknis**, rutinitas berbasis jadwal, atau praktik historis yang tidak lagi relevan dengan tingkat risiko aktual industri petrokimia. Dalam kondisi tersebut, pemeliharaan kehilangan perannya sebagai **sistem pengendalian risiko yang terstruktur, rasional, dan dapat dipertanggungjawabkan**, baik secara teknis maupun manajerial.
 
 Oleh karena itu, Modul 1 disusun untuk menetapkan **filosofi dasar** bahwa pemeliharaan harus dibangun di atas **risk-based thinking**, didukung oleh kerangka normatif yang diakui industri, dan mampu berdiri sebagai sistem yang **audit-ready**. Seluruh substansi dalam modul ini **tidak diubah**, karena berfungsi sebagai **legitimasi teknis, normatif, dan regulator-facing** bagi keseluruhan _Maintenance System Handbook_.
+
+```mermaid id="msh-1-anchor-module-mobile"
+flowchart TD
+    A["Module 1<br/>Philosophy & Risk Foundation"] --> B["Risk-Based<br/>Thinking"]
+    B --> C["Normative Basis<br/>API RP 580"]
+    C --> D["Maintenance as<br/>Risk Control System"]
+    D --> E["Audit-Ready<br/>Decision Framework"]
+
+    E --> F["Foundation for<br/>RBM, KPI, TA,<br/>Organization"]
+
+    classDef anchor fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef risk fill:#FFEBEE,stroke:#C62828,color:#111;
+    classDef norm fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef system fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef output fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+
+    class A anchor;
+    class B risk;
+    class C norm;
+    class D,E system;
+    class F output;
+```
 
 <ResourceBox
   title="Korelasi internal-link modul:"
@@ -72,7 +94,7 @@ Oleh karena itu, Modul 1 disusun untuk menetapkan **filosofi dasar** bahwa pemel
 
 ---
 
-### 1.1 Sistem Pemeliharaan dalam Konteks Industri Petrokimia
+## 1.1 Sistem Pemeliharaan dalam Konteks Industri Petrokimia
 
 Dalam industri petrokimia, **sistem pemeliharaan tidak dapat dipisahkan dari sistem operasi itu sendiri**. Proses produksi yang bersifat kontinu, bertekanan dan bersuhu tinggi, serta melibatkan material berbahaya menuntut tingkat keandalan peralatan yang sangat tinggi dan konsisten. Oleh karena itu, pemeliharaan harus dipahami sebagai **bagian integral dari sistem operasi pabrik**, bukan sebagai fungsi pendukung yang hanya aktif ketika terjadi kerusakan.
 
@@ -85,9 +107,34 @@ Kegagalan peralatan proses di industri petrokimia jarang bersifat terisolasi. Se
 📌 **Peran dalam handbook:**
 Bagian ini menetapkan prinsip dasar bahwa pemeliharaan **bukan fungsi pendukung**, melainkan **komponen inti dari sistem produksi**. Tanpa sistem pemeliharaan yang dirancang secara sistemik dan terintegrasi dengan operasi, industri petrokimia tidak dapat mencapai tingkat keandalan, keselamatan, dan keberlanjutan yang dipersyaratkan.
 
+```mermaid id="maintenance-in-petrochemical-operation-mobile"
+flowchart TD
+    A["Petrochemical Plant<br/>Continuous Process"] --> B["High Reliability<br/>Required"]
+    B --> C["Equipment<br/>Performance"]
+    C --> D["Process<br/>Stability"]
+    D --> E["Safety + Environment<br/>Protection"]
+    E --> F["Production<br/>Continuity"]
+
+    C --> G{"Equipment<br/>Failure?"}
+    G -- "Yes" --> H["Systemic<br/>Consequence"]
+    H --> I["Shutdown Risk<br/>Business Loss"]
+
+    classDef plant fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef reliability fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef process fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef risk fill:#FFEBEE,stroke:#C62828,color:#111;
+    classDef business fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+
+    class A plant;
+    class B,C,D reliability;
+    class E,F process;
+    class G,H risk;
+    class I business;
+```
+
 ---
 
-### 1.2 Evolusi Pendekatan Pemeliharaan: Dari Reaktif ke Sistemik
+## 1.2 Evolusi Pendekatan Pemeliharaan: Dari Reaktif ke Sistemik
 
 Pendekatan pemeliharaan dalam industri telah mengalami evolusi seiring meningkatnya kompleksitas sistem produksi dan eksposur risiko operasional. Evolusi ini dapat dipahami melalui tiga pendekatan utama, yaitu **Corrective Maintenance**, **Preventive Maintenance**, dan **Predictive Maintenance**, yang masing-masing memiliki peran, kelebihan, serta keterbatasan dalam konteks industri petrokimia.
 
@@ -104,9 +151,39 @@ Dalam sistem industri yang kompleks seperti petrokimia, menjadi jelas bahwa **ti
 
 Rantai logika ini menegaskan bahwa pemilihan dan kombinasi strategi pemeliharaan harus didasarkan pada tujuan pengendalian risiko, bukan semata pada preferensi teknis atau ketersediaan metode tertentu.
 
+```mermaid id="maintenance-evolution-systemic-mobile"
+flowchart TD
+    A["Corrective<br/>Maintenance"] --> B["Repair After<br/>Failure"]
+    B --> C["High Risk<br/>in Petrochemical"]
+
+    D["Preventive<br/>Maintenance"] --> E["Scheduled<br/>Intervention"]
+    E --> F["Good Baseline<br/>but Generic"]
+
+    G["Predictive<br/>Maintenance"] --> H["Condition-Based<br/>Prediction"]
+    H --> I["Needs Data<br/>and Risk Context"]
+
+    C --> J["Need Integrated<br/>Risk-Based System"]
+    F --> J
+    I --> J
+
+    J --> K["Balanced Strategy<br/>CM + PM + PdM"]
+
+    classDef cm fill:#FFEBEE,stroke:#C62828,color:#111;
+    classDef pm fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef pdm fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef system fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef output fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+
+    class A,B,C cm;
+    class D,E,F pm;
+    class G,H,I pdm;
+    class J system;
+    class K output;
+```
+
 ---
 
-### 1.3 Keterbatasan Pendekatan Berbasis Waktu dan Aktivitas
+## 1.3 Keterbatasan Pendekatan Berbasis Waktu dan Aktivitas
 
 Pendekatan pemeliharaan berbasis waktu dan aktivitas, yang secara umum diwujudkan dalam bentuk **Time-Based Maintenance (TBM)**, merupakan praktik yang luas diterapkan di berbagai industri karena kesederhanaan dan kemudahan implementasinya. TBM menetapkan interval pemeliharaan berdasarkan waktu kalender, jam operasi, atau siklus tertentu, dengan asumsi bahwa pola degradasi peralatan dapat diprediksi secara linier dan seragam.
 
@@ -119,9 +196,38 @@ Selain itu, pendekatan berbasis waktu dan aktivitas **tidak menyediakan mekanism
 📌 **Penekanan penting:**
 Permasalahan utama dalam pendekatan ini **bukan terletak pada Time-Based Maintenance itu sendiri**, melainkan pada **penerapannya tanpa kerangka risiko**. TBM tetap memiliki peran penting sebagai bagian dari sistem pemeliharaan, namun harus ditempatkan dalam struktur yang memungkinkan diferensiasi perlakuan berdasarkan **tingkat kritikalitas dan konsekuensi kegagalan**. Tanpa kerangka tersebut, TBM berisiko menghasilkan kepatuhan administratif yang tinggi, tetapi efektivitas pengendalian risiko yang rendah.
 
+```mermaid id="time-based-maintenance-limitation-mobile"
+flowchart TD
+    A["Time-Based<br/>Maintenance"] --> B["Fixed Interval<br/>Calendar / Running Hour"]
+    B --> C["Focus on<br/>Schedule Compliance"]
+    C --> D{"Risk<br/>Differentiated?"}
+
+    D -- "No" --> E["Non-Critical Asset<br/>Over-Maintained"]
+    D -- "No" --> F["Critical Asset<br/>Under-Protected"]
+
+    E --> G["Cost + Manpower<br/>Inefficiency"]
+    F --> H["High Consequence<br/>Failure Risk"]
+
+    G --> I["Need<br/>Risk-Based Priority"]
+    H --> I
+
+    classDef tbm fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef schedule fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef decision fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+    classDef bad fill:#FFEBEE,stroke:#C62828,color:#111;
+    classDef output fill:#E8F5E9,stroke:#2E7D32,color:#111;
+
+    class A,B tbm;
+    class C schedule;
+    class D decision;
+    class E,F,H bad;
+    class G bad;
+    class I output;
+```
+
 ---
 
-### 1.4 _Risk-Based Thinking_ sebagai Fondasi Sistem Pemeliharaan
+## 1.4 _Risk-Based Thinking_ sebagai Fondasi Sistem Pemeliharaan
 
 Sebagai respons terhadap keterbatasan pendekatan pemeliharaan berbasis waktu dan aktivitas, **risk-based thinking** muncul sebagai fondasi konseptual dalam membangun sistem pemeliharaan modern. _Risk-based thinking_ merupakan pola pikir yang menempatkan **risiko** sebagai dasar utama dalam perencanaan, pengambilan keputusan, dan evaluasi efektivitas pemeliharaan. Dalam konteks ini, risiko dipahami sebagai **kombinasi antara kemungkinan terjadinya kegagalan dan konsekuensi yang ditimbulkan oleh kegagalan tersebut**.
 
@@ -134,9 +240,40 @@ Selain itu, _risk-based thinking_ berfungsi sebagai **bahasa bersama lintas fung
 📌 **Jembatan ke Modul 2:**
 Meskipun _risk-based thinking_ memberikan kerangka konseptual yang kuat, pendekatan ini **tidak dapat dioperasionalkan tanpa model risiko yang jelas**. Oleh karena itu, Modul 2 akan membahas bagaimana risiko dimodelkan secara sistematis dan diterjemahkan menjadi **logika pengambilan keputusan** dalam sistem pemeliharaan.
 
+```mermaid id="risk-based-thinking-maintenance-foundation-mobile"
+flowchart TD
+    A["Risk-Based<br/>Thinking"] --> B["Identify<br/>Failure Scenario"]
+    B --> C["Assess<br/>Probability of Failure"]
+    B --> D["Assess<br/>Consequence of Failure"]
+
+    C --> E["Risk<br/>Evaluation"]
+    D --> E
+
+    E --> F{"Risk<br/>Acceptable?"}
+    F -- "Yes" --> G["Maintain Strategy<br/>and Monitor"]
+    F -- "No" --> H["Define<br/>Maintenance Mitigation"]
+
+    H --> I["Inspection<br/>Repair<br/>Replacement<br/>Modification"]
+    I --> J["Reduced<br/>Residual Risk"]
+    J --> G
+
+    classDef concept fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef assess fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef decision fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+    classDef action fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef risk fill:#FFEBEE,stroke:#C62828,color:#111;
+
+    class A concept;
+    class B,C,D,E assess;
+    class F decision;
+    class H,I action;
+    class J risk;
+    class G action;
+```
+
 ---
 
-### 1.5 _Risk-Based Inspection (RBI)_ sebagai Landasan Normatif
+## 1.5 _Risk-Based Inspection (RBI)_ sebagai Landasan Normatif
 
 _Risk-Based Inspection (RBI)_ merupakan pendekatan yang berkembang dari kebutuhan industri proses untuk mengelola **risiko kegagalan peralatan secara sistematis dan terukur**, khususnya pada fasilitas dengan tingkat bahaya dan konsekuensi kegagalan yang tinggi seperti industri petrokimia. RBI lahir dari kesadaran bahwa inspeksi dan pemeliharaan tidak dapat lagi ditentukan semata-mata oleh interval waktu tetap, melainkan harus diprioritaskan berdasarkan **tingkat risiko aktual** yang melekat pada setiap peralatan.
 
@@ -153,9 +290,36 @@ Legitimasi industri terhadap pendekatan ini diperkuat melalui standar internasio
 📌 **Fungsi dalam handbook:**
 Bagian ini menetapkan RBI sebagai **rujukan formal dan audit-ready** yang memberikan legitimasi terhadap filosofi pemeliharaan berbasis risiko. RBI berperan sebagai penghubung antara konsep _risk-based thinking_ dan implementasi sistem pemeliharaan yang dapat dipertanggungjawabkan secara teknis, regulatif, dan manajerial.
 
+```mermaid id="rbi-normative-foundation-mobile"
+flowchart TD
+    A["Risk-Based<br/>Inspection"] --> B["API RP 580<br/>Normative Framework"]
+    B --> C["Risk Assessment<br/>PoF + CoF"]
+    C --> D["Inspection<br/>Priority"]
+    C --> E["Inspection<br/>Frequency"]
+    C --> F["Inspection<br/>Depth"]
+
+    D --> G["Maintenance<br/>Decision Basis"]
+    E --> G
+    F --> G
+
+    G --> H["Audit-Ready<br/>Risk Justification"]
+
+    classDef rbi fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef api fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef risk fill:#FFEBEE,stroke:#C62828,color:#111;
+    classDef decision fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef audit fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+
+    class A rbi;
+    class B api;
+    class C risk;
+    class D,E,F,G decision;
+    class H audit;
+```
+
 ---
 
-### 1.6 Hubungan Sistem Pemeliharaan dengan Keselamatan dan Lingkungan
+## 1.6 Hubungan Sistem Pemeliharaan dengan Keselamatan dan Lingkungan
 
 Dalam industri petrokimia, **kegagalan peralatan** tidak dapat dipandang sebagai kejadian teknis yang berdiri sendiri. Setiap kegagalan berpotensi menjadi **sumber bahaya** yang memicu insiden keselamatan, pencemaran lingkungan, dan gangguan operasi secara luas. Oleh karena itu, sistem pemeliharaan memiliki keterkaitan langsung dan inheren dengan aspek **SHE (Safety, Health, and Environment)**.
 
@@ -168,9 +332,40 @@ Dalam konteks yang lebih luas, sistem pemeliharaan harus dipahami sebagai **bagi
 📌 **Catatan penting:**
 Aspek SHE **bukan modul terpisah**, melainkan **melekat pada filosofi sistem pemeliharaan itu sendiri**. Setiap keputusan pemeliharaan pada dasarnya adalah keputusan keselamatan dan lingkungan, sehingga harus ditempatkan dalam kerangka _risk-based system_ yang konsisten dan terintegrasi.
 
+```mermaid id="maintenance-she-barrier-mobile"
+flowchart TD
+    A["Equipment<br/>Degradation"] --> B["Maintenance<br/>Barrier"]
+
+    B --> C["Inspection"]
+    B --> D["Preventive<br/>Maintenance"]
+    B --> E["Condition<br/>Monitoring"]
+    B --> F["Corrective<br/>Action"]
+
+    C --> G["Prevent<br/>Loss of Containment"]
+    D --> G
+    E --> G
+    F --> G
+
+    G --> H["Safety<br/>Protection"]
+    G --> I["Environmental<br/>Protection"]
+    G --> J["Operation<br/>Continuity"]
+
+    classDef degradation fill:#FFEBEE,stroke:#C62828,color:#111;
+    classDef barrier fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef action fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef protection fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef output fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+
+    class A degradation;
+    class B barrier;
+    class C,D,E,F action;
+    class G protection;
+    class H,I,J output;
+```
+
 ---
 
-### 🧠 Kesimpulan Module 1
+## 🧠 Kesimpulan Module 1
 
 Modul 1 menegaskan bahwa **sistem pemeliharaan modern harus dibangun di atas filosofi _risk-based thinking_**, bukan semata-mata kebiasaan historis atau rutinitas teknis. Dalam konteks industri petrokimia yang kompleks, berisiko tinggi, dan bersifat proses kontinu, pemeliharaan tidak lagi memadai jika dipahami hanya sebagai aktivitas perbaikan atau pemenuhan jadwal kerja.
 
@@ -181,6 +376,28 @@ Pemeliharaan harus diposisikan sebagai **sistem pengendalian risiko** yang:
 - serta **dapat dipertanggungjawabkan**, baik dari sisi teknis, keselamatan, lingkungan, maupun manajerial.
 
 Pendekatan _Risk-Based Inspection_ yang diformalkan melalui **American Petroleum Institute Recommended Practice 580** memberikan landasan normatif yang kuat bagi filosofi ini. Standar tersebut memastikan bahwa keputusan pemeliharaan tidak bersifat subjektif, melainkan didasarkan pada penilaian risiko yang sistematis dan dapat diaudit. Dalam kerangka ini, sistem pemeliharaan berfungsi sebagai **alat implementasi praktis** dari filosofi pengelolaan risiko di lapangan.
+
+```mermaid id="module-1-final-logic-mobile"
+flowchart TD
+    A["Petrochemical<br/>High-Risk Context"] --> B["Maintenance Cannot Be<br/>Only Technical Activity"]
+    B --> C["Need<br/>Risk-Based Thinking"]
+    C --> D["Use<br/>Normative Basis"]
+    D --> E["API RP 580<br/>RBI Framework"]
+    E --> F["Maintenance as<br/>Risk Control System"]
+    F --> G["Structured<br/>Defensible<br/>Audit-Ready"]
+
+    classDef context fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef shift fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef risk fill:#FFEBEE,stroke:#C62828,color:#111;
+    classDef norm fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef output fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+
+    class A context;
+    class B shift;
+    class C risk;
+    class D,E norm;
+    class F,G output;
+```
 
 ---
 
@@ -214,7 +431,34 @@ Pendekatan _Risk-Based Inspection_ yang diformalkan melalui **American Petroleum
   ]}
 />
 
-### 📚 Referensi Module 1
+```mermaid id="module-1-connection-to-next-modules-mobile"
+flowchart TD
+    A["Module 1<br/>Risk-Based Philosophy"] --> B["Module 2<br/>Risk Model & Decision Logic"]
+    B --> C["Module 3<br/>RBM Practical Execution"]
+    C --> D["Module 5<br/>Organization, KPI & Accountability"]
+    D --> E["Lifecycle / TA<br/>Continuous Improvement"]
+
+    A --> F["Defines<br/>Why Maintenance is Risk Control"]
+    B --> G["Defines<br/>How Risk Becomes Decision"]
+    C --> H["Defines<br/>How Decision Becomes Strategy"]
+    D --> I["Defines<br/>Who Owns Decision"]
+    E --> J["Defines<br/>How System Learns"]
+
+    classDef m1 fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef m2 fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef m3 fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef m5 fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+    classDef lifecycle fill:#FFEBEE,stroke:#C62828,color:#111;
+    classDef note fill:#ECEFF1,stroke:#455A64,color:#111;
+
+    class A,F m1;
+    class B,G m2;
+    class C,H m3;
+    class D,I m5;
+    class E,J lifecycle;
+```
+
+## 📚 Referensi Module 1
 
 Berikut adalah referensi utama yang menjadi landasan konseptual, normatif, dan teknis dalam penyusunan **Module 1 – Filosofi Sistem Pemeliharaan dan Fondasi Risiko**:
 

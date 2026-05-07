@@ -1,5 +1,5 @@
 ---
-title: Membangun WBS dan Estimasi Man-Hour Overhaul Peralatan Industri - Strategi Sukses Turn Around
+title: 'Membangun WBS dan Estimasi Man-Hour Overhaul Peralatan Industri: Strategi Sukses Turn Around'
 authors: ['sam']
 date: '2025-09-30'
 tags: ['Turn Around', 'wbs', 'wbs-level', 'schedule-level', 'plannig']
@@ -7,6 +7,11 @@ draft: false
 summary: Kegiatan _Turn Around_ (TA) merupakan salah satu fase paling kritikal dalam siklus operasional fasilitas industri, khususnya di sektor petrochemical, oil & gas, dan pembangkit energi.
 ---
 
+# **_Membangun WBS dan Estimasi Man-Hour Overhaul Peralatan Industri: Strategi Sukses Turn Around_**
+
+---
+
+- [**_Membangun WBS dan Estimasi Man-Hour Overhaul Peralatan Industri: Strategi Sukses Turn Around_**](#membangun-wbs-dan-estimasi-man-hour-overhaul-peralatan-industri-strategi-sukses-turn-around)
 - [I. **Pendahuluan**](#i-pendahuluan)
 - [II. **Dasar Perencanaan TA: Work Breakdown Structure (WBS)**](#ii-dasar-perencanaan-ta-work-breakdown-structure-wbs)
   - [2.1. **Struktur Level dalam WBS**](#21-struktur-level-dalam-wbs)
@@ -82,7 +87,7 @@ summary: Kegiatan _Turn Around_ (TA) merupakan salah satu fase paling kritikal d
 
 ---
 
-### I. **Pendahuluan**
+# I. **Pendahuluan**
 
 Kegiatan _Turn Around_ (TA) merupakan salah satu fase paling kritikal dalam siklus operasional fasilitas industri, khususnya di sektor petrochemical, oil & gas, dan pembangkit energi. TA melibatkan penghentian total atau sebagian dari sistem proses untuk memungkinkan dilakukannya pekerjaan inspeksi, pemeliharaan besar (_major maintenance_), modifikasi, dan penggantian peralatan secara terencana. Keberhasilan pelaksanaan TA secara langsung berpengaruh terhadap ketersediaan (_availability_), keandalan (_reliability_), dan efisiensi ekonomi dari keseluruhan sistem produksi.
 
@@ -100,6 +105,29 @@ Situasi tersebut berpotensi menimbulkan _bottleneck_, keterlambatan, atau bahkan
 Artikel ini disusun untuk memberikan **panduan terstruktur bagi engineer muda**, terutama dalam **membangun Work Breakdown Structure (WBS)** dan **mengestimasi kebutuhan man-hour secara akurat** dalam konteks pekerjaan overhaul peralatan industri. Pompa centrifugal — salah satu peralatan paling umum dan kritikal — akan digunakan sebagai studi kasus untuk menjelaskan secara rinci langkah-langkah praktis yang dapat diadopsi dan disesuaikan untuk jenis peralatan lainnya.
 
 Dengan pendekatan sistematis berbasis standar industri, diharapkan artikel ini dapat menjadi _one-stop reference_ dalam merencanakan dan mengelola pekerjaan overhaul secara profesional, mulai dari perencanaan awal hingga integrasi ke dalam sistem kontrol TA perusahaan.
+
+```mermaid id="ta-overhaul-planning-framework-mobile"
+flowchart TD
+    A["Turn Around<br/>Shutdown Window"] --> B["Scope Overhaul<br/>Equipment List"]
+    B --> C["WBS<br/>Work Breakdown Structure"]
+    C --> D["Man-Hour<br/>Estimation"]
+    D --> E["Resource<br/>Planning"]
+    E --> F["Schedule<br/>Integration"]
+    F --> G["Execution<br/>Monitoring"]
+    G --> H["Post-TA<br/>Evaluation"]
+
+    classDef ta fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef scope fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef plan fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef control fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+    classDef eval fill:#FFEBEE,stroke:#C62828,color:#111;
+
+    class A ta;
+    class B,C scope;
+    class D,E,F plan;
+    class G control;
+    class H eval;
+```
 
 <ResourceBox
   title="Korelasi internal-link modul:"
@@ -147,7 +175,7 @@ Dengan pendekatan sistematis berbasis standar industri, diharapkan artikel ini d
 
 ---
 
-### II. **Dasar Perencanaan TA: Work Breakdown Structure (WBS)**
+# II. **Dasar Perencanaan TA: Work Breakdown Structure (WBS)**
 
 Dalam konteks Turn Around (TA), keberhasilan pelaksanaan kegiatan overhaul sangat bergantung pada ketepatan dalam perencanaan dan pengendalian ruang lingkup pekerjaan (_scope control_). Salah satu alat bantu paling fundamental yang digunakan dalam tahapan perencanaan ini adalah **Work Breakdown Structure (WBS)** — yaitu suatu metode hierarkis untuk menguraikan seluruh pekerjaan ke dalam elemen-elemen yang lebih kecil, terukur, dan dapat dikelola secara efektif.
 
@@ -161,7 +189,7 @@ WBS bukan sekadar daftar pekerjaan, tetapi merupakan **struktur sistematis yang 
 
 ---
 
-#### 2.1. **Struktur Level dalam WBS**
+## 2.1. **Struktur Level dalam WBS**
 
 Secara umum, WBS disusun dalam **beberapa tingkat hierarki** untuk mempermudah klasifikasi dan kontrol. Dalam praktik proyek industri, termasuk EPC dan TA, struktur WBS dibagi menjadi:
 
@@ -173,9 +201,30 @@ Secara umum, WBS disusun dalam **beberapa tingkat hierarki** untuk mempermudah k
 
 > Dengan menggunakan pendekatan ini, perencanaan bisa disusun secara top-down, dan pelaksanaan dikendalikan secara bottom-up.
 
+```mermaid id="wbs-level-structure-mobile"
+flowchart TD
+    A["Level 1<br/>Project / System Scope"] --> B["Level 2<br/>Phase / Work Package"]
+    B --> C["Level 3<br/>Task / Activity"]
+    C --> D["Executable<br/>Field Work"]
+    D --> E["Progress<br/>Measurement"]
+    E --> F["Man-Hour<br/>Control"]
+
+    classDef level1 fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef level2 fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef level3 fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef exec fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+    classDef control fill:#FFEBEE,stroke:#C62828,color:#111;
+
+    class A level1;
+    class B level2;
+    class C level3;
+    class D exec;
+    class E,F control;
+```
+
 ---
 
-#### 2.2. **WBS Level vs. Schedule Level dalam EPC/Shutdown**
+## 2.2. **WBS Level vs. Schedule Level dalam EPC/Shutdown**
 
 Engineer muda sering kali keliru dalam membedakan antara **WBS level** dan **Schedule level**, karena keduanya sama-sama menggunakan istilah “level”.
 Padahal, keduanya memiliki **fungsi dan konteks yang sangat berbeda**:
@@ -190,9 +239,32 @@ Padahal, keduanya memiliki **fungsi dan konteks yang sangat berbeda**:
 
 > ⚠️ _Catatan penting:_ WBS tidak menunjukkan waktu, tapi menunjukkan **apa saja** yang harus dilakukan. Sedangkan schedule menunjukkan **kapan** dan dalam **urutan apa** pekerjaan dilakukan.
 
+```mermaid id="wbs-vs-schedule-level-mobile"
+flowchart TD
+    A["Planning Basis"] --> B["WBS Level<br/>Scope Breakdown"]
+    A --> C["Schedule Level<br/>Time Breakdown"]
+
+    B --> D["What Work<br/>Must Be Done"]
+    B --> E["WBS Dictionary<br/>Workpack"]
+    B --> F["BoQ / MH<br/>Resource Basis"]
+
+    C --> G["When Work<br/>Will Be Done"]
+    C --> H["Logic Link<br/>FS / SS / FF"]
+    C --> I["Gantt / CPM<br/>Baseline Schedule"]
+
+    classDef basis fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef wbs fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef schedule fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef output fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+
+    class A basis;
+    class B,D,E,F wbs;
+    class C,G,H,I schedule;
+```
+
 ---
 
-#### 2.3. **Mengapa WBS Penting dalam Perencanaan TA**
+## 2.3. **Mengapa WBS Penting dalam Perencanaan TA**
 
 Beberapa alasan kuat mengapa WBS menjadi instrumen utama dalam perencanaan Turn Around:
 
@@ -213,7 +285,7 @@ Beberapa alasan kuat mengapa WBS menjadi instrumen utama dalam perencanaan Turn 
 
 ---
 
-#### 2.4. **Contoh Umum Struktur WBS untuk Overhaul Peralatan**
+## 2.4. **Contoh Umum Struktur WBS untuk Overhaul Peralatan**
 
 Sebagai contoh, pekerjaan overhaul pompa tipe OH2 dapat dibagi sebagai berikut:
 
@@ -231,13 +303,36 @@ Sebagai contoh, pekerjaan overhaul pompa tipe OH2 dapat dibagi sebagai berikut:
 
 Struktur ini dapat diperluas dan disesuaikan untuk peralatan lain seperti heat exchanger, blower, atau rotary valve.
 
+```mermaid id="example-wbs-overhaul-oh2-mobile"
+flowchart TD
+    A["Level 1<br/>Overhaul Pompa OH2"] --> B["Level 2<br/>Disassembly"]
+    A --> C["Level 2<br/>Inspection"]
+    A --> D["Level 2<br/>Repair / Replace"]
+    A --> E["Level 2<br/>Reassembly"]
+    A --> F["Level 2<br/>Testing"]
+
+    B --> B1["Level 3<br/>Lepas Motor & Coupling"]
+    C --> C1["Level 3<br/>Run-Out & Clearance"]
+    D --> D1["Level 3<br/>Bearing & Seal"]
+    E --> E1["Level 3<br/>Torque & Alignment"]
+    F --> F1["Level 3<br/>Test Run & CMMS"]
+
+    classDef main fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef phase fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef task fill:#FFF8E1,stroke:#F9A825,color:#111;
+
+    class A main;
+    class B,C,D,E,F phase;
+    class B1,C1,D1,E1,F1 task;
+```
+
 ---
 
 Dengan memahami konsep WBS secara menyeluruh, engineer muda akan memiliki **kerangka berpikir yang sistematis** dalam merencanakan pekerjaan overhaul di proyek TA. Tahapan berikutnya adalah mengaplikasikan WBS ini ke dalam **peralatan spesifik** — yang akan dijelaskan lebih lanjut melalui studi kasus pompa centrifugal dalam Bab berikutnya.
 
 ---
 
-### III. **Studi Kasus – Pompa Centrifugal menurut API 610**
+# III. **Studi Kasus – Pompa Centrifugal menurut API 610**
 
 Dalam proyek Turn Around (TA), salah satu jenis peralatan mekanis yang paling sering masuk dalam daftar overhaul adalah **pompa centrifugal**. Pompa jenis ini digunakan secara luas pada sistem proses utama (main process) maupun sistem pendukung (utility), dengan ragam desain dan konfigurasi yang disesuaikan dengan tekanan, kapasitas, dan jenis fluida.
 
@@ -245,7 +340,7 @@ Untuk klasifikasi teknis dan rekayasa pemeliharaan, industri umumnya merujuk pad
 
 ---
 
-#### 3.1. **Klasifikasi Pompa: OH2, BB2, BB3**
+## 3.1. **Klasifikasi Pompa: OH2, BB2, BB3**
 
 Berikut adalah tiga tipe pompa utama yang digunakan sebagai studi kasus overhaul:
 
@@ -257,9 +352,35 @@ Berikut adalah tiga tipe pompa utama yang digunakan sebagai studi kasus overhaul
 
 > Masing-masing tipe memiliki **perbedaan kompleksitas**, baik dari sisi pembongkaran, inspeksi, reassembly, maupun kebutuhan alat berat.
 
+```mermaid id="api610-pump-complexity-mobile"
+flowchart TD
+    A["API 610<br/>Centrifugal Pump"] --> B["OH2<br/>Overhung"]
+    A --> C["BB2<br/>Between Bearings"]
+    A --> D["BB3<br/>Multistage"]
+
+    B --> E["Low-Medium<br/>Complexity"]
+    C --> F["Medium-High<br/>Complexity"]
+    D --> G["High<br/>Complexity"]
+
+    E --> H["Shorter MH<br/>Simple Overhaul"]
+    F --> I["More Lifting<br/>Rotor Handling"]
+    G --> J["Longer MH<br/>Stage Inspection"]
+
+    classDef api fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef oh2 fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef bb2 fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef bb3 fill:#FFEBEE,stroke:#C62828,color:#111;
+    classDef note fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+
+    class A api;
+    class B,E,H oh2;
+    class C,F,I bb2;
+    class D,G,J bb3;
+```
+
 ---
 
-#### 3.2. **Struktur WBS dan Estimasi Overhaul**
+## 3.2. **Struktur WBS dan Estimasi Overhaul**
 
 Struktur **Work Breakdown Structure (WBS)** disusun untuk memetakan tahapan overhaul secara sistematis. Di bawah ini adalah struktur WBS **Level 1, 2, dan 3** untuk masing-masing tipe pompa, beserta estimasi:
 
@@ -269,7 +390,7 @@ Struktur **Work Breakdown Structure (WBS)** disusun untuk memetakan tahapan over
 
 ---
 
-##### 🔹 A. WBS Overhaul Pompa OH2
+### 🔹 A. WBS Overhaul Pompa OH2
 
 | WBS Level | Kode      | Deskripsi Aktivitas                        | Personil | Durasi (jam) | Man-Hour |
 | --------- | --------- | ------------------------------------------ | -------- | ------------ | -------- |
@@ -294,7 +415,7 @@ Struktur **Work Breakdown Structure (WBS)** disusun untuk memetakan tahapan over
 
 ---
 
-##### 🔹 B. WBS Overhaul Pompa BB2
+### 🔹 B. WBS Overhaul Pompa BB2
 
 | WBS Level | Kode      | Deskripsi Aktivitas                 | Personil | Durasi (jam) | Man-Hour |
 | --------- | --------- | ----------------------------------- | -------- | ------------ | -------- |
@@ -311,7 +432,7 @@ Struktur **Work Breakdown Structure (WBS)** disusun untuk memetakan tahapan over
 
 ---
 
-##### 🔹 C. WBS Overhaul Pompa BB3
+### 🔹 C. WBS Overhaul Pompa BB3
 
 | WBS Level | Kode    | Deskripsi Aktivitas                  | Personil | Durasi (jam) | Man-Hour |
 | --------- | ------- | ------------------------------------ | -------- | ------------ | -------- |
@@ -325,9 +446,34 @@ Struktur **Work Breakdown Structure (WBS)** disusun untuk memetakan tahapan over
 **🔸 Total Man-Hour BB3**: **~52.5 MH**
 (Perlu buffer ±15% untuk balancing ulang, repeat test, atau koreksi run-out)
 
+```mermaid id="pump-overhaul-wbs-sequence-mobile"
+flowchart TD
+    A["Preparation<br/>Isolation & Permit"] --> B["Disassembly<br/>Open & Remove"]
+    B --> C["Inspection<br/>Measure & Record"]
+    C --> D{"Defect<br/>Found?"}
+    D -- "No" --> E["Reassembly<br/>Fit & Torque"]
+    D -- "Yes" --> F["Repair / Replace<br/>Machine / Part"]
+    F --> E
+    E --> G["Alignment<br/>Motor-Pump"]
+    G --> H["Testing<br/>Vibration / Run Test"]
+    H --> I["Documentation<br/>CMMS Update"]
+
+    classDef prep fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef work fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef decision fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef repair fill:#FFEBEE,stroke:#C62828,color:#111;
+    classDef close fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+
+    class A prep;
+    class B,C,E,G,H work;
+    class D decision;
+    class F repair;
+    class I close;
+```
+
 ---
 
-#### 3.3. **Catatan untuk Engineer Muda**
+## 3.3. **Catatan untuk Engineer Muda**
 
 - Setiap WBS harus dikaitkan dengan **uraian teknis detail (WBS Dictionary)** agar tidak terjadi interpretasi berbeda di lapangan.
 - Durasi di sini merupakan **jam kerja efektif**, bukan total jam kalender — perhatikan efisiensi kerja harian (idealnya 75–80%).
@@ -339,7 +485,7 @@ Dengan WBS yang telah dikembangkan seperti di atas, engineer dapat mulai menyusu
 
 ---
 
-### IV. **Analisis Urutan Kerja: Seri, Paralel, dan Fast-Track**
+# IV. **Analisis Urutan Kerja: Seri, Paralel, dan Fast-Track**
 
 Setelah pekerjaan overhaul dirinci ke dalam struktur WBS yang lengkap, langkah krusial berikutnya adalah menyusun **urutan pelaksanaan** yang realistis dan efisien. Dalam praktik TA, engineer harus memahami **jenis hubungan antar aktivitas**, agar dapat mengoptimalkan durasi tanpa mengorbankan kualitas dan keselamatan kerja.
 
@@ -351,13 +497,13 @@ Secara umum, hubungan antar aktivitas dapat dikategorikan menjadi tiga:
 
 ---
 
-#### 4.1. **Review Logika Urutan Pekerjaan Overhaul**
+## 4.1. **Review Logika Urutan Pekerjaan Overhaul**
 
 Aktivitas overhaul bersifat **mekanis dan progresif**, sehingga banyak tahapan harus dilakukan secara berurutan (serial). Namun demikian, tidak semua aktivitas harus menunggu aktivitas lain selesai sepenuhnya.
 
 Contoh pada pekerjaan overhaul pompa (OH2, BB2, BB3):
 
-##### 🔹 Contoh Hubungan Seri (Serial)
+### 🔹 Contoh Hubungan Seri (Serial)
 
 Aktivitas ini **wajib diselesaikan satu per satu** secara berurutan karena berkaitan langsung secara mekanis atau keselamatan:
 
@@ -369,11 +515,11 @@ Aktivitas ini **wajib diselesaikan satu per satu** secara berurutan karena berka
 
 ---
 
-#### 4.2. **Aktivitas Paralel (Parallel Execution)**
+## 4.2. **Aktivitas Paralel (Parallel Execution)**
 
 Paralel berarti **dua atau lebih aktivitas dapat dilakukan bersamaan**, selama lokasi, peralatan, dan sumber daya mendukung.
 
-##### 🔹 Contoh Aktivitas Paralel:
+### 🔹 Contoh Aktivitas Paralel:
 
 | Aktivitas 1                        | Aktivitas 2                                 | Syarat                         |
 | ---------------------------------- | ------------------------------------------- | ------------------------------ |
@@ -385,11 +531,11 @@ Paralel berarti **dua atau lebih aktivitas dapat dilakukan bersamaan**, selama l
 
 ---
 
-#### 4.3. **Fast-Tracking (Overlapping Task)**
+## 4.3. **Fast-Tracking (Overlapping Task)**
 
 Fast-tracking adalah teknik mempercepat pelaksanaan dengan **memulai aktivitas sebelum aktivitas sebelumnya selesai sepenuhnya**. Ini berbeda dengan paralel karena tetap ada dependensi, tetapi dilakukan dengan pertimbangan waktu dan efisiensi.
 
-##### 🔹 Contoh Fast-Tracking dalam Overhaul:
+### 🔹 Contoh Fast-Tracking dalam Overhaul:
 
 | Aktivitas Sebelumnya             | Aktivitas Fast-Track                     | Keterangan                                  |
 | -------------------------------- | ---------------------------------------- | ------------------------------------------- |
@@ -399,13 +545,39 @@ Fast-tracking adalah teknik mempercepat pelaksanaan dengan **memulai aktivitas s
 
 > ⚠️ Fast-track membutuhkan perencanaan matang dan komunikasi real-time. Risiko kesalahan meningkat jika dokumentasi inspeksi belum lengkap atau pengambilan keputusan tidak dikoordinasikan.
 
+```mermaid id="serial-parallel-fasttrack-mobile"
+flowchart TD
+    A["Work Logic<br/>Overhaul Activity"] --> B["Serial<br/>Sequential"]
+    A --> C["Parallel<br/>Concurrent"]
+    A --> D["Fast-Track<br/>Overlapping"]
+
+    B --> E["Must Finish<br/>Before Next Task"]
+    C --> F["Can Run<br/>Same Time"]
+    D --> G["Start Early<br/>With Dependency"]
+
+    E --> H["Safe but<br/>Longer Duration"]
+    F --> I["Faster if<br/>Resource Ready"]
+    G --> J["Fast but<br/>Higher Coordination Risk"]
+
+    classDef logic fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef serial fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef parallel fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef fast fill:#FFEBEE,stroke:#C62828,color:#111;
+    classDef result fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+
+    class A logic;
+    class B,E,H serial;
+    class C,F,I parallel;
+    class D,G,J fast;
+```
+
 ---
 
-#### 4.4. **Pekerjaan Supporting / Off-Sequence yang Wajib Disiapkan Lebih Awal**
+## 4.4. **Pekerjaan Supporting / Off-Sequence yang Wajib Disiapkan Lebih Awal**
 
 Beberapa pekerjaan tidak masuk dalam urutan WBS teknis, tetapi **sangat krusial disiapkan sebelum pekerjaan utama dimulai**. Jika tidak, pekerjaan utama dapat tertunda meskipun WBS-nya sudah ideal.
 
-##### 🔹 Daftar Pekerjaan Pendukung (Off-Sequence):
+### 🔹 Daftar Pekerjaan Pendukung (Off-Sequence):
 
 | Pekerjaan Pendukung                        | Waktu Ideal Pelaksanaan   | Dampak jika Terlambat         |
 | ------------------------------------------ | ------------------------- | ----------------------------- |
@@ -415,9 +587,34 @@ Beberapa pekerjaan tidak masuk dalam urutan WBS teknis, tetapi **sangat krusial 
 | Training singkat tim / toolbox meeting     | H-1                       | Kurang pemahaman urutan kerja |
 | Penerbitan izin kerja (permit)             | Harian, pre-shift         | Tidak bisa mulai tepat waktu  |
 
+```mermaid id="off-sequence-readiness-mobile"
+flowchart TD
+    A["Before Main Work<br/>Off-Sequence Readiness"] --> B["Tools & Lifting<br/>Ready"]
+    A --> C["Critical Parts<br/>Available"]
+    A --> D["Permit & JSA<br/>Approved"]
+    A --> E["Checklist & WBS ID<br/>Prepared"]
+    A --> F["Toolbox Meeting<br/>Completed"]
+
+    B --> G["No Start Delay"]
+    C --> G
+    D --> G
+    E --> G
+    F --> G
+
+    G --> H["Main Overhaul<br/>Can Start Safely"]
+
+    classDef pre fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef ready fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef output fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+
+    class A pre;
+    class B,C,D,E,F ready;
+    class G,H output;
+```
+
 ---
 
-#### 4.5. **Rekomendasi Praktis untuk Engineer Muda**
+## 4.5. **Rekomendasi Praktis untuk Engineer Muda**
 
 1. **Selalu buat pemetaan logika kerja (network logic) berdasarkan WBS**
    Gunakan bentuk diagram atau tabel → ini membantu dalam perencanaan dan komunikasi.
@@ -433,7 +630,7 @@ Beberapa pekerjaan tidak masuk dalam urutan WBS teknis, tetapi **sangat krusial 
 
 ---
 
-#### 4.6. **Kesimpulan Bab**
+## 4.6. **Kesimpulan Bab**
 
 Penguasaan terhadap urutan kerja (serial, paralel, fast-track) adalah **kunci dalam efisiensi pelaksanaan TA**. Dengan menyusun urutan berdasarkan logika teknis dan didukung koordinasi lintas fungsi, pekerjaan overhaul dapat diselesaikan **lebih cepat tanpa mengorbankan keselamatan dan kualitas**.
 
@@ -441,13 +638,13 @@ Pada Bab berikutnya, akan dibahas bagaimana seluruh aktivitas ini diubah menjadi
 
 ---
 
-### V. **Estimasi Total Man-Hour dan Implikasi terhadap Resource Planning**
+# V. **Estimasi Total Man-Hour dan Implikasi terhadap Resource Planning**
 
 Dalam pekerjaan Turn Around (TA), perencanaan waktu dan tenaga kerja (_resource planning_) yang akurat menjadi aspek krusial, karena setiap keterlambatan berdampak langsung pada **downtime produksi** dan **potensi kerugian finansial**. Oleh karena itu, setelah struktur WBS disusun dan diurutkan secara teknis, langkah selanjutnya adalah melakukan **rekapitulasi man-hour total**, menyusun **kebutuhan grup kerja**, serta merancang **pola kerja (shift pattern)** yang optimal.
 
 ---
 
-#### 5.1. **Rangkuman Total Man-Hour per Tipe Pompa**
+## 5.1. **Rangkuman Total Man-Hour per Tipe Pompa**
 
 Berdasarkan data WBS Level 3 yang telah dijabarkan pada Bab III dan IV, berikut adalah rekapitulasi estimasi man-hour:
 
@@ -461,7 +658,7 @@ Berdasarkan data WBS Level 3 yang telah dijabarkan pada Bab III dan IV, berikut 
 
 ---
 
-#### 5.2. **Estimasi Kebutuhan Grup Kerja (Crew) per Shift**
+## 5.2. **Estimasi Kebutuhan Grup Kerja (Crew) per Shift**
 
 Dengan asumsi pelaksanaan pekerjaan dilakukan secara **24 jam/hari** dengan sistem **2 shift** (day & night), berikut estimasi kebutuhan tim kerja (_crew_):
 
@@ -474,11 +671,31 @@ Dengan asumsi pelaksanaan pekerjaan dilakukan secara **24 jam/hari** dengan sist
 > **Jam efektif kerja/shift** = 12 jam – (istirahat, persiapan, koordinasi) ≈ 10 jam aktual
 > Rata-rata **efisiensi aktual lapangan** dipertimbangkan 75–80% dari waktu kerja teoritis
 
+```mermaid id="manhour-resource-planning-mobile"
+flowchart TD
+    A["Total<br/>Man-Hour"] --> B["Effective Work<br/>Hour / Shift"]
+    B --> C["Efficiency<br/>75-80%"]
+    C --> D["Crew Size<br/>Per Shift"]
+    D --> E["Number of<br/>Shifts"]
+    E --> F["Execution<br/>Duration"]
+    F --> G["Resource Plan<br/>Crew + Tools"]
+
+    classDef mh fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef efficiency fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef resource fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef output fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+
+    class A,B mh;
+    class C efficiency;
+    class D,E,F resource;
+    class G output;
+```
+
 ---
 
-#### 5.3. **Strategi Penjadwalan dan Shift Pattern**
+## 5.3. **Strategi Penjadwalan dan Shift Pattern**
 
-##### 🔹 Pola Umum dalam Shutdown:
+### 🔹 Pola Umum dalam Shutdown:
 
 | Shift   | Jam Kerja     | Personil Inti | Keterangan Tambahan          |
 | ------- | ------------- | ------------- | ---------------------------- |
@@ -494,7 +711,7 @@ Setiap shift harus dilengkapi dengan:
 
 ---
 
-##### 🔹 Tips Penyesuaian Shift Berdasarkan Beban Pekerjaan:
+### 🔹 Tips Penyesuaian Shift Berdasarkan Beban Pekerjaan:
 
 - Gunakan **grup ganda (parallel crew)** untuk mempercepat overhaul pompa dengan beban tinggi seperti BB3
 - Untuk pompa jenis OH2, cukup 1 grup kerja dalam 1 shift penuh
@@ -502,7 +719,7 @@ Setiap shift harus dilengkapi dengan:
 
 ---
 
-#### 5.4. **Perhitungan Buffer Waktu (Kontingensi)**
+## 5.4. **Perhitungan Buffer Waktu (Kontingensi)**
 
 Dalam proyek shutdown, selalu ada risiko keterlambatan karena:
 
@@ -510,7 +727,7 @@ Dalam proyek shutdown, selalu ada risiko keterlambatan karena:
 - Keterlambatan part atau hasil machining
 - Force majeure seperti cuaca atau gangguan akses kerja
 
-##### 🔸 Rekomendasi Buffer Time:
+### 🔸 Rekomendasi Buffer Time:
 
 | Kategori Pekerjaan | Tingkat Risiko | Rekomendasi Kontingensi |
 | ------------------ | -------------- | ----------------------- |
@@ -521,9 +738,38 @@ Dalam proyek shutdown, selalu ada risiko keterlambatan karena:
 Contoh:
 Jika durasi kerja pompa BB3 diperkirakan 3 hari (2 shift/hari), maka buffer waktu = ± 0.6 hari (≈ 1 shift cadangan)
 
+```mermaid id="ta-buffer-time-decision-mobile"
+flowchart TD
+    A["Base Duration<br/>From WBS"] --> B{"Overhaul<br/>Risk Level?"}
+
+    B -- "Low<br/>OH2" --> C["Buffer<br/>10%"]
+    B -- "Medium<br/>BB2" --> D["Buffer<br/>15%"]
+    B -- "High<br/>BB3" --> E["Buffer<br/>20%"]
+
+    C --> F["Final<br/>Planned Duration"]
+    D --> F
+    E --> F
+
+    F --> G["Schedule<br/>Contingency"]
+
+    classDef base fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef decision fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef low fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef med fill:#FFF3E0,stroke:#EF6C00,color:#111;
+    classDef high fill:#FFEBEE,stroke:#C62828,color:#111;
+    classDef final fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+
+    class A base;
+    class B decision;
+    class C low;
+    class D med;
+    class E high;
+    class F,G final;
+```
+
 ---
 
-#### 5.5. **Rangkuman Strategis**
+## 5.5. **Rangkuman Strategis**
 
 | Tipe Pompa | Jumlah Shift Ideal | Crew Utama / Shift | Kontingensi Waktu |
 | ---------- | ------------------ | ------------------ | ----------------- |
@@ -533,7 +779,7 @@ Jika durasi kerja pompa BB3 diperkirakan 3 hari (2 shift/hari), maka buffer wakt
 
 ---
 
-#### 5.6. **Catatan Lapangan untuk Engineer Muda**
+## 5.6. **Catatan Lapangan untuk Engineer Muda**
 
 - Estimasi man-hour adalah alat bantu perencanaan, **bukan angka absolut**
 - Evaluasi hasil actual vs. plan wajib dilakukan pasca TA → sebagai input estimasi berikutnya
@@ -541,7 +787,7 @@ Jika durasi kerja pompa BB3 diperkirakan 3 hari (2 shift/hari), maka buffer wakt
 
 ---
 
-#### 5.7. **Kesimpulan Bab**
+## 5.7. **Kesimpulan Bab**
 
 Melalui estimasi man-hour yang akurat dan penyusunan strategi shift kerja yang efektif, perencana dapat:
 
@@ -557,7 +803,7 @@ Berikut ini adalah **Bab VII – Integrasi WBS ke dalam Planning dan Monitoring 
 
 ---
 
-### VI. **Integrasi WBS ke dalam Planning dan Monitoring TA**
+# VI. **Integrasi WBS ke dalam Planning dan Monitoring TA**
 
 Struktur WBS yang telah dibentuk bukanlah tujuan akhir, melainkan **fondasi utama** untuk dikembangkan menjadi jadwal kerja terperinci dan sistem monitoring yang dapat digunakan selama eksekusi Turn Around (TA). Dalam praktiknya, WBS harus di-_mapping_ ke dalam sistem penjadwalan proyek agar dapat diintegrasikan dengan aspek:
 
@@ -570,11 +816,11 @@ Penggunaan sistem seperti **Primavera P6** atau **Microsoft Project** merupakan 
 
 ---
 
-#### 6.1. **Pemetaan WBS ke Schedule Level 3 (Primavera / MS Project)**
+## 6.1. **Pemetaan WBS ke Schedule Level 3 (Primavera / MS Project)**
 
 **Schedule Level 3** dalam EPC atau TA adalah **jadwal berbasis aktivitas**, terstruktur hingga ke tahapan operasional, dengan durasi, relasi, dan dependensi antar aktivitas. Schedule ini dibangun langsung dari WBS Level 3.
 
-##### 🔹 Langkah Integrasi:
+### 🔹 Langkah Integrasi:
 
 | Tahapan                            | Keterangan                                                             |
 | ---------------------------------- | ---------------------------------------------------------------------- |
@@ -592,20 +838,40 @@ Penggunaan sistem seperti **Primavera P6** atau **Microsoft Project** merupakan 
 > - Resource: 2 mekanik
 > - Linked to: _Alignment motor_ → _Test run_
 
+```mermaid id="wbs-to-schedule-integration-mobile"
+flowchart TD
+    A["WBS Level 3<br/>Activity List"] --> B["Assign<br/>WBS ID"]
+    B --> C["Input to<br/>P6 / MS Project"]
+    C --> D["Set Duration<br/>& Logic Link"]
+    D --> E["Assign<br/>Resource"]
+    E --> F["Set Baseline<br/>Schedule"]
+    F --> G["Daily Progress<br/>Tracking"]
+
+    classDef wbs fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef input fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef schedule fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef tracking fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+
+    class A,B wbs;
+    class C,D,E schedule;
+    class F input;
+    class G tracking;
+```
+
 ---
 
-#### 6.2. **Identifikasi Jalur Kritis (Critical Path) dan Aktivitas Pemicu Delay**
+## 6.2. **Identifikasi Jalur Kritis (Critical Path) dan Aktivitas Pemicu Delay**
 
 Dalam shutdown, keterlambatan satu pekerjaan dapat berdampak luas, terutama jika pekerjaan tersebut berada di **jalur kritis (Critical Path Method / CPM)**.
 
-##### 🔹 Ciri Aktivitas Jalur Kritis:
+### 🔹 Ciri Aktivitas Jalur Kritis:
 
 - Tidak memiliki **float** (waktu luang)
 - Tertaut langsung dengan **milestone** atau tanggal mulai proyek
 - Terkait dengan **supply chain** (komponen luar, machining)
 - Aktivitas yang memerlukan crane bersama atau area kerja sempit
 
-##### 🔹 Contoh Jalur Kritis:
+### 🔹 Contoh Jalur Kritis:
 
 | Peralatan | Kegiatan Kritikal                     | Alasan                                       |
 | --------- | ------------------------------------- | -------------------------------------------- |
@@ -615,9 +881,38 @@ Dalam shutdown, keterlambatan satu pekerjaan dapat berdampak luas, terutama jika
 
 > ⚠️ Engineer muda perlu melakukan analisis jalur kritis dengan planner proyek dan **memastikan resource disiapkan lebih awal** untuk task ini.
 
+```mermaid id="critical-path-ta-mobile"
+flowchart TD
+    A["TA Activity<br/>Network"] --> B{"Has Float?"}
+    B -- "Yes" --> C["Non-Critical<br/>Monitor Normally"]
+    B -- "No" --> D["Critical Path<br/>Strict Control"]
+
+    D --> E["Long Duration<br/>Task"]
+    D --> F["Shared Crane<br/>or Congested Area"]
+    D --> G["Machining / Vendor<br/>Dependency"]
+    D --> H["Milestone<br/>Driven Activity"]
+
+    E --> I["Early Resource<br/>Readiness"]
+    F --> I
+    G --> I
+    H --> I
+
+    classDef network fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef decision fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef noncritical fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef critical fill:#FFEBEE,stroke:#C62828,color:#111;
+    classDef action fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+
+    class A network;
+    class B decision;
+    class C noncritical;
+    class D,E,F,G,H critical;
+    class I action;
+```
+
 ---
 
-#### 6.3. **Tracking Harian Berbasis WBS**
+## 6.3. **Tracking Harian Berbasis WBS**
 
 WBS Level 3 dapat digunakan sebagai **satuan pelaporan progres harian**, baik melalui:
 
@@ -625,7 +920,7 @@ WBS Level 3 dapat digunakan sebagai **satuan pelaporan progres harian**, baik me
 - Form digital di sistem CMMS atau dashboard proyek
 - Checklist pekerjaan lapangan
 
-##### 🔹 Format Pelaporan:
+### 🔹 Format Pelaporan:
 
 | Tanggal | Kode WBS | Deskripsi Pekerjaan         | Status  | Persen Selesai | Catatan Teknis         |
 | ------- | -------- | --------------------------- | ------- | -------------- | ---------------------- |
@@ -636,17 +931,17 @@ WBS Level 3 dapat digunakan sebagai **satuan pelaporan progres harian**, baik me
 
 ---
 
-#### 6.4. **Penggunaan Dia-Inch sebagai Unit Tracking Piping**
+## 6.4. **Penggunaan Dia-Inch sebagai Unit Tracking Piping**
 
 Untuk pekerjaan **tie-in piping**, pelaporan man-hour dan progres sering menggunakan satuan **dia-inch**, yaitu kombinasi **diameter nominal** dan **jumlah joint** yang dikerjakan.
 
-##### 🔹 Rumus Dasar:
+### 🔹 Rumus Dasar:
 
 ```plaintext
 Dia-inch = ∑ (jumlah joint × diameter nominal [inch])
 ```
 
-##### 🔹 Contoh:
+### 🔹 Contoh:
 
 | Sistem  | Jumlah Point | Rata-rata Ø (inch) | Estimasi Dia-Inch |
 | ------- | ------------ | ------------------ | ----------------- |
@@ -660,9 +955,32 @@ Dia-inch digunakan untuk:
 - Progress tracking harian piping
 - Alokasi tim kerja welding, NDT, hydrotest, dan reinstatement
 
+```mermaid id="dia-inch-tracking-mobile"
+flowchart TD
+    A["Tie-In<br/>Piping Scope"] --> B["Count<br/>Weld Joint"]
+    B --> C["Nominal Pipe<br/>Diameter inch"]
+    C --> D["Dia-Inch<br/>Joint x Diameter"]
+    D --> E["Estimate<br/>Man-Hour"]
+    D --> F["Track<br/>Daily Progress"]
+    D --> G["Plan<br/>NDT / Hydrotest"]
+    E --> H["Piping Work<br/>Control"]
+    F --> H
+    G --> H
+
+    classDef scope fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef calc fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef use fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef control fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+
+    class A,B,C scope;
+    class D calc;
+    class E,F,G use;
+    class H control;
+```
+
 ---
 
-#### 6.5. **Manfaat Integrasi WBS ke Schedule dan Monitoring**
+## 6.5. **Manfaat Integrasi WBS ke Schedule dan Monitoring**
 
 | Aspek         | Manfaat Langsung                                                      |
 | ------------- | --------------------------------------------------------------------- |
@@ -673,7 +991,7 @@ Dia-inch digunakan untuk:
 
 ---
 
-#### 6.6. **Kesimpulan Bab**
+## 6.6. **Kesimpulan Bab**
 
 Integrasi WBS ke dalam sistem perencanaan dan monitoring seperti Primavera atau MS Project menjadikan proses TA **terkendali secara profesional**, berbasis data, dan dapat dipertanggungjawabkan. Dengan dukungan tracking harian yang konsisten dan metrik teknis seperti **man-hour per WBS** dan **dia-inch untuk piping**, engineer muda dapat:
 
@@ -685,55 +1003,79 @@ Pada Bab selanjutnya, pembahasan akan difokuskan pada **tips praktis untuk engin
 
 ---
 
-### VII. **Panduan Praktis untuk Engineer Muda dalam Eksekusi Overhaul**
+# VII. **Panduan Praktis untuk Engineer Muda dalam Eksekusi Overhaul**
 
 Meskipun perencanaan TA sudah disusun dengan baik melalui WBS, man-hour estimasi, dan jadwal yang presisi, **keberhasilan di lapangan sangat bergantung pada eksekusi harian yang disiplin dan terkontrol.**
 Engineer muda memiliki peran strategis dalam menjembatani antara dokumen perencanaan dan realita eksekusi, serta menjadi penghubung antar fungsi teknis.
 
 ---
 
-#### 7.1. **Checklist Teknis Harian Saat TA**
+## 7.1. **Checklist Teknis Harian Saat TA**
 
 Berikut adalah **checklist teknis minimal yang wajib dibawa dan dikendalikan setiap hari** oleh engineer lapangan:
 
-##### ✅ _Pra-Pekerjaan (Sebelum Shift Dimulai)_
+### ✅ _Pra-Pekerjaan (Sebelum Shift Dimulai)_
 
 - [ ] Review permit kerja aktif dan hazard identifikasi (JSA/JHA)
 - [ ] Verifikasi kesiapan tools & peralatan (alignment tool, lifting, torque wrench)
 - [ ] Konfirmasi kehadiran personil & tanggung jawab tiap teknisi
 - [ ] Periksa kesiapan part pengganti (seal, bearing, gasket)
 
-##### ✅ _Selama Pekerjaan_
+### ✅ _Selama Pekerjaan_
 
 - [ ] Pencatatan waktu mulai-selesai per aktivitas WBS
 - [ ] Dokumentasi hasil inspeksi: dimensi, visual, clearances
 - [ ] Pemantauan critical dimension (shaft run-out, concentricity, alignment)
 - [ ] Pastikan kebersihan area kerja (terutama sebelum reassembly)
 
-##### ✅ _Pasca-Pekerjaan (Akhir Shift)_
+### ✅ _Pasca-Pekerjaan (Akhir Shift)_
 
 - [ ] Update progres harian per WBS ID
 - [ ] Dokumentasikan temuan lapangan & rekomendasi teknis
 - [ ] Evaluasi kebutuhan part tambahan (jika ditemukan defect)
 - [ ] Serah terima progres ke shift berikutnya secara formal
 
+```mermaid id="daily-ta-checklist-cycle-mobile"
+flowchart TD
+    A["Pre-Shift<br/>Permit / JSA / Tools"] --> B["During Work<br/>Record WBS Progress"]
+    B --> C["Inspection<br/>Dimension / Photo / Finding"]
+    C --> D{"Defect<br/>Found?"}
+    D -- "No" --> E["Continue<br/>Planned Work"]
+    D -- "Yes" --> F["Escalate<br/>Engineer / Planner"]
+    E --> G["End Shift<br/>Update Progress"]
+    F --> G
+    G --> H["Formal<br/>Shift Handover"]
+
+    classDef pre fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef work fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef decision fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef escalation fill:#FFEBEE,stroke:#C62828,color:#111;
+    classDef close fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+
+    class A pre;
+    class B,C,E work;
+    class D decision;
+    class F escalation;
+    class G,H close;
+```
+
 ---
 
-#### 7.2. **Tips Komunikasi Antar Fungsi: Engineering, Operation, HSE, Vendor**
+## 7.2. **Tips Komunikasi Antar Fungsi: Engineering, Operation, HSE, Vendor**
 
-##### 🔹 _1. Tim Engineering ↔ Operation_
+### 🔹 _1. Tim Engineering ↔ Operation_
 
 - Gunakan bahasa teknis yang jelas, hindari istilah yang ambigu
 - Pastikan waktu cut-in / cut-off pompa diketahui bersama
 - Hindari pengambilan keputusan sepihak tanpa konfirmasi proses
 
-##### 🔹 _2. Engineering ↔ HSE_
+### 🔹 _2. Engineering ↔ HSE_
 
 - Selalu libatkan HSE dalam pre-job safety meeting
 - Update dinamika pekerjaan: lifting, confined space, hot work
 - Minta review HSE saat pekerjaan lintas zona/shift
 
-##### 🔹 _3. Engineering ↔ Vendor / Workshop_
+### 🔹 _3. Engineering ↔ Vendor / Workshop_
 
 - Sertakan drawing, part list, dan technical spec saat pengiriman part ke vendor
 - Tanyakan estimasi waktu machining secara realistis
@@ -741,9 +1083,32 @@ Berikut adalah **checklist teknis minimal yang wajib dibawa dan dikendalikan set
 
 > 📌 _Catatan:_ Komunikasi teknis yang baik mencegah delay, konflik, dan misinterpretasi di lapangan.
 
+```mermaid id="ta-cross-functional-communication-mobile"
+flowchart TD
+    A["Field Engineer<br/>TA Interface"] --> B["Operation<br/>Cut-in / Cut-off"]
+    A --> C["HSE<br/>Permit / JSA"]
+    A --> D["Vendor / Workshop<br/>Machining / Balancing"]
+    A --> E["Planner<br/>Schedule / WBS"]
+    A --> F["Maintenance Crew<br/>Execution"]
+
+    B --> G["Aligned<br/>Field Decision"]
+    C --> G
+    D --> G
+    E --> G
+    F --> G
+
+    classDef engineer fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef function fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef decision fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+
+    class A engineer;
+    class B,C,D,E,F function;
+    class G decision;
+```
+
 ---
 
-#### 7.3. **Kesalahan Umum dalam Overhaul – dan Cara Menghindarinya**
+## 7.3. **Kesalahan Umum dalam Overhaul – dan Cara Menghindarinya**
 
 | Kesalahan Umum                     | Dampak                                 | Cara Pencegahan                        |
 | ---------------------------------- | -------------------------------------- | -------------------------------------- |
@@ -755,7 +1120,7 @@ Berikut adalah **checklist teknis minimal yang wajib dibawa dan dikendalikan set
 
 ---
 
-#### 7.4. **Sikap Profesional yang Diharapkan**
+## 7.4. **Sikap Profesional yang Diharapkan**
 
 - Disiplin pada dokumentasi dan waktu
 - Mampu menjembatani tim teknis & non-teknis
@@ -764,9 +1129,9 @@ Berikut adalah **checklist teknis minimal yang wajib dibawa dan dikendalikan set
 
 ---
 
-### IIX. **Penutup**
+# IIX. **Penutup**
 
-#### 8.1. **WBS dan Estimasi Man-Hour sebagai Tulang Punggung Shutdown**
+## 8.1. **WBS dan Estimasi Man-Hour sebagai Tulang Punggung Shutdown**
 
 Artikel ini telah membahas secara menyeluruh bagaimana **struktur WBS dan estimasi man-hour** membentuk dasar kuat bagi keberhasilan pelaksanaan Turn Around (TA), khususnya pada kegiatan overhaul pompa centrifugal. WBS bukan sekadar dokumen administratif, melainkan:
 
@@ -776,7 +1141,7 @@ Artikel ini telah membahas secara menyeluruh bagaimana **struktur WBS dan estima
 
 ---
 
-#### 8.2. **Keterkaitan Antara Teknik yang Baik dan Eksekusi Lapangan**
+## 8.2. **Keterkaitan Antara Teknik yang Baik dan Eksekusi Lapangan**
 
 Keberhasilan teknis bukan hanya ditentukan oleh keahlian mekanik, tetapi oleh:
 
@@ -788,7 +1153,7 @@ Engineer muda perlu dibekali dengan **kerangka berpikir sistematis**, mulai dari
 
 ---
 
-#### 8.3. **Arah Masa Depan Perencanaan TA**
+## 8.3. **Arah Masa Depan Perencanaan TA**
 
 Ke depan, pelaksanaan TA akan semakin bergantung pada **digitalisasi dan sistem integrasi**, seperti:
 
@@ -800,7 +1165,7 @@ Engineer muda perlu mulai memahami dan menguasai **teknologi pendukung ini**, ka
 
 ---
 
-#### 8.4. **Penutup Akhir**
+## 8.4. **Penutup Akhir**
 
 > "Pekerjaan teknis bukan hanya soal membongkar dan merakit, tetapi tentang bagaimana kita merencanakan, mengelola, dan menyelesaikannya dengan sistem yang dapat dipertanggungjawabkan."
 
@@ -814,13 +1179,13 @@ Jika diperlukan, artikel ini dapat dikembangkan lebih lanjut menjadi:
 
 ---
 
-### IX **Estimasi Durasi, Personil, dan Man-Hour – WBS Overhaul Motor 6 kV / 250 kW**
+# IX **Estimasi Durasi, Personil, dan Man-Hour – WBS Overhaul Motor 6 kV / 250 kW**
 
 Berikut adalah **estimasi durasi, jumlah personil, dan total man-hour (MH)** untuk **WBS Level 3** dari pekerjaan **Overhaul Motor Induksi 3 Phase, 6 kV, 250 kW**. Estimasi ini disusun berdasarkan pengalaman lapangan, standard praktik di TA, dan asumsi kondisi motor dalam keadaan _average condition_ (tanpa kerusakan berat atau rekondisi berat winding).
 
 ---
 
-#### ⚙️ WBS Level 1: `MTR-OH-01` – Overhaul Motor Induksi 6 kV, 250 kW
+## ⚙️ WBS Level 1: `MTR-OH-01` – Overhaul Motor Induksi 6 kV, 250 kW
 
 🔹 **Total Durasi**: ± 2 hari kerja (24 jam efektif)
 🔹 **Jumlah personil aktif**: 2–3 orang per shift
@@ -828,7 +1193,7 @@ Berikut adalah **estimasi durasi, jumlah personil, dan total man-hour (MH)** unt
 
 ---
 
-#### 🔹 **WBS Level 2 & 3 Detail:**
+## 🔹 **WBS Level 2 & 3 Detail:**
 
 | WBS Code         | Deskripsi Aktivitas            | Durasi (Jam) | Personil | Man-Hour   |
 | ---------------- | ------------------------------ | ------------ | -------- | ---------- |
@@ -886,7 +1251,7 @@ Berikut adalah **estimasi durasi, jumlah personil, dan total man-hour (MH)** unt
 
 ---
 
-#### 🔹 **Ringkasan Total**
+## 🔹 **Ringkasan Total**
 
 | **Kategori**                | **Jumlah**     |
 | --------------------------- | -------------- |
@@ -896,15 +1261,42 @@ Berikut adalah **estimasi durasi, jumlah personil, dan total man-hour (MH)** unt
 
 ---
 
-##### ⚠️ **Catatan Estimasi**:
+### ⚠️ **Catatan Estimasi**:
 
 - Jika diperlukan _rewind stator_, man-hour bisa meningkat signifikan (+20–40 MH)
 - Estimasi ini tidak termasuk lead time untuk pengeringan winding (jika dilakukan oven drying)
 - Untuk motor dengan mounting rumit atau area terbatas, durasi bisa bertambah 15–20%
 
+```mermaid id="motor-6kv-overhaul-wbs-mobile"
+flowchart TD
+    A["Motor 6 kV<br/>250 kW Overhaul"] --> B["Preparation<br/>Isolation & LOTO"]
+    B --> C["Disassembly<br/>Terminal / Coupling / Rotor"]
+    C --> D["Inspection<br/>Visual / IR / PI"]
+    D --> E{"Major<br/>Defect?"}
+    E -- "No" --> F["Repair<br/>Bearing / Seal / Clean"]
+    E -- "Yes" --> G["Special Repair<br/>Rewind / Drying / Vendor"]
+    F --> H["Reassembly<br/>Bearing / Terminal"]
+    G --> H
+    H --> I["Alignment<br/>Driven Equipment"]
+    I --> J["Testing<br/>IR / No-Load / Vibration"]
+    J --> K["Documentation<br/>Final Checklist"]
+
+    classDef motor fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef work fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef decision fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef major fill:#FFEBEE,stroke:#C62828,color:#111;
+    classDef close fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+
+    class A motor;
+    class B,C,D,F,H,I,J work;
+    class E decision;
+    class G major;
+    class K close;
+```
+
 ---
 
-### X. **Lampiran - WBS Level vs Schedule Level **
+# X. **Lampiran - WBS Level vs Schedule Level **
 
 Berikut adalah **perbedaan antara WBS Level dan Schedule Level dalam proyek EPC (Engineering, Procurement, and Construction)** beserta **referensi yang bisa dirujuk**. Perbedaan ini penting untuk dipahami oleh engineer maupun planner, karena sering kali kedua istilah ini disalahartikan sebagai hal yang sama.
 
@@ -941,9 +1333,32 @@ Dalam proyek EPC, **Schedule Level** biasanya diklasifikasikan dari **Level 0 hi
 
 > **Note:** Schedule Level 3 adalah **level paling umum digunakan untuk integrasi dengan WBS Level 3** di software seperti Primavera.
 
+```mermaid id="wbs-schedule-reference-summary-mobile"
+flowchart TD
+    A["Project Control<br/>Reference"] --> B["WBS Level<br/>Scope Control"]
+    A --> C["Schedule Level<br/>Time Control"]
+
+    B --> D["PMBOK<br/>Scope Management"]
+    B --> E["ISO 21511<br/>WBS Standard"]
+    B --> F["CII<br/>Construction WBS"]
+
+    C --> G["AACE RP 37R-06<br/>Schedule Level"]
+    C --> H["Primavera P6<br/>Best Practice"]
+    C --> I["FIDIC / NEC<br/>Contract Schedule"]
+
+    classDef ref fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef wbs fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef schedule fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef standard fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+
+    class A ref;
+    class B,D,E,F wbs;
+    class C,G,H,I schedule;
+```
+
 ---
 
-#### 📚 Referensi Teknis yang Bisa Dirujuk
+## 📚 Referensi Teknis yang Bisa Dirujuk
 
 Berikut adalah dokumen dan standar yang umum digunakan sebagai **rujukan resmi dan praktik terbaik (best practice)**:
 
@@ -982,7 +1397,7 @@ Berikut adalah dokumen dan standar yang umum digunakan sebagai **rujukan resmi d
 
 ---
 
-#### 🔖 Kesimpulan Ringkas
+## 🔖 Kesimpulan Ringkas
 
 | Konsep        | WBS Level                     | Schedule Level              |
 | ------------- | ----------------------------- | --------------------------- |

@@ -18,10 +18,11 @@ draft: false
 summary: Module 6 menempatkan eksekusi pemeliharaan, troubleshooting, dan pembelajaran organisasi sebagai inti keandalan sistem jangka panjang. Modul ini menegaskan bahwa kualitas sistem maintenance tidak ditentukan oleh strategi di atas kertas, tetapi oleh disiplin eksekusi di lapangan dan kemampuan organisasi menghentikan kegagalan berulang. Melalui troubleshooting yang sistematis, penerapan RCA, FMEA, dan FTA, serta penguatan indikator first-time fix, setiap gangguan diubah menjadi sumber pembelajaran. Dokumentasi diposisikan sebagai aset teknis dan memori organisasi, sementara learning loop memastikan hasil analisa memperbarui strategi RBM dan interval pemeliharaan. Dengan pendekatan ini, organisasi bergerak dari pola reaktif menuju sistem pemeliharaan preventif, adaptif, dan stabil.
 ---
 
-**_Eksekusi, Troubleshooting, dan Sistem Pembelajaran Pemeliharaan_**
+# **_Eksekusi, Troubleshooting, dan Sistem Pembelajaran Pemeliharaan_**
 
 ---
 
+- [**_Eksekusi, Troubleshooting, dan Sistem Pembelajaran Pemeliharaan_**](#eksekusi-troubleshooting-dan-sistem-pembelajaran-pemeliharaan)
 - [📌 Prolog Modul](#-prolog-modul)
 - [6.1 Eksekusi Pemeliharaan sebagai Titik Kritis Sistem](#61-eksekusi-pemeliharaan-sebagai-titik-kritis-sistem)
 - [6.2 Troubleshooting sebagai Proses Sistematis (Bukan Insting)](#62-troubleshooting-sebagai-proses-sistematis-bukan-insting)
@@ -56,7 +57,7 @@ summary: Module 6 menempatkan eksekusi pemeliharaan, troubleshooting, dan pembel
 
 ---
 
-## 📌 Prolog Modul
+# 📌 Prolog Modul
 
 Modul ini merupakan bagian dari **Maintenance System Handbook (MSH)** yang secara khusus menjawab pertanyaan paling krusial di tingkat eksekusi lapangan:
 
@@ -70,6 +71,32 @@ Pada titik ini, sistem pemeliharaan telah memiliki **arah strategis** dan **stru
 Namun, tanpa mekanisme yang memastikan bahwa setiap gangguan menghasilkan pembelajaran, sistem pemeliharaan akan tetap terjebak pada pola **reaktif**—memperbaiki kerusakan yang sama berulang kali tanpa peningkatan keandalan yang nyata. Oleh karena itu, **Module 5** berfokus pada penguatan titik terlemah sekaligus paling menentukan dalam sistem pemeliharaan, yaitu **eksekusi, troubleshooting, dan pembelajaran organisasi**.
 
 Dalam modul ini, **troubleshooting, analisa akar masalah, dan dokumentasi** diposisikan bukan sebagai aktivitas insidental, melainkan sebagai **aset sistemik** yang membangun memori organisasi. Setiap kegagalan diperlakukan sebagai sumber data dan pembelajaran untuk memperbaiki strategi, metode, dan keputusan di masa depan. Dengan pendekatan ini, sistem pemeliharaan diarahkan untuk bergerak dari sekadar _memperbaiki kerusakan_ menuju _mencegah kegagalan berulang_ secara terstruktur dan berkelanjutan.
+
+```mermaid id="msh-6-execution-learning-overview-mobile"
+flowchart TD
+    A["Module 3<br/>RBM Strategy"] --> C["Module 6<br/>Execution + Troubleshooting"]
+    B["Module 5<br/>Organization + Accountability"] --> C
+
+    C --> D["Field<br/>Execution"]
+    D --> E["Troubleshooting<br/>Structured Process"]
+    E --> F["RCA / FMEA / FTA<br/>Technical Analysis"]
+    F --> G["Documentation<br/>Technical Memory"]
+    G --> H["Learning Loop<br/>System Improvement"]
+
+    H --> I["Prevent<br/>Failure Recurrence"]
+
+    classDef module fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef execution fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef analysis fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef learning fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+    classDef output fill:#FFEBEE,stroke:#C62828,color:#111;
+
+    class A,B,C module;
+    class D,E execution;
+    class F analysis;
+    class G,H learning;
+    class I output;
+```
 
 <ResourceBox
   title="Korelasi internal-link modul:"
@@ -97,9 +124,38 @@ Dalam modul ini, **troubleshooting, analisa akar masalah, dan dokumentasi** dipo
 
 ---
 
-## 6.1 Eksekusi Pemeliharaan sebagai Titik Kritis Sistem
+# 6.1 Eksekusi Pemeliharaan sebagai Titik Kritis Sistem
 
 Sub-bab ini menegaskan bahwa **kualitas nyata sistem pemeliharaan ditentukan pada tahap eksekusi**, bukan pada kelengkapan dokumen strategi atau kecanggihan metode analisis. Strategi RBM, struktur organisasi, dan KPI hanya akan memberikan nilai jika **diterjemahkan secara konsisten dan disiplin di lapangan**.
+
+```mermaid id="maintenance-execution-critical-point-mobile"
+flowchart TD
+    A["Maintenance<br/>Strategy"] --> E["Field<br/>Execution"]
+    B["Manpower<br/>Competency"] --> E
+    C["Tools + Equipment<br/>Readiness"] --> E
+    D["Procedure<br/>SOP / WI"] --> E
+
+    E --> F{"Execution<br/>Quality?"}
+
+    F -- "Strong" --> G["Work Done<br/>Right First Time"]
+    G --> H["Reliability<br/>Improves"]
+
+    F -- "Weak" --> I["Small Deviations<br/>Accumulate"]
+    I --> J["Rework<br/>Repeat Failure"]
+    J --> K["Operation Trust<br/>Decreases"]
+
+    classDef input fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef execution fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef good fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef bad fill:#FFEBEE,stroke:#C62828,color:#111;
+    classDef impact fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+
+    class A,B,C,D input;
+    class E,F execution;
+    class G,H good;
+    class I,J bad;
+    class K impact;
+```
 
 Eksekusi pemeliharaan merupakan **titik temu seluruh elemen sistem**, yaitu:
 
@@ -123,13 +179,42 @@ Dalam kerangka **Maintenance System Handbook**, eksekusi diposisikan sebagai **v
 
 ---
 
-## 6.2 Troubleshooting sebagai Proses Sistematis (Bukan Insting)
+# 6.2 Troubleshooting sebagai Proses Sistematis (Bukan Insting)
 
 Sub-bab ini menegaskan bahwa **troubleshooting dalam sistem pemeliharaan modern harus diperlakukan sebagai proses sistematis**, bukan sebagai aktivitas berbasis insting atau pengalaman individual semata. Pola _trial-and-error_ yang tidak terstruktur memang dapat menyelesaikan masalah sesaat, namun hampir selalu menyisakan **risiko kegagalan berulang** karena akar permasalahan tidak diidentifikasi secara utuh.
 
 Dalam kerangka **Maintenance System Handbook**, troubleshooting diposisikan sebagai **rangkaian langkah berurutan** yang dapat diulang, diaudit, dan ditingkatkan kualitasnya. Struktur ini memastikan bahwa setiap gangguan ditangani dengan pendekatan yang konsisten, terlepas dari siapa personel yang terlibat.
 
-### Tahapan Troubleshooting Sistematis
+```mermaid id="systematic-troubleshooting-flow-mobile"
+flowchart TD
+    A["Technical<br/>Symptom"] --> B["Identify<br/>Symptom Objectively"]
+    B --> C["Collect<br/>Data + History"]
+    C --> D["Technical<br/>Diagnosis"]
+    D --> E["Corrective<br/>Action"]
+    E --> F["Verify<br/>Result"]
+
+    F --> G{"Problem<br/>Solved?"}
+    G -- "Yes" --> H["Document<br/>Finding"]
+    G -- "No" --> I["Re-check<br/>Data + Diagnosis"]
+    I --> D
+
+    H --> J["Input for<br/>Learning Loop"]
+
+    classDef symptom fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef process fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef action fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef decision fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+    classDef loop fill:#FFEBEE,stroke:#C62828,color:#111;
+
+    class A symptom;
+    class B,C,D process;
+    class E,F action;
+    class G decision;
+    class H,J loop;
+    class I process;
+```
+
+## Tahapan Troubleshooting Sistematis
 
 1. **Identifikasi Gejala**
    Tahap awal berfokus pada pengenalan gejala kegagalan secara objektif, bukan asumsi penyebab. Gejala harus dinyatakan secara spesifik dan terukur, misalnya perubahan parameter operasi, alarm, atau penurunan kinerja.
@@ -151,9 +236,43 @@ Dalam kerangka **Maintenance System Handbook**, troubleshooting diposisikan seba
 
 ---
 
-## 6.3 Root Cause Analysis (RCA): Menghentikan Masalah di Akarnya
+# 6.3 Root Cause Analysis (RCA): Menghentikan Masalah di Akarnya
 
 Sub-bab ini menempatkan **Root Cause Analysis (RCA)** sebagai mekanisme utama untuk **menghentikan kegagalan berulang (recurrence)** dalam sistem pemeliharaan. RCA bukan sekadar alat analisis pascakejadian, melainkan **kewajiban sistem** ketika gangguan menunjukkan pola berulang, berdampak signifikan terhadap keselamatan, lingkungan, atau kontinuitas operasi.
+
+```mermaid id="rca-system-obligation-mobile"
+flowchart TD
+    A["Failure<br/>or Deviation"] --> B{"RCA<br/>Required?"}
+
+    B -- "Repeat Failure" --> C["Mandatory<br/>RCA"]
+    B -- "High ESC Impact" --> C
+    B -- "MTBF Drops" --> C
+    B -- "SHE Incident" --> C
+
+    B -- "Minor One-Time<br/>Failure" --> D["Standard<br/>Troubleshooting"]
+
+    C --> E["Engineer<br/>Technical Analysis"]
+    C --> F["Supervisor<br/>Operational Context"]
+
+    E --> G["Root Cause<br/>Identified"]
+    F --> G
+
+    G --> H["Corrective + Preventive<br/>Action"]
+    H --> I["Verify<br/>Effectiveness"]
+    I --> J["Update<br/>RBM Strategy"]
+
+    classDef failure fill:#FFEBEE,stroke:#C62828,color:#111;
+    classDef decision fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef rca fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef role fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef output fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+
+    class A failure;
+    class B decision;
+    class C,E,F rca;
+    class D role;
+    class G,H,I,J output;
+```
 
 <ResourceBox
   title="Korelasi internal-link modul:"
@@ -178,11 +297,11 @@ Sub-bab ini menempatkan **Root Cause Analysis (RCA)** sebagai mekanisme utama un
   ]}
 />
 
-### Tujuan dan Prinsip RCA
+## Tujuan dan Prinsip RCA
 
 Tujuan utama RCA adalah **memisahkan perbaikan gejala (symptom fixing)** dari **perbaikan akar masalah (root fixing)**. Perbaikan gejala hanya mengembalikan peralatan ke kondisi operasi sementara, sementara perbaikan akar masalah menghilangkan penyebab mendasar sehingga kegagalan yang sama tidak terjadi kembali. Dalam industri proses kontinu, kegagalan yang berulang—meski jarang—dapat memiliki konsekuensi besar, sehingga pendekatan root fixing menjadi keharusan.
 
-### Kapan RCA Wajib Dilakukan
+## Kapan RCA Wajib Dilakukan
 
 RCA **wajib** dilakukan pada kondisi-kondisi berikut:
 
@@ -193,14 +312,14 @@ RCA **wajib** dilakukan pada kondisi-kondisi berikut:
 
 Penetapan kewajiban ini memastikan RCA tidak bergantung pada preferensi individu, melainkan menjadi bagian dari **disiplin organisasi**.
 
-### Peran Engineer dan Supervisor dalam RCA
+## Peran Engineer dan Supervisor dalam RCA
 
 - **Engineer** berperan sebagai **pemilik analisis teknis**, bertanggung jawab atas pemilihan metode RCA/RCFA, analisis data, dan formulasi rekomendasi teknis yang berkelanjutan.
 - **Supervisor** berperan sebagai **pemilik konteks operasional**, memastikan data lapangan akurat, tindakan korektif dapat dieksekusi, serta rekomendasi diterjemahkan ke dalam praktik kerja.
 
 Kolaborasi ini memastikan RCA tidak berhenti sebagai laporan, tetapi berujung pada **tindakan sistemik**.
 
-### RCA sebagai Kewajiban Sistem
+## RCA sebagai Kewajiban Sistem
 
 Dalam kerangka **Maintenance System Handbook**, RCA diperlakukan sebagai **kewajiban sistem**, bukan opsi. Setiap hasil RCA harus terdokumentasi, diverifikasi efektivitasnya, dan ditindaklanjuti dalam pembaruan strategi pemeliharaan.
 
@@ -209,11 +328,42 @@ Dalam kerangka **Maintenance System Handbook**, RCA diperlakukan sebagai **kewaj
 
 ---
 
-## 6.4 FMEA dan FTA sebagai Alat Pencegahan Kegagalan
+# 6.4 FMEA dan FTA sebagai Alat Pencegahan Kegagalan
 
 Sub-bab ini menggeser orientasi pemeliharaan dari pendekatan **reaktif (_after failure_)** menuju **pencegahan terstruktur (_before failure_)** melalui pemanfaatan **Failure Mode and Effects Analysis (FMEA)** dan **Fault Tree Analysis (FTA)**. Kedua metode ini tidak berdiri sendiri, melainkan berfungsi sebagai **alat analisis pendukung** dalam sistem pengambilan keputusan berbasis risiko.
 
-### FMEA: Mengantisipasi Kegagalan Sejak Dini
+```mermaid id="fmea-fta-prevention-mobile"
+flowchart TD
+    A["Failure<br/>Prevention"] --> B["FMEA<br/>Bottom-Up"]
+    A --> C["FTA<br/>Top-Down"]
+
+    B --> D["Component<br/>Failure Mode"]
+    D --> E["Effect on<br/>System"]
+    E --> F["Preventive<br/>Action"]
+
+    C --> G["Top Event<br/>Major Failure"]
+    G --> H["Cause Logic<br/>Pathway"]
+    H --> I["Critical<br/>Control Point"]
+
+    F --> J["Risk-Based<br/>Maintenance Decision"]
+    I --> J
+
+    J --> K["Prevent Failure<br/>Before Impact"]
+
+    classDef start fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef fmea fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef fta fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef decision fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+    classDef output fill:#FFEBEE,stroke:#C62828,color:#111;
+
+    class A start;
+    class B,D,E,F fmea;
+    class C,G,H,I fta;
+    class J decision;
+    class K output;
+```
+
+## FMEA: Mengantisipasi Kegagalan Sejak Dini
 
 **FMEA** digunakan untuk mengidentifikasi **mode kegagalan potensial**, memahami **penyebabnya**, serta menilai **dampaknya terhadap sistem** sebelum kegagalan terjadi. Dalam konteks pemeliharaan:
 
@@ -223,7 +373,7 @@ Sub-bab ini menggeser orientasi pemeliharaan dari pendekatan **reaktif (_after f
 
 Dengan FMEA, organisasi dapat merancang tindakan preventif—seperti inspeksi tambahan, perubahan metode pemeliharaan, atau redesign—sebelum kegagalan menimbulkan dampak signifikan.
 
-### FTA: Memahami Jalur Penyebab Kegagalan Kritis
+## FTA: Memahami Jalur Penyebab Kegagalan Kritis
 
 **FTA** digunakan untuk menganalisis **top-event** (kejadian puncak yang tidak diinginkan), kemudian menurunkannya menjadi **rantai sebab-akibat** yang logis. Pendekatan ini sangat berguna untuk:
 
@@ -233,7 +383,7 @@ Dengan FMEA, organisasi dapat merancang tindakan preventif—seperti inspeksi ta
 
 FTA memberikan perspektif sistemik yang melengkapi FMEA yang lebih bersifat bottom-up.
 
-### Integrasi dalam Sistem Pemeliharaan
+## Integrasi dalam Sistem Pemeliharaan
 
 Dalam kerangka **Maintenance System Handbook**, FMEA dan FTA digunakan secara selektif pada:
 
@@ -246,9 +396,37 @@ Penerapan FMEA dan FTA memperkuat **decision logic berbasis risiko (Module 2)** 
 
 ---
 
-## 6.5 First-Time Fix sebagai Indikator Kematangan Eksekusi
+# 6.5 First-Time Fix sebagai Indikator Kematangan Eksekusi
 
 Sub-bab ini menempatkan **first-time fix (FTF)** sebagai **indikator kunci kematangan eksekusi pemeliharaan**, bukan sebagai hasil kebetulan atau kemampuan individu semata. Dalam sistem pemeliharaan modern, FTF mencerminkan **kualitas sistem secara keseluruhan**, mulai dari perencanaan hingga kompetensi eksekutor.
+
+```mermaid id="first-time-fix-maturity-mobile"
+flowchart TD
+    A["First-Time<br/>Fix"] --> B["Correct<br/>Diagnosis"]
+    A --> C["Competent<br/>Technician"]
+    A --> D["Clear<br/>SOP / Method"]
+
+    B --> E["Action Targets<br/>Root Cause"]
+    C --> F["Execution<br/>Quality"]
+    D --> G["Low Variation<br/>in Work"]
+
+    E --> H["No Rework"]
+    F --> H
+    G --> H
+
+    H --> I["Higher<br/>Reliability"]
+    I --> J["Mature<br/>Execution System"]
+
+    classDef ftf fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef factor fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef result fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef output fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+
+    class A ftf;
+    class B,C,D,E,F,G factor;
+    class H,I result;
+    class J output;
+```
 
 <ResourceBox
   title="Korelasi internal-link modul:"
@@ -273,7 +451,7 @@ Sub-bab ini menempatkan **first-time fix (FTF)** sebagai **indikator kunci kemat
   ]}
 />
 
-### Definisi First-Time Fix
+## Definisi First-Time Fix
 
 **First-time fix** didefinisikan sebagai kondisi di mana suatu pekerjaan pemeliharaan:
 
@@ -283,7 +461,7 @@ Sub-bab ini menempatkan **first-time fix (FTF)** sebagai **indikator kunci kemat
 
 Dengan definisi ini, FTF bukan sekadar “alat kembali beroperasi”, tetapi **masalah benar-benar terselesaikan**.
 
-### Faktor Penentu First-Time Fix
+## Faktor Penentu First-Time Fix
 
 Tingkat first-time fix sangat dipengaruhi oleh tiga faktor utama:
 
@@ -296,7 +474,7 @@ Tingkat first-time fix sangat dipengaruhi oleh tiga faktor utama:
 3. **Kejelasan SOP dan Metode Kerja**
    Prosedur yang jelas, teruji, dan mudah dipahami meminimalkan variasi eksekusi serta mengurangi risiko kesalahan manusia.
 
-### First-Time Fix dalam Kerangka KPI
+## First-Time Fix dalam Kerangka KPI
 
 Dalam kerangka **Module 4 (Organization, KPI & Accountability)**, first-time fix berfungsi sebagai:
 
@@ -311,11 +489,41 @@ Dengan menjadikan first-time fix sebagai **target sistem**, organisasi pemelihar
 
 ---
 
-## 6.6 Dokumentasi Pemeliharaan sebagai Aset Teknis
+# 6.6 Dokumentasi Pemeliharaan sebagai Aset Teknis
 
 Sub-bab ini menegaskan bahwa **dokumentasi pemeliharaan merupakan aset teknis strategis**, bukan kewajiban administratif semata. Dalam sistem pemeliharaan modern, dokumentasi berfungsi sebagai **memori organisasi** yang menjaga kesinambungan pengetahuan teknis lintas waktu, personel, dan generasi.
 
-### Dokumentasi sebagai Histori dan Basis Evaluasi
+```mermaid id="maintenance-documentation-technical-asset-mobile"
+flowchart TD
+    A["Maintenance<br/>Documentation"] --> B["Failure<br/>History"]
+    A --> C["Corrective<br/>Action Record"]
+    A --> D["Inspection<br/>Result"]
+    A --> E["Verification<br/>Evidence"]
+
+    B --> F["Troubleshooting<br/>Reference"]
+    C --> F
+    D --> G["Evaluation<br/>Basis"]
+    E --> G
+
+    F --> H["CMMS<br/>Technical Memory"]
+    G --> H
+
+    H --> I["Audit<br/>Traceability"]
+    H --> J["Training<br/>Case Material"]
+    H --> K["Future<br/>Reliability Improvement"]
+
+    classDef doc fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef data fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef memory fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef output fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+
+    class A doc;
+    class B,C,D,E,F,G data;
+    class H memory;
+    class I,J,K output;
+```
+
+## Dokumentasi sebagai Histori dan Basis Evaluasi
 
 Setiap aktivitas pemeliharaan—termasuk gangguan, tindakan korektif, dan hasil verifikasi—harus terdokumentasi secara konsisten. Dokumentasi ini membentuk:
 
@@ -325,11 +533,11 @@ Setiap aktivitas pemeliharaan—termasuk gangguan, tindakan korektif, dan hasil 
 
 Tanpa histori yang tertata, evaluasi teknis akan bergantung pada ingatan individu dan intuisi sesaat.
 
-### Dokumentasi sebagai Referensi Troubleshooting
+## Dokumentasi sebagai Referensi Troubleshooting
 
 Dokumentasi yang baik menjadi **referensi langsung** dalam proses troubleshooting berikutnya. Catatan kegagalan terdahulu, solusi yang berhasil atau gagal, serta kondisi operasi saat kejadian memberikan konteks penting bagi teknisi dan engineer dalam mengambil keputusan yang lebih cepat dan akurat.
 
-### Integrasi dengan Sistem dan Fungsi Lain
+## Integrasi dengan Sistem dan Fungsi Lain
 
 Dokumentasi pemeliharaan memiliki keterkaitan langsung dengan:
 
@@ -342,11 +550,43 @@ Tanpa dokumentasi yang disiplin dan terstruktur, organisasi pemeliharaan akan **
 
 ---
 
-## 6.7 Learning Loop: Dari Gangguan ke Perbaikan Sistem
+# 6.7 Learning Loop: Dari Gangguan ke Perbaikan Sistem
 
 Sub-bab ini menegaskan bahwa **keandalan sistem pemeliharaan tidak ditentukan oleh ketiadaan gangguan**, melainkan oleh **kemampuan organisasi belajar dari setiap gangguan yang terjadi**. Dalam kerangka _Maintenance System Handbook_, mekanisme tersebut diwujudkan melalui **learning loop** yang terstruktur dan berulang.
 
-### Konsep Learning Loop dalam Pemeliharaan
+```mermaid id="maintenance-learning-loop-mobile"
+flowchart TD
+    A["Failure<br/>or Deviation"] --> B["Troubleshooting<br/>and RCA"]
+    B --> C["Corrective<br/>Action"]
+    C --> D["Verify<br/>Effectiveness"]
+    D --> E["Update<br/>System"]
+
+    E --> F["Adjust<br/>TBM Interval"]
+    E --> G["Update<br/>RBM Criticality"]
+    E --> H["Improve<br/>SOP / Training"]
+    E --> I["Change<br/>CBM / PdM Strategy"]
+
+    F --> J["Reduced<br/>Repeat Failure"]
+    G --> J
+    H --> J
+    I --> J
+
+    J --> A
+
+    classDef failure fill:#FFEBEE,stroke:#C62828,color:#111;
+    classDef analysis fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef action fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef update fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef loop fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+
+    class A failure;
+    class B analysis;
+    class C,D action;
+    class E,F,G,H,I update;
+    class J loop;
+```
+
+## Konsep Learning Loop dalam Pemeliharaan
 
 Learning loop menggambarkan alur sistematis berikut:
 
@@ -354,7 +594,7 @@ Learning loop menggambarkan alur sistematis berikut:
 
 Setiap kegagalan atau deviasi operasi diperlakukan sebagai **data berharga**, bukan sekadar insiden yang harus segera ditutup. Melalui analisa teknis (RCA, FMEA, FTA), organisasi memperoleh pemahaman baru yang kemudian diterjemahkan menjadi tindakan perbaikan dan pembaruan sistem.
 
-### Integrasi Learning Loop dengan Sistem Pemeliharaan
+## Integrasi Learning Loop dengan Sistem Pemeliharaan
 
 Learning loop tidak berdiri sendiri, melainkan terintegrasi langsung dengan elemen kunci sistem pemeliharaan, antara lain:
 
@@ -369,7 +609,7 @@ Learning loop tidak berdiri sendiri, melainkan terintegrasi langsung dengan elem
 
 Dengan mekanisme ini, sistem pemeliharaan tidak terjebak pada asumsi awal, melainkan **berevolusi seiring pengalaman lapangan**.
 
-### Learning Loop sebagai Penggerak Sistem Hidup
+## Learning Loop sebagai Penggerak Sistem Hidup
 
 📌 **Penegasan utama:**
 Risk-Based Maintenance (RBM) **hidup karena learning loop**, bukan karena jadwal tetap atau prosedur statis. Tanpa learning loop, RBM akan tereduksi menjadi TBM yang dibungkus istilah risiko, namun kehilangan kemampuan adaptifnya.
@@ -384,11 +624,42 @@ Dengan demikian, learning loop menjadi **jembatan antara pengalaman lapangan dan
 
 ---
 
-## 6.8 Troubleshooting sebagai Sistem Pembelajaran Tim
+# 6.8 Troubleshooting sebagai Sistem Pembelajaran Tim
 
 Sub-bab ini menempatkan **troubleshooting** bukan sekadar sebagai aktivitas teknis penyelesaian masalah, melainkan sebagai **mekanisme pembelajaran kolektif** yang memperkuat stabilitas dan kematangan organisasi pemeliharaan. Dalam sistem pemeliharaan modern, nilai troubleshooting tidak berhenti pada alat kembali beroperasi, tetapi pada **pengetahuan yang diwariskan dan disistematiskan**.
 
-### Transfer Pengetahuan Antar Shift
+```mermaid id="troubleshooting-team-learning-mobile"
+flowchart TD
+    A["Troubleshooting<br/>Case"] --> B["Technician<br/>Field Observation"]
+    A --> C["Supervisor<br/>Execution Validation"]
+    A --> D["Engineer<br/>Technical Synthesis"]
+
+    B --> E["Documented<br/>Finding"]
+    C --> E
+    D --> E
+
+    E --> F["Shift<br/>Handover"]
+    E --> G["Cross-Level<br/>Learning"]
+    E --> H["Internal<br/>Training Material"]
+
+    F --> I["Knowledge<br/>Not Lost"]
+    G --> I
+    H --> I
+
+    I --> J["Stable<br/>Learning Organization"]
+
+    classDef case fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef role fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef learning fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef output fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+
+    class A case;
+    class B,C,D role;
+    class E,F,G,H learning;
+    class I,J output;
+```
+
+## Transfer Pengetahuan Antar Shift
 
 Gangguan dan penyelesaiannya sering terjadi dalam konteks kerja bergilir. Tanpa sistem pembelajaran yang baik, pengetahuan akan terfragmentasi dan hilang saat pergantian shift. Dengan pendekatan sistematis:
 
@@ -398,7 +669,7 @@ Gangguan dan penyelesaiannya sering terjadi dalam konteks kerja bergilir. Tanpa 
 
 Hal ini memastikan konsistensi respon teknis dan mengurangi ketergantungan pada “orang kunci”.
 
-### Pembelajaran Lintas Jabatan
+## Pembelajaran Lintas Jabatan
 
 Troubleshooting yang efektif melibatkan alur pembelajaran berjenjang:
 
@@ -408,7 +679,7 @@ Troubleshooting yang efektif melibatkan alur pembelajaran berjenjang:
 
 Dengan mekanisme ini, troubleshooting menjadi sarana penyelarasan perspektif teknis antar level organisasi, bukan aktivitas terisolasi di lapangan.
 
-### Troubleshooting sebagai Materi Training Internal
+## Troubleshooting sebagai Materi Training Internal
 
 Kasus nyata troubleshooting—terutama yang terdokumentasi dengan baik—merupakan **materi pelatihan paling relevan** bagi organisasi pemeliharaan. Dibandingkan teori umum, studi kasus internal:
 
@@ -421,13 +692,36 @@ Organisasi yang mampu mengubah troubleshooting menjadi **sistem pembelajaran tim
 
 ---
 
-## 🧠 Kesimpulan Module 6
+# 🧠 Kesimpulan Module 6
 
 Modul 5 menegaskan bahwa **keandalan pemeliharaan tidak diukur dari kecepatan memperbaiki gangguan**, melainkan dari **kemampuan sistem mencegah terulangnya masalah yang sama**. Dalam konteks ini, pemeliharaan yang matang adalah pemeliharaan yang **belajar secara sistematis** dari setiap kegagalan.
 
 Melalui eksekusi yang disiplin, troubleshooting yang terstruktur, penerapan RCA sebagai kewajiban sistem, serta dukungan FMEA dan FTA sebagai alat pencegahan, organisasi pemeliharaan mampu mengubah gangguan menjadi **sumber peningkatan berkelanjutan**. Dokumentasi yang rapi dan learning loop yang aktif memastikan bahwa pengetahuan teknis tidak hilang, melainkan terakumulasi sebagai aset organisasi.
 
 Dengan demikian, Module 6 menjadi penghubung penting antara **strategi (Module 3)** dan **akuntabilitas (Module 4)**, sekaligus fondasi menuju sistem pemeliharaan yang **preventif, adaptif, dan berkelanjutan**.
+
+```mermaid id="module-6-final-logic-mobile"
+flowchart TD
+    A["Disciplined<br/>Execution"] --> B["Structured<br/>Troubleshooting"]
+    B --> C["RCA<br/>Root Fix"]
+    C --> D["FMEA / FTA<br/>Prevention"]
+    D --> E["Documentation<br/>Technical Memory"]
+    E --> F["Learning Loop<br/>System Update"]
+    F --> G["Failure Recurrence<br/>Reduced"]
+    G --> H["Preventive<br/>Adaptive<br/>Sustainable System"]
+
+    classDef execution fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef analysis fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef prevention fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef learning fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+    classDef output fill:#FFEBEE,stroke:#C62828,color:#111;
+
+    class A execution;
+    class B,C analysis;
+    class D prevention;
+    class E,F learning;
+    class G,H output;
+```
 
 ---
 
@@ -473,9 +767,32 @@ Dengan demikian, Module 6 menjadi penghubung penting antara **strategi (Module 3
   ]}
 />
 
+```mermaid id="module-6-connection-to-msh-mobile"
+flowchart TD
+    A["Module 3<br/>RBM Strategy"] --> C["Module 6<br/>Execution + Learning"]
+    B["Module 5<br/>Accountability"] --> C
+    D["Module 7<br/>SHE Boundary"] --> C
+
+    C --> E["Defines<br/>How Problems Are Solved"]
+    E --> F["Troubleshooting<br/>RCA<br/>Documentation"]
+    F --> G["Learning Loop<br/>Improves System"]
+
+    G --> H["Module 8<br/>Lifecycle + Continuous Improvement"]
+
+    classDef previous fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef current fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef learning fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef next fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+
+    class A,B,D previous;
+    class C,E current;
+    class F,G learning;
+    class H next;
+```
+
 ---
 
-## 📚 Referensi Module 6
+# 📚 Referensi Module 6
 
 1. **Artikel 2**
    _Efisiensi dan Keandalan dalam Manajemen Pemeliharaan_ – Bab Troubleshooting, KPI, dan Dokumentasi

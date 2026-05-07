@@ -17,10 +17,11 @@ draft: false
 summary: Modul 0 berfungsi sebagai fondasi kontekstual dalam Maintenance System Handbook dengan menjelaskan mengapa sistem pemeliharaan di industri petrokimia harus berevolusi. Karakter industri yang berisiko tinggi, berbiaya besar, dan beroperasi secara kontinu membuat setiap kegagalan peralatan berdampak sistemik, mulai dari risiko keselamatan hingga kerugian bisnis yang signifikan. Pendekatan pemeliharaan konvensional berbasis waktu terbukti memiliki keterbatasan karena mengabaikan perbedaan kritikalitas aset. Oleh karena itu, pemeliharaan harus dipahami sebagai sistem pengendalian risiko dan bagian dari tata kelola perusahaan, bukan sekadar aktivitas teknis. Modul ini menjadi landasan sebelum masuk ke filosofi dan metodologi risk-based maintenance pada modul selanjutnya.
 ---
 
-**_Konteks Industri dan Alasan Sistem Pemeliharaan Harus Berevolusi_**
+# **_Konteks Industri dan Alasan Sistem Pemeliharaan Harus Berevolusi_**
 
 ---
 
+- [**_Konteks Industri dan Alasan Sistem Pemeliharaan Harus Berevolusi_**](#konteks-industri-dan-alasan-sistem-pemeliharaan-harus-berevolusi)
 - [📌 Prolog Modul](#-prolog-modul)
 - [0.1 Karakteristik Industri Petrokimia dan Proses Kontinu](#01-karakteristik-industri-petrokimia-dan-proses-kontinu)
 - [0.2 Konsekuensi Downtime: Dari Gangguan Teknis ke Risiko Bisnis](#02-konsekuensi-downtime-dari-gangguan-teknis-ke-risiko-bisnis)
@@ -34,7 +35,7 @@ summary: Modul 0 berfungsi sebagai fondasi kontekstual dalam Maintenance System 
 
 ---
 
-### 📌 Prolog Modul
+# 📌 Prolog Modul
 
 Modul ini merupakan **bagian pembuka** dari **Maintenance System Handbook (MSH)** dan disusun sebagai **landasan kontekstual** sebelum pembahasan teknis, metodologis, dan implementatif pada modul-modul berikutnya. Fokus utama Modul 0 adalah membangun **kerangka berpikir yang selaras** bagi seluruh pemangku kepentingan—mulai dari engineer, supervisor, hingga manajemen puncak—terhadap **alasan fundamental** mengapa sistem pemeliharaan di industri petrokimia **harus berevolusi**.
 
@@ -42,7 +43,26 @@ Sistem pemeliharaan modern **tidak muncul sebagai adopsi tren manajerial atau te
 
 Oleh karena itu, Modul 0 ditempatkan untuk menjawab pertanyaan mendasar **“mengapa”** sistem pemeliharaan harus dibangun secara sistemik, berbasis risiko, dan terintegrasi dengan tata kelola perusahaan. Pemahaman konteks ini menjadi **prasyarat logis** sebelum memasuki Modul 1 dan seterusnya, yang akan membahas **“atas dasar apa”** sistem tersebut dirancang dan **“bagaimana”** ia diimplementasikan secara konsisten dan berkelanjutan.
 
-**Korelasi internal-link modul:**
+```mermaid id="msh-0-opening-context-mobile"
+flowchart TD
+    A["Petrochemical Industry<br/>High Risk + Continuous Process"] --> B["Equipment Failure<br/>Has Systemic Impact"]
+    B --> C["Downtime<br/>Becomes Business Risk"]
+    C --> D["Maintenance Must<br/>Evolve"]
+    D --> E["Risk-Based<br/>Maintenance System"]
+    E --> F["Maintenance System<br/>Handbook"]
+
+    classDef industry fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef risk fill:#FFEBEE,stroke:#C62828,color:#111;
+    classDef business fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef system fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef handbook fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+
+    class A industry;
+    class B,C risk;
+    class D business;
+    class E system;
+    class F handbook;
+```
 
 <ResourceBox
   title="Korelasi internal-link modul:"
@@ -69,7 +89,7 @@ Oleh karena itu, Modul 0 ditempatkan untuk menjawab pertanyaan mendasar **“men
 
 ---
 
-### 0.1 Karakteristik Industri Petrokimia dan Proses Kontinu
+# 0.1 Karakteristik Industri Petrokimia dan Proses Kontinu
 
 Industri petrokimia termasuk dalam kategori **high-risk, high-capital, continuous process industry**, di mana proses produksi berjalan secara berkelanjutan dan sangat bergantung pada kestabilan operasi setiap peralatan utama. Tidak seperti industri diskrit yang dapat menghentikan dan memulai kembali proses dengan relatif mudah, industri petrokimia dirancang untuk **beroperasi tanpa interupsi** dalam jangka waktu panjang demi menjaga kestabilan reaksi, kualitas produk, dan efisiensi energi.
 
@@ -82,9 +102,38 @@ Selain itu, sifat proses kontinu membuat konsep “stop–start” yang lazim pa
 📌 **Fungsi dalam handbook:**
 Bagian ini menetapkan **baseline realitas industri petrokimia**, yaitu bahwa sistem pemeliharaan harus dirancang berdasarkan kondisi operasi nyata, tingkat risiko inheren, dan sifat proses yang saling terintegrasi—bukan semata-mata berdasarkan teori atau praktik pemeliharaan generik.
 
+```mermaid id="petrochemical-continuous-process-risk-mobile"
+flowchart TD
+    A["Petrochemical Plant<br/>Continuous Process"] --> B["High Temperature<br/>High Pressure"]
+    A --> C["Flammable / Toxic<br/>Reactive Fluids"]
+    A --> D["Integrated<br/>Process Units"]
+
+    B --> E["High Inherent<br/>Hazard"]
+    C --> E
+    D --> F["Failure Propagates<br/>Across Systems"]
+
+    E --> G["SHE<br/>Consequence"]
+    F --> H["Production<br/>Interruption"]
+
+    G --> I["Maintenance Requires<br/>Risk-Based System"]
+    H --> I
+
+    classDef plant fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef hazard fill:#FFEBEE,stroke:#C62828,color:#111;
+    classDef system fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef consequence fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+    classDef output fill:#E8F5E9,stroke:#2E7D32,color:#111;
+
+    class A plant;
+    class B,C,E hazard;
+    class D,F system;
+    class G,H consequence;
+    class I output;
+```
+
 ---
 
-### 0.2 Konsekuensi Downtime: Dari Gangguan Teknis ke Risiko Bisnis
+# 0.2 Konsekuensi Downtime: Dari Gangguan Teknis ke Risiko Bisnis
 
 Dalam industri petrokimia, **downtime tidak dapat diperlakukan sebagai isu teknis semata**. Setiap gangguan operasi—terutama pada peralatan kritikal—secara langsung bertransformasi menjadi **risiko bisnis** yang berdampak luas dan berlapis. Hal ini disebabkan oleh sifat proses yang kontinu, ketergantungan antar unit, serta tingginya eksposur biaya dan kewajiban komersial yang melekat pada operasi pabrik petrokimia.
 
@@ -99,9 +148,32 @@ Lebih jauh, downtime yang berulang atau tidak terkendali akan menarik perhatian 
 
 Rantai logika ini menjadi dasar mengapa sistem pemeliharaan di industri petrokimia harus dirancang untuk **mencegah kegagalan dengan konsekuensi besar**, bukan sekadar memperbaiki kerusakan setelah terjadi.
 
+```mermaid id="downtime-to-business-risk-mobile"
+flowchart TD
+    A["Equipment<br/>Failure"] --> B["Safe Shutdown<br/>Required"]
+    B --> C["Repair + Investigation<br/>+ Restart"]
+    C --> D["Production<br/>Loss"]
+    D --> E["Supply Chain<br/>Disruption"]
+    E --> F["Customer / Contract<br/>Impact"]
+    F --> G["Financial + Reputation<br/>Risk"]
+    G --> H["Management<br/>Concern"]
+
+    classDef failure fill:#FFEBEE,stroke:#C62828,color:#111;
+    classDef shutdown fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef loss fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+    classDef business fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef management fill:#E8F5E9,stroke:#2E7D32,color:#111;
+
+    class A failure;
+    class B,C shutdown;
+    class D,E,F loss;
+    class G business;
+    class H management;
+```
+
 ---
 
-### 0.3 Keterbatasan Pendekatan Pemeliharaan Konvensional
+# 0.3 Keterbatasan Pendekatan Pemeliharaan Konvensional
 
 Pendekatan pemeliharaan konvensional yang paling umum diterapkan di industri adalah **Time-Based Maintenance (TBM)**, yaitu pemeliharaan yang dijadwalkan berdasarkan interval waktu tetap, seperti jam operasi, siklus kalender, atau rekomendasi pabrikan. Dalam batas tertentu, TBM memiliki peran penting sebagai **fondasi dasar** untuk menjaga ketersediaan peralatan dan mencegah degradasi yang bersifat umum.
 
@@ -114,9 +186,36 @@ Ketidakseimbangan ini pada akhirnya menghasilkan **inefisiensi biaya dan tenaga 
 📌 **Catatan penting:**
 Bagian ini **tidak dimaksudkan untuk meniadakan atau menyerang Time-Based Maintenance (TBM)**. Sebaliknya, pembahasan ini menegaskan bahwa TBM memiliki **batas validitas** dan perlu ditempatkan dalam kerangka sistem yang lebih luas, di mana frekuensi dan kedalaman pemeliharaan ditentukan oleh **tingkat risiko dan kritikalitas peralatan**, bukan semata oleh waktu.
 
+```mermaid id="tbm-limitation-in-petrochemical-mobile"
+flowchart TD
+    A["Generic<br/>Time-Based Maintenance"] --> B["Same Interval<br/>for Different Assets"]
+    B --> C{"Asset<br/>Criticality?"}
+
+    C -- "Non-Critical" --> D["Over-Maintenance<br/>Wasted Resource"]
+    C -- "Critical" --> E["Under-Protection<br/>High Consequence Risk"]
+
+    D --> F["Cost + Manpower<br/>Inefficiency"]
+    E --> G["Potential<br/>Major Failure"]
+
+    F --> H["Need Risk-Based<br/>Differentiation"]
+    G --> H
+
+    classDef tbm fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef decision fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef bad fill:#FFEBEE,stroke:#C62828,color:#111;
+    classDef impact fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+    classDef output fill:#E8F5E9,stroke:#2E7D32,color:#111;
+
+    class A,B tbm;
+    class C decision;
+    class D,E bad;
+    class F,G impact;
+    class H output;
+```
+
 ---
 
-### 0.4 Pergeseran Paradigma: Dari Aktivitas Pemeliharaan ke Sistem Pengendalian Risiko
+# 0.4 Pergeseran Paradigma: Dari Aktivitas Pemeliharaan ke Sistem Pengendalian Risiko
 
 Keterbatasan pendekatan pemeliharaan konvensional mendorong perlunya **pergeseran paradigma** dalam memandang fungsi maintenance. Dalam konteks industri petrokimia, pemeliharaan tidak lagi dapat diposisikan sebagai sekadar **kumpulan aktivitas teknis** yang bertujuan menjaga peralatan tetap beroperasi, melainkan harus dipahami sebagai **sistem pengendalian risiko (risk control system)** yang terintegrasi dengan keseluruhan operasi dan tata kelola perusahaan.
 
@@ -133,9 +232,33 @@ Pendekatan ini mengharuskan setiap keputusan pemeliharaan—mulai dari penentuan
 📌 **Jembatan ke Modul 1:**
 Pada titik inilah kebutuhan akan **filosofi pemeliharaan berbasis risiko (risk-based philosophy)** menjadi nyata. Modul berikutnya akan membahas **atas dasar apa** sistem pemeliharaan modern dibangun, termasuk legitimasi konseptual dan standar yang menjadi rujukan dalam merancang sistem pemeliharaan yang konsisten, terukur, dan dapat dipertanggungjawabkan.
 
+```mermaid id="maintenance-paradigm-shift-mobile"
+flowchart TD
+    A["Old View<br/>Maintenance Activity"] --> B["Do Work<br/>Based on Schedule"]
+    B --> C["Measure<br/>Work Completion"]
+
+    D["Modern View<br/>Risk Control System"] --> E["Prevent Failure<br/>with Unacceptable Consequence"]
+    E --> F["Measure<br/>Risk Reduction"]
+
+    C --> G{"Strategic<br/>Value?"}
+    F --> G
+
+    G -- "Low" --> H["Busy but<br/>Not Necessarily Safe"]
+    G -- "High" --> I["Safety<br/>Availability<br/>Business Continuity"]
+
+    classDef old fill:#FFEBEE,stroke:#C62828,color:#111;
+    classDef modern fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef decision fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef value fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+
+    class A,B,C,H old;
+    class D,E,F,I modern;
+    class G decision;
+```
+
 ---
 
-### 0.5 Posisi Maintenance dalam Tata Kelola Perusahaan
+# 0.5 Posisi Maintenance dalam Tata Kelola Perusahaan
 
 Dalam industri petrokimia, fungsi maintenance **tidak dapat lagi dipandang sebagai fungsi teknis yang berdiri sendiri**. Kompleksitas operasi, besarnya eksposur risiko, serta dampak finansial dari setiap keputusan pemeliharaan menempatkan maintenance sebagai **bagian integral dari tata kelola perusahaan (corporate governance)**.
 
@@ -147,9 +270,36 @@ Selain itu, pemeliharaan memiliki hubungan langsung dengan **kepatuhan terhadap 
 
 Dalam konteks ini, menjadi jelas bahwa **keputusan maintenance adalah keputusan manajerial**, bukan sekadar keputusan teknis lapangan. Keputusan tersebut memerlukan **kerangka sistem yang terstruktur**, berbasis data dan risiko, serta terintegrasi dengan kebijakan perusahaan—bukan bergantung pada intuisi individu atau kebiasaan historis. Posisi inilah yang menuntut pemeliharaan modern untuk dibangun di atas filosofi, tata kelola, dan mekanisme pengambilan keputusan yang konsisten dan transparan.
 
+```mermaid id="maintenance-corporate-governance-mobile"
+flowchart TD
+    A["Maintenance<br/>Decision"] --> B["Operational<br/>Risk"]
+    A --> C["Budget<br/>Impact"]
+    A --> D["SHE<br/>Compliance"]
+    A --> E["Audit<br/>Traceability"]
+
+    B --> F["Enterprise<br/>Risk Management"]
+    C --> F
+    D --> F
+    E --> F
+
+    F --> G["Maintenance is<br/>Managerial Decision"]
+    G --> H["Requires<br/>Structured Governance"]
+
+    classDef decision fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef domain fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef erm fill:#FFEBEE,stroke:#C62828,color:#111;
+    classDef gov fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef output fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+
+    class A decision;
+    class B,C,D,E domain;
+    class F erm;
+    class G,H gov;
+```
+
 ---
 
-### 0.6 Tujuan Penyusunan _Maintenance System Handbook_
+# 0.6 Tujuan Penyusunan _Maintenance System Handbook_
 
 _Maintenance System Handbook_ disusun sebagai respons atas kebutuhan nyata akan **kerangka sistem pemeliharaan yang utuh, konsisten, dan dapat dipertanggungjawabkan** di lingkungan industri petrokimia. Selama ini, banyak organisasi memiliki prosedur, standar kerja, dan praktik pemeliharaan yang berjalan secara parsial—kuat di sisi teknis, namun lemah dalam integrasi filosofi, pengambilan keputusan, dan tata kelola risiko.
 
@@ -164,9 +314,36 @@ Secara substansi, _Maintenance System Handbook_ mengintegrasikan tiga pilar utam
 📌 **Penegasan:**
 Handbook ini **bukan Standard Operating Procedure (SOP)** dan tidak dimaksudkan untuk menggantikan prosedur teknis yang sudah ada. Sebaliknya, dokumen ini berfungsi sebagai **arsitektur sistem**, yaitu kerangka berpikir dan pengambilan keputusan yang menjadi acuan dalam menyusun, menilai, dan menyempurnakan seluruh kebijakan, prosedur, dan praktik pemeliharaan di tingkat organisasi.
 
+```mermaid id="msh-purpose-architecture-mobile"
+flowchart TD
+    A["Maintenance System<br/>Handbook"] --> B["Philosophy<br/>Risk-Based Foundation"]
+    A --> C["Managerial Practice<br/>Organization & Execution"]
+    A --> D["Field Reality<br/>Petrochemical Case"]
+
+    B --> E["Why & On What Basis<br/>System is Built"]
+    C --> F["Who Does What<br/>How It Runs"]
+    D --> G["Relevant to<br/>Actual Plant Risk"]
+
+    E --> H["System<br/>Architecture"]
+    F --> H
+    G --> H
+
+    H --> I["Reference for<br/>Policy, Procedure,<br/>and Improvement"]
+
+    classDef msh fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef pillar fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef function fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef output fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+
+    class A msh;
+    class B,C,D pillar;
+    class E,F,G function;
+    class H,I output;
+```
+
 ---
 
-### 🧠 Kesimpulan Module 0
+# 🧠 Kesimpulan Module 0
 
 Modul 0 menegaskan bahwa **kebutuhan akan sistem pemeliharaan modern bukan merupakan pilihan strategis yang bersifat opsional**, melainkan **konsekuensi logis dan tak terelakkan** dari karakter industri petrokimia itu sendiri. Lingkungan operasi dengan risiko tinggi, proses yang bersifat kontinu, serta eksposur kerugian yang besar menjadikan setiap kegagalan peralatan sebagai isu yang melampaui ranah teknis, dan langsung berdampak pada **keselamatan, lingkungan, kontinuitas operasi, serta keberlanjutan bisnis**.
 
@@ -174,17 +351,60 @@ Dalam konteks tersebut, pendekatan pemeliharaan yang reaktif, generik, dan berba
 
 Tanpa pemahaman konteks yang dibangun dalam Modul 0 ini, pembahasan teknis dan metodologis pada modul-modul berikutnya akan kehilangan **makna strategis**, karena tidak memiliki landasan “mengapa” yang kuat. Oleh sebab itu, Modul 0 menjadi prasyarat konseptual untuk memahami dan menerima keseluruhan kerangka _Maintenance System Handbook_.
 
+```mermaid id="module-0-final-logic-mobile"
+flowchart TD
+    A["Petrochemical Context<br/>High Risk Industry"] --> B["Continuous Process<br/>Limited Stop-Start"]
+    B --> C["Equipment Failure<br/>High Consequence"]
+    C --> D["Downtime<br/>Business Risk"]
+    D --> E["Conventional Maintenance<br/>Not Enough"]
+    E --> F["Maintenance Must Become<br/>Risk Control System"]
+    F --> G["Need Maintenance<br/>System Handbook"]
+
+    classDef context fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef process fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef risk fill:#FFEBEE,stroke:#C62828,color:#111;
+    classDef shift fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef handbook fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+
+    class A context;
+    class B process;
+    class C,D risk;
+    class E,F shift;
+    class G handbook;
+```
+
 ---
 
-### 🔗 Korelasi dengan Modul Lain
+# 🔗 Korelasi dengan Modul Lain
 
 - **Module 1**: Menjawab _atas dasar apa_ sistem pemeliharaan modern dibangun, termasuk filosofi dan legitimasi risk-based approach. [_Module 1 – Filosofi dan Fondasi Risiko Sistem Pemeliharaan_](/blog/management/MSH/MSH-1-maintenance-fondasi-risiko)
 - **Module 2**: Menguraikan _bagaimana risiko diterjemahkan menjadi keputusan_ dalam sistem pemeliharaan. [_Module 2 – Model Risiko dan Logika Pengambilan Keputusan Pemeliharaan_](/blog/management/MSH/MSH-2-model-risiko)
 - **Module 7**: Menutup keseluruhan sistem dengan _evaluasi, pembelajaran, dan perbaikan berkelanjutan_ dalam perspektif jangka panjang. [_Module 7 – Lifecycle, Turnaround & Continuous Improvement_](/blog/management/MSH/MSH-8-lifecycle-ta)
 
+```mermaid id="module-0-to-next-modules-mobile"
+flowchart TD
+    A["Module 0<br/>Why Maintenance Must Evolve"] --> B["Module 1<br/>Philosophy & Risk Foundation"]
+    B --> C["Module 2<br/>Risk to Decision Logic"]
+    C --> D["Module 3<br/>RBM Practical Execution"]
+    D --> E["Module 5<br/>Organization & Accountability"]
+    E --> F["Module 7 / 8<br/>Lifecycle, TA & Continuous Improvement"]
+
+    classDef m0 fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef foundation fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef decision fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef execution fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+    classDef improve fill:#FFEBEE,stroke:#C62828,color:#111;
+
+    class A m0;
+    class B foundation;
+    class C decision;
+    class D,E execution;
+    class F improve;
+```
+
 ---
 
-### 📚 Referensi Module 0
+# 📚 Referensi Module 0
 
 **Module 0 – Konteks Industri dan Alasan Sistem Pemeliharaan Harus Berevolusi**
 

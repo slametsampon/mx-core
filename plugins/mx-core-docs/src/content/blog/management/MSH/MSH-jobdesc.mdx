@@ -15,11 +15,13 @@ draft: false
 summary: Artikel ini disusun sebagai implementative reference untuk menerjemahkan Risk-Based Maintenance (RBM) ke dalam Job Description berbasis risiko yang operasional, dari level teknisi hingga manager. Artikel ini bukan bagian dari modul inti Maintenance System Handbook (MSH), melainkan pelengkap penting yang harus dibaca setelah MSH-3 (RBM) dan Strategi Manpower dalam Ekosistem RBM. Fokus utama artikel adalah memastikan bahwa keputusan berbasis risiko benar-benar dijalankan melalui penetapan peran, kewenangan, eskalasi, dan tanggung jawab risiko pada setiap jenjang jabatan. Dengan pendekatan ini, JobDesc berfungsi sebagai pengunci eksekusi RBM, bukan sekadar dokumen administratif.
 ---
 
-**_Job Description Berbasis Risiko dalam Ekosistem Risk-Based Maintenance (RBM)_**
+# **_Job Description Berbasis Risiko dalam Ekosistem Risk-Based Maintenance (RBM)_**
+
 _One-Stop Reference Penyusunan JobDesc dari Teknisi hingga Manager_
 
 ---
 
+- [**_Job Description Berbasis Risiko dalam Ekosistem Risk-Based Maintenance (RBM)_**](#job-description-berbasis-risiko-dalam-ekosistem-risk-based-maintenance-rbm)
 - [**0. Prolog — Mengapa Job Description Harus Diturunkan per Jenjang Jabatan**](#0-prolog--mengapa-job-description-harus-diturunkan-per-jenjang-jabatan)
 - [**1. Masalah Job Description Konvensional dalam Sistem RBM**](#1-masalah-job-description-konvensional-dalam-sistem-rbm)
   - [**1.1 Karakteristik Job Description Tradisional**](#11-karakteristik-job-description-tradisional)
@@ -100,7 +102,7 @@ _One-Stop Reference Penyusunan JobDesc dari Teknisi hingga Manager_
 
 ---
 
-## **0. Prolog — Mengapa Job Description Harus Diturunkan per Jenjang Jabatan**
+# **0. Prolog — Mengapa Job Description Harus Diturunkan per Jenjang Jabatan**
 
 Artikel ini disusun sebagai **_implementative reference_**, bukan sebagai _handbook konseptual_. Fokus utamanya bukan pada pengembangan filosofi baru _Risk-Based Maintenance (RBM)_, melainkan pada **penerjemahan keputusan RBM ke dalam peran, kewenangan, dan tanggung jawab jabatan yang operasional dan dapat dijalankan di lapangan**. Dengan demikian, artikel ini dimaksudkan sebagai panduan praktis dalam menyusun _Job Description_ yang secara langsung mengunci eksekusi RBM pada level organisasi dan individu.
 
@@ -117,33 +119,33 @@ Oleh karena itu, **urutan baca menjadi krusial**. Artikel ini **direkomendasikan
 2. _MSH-manpower_, untuk memahami peran manusia sebagai bagian dari desain sistem, bukan sekadar sumber daya.
 
 <ResourceBox
-  title="Korelasi internal-link modul:"
-  items={[
-    {
-      name: 'Maintenance System Handbook (MSH)',
-      href: '/blog/management/MSH/MSH-panduan-lengkap',
-      description:
-        'Dari Risk-Based Thinking ke Reliability-Driven Organization - Panduan Lengkap Maintenance System Handbook',
-    },
-    {
-      name: 'Risk-Based Maintenance',
-      href: '/blog/management/MSH/MSH-3-rbm',
-      description:
-        'Module 3 – Risk-Based Maintenance sebagai Strategi Pemeliharaan Praktis',
-    },
-    {
-      name: 'Strategi Manpower',
-      href: '/blog/management/MSH/MSH-manpower',
-      description:
-        'Strategi Manpower dalam Ekosistem Risk-Based Maintenance (RBM)',
-    },
-    {
-      name: 'Instruksi Kerja (IK/WI)',
-      href: '/blog/management/MSH/MSH-ik-wi',
-      description:
-        'Instruksi Kerja (IK/WI) Berbasis Risiko dalam Ekosistem Risk-Based Maintenance (RBM)',
-    },
-  ]}
+title="Korelasi internal-link modul:"
+items={[
+{
+name: 'Maintenance System Handbook (MSH)',
+href: '/blog/management/MSH/MSH-panduan-lengkap',
+description:
+'Dari Risk-Based Thinking ke Reliability-Driven Organization - Panduan Lengkap Maintenance System Handbook',
+},
+{
+name: 'Risk-Based Maintenance',
+href: '/blog/management/MSH/MSH-3-rbm',
+description:
+'Module 3 – Risk-Based Maintenance sebagai Strategi Pemeliharaan Praktis',
+},
+{
+name: 'Strategi Manpower',
+href: '/blog/management/MSH/MSH-manpower',
+description:
+'Strategi Manpower dalam Ekosistem Risk-Based Maintenance (RBM)',
+},
+{
+name: 'Instruksi Kerja (IK/WI)',
+href: '/blog/management/MSH/MSH-ik-wi',
+description:
+'Instruksi Kerja (IK/WI) Berbasis Risiko dalam Ekosistem Risk-Based Maintenance (RBM)',
+},
+]}
 />
 
 Tanpa konteks tersebut, _Job Description_ berbasis risiko berisiko disalahpahami sebagai dokumen HR konvensional atau daftar tugas administratif, padahal tujuan utamanya adalah **mengunci siapa mengambil keputusan apa, pada risiko level berapa, dan dengan konsekuensi apa**.
@@ -156,11 +158,33 @@ Prinsip dasar yang dikunci sejak awal artikel ini adalah bahwa **Job Description
 
 Dengan landasan ini, artikel selanjutnya akan menurunkan _Job Description berbasis risiko_ secara sistematis dari level teknisi hingga manajerial, sehingga RBM tidak berhenti sebagai konsep, tetapi benar-benar dijalankan secara konsisten dan dapat dipertanggungjawabkan.
 
+```mermaid id="jobdesc-rbm-overview-mobile"
+flowchart TD
+    A["RBM Strategy"] --> B["Asset Risk<br/>Criticality"]
+    B --> C["Role & Authority"]
+    C --> D["Escalation<br/>Obligation"]
+    D --> E["Stop-Work<br/>Right"]
+    E --> F["Risk Ownership"]
+    F --> G["Auditable<br/>Job Description"]
+
+    classDef strategy fill:#E3F2FD,stroke:#1565C0,color:#0D1B2A;
+    classDef risk fill:#FFEBEE,stroke:#C62828,color:#0D1B2A;
+    classDef role fill:#E8F5E9,stroke:#2E7D32,color:#0D1B2A;
+    classDef action fill:#FFF8E1,stroke:#F9A825,color:#0D1B2A;
+    classDef owner fill:#F3E5F5,stroke:#6A1B9A,color:#0D1B2A;
+
+    class A strategy;
+    class B risk;
+    class C,D role;
+    class E action;
+    class F,G owner;
+```
+
 ---
 
-## **1. Masalah Job Description Konvensional dalam Sistem RBM**
+# **1. Masalah Job Description Konvensional dalam Sistem RBM**
 
-### **1.1 Karakteristik Job Description Tradisional**
+## **1.1 Karakteristik Job Description Tradisional**
 
 _Job Description_ (JobDesc) konvensional umumnya disusun dengan pendekatan **administratif dan fungsional**, berfokus pada pembagian tugas, garis pelaporan, serta indikator kinerja berbasis aktivitas. Karakteristik utama JobDesc tradisional antara lain:
 
@@ -173,7 +197,7 @@ Pendekatan ini relatif memadai dalam sistem pemeliharaan berbasis waktu (_Time-B
 
 ---
 
-### **1.2 Kegagalan JobDesc Konvensional dalam Pengambilan Keputusan Risiko**
+## **1.2 Kegagalan JobDesc Konvensional dalam Pengambilan Keputusan Risiko**
 
 Dalam RBM, keputusan pemeliharaan tidak lagi ditentukan oleh jadwal atau kebiasaan, melainkan oleh **tingkat risiko aset dan konsekuensi kegagalannya**. JobDesc konvensional gagal mendukung proses ini karena:
 
@@ -185,7 +209,7 @@ Akibatnya, keputusan penting sering tertunda, dihindari, atau diambil tanpa dasa
 
 ---
 
-### **1.3 Kegagalan dalam Mekanisme Eskalasi**
+## **1.3 Kegagalan dalam Mekanisme Eskalasi**
 
 RBM menuntut eskalasi yang **cepat, terstruktur, dan berbasis risiko**, bukan berdasarkan senioritas semata. JobDesc konvensional umumnya:
 
@@ -197,7 +221,7 @@ Kondisi ini menyebabkan **eskalasi terlambat atau tidak terjadi sama sekali**, t
 
 ---
 
-### **1.4 Kegagalan dalam Implementasi Stop-Work**
+## **1.4 Kegagalan dalam Implementasi Stop-Work**
 
 Salah satu pilar penting RBM adalah kemampuan sistem untuk **menghentikan pekerjaan atau operasi sebelum risiko berkembang menjadi kegagalan**. JobDesc konvensional sering kali:
 
@@ -209,7 +233,7 @@ Akibatnya, pekerja dan supervisor di lapangan cenderung melanjutkan pekerjaan me
 
 ---
 
-### **1.5 Dampak Langsung terhadap Kegagalan RBM**
+## **1.5 Dampak Langsung terhadap Kegagalan RBM**
 
 Kombinasi kegagalan dalam keputusan risiko, eskalasi, dan _stop-work_ menjadikan RBM **tidak pernah benar-benar dieksekusi**, meskipun secara formal telah dideklarasikan. Dampak yang umum terjadi antara lain:
 
@@ -220,7 +244,7 @@ Kombinasi kegagalan dalam keputusan risiko, eskalasi, dan _stop-work_ menjadikan
 
 ---
 
-### **1.6 Transisi Menuju Job Description Berbasis Risiko**
+## **1.6 Transisi Menuju Job Description Berbasis Risiko**
 
 Untuk mengatasi keterbatasan tersebut, diperlukan pergeseran mendasar dari JobDesc konvensional menuju **Job Description berbasis risiko**. Transisi ini mencakup:
 
@@ -230,11 +254,35 @@ Untuk mengatasi keterbatasan tersebut, diperlukan pergeseran mendasar dari JobDe
 
 Dengan transisi ini, JobDesc tidak lagi bersifat administratif, melainkan menjadi **instrumen utama yang menghubungkan strategi RBM dengan eksekusi nyata di lapangan**. Bab-bab selanjutnya akan membahas bagaimana prinsip ini diturunkan secara sistematis ke setiap jenjang jabatan dalam ekosistem RBM.
 
+```mermaid id="jobdesc-konvensional-vs-rbm-mobile"
+flowchart TD
+    A["JobDesc<br/>Konvensional"] --> B["Daftar Tugas<br/>Administratif"]
+    B --> C["Authority<br/>Tidak Jelas"]
+    C --> D["Eskalasi<br/>Informal"]
+    D --> E["Stop-Work<br/>Ragu-ragu"]
+    E --> F["RBM Menjadi<br/>Paper System"]
+
+    A2["JobDesc<br/>Berbasis RBM"] --> B2["Decision Scope<br/>Jelas"]
+    B2 --> C2["Authority Limit<br/>Tegas"]
+    C2 --> D2["Mandatory<br/>Escalation"]
+    D2 --> E2["Stop-Work<br/>Dilindungi"]
+    E2 --> F2["RBM Menjadi<br/>Living System"]
+
+    classDef bad fill:#FFEBEE,stroke:#C62828,color:#111;
+    classDef warn fill:#FFF3E0,stroke:#EF6C00,color:#111;
+    classDef good fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef system fill:#E3F2FD,stroke:#1565C0,color:#111;
+
+    class A,B,C,D,E,F bad;
+    class A2,B2,C2,D2,E2 good;
+    class F2 system;
+```
+
 ---
 
-## **2. Prinsip Umum Job Description Berbasis Risiko**
+# **2. Prinsip Umum Job Description Berbasis Risiko**
 
-### **2.1 Job Description sebagai Turunan Asset Criticality dan Risk Exposure**
+## **2.1 Job Description sebagai Turunan Asset Criticality dan Risk Exposure**
 
 Dalam ekosistem **Risk-Based Maintenance (RBM)**, _Job Description_ tidak boleh disusun secara generik atau seragam antar aset dan jabatan. JobDesc harus diturunkan secara langsung dari **tingkat kritikalitas aset (_asset criticality_)** dan **paparan risiko (_risk exposure_)** yang dihadapi dalam pengambilan keputusan operasional.
 
@@ -245,11 +293,11 @@ Dengan demikian, semakin tinggi kritikalitas aset dan paparan risikonya, semakin
 
 ---
 
-### **2.2 Elemen Wajib dalam Job Description Berbasis RBM**
+## **2.2 Elemen Wajib dalam Job Description Berbasis RBM**
 
 Agar JobDesc benar-benar berfungsi sebagai pengunci operasional RBM, terdapat **tiga elemen wajib** yang harus dinyatakan secara eksplisit pada setiap jenjang jabatan.
 
-#### **1) Decision Scope (Ruang Lingkup Keputusan)**
+### **1) Decision Scope (Ruang Lingkup Keputusan)**
 
 JobDesc harus menetapkan **jenis dan batas keputusan** yang boleh diambil oleh pemegang jabatan, termasuk:
 
@@ -259,7 +307,7 @@ JobDesc harus menetapkan **jenis dan batas keputusan** yang boleh diambil oleh p
 
 Tanpa _decision scope_ yang jelas, keputusan akan bergantung pada interpretasi individu dan berpotensi melampaui kapasitas risiko yang dapat diterima.
 
-#### **2) Authority Limit (Batas Kewenangan)**
+### **2) Authority Limit (Batas Kewenangan)**
 
 Setiap keputusan harus memiliki **batas kewenangan yang tegas**, yang dikaitkan dengan:
 
@@ -269,7 +317,7 @@ Setiap keputusan harus memiliki **batas kewenangan yang tegas**, yang dikaitkan 
 
 Authority limit mencegah dua kegagalan ekstrem: **over-authority** (keputusan berisiko tinggi diambil oleh level yang tidak layak) dan **authority paralysis** (tidak ada yang berani mengambil keputusan).
 
-#### **3) Escalation Obligation (Kewajiban Eskalasi)**
+### **3) Escalation Obligation (Kewajiban Eskalasi)**
 
 JobDesc berbasis risiko harus mendefinisikan **kapan eskalasi menjadi kewajiban**, bukan pilihan. Eskalasi wajib terjadi ketika:
 
@@ -281,7 +329,7 @@ Dengan prinsip ini, eskalasi menjadi bagian dari desain sistem, bukan bergantung
 
 ---
 
-### **2.3 Job Description sebagai Definisi Risk Ownership**
+## **2.3 Job Description sebagai Definisi Risk Ownership**
 
 Berbeda dengan JobDesc konvensional yang berfokus pada aktivitas, **Job Description berbasis risiko berfungsi sebagai definisi _risk ownership_**. Artinya, JobDesc menetapkan secara jelas:
 
@@ -293,20 +341,29 @@ Dalam kerangka ini, aktivitas hanyalah konsekuensi dari keputusan risiko, bukan 
 
 ---
 
-### **2.4 Diagram Logika Penurunan Job Description Berbasis Risiko**
+## **2.4 Diagram Logika Penurunan Job Description Berbasis Risiko**
 
 Prinsip-prinsip di atas dapat dirangkum dalam alur logika berikut, yang menjadi dasar penurunan JobDesc di seluruh jenjang jabatan:
 
-```
-Asset Criticality
-        ↓
-Risk Exposure
-        ↓
-Decision Role
-        ↓
-Authority Level
-        ↓
-Job Description
+```mermaid id="penurunan-jobdesc-rbm-mobile"
+flowchart TD
+    A["Asset<br/>Criticality"] --> B["Risk<br/>Exposure"]
+    B --> C["Decision<br/>Role"]
+    C --> D["Authority<br/>Level"]
+    D --> E["Escalation<br/>Obligation"]
+    E --> F["Job Description<br/>Berbasis Risiko"]
+
+    classDef asset fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef risk fill:#FFEBEE,stroke:#C62828,color:#111;
+    classDef decision fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef authority fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef jobdesc fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+
+    class A asset;
+    class B risk;
+    class C decision;
+    class D,E authority;
+    class F jobdesc;
 ```
 
 Diagram ini menegaskan bahwa JobDesc **bukan titik awal**, melainkan **produk akhir dari analisis risiko**. Dengan mengikuti alur ini, organisasi memastikan bahwa setiap JobDesc:
@@ -319,9 +376,9 @@ Bab selanjutnya akan menggunakan prinsip ini untuk membangun **arsitektur jenjan
 
 ---
 
-## **3. Arsitektur Jenjang Jabatan dalam RBM (Risk-Based Role Ladder)**
+# **3. Arsitektur Jenjang Jabatan dalam RBM (Risk-Based Role Ladder)**
 
-### **3.1 Jenjang Jabatan dalam Ekosistem RBM**
+## **3.1 Jenjang Jabatan dalam Ekosistem RBM**
 
 Dalam kerangka **Risk-Based Maintenance (RBM)**, jenjang jabatan tidak dipandang semata sebagai hirarki organisasi atau pembagian administrasi kerja. Sebaliknya, setiap jenjang jabatan dirancang sebagai **lapisan pengendalian risiko (_risk control layer_)** yang memiliki fungsi spesifik dalam mencegah, mendeteksi, membatasi, dan menerima risiko operasional.
 
@@ -339,7 +396,7 @@ Pembagian ini bukan dimaksudkan untuk menyeragamkan struktur organisasi antar pe
 
 ---
 
-### **3.2 Fungsi Setiap Level sebagai Pengendali Risiko**
+## **3.2 Fungsi Setiap Level sebagai Pengendali Risiko**
 
 Setiap level dalam _Risk-Based Role Ladder_ memiliki peran yang berbeda dalam pengendalian risiko, yang secara umum dapat diringkas sebagai berikut:
 
@@ -378,9 +435,34 @@ Setiap level dalam _Risk-Based Role Ladder_ memiliki peran yang berbeda dalam pe
   - menyetujui atau menolak penerimaan risiko residual,
   - memastikan keputusan dapat dipertanggungjawabkan secara manajerial dan audit.
 
+```mermaid id="risk-based-role-ladder-mobile"
+flowchart TD
+    L7["L7 Manager<br/>Risk Acceptance"]
+    L6["L6 Superintendent<br/>Operational Risk Owner"]
+    L5["L5 Senior Engineer<br/>Technical Validation"]
+    L4["L4 Engineer<br/>Technical Decision"]
+    L3["L3 Supervisor<br/>Decision Router"]
+    L2["L2 Foreman<br/>Field Control"]
+    L1["L1 Teknisi<br/>Early Detector"]
+
+    L1 --> L2 --> L3 --> L4 --> L5 --> L6 --> L7
+
+    classDef field fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef route fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef tech fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef owner fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+    classDef accept fill:#FFEBEE,stroke:#C62828,color:#111;
+
+    class L1,L2 field;
+    class L3 route;
+    class L4,L5 tech;
+    class L6 owner;
+    class L7 accept;
+```
+
 ---
 
-### **3.3 Penegasan Prinsip Desain Arsitektur**
+## **3.3 Penegasan Prinsip Desain Arsitektur**
 
 Penting untuk ditegaskan bahwa arsitektur jenjang jabatan ini:
 
@@ -400,9 +482,9 @@ Bab-bab berikutnya akan menurunkan **Job Description berbasis risiko** secara de
 
 ---
 
-## **4. Job Description RBM — Level Teknisi (L1)**
+# **4. Job Description RBM — Level Teknisi (L1)**
 
-### **4.1 Konteks Risiko Aset yang Ditangani**
+## **4.1 Konteks Risiko Aset yang Ditangani**
 
 Pada ekosistem **Risk-Based Maintenance (RBM)**, teknisi beroperasi pada **lapisan risiko paling dekat dengan sumber bahaya**. Teknisi umumnya menangani pekerjaan pada aset dengan tingkat kritikalitas yang bervariasi—mulai dari aset pendukung hingga aset kritis—namun selalu berada pada fase **eksekusi langsung** di lapangan.
 
@@ -410,7 +492,7 @@ Dalam konteks ini, teknisi **tidak bertanggung jawab atas penilaian risiko siste
 
 ---
 
-### **4.2 Peran Teknisi dalam Eksekusi dan Deteksi Dini Risiko**
+## **4.2 Peran Teknisi dalam Eksekusi dan Deteksi Dini Risiko**
 
 Peran utama teknisi dalam RBM meliputi:
 
@@ -440,7 +522,7 @@ Dalam RBM, nilai teknisi bukan terletak pada pengambilan keputusan strategis, me
 
 ---
 
-### **4.3 Batas Kewenangan Keputusan**
+## **4.3 Batas Kewenangan Keputusan**
 
 Job Description berbasis risiko secara tegas membatasi kewenangan teknisi sebagai berikut:
 
@@ -460,7 +542,7 @@ Prinsip ini menjaga agar teknisi **tidak dipaksa mengambil keputusan risiko di l
 
 ---
 
-### **4.4 Mandatory Escalation**
+## **4.4 Mandatory Escalation**
 
 Dalam RBM, eskalasi bagi teknisi **bukan pilihan**, melainkan **kewajiban struktural**. Teknisi wajib melakukan eskalasi apabila:
 
@@ -482,7 +564,7 @@ Eskalasi dilakukan kepada **Foreman atau Supervisor**, tanpa syarat penyelesaian
 
 ---
 
-### **4.5 Stop-Work Right sebagai Kewajiban Operasional**
+## **4.5 Stop-Work Right sebagai Kewajiban Operasional**
 
 Dalam ekosistem RBM, **hak stop-work teknisi adalah kewajiban**, bukan hak opsional.
 
@@ -497,7 +579,7 @@ Tanggung jawab pembuktian dan evaluasi risiko **berpindah ke level di atas**, bu
 
 ---
 
-### **4.6 Prinsip Kunci Job Description Teknisi dalam RBM**
+## **4.6 Prinsip Kunci Job Description Teknisi dalam RBM**
 
 Sebagai penutup sub-bab ini, prinsip Job Description teknisi dalam RBM dikunci sebagai berikut:
 
@@ -510,9 +592,9 @@ Dengan desain ini, teknisi berfungsi sebagai **active barrier pertama** dalam si
 
 ---
 
-## **5. Job Description RBM — Level Foreman (L2)**
+# **5. Job Description RBM — Level Foreman (L2)**
 
-### **5.1 Fungsi Foreman sebagai Kontrol Lapangan**
+## **5.1 Fungsi Foreman sebagai Kontrol Lapangan**
 
 Dalam ekosistem **Risk-Based Maintenance (RBM)**, foreman berperan sebagai **pengendali lapangan tingkat pertama** yang menjembatani antara **deteksi risiko oleh teknisi** dan **keputusan teknis–operasional oleh supervisor/engineer**. Foreman tidak sekadar mengoordinasikan pekerjaan, tetapi bertanggung jawab memastikan bahwa **asumsi perencanaan tetap valid ketika pekerjaan dieksekusi di lapangan**.
 
@@ -520,7 +602,7 @@ Foreman menjadi titik kontrol awal yang mencegah deviasi kecil berkembang menjad
 
 ---
 
-### **5.2 Validasi Kondisi Lapangan terhadap SOP dan Perencanaan**
+## **5.2 Validasi Kondisi Lapangan terhadap SOP dan Perencanaan**
 
 Tanggung jawab utama foreman adalah melakukan **validasi lapangan** secara aktif, meliputi:
 
@@ -545,7 +627,7 @@ Dalam RBM, foreman berfungsi sebagai **penjaga integritas perencanaan**, memasti
 
 ---
 
-### **5.3 Otoritas Penghentian Pekerjaan Tim**
+## **5.3 Otoritas Penghentian Pekerjaan Tim**
 
 Foreman memiliki **otoritas eksplisit** untuk menghentikan pekerjaan tim apabila ditemukan:
 
@@ -561,7 +643,7 @@ Penghentian pekerjaan oleh foreman **tidak memerlukan persetujuan supervisor ter
 
 ---
 
-### **5.4 Batas Kewenangan terhadap Risiko Residual**
+## **5.4 Batas Kewenangan terhadap Risiko Residual**
 
 Job Description berbasis risiko menetapkan batas yang tegas bagi foreman:
 
@@ -581,7 +663,7 @@ Dengan batas ini, foreman **tidak diposisikan sebagai pengambil keputusan risiko
 
 ---
 
-### **5.5 Posisi Foreman sebagai Buffer Risiko Pertama**
+## **5.5 Posisi Foreman sebagai Buffer Risiko Pertama**
 
 Dalam _Risk-Based Role Ladder_, foreman adalah **buffer risiko pertama** setelah teknisi. Fungsi utamanya adalah:
 
@@ -593,7 +675,7 @@ Peran ini krusial karena banyak kegagalan besar berawal dari **deviasi kecil yan
 
 ---
 
-### **5.6 Prinsip Kunci Job Description Foreman dalam RBM**
+## **5.6 Prinsip Kunci Job Description Foreman dalam RBM**
 
 Prinsip yang dikunci untuk level foreman adalah:
 
@@ -606,9 +688,9 @@ Dengan desain ini, foreman berfungsi sebagai **lapisan pengaman aktif** yang mem
 
 ---
 
-## **6. Job Description RBM — Level Supervisor (L3)**
+# **6. Job Description RBM — Level Supervisor (L3)**
 
-### **6.1 Peran Supervisor dalam Eskalasi Operasional**
+## **6.1 Peran Supervisor dalam Eskalasi Operasional**
 
 Dalam ekosistem **Risk-Based Maintenance (RBM)**, supervisor berperan sebagai **pengelola eskalasi operasional** yang memastikan bahwa setiap deviasi lapangan **diterjemahkan menjadi keputusan operasional yang tepat**, bukan diselesaikan secara ad-hoc. Supervisor berada pada titik transisi antara kontrol lapangan (teknisi–foreman) dan analisis teknis yang lebih dalam (engineer).
 
@@ -616,7 +698,7 @@ Peran ini menjadikan supervisor sebagai aktor kunci dalam menjaga agar RBM **tid
 
 ---
 
-### **6.2 Authority Berbasis Risk Trigger**
+## **6.2 Authority Berbasis Risk Trigger**
 
 Kewenangan supervisor **tidak ditentukan oleh hierarki jabatan semata**, melainkan **diaktifkan oleh _risk trigger_** yang teridentifikasi di lapangan. _Risk trigger_ tersebut dapat berupa:
 
@@ -628,7 +710,7 @@ Ketika _risk trigger_ muncul, supervisor **wajib mengambil alih pengendalian ope
 
 ---
 
-### **6.3 Kewenangan Operasional Supervisor**
+## **6.3 Kewenangan Operasional Supervisor**
 
 Job Description berbasis risiko menetapkan kewenangan supervisor sebagai berikut:
 
@@ -650,7 +732,7 @@ Perubahan metode oleh supervisor **bukan keputusan strategis**, melainkan **tind
 
 ---
 
-### **6.4 Kewajiban Eskalasi jika Risk Class Berubah**
+## **6.4 Kewajiban Eskalasi jika Risk Class Berubah**
 
 Supervisor **wajib melakukan eskalasi** ke level engineer atau di atasnya apabila:
 
@@ -666,7 +748,7 @@ Dalam RBM, **menahan eskalasi ketika risk class berubah merupakan pelanggaran si
 
 ---
 
-### **6.5 Supervisor sebagai _Decision Router_**
+## **6.5 Supervisor sebagai _Decision Router_**
 
 Supervisor diposisikan sebagai **_decision router_**, bukan **decision owner**. Artinya:
 
@@ -682,7 +764,7 @@ Fungsi ini memastikan bahwa **keputusan risiko selalu diambil pada level yang me
 
 ---
 
-### **6.6 Prinsip Kunci Job Description Supervisor dalam RBM**
+## **6.6 Prinsip Kunci Job Description Supervisor dalam RBM**
 
 Prinsip yang dikunci untuk level supervisor adalah:
 
@@ -693,17 +775,42 @@ Prinsip yang dikunci untuk level supervisor adalah:
 
 Dengan peran ini, supervisor menjadi **penjaga alur keputusan RBM**, memastikan bahwa sistem tetap responsif terhadap perubahan risiko tanpa kehilangan disiplin pengendalian.
 
+```mermaid id="field-escalation-stopwork-mobile"
+flowchart TD
+    A["Abnormality<br/>Detected"] --> B{"Risk Trigger?"}
+    B -- "No" --> C["Continue Work<br/>Within SOP"]
+    B -- "Yes" --> D["Stop-Work<br/>Immediately"]
+    D --> E["Foreman<br/>Validate Field"]
+    E --> F{"Risk Class<br/>Changed?"}
+    F -- "No" --> G["Resume with<br/>Controlled Method"]
+    F -- "Yes" --> H["Supervisor<br/>Escalates"]
+    H --> I["Engineer / Senior Engineer<br/>Technical Review"]
+    I --> J["Decision:<br/>Repair / Defer / Fix"]
+
+    classDef detect fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef decision fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef stop fill:#FFEBEE,stroke:#C62828,color:#111;
+    classDef control fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef tech fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+
+    class A detect;
+    class B,F decision;
+    class D stop;
+    class C,E,G,H control;
+    class I,J tech;
+```
+
 ---
 
-## **7. Job Description RBM — Level Engineer & Senior Engineer**
+# **7. Job Description RBM — Level Engineer & Senior Engineer**
 
 Pada level ini, RBM memasuki fase **pengambilan keputusan teknis yang berdampak langsung terhadap risiko residual sistem**. Engineer dan Senior Engineer tidak lagi berfokus pada stabilisasi lapangan semata, melainkan pada **validitas teknis pengendalian risiko**, **ketepatan strategi perbaikan**, dan **konsekuensi jangka menengah–panjang terhadap keandalan dan keselamatan aset**.
 
 ---
 
-### **7.1 Job Description RBM — Engineer (L4)**
+## **7.1 Job Description RBM — Engineer (L4)**
 
-#### **7.1.1 Penilaian Kelayakan Pengendalian Risiko**
+### **7.1.1 Penilaian Kelayakan Pengendalian Risiko**
 
 Engineer bertanggung jawab melakukan **penilaian teknis terhadap kelayakan pengendalian risiko** berdasarkan data lapangan, histori kegagalan, dan batas desain aset. Penilaian ini mencakup:
 
@@ -716,7 +823,7 @@ Engineer memastikan bahwa setiap keputusan teknis **berbasis data dan justifikas
 
 ---
 
-#### **7.1.2 Keputusan Teknis Kunci**
+### **7.1.2 Keputusan Teknis Kunci**
 
 Engineer memiliki kewenangan untuk mengambil keputusan teknis operasional, antara lain:
 
@@ -737,7 +844,7 @@ Keputusan ini **tidak boleh diambil tanpa kejelasan dampak risiko residual**.
 
 ---
 
-#### **7.1.3 Tanggung Jawab atas Kualitas Keputusan Teknis**
+### **7.1.3 Tanggung Jawab atas Kualitas Keputusan Teknis**
 
 Dalam RBM, engineer **bertanggung jawab atas kualitas keputusan**, bukan hanya hasil jangka pendek. Tanggung jawab ini mencakup:
 
@@ -750,9 +857,9 @@ Engineer tidak diperkenankan “menggeser” risiko ke level di atas tanpa justi
 
 ---
 
-### **7.2 Job Description RBM — Senior Engineer (L5)**
+## **7.2 Job Description RBM — Senior Engineer (L5)**
 
-#### **7.2.1 Validasi Keputusan Berisiko Tinggi**
+### **7.2.1 Validasi Keputusan Berisiko Tinggi**
 
 Senior Engineer berperan sebagai **validator keputusan teknis dengan eksposur risiko tinggi**. Perannya meliputi:
 
@@ -769,7 +876,7 @@ Senior Engineer berperan sebagai **validator keputusan teknis dengan eksposur ri
 
 ---
 
-#### **7.2.2 Penentuan Penerimaan Risiko Sementara**
+### **7.2.2 Penentuan Penerimaan Risiko Sementara**
 
 Senior Engineer memiliki kewenangan untuk:
 
@@ -784,7 +891,7 @@ Penerimaan risiko **tidak boleh bersifat implisit**; harus dinyatakan secara eks
 
 ---
 
-#### **7.2.3 Peran sebagai Technical Authority dalam Audit**
+### **7.2.3 Peran sebagai Technical Authority dalam Audit**
 
 Dalam konteks audit internal maupun eksternal, Senior Engineer berfungsi sebagai **technical authority**, yang:
 
@@ -800,7 +907,7 @@ Peran ini memastikan bahwa RBM **defensible secara teknis**, bukan sekadar dapat
 
 ---
 
-### **7.3 Prinsip Kunci Job Description Engineer & Senior Engineer dalam RBM**
+## **7.3 Prinsip Kunci Job Description Engineer & Senior Engineer dalam RBM**
 
 Prinsip yang dikunci pada level ini adalah:
 
@@ -811,11 +918,37 @@ Prinsip yang dikunci pada level ini adalah:
 
 Dengan struktur ini, level Engineer dan Senior Engineer menjadi **penentu kualitas teknis RBM**, memastikan bahwa sistem tidak hanya aman hari ini, tetapi juga **andal dan dapat dipertanggungjawabkan dalam jangka panjang**.
 
+```mermaid id="engineer-senior-engineer-decision-mobile"
+flowchart TD
+    A["Field Data<br/>Deviation / Failure"] --> B["Engineer<br/>Technical Assessment"]
+    B --> C{"Risk<br/>Acceptable?"}
+    C -- "Yes" --> D["Controlled<br/>Temporary Fix"]
+    C -- "No" --> E["Immediate<br/>Repair Required"]
+    D --> F{"High Risk<br/>or Critical Asset?"}
+    E --> F
+    F -- "No" --> G["Engineer<br/>Documents Decision"]
+    F -- "Yes" --> H["Senior Engineer<br/>Validation"]
+    H --> I["Temporary Risk<br/>Acceptance Limit"]
+    I --> J["Monitoring +<br/>Permanent Fix Plan"]
+
+    classDef data fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef assess fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef decision fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef risk fill:#FFEBEE,stroke:#C62828,color:#111;
+    classDef doc fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+
+    class A data;
+    class B,G assess;
+    class C,F decision;
+    class E,H,I risk;
+    class D,J doc;
+```
+
 ---
 
-## **8. Job Description RBM — Level Superintendent (L6)**
+# **8. Job Description RBM — Level Superintendent (L6)**
 
-### **8.1 Superintendent sebagai Risk Owner Operasional**
+## **8.1 Superintendent sebagai Risk Owner Operasional**
 
 Dalam ekosistem **Risk-Based Maintenance (RBM)**, Superintendent berperan sebagai **risk owner operasional**—yaitu pemegang tanggung jawab atas **risiko residual yang timbul dari keputusan pemeliharaan dalam batas operasi harian**. Pada level ini, risiko tidak lagi diperlakukan sebagai isu teknis semata, melainkan sebagai **konsekuensi operasional** yang harus dikelola secara sadar dan terukur.
 
@@ -823,7 +956,7 @@ Superintendent memastikan bahwa keputusan teknis yang diambil di level engineer 
 
 ---
 
-### **8.2 Otoritas Eskalasi Lintas Departemen**
+## **8.2 Otoritas Eskalasi Lintas Departemen**
 
 Sebagai risk owner operasional, Superintendent memiliki **otoritas eskalasi lintas departemen**, termasuk namun tidak terbatas pada:
 
@@ -846,7 +979,7 @@ Otoritas ini krusial untuk memastikan bahwa **keputusan RBM tidak terhambat oleh
 
 ---
 
-### **8.3 Penentuan Risk Tolerance Operasional**
+## **8.3 Penentuan Risk Tolerance Operasional**
 
 Superintendent bertanggung jawab menetapkan **risk tolerance operasional**, yaitu batas risiko yang masih dapat diterima **untuk menjaga kontinuitas operasi tanpa melanggar keselamatan dan kepatuhan**. Penentuan ini melibatkan:
 
@@ -866,7 +999,7 @@ Risk tolerance operasional **bukan kompromi sembarang**, melainkan keputusan sad
 
 ---
 
-### **8.4 Perlindungan Keputusan Stop-Work Bawahan**
+## **8.4 Perlindungan Keputusan Stop-Work Bawahan**
 
 Salah satu fungsi paling kritis Superintendent dalam RBM adalah **melindungi keputusan stop-work yang diambil oleh bawahan** (teknisi, foreman, supervisor). Perlindungan ini mencakup:
 
@@ -881,7 +1014,7 @@ Dengan perlindungan ini, Superintendent menjaga agar **mekanisme stop-work tetap
 
 ---
 
-### **8.5 Prinsip Kunci Job Description Superintendent dalam RBM**
+## **8.5 Prinsip Kunci Job Description Superintendent dalam RBM**
 
 Prinsip yang dikunci pada level Superintendent adalah:
 
@@ -894,9 +1027,9 @@ Dengan peran ini, Superintendent menjadi **penjaga keseimbangan antara keselamat
 
 ---
 
-## **9. Job Description RBM — Level Manager (L7)**
+# **9. Job Description RBM — Level Manager (L7)**
 
-### **9.1 Manager sebagai Pemegang Risk Acceptance**
+## **9.1 Manager sebagai Pemegang Risk Acceptance**
 
 Dalam ekosistem **Risk-Based Maintenance (RBM)**, Manager merupakan **pemegang _risk acceptance_ tertinggi** pada ranah pemeliharaan dan keandalan aset. Pada level ini, keputusan tidak lagi bersifat operasional, melainkan **strategis dan organisasional**, dengan konsekuensi langsung terhadap keselamatan, keandalan jangka panjang, serta eksposur bisnis perusahaan.
 
@@ -904,7 +1037,7 @@ Manager tidak bertindak sebagai pengambil keputusan teknis detail, tetapi sebaga
 
 ---
 
-### **9.2 Penentuan Batas Risiko yang Dapat Diterima**
+## **9.2 Penentuan Batas Risiko yang Dapat Diterima**
 
 Manager menetapkan **batas risiko yang dapat diterima (_risk acceptance criteria_)** bagi organisasi, dengan mempertimbangkan:
 
@@ -922,7 +1055,7 @@ Keputusan ini menjadi **acuan batas bawah** bagi seluruh struktur RBM dan harus 
 
 ---
 
-### **9.3 Tanggung Jawab Keputusan Defer Jangka Panjang**
+## **9.3 Tanggung Jawab Keputusan Defer Jangka Panjang**
 
 Manager memiliki kewenangan dan tanggung jawab untuk menyetujui **keputusan penundaan (_defer_) jangka panjang**, yang meliputi:
 
@@ -938,7 +1071,7 @@ Setiap keputusan _defer_ harus:
 
 ---
 
-### **9.4 Peran dalam Governance dan Auditability**
+## **9.4 Peran dalam Governance dan Auditability**
 
 Sebagai pemegang keputusan akhir, Manager bertanggung jawab memastikan bahwa seluruh keputusan RBM:
 
@@ -950,7 +1083,7 @@ Manager berperan sebagai **penanggung jawab utama dalam audit**, baik internal m
 
 ---
 
-### **9.5 Posisi Manager sebagai Penanggung Jawab Keputusan Akhir**
+## **9.5 Posisi Manager sebagai Penanggung Jawab Keputusan Akhir**
 
 Dalam _Risk-Based Role Ladder_, Manager adalah **titik akhir eskalasi risiko**. Prinsip ini dikunci sebagai berikut:
 
@@ -960,9 +1093,36 @@ Dalam _Risk-Based Role Ladder_, Manager adalah **titik akhir eskalasi risiko**. 
 
 Dengan peran ini, Manager memastikan bahwa RBM **bukan sekadar sistem teknis**, melainkan **mekanisme pengambilan keputusan strategis yang sadar, bertanggung jawab, dan dapat dipertanggungjawabkan**.
 
+```mermaid id="risk-ownership-acceptance-mobile"
+flowchart TD
+    A["L1 Teknisi<br/>Detect & Stop"] --> B["L2 Foreman<br/>Field Buffer"]
+    B --> C["L3 Supervisor<br/>Route Decision"]
+    C --> D["L4 Engineer<br/>Technical Decision"]
+    D --> E["L5 Senior Engineer<br/>Risk Validation"]
+    E --> F["L6 Superintendent<br/>Operational Risk Owner"]
+    F --> G["L7 Manager<br/>Final Risk Acceptance"]
+
+    G -. "Risk Tolerance" .-> F
+    F -. "Operational Direction" .-> C
+    E -. "Technical Boundary" .-> D
+    C -. "Escalation Rule" .-> A
+
+    classDef field fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef route fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef tech fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef owner fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+    classDef accept fill:#FFEBEE,stroke:#C62828,color:#111;
+
+    class A,B field;
+    class C route;
+    class D,E tech;
+    class F owner;
+    class G accept;
+```
+
 ---
 
-### **Tabulasi Kata Kunci Berbasis Risiko per Jenjang Jabatan (RBM-Oriented)**
+## **Tabulasi Kata Kunci Berbasis Risiko per Jenjang Jabatan (RBM-Oriented)**
 
 Berikut **tabel tabulasi kata kunci (buzz-words) berbasis RBM** yang **selaras penuh** dengan **“Job Description Berbasis Risiko dalam Ekosistem Risk-Based Maintenance (RBM)”**.
 
@@ -992,11 +1152,34 @@ Tabel ini merupakan **peta fokus pengendalian risiko per jenjang jabatan**, sehi
   - merancang **KPI yang tidak menyesatkan**,
   - dan **audit konsistensi RBM vs organisasi nyata**.
 
+```mermaid id="role-focus-map-mobile"
+flowchart TD
+    A["L1-L2<br/>Field Discipline"] --> B["Detect<br/>Validate<br/>Stop"]
+    C["L3<br/>Operational Control"] --> D["Delay<br/>Route<br/>Escalate"]
+    E["L4-L5<br/>Technical Authority"] --> F["Analyze<br/>Decide<br/>Validate"]
+    G["L6<br/>Operational Owner"] --> H["Coordinate<br/>Protect<br/>Balance"]
+    I["L7<br/>Risk Acceptance"] --> J["Approve<br/>Govern<br/>Audit"]
+
+    B --> D --> F --> H --> J
+
+    classDef field fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef route fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef tech fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef owner fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+    classDef accept fill:#FFEBEE,stroke:#C62828,color:#111;
+
+    class A,B field;
+    class C,D route;
+    class E,F tech;
+    class G,H owner;
+    class I,J accept;
+```
+
 ---
 
-## **10. Integrasi Job Description RBM dengan KPI & _Evaluation Loop_**
+# **10. Integrasi Job Description RBM dengan KPI & _Evaluation Loop_**
 
-### **10.1 KPI sebagai Instrumen Pengunci Eksekusi RBM**
+## **10.1 KPI sebagai Instrumen Pengunci Eksekusi RBM**
 
 Dalam ekosistem **Risk-Based Maintenance (RBM)**, **Key Performance Indicators (KPI)** tidak boleh dirancang sebagai indikator aktivitas atau beban kerja semata. KPI harus berfungsi sebagai **instrumen pengunci eksekusi keputusan risiko** yang telah diturunkan ke dalam _Job Description_ berbasis risiko.
 
@@ -1004,7 +1187,7 @@ Dengan demikian, KPI dalam RBM difokuskan pada **bagaimana manusia merespons ris
 
 ---
 
-### **10.2 KPI Berbasis Kualitas Eskalasi**
+## **10.2 KPI Berbasis Kualitas Eskalasi**
 
 Kualitas eskalasi merupakan indikator utama kesehatan sistem RBM. KPI pada aspek ini mengukur:
 
@@ -1016,7 +1199,7 @@ KPI ini memastikan bahwa eskalasi **tidak terlambat, tidak lompat level, dan tid
 
 ---
 
-### **10.3 KPI Berbasis Ketepatan Keputusan**
+## **10.3 KPI Berbasis Ketepatan Keputusan**
 
 Ketepatan keputusan menjadi KPI kunci pada level supervisor hingga manager, yang mencakup:
 
@@ -1028,7 +1211,7 @@ Indikator ini menilai **kualitas judgement**, bukan hanya hasil jangka pendek.
 
 ---
 
-### **10.4 KPI Berbasis _Near-Miss Handling_**
+## **10.4 KPI Berbasis _Near-Miss Handling_**
 
 Dalam RBM, _near-miss_ diperlakukan sebagai **input pembelajaran sistem**, bukan sekadar statistik keselamatan. KPI difokuskan pada:
 
@@ -1040,7 +1223,7 @@ KPI ini mendorong organisasi untuk **belajar sebelum insiden terjadi**, bukan se
 
 ---
 
-### **10.5 Integrasi dengan _Evaluation Loop_ RBM (MSH-3)**
+## **10.5 Integrasi dengan _Evaluation Loop_ RBM (MSH-3)**
 
 Seluruh KPI berbasis risiko menjadi **input utama dalam _evaluation loop_ RBM**, yang dievaluasi secara berkala untuk:
 
@@ -1055,7 +1238,7 @@ Dengan integrasi ini, JobDesc tidak bersifat statis, tetapi **berevolusi mengiku
 
 ---
 
-### **10.6 Integrasi dengan Sistem Akuntabilitas (MSH-5)**
+## **10.6 Integrasi dengan Sistem Akuntabilitas (MSH-5)**
 
 KPI RBM juga menjadi fondasi **akuntabilitas yang adil dan defensible**. Setiap deviasi atau insiden dapat ditelusuri ke:
 
@@ -1067,7 +1250,7 @@ Integrasi ini memastikan bahwa akuntabilitas **tidak berbasis hierarki**, melain
 
 ---
 
-### **10.7 Prinsip Kunci Integrasi JobDesc–KPI–Evaluation Loop**
+## **10.7 Prinsip Kunci Integrasi JobDesc–KPI–Evaluation Loop**
 
 Prinsip yang dikunci pada tahap ini adalah:
 
@@ -1078,13 +1261,38 @@ Prinsip yang dikunci pada tahap ini adalah:
 
 Dengan integrasi ini, Job Description berbasis risiko menjadi **alat hidup** yang memastikan RBM dijalankan secara konsisten, dapat diaudit, dan terus ditingkatkan seiring dinamika risiko sistem.
 
+```mermaid id="jobdesc-kpi-evaluation-loop-mobile"
+flowchart TD
+    A["JobDesc<br/>Risk Role"] --> B["KPI<br/>Risk Behavior"]
+    B --> C["Evaluation<br/>Loop"]
+    C --> D["Gap:<br/>Skill / Authority"]
+    D --> E["Action:<br/>Training / Reposition"]
+    E --> F["Updated<br/>JobDesc"]
+    F --> A
+
+    C --> G["Accountability<br/>Audit Trail"]
+    G --> B
+
+    classDef job fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef kpi fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef eval fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef gap fill:#FFEBEE,stroke:#C62828,color:#111;
+    classDef action fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+
+    class A,F job;
+    class B kpi;
+    class C,G eval;
+    class D gap;
+    class E action;
+```
+
 ---
 
-## **11. Batasan Artikel (_Anti-Overlap Clause_)**
+# **11. Batasan Artikel (_Anti-Overlap Clause_)**
 
 Agar artikel **“Job Description Berbasis Risiko dalam Ekosistem Risk-Based Maintenance (RBM)”** tetap fokus dan berfungsi sebagai **referensi implementatif**, perlu ditegaskan secara eksplisit **batasan pembahasan** yang sengaja **tidak** dicakup dalam artikel ini.
 
-### **11.1 Hal yang Secara Eksplisit Tidak Dibahas**
+## **11.1 Hal yang Secara Eksplisit Tidak Dibahas**
 
 Artikel ini **tidak membahas** topik-topik berikut:
 
@@ -1119,7 +1327,7 @@ Pengecualian ini dilakukan secara sadar untuk mencegah **overlap konseptual** da
 
 ---
 
-### **11.2 Penegasan Fokus Artikel**
+## **11.2 Penegasan Fokus Artikel**
 
 Fokus tunggal artikel ini adalah:
 
@@ -1143,9 +1351,32 @@ Secara spesifik, artikel ini bertujuan untuk:
 
 Dengan batasan ini, artikel tetap **tajam, tidak redundan, dan langsung dapat digunakan** sebagai _one-stop reference_ untuk penyusunan Job Description RBM tanpa mencampuradukkan ranah konseptual atau kebijakan lain di luar mandatnya.
 
+```mermaid id="anti-overlap-clause-mobile"
+flowchart TD
+    A["Artikel Ini<br/>Fokus"] --> B["JobDesc<br/>Berbasis Risiko"]
+    B --> C["Peran"]
+    B --> D["Kewenangan"]
+    B --> E["Eskalasi"]
+    B --> F["Risk Ownership"]
+
+    A --> G["Tidak Dibahas"]
+    G --> H["Manpower<br/>Planning"]
+    G --> I["Desain<br/>Organisasi"]
+    G --> J["Training<br/>Detail"]
+    G --> K["Remunerasi"]
+
+    classDef focus fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef scope fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef exclude fill:#FFEBEE,stroke:#C62828,color:#111;
+
+    class A,B,C,D,E,F focus;
+    class G scope;
+    class H,I,J,K exclude;
+```
+
 ---
 
-## **12. Penutup — Job Description sebagai Pengunci RBM**
+# **12. Penutup — Job Description sebagai Pengunci RBM**
 
 Kegagalan penerapan **Risk-Based Maintenance (RBM)** di banyak organisasi **bukan disebabkan oleh kelemahan metodologi**. Kerangka risiko, matriks kritikalitas, hingga strategi pemeliharaan sering kali telah dirancang dengan baik. Namun dalam praktik, RBM gagal menghasilkan pengendalian risiko nyata karena **tidak ada jabatan yang secara eksplisit memegang risiko tersebut di lapangan**.
 
@@ -1171,7 +1402,7 @@ RBM membutuhkan **jabatan yang memegang risiko secara nyata**.
 
 ---
 
-## **Referensi**
+# **Referensi**
 
 1. **ISO 55000 / ISO 55001** — _Asset Management: Overview, Principles, and Requirements_
 2. **API Recommended Practice 580** — _Risk-Based Inspection_
@@ -1184,27 +1415,27 @@ RBM membutuhkan **jabatan yang memegang risiko secara nyata**.
 9. **Maintenance System Handbook (MSH)**
 
 <ResourceBox
-  title="Korelasi internal-link modul:"
-  items={[
-    {
-      name: 'Risk-Based Maintenance',
-      href: '/blog/management/MSH/MSH-3-rbm',
-      description:
-        'Module 3 – Risk-Based Maintenance sebagai Strategi Pemeliharaan Praktis',
-    },
-    {
-      name: 'Organisasi, KPI, dan Akuntabilitas',
-      href: '/blog/management/MSH/MSH-5-organization',
-      description:
-        'Module 5 – Organisasi, KPI, dan Akuntabilitas dalam Sistem Pemeliharaan',
-    },
-    {
-      name: 'Strategi Manpower',
-      href: '/blog/management/MSH/MSH-manpower',
-      description:
-        'Strategi Manpower dalam Ekosistem Risk-Based Maintenance (RBM)',
-    },
-  ]}
+title="Korelasi internal-link modul:"
+items={[
+{
+name: 'Risk-Based Maintenance',
+href: '/blog/management/MSH/MSH-3-rbm',
+description:
+'Module 3 – Risk-Based Maintenance sebagai Strategi Pemeliharaan Praktis',
+},
+{
+name: 'Organisasi, KPI, dan Akuntabilitas',
+href: '/blog/management/MSH/MSH-5-organization',
+description:
+'Module 5 – Organisasi, KPI, dan Akuntabilitas dalam Sistem Pemeliharaan',
+},
+{
+name: 'Strategi Manpower',
+href: '/blog/management/MSH/MSH-manpower',
+description:
+'Strategi Manpower dalam Ekosistem Risk-Based Maintenance (RBM)',
+},
+]}
 />
 
 ---

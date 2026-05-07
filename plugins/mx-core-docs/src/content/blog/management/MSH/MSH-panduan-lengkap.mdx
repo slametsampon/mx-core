@@ -20,10 +20,11 @@ draft: false
 summary: Maintenance System Handbook (MSH) merupakan kerangka terpadu yang menempatkan pemeliharaan sebagai sistem pengambilan keputusan berbasis risiko, siklus hidup aset, dan pembelajaran berkelanjutan. MSH mengintegrasikan filosofi risk-based thinking, strategi Risk-Based Maintenance (RBM), kejelasan organisasi dan KPI, disiplin eksekusi, batas SHE sebagai system constraint, hingga alignment dengan Turnaround dan lifecycle asset management. Handbook ini tidak dirancang sebagai kumpulan metode teknis, melainkan sebagai sistem hidup yang ditinjau secara periodik, dapat diaudit, dan terus ditingkatkan. Melalui MSH Maturity Assessment Tool, organisasi dapat memetakan tingkat kematangan sistemnya dan menyusun roadmap peningkatan yang realistis, defensible, dan berkelanjutan.
 ---
 
-**_Dari Risk-Based Thinking ke Reliability-Driven Organization: Panduan Lengkap Maintenance System Handbook_**
+# **_Dari Risk-Based Thinking ke Reliability-Driven Organization: Panduan Lengkap Maintenance System Handbook_**
 
 ---
 
+- [**_Dari Risk-Based Thinking ke Reliability-Driven Organization: Panduan Lengkap Maintenance System Handbook_**](#dari-risk-based-thinking-ke-reliability-driven-organization-panduan-lengkap-maintenance-system-handbook)
 - [**Pendahuluan**](#pendahuluan)
   - [**Latar Belakang Kebutuhan Sistem Pemeliharaan Modern di Industri Proses**](#latar-belakang-kebutuhan-sistem-pemeliharaan-modern-di-industri-proses)
   - [**Keterbatasan Pendekatan Maintenance Konvensional**](#keterbatasan-pendekatan-maintenance-konvensional)
@@ -51,7 +52,7 @@ summary: Maintenance System Handbook (MSH) merupakan kerangka terpadu yang menem
 
 ---
 
-## **Pendahuluan**
+# **Pendahuluan**
 
 Industri proses—khususnya petrokimia, energi, dan manufaktur berbasis operasi kontinu—beroperasi dalam lingkungan yang ditandai oleh **kompleksitas teknis tinggi, risiko keselamatan signifikan, dan konsekuensi kegagalan yang bersifat sistemik**. Dalam konteks ini, pemeliharaan tidak lagi dapat diperlakukan sebagai fungsi pendukung yang bersifat reaktif atau sekadar pemenuhan jadwal teknis.
 
@@ -60,6 +61,21 @@ Perubahan tuntutan bisnis, regulasi keselamatan dan lingkungan yang semakin keta
 Maintenance System Handbook (MSH) disusun sebagai respon terhadap kebutuhan tersebut—bukan untuk menggantikan standar atau metode yang ada, melainkan untuk **mengintegrasikan seluruh elemen pemeliharaan ke dalam satu kerangka sistem yang koheren, defensible, dan berorientasi risiko**.
 
 MSH disusun dalam bentuk **struktur modular yang komprehensif**, terdiri dari **9 modul utama (Module 0–8)** yang saling terhubung serta **1 panduan implementasi lengkap** sebagai pengikat keseluruhan sistem. Pendekatan modular ini dirancang agar handbook dapat digunakan secara **fleksibel namun konsisten**—baik sebagai referensi strategis manajemen, panduan operasional engineer, maupun kerangka evaluasi sistem pemeliharaan secara menyeluruh.
+
+```mermaid
+flowchart TB
+    A[MSH<br/>Maintenance System Handbook] --> B[Module 0-1<br/>Konteks & Filosofi]
+    A --> C[Module 2<br/>Risk Decision Logic]
+    A --> D[Module 3<br/>RBM Strategy]
+    A --> E[Module 4<br/>Budgeting]
+    A --> F[Module 5<br/>Organization & KPI]
+    A --> G[Module 6<br/>Execution & Learning]
+    A --> H[Module 7<br/>SHE Constraint]
+    A --> I[Module 8<br/>Lifecycle & TA]
+
+    classDef core fill:#e0f2fe,stroke:#0284c7,stroke-width:2px,color:#0f172a;
+    classDef risk fill:#fee2e2,stroke:#dc2626,stroke-width:2
+```
 
 Handbook ini **tidak menawarkan satu metode pemeliharaan tunggal**, karena kompleksitas industri proses tidak pernah dapat diselesaikan dengan pendekatan linear atau solusi generik. Sebaliknya, MSH menghadirkan **kerangka sistemik end-to-end** yang mengaitkan secara eksplisit dan terstruktur:
 
@@ -75,61 +91,61 @@ Handbook ini **tidak menawarkan satu metode pemeliharaan tunggal**, karena kompl
 Dengan struktur tersebut, MSH memposisikan pemeliharaan bukan sebagai kumpulan aktivitas terpisah, melainkan sebagai **satu sistem keputusan terpadu** yang dapat dipahami, diimplementasikan, dievaluasi, dan dipertanggungjawabkan dalam horizon operasional maupun strategis.
 
 <ResourceBox
-  title="Korelasi internal-link modul:"
-  items={[
-    {
-      name: 'Strategi Manpower',
-      href: '/blog/management/MSH/MSH-manpower',
-      description:
-        'Strategi Manpower dalam Ekosistem Risk-Based Maintenance (RBM)',
-    },
-    {
-      name: 'Transformasi dari Reaktif ke Proaktif',
-      href: '/blog/management/maintenance-proactive',
-      description: 'Transformasi dari Pemeliharaan Reaktif ke Proaktif',
-    },
-    {
-      name: 'Sistem Risk-Based Inventory (RBInv)',
-      href: '/blog/management/RBInv/RBInv-panduan-lengkap',
-      description:
-        'Buku Panduan - Sistem Risk-Based Inventory (RBInv) dalam Risk-Based Maintenance (RBM)',
-    },
-    {
-      name: 'Panduan Troubleshooting & Pemilihan Metode RCA',
-      href: '/blog/management/RCA/rca-panduan-lengkap',
-      description:
-        'Panduan Troubleshooting & Pemilihan Metode RCA Berbasis Risk-Based Maintenance (RBM)',
-    },
-    {
-      name: 'Job Description',
-      href: '/blog/management/MSH/MSH-jobdesc',
-      description:
-        'Job Description Berbasis Risiko dalam Ekosistem Risk-Based Maintenance (RBM)',
-    },
-    {
-      name: 'Instruksi Kerja (IK/WI)',
-      href: '/blog/management/MSH/MSH-ik-wi',
-      description:
-        'Instruksi Kerja (IK/WI) Berbasis Risiko dalam Ekosistem Risk-Based Maintenance (RBM)',
-    },
-    {
-      name: 'Panduan Lengkap Kurikulum & Matriks Kompetensi - Mechanical',
-      href: '/blog/maintenance/mechanical/panduan-kurikulum-mechanical',
-      description:
-        'Panduan Lengkap Kurikulum & Matriks Kompetensi – Teknisi Mechanical – Industri Petrokimia',
-    },
-    {
-      name: 'Panduan Lengkap Kurikulum & Matriks Kompetensi - Elins',
-      href: '/blog/maintenance/elins/panduan-kurikulum-elins',
-      description:
-        'Panduan Lengkap Kurikulum & Matriks Kompetensi - Teknisi Electrical, Instrumentation & Control (E&I) – Industri Petrokimia',
-    },
-  ]}
+title="Korelasi internal-link modul:"
+items={[
+{
+name: 'Strategi Manpower',
+href: '/blog/management/MSH/MSH-manpower',
+description:
+'Strategi Manpower dalam Ekosistem Risk-Based Maintenance (RBM)',
+},
+{
+name: 'Transformasi dari Reaktif ke Proaktif',
+href: '/blog/management/maintenance-proactive',
+description: 'Transformasi dari Pemeliharaan Reaktif ke Proaktif',
+},
+{
+name: 'Sistem Risk-Based Inventory (RBInv)',
+href: '/blog/management/RBInv/RBInv-panduan-lengkap',
+description:
+'Buku Panduan - Sistem Risk-Based Inventory (RBInv) dalam Risk-Based Maintenance (RBM)',
+},
+{
+name: 'Panduan Troubleshooting & Pemilihan Metode RCA',
+href: '/blog/management/RCA/rca-panduan-lengkap',
+description:
+'Panduan Troubleshooting & Pemilihan Metode RCA Berbasis Risk-Based Maintenance (RBM)',
+},
+{
+name: 'Job Description',
+href: '/blog/management/MSH/MSH-jobdesc',
+description:
+'Job Description Berbasis Risiko dalam Ekosistem Risk-Based Maintenance (RBM)',
+},
+{
+name: 'Instruksi Kerja (IK/WI)',
+href: '/blog/management/MSH/MSH-ik-wi',
+description:
+'Instruksi Kerja (IK/WI) Berbasis Risiko dalam Ekosistem Risk-Based Maintenance (RBM)',
+},
+{
+name: 'Panduan Lengkap Kurikulum & Matriks Kompetensi - Mechanical',
+href: '/blog/maintenance/mechanical/panduan-kurikulum-mechanical',
+description:
+'Panduan Lengkap Kurikulum & Matriks Kompetensi – Teknisi Mechanical – Industri Petrokimia',
+},
+{
+name: 'Panduan Lengkap Kurikulum & Matriks Kompetensi - Elins',
+href: '/blog/maintenance/elins/panduan-kurikulum-elins',
+description:
+'Panduan Lengkap Kurikulum & Matriks Kompetensi - Teknisi Electrical, Instrumentation & Control (E&I) – Industri Petrokimia',
+},
+]}
 />
 
 ---
 
-### **Latar Belakang Kebutuhan Sistem Pemeliharaan Modern di Industri Proses**
+## **Latar Belakang Kebutuhan Sistem Pemeliharaan Modern di Industri Proses**
 
 Industri proses kontinu memiliki karakteristik yang berbeda secara fundamental dibandingkan industri diskrit. Satu kegagalan peralatan dapat memicu:
 
@@ -151,7 +167,7 @@ Tanpa sistem yang terstruktur, organisasi cenderung terjebak dalam pola **reakti
 
 ---
 
-### **Keterbatasan Pendekatan Maintenance Konvensional**
+## **Keterbatasan Pendekatan Maintenance Konvensional**
 
 Pendekatan pemeliharaan konvensional—walaupun menggunakan _Time-Based Maintenance (TBM)_ murni maupun _corrective-driven maintenance_—memiliki keterbatasan struktural ketika diterapkan pada sistem industri proses yang kompleks dan berisiko tinggi. Keterbatasan tersebut bukan terletak pada metode teknis yang digunakan, melainkan pada **cara pandang terhadap risiko dan kontribusi peralatan terhadap sistem**, antara lain:
 
@@ -171,7 +187,7 @@ Dalam konteks inilah _Risk-Based Maintenance (RBM)_ tidak dimaksudkan untuk meng
 
 ---
 
-### **Posisi Maintenance System Handbook (MSH) sebagai Integrated Decision System**
+## **Posisi Maintenance System Handbook (MSH) sebagai Integrated Decision System**
 
 Maintenance System Handbook (MSH) diposisikan bukan sebagai panduan teknis parsial, melainkan sebagai **integrated decision system** yang menghubungkan:
 
@@ -194,11 +210,11 @@ Dengan demikian, MSH berfungsi sebagai **panduan strategis dan operasional** yan
 
 ---
 
-## **Bagian I — Executive Summary Maintenance System Handbook (MSH)**
+# **Bagian I — Executive Summary Maintenance System Handbook (MSH)**
 
 ---
 
-### 🎯 Latar Belakang dan Tujuan
+## 🎯 Latar Belakang dan Tujuan
 
 **Maintenance System Handbook** disusun untuk menjawab tantangan utama industri proses dan petrokimia modern:
 bagaimana membangun **sistem pemeliharaan yang andal, aman, dan berkelanjutan**, tanpa terjebak pada pola reaktif, over-maintenance, atau keputusan jangka pendek.
@@ -217,25 +233,25 @@ Tujuan utamanya adalah memastikan bahwa **setiap keputusan maintenance dapat dip
 
 ---
 
-### 🧩 Gambaran Sistem per Modul
+## 🧩 Gambaran Sistem per Modul
 
 - **Module 0–1 | Konteks & Filosofi**
 
 <ResourceBox
-  title="Korelasi internal-link modul:"
-  items={[
-    {
-      name: 'Alasan Sistem Pemeliharaan Harus Berevolusi',
-      href: '/blog/management/MSH/MSH-0-maintenance-evolusi',
-      description:
-        'Module 0 – Konteks Industri dan Alasan Sistem Pemeliharaan Harus Berevolusi',
-    },
-    {
-      name: 'Fondasi Risiko Sistem Pemeliharaan',
-      href: '/blog/management/MSH/MSH-1-maintenance-fondasi-risiko',
-      description: 'Module 1 – Filosofi dan Fondasi Risiko Sistem Pemeliharaan',
-    },
-  ]}
+title="Korelasi internal-link modul:"
+items={[
+{
+name: 'Alasan Sistem Pemeliharaan Harus Berevolusi',
+href: '/blog/management/MSH/MSH-0-maintenance-evolusi',
+description:
+'Module 0 – Konteks Industri dan Alasan Sistem Pemeliharaan Harus Berevolusi',
+},
+{
+name: 'Fondasi Risiko Sistem Pemeliharaan',
+href: '/blog/management/MSH/MSH-1-maintenance-fondasi-risiko',
+description: 'Module 1 – Filosofi dan Fondasi Risiko Sistem Pemeliharaan',
+},
+]}
 />
 
 Menetapkan **arah sistem pemeliharaan**:
@@ -248,15 +264,15 @@ maintenance diposisikan sebagai **fungsi manajemen risiko dan keandalan**, bukan
 - **Module 2 | Risk-Based Decision Logic**
 
 <ResourceBox
-  title="Korelasi internal-link modul:"
-  items={[
-    {
-      name: 'Model Risiko dan Logika Pengambilan Keputusan',
-      href: '/blog/management/MSH/MSH-2-model-risiko',
-      description:
-        'Module 2 – Model Risiko dan Logika Pengambilan Keputusan Pemeliharaan',
-    },
-  ]}
+title="Korelasi internal-link modul:"
+items={[
+{
+name: 'Model Risiko dan Logika Pengambilan Keputusan',
+href: '/blog/management/MSH/MSH-2-model-risiko',
+description:
+'Module 2 – Model Risiko dan Logika Pengambilan Keputusan Pemeliharaan',
+},
+]}
 />
 
 Membangun **logika keputusan berbasis risiko** sebagai fondasi sistem.
@@ -269,15 +285,15 @@ Setiap keputusan maintenance harus dapat dijelaskan melalui **konsekuensi kegaga
 - **Module 3 | Risk-Based Maintenance (RBM)**
 
 <ResourceBox
-  title="Korelasi internal-link modul:"
-  items={[
-    {
-      name: 'Risk-Based Maintenance',
-      href: '/blog/management/MSH/MSH-3-rbm',
-      description:
-        'Module 3 – Risk-Based Maintenance sebagai Strategi Pemeliharaan Praktis',
-    },
-  ]}
+title="Korelasi internal-link modul:"
+items={[
+{
+name: 'Risk-Based Maintenance',
+href: '/blog/management/MSH/MSH-3-rbm',
+description:
+'Module 3 – Risk-Based Maintenance sebagai Strategi Pemeliharaan Praktis',
+},
+]}
 />
 
 Menerjemahkan risiko menjadi **strategi pemeliharaan nyata** (TBM, CBM, PdM, redesign).
@@ -292,21 +308,21 @@ RBM diposisikan sebagai **kerangka seleksi strategi**, bukan metode baru.
 - **Module 4 | Budgeting & Resource Governance (RBM)**
 
 <ResourceBox
-  title="Korelasi internal-link modul:"
-  items={[
-    {
-      name: 'Budgeting Maintenance Berbasis RBM',
-      href: '/blog/management/MSH/MSH-4-budgeting',
-      description:
-        'Module 4 – Budgeting Maintenance Berbasis Risk-Based Maintenance (RBM)',
-    },
-    {
-      name: 'MoSCoW sebagai Alat Pengambil Keputusan',
-      href: '/blog/management/moscow',
-      description:
-        'Dari Perencanaan hingga Eksekusi - MoSCoW sebagai Alat Pengambil Keputusan',
-    },
-  ]}
+title="Korelasi internal-link modul:"
+items={[
+{
+name: 'Budgeting Maintenance Berbasis RBM',
+href: '/blog/management/MSH/MSH-4-budgeting',
+description:
+'Module 4 – Budgeting Maintenance Berbasis Risk-Based Maintenance (RBM)',
+},
+{
+name: 'MoSCoW sebagai Alat Pengambil Keputusan',
+href: '/blog/management/moscow',
+description:
+'Dari Perencanaan hingga Eksekusi - MoSCoW sebagai Alat Pengambil Keputusan',
+},
+]}
 />
 
 Menempatkan **anggaran sebagai konsekuensi langsung dari keputusan risiko dan strategi pemeliharaan**.  
@@ -319,15 +335,15 @@ Module ini mengunci _risk barrier cost_, membedakan biaya mandatory dan optimiza
 - **Module 5 | Organisasi, KPI & Akuntabilitas**
 
 <ResourceBox
-  title="Korelasi internal-link modul:"
-  items={[
-    {
-      name: 'Organisasi, KPI, dan Akuntabilitas',
-      href: '/blog/management/MSH/MSH-5-organization',
-      description:
-        'Module 5 – Organisasi, KPI, dan Akuntabilitas dalam Sistem Pemeliharaan',
-    },
-  ]}
+title="Korelasi internal-link modul:"
+items={[
+{
+name: 'Organisasi, KPI, dan Akuntabilitas',
+href: '/blog/management/MSH/MSH-5-organization',
+description:
+'Module 5 – Organisasi, KPI, dan Akuntabilitas dalam Sistem Pemeliharaan',
+},
+]}
 />
 
 Menegaskan bahwa sistem hanya bekerja jika ada:
@@ -343,31 +359,31 @@ Menegaskan bahwa sistem hanya bekerja jika ada:
 - **Module 6 | Eksekusi, Troubleshooting & Learning**
 
 <ResourceBox
-  title="Korelasi internal-link modul:"
-  items={[
-    {
-      name: 'Eksekusi, Troubleshooting, dan Sistem Pembelajaran',
-      href: '/blog/management/MSH/MSH-6-eksekusi',
-      description:
-        'Module 6 – Eksekusi, Troubleshooting, dan Sistem Pembelajaran Pemeliharaan',
-    },
-    {
-      name: 'Panduan Troubleshooting & Pemilihan Metode RCA',
-      href: '/blog/management/RCA/rca-panduan-lengkap',
-      description:
-        'Panduan Troubleshooting & Pemilihan Metode RCA Berbasis Risk-Based Maintenance (RBM)',
-    },
-    {
-      name: 'Aset Life Cycle',
-      href: '/blog/maintenance/lifecycle-aset',
-      description: 'Aset Life Cycle di Industri Petrokimia',
-    },
-    {
-      name: 'TCO - Total Cost Ownership',
-      href: '/blog/maintenance/tco',
-      description: 'TCO - Total Cost Ownership',
-    },
-  ]}
+title="Korelasi internal-link modul:"
+items={[
+{
+name: 'Eksekusi, Troubleshooting, dan Sistem Pembelajaran',
+href: '/blog/management/MSH/MSH-6-eksekusi',
+description:
+'Module 6 – Eksekusi, Troubleshooting, dan Sistem Pembelajaran Pemeliharaan',
+},
+{
+name: 'Panduan Troubleshooting & Pemilihan Metode RCA',
+href: '/blog/management/RCA/rca-panduan-lengkap',
+description:
+'Panduan Troubleshooting & Pemilihan Metode RCA Berbasis Risk-Based Maintenance (RBM)',
+},
+{
+name: 'Aset Life Cycle',
+href: '/blog/maintenance/lifecycle-aset',
+description: 'Aset Life Cycle di Industri Petrokimia',
+},
+{
+name: 'TCO - Total Cost Ownership',
+href: '/blog/maintenance/tco',
+description: 'TCO - Total Cost Ownership',
+},
+]}
 />
 
 Memastikan setiap gangguan menghasilkan **pembelajaran sistem**, melalui:
@@ -383,15 +399,15 @@ Memastikan setiap gangguan menghasilkan **pembelajaran sistem**, melalui:
 - **Module 7 | SHE sebagai System Constraint**
 
 <ResourceBox
-  title="Korelasi internal-link modul:"
-  items={[
-    {
-      name: 'SHE sebagai Batas Sistem dalam Pengambilan Keputusan',
-      href: '/blog/management/MSH/MSH-7-she-compliance',
-      description:
-        'Module 7 – SHE sebagai Batas Sistem dalam Pengambilan Keputusan Pemeliharaan',
-    },
-  ]}
+title="Korelasi internal-link modul:"
+items={[
+{
+name: 'SHE sebagai Batas Sistem dalam Pengambilan Keputusan',
+href: '/blog/management/MSH/MSH-7-she-compliance',
+description:
+'Module 7 – SHE sebagai Batas Sistem dalam Pengambilan Keputusan Pemeliharaan',
+},
+]}
 />
 
 Menempatkan **SHE sebagai batas keras (hard boundary)** dalam seluruh keputusan maintenance.
@@ -404,15 +420,15 @@ Tidak ada efisiensi, optimasi biaya, atau inovasi yang sah jika melewati batas k
 - **Module 8 | Lifecycle, Turnaround & Continuous Improvement**
 
 <ResourceBox
-  title="Korelasi internal-link modul:"
-  items={[
-    {
-      name: 'Lifecycle Aset',
-      href: '/blog/management/MSH/MSH-8-lifecycle-ta',
-      description:
-        'Module 8 – Lifecycle Aset, Turnaround, dan Continuous Improvement Sistem Pemeliharaan',
-    },
-  ]}
+title="Korelasi internal-link modul:"
+items={[
+{
+name: 'Lifecycle Aset',
+href: '/blog/management/MSH/MSH-8-lifecycle-ta',
+description:
+'Module 8 – Lifecycle Aset, Turnaround, dan Continuous Improvement Sistem Pemeliharaan',
+},
+]}
 />
 
 Mengikat seluruh modul ke dalam **siklus hidup aset jangka panjang** (10–20 tahun).
@@ -422,7 +438,7 @@ Maintenance diposisikan sebagai **living system** yang ditinjau, ditingkatkan, d
 
 ---
 
-### 🧠 Nilai Strategis bagi Manajemen
+## 🧠 Nilai Strategis bagi Manajemen
 
 Dengan menerapkan **Maintenance System Handbook**, organisasi memperoleh:
 
@@ -440,11 +456,11 @@ Handbook ini dirancang agar:
 
 ---
 
-## **Bagian II — Roadmap Pemahaman dan Implementasi Maintenance System Handbook (MSH)**
+# **Bagian II — Roadmap Pemahaman dan Implementasi Maintenance System Handbook (MSH)**
 
 ---
 
-### **A. Roadmap 1 — Cara Membaca & Memahami Maintenance System Handbook (MSH)**
+## **A. Roadmap 1 — Cara Membaca & Memahami Maintenance System Handbook (MSH)**
 
 - 🎯 Tujuan
 
@@ -458,20 +474,20 @@ Memastikan MSH dipahami **sebagai satu sistem utuh**, bukan kumpulan modul terpi
 Manajemen, superintendent, engineer senior
 
 <ResourceBox
-  title="Modul yang dibaca:"
-  items={[
-    {
-      name: 'Alasan Sistem Pemeliharaan Harus Berevolusi',
-      href: '/blog/management/MSH/MSH-0-maintenance-evolusi',
-      description:
-        'Module 0 – Konteks Industri dan Alasan Sistem Pemeliharaan Harus Berevolusi',
-    },
-    {
-      name: 'Fondasi Risiko Sistem Pemeliharaan',
-      href: '/blog/management/MSH/MSH-1-maintenance-fondasi-risiko',
-      description: 'Module 1 – Filosofi dan Fondasi Risiko Sistem Pemeliharaan',
-    },
-  ]}
+title="Modul yang dibaca:"
+items={[
+{
+name: 'Alasan Sistem Pemeliharaan Harus Berevolusi',
+href: '/blog/management/MSH/MSH-0-maintenance-evolusi',
+description:
+'Module 0 – Konteks Industri dan Alasan Sistem Pemeliharaan Harus Berevolusi',
+},
+{
+name: 'Fondasi Risiko Sistem Pemeliharaan',
+href: '/blog/management/MSH/MSH-1-maintenance-fondasi-risiko',
+description: 'Module 1 – Filosofi dan Fondasi Risiko Sistem Pemeliharaan',
+},
+]}
 />
 
 **Fokus pemahaman:**
@@ -493,15 +509,15 @@ Manajemen, superintendent, engineer senior
 Engineer, supervisor, superintendent
 
 <ResourceBox
-  title="Modul yang dibaca:"
-  items={[
-    {
-      name: 'Model Risiko dan Logika Pengambilan Keputusan',
-      href: '/blog/management/MSH/MSH-2-model-risiko',
-      description:
-        'Module 2 – Model Risiko dan Logika Pengambilan Keputusan Pemeliharaan',
-    },
-  ]}
+title="Modul yang dibaca:"
+items={[
+{
+name: 'Model Risiko dan Logika Pengambilan Keputusan',
+href: '/blog/management/MSH/MSH-2-model-risiko',
+description:
+'Module 2 – Model Risiko dan Logika Pengambilan Keputusan Pemeliharaan',
+},
+]}
 />
 
 **Fokus pemahaman:**
@@ -523,15 +539,15 @@ Engineer, supervisor, superintendent
 Maintenance team inti
 
 <ResourceBox
-  title="Modul yang dibaca:"
-  items={[
-    {
-      name: 'Risk-Based Maintenance',
-      href: '/blog/management/MSH/MSH-3-rbm',
-      description:
-        'Module 3 – Risk-Based Maintenance sebagai Strategi Pemeliharaan Praktis',
-    },
-  ]}
+title="Modul yang dibaca:"
+items={[
+{
+name: 'Risk-Based Maintenance',
+href: '/blog/management/MSH/MSH-3-rbm',
+description:
+'Module 3 – Risk-Based Maintenance sebagai Strategi Pemeliharaan Praktis',
+},
+]}
 />
 
 **Fokus pemahaman:**
@@ -555,15 +571,15 @@ Maintenance team inti
 Maintenance manager, engineering manager, finance partner
 
 <ResourceBox
-  title="Modul yang dibaca:"
-  items={[
-    {
-      name: 'Budgeting Maintenance Berbasis RBM',
-      href: '/blog/management/MSH/MSH-4-budgeting',
-      description:
-        'Module 4 – Budgeting Maintenance Berbasis Risk-Based Maintenance (RBM)',
-    },
-  ]}
+title="Modul yang dibaca:"
+items={[
+{
+name: 'Budgeting Maintenance Berbasis RBM',
+href: '/blog/management/MSH/MSH-4-budgeting',
+description:
+'Module 4 – Budgeting Maintenance Berbasis Risk-Based Maintenance (RBM)',
+},
+]}
 />
 
 **Fokus pemahaman:**
@@ -585,15 +601,15 @@ Maintenance manager, engineering manager, finance partner
 Manajemen, HR teknis, supervisor
 
 <ResourceBox
-  title="Modul yang dibaca:"
-  items={[
-    {
-      name: 'Organisasi, KPI, dan Akuntabilitas',
-      href: '/blog/management/MSH/MSH-5-organization',
-      description:
-        'Module 5 – Organisasi, KPI, dan Akuntabilitas dalam Sistem Pemeliharaan',
-    },
-  ]}
+title="Modul yang dibaca:"
+items={[
+{
+name: 'Organisasi, KPI, dan Akuntabilitas',
+href: '/blog/management/MSH/MSH-5-organization',
+description:
+'Module 5 – Organisasi, KPI, dan Akuntabilitas dalam Sistem Pemeliharaan',
+},
+]}
 />
 
 **Fokus pemahaman:**
@@ -614,15 +630,15 @@ Manajemen, HR teknis, supervisor
 Seluruh level maintenance
 
 <ResourceBox
-  title="Modul yang dibaca:"
-  items={[
-    {
-      name: 'Eksekusi, Troubleshooting, dan Sistem Pembelajaran',
-      href: '/blog/management/MSH/MSH-6-eksekusi',
-      description:
-        'Module 6 – Eksekusi, Troubleshooting, dan Sistem Pembelajaran Pemeliharaan',
-    },
-  ]}
+title="Modul yang dibaca:"
+items={[
+{
+name: 'Eksekusi, Troubleshooting, dan Sistem Pembelajaran',
+href: '/blog/management/MSH/MSH-6-eksekusi',
+description:
+'Module 6 – Eksekusi, Troubleshooting, dan Sistem Pembelajaran Pemeliharaan',
+},
+]}
 />
 
 **Fokus pemahaman:**
@@ -644,21 +660,21 @@ Seluruh level maintenance
 Semua level, wajib untuk leader
 
 <ResourceBox
-  title="Modul yang dibaca:"
-  items={[
-    {
-      name: 'SHE sebagai Batas Sistem dalam Pengambilan Keputusan',
-      href: '/blog/management/MSH/MSH-7-she-compliance',
-      description:
-        'Module 7 – SHE sebagai Batas Sistem dalam Pengambilan Keputusan Pemeliharaan',
-    },
-    {
-      name: 'Lifecycle Aset',
-      href: '/blog/management/MSH/MSH-8-lifecycle-ta',
-      description:
-        'Module 8 – Lifecycle Aset, Turnaround, dan Continuous Improvement Sistem Pemeliharaan',
-    },
-  ]}
+title="Modul yang dibaca:"
+items={[
+{
+name: 'SHE sebagai Batas Sistem dalam Pengambilan Keputusan',
+href: '/blog/management/MSH/MSH-7-she-compliance',
+description:
+'Module 7 – SHE sebagai Batas Sistem dalam Pengambilan Keputusan Pemeliharaan',
+},
+{
+name: 'Lifecycle Aset',
+href: '/blog/management/MSH/MSH-8-lifecycle-ta',
+description:
+'Module 8 – Lifecycle Aset, Turnaround, dan Continuous Improvement Sistem Pemeliharaan',
+},
+]}
 />
 
 **Fokus pemahaman:**
@@ -674,7 +690,7 @@ Semua level, wajib untuk leader
 
 ---
 
-### **B. Roadmap 2 — Implementasi Maintenance System Handbook (MSH)**
+## **B. Roadmap 2 — Implementasi Maintenance System Handbook (MSH)**
 
 - 🎯 Prinsip Dasar Implementasi
 
@@ -768,7 +784,7 @@ Lebih baik **1 modul matang**, daripada **7 modul setengah jalan**.
 
 ---
 
-### 🧠 Penegasan Akhir Roadmap
+## 🧠 Penegasan Akhir Roadmap
 
 - **MSH adalah sistem berpikir sebelum sistem kerja**
 - **Assessment bukan penghakiman, tetapi alat navigasi**
@@ -780,13 +796,13 @@ Lebih baik **1 modul matang**, daripada **7 modul setengah jalan**.
 
 ---
 
-## **Bagian III — MSH Maturity Assessment Tool**
+# **Bagian III — MSH Maturity Assessment Tool**
 
 **(Maintenance System Handbook – Maturity Evaluation Framework)**
 
 ---
 
-### 📌 Tujuan Alat Ini
+## 📌 Tujuan Alat Ini
 
 **MSH Maturity Assessment Tool** dirancang untuk:
 
@@ -807,7 +823,7 @@ Alat ini **bukan audit kepatuhan**, melainkan **diagnostic tool** untuk:
 
 ---
 
-### 🧠 Kerangka Dasar Penilaian
+## 🧠 Kerangka Dasar Penilaian
 
 Assessment dibangun berdasarkan **seluruh modul Maintenance System Handbook (Module 0–7)** dan diselaraskan dengan:
 
@@ -830,7 +846,7 @@ Assessment dibangun berdasarkan **seluruh modul Maintenance System Handbook (Mod
 
 ---
 
-### 📊 Skala Maturity (Level 1–5)
+## 📊 Skala Maturity (Level 1–5)
 
 | Level                             | Karakteristik Umum                            |
 | --------------------------------- | --------------------------------------------- |
@@ -845,7 +861,7 @@ Tidak semua plant _harus_ berada di Level 5, tetapi **tidak boleh stagnan**.
 
 ---
 
-### 🧩 Struktur Assessment per Modul
+## 🧩 Struktur Assessment per Modul
 
 - 🔹 1. Modul 0–1: Filosofi & Arah Sistem
 
@@ -961,7 +977,7 @@ Tidak semua plant _harus_ berada di Level 5, tetapi **tidak boleh stagnan**.
 
 ---
 
-### 📋 Contoh Format Assessment (Ringkas)
+## 📋 Contoh Format Assessment (Ringkas)
 
 | Modul | Pernyataan Evaluasi                   | Skor (1–5) | Catatan                           |
 | ----- | ------------------------------------- | ---------- | --------------------------------- |
@@ -977,7 +993,7 @@ Tidak semua plant _harus_ berada di Level 5, tetapi **tidak boleh stagnan**.
 
 ---
 
-### 🛠️ Output yang Diharapkan
+## 🛠️ Output yang Diharapkan
 
 1. **Maturity Profile Plant**
 2. **Gap Analysis per Modul**
@@ -987,7 +1003,7 @@ Tidak semua plant _harus_ berada di Level 5, tetapi **tidak boleh stagnan**.
 
 ---
 
-### 🧠 Prinsip Penutup
+## 🧠 Prinsip Penutup
 
 > **Maturity assessment bukan untuk menghakimi,
 > tetapi untuk memastikan sistem bergerak ke arah yang benar.**
@@ -1000,7 +1016,7 @@ Dengan **MSH Maturity Assessment Tool**, organisasi memiliki:
 
 ---
 
-### **📌 Artikel Pendukung MSH (Execution & Human System Extension)**
+## **📌 Artikel Pendukung MSH (Execution & Human System Extension)**
 
 Maintenance System Handbook (MSH) dirancang sebagai **kerangka sistem pengambilan keputusan pemeliharaan end-to-end**. Namun, agar sistem ini **benar-benar hidup dan bekerja di lapangan**, MSH secara sadar didukung oleh sejumlah **artikel implementatif pendamping** yang berfungsi sebagai **lapisan eksekusi manusia dan organisasi**.
 
@@ -1012,18 +1028,18 @@ Artikel pendukung ini membentuk apa yang disebut sebagai **Execution Integrity L
 
 ---
 
-#### 🧩 **1. Strategi Manpower dalam Ekosistem Risk-Based Maintenance (RBM)**
+### 🧩 **1. Strategi Manpower dalam Ekosistem Risk-Based Maintenance (RBM)**
 
 <ResourceBox
-  title="Korelasi internal-link modul:"
-  items={[
-    {
-      name: 'Strategi Manpower',
-      href: '/blog/management/MSH/MSH-manpower',
-      description:
-        'Strategi Manpower dalam Ekosistem Risk-Based Maintenance (RBM)',
-    },
-  ]}
+title="Korelasi internal-link modul:"
+items={[
+{
+name: 'Strategi Manpower',
+href: '/blog/management/MSH/MSH-manpower',
+description:
+'Strategi Manpower dalam Ekosistem Risk-Based Maintenance (RBM)',
+},
+]}
 />
 
 Artikel ini berfungsi sebagai **human consequence layer** dari MSH, yang secara langsung melengkapi:
@@ -1049,18 +1065,18 @@ Tanpa desain manpower berbasis risiko, RBM akan berhenti sebagai **sistem yang d
 
 ---
 
-#### 🧩 **2. Job Description Berbasis Risiko dalam Ekosistem RBM**
+### 🧩 **2. Job Description Berbasis Risiko dalam Ekosistem RBM**
 
 <ResourceBox
-  title="Korelasi internal-link modul:"
-  items={[
-    {
-      name: 'Job Description',
-      href: '/blog/management/MSH/MSH-jobdesc',
-      description:
-        'Job Description Berbasis Risiko dalam Ekosistem Risk-Based Maintenance (RBM)',
-    },
-  ]}
+title="Korelasi internal-link modul:"
+items={[
+{
+name: 'Job Description',
+href: '/blog/management/MSH/MSH-jobdesc',
+description:
+'Job Description Berbasis Risiko dalam Ekosistem Risk-Based Maintenance (RBM)',
+},
+]}
 />
 
 Artikel ini merupakan **implementative reference** yang mengunci RBM ke dalam **struktur jabatan nyata**, bukan sekadar struktur organisasi formal.
@@ -1088,18 +1104,18 @@ Tanpa JobDesc berbasis risiko, governance RBM akan runtuh pada saat terjadi teka
 
 ---
 
-#### 🧩 **3. Instruksi Kerja (IK/WI) Berbasis Risiko dalam Ekosistem RBM**
+### 🧩 **3. Instruksi Kerja (IK/WI) Berbasis Risiko dalam Ekosistem RBM**
 
 <ResourceBox
-  title="Korelasi internal-link modul:"
-  items={[
-    {
-      name: 'Instruksi Kerja (IK/WI)',
-      href: '/blog/management/MSH/MSH-ik-wi',
-      description:
-        'Instruksi Kerja (IK/WI) Berbasis Risiko dalam Ekosistem Risk-Based Maintenance (RBM)',
-    },
-  ]}
+title="Korelasi internal-link modul:"
+items={[
+{
+name: 'Instruksi Kerja (IK/WI)',
+href: '/blog/management/MSH/MSH-ik-wi',
+description:
+'Instruksi Kerja (IK/WI) Berbasis Risiko dalam Ekosistem Risk-Based Maintenance (RBM)',
+},
+]}
 />
 
 Artikel ini merupakan **lapisan eksekusi terakhir (final execution lock)** dalam ekosistem MSH.
