@@ -1,4 +1,4 @@
-// components/Footer.tsx
+// plugins/mx-core-docs/src/components/Footer.tsx
 
 import Link from './Link';
 import siteMetadata from '@/data/siteMetadata';
@@ -19,14 +19,14 @@ export default function Footer() {
         </div>
 
         {/* Footer Text & Links */}
-        <div className="mb-2 flex flex-wrap justify-center space-x-2 text-sm text-gray-500 dark:text-gray-400">
+        <div className="mb-2 flex flex-wrap justify-center space-x-2 text-sm text-slate-500 dark:text-slate-400">
           <span>{siteMetadata.author}</span>
           <span>•</span>
           <span>© {new Date().getFullYear()}</span>
           <span>•</span>
           <Link
             href="https://github.com/slametsampon/mx-core"
-            className="text-blue-600 underline transition-colors duration-200 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300"
+            className="text-sky-600 underline transition-colors duration-200 hover:text-cyan-600 dark:text-cyan-400 dark:hover:text-cyan-300"
             aria-label="Source code on GitHub"
           >
             {siteMetadata.title}
@@ -36,7 +36,7 @@ export default function Footer() {
           <span>•</span>
           <Link
             href="/about"
-            className="text-blue-600 underline transition-colors duration-200 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300"
+            className="text-sky-600 underline transition-colors duration-200 hover:text-cyan-600 dark:text-cyan-400 dark:hover:text-cyan-300"
             aria-label="About page"
           >
             About

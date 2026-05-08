@@ -11,7 +11,11 @@ const CustomLink = ({ href = '', children, ...rest }: AnchorProps) => {
   const isAnchorLink = href.startsWith('#');
 
   if (isInternalLink) {
-    return <Link href={href}>{children}</Link>;
+    return (
+      <Link href={href} {...rest}>
+        {children}
+      </Link>
+    );
   }
 
   if (isAnchorLink) {
