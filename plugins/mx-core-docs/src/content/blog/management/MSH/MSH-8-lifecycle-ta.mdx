@@ -19,10 +19,11 @@ draft: false
 summary: Module 8 menutup Maintenance System Handbook dengan menegaskan bahwa keandalan jangka panjang tidak ditentukan oleh metode tunggal, melainkan oleh sistem pemeliharaan yang dikelola sepanjang siklus hidup aset. Modul ini mengintegrasikan maintenance dengan perspektif asset lifecycle, Turnaround (TA), review berkala, dan reliability growth. Melalui mekanisme evaluasi 6 bulanan dan tahunan, audit sebagai alat evolusi, serta kerangka maturity evolution, sistem pemeliharaan dipastikan tetap relevan, defensible, dan adaptif terhadap perubahan risiko dan usia aset. Peran kepemimpinan menjadi kunci untuk menjaga filosofi, batas SHE, dan kesinambungan continuous improvement dalam horizon operasional jangka panjang.
 ---
 
-**_Lifecycle Aset, Turnaround, dan Continuous Improvement Sistem Pemeliharaan_**
+# **_Lifecycle Aset, Turnaround, dan Continuous Improvement Sistem Pemeliharaan_**
 
 ---
 
+- [**_Lifecycle Aset, Turnaround, dan Continuous Improvement Sistem Pemeliharaan_**](#lifecycle-aset-turnaround-dan-continuous-improvement-sistem-pemeliharaan)
 - [📌 Prolog Modul](#-prolog-modul)
 - [8.1 Maintenance dalam Perspektif Siklus Hidup Aset](#81-maintenance-dalam-perspektif-siklus-hidup-aset)
 - [8.2 Hubungan Sistemik Maintenance dan Turnaround (TA)](#82-hubungan-sistemik-maintenance-dan-turnaround-ta)
@@ -41,7 +42,7 @@ summary: Module 8 menutup Maintenance System Handbook dengan menegaskan bahwa ke
 
 ---
 
-## 📌 Prolog Modul
+# 📌 Prolog Modul
 
 Modul ini merupakan **penutup strategis** dari _Maintenance System Handbook_ yang dirancang untuk menjawab pertanyaan pada tingkat pimpinan dan pengambil keputusan jangka panjang:
 
@@ -50,6 +51,37 @@ Modul ini merupakan **penutup strategis** dari _Maintenance System Handbook_ yan
 Seluruh modul sebelumnya telah membangun sistem secara berlapis dan konsisten. **Module 1–2** meletakkan filosofi serta logika pengambilan keputusan berbasis risiko. **Module 3** menerjemahkannya ke dalam strategi _Risk-Based Maintenance_ yang operasional. **Module 4–5** memastikan eksekusi yang akuntabel serta pembelajaran yang berkelanjutan dari setiap gangguan. **Module 6** kemudian menetapkan SHE sebagai batas keras yang tidak dapat dinegosiasikan dalam seluruh keputusan pemeliharaan.
 
 Dengan fondasi tersebut, **Module 7** berfokus pada keberlanjutan sistem. Modul ini memastikan bahwa sistem pemeliharaan tidak berhenti sebagai desain awal yang statis, melainkan **ditinjau secara periodik**, **ditingkatkan secara sadar**, dan **diselaraskan dengan siklus hidup aset serta kegiatan Turnaround (TA)**. Perspektif siklus hidup, mekanisme review dan audit, serta _continuous improvement_ diposisikan sebagai pengikat agar sistem tetap adaptif terhadap penuaan aset, perubahan risiko, tuntutan regulasi, dan dinamika bisnis.
+
+```mermaid id="msh-8-lifecycle-continuous-improvement-overview-mobile"
+flowchart TD
+    A["Module 1-2<br/>Risk Philosophy + Decision Logic"] --> B["Module 3<br/>RBM Strategy"]
+    B --> C["Module 5-6<br/>Execution + Learning"]
+    C --> D["Module 7<br/>SHE Hard Boundary"]
+    D --> E["Module 8<br/>Lifecycle + TA + Improvement"]
+
+    E --> F["Periodic<br/>Review"]
+    E --> G["Turnaround<br/>Risk Reset"]
+    E --> H["Reliability<br/>Growth"]
+    E --> I["Continuous<br/>Improvement"]
+
+    F --> J["Maintenance System<br/>Remains Relevant"]
+    G --> J
+    H --> J
+    I --> J
+
+    classDef foundation fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef strategy fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef boundary fill:#FFEBEE,stroke:#C62828,color:#111;
+    classDef lifecycle fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef output fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+
+    class A foundation;
+    class B strategy;
+    class C strategy;
+    class D boundary;
+    class E,F,G,H,I lifecycle;
+    class J output;
+```
 
 <ResourceBox
   title="Korelasi internal-link modul:"
@@ -101,7 +133,7 @@ Dengan fondasi tersebut, **Module 7** berfokus pada keberlanjutan sistem. Modul 
 
 ---
 
-## 8.1 Maintenance dalam Perspektif Siklus Hidup Aset
+# 8.1 Maintenance dalam Perspektif Siklus Hidup Aset
 
 Sub-bab ini menempatkan pemeliharaan sebagai **komponen integral dari manajemen siklus hidup aset (asset lifecycle management)**, bukan sebagai aktivitas tahunan yang berdiri sendiri. Dalam kerangka ini, strategi maintenance harus dipahami sebagai **fungsi dinamis** yang berubah seiring perubahan kondisi teknis, risiko, dan nilai aset terhadap operasi bisnis.
 
@@ -124,9 +156,35 @@ Dalam industri petrokimia, aset utama—seperti reaktor, kolom distilasi, kompre
 
 Prinsip kunci dari perspektif siklus hidup ini adalah bahwa **strategi pemeliharaan tidak bersifat universal dan statis**. Pendekatan yang efektif untuk aset berusia 5 tahun akan menjadi tidak memadai—atau bahkan berbahaya—bila diterapkan tanpa penyesuaian pada aset berusia 25 tahun. Oleh karena itu, sistem pemeliharaan yang matang harus mampu **menyesuaikan strategi, metode, dan prioritasnya secara sadar** seiring pergerakan aset sepanjang siklus hidupnya.
 
+```mermaid id="asset-lifecycle-maintenance-strategy-mobile"
+flowchart TD
+    A["Asset<br/>Lifecycle"] --> B["Design<br/>Phase"]
+    B --> C["Commissioning<br/>Phase"]
+    C --> D["Operation<br/>Phase"]
+    D --> E["Aging<br/>Phase"]
+    E --> F["Decommissioning<br/>Phase"]
+
+    B --> B1["Maintainability<br/>Access<br/>Material Selection"]
+    C --> C1["Baseline<br/>Condition Data"]
+    D --> D1["RBM<br/>TBM / CBM / PdM"]
+    E --> E1["Aging Risk<br/>Inspection Increase<br/>Redesign / Replace"]
+    F --> F1["Safe Shutdown<br/>Environmental Control"]
+
+    classDef lifecycle fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef phase fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef action fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef risk fill:#FFEBEE,stroke:#C62828,color:#111;
+
+    class A lifecycle;
+    class B,C,D,F phase;
+    class E risk;
+    class B1,C1,D1,F1 action;
+    class E1 risk;
+```
+
 ---
 
-## 8.2 Hubungan Sistemik Maintenance dan Turnaround (TA)
+# 8.2 Hubungan Sistemik Maintenance dan Turnaround (TA)
 
 Sub-bab ini bertujuan menghilangkan dikotomi yang sering muncul di organisasi, yaitu pemisahan antara **“operational maintenance”** dan **Turnaround (TA)** seolah-olah keduanya merupakan domain yang terpisah. Dalam kerangka _Maintenance System Handbook_, TA diposisikan sebagai **bagian integral dari sistem pemeliharaan**, bukan sekadar proyek besar yang berdiri sendiri.
 
@@ -156,13 +214,39 @@ Keterkaitan langsung dengan **Risk-Based Maintenance (Module 3)** sangat krusial
 
 Melalui pendekatan ini, maintenance dan TA membentuk **satu siklus terpadu**: operasi mengidentifikasi risiko, TA mengeliminasi risiko laten, dan sistem pemeliharaan pasca-TA beroperasi pada tingkat keandalan yang lebih tinggi.
 
+```mermaid id="maintenance-ta-systemic-loop-mobile"
+flowchart TD
+    A["Operation<br/>Maintenance Period"] --> B["Failure History<br/>RCA<br/>CBM Trend"]
+    B --> C["Risk-Based<br/>TA Scope"]
+    C --> D["Turnaround<br/>Deep Maintenance Window"]
+    D --> E["Risk Reset<br/>Inspection + Major Repair"]
+    E --> F["Post-TA<br/>New Baseline"]
+    F --> G["Updated<br/>Maintenance Strategy"]
+    G --> A
+
+    C --> H["RBM Defines<br/>What Must Be Touched"]
+    H --> D
+
+    classDef operation fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef data fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef ta fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef reset fill:#FFEBEE,stroke:#C62828,color:#111;
+    classDef update fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+
+    class A operation;
+    class B data;
+    class C,H ta;
+    class D,E reset;
+    class F,G update;
+```
+
 ---
 
-## 8.3 Review Berkala: 6 Bulanan dan Tahunan sebagai Mekanisme Kontrol
+# 8.3 Review Berkala: 6 Bulanan dan Tahunan sebagai Mekanisme Kontrol
 
 Sub-bab ini menegaskan bahwa **review berkala merupakan mekanisme kontrol inti** dalam sistem pemeliharaan modern. Review tidak diposisikan sebagai respons reaktif terhadap kegagalan besar, melainkan sebagai **ritual sistemik** yang memastikan bahwa strategi, eksekusi, dan asumsi risiko tetap relevan terhadap kondisi aktual aset dan operasi.
 
-### Review 6 Bulanan
+## Review 6 Bulanan
 
 Review enam bulanan berfungsi sebagai **early control mechanism** untuk mendeteksi deviasi sebelum berkembang menjadi masalah sistemik. Fokus utama meliputi:
 
@@ -172,7 +256,7 @@ Review enam bulanan berfungsi sebagai **early control mechanism** untuk mendetek
 
 Hasil review ini menjadi dasar penyesuaian taktis tanpa harus menunggu siklus besar seperti Turnaround.
 
-### Review Tahunan
+## Review Tahunan
 
 Review tahunan berperan sebagai **strategic alignment mechanism**. Pada level ini, organisasi menilai:
 
@@ -180,13 +264,44 @@ Review tahunan berperan sebagai **strategic alignment mechanism**. Pada level in
 - potensi **redesign, replacement, atau upgrade** aset yang tidak lagi ekonomis atau aman,
 - **kesiapan Turnaround (TA)** berikutnya, termasuk scope awal berbasis risiko dan pembelajaran historis.
 
-### Penegasan
+```mermaid id="periodic-review-control-mechanism-mobile"
+flowchart TD
+    A["Maintenance<br/>System Review"] --> B["6-Month<br/>Tactical Review"]
+    A --> C["Annual<br/>Strategic Review"]
+
+    B --> D["TBM / RBM<br/>Effectiveness"]
+    B --> E["Failure Trend<br/>Recurrence Pattern"]
+    B --> F["Asset Criticality<br/>Validation"]
+
+    C --> G["Strategy<br/>Realignment"]
+    C --> H["Redesign / Replace<br/>Upgrade Decision"]
+    C --> I["TA Readiness<br/>Risk-Based Scope"]
+
+    D --> J["Short-Term<br/>Adjustment"]
+    E --> J
+    F --> J
+
+    G --> K["Long-Term<br/>System Direction"]
+    H --> K
+    I --> K
+
+    classDef review fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef tactical fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef strategic fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef output fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+
+    class A review;
+    class B,D,E,F,J tactical;
+    class C,G,H,I,K strategic;
+```
+
+## Penegasan
 
 Tanpa mekanisme review yang terjadwal dan disiplin, sistem pemeliharaan akan **membeku pada asumsi lama**, kehilangan sensitivitas terhadap perubahan risiko, dan pada akhirnya menjadi tidak efektif. Review berkala memastikan sistem tetap **adaptif, terkalibrasi, dan defensible** sepanjang siklus hidup aset.
 
 ---
 
-## 8.4 Reliability Growth sebagai Target Sistem
+# 8.4 Reliability Growth sebagai Target Sistem
 
 Sub-bab ini menggeser orientasi sistem pemeliharaan dari sekadar **kepatuhan terhadap jadwal dan prosedur** menuju **peningkatan keandalan yang terukur dan berkelanjutan (reliability growth)**. Dalam sistem pemeliharaan yang matang, keberhasilan tidak lagi diukur dari seberapa cepat gangguan diperbaiki, melainkan dari **seberapa jarang gangguan tersebut terjadi kembali**.
 
@@ -206,9 +321,30 @@ Reliability growth memiliki keterkaitan langsung dengan dua pilar sistem:
 📌 **Prinsip kunci:**
 Sistem pemeliharaan yang dewasa tidak diukur dari kecepatan respons terhadap kegagalan, tetapi dari **kemampuannya mencegah kegagalan yang sama terjadi kembali**.
 
+```mermaid id="reliability-growth-target-mobile"
+flowchart TD
+    A["Learning<br/>from Failure"] --> B["RCA<br/>Root Fix"]
+    B --> C["Permanent<br/>Corrective Action"]
+    C --> D["Failure Mode<br/>Eliminated / Reduced"]
+    D --> E["Recurrence Failure<br/>Down"]
+    E --> F["MTBF<br/>Up"]
+    F --> G["Operation<br/>More Stable"]
+    G --> H["Reliability<br/>Growth"]
+
+    classDef learning fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef action fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef reliability fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef output fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+
+    class A,B learning;
+    class C,D action;
+    class E,F,G reliability;
+    class H output;
+```
+
 ---
 
-## 8.5 Audit sebagai Alat Evolusi, Bukan Sekadar Kepatuhan
+# 8.5 Audit sebagai Alat Evolusi, Bukan Sekadar Kepatuhan
 
 Sub-bab ini menempatkan audit sebagai **mekanisme pembelajaran dan penguatan sistem**, bukan sekadar kewajiban kepatuhan atau sumber tekanan administratif. Dalam _Maintenance System Handbook_, audit diposisikan sebagai **alat evaluasi objektif** untuk menilai konsistensi antara filosofi, keputusan risiko, dan praktik pemeliharaan di lapangan.
 
@@ -240,9 +376,41 @@ Kesiapan terhadap standar seperti **ISO 55000** dan **API RP 580/581** tidak dip
 📌 **Nilai strategis:**
 Audit yang dirancang dan dimanfaatkan dengan benar akan mempercepat transisi organisasi dari sekadar patuh menuju **sistem pemeliharaan yang matang, defensible, dan terus berkembang**.
 
+```mermaid id="audit-as-system-evolution-tool-mobile"
+flowchart TD
+    A["Maintenance<br/>Audit"] --> B["Internal<br/>Audit"]
+    A --> C["External<br/>Audit"]
+
+    B --> D["Early Feedback<br/>System Deviation"]
+    B --> E["RBM / KPI / Governance<br/>Consistency Check"]
+
+    C --> F["Independent<br/>Validation"]
+    C --> G["Standard Alignment<br/>ISO 55000 / API 580"]
+
+    D --> H["Corrective<br/>System Action"]
+    E --> H
+    F --> I["Defensible<br/>Maintenance System"]
+    G --> I
+
+    H --> J["System<br/>Evolves"]
+    I --> J
+
+    classDef audit fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef internal fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef external fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef output fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+    classDef improve fill:#FFEBEE,stroke:#C62828,color:#111;
+
+    class A audit;
+    class B,D,E internal;
+    class C,F,G external;
+    class H,I output;
+    class J improve;
+```
+
 ---
 
-## 8.6 Maturity Evolution: Dari Sistem Reaktif ke Sistem Tangguh
+# 8.6 Maturity Evolution: Dari Sistem Reaktif ke Sistem Tangguh
 
 Sub-bab ini memberikan **kerangka evolusi kematangan sistem pemeliharaan**, yang menggambarkan perjalanan organisasi dari pola kerja reaktif menuju **organisasi yang digerakkan oleh keandalan (reliability-driven organization)**. Kerangka ini menegaskan bahwa tujuan _Maintenance System Handbook_ bukanlah menyamakan semua fasilitas, melainkan memastikan setiap plant **bergerak naik secara sadar dan terukur**.
 
@@ -266,7 +434,7 @@ Tahapan kematangan sistem pemeliharaan dapat dijelaskan sebagai berikut:
 📌 **Penegasan:**
 Tidak semua plant harus berada pada tingkat kematangan yang sama pada waktu yang sama. Namun, setiap organisasi pemeliharaan yang sehat harus memiliki **arah pergerakan yang jelas menuju tingkat kematangan yang lebih tinggi**.
 
-## 8.6 Maturity Evolution: Dari Sistem Reaktif ke Sistem Tangguh
+# 8.6 Maturity Evolution: Dari Sistem Reaktif ke Sistem Tangguh
 
 Sub-bab ini menyajikan **kerangka evolusi kematangan sistem pemeliharaan** yang menggambarkan perjalanan organisasi dari pola kerja reaktif menuju **organisasi yang digerakkan oleh keandalan (reliability-driven organization)**. Kerangka ini digunakan bukan untuk melakukan perbandingan antar plant, melainkan sebagai **alat refleksi dan arah perbaikan berkelanjutan**.
 
@@ -290,9 +458,35 @@ Tahapan kematangan sistem pemeliharaan dapat dijelaskan sebagai berikut:
 📌 **Penegasan:**
 Tidak semua plant harus berada pada tingkat kematangan yang sama. Namun, setiap organisasi pemeliharaan yang sehat harus memiliki **arah pergerakan yang jelas dan terukur menuju tingkat kematangan yang lebih tinggi**.
 
+```mermaid id="maintenance-maturity-evolution-mobile"
+flowchart TD
+    A["Level 1<br/>Reactive"] --> B["Level 2<br/>Generic Preventive"]
+    B --> C["Level 3<br/>Risk-Based"]
+    C --> D["Level 4<br/>Preventive-Adaptive"]
+    D --> E["Level 5<br/>Reliability-Driven Organization"]
+
+    A --> A1["Fix After<br/>Failure"]
+    B --> B1["Scheduled PM<br/>Generic Interval"]
+    C --> C1["Risk Priority<br/>RBM-Based Focus"]
+    D --> D1["Condition Data<br/>Adaptive Strategy"]
+    E --> E1["Cross-Functional<br/>Reliability Culture"]
+
+    classDef l1 fill:#FFEBEE,stroke:#C62828,color:#111;
+    classDef l2 fill:#FFF3E0,stroke:#EF6C00,color:#111;
+    classDef l3 fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef l4 fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef l5 fill:#E3F2FD,stroke:#1565C0,color:#111;
+
+    class A,A1 l1;
+    class B,B1 l2;
+    class C,C1 l3;
+    class D,D1 l4;
+    class E,E1 l5;
+```
+
 ---
 
-## 8.7 Peran Leadership dalam Menjaga Keberlanjutan Sistem
+# 8.7 Peran Leadership dalam Menjaga Keberlanjutan Sistem
 
 Sub-bab ini menegaskan bahwa **keberlanjutan sistem pemeliharaan tidak ditentukan oleh kelengkapan metode atau kecanggihan alat**, melainkan oleh **konsistensi kepemimpinan dalam menjaga arah dan disiplin sistem**. Dalam konteks _Maintenance System Handbook_, leadership berperan sebagai **penjaga stabilitas sistem jangka panjang**, terutama ketika organisasi menghadapi tekanan target, biaya, dan dinamika operasional.
 
@@ -316,9 +510,38 @@ Sub-bab ini juga menyoroti bahaya **_management drift_**, yaitu pergeseran keput
 📌 **Prinsip kunci:**
 Sistem pemeliharaan yang bertahan lama bukanlah sistem yang sejak awal dirancang sempurna, melainkan sistem yang **secara aktif dijaga, dipertahankan, dan diperkuat oleh kepemimpinan** dari waktu ke waktu.
 
+```mermaid id="leadership-sustains-maintenance-system-mobile"
+flowchart TD
+    A["Leadership<br/>Commitment"] --> B["Protect<br/>Risk-Based Philosophy"]
+    A --> C["Defend<br/>SHE Boundary"]
+    A --> D["Sponsor<br/>Improvement"]
+    A --> E["Prevent<br/>Management Drift"]
+
+    B --> F["Decision<br/>Remains Consistent"]
+    C --> G["Unsafe Compromise<br/>Rejected"]
+    D --> H["Resource for<br/>Redesign / Upgrade"]
+    E --> I["Short-Term Pressure<br/>Controlled"]
+
+    F --> J["Maintenance System<br/>Sustained"]
+    G --> J
+    H --> J
+    I --> J
+
+    classDef leadership fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef role fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef defense fill:#FFEBEE,stroke:#C62828,color:#111;
+    classDef output fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+
+    class A leadership;
+    class B,D role;
+    class C,E defense;
+    class F,G,H,I role;
+    class J output;
+```
+
 ---
 
-## 8.8 Continuous Improvement sebagai Siklus Tertutup Sistem Maintenance
+# 8.8 Continuous Improvement sebagai Siklus Tertutup Sistem Maintenance
 
 Sub-bab ini menjadi **penutup logis dan konseptual** dari seluruh _Maintenance System Handbook_, dengan menegaskan bahwa pemeliharaan modern harus dipahami sebagai **sistem tertutup yang terus belajar dan menyesuaikan diri**, bukan rangkaian program yang bersifat episodik.
 
@@ -346,13 +569,63 @@ Continuous improvement bukan berarti perubahan tanpa arah, melainkan **penyempur
 📌 **Ringkasan besar:**
 Pemeliharaan modern bukan tentang mencapai kondisi “sempurna”, tetapi tentang membangun sistem yang **belajar secara konsisten, menyesuaikan diri secara sadar, dan mampu bertahan dalam jangka panjang** di tengah kompleksitas industri proses.
 
+```mermaid id="closed-loop-maintenance-continuous-improvement-mobile"
+flowchart TD
+    A["Risk Model<br/>Priority + Boundary"] --> B["RBM<br/>Strategy Selection"]
+    B --> C["Controlled<br/>Execution"]
+    C --> D["Troubleshooting<br/>RCA + Learning"]
+    D --> E["Periodic<br/>Review"]
+    E --> F["Design / Strategy<br/>Improvement"]
+    F --> A
+
+    D --> G["Documentation<br/>Technical Memory"]
+    G --> E
+
+    classDef risk fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef strategy fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef execution fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef learning fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+    classDef improve fill:#FFEBEE,stroke:#C62828,color:#111;
+
+    class A risk;
+    class B strategy;
+    class C execution;
+    class D,G learning;
+    class E,F improve;
+```
+
 ---
 
-## 🧠 Kesimpulan Module 8
+# 🧠 Kesimpulan Module 8
 
 Modul ini menegaskan bahwa **keandalan jangka panjang tidak dicapai melalui metode, tools, atau program tunggal**, melainkan melalui **sistem pemeliharaan yang secara sadar ditinjau, ditantang, dan diperbaiki secara konsisten** sepanjang umur fasilitas. Dalam konteks industri petrokimia yang berisiko tinggi dan berumur panjang, sistem yang tidak berevolusi akan tertinggal oleh penuaan aset, perubahan risiko, dan tuntutan regulasi.
 
 Dengan mengaitkan pemeliharaan pada **siklus hidup aset**, **Turnaround (TA)**, **review berkala**, serta **maturity evolution**, organisasi memastikan bahwa sistem pemeliharaan tidak berhenti pada kepatuhan prosedural, tetapi terus menghasilkan nilai strategis. Pendekatan ini menjaga agar keputusan pemeliharaan tetap relevan secara teknis, **defensible secara audit**, dan selaras dengan tujuan bisnis jangka panjang.
+
+```mermaid id="module-8-final-strategic-summary-mobile"
+flowchart TD
+    A["Lifecycle<br/>Perspective"] --> B["TA as<br/>Risk Reset"]
+    B --> C["Periodic<br/>Review"]
+    C --> D["Reliability<br/>Growth"]
+    D --> E["Audit<br/>Evolution Tool"]
+    E --> F["Maturity<br/>Evolution"]
+    F --> G["Leadership<br/>Sustainability"]
+    G --> H["Continuous<br/>Improvement"]
+
+    H --> I["Maintenance System<br/>Effective for 10-20 Years"]
+
+    classDef lifecycle fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef ta fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef growth fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef leadership fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+    classDef output fill:#FFEBEE,stroke:#C62828,color:#111;
+
+    class A lifecycle;
+    class B,C ta;
+    class D,E,F growth;
+    class G,H leadership;
+    class I output;
+```
 
 ---
 
@@ -404,9 +677,36 @@ Dengan mengaitkan pemeliharaan pada **siklus hidup aset**, **Turnaround (TA)**, 
   note="Module 8 berfungsi sebagai penutup sekaligus pengunci seluruh sistem, memastikan bahwa _Maintenance System Handbook_ tidak hanya menjadi dokumen referensi, tetapi kerangka kerja yang relevan dan bernilai sepanjang umur aset."
 />
 
+```mermaid id="module-8-locks-full-msh-system-mobile"
+flowchart TD
+    A["Module 0<br/>Why System Must Evolve"] --> B["Module 1<br/>Risk Philosophy"]
+    B --> C["Module 2<br/>Decision Logic"]
+    C --> D["Module 3<br/>RBM Strategy"]
+    D --> E["Module 5<br/>Execution + Accountability"]
+    E --> F["Module 6<br/>Learning System"]
+    F --> G["Module 7<br/>SHE Boundary"]
+    G --> H["Module 8<br/>Lifecycle + Continuous Improvement"]
+
+    H --> I["MSH Becomes<br/>Living System"]
+
+    classDef m0 fill:#ECEFF1,stroke:#455A64,color:#111;
+    classDef foundation fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef strategy fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef learning fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef she fill:#FFEBEE,stroke:#C62828,color:#111;
+    classDef lifecycle fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+
+    class A m0;
+    class B,C foundation;
+    class D,E strategy;
+    class F learning;
+    class G she;
+    class H,I lifecycle;
+```
+
 ---
 
-## 📚 Referensi Module 8
+# 📚 Referensi Module 8
 
 1. **Artikel 2** – _Efisiensi dan Keandalan dalam Manajemen Pemeliharaan_
 2. **Artikel 3** – _Risk-Based Maintenance – Evaluasi, RBM Maturity & ESC_

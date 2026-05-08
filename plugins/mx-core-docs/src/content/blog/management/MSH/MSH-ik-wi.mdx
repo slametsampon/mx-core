@@ -18,10 +18,11 @@ draft: false
 summary: Artikel ini membahas Instruksi Kerja (IK/WI) berbasis risiko sebagai lapisan eksekusi terakhir dalam ekosistem Risk-Based Maintenance (RBM). Fokus utama artikel adalah memastikan bahwa keputusan RBM dan Job Description berbasis risiko benar-benar diterjemahkan ke dalam perilaku kerja di lapangan. IK/WI diposisikan bukan sebagai dokumen administratif atau urutan kerja semata, melainkan sebagai alat pengendalian risiko aktif yang mengunci batas keputusan, kewajiban eskalasi, dan mekanisme stop-work. Dengan pendekatan ini, IK/WI menjadi penghubung krusial antara analisis risiko, struktur organisasi, dan eksekusi teknis, sehingga RBM tidak berhenti sebagai sistem konseptual, tetapi hidup dan teruji dalam praktik operasional sehari-hari.
 ---
 
-**_Instruksi Kerja (IK/WI) Berbasis Risiko dalam Ekosistem Risk-Based Maintenance (RBM)_**
+# **_Instruksi Kerja (IK/WI) Berbasis Risiko dalam Ekosistem Risk-Based Maintenance (RBM)_**
 
 ---
 
+- [**_Instruksi Kerja (IK/WI) Berbasis Risiko dalam Ekosistem Risk-Based Maintenance (RBM)_**](#instruksi-kerja-ikwi-berbasis-risiko-dalam-ekosistem-risk-based-maintenance-rbm)
 - [**0. Prolog — Mengapa IK/WI Menjadi Pengunci Terakhir RBM**](#0-prolog--mengapa-ikwi-menjadi-pengunci-terakhir-rbm)
 - [**1. IK/WI Konvensional dan Kegagalannya dalam Sistem RBM**](#1-ikwi-konvensional-dan-kegagalannya-dalam-sistem-rbm)
   - [**1.1 Karakteristik IK/WI Tradisional**](#11-karakteristik-ikwi-tradisional)
@@ -82,7 +83,7 @@ summary: Artikel ini membahas Instruksi Kerja (IK/WI) berbasis risiko sebagai la
 
 ---
 
-## **0. Prolog — Mengapa IK/WI Menjadi Pengunci Terakhir RBM**
+# **0. Prolog — Mengapa IK/WI Menjadi Pengunci Terakhir RBM**
 
 Dalam ekosistem **Risk-Based Maintenance (RBM)**, **Instruksi Kerja (IK) / Work Instruction (WI)** menempati posisi yang sering diremehkan, namun justru paling menentukan. IK/WI **bukan dokumen administratif**, bukan pula sekadar pedoman urutan kerja teknis. Dalam kerangka RBM, IK/WI merupakan **lapisan eksekusi risiko (risk execution layer)**—tempat di mana seluruh keputusan berbasis risiko diuji secara nyata di lapangan.
 
@@ -99,6 +100,33 @@ Banyak kegagalan RBM di lapangan tidak disebabkan oleh kesalahan analisis risiko
 Perlu ditegaskan sejak awal bahwa **artikel ini tidak menjadi bagian dari modul inti Maintenance System Handbook (MSH)**. Namun demikian, artikel ini merupakan **pelengkap yang krusial dan tidak dapat dipisahkan** agar RBM dapat bekerja secara utuh. Tanpa IK/WI yang dirancang secara RBM-compliant, RBM akan berhenti sebagai sistem deklaratif—terlihat lengkap di atas kertas, tetapi rapuh pada saat dieksekusi.
 
 Oleh karena itu, artikel ini disusun sebagai **referensi implementatif satu pintu (one-stop reference)** bagi pelaksana lapangan, penyusun IK/WI, serta pengambil keputusan, untuk memastikan bahwa **RBM benar-benar hidup, dijalankan, dan dipertanggungjawabkan hingga level pekerjaan paling dasar**.
+
+```mermaid id="ik-wi-rbm-execution-layer-mobile"
+flowchart TD
+    A["RBM<br/>Risk Decision"] --> B["Job Description<br/>Risk Authority"]
+    B --> C["IK/WI<br/>Risk Execution Layer"]
+    C --> D["Field Work<br/>Execution"]
+    D --> E{"Within<br/>Risk Boundary?"}
+
+    E -- "Yes" --> F["Continue<br/>Controlled Work"]
+    E -- "No" --> G["Stop-Work<br/>Escalate"]
+
+    G --> H["Risk Owner<br/>Decision"]
+    H --> I["Document<br/>and Feedback"]
+
+    classDef rbm fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef job fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef wi fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef decision fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+    classDef stop fill:#FFEBEE,stroke:#C62828,color:#111;
+
+    class A rbm;
+    class B job;
+    class C,D wi;
+    class E,H decision;
+    class F,I job;
+    class G stop;
+```
 
 <ResourceBox
   title="Korelasi internal-link modul:"
@@ -132,9 +160,9 @@ Oleh karena itu, artikel ini disusun sebagai **referensi implementatif satu pint
 
 ---
 
-## **1. IK/WI Konvensional dan Kegagalannya dalam Sistem RBM**
+# **1. IK/WI Konvensional dan Kegagalannya dalam Sistem RBM**
 
-### **1.1 Karakteristik IK/WI Tradisional**
+## **1.1 Karakteristik IK/WI Tradisional**
 
 Instruksi Kerja (IK/WI) konvensional pada umumnya disusun dengan tujuan utama **menyeragamkan cara kerja** dan memastikan pekerjaan dilakukan sesuai urutan yang dianggap benar. Fokus utamanya adalah:
 
@@ -148,7 +176,7 @@ Pendekatan ini mungkin memadai pada sistem dengan **risiko rendah dan variabilit
 
 ---
 
-### **1.2 Keterbatasan IK/WI Konvensional dalam Kerangka RBM**
+## **1.2 Keterbatasan IK/WI Konvensional dalam Kerangka RBM**
 
 Ketika ditempatkan dalam sistem **Risk-Based Maintenance (RBM)**, IK/WI konvensional menunjukkan keterbatasan fundamental, antara lain:
 
@@ -169,7 +197,7 @@ Ketika ditempatkan dalam sistem **Risk-Based Maintenance (RBM)**, IK/WI konvensi
 
 ---
 
-### **1.3 Dampak Langsung terhadap Kegagalan RBM**
+## **1.3 Dampak Langsung terhadap Kegagalan RBM**
 
 Keterbatasan tersebut menimbulkan dampak sistemik yang serius terhadap efektivitas RBM, antara lain:
 
@@ -181,7 +209,7 @@ Dalam kondisi ini, pekerjaan tetap berjalan “sesuai IK/WI”, namun sesungguhn
 
 ---
 
-### **1.4 Kebutuhan Transisi Menuju IK/WI Berbasis Risiko**
+## **1.4 Kebutuhan Transisi Menuju IK/WI Berbasis Risiko**
 
 Kondisi tersebut menegaskan bahwa IK/WI konvensional tidak lagi memadai dalam ekosistem RBM. Diperlukan transisi yang jelas dan sadar dari:
 
@@ -197,11 +225,32 @@ Dalam pendekatan baru ini, IK/WI tidak hanya mengatur **apa yang harus dilakukan
 
 Transisi inilah yang menjadi fondasi bagi penyusunan **IK/WI RBM-compliant**, yang akan dibahas pada bagian-bagian selanjutnya sebagai mekanisme pengunci agar RBM benar-benar bekerja hingga level eksekusi lapangan.
 
+```mermaid id="ik-wi-conventional-to-rbm-mobile"
+flowchart TD
+    A["IK/WI<br/>Konvensional"] --> B["Procedure-Driven<br/>Execution"]
+    B --> C["Sequence<br/>Compliance"]
+    C --> D["Risk Context<br/>Missing"]
+    D --> E["Deviation<br/>Normalized"]
+
+    F["IK/WI<br/>RBM-Compliant"] --> G["Risk-Driven<br/>Execution"]
+    G --> H["Risk Trigger<br/>Defined"]
+    H --> I["Decision Boundary<br/>Locked"]
+    I --> J["Escalation + Stop-Work<br/>Mandatory"]
+
+    classDef conventional fill:#FFEBEE,stroke:#C62828,color:#111;
+    classDef rbm fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef middle fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef output fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+
+    class A,B,C,D,E conventional;
+    class F,G,H,I,J rbm;
+```
+
 ---
 
-## **2. Posisi IK/WI dalam Arsitektur RBM**
+# **2. Posisi IK/WI dalam Arsitektur RBM**
 
-### **2.1 IK/WI sebagai Turunan Keputusan RBM**
+## **2.1 IK/WI sebagai Turunan Keputusan RBM**
 
 Dalam arsitektur **Risk-Based Maintenance (RBM)**, **Instruksi Kerja (IK/WI)** tidak boleh diposisikan sebagai dokumen yang berdiri sendiri atau disusun secara terpisah dari keputusan risiko. IK/WI adalah **turunan langsung dari keputusan RBM**, bukan sumber keputusan itu sendiri. Artinya, IK/WI tidak berwenang “menentukan risiko”, tetapi bertugas **mengeksekusi dan menjaga agar keputusan risiko yang telah ditetapkan tidak dilanggar di lapangan**.
 
@@ -209,7 +258,7 @@ Ketika IK/WI disusun tanpa rujukan eksplisit ke RBM, dokumen tersebut kehilangan
 
 ---
 
-### **2.2 Hubungan Struktural dalam Ekosistem RBM**
+## **2.2 Hubungan Struktural dalam Ekosistem RBM**
 
 Posisi IK/WI dalam RBM dapat dirumuskan secara hierarkis sebagai berikut:
 
@@ -219,6 +268,26 @@ Posisi IK/WI dalam RBM dapat dirumuskan secara hierarkis sebagai berikut:
   apa yang dianggap berisiko, bagaimana risiko diklasifikasikan, dan batas risiko yang dapat diterima.
 - **Job Description berbasis RBM** menetapkan _siapa_ pemegang kewenangan, kewajiban, dan kepemilikan risiko pada setiap jenjang jabatan.
 - **IK/WI** menetapkan _bagaimana pekerjaan dijalankan_ agar keputusan RBM dan pembagian kewenangan tersebut benar-benar ditaati di lapangan.
+
+```mermaid id="rbm-jobdesc-ikwi-hierarchy-mobile"
+flowchart TD
+    A["MSH-3<br/>RBM"] --> B["Defines<br/>Risk Decision"]
+    B --> C["Job Description<br/>RBM-Based"]
+    C --> D["Defines<br/>Risk Owner<br/>Authority"]
+    D --> E["IK/WI<br/>RBM-Compliant"]
+    E --> F["Defines<br/>Execution Boundary"]
+    F --> G["Field Work<br/>Controlled by Risk"]
+
+    classDef rbm fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef job fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef wi fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef output fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+
+    class A,B rbm;
+    class C,D job;
+    class E,F wi;
+    class G output;
+```
 
 <ResourceBox
   title="Korelasi internal-link modul:"
@@ -236,7 +305,7 @@ Dengan hubungan ini, IK/WI berfungsi sebagai **jembatan operasional** antara kep
 
 ---
 
-### **2.3 Fungsi Utama IK/WI dalam RBM**
+## **2.3 Fungsi Utama IK/WI dalam RBM**
 
 Dalam konteks RBM, IK/WI memiliki dua fungsi utama yang bersifat kritis:
 
@@ -250,7 +319,7 @@ Dengan demikian, IK/WI menjadi alat untuk mencegah terjadinya _silent risk drift
 
 ---
 
-### **2.4 Penegasan Posisi IK/WI RBM**
+## **2.4 Penegasan Posisi IK/WI RBM**
 
 Perlu ditegaskan secara eksplisit bahwa:
 
@@ -259,11 +328,41 @@ Perlu ditegaskan secara eksplisit bahwa:
 
 Fokus IK/WI bukan pada efisiensi langkah kerja semata, melainkan pada **kepatuhan terhadap batas risiko** yang telah ditetapkan oleh sistem RBM. Dengan pemahaman ini, IK/WI tidak lagi dipandang sebagai dokumen pelengkap, melainkan sebagai **komponen kunci dalam menjaga konsistensi, integritas, dan akuntabilitas sistem RBM hingga level eksekusi paling bawah**.
 
+```mermaid id="ikwi-risk-assumption-lock-mobile"
+flowchart TD
+    A["RBM<br/>Risk Assumption"] --> B["Asset Condition"]
+    A --> C["Work Method"]
+    A --> D["Competent Person"]
+    A --> E["Safe Operating<br/>Environment"]
+
+    B --> F["IK/WI<br/>Locks Assumption"]
+    C --> F
+    D --> F
+    E --> F
+
+    F --> G{"Assumption<br/>Still Valid?"}
+    G -- "Valid" --> H["Continue<br/>Work"]
+    G -- "Invalid" --> I["Stop<br/>Escalate<br/>Reassess"]
+
+    classDef rbm fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef assumption fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef wi fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef decision fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+    classDef stop fill:#FFEBEE,stroke:#C62828,color:#111;
+
+    class A rbm;
+    class B,C,D,E assumption;
+    class F wi;
+    class G decision;
+    class H assumption;
+    class I stop;
+```
+
 ---
 
-## **3. Prinsip Dasar IK/WI RBM-Compliant**
+# **3. Prinsip Dasar IK/WI RBM-Compliant**
 
-### **3.1 Prinsip yang Dikunci: Berbasis Risk Exposure**
+## **3.1 Prinsip yang Dikunci: Berbasis Risk Exposure**
 
 Prinsip fundamental dalam penyusunan **IK/WI yang RBM-compliant** adalah bahwa dokumen kerja **tidak boleh disusun secara seragam**, melainkan harus disesuaikan dengan **tingkat paparan risiko (risk exposure)** dari aset dan pekerjaan yang dikendalikan. Dua pekerjaan yang tampak identik secara teknis dapat memiliki kebutuhan pengendalian yang sangat berbeda apabila:
 
@@ -275,7 +374,7 @@ Oleh karena itu, keseragaman IK/WI justru menjadi sumber degradasi risiko. Dalam
 
 ---
 
-### **3.2 Elemen Wajib dalam IK/WI RBM**
+## **3.2 Elemen Wajib dalam IK/WI RBM**
 
 Agar berfungsi sebagai alat pengendalian risiko, setiap IK/WI RBM-compliant **wajib memuat elemen-elemen berikut**:
 
@@ -314,9 +413,37 @@ Agar berfungsi sebagai alat pengendalian risiko, setiap IK/WI RBM-compliant **wa
 
    Stop-work dalam RBM adalah **tindakan teknis dan profesional**, bukan isu budaya atau keberanian personal.
 
+```mermaid id="mandatory-elements-ikwi-rbm-mobile"
+flowchart TD
+    A["IK/WI<br/>RBM-Compliant"] --> B["Risk<br/>Context"]
+    A --> C["Decision<br/>Boundary"]
+    A --> D["Escalation<br/>Obligation"]
+    A --> E["Stop-Work<br/>Rule"]
+
+    B --> F["Why Work<br/>is Risk-Sensitive"]
+    C --> G["What Field Team<br/>Can / Cannot Decide"]
+    D --> H["When Escalation<br/>is Mandatory"]
+    E --> I["When Work<br/>Must Stop"]
+
+    F --> J["Risk Enforcement<br/>Tool"]
+    G --> J
+    H --> J
+    I --> J
+
+    classDef wi fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef element fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef function fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef output fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+
+    class A wi;
+    class B,C,D,E element;
+    class F,G,H,I function;
+    class J output;
+```
+
 ---
 
-### **3.3 IK/WI sebagai Risk Enforcement Tool**
+## **3.3 IK/WI sebagai Risk Enforcement Tool**
 
 Dengan elemen-elemen tersebut, IK/WI RBM tidak lagi berfungsi sebagai **daftar langkah pekerjaan**, melainkan sebagai **risk enforcement tool**. Perannya adalah:
 
@@ -328,15 +455,41 @@ Checklist pekerjaan dapat membantu keteraturan, tetapi **tidak cukup untuk menge
 
 ---
 
-## **4. Struktur Umum Template IK/WI RBM-Compliant**
+# **4. Struktur Umum Template IK/WI RBM-Compliant**
 
 Struktur IK/WI yang **RBM-compliant** harus disusun secara **baku, konsisten, dan dapat ditelusuri**, sehingga mampu mengikat keputusan risiko hingga level eksekusi lapangan. Struktur ini **bukan contoh untuk jenis peralatan tertentu**, melainkan **kerangka universal** yang dapat diterapkan lintas domain (rotating, static, electrical, instrument) dengan penyesuaian teknis seperlunya.
 
 Berikut adalah elemen-elemen struktural yang **wajib ada** dalam setiap IK/WI RBM-compliant.
 
+```mermaid id="ikwi-rbm-template-structure-mobile"
+flowchart TD
+    A["IK/WI<br/>RBM Template"] --> B["Identity &<br/>Risk Traceability"]
+    B --> C["Risk-Based<br/>Scope"]
+    C --> D["RBM & ESC<br/>Context"]
+    D --> E["Personnel<br/>Requirement"]
+    E --> F["Tools & Integrity<br/>Requirement"]
+    F --> G["SHE & Process<br/>Safety Constraint"]
+    G --> H["Execution Sequence<br/>with Risk Gate"]
+    H --> I["Risk Trigger<br/>Stop-Work"]
+    I --> J["Escalation<br/>Authority Boundary"]
+    J --> K["Quality Check<br/>Acceptance"]
+    K --> L["Documentation<br/>RBM Feedback"]
+
+    classDef template fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef risk fill:#FFEBEE,stroke:#C62828,color:#111;
+    classDef control fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef execution fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef feedback fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+
+    class A,B,C,D template;
+    class G,I,J risk;
+    class E,F,H,K execution;
+    class L feedback;
+```
+
 ---
 
-### **4.1 Identitas Dokumen & Traceability Risiko**
+## **4.1 Identitas Dokumen & Traceability Risiko**
 
 Bagian ini memastikan bahwa IK/WI:
 
@@ -358,7 +511,7 @@ Minimal mencakup:
 
 ---
 
-### **4.2 Tujuan & Ruang Lingkup Berbasis Risiko**
+## **4.2 Tujuan & Ruang Lingkup Berbasis Risiko**
 
 Tujuan IK/WI harus menjelaskan:
 
@@ -375,7 +528,7 @@ Pendefinisian ini berfungsi sebagai **batas risiko operasional**, bukan sekadar 
 
 ---
 
-### **4.3 Konteks RBM & ESC**
+## **4.3 Konteks RBM & ESC**
 
 Bagian ini menempatkan pekerjaan dalam konteks sistem RBM dengan menjelaskan:
 
@@ -387,7 +540,7 @@ Tujuannya adalah memastikan bahwa pelaksana memahami **mengapa pekerjaan ini sen
 
 ---
 
-### **4.4 Persyaratan Personel (Selaras dengan Job Description RBM)**
+## **4.4 Persyaratan Personel (Selaras dengan Job Description RBM)**
 
 IK/WI harus menetapkan:
 
@@ -399,7 +552,7 @@ Persyaratan ini **tidak menggantikan Job Description**, tetapi memastikan bahwa 
 
 ---
 
-### **4.5 Tools & System Integrity Requirement**
+## **4.5 Tools & System Integrity Requirement**
 
 Bagian ini mendefinisikan:
 
@@ -412,7 +565,7 @@ Tujuannya adalah menjaga **integritas sistem dan asumsi teknis** yang digunakan 
 
 ---
 
-### **4.6 SHE & Process Safety Constraint**
+## **4.6 SHE & Process Safety Constraint**
 
 IK/WI harus memuat:
 
@@ -425,7 +578,7 @@ Bagian ini menegaskan bahwa **batas keselamatan dan process safety tidak dapat d
 
 ---
 
-### **4.7 Execution Sequence dengan Risk Gate**
+## **4.7 Execution Sequence dengan Risk Gate**
 
 Urutan kerja disusun langkah demi langkah, namun:
 
@@ -436,7 +589,7 @@ Risk gate berfungsi sebagai **titik verifikasi** bahwa pekerjaan masih berada da
 
 ---
 
-### **4.8 Risk Trigger & Mandatory Stop-Work**
+## **4.8 Risk Trigger & Mandatory Stop-Work**
 
 IK/WI wajib mendefinisikan secara eksplisit:
 
@@ -448,7 +601,7 @@ Stop-work di sini adalah **instruksi teknis**, bukan kebijakan umum atau slogan 
 
 ---
 
-### **4.9 Escalation & Authority Boundary**
+## **4.9 Escalation & Authority Boundary**
 
 Bagian ini menetapkan:
 
@@ -460,7 +613,7 @@ Dengan demikian, tidak ada keputusan kritis yang diambil tanpa **pemilik risiko 
 
 ---
 
-### **4.10 Quality Check & Acceptance**
+## **4.10 Quality Check & Acceptance**
 
 IK/WI harus menentukan:
 
@@ -472,7 +625,7 @@ Acceptance di sini adalah **titik penutupan risiko**, bukan sekadar penyelesaian
 
 ---
 
-### **4.11 Dokumentasi & Feedback ke Evaluation Loop**
+## **4.11 Dokumentasi & Feedback ke Evaluation Loop**
 
 Bagian akhir memastikan bahwa:
 
@@ -489,9 +642,9 @@ Struktur ini adalah **kerangka baku IK/WI RBM-compliant**. Penyesuaian hanya bol
 
 ---
 
-## **5. IK/WI sebagai Pengunci Decision Boundary di Lapangan**
+# **5. IK/WI sebagai Pengunci Decision Boundary di Lapangan**
 
-### **5.1 Pekerjaan Boleh Dilakukan vs Keputusan Boleh Diambil**
+## **5.1 Pekerjaan Boleh Dilakukan vs Keputusan Boleh Diambil**
 
 Salah satu sumber kegagalan paling umum dalam eksekusi pemeliharaan berisiko tinggi adalah **ketidakjelasan antara pekerjaan yang boleh dilakukan dan keputusan yang boleh diambil**. Dalam praktik lapangan, banyak individu mampu mengeksekusi pekerjaan secara teknis, namun **tidak memiliki kewenangan untuk mengambil keputusan risiko** yang menyertainya.
 
@@ -504,7 +657,7 @@ IK/WI berperan sebagai dokumen yang **memisahkan secara eksplisit** dua domain t
 
 ---
 
-### **5.2 Penetapan Batas Keputusan Melalui IK/WI**
+## **5.2 Penetapan Batas Keputusan Melalui IK/WI**
 
 IK/WI RBM-compliant harus secara eksplisit menetapkan tiga hal utama:
 
@@ -523,9 +676,35 @@ IK/WI RBM-compliant harus secara eksplisit menetapkan tiga hal utama:
 
 Dengan mekanisme ini, keputusan risiko selalu memiliki **pemilik yang jelas dan sah**.
 
+```mermaid id="work-vs-decision-boundary-mobile"
+flowchart TD
+    A["Field<br/>Condition"] --> B{"Within<br/>Normal Parameter?"}
+
+    B -- "Yes" --> C["Technician<br/>May Execute Work"]
+    C --> D["Work Continues<br/>Within IK/WI"]
+
+    B -- "No" --> E["Decision Required<br/>Beyond Technician Authority"]
+    E --> F["Stop Work"]
+    F --> G["Escalate to<br/>Risk Owner"]
+    G --> H["Supervisor / Engineer<br/>Decision"]
+    H --> I["Resume / Change Method<br/>or Hold Work"]
+
+    classDef condition fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef execute fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef decision fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef stop fill:#FFEBEE,stroke:#C62828,color:#111;
+    classDef output fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+
+    class A condition;
+    class B,E,H decision;
+    class C,D execute;
+    class F,G stop;
+    class I output;
+```
+
 ---
 
-### **5.3 Hubungan Langsung dengan Job Description RBM**
+## **5.3 Hubungan Langsung dengan Job Description RBM**
 
 Penguncian decision boundary dalam IK/WI tidak berdiri sendiri, melainkan **diturunkan langsung dari Job Description berbasis RBM** pada setiap jenjang jabatan. IK/WI berfungsi sebagai penerjemah praktis dari Job Description tersebut ke dalam konteks pekerjaan nyata.
 
@@ -536,9 +715,9 @@ Tanpa IK/WI yang mengunci decision boundary, Job Description berbasis risiko aka
 
 ---
 
-## **6. Risk Trigger, Escalation, dan Stop-Work dalam IK/WI**
+# **6. Risk Trigger, Escalation, dan Stop-Work dalam IK/WI**
 
-### **6.1 Definisi Risk Trigger dalam IK/WI RBM**
+## **6.1 Definisi Risk Trigger dalam IK/WI RBM**
 
 Dalam IK/WI yang **RBM-compliant**, _risk trigger_ adalah **kondisi objektif yang menandakan bahwa asumsi risiko awal tidak lagi valid**. Risk trigger **bukan alarm emosional**, bukan intuisi, dan bukan sekadar “rasa tidak nyaman”, melainkan indikator teknis dan operasional yang **dapat didefinisikan, dikenali, dan diaudit**.
 
@@ -569,7 +748,7 @@ IK/WI **wajib menyebutkan risk trigger ini secara eksplisit**, bukan menyiratkan
 
 ---
 
-### **6.2 Mandatory Stop-Work sebagai Kewajiban Profesional**
+## **6.2 Mandatory Stop-Work sebagai Kewajiban Profesional**
 
 Dalam RBM, **stop-work bukan hak opsional**, melainkan **kewajiban profesional** ketika risk trigger muncul. Oleh karena itu, IK/WI harus menegaskan bahwa:
 
@@ -587,7 +766,7 @@ IK/WI melindungi pelaksana dari dilema moral antara “menyelesaikan pekerjaan�
 
 ---
 
-### **6.3 Escalation Path yang Eksplisit dan Terstruktur**
+## **6.3 Escalation Path yang Eksplisit dan Terstruktur**
 
 Salah satu kelemahan terbesar sistem konvensional adalah **eskalasi yang bergantung pada budaya, relasi personal, atau hierarki informal**. IK/WI RBM-compliant harus menghilangkan ambiguitas ini dengan menetapkan:
 
@@ -603,7 +782,7 @@ Eskalasi dalam IK/WI:
 
 ---
 
-### **6.4 IK/WI sebagai Pelindung Teknisi dan Organisasi**
+## **6.4 IK/WI sebagai Pelindung Teknisi dan Organisasi**
 
 Dengan mendefinisikan risk trigger, stop-work, dan escalation secara eksplisit, IK/WI menjalankan dua fungsi protektif sekaligus:
 
@@ -615,11 +794,39 @@ Dengan mendefinisikan risk trigger, stop-work, dan escalation secara eksplisit, 
 
 Dalam konteks ini, IK/WI bukan sekadar panduan kerja, tetapi **mekanisme pengunci keputusan risiko** yang memastikan bahwa setiap penyimpangan dari asumsi RBM **ditangani secara sah, terstruktur, dan dapat diaudit**.
 
+```mermaid id="risk-trigger-stopwork-escalation-mobile"
+flowchart TD
+    A["Work Execution<br/>in Field"] --> B{"Risk Trigger<br/>Appears?"}
+
+    B -- "No" --> C["Continue<br/>Within IK/WI"]
+    B -- "Yes" --> D["Mandatory<br/>Stop-Work"]
+
+    D --> E["Secure<br/>Equipment / Area"]
+    E --> F["Escalate<br/>Foreman → Supervisor → Engineer"]
+    F --> G["Risk Owner<br/>Decision"]
+    G --> H{"Decision<br/>Closed?"}
+
+    H -- "No" --> I["Work Remains<br/>Stopped"]
+    H -- "Yes" --> J["Resume / Revise<br/>Work Method"]
+
+    classDef work fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef normal fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef trigger fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef stop fill:#FFEBEE,stroke:#C62828,color:#111;
+    classDef close fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+
+    class A work;
+    class B,H trigger;
+    class C,J normal;
+    class D,E,F,I stop;
+    class G close;
+```
+
 ---
 
-## **7. IK/WI dan Konsistensi terhadap Asset Criticality**
+# **7. IK/WI dan Konsistensi terhadap Asset Criticality**
 
-### **7.1 Mengapa IK/WI Tidak Boleh Seragam**
+## **7.1 Mengapa IK/WI Tidak Boleh Seragam**
 
 Dalam sistem RBM, **aset tidak pernah memiliki risiko yang sama**, meskipun jenis pekerjaan, peralatan, atau metode teknisnya terlihat identik. Oleh karena itu, **IK/WI yang disusun secara seragam bertentangan langsung dengan prinsip RBM**.
 
@@ -633,7 +840,7 @@ Asumsi tersebut tidak pernah valid dalam fasilitas proses berisiko tinggi. Dalam
 
 ---
 
-### **7.2 Penyesuaian IK/WI Berdasarkan Klasifikasi Aset**
+## **7.2 Penyesuaian IK/WI Berdasarkan Klasifikasi Aset**
 
 IK/WI RBM-compliant **wajib disesuaikan** dengan klasifikasi aset yang telah ditetapkan dalam RBM, setidaknya ke dalam tiga kategori berikut:
 
@@ -665,9 +872,40 @@ IK/WI RBM-compliant **wajib disesuaikan** dengan klasifikasi aset yang telah dit
 
    Namun demikian, **prinsip stop-work dan eskalasi tetap berlaku** meskipun dengan ambang yang lebih ringan.
 
+```mermaid id="ikwi-by-asset-criticality-mobile"
+flowchart TD
+    A["Asset<br/>Criticality"] --> B{"Risk<br/>Class?"}
+
+    B -- "Critical Asset" --> C["Hard Barrier<br/>Strict Risk Trigger"]
+    B -- "Semi-Critical" --> D["Controlled Flexibility<br/>Supervisor Boundary"]
+    B -- "Non-Critical" --> E["Simplified IK/WI<br/>Wider Execution Flexibility"]
+
+    C --> F["Engineer / Superintendent<br/>Escalation Mandatory"]
+    D --> G["Documented<br/>Escalation if Limit Exceeded"]
+    E --> H["Stop-Work Still Applies<br/>if SHE Risk Appears"]
+
+    F --> I["Control Level<br/>Proportional to Risk"]
+    G --> I
+    H --> I
+
+    classDef input fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef decision fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef critical fill:#FFEBEE,stroke:#C62828,color:#111;
+    classDef semi fill:#FFF3E0,stroke:#EF6C00,color:#111;
+    classDef non fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef output fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+
+    class A input;
+    class B decision;
+    class C,F critical;
+    class D,G semi;
+    class E,H non;
+    class I output;
+```
+
 ---
 
-### **7.3 Risiko Kegagalan Jika IK/WI Disamaratakan**
+## **7.3 Risiko Kegagalan Jika IK/WI Disamaratakan**
 
 Penyamaan IK/WI lintas kelas aset menimbulkan kegagalan sistemik yang serius, antara lain:
 
@@ -685,11 +923,37 @@ Penyamaan IK/WI lintas kelas aset menimbulkan kegagalan sistemik yang serius, an
 
 Dalam RBM, konsistensi bukan berarti keseragaman, melainkan **kesesuaian tingkat pengendalian dengan tingkat risiko**. IK/WI yang konsisten terhadap asset criticality memastikan bahwa setiap pekerjaan—sekecil apa pun—tetap berada dalam **batas risiko yang disadari, dikendalikan, dan dapat dipertanggungjawabkan**.
 
+```mermaid id="uniform-ikwi-failure-risk-mobile"
+flowchart TD
+    A["Uniform<br/>IK/WI"] --> B["Same Control<br/>for Different Risk"]
+    B --> C{"Asset<br/>Risk Level"}
+
+    C -- "Critical" --> D["Under-Control<br/>High Consequence Exposure"]
+    C -- "Non-Critical" --> E["Over-Control<br/>Resource Waste"]
+
+    D --> F["Silent<br/>Risk Drift"]
+    E --> G["Low Value<br/>Workload"]
+
+    F --> H["RBM Fails<br/>at Execution Level"]
+    G --> H
+
+    classDef uniform fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef decision fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef bad fill:#FFEBEE,stroke:#C62828,color:#111;
+    classDef waste fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef output fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+
+    class A,B uniform;
+    class C decision;
+    class D,F,H bad;
+    class E,G waste;
+```
+
 ---
 
-## **8. Integrasi IK/WI dengan _Evaluation Loop_ RBM**
+# **8. Integrasi IK/WI dengan _Evaluation Loop_ RBM**
 
-### **8.1 IK/WI sebagai Sumber Data Operasional Risiko**
+## **8.1 IK/WI sebagai Sumber Data Operasional Risiko**
 
 Dalam ekosistem RBM, **IK/WI bukan hanya alat eksekusi**, tetapi juga **sumber data primer** untuk memahami bagaimana risiko benar-benar dimanifestasikan di lapangan. Setiap penerapan IK/WI menghasilkan informasi bernilai tinggi yang tidak selalu tertangkap oleh sistem analisis risiko di level atas.
 
@@ -716,7 +980,7 @@ Tanpa IK/WI yang terstruktur RBM, data-data ini **hilang di lapangan** dan tidak
 
 ---
 
-### **8.2 Mekanisme Feedback ke Sistem RBM**
+## **8.2 Mekanisme Feedback ke Sistem RBM**
 
 Data yang dihasilkan dari IK/WI harus secara sistematis dikembalikan ke dalam _evaluation loop_ RBM, dengan jalur umpan balik yang jelas sebagai berikut:
 
@@ -748,7 +1012,7 @@ Data yang dihasilkan dari IK/WI harus secara sistematis dikembalikan ke dalam _e
 
 ---
 
-### **8.3 IK/WI sebagai _Living Control Document_**
+## **8.3 IK/WI sebagai _Living Control Document_**
 
 Berbeda dengan prosedur konvensional, **IK/WI RBM-compliant tidak boleh diperlakukan sebagai dokumen statis**. Ia harus dipahami sebagai **_living control document_** yang:
 
@@ -760,11 +1024,44 @@ Setiap pembaruan IK/WI adalah **jejak pembelajaran sistem**, yang menunjukkan ba
 
 Dengan integrasi yang disiplin ke dalam _evaluation loop_, IK/WI memastikan bahwa **setiap pengalaman lapangan—baik keberhasilan maupun kegagalan—dikembalikan menjadi peningkatan kualitas pengendalian risiko**. Di titik inilah RBM berhenti menjadi konsep dan berubah menjadi sistem hidup yang adaptif dan dapat dipertanggungjawabkan.
 
+```mermaid id="ikwi-evaluation-loop-rbm-mobile"
+flowchart TD
+    A["IK/WI<br/>Field Execution"] --> B["Capture<br/>Near-Miss"]
+    A --> C["Capture<br/>Execution Deviation"]
+    A --> D["Capture<br/>Decision Delay"]
+
+    B --> E["RBM<br/>Evaluation Loop"]
+    C --> E
+    D --> E
+
+    E --> F["Update<br/>Risk Register"]
+    E --> G["Review<br/>JobDesc Authority"]
+    E --> H["Identify<br/>Training Need"]
+    E --> I["Revise<br/>IK/WI"]
+
+    F --> J["Living Control<br/>Document"]
+    G --> J
+    H --> J
+    I --> J
+
+    J --> A
+
+    classDef wi fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef data fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef loop fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef update fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+
+    class A,J wi;
+    class B,C,D data;
+    class E loop;
+    class F,G,H,I update;
+```
+
 ---
 
-## **9. Kesalahan Umum dalam Penyusunan IK/WI RBM**
+# **9. Kesalahan Umum dalam Penyusunan IK/WI RBM**
 
-### **9.1 Over-Technical tanpa Konteks Risiko**
+## **9.1 Over-Technical tanpa Konteks Risiko**
 
 Kesalahan paling sering dijumpai adalah IK/WI yang **sangat rinci secara teknis**, namun **tidak menyebutkan konteks risiko** yang sedang dikendalikan. Dokumen semacam ini mungkin benar secara mekanis, tetapi gagal menjelaskan:
 
@@ -776,7 +1073,7 @@ Dalam RBM, detail teknis **tidak bernilai** tanpa keterkaitannya dengan risiko. 
 
 ---
 
-### **9.2 SOP/WI Copy-Paste Lintas Aset**
+## **9.2 SOP/WI Copy-Paste Lintas Aset**
 
 Praktik menyalin SOP/WI dari satu aset ke aset lain—karena “jenis pekerjaannya sama”—merupakan bentuk **pelanggaran prinsip RBM**. Kesalahan ini mengabaikan fakta bahwa:
 
@@ -788,7 +1085,7 @@ Copy-paste IK/WI menghasilkan **under-control pada aset kritis** dan **over-cont
 
 ---
 
-### **9.3 Tidak Adanya Escalation Clause**
+## **9.3 Tidak Adanya Escalation Clause**
 
 IK/WI yang tidak mendefinisikan **kapan dan ke mana eskalasi harus dilakukan** menciptakan ruang abu-abu yang berbahaya. Dalam kondisi ini:
 
@@ -800,7 +1097,7 @@ Ketiadaan escalation clause secara langsung membuka jalan bagi **kegagalan RBM a
 
 ---
 
-### **9.4 Acceptance tanpa Authority yang Jelas**
+## **9.4 Acceptance tanpa Authority yang Jelas**
 
 Kesalahan kritis lainnya adalah ketika IK/WI memungkinkan pekerjaan dilanjutkan atau diterima tanpa menyebutkan **siapa yang berwenang menerima risiko residual**. Acceptance semacam ini biasanya terjadi secara diam-diam di lapangan dan baru terlihat ketika kegagalan sudah terjadi.
 
@@ -808,7 +1105,7 @@ Dalam RBM, **tidak ada risk acceptance tanpa risk owner**. IK/WI yang tidak meng
 
 ---
 
-### **9.5 Mengandalkan “Pengalaman Orang”**
+## **9.5 Mengandalkan “Pengalaman Orang”**
 
 Mengandalkan pengalaman individu tanpa menguncinya dalam IK/WI adalah bentuk **person-dependent system**, bukan RBM. Ketika pengalaman menjadi substitusi dokumen:
 
@@ -818,6 +1115,32 @@ Mengandalkan pengalaman individu tanpa menguncinya dalam IK/WI adalah bentuk **p
 
 RBM dirancang untuk **mengurangi ketergantungan pada individu**, bukan memperkuatnya. IK/WI yang benar harus memaksa keputusan berbasis sistem, bukan reputasi personal.
 
+```mermaid id="common-ikwi-rbm-errors-mobile"
+flowchart TD
+    A["Common IK/WI<br/>RBM Errors"] --> B["Over-Technical<br/>No Risk Context"]
+    A --> C["Copy-Paste<br/>Across Assets"]
+    A --> D["No Escalation<br/>Clause"]
+    A --> E["Acceptance<br/>Without Authority"]
+    A --> F["Depends on<br/>Personal Experience"]
+
+    B --> G["RBM Fails<br/>in Execution"]
+    C --> G
+    D --> G
+    E --> G
+    F --> G
+
+    G --> H["No Clear<br/>Risk Control"]
+    H --> I["Repeat Deviation<br/>or Incident"]
+
+    classDef error fill:#FFEBEE,stroke:#C62828,color:#111;
+    classDef input fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef impact fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+
+    class A input;
+    class B,C,D,E,F error;
+    class G,H,I impact;
+```
+
 ---
 
 📌 **Keterkaitan Langsung dengan Kegagalan RBM**
@@ -825,11 +1148,11 @@ Seluruh kesalahan di atas bermuara pada satu hal: **RBM gagal di level eksekusi*
 
 ---
 
-## **10. Batasan Artikel (Anti-Overlap Clause)**
+# **10. Batasan Artikel (Anti-Overlap Clause)**
 
 Untuk menjaga **ketajaman fokus** dan mencegah tumpang tindih konseptual dalam ekosistem RBM, artikel ini menetapkan batasan pembahasan secara eksplisit.
 
-### **10.1 Hal yang Tidak Dibahas dalam Artikel Ini**
+## **10.1 Hal yang Tidak Dibahas dalam Artikel Ini**
 
 Artikel ini **secara sadar tidak membahas** topik-topik berikut:
 
@@ -886,7 +1209,7 @@ Artikel ini **secara sadar tidak membahas** topik-topik berikut:
 
 ---
 
-### **10.2 Fokus Utama Artikel**
+## **10.2 Fokus Utama Artikel**
 
 Fokus artikel ini **dikunci secara ketat** pada satu hal:
 
@@ -900,9 +1223,34 @@ Artikel ini bertujuan memastikan bahwa:
 
 Dengan batasan ini, artikel diharapkan menjadi **referensi implementatif yang tajam, konsisten, dan dapat digunakan langsung**, tanpa menciptakan kebingungan atau redundansi dalam keseluruhan arsitektur Maintenance System Handbook dan artikel pendampingnya.
 
+```mermaid id="anti-overlap-ikwi-scope-mobile"
+flowchart TD
+    A["Artikel Ini<br/>Fokus"] --> B["IK/WI<br/>RBM-Compliant"]
+    B --> C["Risk Context"]
+    B --> D["Decision Boundary"]
+    B --> E["Escalation Logic"]
+    B --> F["Stop-Work Rule"]
+    B --> G["Execution Feedback"]
+
+    A --> H["Tidak Dibahas"]
+    H --> I["Filosofi RBM"]
+    H --> J["Desain Organisasi"]
+    H --> K["Strategi Manpower"]
+    H --> L["Detail JobDesc"]
+    H --> M["Training Teknis<br/>per Disiplin"]
+
+    classDef focus fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef exclude fill:#FFEBEE,stroke:#C62828,color:#111;
+    classDef main fill:#E3F2FD,stroke:#1565C0,color:#111;
+
+    class A,B main;
+    class C,D,E,F,G focus;
+    class H,I,J,K,L,M exclude;
+```
+
 ---
 
-## **11. Penutup — IK/WI sebagai Bentuk Nyata Pengendalian Risiko**
+# **11. Penutup — IK/WI sebagai Bentuk Nyata Pengendalian Risiko**
 
 Risk-Based Maintenance (RBM) **tidak pernah hidup di risk matrix, risk register, atau laporan analisis semata**. Seluruh artefak tersebut hanya memiliki nilai jika keputusan yang dikandungnya **benar-benar diwujudkan dalam tindakan nyata di lapangan**. Titik pembuktiannya bukan pada seberapa rapi analisis risiko disusun, melainkan pada **bagaimana pekerjaan dijalankan ketika kondisi tidak lagi ideal**.
 
@@ -924,9 +1272,36 @@ IK/WI berbasis risiko memaksa organisasi untuk jujur terhadap batas toleransi ya
 
 Dengan IK/WI yang RBM-compliant, pengendalian risiko tidak lagi bergantung pada siapa yang bekerja hari itu, melainkan pada **sistem yang memaksa keputusan benar untuk selalu diambil**, bahkan dalam kondisi paling menekan.
 
+```mermaid id="ikwi-final-risk-control-summary-mobile"
+flowchart TD
+    A["RBM<br/>Risk Register / Matrix"] --> B["Risk-Based<br/>Job Description"]
+    B --> C["IK/WI<br/>RBM-Compliant"]
+    C --> D["Field<br/>Execution"]
+
+    D --> E["Work Sequence<br/>Controlled"]
+    D --> F["Decision Boundary<br/>Respected"]
+    D --> G["Stop-Work<br/>Activated"]
+    D --> H["Escalation<br/>Documented"]
+
+    E --> I["Risk Control<br/>Becomes Real"]
+    F --> I
+    G --> I
+    H --> I
+
+    classDef rbm fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef wi fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef action fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef output fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+
+    class A,B rbm;
+    class C,D wi;
+    class E,F,G,H action;
+    class I output;
+```
+
 ---
 
-## Template IK/WI
+# Template IK/WI
 
 Berikut **template Instruksi Kerja (IK/WI) RBM-Compliant khusus untuk pekerjaan Rotating Equipment**, diturunkan **langsung dari template umum** yang telah kita kunci, **tanpa improvisasi konseptual**, dan siap dipakai sebagai **one-stop reference eksekusi** di lingkungan pabrik petrokimia (pompa, kompresor, blower, fan, turbine).
 
@@ -934,7 +1309,7 @@ Gaya disusun **teknis–formal**, fokus **pengendalian risiko ESC (Environment�
 
 ---
 
-### **RBM-COMPLIANT — ROTATING EQUIPMENT**
+## **RBM-COMPLIANT — ROTATING EQUIPMENT**
 
 ---
 
@@ -957,6 +1332,36 @@ Gaya disusun **teknis–formal**, fokus **pengendalian risiko ESC (Environment�
 - Permit to Work (jika applicable)
 - P&ID / GA / OEM Manual
 - Risk Register RBM (jika ada)
+
+```mermaid id="rotating-equipment-ikwi-control-flow-mobile"
+flowchart TD
+    A["Rotating Equipment<br/>IK/WI"] --> B["Isolation<br/>Zero Energy"]
+    B --> C["Initial Check<br/>Alignment / Condition"]
+    C --> D["Disassembly<br/>Bearing / Seal / Coupling"]
+    D --> E{"Abnormality<br/>Found?"}
+
+    E -- "No" --> F["Reassembly<br/>Torque / Fit-Up"]
+    E -- "Yes" --> G["Stop-Work<br/>Escalate Engineer"]
+
+    F --> H["Final Alignment<br/>Within Tolerance"]
+    H --> I["Test Run<br/>Vibration / Temp"]
+    I --> J{"Acceptance<br/>OK?"}
+
+    J -- "Yes" --> K["Document<br/>RBM Feedback"]
+    J -- "No" --> G
+
+    classDef rotating fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef work fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef decision fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef stop fill:#FFEBEE,stroke:#C62828,color:#111;
+    classDef doc fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+
+    class A rotating;
+    class B,C,D,F,H,I work;
+    class E,J decision;
+    class G stop;
+    class K doc;
+```
 
 ---
 
@@ -1125,6 +1530,34 @@ Menjamin pekerjaan rotating equipment dilakukan **tanpa menciptakan risiko baru*
 
 🚫 _Tidak ada “lanjut dulu”._
 
+```mermaid id="rotating-risk-trigger-stopwork-mobile"
+flowchart TD
+    A["Rotating Work<br/>In Progress"] --> B{"Risk Trigger?"}
+
+    B -- "Vibration > Alarm" --> C["Stop"]
+    B -- "Shaft / Bearing<br/>Scoring" --> C
+    B -- "Misalignment<br/>Out of Tolerance" --> C
+    B -- "Oil Contamination<br/>Severe" --> C
+    B -- "Critical Bolt<br/>Torque Failed" --> C
+
+    C --> D["Secure<br/>Equipment"]
+    D --> E["Escalate to<br/>Supervisor / Engineer"]
+    E --> F["Decision:<br/>Repair / Replace / Rework"]
+    F --> G["Document<br/>Finding"]
+
+    classDef work fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef trigger fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef stop fill:#FFEBEE,stroke:#C62828,color:#111;
+    classDef action fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef doc fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+
+    class A work;
+    class B trigger;
+    class C stop;
+    class D,E,F action;
+    class G doc;
+```
+
 ---
 
 > **9. Escalation & Decision Boundary**
@@ -1185,7 +1618,7 @@ Pernyataan selesai pekerjaan **hanya oleh Supervisor/Engineer**.
 
 ---
 
-### **RBM-COMPLIANT — INSTRUMENT & CONTROL**
+## **RBM-COMPLIANT — INSTRUMENT & CONTROL**
 
 ---
 
@@ -1197,6 +1630,34 @@ Berikut **template Instruksi Kerja (IK/WI) RBM-Compliant khusus untuk pekerjaan 
 - serta **template Rotating Equipment** yang sudah kita kunci.
 
 Dokumen ini **tidak mengulang filosofi**, bersifat **implementatif**, dan siap digunakan sebagai **one-stop reference** untuk pekerjaan instrument di pabrik petrokimia.
+
+```mermaid id="instrument-control-ikwi-barrier-flow-mobile"
+flowchart TD
+    A["Instrument & Control<br/>IK/WI"] --> B["Verify<br/>Tag / Loop / Logic"]
+    B --> C["Isolate<br/>Process + Logic"]
+    C --> D["Calibration<br/>Check"]
+    D --> E["Loop<br/>Checking"]
+    E --> F["Functional<br/>Test"]
+    F --> G{"Logic / Trip<br/>Response OK?"}
+
+    G -- "Yes" --> H["Restore<br/>Bypass / Normal Logic"]
+    G -- "No" --> I["Stop-Work<br/>Escalate Engineer"]
+
+    H --> J["Acceptance<br/>Engineer / Superintendent"]
+    J --> K["Document<br/>Calibration + Bypass Log"]
+
+    classDef inst fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef work fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef decision fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef stop fill:#FFEBEE,stroke:#C62828,color:#111;
+    classDef doc fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+
+    class A inst;
+    class B,C,D,E,F,H work;
+    class G decision;
+    class I stop;
+    class J,K doc;
+```
 
 ---
 
@@ -1401,6 +1862,33 @@ Kegagalan instrument = kegagalan pengambilan keputusan.
 
 🚫 _Tidak boleh “adjust supaya lolos”._
 
+```mermaid id="instrument-risk-trigger-stopwork-mobile"
+flowchart TD
+    A["Instrument Work<br/>In Progress"] --> B{"Risk Trigger?"}
+
+    B -- "Calibration<br/>Out of Tolerance" --> C["Stop"]
+    B -- "Cause-Effect<br/>Mismatch" --> C
+    B -- "Alarm / Trip<br/>Not Appearing" --> C
+    B -- "Instrument<br/>Not Repeatable" --> C
+
+    C --> D["Secure<br/>Logic / Process"]
+    D --> E["Escalate to<br/>Instrument Engineer"]
+    E --> F["Decision:<br/>Recalibrate / Replace / Hold"]
+    F --> G["Update<br/>Functional Test Report"]
+
+    classDef work fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef trigger fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef stop fill:#FFEBEE,stroke:#C62828,color:#111;
+    classDef action fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef doc fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+
+    class A work;
+    class B trigger;
+    class C stop;
+    class D,E,F action;
+    class G doc;
+```
+
 ---
 
 > **9. Escalation & Decision Boundary**
@@ -1460,6 +1948,35 @@ Foreman → Supervisor → Engineer → Superintendent
 
 > IK/WI Instrument ini adalah **pengunci keandalan sistem keputusan RBM**.
 > Kegagalan mengikuti escalation dan acceptance dianggap **kegagalan pengendalian risiko**, bukan kesalahan teknis biasa.
+
+```mermaid id="ikwi-template-discipline-summary-mobile"
+flowchart TD
+    A["IK/WI<br/>RBM-Compliant"] --> B["Rotating<br/>Equipment"]
+    A --> C["Instrument &<br/>Control"]
+
+    B --> D["Locks<br/>Mechanical Integrity"]
+    B --> E["Controls<br/>Vibration / Alignment / Seal Risk"]
+
+    C --> F["Locks<br/>Functional Barrier"]
+    C --> G["Controls<br/>Trip / Alarm / Logic Risk"]
+
+    D --> H["Field Risk<br/>Controlled"]
+    E --> H
+    F --> H
+    G --> H
+
+    H --> I["RBM Executed<br/>at Workface Level"]
+
+    classDef main fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef rotating fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef instrument fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef output fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+
+    class A main;
+    class B,D,E rotating;
+    class C,F,G instrument;
+    class H,I output;
+```
 
 ---
 
