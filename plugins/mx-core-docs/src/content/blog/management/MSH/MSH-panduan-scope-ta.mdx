@@ -23,6 +23,7 @@ summary: Artikel ini menjelaskan cara memilih scope Turnaround dengan pendekatan
 ---
 
 - [**_Panduan Pemilihan Scope Turnaround Berbasis Risk-Based Maintenance_**](#panduan-pemilihan-scope-turnaround-berbasis-risk-based-maintenance)
+  - [📌 Prolog Modul](#-prolog-modul)
   - [📌 Latar Belakang](#-latar-belakang)
   - [1. TA-Turnaround sebagai Momentum Pengurangan Risiko](#1-ta-turnaround-sebagai-momentum-pengurangan-risiko)
   - [2. Kriteria Utama Item TA Berbasis RBM](#2-kriteria-utama-item-ta-berbasis-rbm)
@@ -38,6 +39,43 @@ summary: Artikel ini menjelaskan cara memilih scope Turnaround dengan pendekatan
   - [4. Readiness 5M + 1E](#4-readiness-5m--1e)
   - [5. Screening Akhir Item TA](#5-screening-akhir-item-ta)
   - [🧠 Kesimpulan](#-kesimpulan)
+
+---
+
+## 📌 Prolog Modul
+
+Artikel ini disusun sebagai **artikel aplikasi** dalam ekosistem _Maintenance System Handbook (MSH)_. Jika **Module 3** menempatkan **Risk-Based Maintenance (RBM)** sebagai kerangka seleksi strategi pemeliharaan yang operasional, dan **Module 8** menempatkan **Turnaround (TA)** sebagai bagian dari _asset lifecycle_, _risk reset_, dan _continuous improvement_, maka artikel ini berfungsi sebagai **jembatan praktis** yang menerjemahkan kedua modul tersebut ke dalam proses nyata pemilihan _scope Turnaround_.
+
+Dengan demikian, artikel ini tidak dimaksudkan untuk menggantikan pembahasan konseptual pada modul utama, melainkan untuk menjawab pertanyaan praktis yang paling sering muncul di level planner, engineer muda, dan tim persiapan shutdown:
+
+> **“Bagaimana memilih item Turnaround secara sistematis, berbasis risiko, dan tetap selaras dengan arsitektur MSH?”**
+
+Melalui artikel ini, pembaca diarahkan untuk memahami bahwa pemilihan _scope Turnaround_ tidak boleh semata-mata berbasis daftar pekerjaan atau kebiasaan historis, tetapi harus diturunkan dari **RBM**, **ESC impact**, **tiering aset**, **kebutuhan shutdown**, serta **readiness 5M + 1E**. Dengan pendekatan ini, _Turnaround_ diposisikan sebagai **program pengurangan risiko yang terencana**, bukan sekadar kumpulan pekerjaan besar saat plant berhenti.
+
+```mermaid id="msh-turnaround-scope-integration-mobile"
+flowchart TD
+    A["MSH Module 3<br/>RBM Practical Execution"] --> C["Applied Article<br/>Turnaround Scope Selection"]
+    B["MSH Module 8<br/>Lifecycle + TA + CI"] --> C
+
+    C --> D["TA Item<br/>Screening Criteria"]
+    C --> E["ESC + Tiering<br/>Evaluation"]
+    C --> F["5M + 1E<br/>Readiness"]
+    C --> G["P1-P4<br/>Prioritization"]
+
+    G --> H["Planner / Engineer<br/>Field Guideline"]
+
+    classDef module fill:#E3F2FD,stroke:#1565C0,color:#111;
+    classDef applied fill:#FFF8E1,stroke:#F9A825,color:#111;
+    classDef tool fill:#E8F5E9,stroke:#2E7D32,color:#111;
+    classDef output fill:#F3E5F5,stroke:#6A1B9A,color:#111;
+
+    class A,B module;
+    class C applied;
+    class D,E,F,G tool;
+    class H output;
+```
+
+[**Kembali ke Atas**](#panduan-pemilihan-scope-turnaround-berbasis-risk-based-maintenance)
 
 ---
 
@@ -70,6 +108,8 @@ dengan:
 - $E$ = dampak lingkungan,
 - $S$ = dampak keselamatan,
 - $C$ = dampak terhadap kontinuitas operasi.
+
+[**Kembali ke Atas**](#panduan-pemilihan-scope-turnaround-berbasis-risk-based-maintenance)
 
 ---
 
@@ -112,6 +152,8 @@ flowchart TD
 
 📌 **Prinsip utama:**
 Item TA harus memiliki hubungan langsung dengan penurunan risiko. Jika suatu pekerjaan tidak menurunkan risiko, tidak membutuhkan shutdown, dan dapat dilakukan online, maka item tersebut tidak layak menjadi prioritas TA.
+
+[**Kembali ke Atas**](#panduan-pemilihan-scope-turnaround-berbasis-risk-based-maintenance)
 
 ---
 
@@ -215,6 +257,8 @@ Item layak masuk TA apabila pekerjaan membutuhkan kondisi khusus yang tidak dapa
 
 Jika pekerjaan dapat dilakukan online secara aman, maka item tersebut harus dipertimbangkan untuk dikerjakan melalui routine maintenance, bukan dimasukkan sebagai pekerjaan utama TA.
 
+[**Kembali ke Atas**](#panduan-pemilihan-scope-turnaround-berbasis-risk-based-maintenance)
+
 ---
 
 ## 3. Prioritas Scope TA
@@ -273,6 +317,8 @@ Item tidak direkomendasikan masuk TA apabila:
 - material belum tersedia,
 - engineering belum selesai,
 - hanya bersifat cosmetic atau housekeeping.
+
+[**Kembali ke Atas**](#panduan-pemilihan-scope-turnaround-berbasis-risk-based-maintenance)
 
 ---
 
@@ -335,6 +381,8 @@ Penjelasan singkat:
 📌 **Prinsip penting:**
 Item risiko tinggi dengan readiness rendah tidak boleh hilang dari daftar. Item tersebut harus diberi status **critical pending readiness** dan dikawal sampai siap dieksekusi.
 
+[**Kembali ke Atas**](#panduan-pemilihan-scope-turnaround-berbasis-risk-based-maintenance)
+
 ---
 
 ## 5. Screening Akhir Item TA
@@ -358,6 +406,8 @@ Sebelum item disetujui sebagai final scope TA, planner dan engineer perlu melaku
 
 Screening ini membantu memastikan bahwa setiap item TA memiliki dasar teknis, dasar risiko, dan kesiapan eksekusi yang dapat dipertanggungjawabkan.
 
+[**Kembali ke Atas**](#panduan-pemilihan-scope-turnaround-berbasis-risk-based-maintenance)
+
 ---
 
 ## 🧠 Kesimpulan
@@ -380,6 +430,8 @@ $$
 $$
 
 Dengan cara ini, TA tidak hanya menjadi agenda shutdown maintenance, tetapi menjadi **program pengurangan risiko yang terencana, terukur, dan dapat diaudit**.
+
+[**Kembali ke Atas**](#panduan-pemilihan-scope-turnaround-berbasis-risk-based-maintenance)
 
 ---
 
