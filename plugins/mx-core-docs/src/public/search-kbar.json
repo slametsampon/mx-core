@@ -1,5 +1,23 @@
 [
   {
+    "id": "management/MSH/MSH-panduan-scope-ta",
+    "name": "Panduan Pemilihan Scope Turnaround Berbasis Risk-Based Maintenance",
+    "section": "CONTENT",
+    "href": "/blog/management/MSH/MSH-panduan-scope-ta",
+    "subtitle": "May 19, 2026",
+    "keywords": [
+      "turnaround-maintenance",
+      "risk-based-maintenance",
+      "rbm",
+      "scope-selection",
+      "asset-criticality",
+      "esc",
+      "maintenance-planning",
+      "petrochemical-maintenance",
+      "5m-1e"
+    ]
+  },
+  {
     "id": "safety/sece-management",
     "name": "SECE Management di Industri Petrokimia",
     "section": "CONTENT",
