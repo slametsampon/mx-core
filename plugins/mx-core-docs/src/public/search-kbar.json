@@ -1,5 +1,23 @@
 [
   {
+    "id": "maintenance/mechanical/on-line-phe-recovery",
+    "name": "Online Troubleshooting dan Recovery Performance Plate Heat Exchanger akibat Scaling pada Sisi Cooling Water",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/mechanical/on-line-phe-recovery",
+    "subtitle": "May 20, 2026",
+    "keywords": [
+      "PHE",
+      "plate-heat-exchanger",
+      "online-cleaning",
+      "cooling-water-scaling",
+      "water-scrubber",
+      "UA-monitoring",
+      "heat-transfer",
+      "field-troubleshooting",
+      "petrochemical-maintenance"
+    ]
+  },
+  {
     "id": "management/MSH/MSH-panduan-scope-ta",
     "name": "Panduan Pemilihan Scope Turnaround Berbasis Risk-Based Maintenance",
     "section": "CONTENT",
