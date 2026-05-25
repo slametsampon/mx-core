@@ -1,5 +1,24 @@
 [
   {
+    "id": "maintenance/mechanical/sthe-co2-improvement",
+    "name": "Technical Review and Improvement Study of Counter-Current STHE for CO₂ Gas Cooling: Heat Transfer Performance, SS304 Pitting Risk, and Upgrade Strategy to SS316L",
+    "section": "CONTENT",
+    "href": "/blog/maintenance/mechanical/sthe-co2-improvement",
+    "subtitle": "May 25, 2026",
+    "keywords": [
+      "STHE",
+      "CO2-gas-cooler",
+      "counter-current",
+      "heat-transfer",
+      "SS304-pitting",
+      "SS316L-upgrade",
+      "chloride-corrosion",
+      "cooling-water",
+      "RCA",
+      "maintenance-improvement"
+    ]
+  },
+  {
     "id": "maintenance/mechanical/on-line-phe-recovery",
     "name": "Online Troubleshooting dan Recovery Performance Plate Heat Exchanger akibat Scaling pada Sisi Cooling Water",
     "section": "CONTENT",
