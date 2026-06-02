@@ -53,6 +53,38 @@ Artikel ini disusun sebagai referensi menyeluruh (**one-stop reference**) untuk 
 - Menyelaraskan strategi teknis dengan pendekatan berbasis **Total Cost of Ownership (TCO)** dan **risiko operasional**.
 - Menyediakan alat bantu visual dan analitis untuk mendukung **pengambilan keputusan teknis** yang lebih objektif dan terukur.
 
+```mermaid
+flowchart TD
+    A["Asset Lifecycle Management"] --> B["Keandalan Operasi"]
+    A --> C["Optimasi Biaya"]
+    A --> D["Kontrol Risiko"]
+    A --> E["Keberlanjutan"]
+
+    B --> B1["Availability"]
+    B --> B2["MTBF / MTTR"]
+
+    C --> C1["TCO"]
+    C --> C2["CAPEX & OPEX"]
+
+    D --> D1["HSSE"]
+    D --> D2["Downtime"]
+
+    E --> E1["Efisiensi Energi"]
+    E --> E2["Asset Integrity"]
+
+    classDef core fill:#E8DAEF,stroke:#6C3483,color:#000,stroke-width:2px;
+    classDef value fill:#D6EAF8,stroke:#2874A6,color:#000;
+    classDef metric fill:#D5F5E3,stroke:#239B56,color:#000;
+    classDef risk fill:#FADBD8,stroke:#922B21,color:#000;
+    classDef sustain fill:#FCF3CF,stroke:#B7950B,color:#000;
+
+    class A core;
+    class B,C value;
+    class D risk;
+    class E sustain;
+    class B1,B2,C1,C2,D1,D2,E1,E2 metric;
+```
+
 Dengan mengadopsi pendekatan siklus hidup aset, perusahaan tidak hanya dapat mengoptimalkan biaya dan keandalan, tetapi juga memperkuat disiplin perencanaan jangka panjang yang selaras dengan prinsip **Asset Integrity Management**, **ISO 55000**, dan **praktik terbaik industri global**.
 
 <ResourceBox
@@ -90,6 +122,32 @@ Dengan mengadopsi pendekatan siklus hidup aset, perusahaan tidak hanya dapat men
 ### **II. Konsep Siklus Hidup, Peran Maintenance, dan Strategi Pemeliharaan**
 
 Manajemen aset modern tidak dapat dipisahkan dari pemahaman menyeluruh terhadap **siklus hidup aset**. Pendekatan ini menekankan bahwa setiap aset industri—khususnya dalam sektor petrokimia—memiliki tahapan keberadaan yang jelas, yang masing-masing memerlukan strategi pengelolaan dan intervensi yang berbeda, khususnya dari perspektif fungsi pemeliharaan (maintenance).
+
+```mermaid
+flowchart TD
+    A["1. Perencanaan dan Perancangan"] --> B["2. Pengadaan"]
+    B --> C["3. Penerimaan dan Instalasi"]
+    C --> D["4. Commissioning dan Start-up"]
+    D --> E["5. Operasi"]
+    E --> F["6. Maintenance dan Repair"]
+    F --> G["7. Evaluasi Modernisasi"]
+    G --> H["8. Decommissioning dan Disposal"]
+
+    G -->|Layak dipertahankan| E
+    H -->|Lessons Learned| A
+
+    classDef plan fill:#D6EAF8,stroke:#2874A6,color:#000;
+    classDef execute fill:#D5F5E3,stroke:#239B56,color:#000;
+    classDef operate fill:#FCF3CF,stroke:#B7950B,color:#000;
+    classDef decide fill:#FADBD8,stroke:#922B21,color:#000;
+    classDef retire fill:#E8DAEF,stroke:#6C3483,color:#000;
+
+    class A,B plan;
+    class C,D execute;
+    class E,F operate;
+    class G decide;
+    class H retire;
+```
 
 Dalam konteks ini, siklus hidup aset dibagi menjadi **8 fase utama**, sebagai berikut:
 
@@ -197,26 +255,31 @@ Agar pemeliharaan berjalan efektif dalam konteks lifecycle, dibutuhkan strategi 
 
 ```mermaid
 flowchart TD
-    A[Perencanaan & Desain] --> B[Pengadaan & Instalasi]
-    B --> C[Operasi]
-    C --> D[Pemeliharaan]
-    D --> E[Evaluasi Kinerja & Biaya]
-    E --> F{Masih Layak Dipertahankan?}
-    F -->|Ya| C
-    F -->|Tidak| G[Modernisasi / Penggantian]
-    G --> H[Decommissioning]
+    A["Data Kondisi Aset"] --> B["PdM<br/>Predictive Maintenance"]
+    A --> C["CBM<br/>Condition-Based Maintenance"]
+    A --> D["RCM<br/>Reliability-Centered Maintenance"]
 
-    classDef blue fill:#D6EAF8,stroke:#2874A6,color:#000;
-    classDef green fill:#D5F5E3,stroke:#239B56,color:#000;
-    classDef yellow fill:#FCF3CF,stroke:#B7950B,color:#000;
-    classDef red fill:#FADBD8,stroke:#922B21,color:#000;
-    classDef purple fill:#E8DAEF,stroke:#6C3483,color:#000;
+    B --> E["Prediksi Kegagalan"]
+    C --> F["Intervensi Berdasarkan Threshold"]
+    D --> G["Strategi Berdasarkan Risiko"]
 
-    class A,B blue;
-    class C green;
-    class D,E yellow;
-    class F red;
-    class G,H purple;
+    E --> H["Optimasi Jadwal Maintenance"]
+    F --> H
+    G --> H
+
+    H --> I["Reliability Lebih Tinggi"]
+    H --> J["Downtime Lebih Rendah"]
+    H --> K["TCO Lebih Terkendali"]
+
+    classDef input fill:#D6EAF8,stroke:#2874A6,color:#000;
+    classDef method fill:#D5F5E3,stroke:#239B56,color:#000;
+    classDef action fill:#FCF3CF,stroke:#B7950B,color:#000;
+    classDef output fill:#E8DAEF,stroke:#6C3483,color:#000;
+
+    class A input;
+    class B,C,D method;
+    class E,F,G,H action;
+    class I,J,K output;
 ```
 
 > 🔹 **Integrasi Metodologi PdM, RCM, dan CBM**
@@ -254,6 +317,39 @@ Keberhasilan pengelolaan siklus hidup aset sangat bergantung pada kemampuan orga
 ---
 
 ### **A. Metrik Teknis untuk Evaluasi Keandalan**
+
+```mermaid
+flowchart TD
+    A["CMMS & Monitoring Data"] --> B["Reliability Metrics"]
+    B --> C["MTBF"]
+    B --> D["MTTR"]
+    B --> E["Availability"]
+    B --> F["OEE"]
+
+    C --> G["Tren Keandalan"]
+    D --> H["Kesiapan Perbaikan"]
+    E --> I["Ketersediaan Operasi"]
+    F --> J["Efektivitas Aset"]
+
+    G --> K["Evaluasi Lifecycle"]
+    H --> K
+    I --> K
+    J --> K
+
+    K --> L["Keputusan PM / PdM"]
+    K --> M["Overhaul"]
+    K --> N["Retrofit / Replacement"]
+
+    classDef source fill:#D6EAF8,stroke:#2874A6,color:#000;
+    classDef metric fill:#D5F5E3,stroke:#239B56,color:#000;
+    classDef insight fill:#FCF3CF,stroke:#B7950B,color:#000;
+    classDef decision fill:#FADBD8,stroke:#922B21,color:#000;
+
+    class A source;
+    class B,C,D,E,F metric;
+    class G,H,I,J,K insight;
+    class L,M,N decision;
+```
 
 > 1. **MTBF (Mean Time Between Failures)**
 
@@ -294,6 +390,41 @@ Integrasi CMMS yang baik memungkinkan akuisisi dan analisis data performa aset s
 ---
 
 ### **B. Analisis Risiko terhadap Aset Aging**
+
+```mermaid
+flowchart TD
+    A["Aset Aging"] --> B["Degradasi Performa"]
+    A --> C["Frekuensi Failure Naik"]
+    A --> D["Obsolescence"]
+
+    B --> E["Downtime"]
+    C --> F["Biaya Maintenance Naik"]
+    D --> G["Spare Part Sulit"]
+
+    E --> H["Loss Production"]
+    F --> I["TCO Meningkat"]
+    G --> I
+
+    H --> J["Risiko Bisnis"]
+    I --> J
+    A --> K["Risiko HSSE"]
+    K --> J
+
+    J --> L{"Risk Acceptable?"}
+    L -->|Ya| M["Lanjut Operasi<br/>dengan Mitigasi"]
+    L -->|Tidak| N["Modernisasi<br/>atau Replacement"]
+
+    classDef aging fill:#FADBD8,stroke:#922B21,color:#000;
+    classDef cause fill:#FCF3CF,stroke:#B7950B,color:#000;
+    classDef impact fill:#D6EAF8,stroke:#2874A6,color:#000;
+    classDef risk fill:#E8DAEF,stroke:#6C3483,color:#000;
+    classDef action fill:#D5F5E3,stroke:#239B56,color:#000;
+
+    class A aging;
+    class B,C,D,E,F,G,H,I,K cause;
+    class J,L risk;
+    class M,N action;
+```
 
 Seiring bertambahnya usia aset, risikonya tidak hanya bersifat teknis tetapi juga berdampak langsung terhadap operasional, keselamatan, dan kinerja keuangan. Berikut beberapa komponen risiko utama yang perlu dievaluasi secara berkala:
 
@@ -373,6 +504,49 @@ Flowchart ini menyajikan **alur logika berbasis kondisi dan data** untuk menentu
 
 Flowchart ini **memformalkan proses pengambilan keputusan** agar tidak bersifat subjektif atau reaktif. Implementasi alur ini dalam CMMS atau dalam kerangka _Asset Management Strategy_ akan sangat mendukung transparansi dan akuntabilitas keputusan investasi aset.
 
+```mermaid
+flowchart TD
+    A["Mulai Evaluasi Aset"] --> B["Review Data CMMS"]
+    B --> C["Cek MTBF, MTTR,<br/>Availability, OEE"]
+
+    C --> D{"Performa<br/>Menurun?"}
+    D -->|Tidak| E["Lanjut Operasi"]
+    E --> F["Optimasi PM / PdM"]
+    F --> B
+
+    D -->|Ya| G["Analisis Risiko"]
+    G --> H{"Risiko HSSE<br/>atau Produksi Tinggi?"}
+
+    H -->|Ya| I["Prioritas Replacement<br/>atau Retrofit"]
+    H -->|Tidak| J["Analisis TCO"]
+
+    J --> K{"TCO Existing<br/>> TCO New Asset?"}
+    K -->|Tidak| L["Pertahankan Aset"]
+    L --> F
+
+    K -->|Ya| M["Cek Kesiapan CAPEX"]
+    M --> N{"Dana & Teknologi<br/>Tersedia?"}
+
+    N -->|Ya| O["Ganti / Modernisasi"]
+    N -->|Tidak| P["Mitigasi Risiko<br/>hingga CAPEX Tersedia"]
+
+    O --> Q["Update CMMS<br/>& Lessons Learned"]
+    P --> F
+    Q --> A
+
+    classDef start fill:#D6EAF8,stroke:#2874A6,color:#000;
+    classDef data fill:#D5F5E3,stroke:#239B56,color:#000;
+    classDef decision fill:#FCF3CF,stroke:#B7950B,color:#000;
+    classDef risk fill:#FADBD8,stroke:#922B21,color:#000;
+    classDef action fill:#E8DAEF,stroke:#6C3483,color:#000;
+
+    class A,Q start;
+    class B,C,J,M data;
+    class D,H,K,N decision;
+    class G,I risk;
+    class E,F,L,O,P action;
+```
+
 ---
 
 > **Kesimpulan**
@@ -390,6 +564,41 @@ Visualisasi lifecycle dan pengambilan keputusan adalah bagian integral dari stra
 ### **V. Manfaat Jangka Panjang Pendekatan Lifecycle**
 
 Implementasi pendekatan berbasis siklus hidup aset (Asset Life Cycle Approach) memberikan keuntungan yang tidak hanya bersifat teknis, tetapi juga strategis dan finansial dalam jangka panjang. Di lingkungan industri petrokimia yang dituntut untuk menjaga keandalan tinggi, efisiensi operasional, dan kepatuhan terhadap standar keselamatan serta lingkungan, pendekatan ini menjadi pilar utama dalam perencanaan manajemen aset yang berkelanjutan.
+
+```mermaid
+flowchart TD
+    A["Lifecycle Approach"] --> B["Biaya Total Turun"]
+    A --> C["Reliability Naik"]
+    A --> D["Keputusan Berbasis Data"]
+    A --> E["Sustainability"]
+
+    B --> B1["OPEX Terkontrol"]
+    B --> B2["CAPEX Lebih Terencana"]
+
+    C --> C1["MTBF Naik"]
+    C --> C2["MTTR Turun"]
+    C --> C3["Availability Naik"]
+
+    D --> D1["TCO Analysis"]
+    D --> D2["Risk Ranking"]
+    D --> D3["CAPEX Justification"]
+
+    E --> E1["Energi Efisien"]
+    E --> E2["Emisi Lebih Rendah"]
+    E --> E3["Asset Integrity"]
+
+    classDef core fill:#E8DAEF,stroke:#6C3483,color:#000,stroke-width:2px;
+    classDef cost fill:#D5F5E3,stroke:#239B56,color:#000;
+    classDef rel fill:#D6EAF8,stroke:#2874A6,color:#000;
+    classDef data fill:#FCF3CF,stroke:#B7950B,color:#000;
+    classDef sustain fill:#FADBD8,stroke:#922B21,color:#000;
+
+    class A core;
+    class B,B1,B2 cost;
+    class C,C1,C2,C3 rel;
+    class D,D1,D2,D3 data;
+    class E,E1,E2,E3 sustain;
+```
 
 ---
 
@@ -484,6 +693,53 @@ Matriks ini membantu menghindari tumpang tindih peran, mempercepat pengambilan k
 - **C (Consulted):** Pihak yang perlu dikonsultasikan (2 arah).
 - **I (Informed):** Pihak yang harus diinformasikan (1 arah).
 
+```mermaid
+flowchart TD
+    A["Lifecycle Phase"] --> B["Engineering"]
+    A --> C["Maintenance"]
+    A --> D["Procurement"]
+    A --> E["HSSE"]
+    A --> F["Finance"]
+
+    B --> B1["Design Basis"]
+    B --> B2["Maintainability"]
+
+    C --> C1["PM / PdM Strategy"]
+    C --> C2["Failure Analysis"]
+    C --> C3["Replacement Justification"]
+
+    D --> D1["Vendor Selection"]
+    D --> D2["Spare Part Readiness"]
+
+    E --> E1["Risk Control"]
+    E --> E2["LOTO & Safety"]
+
+    F --> F1["TCO Review"]
+    F --> F2["CAPEX Approval"]
+
+    B1 --> G["Integrated Asset Decision"]
+    C3 --> G
+    D2 --> G
+    E1 --> G
+    F2 --> G
+
+    classDef phase fill:#E8DAEF,stroke:#6C3483,color:#000,stroke-width:2px;
+    classDef eng fill:#D6EAF8,stroke:#2874A6,color:#000;
+    classDef maint fill:#D5F5E3,stroke:#239B56,color:#000;
+    classDef proc fill:#FCF3CF,stroke:#B7950B,color:#000;
+    classDef hsse fill:#FADBD8,stroke:#922B21,color:#000;
+    classDef fin fill:#FDEBD0,stroke:#BA4A00,color:#000;
+    classDef decision fill:#D2B4DE,stroke:#6C3483,color:#000;
+
+    class A phase;
+    class B,B1,B2 eng;
+    class C,C1,C2,C3 maint;
+    class D,D1,D2 proc;
+    class E,E1,E2 hsse;
+    class F,F1,F2 fin;
+    class G decision;
+```
+
 ---
 
 > **B. Peran Lintas Fungsi dalam Konteks Praktis**
@@ -535,6 +791,49 @@ RACI bukan sekadar alat dokumentasi, tetapi **fondasi koordinasi organisasi** da
 ### **VII. Rekomendasi Implementasi**
 
 Agar pendekatan manajemen siklus hidup aset (Asset Lifecycle Management) dapat berjalan efektif dan memberi dampak nyata terhadap keandalan dan efisiensi biaya di fasilitas industri petrokimia, diperlukan strategi implementasi yang terstruktur dan berbasis pada keterlibatan lintas fungsi. Rekomendasi berikut dirancang sebagai acuan praktis bagi manajemen dan tim teknis dalam memulai dan mengembangkan pendekatan ini di tingkat plant maupun korporat.
+
+```mermaid
+flowchart TD
+    A["Start Implementation"] --> B["1. Criticality Assessment"]
+    B --> C["Pilih Aset Kritikal"]
+    C --> D["2. Baseline Data"]
+
+    D --> E["CMMS History"]
+    D --> F["Failure Data"]
+    D --> G["Cost Data"]
+
+    E --> H["3. Asset Strategy Team"]
+    F --> H
+    G --> H
+
+    H --> I["Maintenance"]
+    H --> J["Reliability"]
+    H --> K["Operation"]
+    H --> L["Finance"]
+
+    I --> M["4. TCO Dashboard"]
+    J --> M
+    K --> M
+    L --> M
+
+    M --> N["Lifecycle Review Periodik"]
+    N --> O["Action Plan"]
+    O --> P["PM / PdM Update"]
+    O --> Q["Retrofit"]
+    O --> R["Replacement"]
+
+    classDef start fill:#D6EAF8,stroke:#2874A6,color:#000;
+    classDef step fill:#D5F5E3,stroke:#239B56,color:#000;
+    classDef data fill:#FCF3CF,stroke:#B7950B,color:#000;
+    classDef team fill:#E8DAEF,stroke:#6C3483,color:#000;
+    classDef action fill:#FADBD8,stroke:#922B21,color:#000;
+
+    class A start;
+    class B,C,D,H,M,N step;
+    class E,F,G data;
+    class I,J,K,L team;
+    class O,P,Q,R action;
+```
 
 ---
 
@@ -659,6 +958,49 @@ NPV = ∑ (Cash Flow_t / (1 + r)^t) – Initial Investment
 Keterangan:
 t = tahun ke-n
 r = discount rate (misal 8%)
+```
+
+```mermaid
+flowchart TD
+    A["Input Data Biaya"] --> B["CAPEX"]
+    A --> C["OPEX"]
+    A --> D["Maintenance Cost"]
+    A --> E["Downtime Cost"]
+    A --> F["End-of-Life Cost"]
+
+    B --> G["TCO Existing Asset"]
+    C --> G
+    D --> G
+    E --> G
+    F --> G
+
+    B --> H["TCO New Asset"]
+    C --> H
+    D --> H
+    E --> H
+    F --> H
+
+    G --> I["NPV Comparison"]
+    H --> I
+
+    I --> J{"Economic Benefit<br/>Positive?"}
+    J -->|Ya| K["Recommend Replacement"]
+    J -->|Tidak| L["Retain Asset<br/>with Mitigation"]
+
+    K --> M["CAPEX Proposal"]
+    L --> N["Update Maintenance Strategy"]
+
+    classDef input fill:#D6EAF8,stroke:#2874A6,color:#000;
+    classDef cost fill:#FCF3CF,stroke:#B7950B,color:#000;
+    classDef calc fill:#D5F5E3,stroke:#239B56,color:#000;
+    classDef decision fill:#FADBD8,stroke:#922B21,color:#000;
+    classDef action fill:#E8DAEF,stroke:#6C3483,color:#000;
+
+    class A input;
+    class B,C,D,E,F cost;
+    class G,H,I calc;
+    class J decision;
+    class K,L,M,N action;
 ```
 
 📌 Disarankan menggunakan spreadsheet untuk perhitungan dinamis berdasarkan skenario umur aset 5–15 tahun.

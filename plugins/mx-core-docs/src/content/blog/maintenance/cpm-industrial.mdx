@@ -72,6 +72,8 @@ CPM banyak digunakan pada pekerjaan dengan tingkat kompleksitas tinggi, seperti:
 
 Pada seluruh konteks tersebut, kesamaan utamanya adalah kebutuhan akan **sequencing yang presisi**, dependency yang jelas, serta kontrol waktu yang ketat.
 
+[**Kembali ke Atas**](#1-pendahuluan)
+
 ---
 
 > **Komponen Utama dalam CPM**
@@ -235,6 +237,8 @@ Selanjutnya, kita akan memasuki **Konsep Dasar CPM**, yang membahas terminologi,
   ]}
 />
 
+[**Kembali ke Atas**](#1-pendahuluan)
+
 ---
 
 ### 2. Konsep Dasar CPM
@@ -289,6 +293,28 @@ Pada tahap inilah penting memahami bahwa network CPM dapat direpresentasikan den
 #### Representasi Jaringan: AON (PDM) vs AOA (ADM)
 
 Diagram jaringan bukan sekadar visualisasi — ia adalah bahasa logika proyek. Kesalahan memahami simbol dapat menyebabkan salah interpretasi terhadap schedule.
+
+```mermaid
+flowchart TD
+    A["Network CPM"] --> B["AON / PDM"]
+    A --> C["AOA / ADM"]
+
+    B --> B1["Aktivitas = Node"]
+    B --> B2["Panah = Dependency"]
+    B --> B3["Cocok untuk<br/>TA Schedule"]
+
+    C --> C1["Aktivitas = Panah"]
+    C --> C2["Node = Event"]
+    C --> C3["Cocok untuk<br/>Start-up Logic"]
+
+    classDef main fill:#E8F4FD,stroke:#1F77B4,color:#000;
+    classDef aon fill:#D5F5E3,stroke:#239B56,color:#000;
+    classDef aoa fill:#FDEBD0,stroke:#CA6F1E,color:#000;
+
+    class A main;
+    class B,B1,B2,B3 aon;
+    class C,C1,C2,C3 aoa;
+```
 
 ---
 
@@ -476,6 +502,27 @@ Aktivitas tanpa hubungan logis berpotensi menghasilkan jalur kritikal yang kelir
 
 Setelah aktivitas teridentifikasi, langkah berikutnya adalah membangun **network logic** menggunakan pendekatan **Precedence Diagramming Method (PDM / AON)**.
 
+````mermaid
+flowchart TD
+    A["Identifikasi<br/>Aktivitas"] --> B["Tentukan<br/>Predecessor"]
+    B --> C["Tentukan<br/>Successor"]
+    C --> D["Bangun<br/>Network AON"]
+    D --> E["Validasi<br/>Logic"]
+    E --> F["Tandai<br/>SHE Gate"]
+    F --> G["Tandai<br/>Quality Gate"]
+    G --> H["Siap untuk<br/>Monitoring TA"]
+
+    classDef plan fill:#D6EAF8,stroke:#2874A6,color:#000;
+    classDef logic fill:#D5F5E3,stroke:#239B56,color:#000;
+    classDef gate fill:#FADBD8,stroke:#922B21,color:#000;
+    classDef ready fill:#E8DAEF,stroke:#6C3483,color:#000;
+
+    class A,B,C plan;
+    class D,E logic;
+    class F,G gate;
+    class H ready;
+    ```
+
 **Menggambarkan Aktivitas**
 
 - Aktivitas direpresentasikan sebagai node.
@@ -533,7 +580,7 @@ Selain itu:
 - Pastikan urutan benar-benar dapat dikerjakan secara fisik
 - Lakukan review lintas fungsi (planner, execution, safety)
 
-> **Prinsip emas Turn Around:**  
+> **Prinsip emas Turn Around:**
 > Jika network tidak realistis untuk dikerjakan di lapangan, maka network tersebut tidak memiliki nilai kontrol.
 
 Network yang lolos tahap ini sudah cukup kuat untuk digunakan dalam **monitoring harian TA**.
@@ -555,11 +602,11 @@ Digunakan ketika variabilitas pekerjaan tinggi.
 
 Formula:
 
-```
+````
 
 TE = (O + 4M + P) / 6
 
-```
+````
 
 Dimana:
 
@@ -613,12 +660,12 @@ Dalam praktik scheduling, node biasanya memuat:
 
 Interpretasinya sederhana namun sangat kuat:
 
-👉 **Float = 0 → aktivitas kritikal**  
+👉 **Float = 0 → aktivitas kritikal**
 👉 **Float > 0 → terdapat fleksibilitas waktu**
 
 Namun perlu dipahami:
 
-> Float bukan izin untuk menunda pekerjaan —  
+> Float bukan izin untuk menunda pekerjaan —
 > Float adalah buffer terhadap ketidakpastian.
 
 ---
@@ -648,7 +695,7 @@ Implikasinya jelas:
 - Harus dimonitor secara ketat
 - Menjadi prioritas dalam alokasi sumber daya
 
-**Praktik terbaik di lingkungan TA:**  
+**Praktik terbaik di lingkungan TA:**
 Planner berpengalaman biasanya menyusun **Critical Path List**, bukan sekadar menandai jalur merah pada Gantt chart.
 
 Pendekatan ini meningkatkan visibilitas terhadap aktivitas yang benar-benar menentukan tanggal start-up.
@@ -669,7 +716,7 @@ CPM bukan alat untuk menghilangkan risiko, tetapi alat untuk meningkatkan **visi
 
 Namun penting dipahami:
 
-> Buffer bukan cadangan waktu untuk dikonsumsi,  
+> Buffer bukan cadangan waktu untuk dikonsumsi,
 > melainkan mekanisme stabilisasi jadwal.
 
 ---
@@ -685,7 +732,7 @@ Ketika TA berlangsung:
 
 Planner Turn Around yang matang memahami satu realitas penting:
 
-> Critical Path bukan sesuatu yang statis —  
+> Critical Path bukan sesuatu yang statis —
 > ia dapat berubah sepanjang eksekusi.
 
 ---
@@ -702,6 +749,8 @@ Engineer yang memahami network logic, durasi realistis, serta dinamika jalur kri
 - mengurangi tekanan eksekusi
 
 Pada akhirnya, keberhasilan Turn Around tidak ditentukan oleh seberapa indah network dibuat — tetapi oleh seberapa akurat network tersebut merepresentasikan realitas pekerjaan di lapangan.
+
+[**Kembali ke Atas**](#1-pendahuluan)
 
 ---
 
@@ -721,6 +770,37 @@ Pendekatan dua level ini penting karena dalam praktik industri, keterlambatan pa
 > Latar Belakang
 
 Sebuah pabrik petrokimia merencanakan Turn Around selama **30 hari kalender** yang mencakup pekerjaan inspeksi, maintenance mayor, penggantian komponen kritikal, serta pengujian unit proses.
+
+```mermaid
+flowchart TD
+    A["Work Order<br/>Release"] --> B["Permit + JSA<br/>LOTO Plan"]
+    B --> C["LOTO +<br/>Isolasi"]
+    C --> D["Drain +<br/>Depressurize"]
+    D --> E["Dismantling"]
+    E --> F["Inspection"]
+    E --> G["Spare Part<br/>Preparation"]
+
+    F --> H["Engineering<br/>Evaluation"]
+    G --> H
+
+    H --> I["Repair /<br/>Replacement"]
+    I --> J["Reassembly"]
+    J --> K["Run Test +<br/>QC"]
+    K --> L["Installation +<br/>Final Alignment"]
+    L --> M["Commissioning"]
+
+    classDef she fill:#FADBD8,stroke:#922B21,color:#000;
+    classDef work fill:#D6EAF8,stroke:#2874A6,color:#000;
+    classDef parallel fill:#D5F5E3,stroke:#239B56,color:#000;
+    classDef qc fill:#FCF3CF,stroke:#B7950B,color:#000;
+    classDef finish fill:#E8DAEF,stroke:#6C3483,color:#000;
+
+    class A,E,I,J,L work;
+    class B,C,D she;
+    class F,G,H parallel;
+    class K qc;
+    class M finish;
+````
 
 Lebih dari **50 aktivitas** saling terhubung dalam network schedule. Mengingat tingginya potensi kehilangan produksi, proyek harus selesai sesuai jadwal tanpa kompromi terhadap aspek keselamatan dan kualitas.
 
@@ -1025,6 +1105,8 @@ Sebaliknya, network berbasis asumsi optimistis hanya menciptakan kejutan saat ek
 
 Dengan pendekatan yang disiplin, CPM tidak lagi sekadar alat perencanaan — melainkan menjadi **instrumen kontrol operasional** dalam manajemen Turn Around.
 
+[**Kembali ke Atas**](#1-pendahuluan)
+
 ---
 
 ### 5. Keuntungan dan Tantangan Penerapan CPM dalam Turn Around (TA)
@@ -1219,6 +1301,34 @@ Pada kenyataannya, jalur kritikal dapat berpindah ketika:
 
 Planner yang tidak memperbarui network berisiko mengendalikan proyek menggunakan peta yang sudah tidak relevan.
 
+```mermaid
+flowchart TD
+    A["Baseline<br/>Critical Path"] --> B["Eksekusi TA"]
+    B --> C{"Ada Deviasi?"}
+    C -->|Tidak| D["Lanjut<br/>Monitoring"]
+    C -->|Ya| E["Evaluasi<br/>Dampak"]
+
+    E --> F{"Float<br/>Tersisa?"}
+    F -->|Ada| G["Gunakan Float<br/>Terkendali"]
+    F -->|Habis| H["Jalur Menjadi<br/>Kritikal"]
+
+    H --> I["Recovery Plan"]
+    I --> J["Resequencing /<br/>Tambah Resource"]
+    J --> B
+
+    classDef base fill:#D6EAF8,stroke:#2874A6,color:#000;
+    classDef monitor fill:#D5F5E3,stroke:#239B56,color:#000;
+    classDef decision fill:#FCF3CF,stroke:#B7950B,color:#000;
+    classDef risk fill:#FADBD8,stroke:#922B21,color:#000;
+    classDef recover fill:#E8DAEF,stroke:#6C3483,color:#000;
+
+    class A,B,D monitor;
+    class C,F decision;
+    class E,G base;
+    class H risk;
+    class I,J recover;
+```
+
 ---
 
 #### Refleksi Praktis
@@ -1389,6 +1499,32 @@ AOA tetap bernilai ketika engineer perlu memahami logika event secara cepat, mes
 
 Terlepas dari software yang dipilih, banyak planner berpengalaman memulai dengan pendekatan sederhana:
 
+```mermaid
+flowchart TD
+    A["Predecessor<br/>List"] --> B["Spreadsheet"]
+    B --> C["Review Logic<br/>dengan Field Team"]
+    C --> D{"Network<br/>Valid?"}
+    D -->|Belum| E["Perbaiki<br/>Dependency"]
+    E --> C
+
+    D -->|Valid| F["Import ke<br/>Scheduling Tool"]
+    F --> G["Primavera /<br/>MS Project"]
+    G --> H["Baseline<br/>Schedule"]
+    H --> I["Daily Update<br/>Progress"]
+
+    classDef input fill:#D6EAF8,stroke:#2874A6,color:#000;
+    classDef review fill:#D5F5E3,stroke:#239B56,color:#000;
+    classDef decision fill:#FCF3CF,stroke:#B7950B,color:#000;
+    classDef tool fill:#E8DAEF,stroke:#6C3483,color:#000;
+    classDef output fill:#FADBD8,stroke:#922B21,color:#000;
+
+    class A,B input;
+    class C,E review;
+    class D decision;
+    class F,G,H tool;
+    class I output;
+```
+
 > bangun **predecessor list** terlebih dahulu.
 
 Minimal berisi:
@@ -1457,6 +1593,8 @@ Pada akhirnya, alat terbaik adalah alat yang:
 
 Karena dalam Turn Around, kejelasan jadwal sering kali menjadi pembeda antara start-up yang terkendali dan start-up yang penuh tekanan.
 
+[**Kembali ke Atas**](#1-pendahuluan)
+
 ---
 
 ### 7. Kesimpulan
@@ -1472,6 +1610,8 @@ Studi kasus overhaul API pump multi-stage menunjukkan bahwa CPM tidak hanya rele
 Pada akhirnya, keberhasilan implementasi CPM tidak ditentukan oleh kompleksitas diagram, melainkan oleh kedisiplinan dalam membangun network yang jujur terhadap realitas pekerjaan.
 
 Organisasi yang mampu menjadikan CPM sebagai bagian dari cara berpikir operasional — bukan sekadar alat perencanaan — akan memiliki tingkat prediktabilitas yang lebih tinggi, tekanan eksekusi yang lebih rendah, serta peluang start-up yang jauh lebih terkendali.
+
+[**Kembali ke Atas**](#1-pendahuluan)
 
 ---
 
@@ -1524,6 +1664,8 @@ Organisasi yang mampu menjadikan CPM sebagai bagian dari cara berpikir operasion
 
    - **"Advanced Project Management: A Practical Guide"** oleh Michael O'Connell
      - Buku ini membahas teknik-teknik manajerial tingkat lanjut, termasuk CPM, dengan fokus pada penerapan praktis dalam berbagai jenis proyek.
+
+[**Kembali ke Atas**](#1-pendahuluan)
 
 ---
 
