@@ -56,11 +56,31 @@ Untuk membantu para insinyur dalam meningkatkan FTFR di pabrik mereka, artikel i
   - [**Saran untuk Manajemen Jangka Panjang dan Perbaikan Berkelanjutan**](#saran-untuk-manajemen-jangka-panjang-dan-perbaikan-berkelanjutan)
   - [**Rekomendasi Praktis bagi Insinyur Pemeliharaan untuk Memulai Inisiatif FTFR**](#rekomendasi-praktis-bagi-insinyur-pemeliharaan-untuk-memulai-inisiatif-ftfr)
 
+---
+
 ### **1. Pendahuluan: Apa Itu First-Time Fix Rate (FTFR) dan Mengapa Penting?**
 
 Dalam dunia pemeliharaan industri, terutama di pabrik petrokimia, kita sering mendengar istilah **First-Time Fix Rate (FTFR)**. Namun, apa sebenarnya yang dimaksud dengan FTFR, dan mengapa metrik ini begitu penting bagi keberhasilan operasional pabrik?
 
 FTFR adalah metrik yang mengukur seberapa sering sebuah masalah atau kerusakan bisa diselesaikan oleh teknisi dalam **upaya pertama**, tanpa perlu kunjungan ulang atau pekerjaan tambahan. Semakin tinggi FTFR, semakin efisien tim pemeliharaan dalam menangani masalah pada peralatan. Artinya, peralatan yang rusak bisa segera kembali beroperasi setelah diperbaiki dalam satu kali intervensi.
+
+```mermaid
+  flowchart TD
+    A[Gangguan Peralatan] --> B[Teknisi Melakukan Diagnosa]
+    B --> C{Masalah Selesai<br/>pada Upaya Pertama?}
+    C -->|Ya| D[Berhasil<br/>First-Time Fix]
+    C -->|Tidak| E[Perlu Kunjungan Ulang]
+    D --> F[FTFR Meningkat]
+    E --> G[FTFR Menurun]
+
+    style A fill:#FFE5B4,stroke:#D35400,color:#000
+    style B fill:#D6EAF8,stroke:#2874A6,color:#000
+    style C fill:#FCF3CF,stroke:#B7950B,color:#000
+    style D fill:#D5F5E3,stroke:#239B56,color:#000
+    style E fill:#FADBD8,stroke:#C0392B,color:#000
+    style F fill:#ABEBC6,stroke:#1E8449,color:#000
+    style G fill:#F5B7B1,stroke:#922B21,color:#000
+```
 
 #### **Definisi FTFR dan Cara Perhitungannya**
 
@@ -95,11 +115,37 @@ FTFR yang tinggi membawa banyak dampak positif bagi pabrik petrokimia, baik dari
 3. **Penghematan Biaya**:
    - Ketika masalah dapat diselesaikan pada upaya pertama, perusahaan dapat menghemat biaya kunjungan teknisi tambahan, biaya tenaga kerja, serta potensi kerugian akibat downtime yang berkepanjangan. Selain itu, suku cadang yang dipesan dan disimpan secara efisien juga membantu menekan **biaya inventaris**.
 
+[**Kembali ke Atas**](#1-pendahuluan-apa-itu-first-time-fix-rate-ftfr-dan-mengapa-penting)
+
 ---
 
 ### **2. Tantangan-Tantangan dalam Meningkatkan FTFR di Industri Petrokimia**
 
 Meningkatkan **First-Time Fix Rate (FTFR)** di industri petrokimia bukanlah tugas yang mudah. Meskipun metrik ini penting untuk menilai efisiensi dan keandalan tim pemeliharaan, ada berbagai tantangan yang harus diatasi untuk mencapai FTFR yang optimal. Tantangan-tantangan ini berkaitan dengan **kompleksitas peralatan**, **kemampuan teknisi**, **manajemen suku cadang**, dan **kurangnya pelatihan serta komunikasi** yang memadai.
+
+```mermaid
+flowchart TD
+    A[Tantangan FTFR<br/>di Pabrik Petrokimia]
+
+    A --> B[Kompleksitas Peralatan]
+    A --> C[Diagnosa Sulit]
+    A --> D[Suku Cadang Tidak Siap]
+    A --> E[Pelatihan Kurang]
+    A --> F[Komunikasi Lemah]
+
+    B --> G[Pompa<br/>Kompresor<br/>PLC/DCS]
+    C --> H[Root Cause Tidak Tepat]
+    D --> I[Perbaikan Tertunda]
+    E --> J[Kompetensi Tidak Merata]
+    F --> K[Informasi Lapangan Tidak Lengkap]
+
+    style A fill:#D6EAF8,stroke:#1F618D,color:#000
+    style B fill:#FCF3CF,stroke:#B7950B,color:#000
+    style C fill:#FADBD8,stroke:#C0392B,color:#000
+    style D fill:#FDEBD0,stroke:#CA6F1E,color:#000
+    style E fill:#E8DAEF,stroke:#7D3C98,color:#000
+    style F fill:#D5F5E3,stroke:#239B56,color:#000
+```
 
 ---
 
@@ -135,11 +181,40 @@ Selain pelatihan, **komunikasi yang efektif** antara teknisi dan departemen lain
 
 Komunikasi juga diperlukan dalam hal **pelaporan masalah**, baik dari teknisi ke supervisor maupun antar teknisi, agar riwayat pemeliharaan peralatan terdokumentasi dengan baik. Ketika dokumentasi ini tidak lengkap atau tidak mudah diakses, teknisi akan kesulitan mendapatkan informasi yang diperlukan untuk perbaikan cepat dan akurat.
 
+[**Kembali ke Atas**](#1-pendahuluan-apa-itu-first-time-fix-rate-ftfr-dan-mengapa-penting)
+
 ---
 
 ### **3. Program Kerja untuk Meningkatkan FTFR: Tinjauan Umum**
 
 Untuk meningkatkan **First-Time Fix Rate (FTFR)** di industri petrokimia, diperlukan program kerja yang komprehensif dan terstruktur, yang melibatkan kolaborasi dari semua fungsi terkait. Program ini bertujuan untuk meningkatkan efisiensi dan akurasi pemeliharaan, sehingga masalah dapat diselesaikan pada upaya pertama. Pendekatan ini memerlukan integrasi yang kuat antara **strategi kolaboratif lintas jabatan** serta penerapan **praktik pemeliharaan proaktif dan terencana**.
+
+```mermaid
+flowchart TD
+    A[Program Peningkatan FTFR]
+
+    A --> B[Kolaborasi Lintas Fungsi]
+    A --> C[Pemeliharaan Proaktif]
+    A --> D[Data & CMMS]
+    A --> E[Kompetensi Teknisi]
+
+    B --> F[Operasi<br/>Maintenance<br/>Inventory<br/>Reliability]
+    C --> G[Preventive<br/>Predictive<br/>RCA]
+    D --> H[Riwayat Kerusakan<br/>Spare Part<br/>Backlog]
+    E --> I[Diagnosa<br/>Troubleshooting<br/>Safety]
+
+    F --> J[FTFR Naik]
+    G --> J
+    H --> J
+    I --> J
+
+    style A fill:#D6EAF8,stroke:#1F618D,color:#000
+    style B fill:#D5F5E3,stroke:#239B56,color:#000
+    style C fill:#FCF3CF,stroke:#B7950B,color:#000
+    style D fill:#E8DAEF,stroke:#7D3C98,color:#000
+    style E fill:#FDEBD0,stroke:#CA6F1E,color:#000
+    style J fill:#ABEBC6,stroke:#1E8449,color:#000
+```
 
 #### **1. Strategi Kolaboratif untuk Seluruh Fungsi Jabatan**
 
@@ -183,6 +258,8 @@ Berikut adalah beberapa elemen penting dari pendekatan pemeliharaan proaktif dan
 
 - **Pelatihan Berkelanjutan untuk Teknisi**:
   Teknisi yang terlatih dengan baik adalah kunci untuk meningkatkan FTFR. Program **pelatihan berkelanjutan** yang mencakup perkembangan terbaru dalam teknologi peralatan, alat diagnostik, serta praktik terbaik dalam pemeliharaan sangat diperlukan. Dengan meningkatkan keterampilan teknisi secara berkelanjutan, perusahaan dapat memastikan bahwa mereka mampu menangani masalah dengan cepat dan akurat pada upaya pertama.
+
+[**Kembali ke Atas**](#1-pendahuluan-apa-itu-first-time-fix-rate-ftfr-dan-mengapa-penting)
 
 ---
 
@@ -319,11 +396,40 @@ Untuk meningkatkan **First-Time Fix Rate (FTFR)** di sebuah pabrik petrokimia. P
 - **Pemantauan dan Penilaian Strategis**:
   - Mengawasi implementasi program peningkatan FTFR melalui **rapat bulanan** dengan manajemen pemeliharaan, serta penilaian terhadap dampaknya terhadap **keandalan pabrik** dan **efisiensi biaya**.
 
+[**Kembali ke Atas**](#1-pendahuluan-apa-itu-first-time-fix-rate-ftfr-dan-mengapa-penting)
+
 ---
 
 ### **5. Penerapan Program Kerja yang Efektif**
 
 Meningkatkan **First-Time Fix Rate (FTFR)** tidak cukup hanya dengan merencanakan program, tapi juga harus memastikan implementasinya berjalan dengan baik dan berkelanjutan. Dalam bab ini, kita akan membahas bagaimana menerapkan program kerja secara bertahap, pentingnya pengawasan dan evaluasi keberhasilan, serta kenapa komunikasi lintas fungsi menjadi kunci keberhasilan dalam peningkatan FTFR.
+
+```mermaid
+flowchart TD
+    A[Mulai Program FTFR]
+    A --> B[Audit Kondisi Awal]
+    B --> C[Tentukan Gap]
+    C --> D[Tetapkan Target FTFR]
+    D --> E[Pelatihan & Persiapan Tools]
+    E --> F[Pilot Project]
+    F --> G[Evaluasi Hasil]
+    G --> H{Target Tercapai?}
+    H -->|Belum| I[Perbaiki Program]
+    I --> F
+    H -->|Ya| J[Roll Out ke Area Lain]
+    J --> K[Monitoring Berkelanjutan]
+
+    style A fill:#D6EAF8,stroke:#1F618D,color:#000
+    style B fill:#FCF3CF,stroke:#B7950B,color:#000
+    style C fill:#FDEBD0,stroke:#CA6F1E,color:#000
+    style D fill:#D5F5E3,stroke:#239B56,color:#000
+    style E fill:#E8DAEF,stroke:#7D3C98,color:#000
+    style F fill:#D6EAF8,stroke:#2874A6,color:#000
+    style G fill:#FCF3CF,stroke:#B7950B,color:#000
+    style H fill:#FADBD8,stroke:#C0392B,color:#000
+    style J fill:#ABEBC6,stroke:#1E8449,color:#000
+    style K fill:#A9DFBF,stroke:#196F3D,color:#000
+```
 
 #### **Langkah-langkah Implementasi Program secara Bertahap**
 
@@ -390,6 +496,8 @@ Komunikasi lintas fungsi adalah elemen kunci yang seringkali menentukan sukses a
 4. **Rapat Koordinasi Rutin**:
    - Lakukan rapat koordinasi rutin dengan seluruh tim untuk membahas status peralatan, masalah yang dihadapi, dan kemajuan dalam pencapaian target FTFR. Rapat ini akan membantu mengidentifikasi tantangan di lapangan dan memberikan kesempatan untuk berbagi ide dan solusi.
 
+[**Kembali ke Atas**](#1-pendahuluan-apa-itu-first-time-fix-rate-ftfr-dan-mengapa-penting)
+
 ---
 
 ### **6. Studi Kasus: Meningkatkan FTFR dalam Praktik**
@@ -448,6 +556,27 @@ Setelah program peningkatan FTFR dijalankan selama 6 bulan, pabrik mulai melihat
 
 #### **Rule of Thumb untuk Nilai FTFR di Pabrik Petrokimia**
 
+```mermaid
+flowchart TD
+    A[Nilai FTFR Pabrik Petrokimia]
+
+    A --> B[< 70%]
+    A --> C[70 - 80%]
+    A --> D[80 - 90%]
+    A --> E[> 90%]
+
+    B --> F[Kritis<br/>Banyak Rework]
+    C --> G[Cukup<br/>Perlu Perbaikan]
+    D --> H[Baik<br/>Sistem Mulai Stabil]
+    E --> I[Excellent<br/>Pemeliharaan Proaktif Matang]
+
+    style A fill:#D6EAF8,stroke:#1F618D,color:#000
+    style B fill:#F5B7B1,stroke:#922B21,color:#000
+    style C fill:#FAD7A0,stroke:#CA6F1E,color:#000
+    style D fill:#FCF3CF,stroke:#B7950B,color:#000
+    style E fill:#ABEBC6,stroke:#1E8449,color:#000
+```
+
 Dalam industri petrokimia, nilai **First-Time Fix Rate (FTFR)** sangat bervariasi tergantung pada **kompleksitas operasi**, **jenis peralatan**, serta **tingkat kesiapan tim pemeliharaan**. Namun, berdasarkan pengalaman di lapangan dan benchmark industri, berikut adalah beberapa **rule of thumb** terkait FTFR:
 
 1. **FTFR < 70%**:
@@ -464,6 +593,8 @@ Dalam industri petrokimia, nilai **First-Time Fix Rate (FTFR)** sangat bervarias
 
 4. **FTFR > 90%**:
    - FTFR di atas 90% adalah **target optimal** dalam industri petrokimia. Pada angka ini, pabrik sudah menerapkan **pemeliharaan proaktif** yang terencana, dengan tim pemeliharaan yang memiliki **keterampilan teknis tinggi** dan **sistem inventaris yang efisien**. Pabrik dengan FTFR tinggi ini biasanya memiliki **downtime minimal** dan **biaya operasional yang sangat efisien**.
+
+[**Kembali ke Atas**](#1-pendahuluan-apa-itu-first-time-fix-rate-ftfr-dan-mengapa-penting)
 
 ---
 
@@ -487,6 +618,26 @@ Untuk jangka panjang, manajemen harus terus berfokus pada **pengembangan keteram
 
 Selain itu, manajemen juga perlu memastikan adanya **sistem evaluasi dan pengawasan yang berkelanjutan**. Evaluasi rutin akan membantu mengidentifikasi area mana yang masih perlu diperbaiki, serta memastikan bahwa semua pihak tetap berjalan di jalur yang benar dalam mencapai target FTFR.
 
+```mermaid
+flowchart TD
+    A[Monitor FTFR]
+    A --> B[Analisis Penyebab Rendahnya FTFR]
+    B --> C[Perbaiki Kompetensi]
+    C --> D[Perbaiki Spare Part]
+    D --> E[Perbaiki Prosedur & CMMS]
+    E --> F[Eksekusi Pemeliharaan Lebih Baik]
+    F --> G[FTFR Meningkat]
+    G --> A
+
+    style A fill:#D6EAF8,stroke:#1F618D,color:#000
+    style B fill:#FCF3CF,stroke:#B7950B,color:#000
+    style C fill:#E8DAEF,stroke:#7D3C98,color:#000
+    style D fill:#FDEBD0,stroke:#CA6F1E,color:#000
+    style E fill:#D5F5E3,stroke:#239B56,color:#000
+    style F fill:#ABEBC6,stroke:#1E8449,color:#000
+    style G fill:#82E0AA,stroke:#196F3D,color:#000
+```
+
 ---
 
 #### **Rekomendasi Praktis bagi Insinyur Pemeliharaan untuk Memulai Inisiatif FTFR**
@@ -500,6 +651,8 @@ Langkah-langkah kecil seperti ini, jika dilakukan dengan konsisten dan terukur, 
 ---
 
 Dengan pendekatan kolaboratif dan strategi yang jelas, meningkatkan FTFR bukanlah sesuatu yang mustahil. Yang dibutuhkan hanyalah **komitmen bersama**, **pengawasan berkelanjutan**, dan **fokus pada perbaikan berkelanjutan**. Pada akhirnya, hasilnya adalah pabrik yang lebih efisien, peralatan yang lebih andal, dan biaya operasional yang lebih terkendali.
+
+[**Kembali ke Atas**](#1-pendahuluan-apa-itu-first-time-fix-rate-ftfr-dan-mengapa-penting)
 
 ---
 
