@@ -3,7 +3,7 @@
 /** @type {import("pliny/config").PlinyConfig } */
 const siteMetadata = {
   title: 'Mx Core Docs',
-  version: '0.6.1', //packages/core => RBC & search link /mx-core
+  version: '0.6.2', //mermaid and fix double formula
   author: 'Slamet-Sam',
   headerTitle: 'mx-core-docs',
   description: 'Maintenance Extended Core Documents',

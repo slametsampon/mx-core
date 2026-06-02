@@ -94,6 +94,8 @@ Artikel ini bertujuan untuk menyajikan **panduan menyeluruh dan aplikatif** meng
   ]}
 />
 
+[**Kembalike Atas**](#i-pendahuluan)
+
 ---
 
 ### **II. FUNDAMENTAL TIER DALAM MANAJEMEN ASET**
@@ -139,6 +141,37 @@ Sebagai contoh, dalam studi kasus PT. Petro Oxo Nusantara (PT PON), tiering digu
 
 Dengan pendekatan ini, _tiering_ menjadi bagian integral dalam **siklus manajemen risiko operasional** dan **pengembangan strategi pemeliharaan berbasis dampak absolut (ESC grading)**.
 
+```mermaid
+%%{init: {
+  "theme": "base",
+  "themeVariables": {
+    "background": "#ffffff",
+    "fontSize": "14px",
+    "lineColor": "#475569"
+  }
+}}%%
+flowchart TD
+    A["Risk-Based<br/>Maintenance"] --> B["Risk<br/>Understanding"]
+    B --> C["ESC Impact"]
+    C --> D["Tier<br/>Classification"]
+    D --> E["Maintenance<br/>Strategy"]
+    E --> F["Work Order<br/>Execution"]
+    F --> G["Review<br/>Periodik"]
+    G --> B
+
+    classDef rbm fill:#dbeafe,stroke:#2563eb,color:#1e3a8a;
+    classDef risk fill:#fee2e2,stroke:#dc2626,color:#7f1d1d;
+    classDef tier fill:#fef3c7,stroke:#d97706,color:#78350f;
+    classDef action fill:#dcfce7,stroke:#16a34a,color:#14532d;
+    classDef review fill:#f3e8ff,stroke:#9333ea,color:#581c87;
+
+    class A rbm;
+    class B,C risk;
+    class D tier;
+    class E,F action;
+    class G review;
+```
+
 ---
 
 #### **2.4 Referensi Standar dan Ilmiah**
@@ -156,6 +189,8 @@ Berikut adalah sumber-sumber terpercaya yang menjadi dasar pengembangan konsep _
 - **Priyanta et al., 2024 – Maintenance Priority: A Literature Review of Equipment Criticality Analysis in the Oil and Gas Industries**
 
   - Ulasan sistematis terhadap berbagai pendekatan klasifikasi peralatan, termasuk penggunaan sistem _tiering_ dan grading ESC sebagai bagian dari RBM praktis di lapangan.
+
+[**Kembalike Atas**](#i-pendahuluan)
 
 ---
 
@@ -249,6 +284,52 @@ Contoh integrasi:
 
 Namun, ESC Grading sering kali dilengkapi dengan faktor-faktor pendukung lain seperti data histori, strategi operasi, dan feedback dari tim operasi. Oleh karena itu, dalam praktik terbaik, penentuan tier dilakukan secara **multidisiplin** dan **berbasis konsensus**, melibatkan departemen pemeliharaan, operasi, SHE, dan reliability.
 
+```mermaid
+%%{init: {
+  "theme": "base",
+  "themeVariables": {
+    "background": "#ffffff",
+    "fontSize": "14px",
+    "lineColor": "#475569"
+  }
+}}%%
+flowchart TD
+    A["Evaluasi<br/>Aset"] --> B["Safety<br/>Impact"]
+    A --> C["Environment<br/>Impact"]
+    A --> D["Continuous<br/>Operation"]
+    A --> E["Redundansi"]
+    A --> F["Histori<br/>Gangguan"]
+    A --> G["Akses &<br/>MTTR"]
+
+    B --> H["ESC<br/>Score"]
+    C --> H
+    D --> H
+    E --> H
+    F --> H
+    G --> H
+
+    H --> I{"Tier?"}
+    I --> J["Tier 1<br/>Realtime / Harian"]
+    I --> K["Tier 2<br/>Bulanan"]
+    I --> L["Tier 3<br/>6 Bulanan"]
+
+    classDef input fill:#e0f2fe,stroke:#0284c7,color:#075985;
+    classDef esc fill:#fee2e2,stroke:#dc2626,color:#7f1d1d;
+    classDef decision fill:#fef3c7,stroke:#d97706,color:#78350f;
+    classDef t1 fill:#fecaca,stroke:#b91c1c,color:#7f1d1d;
+    classDef t2 fill:#fde68a,stroke:#d97706,color:#78350f;
+    classDef t3 fill:#bbf7d0,stroke:#16a34a,color:#14532d;
+
+    class A,B,C,D,E,F,G input;
+    class H esc;
+    class I decision;
+    class J t1;
+    class K t2;
+    class L t3;
+```
+
+[**Kembalike Atas**](#i-pendahuluan)
+
 ---
 
 ### **IV. IMPLEMENTASI TIER DALAM INDUSTRI PETROKIMIA**
@@ -268,6 +349,43 @@ PT. Petro Oxo Nusantara (PT PON) merupakan contoh nyata implementasi sistem _tie
 | Tier 1   | Reformer, Hydrogen Compressor                   | Realtime / Harian | Kritis terhadap produksi, tanpa toleransi downtime |
 | Tier 2   | PSA Unit, Cooling System, Utility Boiler        | Bulanan           | Pendukung utama proses, redundansi terbatas        |
 | Tier 3   | Sistem pendukung non-kritis (PLC panel, backup) | Per 6 bulan       | Dampak kegagalan terbatas, bersifat auxiliary      |
+
+```mermaid
+%%{init: {
+  "theme": "base",
+  "themeVariables": {
+    "background": "#ffffff",
+    "fontSize": "14px",
+    "lineColor": "#475569"
+  }
+}}%%
+flowchart TD
+    A["PT PON<br/>Continuous Plant"] --> B["ESC High<br/>Impact"]
+    A --> C["ESC Medium<br/>Impact"]
+    A --> D["ESC Low<br/>Impact"]
+
+    B --> E["Tier 1"]
+    C --> F["Tier 2"]
+    D --> G["Tier 3"]
+
+    E --> H["Reformer"]
+    E --> I["Hydrogen<br/>Compressor"]
+    F --> J["PSA Unit"]
+    F --> K["Cooling<br/>System"]
+    G --> L["Backup<br/>Panel"]
+    G --> M["Auxiliary<br/>System"]
+
+    classDef plant fill:#dbeafe,stroke:#2563eb,color:#1e3a8a;
+    classDef high fill:#fee2e2,stroke:#dc2626,color:#7f1d1d;
+    classDef medium fill:#fef3c7,stroke:#d97706,color:#78350f;
+    classDef low fill:#dcfce7,stroke:#16a34a,color:#14532d;
+    classDef equip fill:#f8fafc,stroke:#64748b,color:#334155;
+
+    class A plant;
+    class B,E,H,I high;
+    class C,F,J,K medium;
+    class D,G,L,M low;
+```
 
 ---
 
@@ -296,6 +414,47 @@ Penggunaan _tiering_ mendukung perencanaan sumber daya secara proporsional:
 - **Money (RAB)**: Anggaran difokuskan ke aset-aset dengan risiko tertinggi.
 - **Method**: Metode inspeksi & maintenance disesuaikan dengan klasifikasi Tier.
 - **Material**: Ketersediaan spare-part prioritas dijaga untuk Tier 1 & 2 melalui sistem buffer logistik.
+
+```mermaid
+%%{init: {
+  "theme": "base",
+  "themeVariables": {
+    "background": "#ffffff",
+    "fontSize": "14px",
+    "lineColor": "#475569"
+  }
+}}%%
+flowchart TD
+    A["Tier<br/>Asset"] --> B{"Level<br/>Tier"}
+
+    B --> C["Tier 1"]
+    B --> D["Tier 2"]
+    B --> E["Tier 3"]
+
+    C --> F["CBM Intensif"]
+    C --> G["TA Priority"]
+    C --> H["Critical<br/>Spare"]
+
+    D --> I["Monthly<br/>Inspection"]
+    D --> J["Planned<br/>TBM"]
+    D --> K["Review<br/>Degradasi"]
+
+    E --> L["Basic<br/>TBM"]
+    E --> M["6 Monthly<br/>Check"]
+    E --> N["Run to Plan"]
+
+    classDef root fill:#dbeafe,stroke:#2563eb,color:#1e3a8a;
+    classDef decide fill:#fef3c7,stroke:#d97706,color:#78350f;
+    classDef t1 fill:#fee2e2,stroke:#dc2626,color:#7f1d1d;
+    classDef t2 fill:#fde68a,stroke:#d97706,color:#78350f;
+    classDef t3 fill:#dcfce7,stroke:#16a34a,color:#14532d;
+
+    class A root;
+    class B decide;
+    class C,F,G,H t1;
+    class D,I,J,K t2;
+    class E,L,M,N t3;
+```
 
 ---
 
@@ -326,6 +485,8 @@ Penerapan sistem _tiering_ dalam industri petrokimia, seperti di PT PON, terbukt
 - Memastikan efisiensi sumber daya dan efektivitas inspeksi
 
 Pada bab selanjutnya, akan dibahas penyusunan **template tier** sebagai alat bantu teknis untuk insinyur perencana dalam mengklasifikasikan aset secara sistematis dan terdokumentasi.
+
+[**Kembalike Atas**](#i-pendahuluan)
 
 ---
 
@@ -393,6 +554,43 @@ Agar sistem tier ini efektif dan dapat dimanfaatkan dalam kegiatan pemeliharaan 
 * File Excel digunakan sebagai **master list DIP-Tier**, dilengkapi filter, validasi, dan catatan histori.
 * Dapat dipadukan dengan visualisasi (warna Tier 1: merah, Tier 2: kuning, Tier 3: hijau) untuk mempermudah pemantauan.
 
+```mermaid
+%%{init: {
+  "theme": "base",
+  "themeVariables": {
+    "background": "#ffffff",
+    "fontSize": "14px",
+    "lineColor": "#475569"
+  }
+}}%%
+flowchart TD
+    A["Master<br/>Asset List"] --> B["Tier<br/>Evaluation"]
+    B --> C["Tier<br/>Attribute"]
+    C --> D["CMMS /<br/>Spreadsheet"]
+    D --> E["PM Schedule"]
+    D --> F["CBM Route"]
+    D --> G["Spare Part<br/>Priority"]
+    D --> H["TA Scope"]
+    E --> I["Work Order"]
+    F --> I
+    G --> I
+    H --> I
+    I --> J["History &<br/>Feedback"]
+    J --> B
+
+    classDef data fill:#e0f2fe,stroke:#0284c7,color:#075985;
+    classDef tier fill:#fef3c7,stroke:#d97706,color:#78350f;
+    classDef system fill:#ede9fe,stroke:#7c3aed,color:#4c1d95;
+    classDef output fill:#dcfce7,stroke:#16a34a,color:#14532d;
+    classDef feedback fill:#fee2e2,stroke:#dc2626,color:#7f1d1d;
+
+    class A data;
+    class B,C tier;
+    class D system;
+    class E,F,G,H,I output;
+    class J feedback;
+```
+
 ---
 
 #### **5.5 Manfaat Penggunaan Template Tier**
@@ -401,6 +599,8 @@ Agar sistem tier ini efektif dan dapat dimanfaatkan dalam kegiatan pemeliharaan 
 - Mempermudah **justifikasi teknis** saat menyusun jadwal PM dan shutdown
 - Memungkinkan **audit trail** terhadap perubahan prioritas peralatan
 - Mendukung **review periodik** dan perbaikan strategi pemeliharaan berbasis data
+
+[**Kembalike Atas**](#i-pendahuluan)
 
 ---
 
@@ -461,6 +661,8 @@ Contoh: Dalam rapat perencanaan TA, penggunaan label Tier 1 secara langsung meny
 - **Kesimpulan Bab VI**
 
 Sistem _tiering_ memberikan manfaat strategis menyeluruh dalam manajemen pemeliharaan aset. Tidak hanya sebagai alat bantu klasifikasi, _tiering_ berfungsi sebagai **kerangka kerja keputusan** untuk perencanaan, eksekusi, dan evaluasi program pemeliharaan. Di industri dengan risiko tinggi dan kompleksitas tinggi seperti petrokimia, tiering terbukti memperkuat kemampuan organisasi dalam **mengelola risiko, meningkatkan efisiensi, dan mempertahankan keandalan operasional.**
+
+[**Kembalike Atas**](#i-pendahuluan)
 
 ---
 
@@ -524,11 +726,45 @@ Meskipun sistem _tiering_ menawarkan banyak keunggulan strategis dalam manajemen
 
 * Implementasi sistem tier dapat dimulai di satu unit proses (misalnya Syngas atau Utility), lalu dievaluasi sebelum diadopsi secara penuh ke seluruh plant.
 
+```mermaid
+%%{init: {
+  "theme": "base",
+  "themeVariables": {
+    "background": "#ffffff",
+    "fontSize": "14px",
+    "lineColor": "#475569"
+  }
+}}%%
+flowchart TD
+    A["Mulai<br/>Pilot Unit"] --> B["Workshop<br/>Lintas Fungsi"]
+    B --> C["Klasifikasi<br/>Tier Awal"]
+    C --> D["Integrasi<br/>CMMS"]
+    D --> E["Eksekusi<br/>PM / CBM"]
+    E --> F["Monitoring<br/>Kinerja"]
+    F --> G{"Perlu<br/>Update?"}
+    G -->|"Ya"| H["Revisi<br/>Tier"]
+    H --> C
+    G -->|"Tidak"| I["Review<br/>Tahunan"]
+    I --> B
+
+    classDef start fill:#dbeafe,stroke:#2563eb,color:#1e3a8a;
+    classDef process fill:#dcfce7,stroke:#16a34a,color:#14532d;
+    classDef decision fill:#fef3c7,stroke:#d97706,color:#78350f;
+    classDef revise fill:#fee2e2,stroke:#dc2626,color:#7f1d1d;
+
+    class A start;
+    class B,C,D,E,F,I process;
+    class G decision;
+    class H revise;
+```
+
 ---
 
 - **Kesimpulan Bab VII**
 
 Sistem _tiering_, meskipun sangat bermanfaat, tetap memerlukan pendekatan implementasi yang **terstruktur, kolaboratif, dan berbasis data**. Penanganan kendala secara proaktif melalui komunikasi lintas departemen, pelatihan internal, dan review periodik akan menentukan keberhasilan jangka panjang sistem ini dalam mendukung manajemen pemeliharaan berbasis risiko.
+
+[**Kembalike Atas**](#i-pendahuluan)
 
 ---
 
@@ -571,6 +807,41 @@ Sistem **Tier TIDAK BOLEH digunakan** sebagai alat keputusan tunggal apabila:
 
 - konsekuensi kegagalan **tidak dapat diterima secara SHE**, meskipun probabilitas kegagalan rendah;
 - keputusan menyangkut **desain proteksi, barrier keselamatan, atau integrity management**.
+
+```mermaid
+%%{init: {
+  "theme": "base",
+  "themeVariables": {
+    "background": "#ffffff",
+    "fontSize": "14px",
+    "lineColor": "#475569"
+  }
+}}%%
+flowchart TD
+    A["Keputusan<br/>Berbasis Tier"] --> B{"Menyentuh<br/>Process Safety?"}
+    B -->|"Tidak"| C["Gunakan Tier<br/>untuk Planning"]
+    B -->|"Ya"| D["STOP<br/>Tiering"]
+
+    D --> E{"Risiko<br/>Dominan?"}
+    E --> F["RBI<br/>API 580 / 581"]
+    E --> G["FTA"]
+    E --> H["Bowtie<br/>Analysis"]
+
+    F --> I["Risk<br/>Decision"]
+    G --> I
+    H --> I
+    I --> J["Strategy &<br/>Execution"]
+
+    classDef normal fill:#dcfce7,stroke:#16a34a,color:#14532d;
+    classDef decision fill:#fef3c7,stroke:#d97706,color:#78350f;
+    classDef stop fill:#fee2e2,stroke:#dc2626,color:#7f1d1d;
+    classDef formal fill:#ede9fe,stroke:#7c3aed,color:#4c1d95;
+
+    class A,C,J normal;
+    class B,E decision;
+    class D stop;
+    class F,G,H,I formal;
+```
 
 🔁 **Eskalasi Wajib**
 Dalam kondisi tersebut, Tier **harus dihentikan** dan dialihkan ke metode formal berikut:
@@ -631,6 +902,8 @@ Dengan penambahan batasan ini, sistem Tier akan:
 - dan berfungsi sebagai **tactical enabler**, bukan _risk shortcut_.
 
 Bagian ini **secara sengaja diposisikan sebagai editorial safeguard**, bukan prosedur teknis, untuk memastikan Tier digunakan **secara bertanggung jawab dan profesional**.
+
+[**Kembalike Atas**](#i-pendahuluan)
 
 ---
 
@@ -701,6 +974,8 @@ Penerapan sistem _tiering_ yang efektif harus didasarkan pada referensi teknis y
   > Praktik implementasi sistem _tiering_ untuk predictive maintenance berbasis teknologi monitoring.
   > [https://reliabilityweb.com](https://reliabilityweb.com)
 
+[**Kembalike Atas**](#i-pendahuluan)
+
 ---
 
 ### **X. LAMPIRAN**
@@ -731,22 +1006,57 @@ Penerapan sistem _tiering_ yang efektif harus didasarkan pada referensi teknis y
 
 #### **10.3 Flowchart Integrasi Tier ke TBM dan Work Order**
 
-```
-[Start]
-   ↓
-[Input Data Aset & ESC Grading]
-   ↓
-[Evaluasi Tiering (Checklist + Template)]
-   ↓
-[Penentuan Tier 1 / 2 / 3]
-   ↓
-→ Tier 1: Jadwal Realtime → CM/CBM → Notifikasi CMMS → Work Order Auto
-→ Tier 2: Jadwal Bulanan → TBM → Evaluasi Manual → Work Order Planned
-→ Tier 3: Jadwal 6 Bulanan → TBM → Inspeksi Ringan → Work Order Yearly
-   ↓
-[Review Tahunan / Update Tier]
-   ↓
-[End]
+```mermaid
+%%{init: {
+  "theme": "base",
+  "themeVariables": {
+    "background": "#ffffff",
+    "fontSize": "14px",
+    "lineColor": "#475569"
+  }
+}}%%
+flowchart TD
+    A["Start"] --> B["Input Data<br/>Aset"]
+    B --> C["ESC<br/>Grading"]
+    C --> D["Checklist<br/>Tier"]
+    D --> E{"Hasil<br/>Tier"}
+
+    E --> F["Tier 1<br/>Realtime"]
+    E --> G["Tier 2<br/>Bulanan"]
+    E --> H["Tier 3<br/>6 Bulanan"]
+
+    F --> I["CM / CBM"]
+    I --> J["CMMS<br/>Notification"]
+    J --> K["Auto / Urgent<br/>WO"]
+
+    G --> L["TBM<br/>Planned"]
+    L --> M["Manual<br/>Evaluation"]
+    M --> N["Planned<br/>WO"]
+
+    H --> O["Light<br/>Inspection"]
+    O --> P["Yearly / Routine<br/>WO"]
+
+    K --> Q["Review<br/>Tahunan"]
+    N --> Q
+    P --> Q
+    Q --> R["Update<br/>Tier"]
+    R --> C
+
+    classDef start fill:#dbeafe,stroke:#2563eb,color:#1e3a8a;
+    classDef input fill:#e0f2fe,stroke:#0284c7,color:#075985;
+    classDef decision fill:#fef3c7,stroke:#d97706,color:#78350f;
+    classDef t1 fill:#fee2e2,stroke:#dc2626,color:#7f1d1d;
+    classDef t2 fill:#fde68a,stroke:#d97706,color:#78350f;
+    classDef t3 fill:#dcfce7,stroke:#16a34a,color:#14532d;
+    classDef review fill:#f3e8ff,stroke:#9333ea,color:#581c87;
+
+    class A start;
+    class B,C,D input;
+    class E decision;
+    class F,I,J,K t1;
+    class G,L,M,N t2;
+    class H,O,P t3;
+    class Q,R review;
 ```
 
 ---
@@ -782,6 +1092,8 @@ Seluruh aset di plant proses, utilitas, dan sistem pendukung.
 - Formulir Tier Evaluation
 - Logbook Perubahan Tier
 - Hasil Workshop Evaluasi Tahunan
+
+[**Kembalike Atas**](#i-pendahuluan)
 
 ---
 

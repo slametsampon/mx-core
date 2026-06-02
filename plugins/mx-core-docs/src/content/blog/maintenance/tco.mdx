@@ -104,11 +104,41 @@ Pendekatan ini direkomendasikan sebagai bagian dari strategi jangka panjang dala
   ]}
 />
 
+[**Kembali ke Atas**](#i-executive-summary)
+
 ---
 
 ### **II. Pendahuluan**
 
 Peralatan proses merupakan komponen vital dalam operasional pabrik petrokimia, berfungsi sebagai tulang punggung bagi kelangsungan produksi, pengolahan, dan distribusi bahan kimia strategis. Peralatan seperti pompa sentrifugal, kompresor, motor induksi, serta peralatan kontrol dan instrumentasi, harus senantiasa beroperasi dengan tingkat keandalan tinggi untuk menjamin kontinuitas produksi, keselamatan proses, serta efisiensi energi dan biaya.
+
+```mermaid
+flowchart TB
+    A["1. Perencanaan & Perancangan"] --> B["2. Pengadaan"]
+    B --> C["3. Penerimaan & Instalasi"]
+    C --> D["4. Commissioning & Start-up"]
+    D --> E["5. Operasi"]
+    E --> F["6. Pemeliharaan & Perbaikan"]
+    F --> G["7. Evaluasi Penggantian / Modernisasi"]
+    G --> H["8. Decommissioning & Disposal"]
+    H --> A
+
+    classDef plan fill:#DDEBFF,stroke:#1E5AA8,color:#0B2545
+    classDef procure fill:#E8F5E9,stroke:#2E7D32,color:#123D18
+    classDef install fill:#FFF3E0,stroke:#EF6C00,color:#4A2500
+    classDef operate fill:#E0F7FA,stroke:#00838F,color:#00363A
+    classDef maintain fill:#FCE4EC,stroke:#AD1457,color:#4A1028
+    classDef replace fill:#F3E5F5,stroke:#6A1B9A,color:#2A073D
+    classDef dispose fill:#ECEFF1,stroke:#455A64,color:#1C2529
+
+    class A plan
+    class B procure
+    class C,D install
+    class E operate
+    class F maintain
+    class G replace
+    class H dispose
+```
 
 Seiring berjalannya waktu, setiap peralatan akan mengalami degradasi performa yang bersifat alami, baik akibat keausan mekanis, korosi, kelelahan material, maupun faktor operasional lainnya. Tantangan utama bagi tim pemeliharaan dan manajemen aset adalah menentukan momen yang tepat untuk mempertahankan peralatan melalui strategi pemeliharaan intensif, atau melakukan penggantian dengan teknologi yang lebih efisien dan andal. Keputusan ini menjadi semakin kompleks ketika mempertimbangkan keterbatasan anggaran, target keandalan operasional, serta risiko kegagalan yang dapat berdampak pada keselamatan dan produktivitas.
 
@@ -118,9 +148,50 @@ Artikel ini bertujuan untuk menguraikan secara sistematis bagaimana integrasi an
 
 ![tco](/static/images/artikel/tco.jpg)
 
+[**Kembali ke Atas**](#i-executive-summary)
+
 ---
 
 ### **III. Dasar Teoretis dan Standar Industri**
+
+```mermaid
+flowchart TB
+    A["Data CMMS"] --> B["MTBF"]
+    A --> C["MTTR"]
+    A --> D["Availability"]
+    A --> E["OEE"]
+
+    B --> F["Evaluasi Keandalan Aset"]
+    C --> F
+    D --> F
+    E --> F
+
+    F --> G{"Risiko Meningkat?"}
+
+    G -->|Ya| H["Analisis Downtime"]
+    G -->|Ya| I["Analisis HSSE / LOC"]
+    G -->|Ya| J["Analisis TCO"]
+    G -->|Tidak| K["Lanjutkan Strategi PM/PdM"]
+
+    H --> L["Prioritas Intervensi"]
+    I --> L
+    J --> L
+
+    L --> M["Repair / Retrofit / Replace"]
+
+    classDef data fill:#E3F2FD,stroke:#1565C0,color:#0D2F57
+    classDef metric fill:#E8F5E9,stroke:#2E7D32,color:#123D18
+    classDef risk fill:#FFEBEE,stroke:#C62828,color:#5A0B0B
+    classDef action fill:#FFF8E1,stroke:#F9A825,color:#4A3700
+    classDef decision fill:#F3E5F5,stroke:#7B1FA2,color:#2D0A3D
+
+    class A data
+    class B,C,D,E metric
+    class F,J action
+    class G decision
+    class H,I risk
+    class K,L,M action
+```
 
 #### A. **Konsep Siklus Hidup Peralatan (Equipment Life Cycle)**
 
@@ -155,11 +226,50 @@ Konsep TCO memiliki keterkaitan erat dengan pendekatan **Life Cycle Costing (LCC
 
 ![tco-intro](/static/images/artikel/tco-intro.jpg)
 
+[**Kembali ke Atas**](#i-executive-summary)
+
 ---
 
 ### **IV. Metrik Penunjang Keputusan Pemeliharaan**
 
 Keputusan pemeliharaan dan penggantian peralatan yang efektif harus didasarkan pada data kuantitatif yang merepresentasikan kondisi aktual dan kinerja historis aset. Dalam praktik terbaik industri, terdapat sejumlah metrik teknis yang digunakan secara luas untuk mendukung analisis dan pengambilan keputusan berbasis risiko dan biaya. Metrik-metrik ini menjadi bagian integral dalam strategi pemeliharaan berbasis reliabilitas dan manajemen aset.
+
+```mermaid
+flowchart TB
+    A["Mulai: Evaluasi Performa Aset"] --> B{"MTBF turun / OEE rendah?"}
+
+    B -->|Tidak| C["Lanjutkan Operasi & PM"]
+    B -->|Ya| D{"Biaya Maintenance meningkat?"}
+
+    D -->|Tidak| E["Optimasi PM / PdM"]
+    D -->|Ya| F{"Risiko HSSE / Downtime tinggi?"}
+
+    F -->|Tidak| G["Evaluasi Retrofit / Upgrade"]
+    F -->|Ya| H{"TCO aset lama > aset baru?"}
+
+    H -->|Tidak| G
+    H -->|Ya| I["Ajukan Replacement CAPEX"]
+
+    G --> J{"Retrofit feasible?"}
+    J -->|Ya| K["Laksanakan Modernisasi"]
+    J -->|Tidak| I
+
+    I --> L["Penggantian Aset"]
+    K --> M["Update Strategi Lifecycle"]
+    L --> M
+
+    classDef start fill:#DDEBFF,stroke:#1E5AA8,color:#0B2545
+    classDef decision fill:#FFF3E0,stroke:#EF6C00,color:#4A2500
+    classDef safe fill:#E8F5E9,stroke:#2E7D32,color:#123D18
+    classDef warning fill:#FFEBEE,stroke:#C62828,color:#5A0B0B
+    classDef action fill:#F3E5F5,stroke:#6A1B9A,color:#2A073D
+
+    class A start
+    class B,D,F,H,J decision
+    class C,E safe
+    class G,K,M action
+    class I,L warning
+```
 
 #### **1. MTBF, MTTR, Availability, dan Reliability**
 
@@ -212,6 +322,8 @@ Pendekatan ini sangat relevan dalam pemeliharaan peralatan kritikal seperti pres
 
 Dengan mengombinasikan metrik teknis ini, manajemen pemeliharaan dapat melakukan evaluasi menyeluruh terhadap kondisi aset, menetapkan strategi pemeliharaan yang optimal, serta mendukung keputusan berbasis TCO dan siklus hidup peralatan secara terukur dan dapat dipertanggungjawabkan.
 
+[**Kembali ke Atas**](#i-executive-summary)
+
 ---
 
 ### **V. Analisis Risiko & Dampaknya terhadap TCO**
@@ -256,9 +368,33 @@ Biaya-biaya implisit ini sering kali tidak tercatat dalam laporan keuangan secar
 
 Dalam konteks ini, pendekatan TCO tidak hanya memberikan pandangan ekonomi, tetapi juga berfungsi sebagai alat **pengelolaan risiko strategis**. Dengan mengintegrasikan analisis risiko ke dalam framework TCO, perusahaan dapat mengambil keputusan pemeliharaan dan penggantian secara lebih proaktif, berbasis bukti, dan sesuai dengan prinsip _as low as reasonably practicable (ALARP)_ dalam manajemen risiko industri.
 
+[**Kembali ke Atas**](#i-executive-summary)
+
 ---
 
 ### **VI. Studi Kasus: Penggantian Centrifugal Pump**
+
+```mermaid
+flowchart TB
+    A["Perencanaan & Perancangan<br/>A: Engineering<br/>C: Maintenance, HSSE, Finance"] --> B["Pengadaan<br/>A: Procurement<br/>C: Engineering, Maintenance"]
+    B --> C["Penerimaan & Instalasi<br/>A: Engineering<br/>R: Maintenance"]
+    C --> D["Commissioning & Start-up<br/>A: Engineering<br/>R: Maintenance, HSSE"]
+    D --> E["Operasi<br/>A: Operations / Maintenance<br/>C: Engineering, HSSE"]
+    E --> F["Pemeliharaan & Perbaikan<br/>A/R: Maintenance<br/>C: Engineering, HSSE"]
+    F --> G["Evaluasi Penggantian<br/>A: Maintenance / Finance<br/>C: Engineering, Procurement"]
+    G --> H["Decommissioning & Disposal<br/>A: HSSE / Engineering<br/>R: Maintenance"]
+
+    classDef eng fill:#E3F2FD,stroke:#1565C0,color:#0D2F57
+    classDef proc fill:#E8F5E9,stroke:#2E7D32,color:#123D18
+    classDef maint fill:#FCE4EC,stroke:#AD1457,color:#4A1028
+    classDef hsse fill:#FFEBEE,stroke:#C62828,color:#5A0B0B
+    classDef fin fill:#FFF8E1,stroke:#F9A825,color:#4A3700
+
+    class A,C,D eng
+    class B proc
+    class E,F,G maint
+    class H hsse
+```
 
 #### A. **Deskripsi Peralatan & Masalah**
 
@@ -322,6 +458,8 @@ Perbandingan grafik TCO dan NPV menunjukkan bahwa penggantian pompa menghasilkan
 
 Berdasarkan evaluasi teknis dan ekonomi, penggantian pompa merupakan pilihan yang **paling optimal dan layak investasi**, mendukung prinsip perencanaan berbasis siklus hidup dan pendekatan TCO dalam manajemen aset industri.
 
+[**Kembali ke Atas**](#i-executive-summary)
+
 ---
 
 ### **VII. Visualisasi**
@@ -365,6 +503,8 @@ Diagram alur pengambilan keputusan ini memandu proses evaluasi berdasarkan kondi
 
 Visualisasi ini membantu tim teknis dan manajemen untuk mengambil keputusan yang berbasis data dan risiko, sesuai prinsip manajemen aset modern.
 
+[**Kembali ke Atas**](#i-executive-summary)
+
 ---
 
 ### **VIII. Strategi Pemeliharaan Berbasis Life Cycle & TCO**
@@ -405,6 +545,8 @@ Kolaborasi lintas fungsi ini memperkuat validitas keputusan dan memastikan bahwa
 
 Dengan strategi terpadu ini, perusahaan dapat memastikan bahwa seluruh aset dikelola secara optimal sepanjang siklus hidupnya, mendukung keberlanjutan operasional, serta mencapai efisiensi biaya dalam jangka panjang.
 
+[**Kembali ke Atas**](#i-executive-summary)
+
 ---
 
 ### **IX. Manfaat Jangka Panjang dari Pendekatan Siklus Hidup dan TCO**
@@ -430,6 +572,8 @@ Hasilnya adalah peningkatan availability, menurunnya frekuensi corrective mainte
 Penggantian peralatan lama yang kurang efisien dengan teknologi baru yang dirancang untuk efisiensi energi tidak hanya memberikan penghematan biaya operasional, tetapi juga mengurangi jejak karbon dan konsumsi energi total pabrik. Ini sangat relevan dalam konteks penerapan kebijakan **Environmental, Social, and Governance (ESG)** serta standar keberlanjutan global.
 
 Selain itu, peralatan modern umumnya didesain dengan mempertimbangkan kemudahan daur ulang dan kepatuhan terhadap peraturan lingkungan, sehingga menurunkan risiko hukum dan biaya disposal di fase akhir siklus hidup.
+
+[**Kembali ke Atas**](#i-executive-summary)
 
 ---
 
@@ -463,6 +607,8 @@ Tim ini berfungsi sebagai pusat kendali pengambilan keputusan strategis aset, se
 
 Implementasi langkah-langkah ini tidak hanya meningkatkan akurasi pengambilan keputusan teknis dan finansial, tetapi juga mendukung transformasi digital dalam manajemen aset pabrik secara berkelanjutan dan terukur.
 
+[**Kembali ke Atas**](#i-executive-summary)
+
 ---
 
 ### **XI. Penutup**
@@ -474,6 +620,8 @@ Studi kasus penggantian centrifugal pump menunjukkan bahwa pendekatan ini tidak 
 Implementasi strategi ini akan lebih efektif apabila didukung oleh tim lintas fungsi, sistem CMMS yang terintegrasi, serta dukungan penuh dari manajemen puncak. Dalam jangka panjang, pendekatan TCO dan manajemen siklus hidup tidak hanya berdampak pada efisiensi biaya, tetapi juga memperkuat budaya _asset integrity_, _risk-based maintenance_, dan keberlanjutan operasional pabrik secara keseluruhan.
 
 Penerapan disiplin teknik ini selaras dengan arah industri 4.0 dan transformasi digital dalam pengelolaan aset industri, yang pada akhirnya akan menjadikan pabrik lebih kompetitif, adaptif, dan andal di tengah tuntutan pasar dan regulasi yang semakin kompleks.
+
+[**Kembali ke Atas**](#i-executive-summary)
 
 ---
 
@@ -534,6 +682,8 @@ $$
 | **ASME B31.3**       | Process Piping Design – untuk koneksi dan sistem perpipaan                |
 | **NFPA 30 / 70**     | Fire & Electrical Codes – untuk compliance pada fase decommissioning      |
 | **IEC 60034**        | Rotating Electrical Machines – untuk motor penggerak                      |
+
+[**Kembali ke Atas**](#i-executive-summary)
 
 ---
 

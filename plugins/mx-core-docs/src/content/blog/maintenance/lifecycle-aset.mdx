@@ -83,6 +83,8 @@ Dengan mengadopsi pendekatan siklus hidup aset, perusahaan tidak hanya dapat men
   ]}
 />
 
+[**Kembali ke Atas**](#i-pendahuluan--tujuan)
+
 ---
 
 ### **II. Konsep Siklus Hidup, Peran Maintenance, dan Strategi Pemeliharaan**
@@ -193,6 +195,30 @@ Fase penghentian operasional dan pemindahan atau pembuangan aset.
 
 Agar pemeliharaan berjalan efektif dalam konteks lifecycle, dibutuhkan strategi terintegrasi yang mencakup:
 
+```mermaid
+flowchart TD
+    A[Perencanaan & Desain] --> B[Pengadaan & Instalasi]
+    B --> C[Operasi]
+    C --> D[Pemeliharaan]
+    D --> E[Evaluasi Kinerja & Biaya]
+    E --> F{Masih Layak Dipertahankan?}
+    F -->|Ya| C
+    F -->|Tidak| G[Modernisasi / Penggantian]
+    G --> H[Decommissioning]
+
+    classDef blue fill:#D6EAF8,stroke:#2874A6,color:#000;
+    classDef green fill:#D5F5E3,stroke:#239B56,color:#000;
+    classDef yellow fill:#FCF3CF,stroke:#B7950B,color:#000;
+    classDef red fill:#FADBD8,stroke:#922B21,color:#000;
+    classDef purple fill:#E8DAEF,stroke:#6C3483,color:#000;
+
+    class A,B blue;
+    class C green;
+    class D,E yellow;
+    class F red;
+    class G,H purple;
+```
+
 > 🔹 **Integrasi Metodologi PdM, RCM, dan CBM**
 
 - **PdM (Predictive Maintenance):** Mengandalkan data kondisi real-time untuk menentukan waktu pemeliharaan optimal.
@@ -216,6 +242,8 @@ Keterlibatan aktif antar fungsi adalah kunci sukses:
 ---
 
 Dengan kerangka ini, fungsi maintenance tidak hanya menjalankan aktivitas perbaikan, tetapi menjadi komponen strategis dalam menjaga integritas, efisiensi biaya, dan keberlanjutan siklus hidup aset secara menyeluruh. Pendekatan ini sejalan dengan praktik terbaik dalam standar **ISO 55000** dan membentuk dasar yang kuat untuk pengambilan keputusan yang berbasis data dan risiko.
+
+[**Kembali ke Atas**](#i-pendahuluan--tujuan)
 
 ---
 
@@ -300,6 +328,8 @@ Evaluasi lifecycle yang efektif mensyaratkan pendekatan yang berbasis metrik per
 - Menentukan prioritas investasi penggantian aset.
 - Menghindari keputusan berbasis intuisi yang berisiko tinggi dalam lingkungan operasional kritikal seperti industri petrokimia.
 
+[**Kembali ke Atas**](#i-pendahuluan--tujuan)
+
 ---
 
 ### **IV. Visualisasi Lifecycle dan Pengambilan Keputusan**
@@ -352,6 +382,8 @@ Visualisasi lifecycle dan pengambilan keputusan adalah bagian integral dari stra
 - Menyelaraskan pemahaman antar departemen terhadap kondisi dan risiko aset.
 - Meningkatkan akurasi perencanaan pemeliharaan dan investasi.
 - Membangun pendekatan yang sistematis dan berbasis data untuk setiap keputusan teknis yang berdampak pada keandalan, efisiensi, dan keberlanjutan operasi.
+
+[**Kembali ke Atas**](#i-pendahuluan--tujuan)
 
 ---
 
@@ -419,6 +451,8 @@ Lifecycle-based asset management bukan hanya alat perencanaan, melainkan juga pe
 - **Mendukung program keberlanjutan dan tata kelola aset modern.**
 
 Dengan memanfaatkan seluruh potensi pendekatan ini, organisasi dapat berpindah dari pola manajemen berbasis insiden menuju **manajemen aset berbasis nilai dan risiko**, sebagaimana ditekankan dalam standar internasional seperti **ISO 55000** dan kerangka best practice industri.
+
+[**Kembali ke Atas**](#i-pendahuluan--tujuan)
 
 ---
 
@@ -494,6 +528,8 @@ Penerapan **RACI matrix** dalam konteks siklus hidup aset memastikan bahwa penge
 
 RACI bukan sekadar alat dokumentasi, tetapi **fondasi koordinasi organisasi** dalam manajemen aset yang kompleks dan berisiko tinggi seperti di industri petrokimia.
 
+[**Kembali ke Atas**](#i-pendahuluan--tujuan)
+
 ---
 
 ### **VII. Rekomendasi Implementasi**
@@ -559,6 +595,8 @@ Pendekatan lifecycle management tidak dapat diterapkan secara parsial atau hanya
 
 **Lifecycle bukan hanya kerangka kerja teknis—melainkan fondasi menuju keunggulan operasional dan keberlanjutan industri.**
 
+[**Kembali ke Atas**](#i-pendahuluan--tujuan)
+
 ---
 
 ### **VIII. Penutup**
@@ -573,6 +611,8 @@ Poin-poin penting yang dapat disimpulkan dari artikel ini:
 - **Manfaat jangka panjang** dari pendekatan ini meliputi penghematan biaya total, peningkatan keandalan sistem, dukungan terhadap keberlanjutan, serta justifikasi investasi berbasis data.
 
 Lifecycle bukanlah sekadar konsep akademik, tetapi **alat strategis** yang memungkinkan organisasi berpindah dari manajemen berbasis insiden menuju **manajemen berbasis nilai dan risiko**. Implementasi yang disiplin dan kolaboratif akan memperkuat fondasi operasional, meningkatkan daya saing industri, dan menjamin keberlanjutan jangka panjang aset kritikal dalam ekosistem produksi petrokimia.
+
+[**Kembali ke Atas**](#i-pendahuluan--tujuan)
 
 ---
 
@@ -643,6 +683,8 @@ r = discount rate (misal 8%)
 > **Penutup Lampiran**
 
 Seluruh dokumen pendukung ini dapat dijadikan sebagai **referensi standar operasional** dalam pengembangan kebijakan, prosedur, dan perencanaan strategis manajemen aset. Kombinasi antara framework lifecycle, metrik performa, dan integrasi digital (CMMS/TCO dashboard) memungkinkan pendekatan ini diimplementasikan secara sistematis dan terukur di lingkungan industri petrokimia.
+
+[**Kembali ke Atas**](#i-pendahuluan--tujuan)
 
 ---
 
