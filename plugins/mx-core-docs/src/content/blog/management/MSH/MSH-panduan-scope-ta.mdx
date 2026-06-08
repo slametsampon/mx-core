@@ -186,8 +186,7 @@ Artinya, suatu item dapat menjadi kandidat TA bukan hanya karena equipment terse
 
 ```mermaid
 flowchart TD
-    A["Asset / System<br/>TA Candidate"] --> B["ESC<br/>Impact"]
-    A --> C["Asset<br/>Tier"]
+    A["Asset / System<br/>TA Candidate"] --> B["ESC Impact<br/>& Asset Tier"]
     A --> D["Current & Past<br/>Symptoms"]
     A --> E["Historical<br/>ESC Disturbance"]
     A --> F["Lifecycle<br/>Risk"]
@@ -195,7 +194,6 @@ flowchart TD
     A --> H["Shutdown<br/>Dependency"]
 
     B --> I["RBM-Based<br/>TA Screening"]
-    C --> I
     D --> I
     E --> I
     F --> I
@@ -211,10 +209,10 @@ flowchart TD
     classDef decision fill:#E8F5E9,stroke:#2E7D32,color:#111;
 
     class A asset;
-    class B,D,E risk;
+    class D,E risk;
     class F lifecycle;
     class G compliance;
-    class C,H,I,J decision;
+    class B,H,I,J decision;
 ```
 
 ---
@@ -725,27 +723,27 @@ Dengan cara ini, TA tidak hanya menjadi agenda shutdown maintenance, tetapi menj
 ---
 
 <ResourceBox
-title="Korelasi internal-link modul:"
-items={[
-{
-name: 'Risk-Based Maintenance',
-href: '/blog/management/MSH/MSH-3-rbm',
-description:
-'Module 3 – Risk-Based Maintenance sebagai Strategi Pemeliharaan Praktis',
-},
-{
-name: 'Lifecycle Aset dan Turnaround',
-href: '/blog/management/MSH/MSH-8-lifecycle-ta',
-description:
-'Hubungan lifecycle aset, turnaround, dan continuous improvement sistem pemeliharaan',
-},
-{
-name: 'Penerapan Tier dalam RBM',
-href: '/blog/maintenance/maintenance-tier',
-description:
-'Penerapan tiering aset dalam Risk-Based Maintenance untuk industri petrokimia',
-},
-]}
+  title="Korelasi internal-link modul:"
+  items={[
+    {
+      name: 'Risk-Based Maintenance',
+      href: '/blog/management/MSH/MSH-3-rbm',
+      description:
+        'Module 3 – Risk-Based Maintenance sebagai Strategi Pemeliharaan Praktis',
+    },
+    {
+      name: 'Lifecycle Aset dan Turnaround',
+      href: '/blog/management/MSH/MSH-8-lifecycle-ta',
+      description:
+        'Hubungan lifecycle aset, turnaround, dan continuous improvement sistem pemeliharaan',
+    },
+    {
+      name: 'Penerapan Tier dalam RBM',
+      href: '/blog/maintenance/maintenance-tier',
+      description:
+        'Penerapan tiering aset dalam Risk-Based Maintenance untuk industri petrokimia',
+    },
+  ]}
 />
 
 ---
