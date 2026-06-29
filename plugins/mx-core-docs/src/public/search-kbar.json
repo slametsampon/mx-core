@@ -295,11 +295,17 @@
       "orifice-plate",
       "differential-pressure-flow",
       "flow-measurement",
+      "restriction-orifice",
       "process-instrumentation",
+      "process-engineering",
       "beta-ratio",
       "orifice-flow-equation",
       "flow-metering",
-      "process-engineering"
+      "pressure-drop",
+      "cavitation",
+      "choked-flow",
+      "short-tube",
+      "cfd-validation"
     ]
   },
   {
