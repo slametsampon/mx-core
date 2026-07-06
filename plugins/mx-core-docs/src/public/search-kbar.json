@@ -1,5 +1,20 @@
 [
   {
+    "id": "management/MSH/MSH-risk-reduction-program",
+    "name": "Risk Reduction Program (RRP): Mengubah Risiko menjadi Reliability Improvement yang Terukur",
+    "section": "CONTENT",
+    "href": "/blog/management/MSH/MSH-risk-reduction-program",
+    "subtitle": "July 6, 2026",
+    "keywords": [
+      "risk-reduction-program",
+      "risk-based-maintenance",
+      "reliability-improvement",
+      "asset-integrity",
+      "shutdown-scope",
+      "benefit-realization"
+    ]
+  },
+  {
     "id": "maintenance/mechanical/rider-ring-min-max-lubricating",
     "name": "Batas Minimum dan Maksimum Lubrikasi Rider Ring pada Reciprocating Compressor: Konversi Tetes/menit, mL/jam, Wear Control, dan Tindakan Koreksi Lapangan",
     "section": "CONTENT",
