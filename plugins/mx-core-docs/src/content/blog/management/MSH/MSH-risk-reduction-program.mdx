@@ -152,7 +152,7 @@ Sebuah _risk register_ yang hanya disimpan sebagai dokumen belum mengubah kondis
 Di sinilah **Risk Reduction Program (RRP)** dibutuhkan.
 
 <figure>
-  <img src="/static/images/artikel/konsep-rrp-pon.png" alt="Konsep RRP PON" />
+  <img src="/static/images/artikel/konsep-rrp-pon-1.png" alt="Konsep RRP PON" />
   <figcaption>
     Ilustrasi konsep RRP PON sebagai gambaran alur proses, komponen utama, dan
     hubungan antarbagian dalam sistem.
@@ -589,14 +589,15 @@ Ketika tindakan telah terbukti efektif, hasilnya harus masuk kembali ke sistem:
 
 RRP harus mencakup seluruh sistem yang memengaruhi keselamatan, lingkungan, dan kontinuitas operasi. Karena itu, scope RRP tidak boleh dibatasi hanya pada unit proses utama atau hanya pada rotating equipment.
 
-Untuk konteks plant, scope tetap RRP terdiri atas empat cluster berikut.
+Untuk konteks plant, scope RRP terdiri atas cluster berikut.
 
-| Cluster      | Fokus Sistem                                                                                                          |
-| ------------ | --------------------------------------------------------------------------------------------------------------------- |
-| Syngas Unit  | SMR, furnace, reformer tube, burner, refractory, catalyst, hydrogen compressor, syngas compressor, process protection |
-| Octanol Unit | Oxo, hydrogenation, reactor, hydrogen system, compressor, pump, exchanger, catalyst, control valve, analyzer          |
-| CO₂ Plant    | Cooling water, PHE Gas Cooler, PHE Reboiler, compressor, pump, liquefaction control valve, electrical, DCS/PLC        |
-| Utility Unit | Boiler, plant air, instrument air, chiller, storage tank, electrical system, MCC, transformer, control system, UPS    |
+| Cluster      | Fokus Sistem                                                                                                                    |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------------- |
+| Syngas Unit  | SMR, furnace, reformer tube, burner, refractory, catalyst, hydrogen compressor, syngas compressor, process protection           |
+| Octanol Unit | Oxo, hydrogenation, reactor, hydrogen system, compressor, pump, exchanger, catalyst, control valve, analyzer                    |
+| NPG Unit     | FA/Formaldehyde unit, aldol condensation, hydrogenation, reactor, distillation column, flaker, bagging system, product handling |
+| CO₂ Plant    | Cooling water, PHE Gas Cooler, PHE Reboiler, compressor, pump, liquefaction control valve, electrical, DCS/PLC                  |
+| Utility Unit | Boiler, plant air, instrument air, chiller, storage tank, electrical system, MCC, transformer, control system, UPS              |
 
 Pembagian ini bukan untuk menciptakan silo. Justru, pembagian tersebut membantu engineer memahami batas sistem, hubungan antar-unit, dan risiko yang dapat menyebar dari satu subsystem ke subsystem lain.
 
@@ -632,6 +633,8 @@ Contoh RRP Syngas:
 
 > Peningkatan temperatur tube pada satu area reformer tidak langsung berarti tube harus diganti. RRP dapat dimulai dengan combustion study, burner inspection, firing-pattern correction, thermography, tube temperature mapping, dan assessment integritas. Penggantian tube atau major refractory repair menjadi keputusan berikutnya apabila bukti menunjukkan adanya integrity threat yang tidak dapat dikendalikan melalui tindakan online.
 
+---
+
 ### 4.2 Octanol Unit
 
 Octanol Unit mencakup area Oxo dan hydrogenation yang umumnya memiliki interaksi kuat antara reaktor, hydrogen handling, rotating equipment, exchanger, catalyst, control valve, dan product quality.
@@ -661,7 +664,59 @@ Contoh:
 
 RRP pada unit ini perlu mempertemukan data process historian, maintenance history, hasil inspeksi, dan kondisi actual equipment.
 
-### 4.3 CO₂ Plant
+---
+
+### 4.3 NPG Unit
+
+NPG Unit perlu dimasukkan sebagai cluster tersendiri karena memiliki kombinasi risiko proses reaksi, distilasi, hydrogenation, solidification, dan product handling. Berbeda dengan unit yang hanya berfokus pada proses fluida, NPG juga memiliki area akhir berupa flaker dan bagging system yang memengaruhi kualitas produk, operability, housekeeping, serta kontinuitas dispatch.
+
+Ruang lingkup minimum NPG Unit meliputi:
+
+- **FA / Formaldehyde Unit**, terutama reactor dan distillation column;
+- **Aldol Condensation**, terutama reactor dan column;
+- **Hydrogenation**, terutama reactor, hydrogen system, catalyst, compressor/pump terkait, dan column;
+- **Flaker System**, termasuk cooling surface, scraper/knife, drive system, product cooling, dan discharge;
+- **Bagging System**, termasuk conveyor, weighing, filling, sealing, dust handling, dan product transfer.
+
+#### Karakter Risiko Utama
+
+| Area                       | Risiko Dominan                                                                                   | Fokus Engineer                                                                                      |
+| -------------------------- | ------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------- |
+| FA / Formaldehyde Reactor  | Instabilitas reaksi, temperature excursion, catalyst/performance issue, feed quality sensitivity | Temperature control, feed ratio, catalyst condition, heat removal, interlock, analyzer              |
+| FA Distillation Column     | Flooding, weeping, pressure instability, off-spec intermediate, fouling                          | Column ΔP, reflux ratio, reboiler/condenser duty, tray/packing condition, control stability         |
+| Aldol Condensation Reactor | Reaction instability, selectivity issue, fouling, temperature control limitation                 | Operating envelope, mixing, heat removal, catalyst/chemical condition, residence time               |
+| Aldol Column               | Separation instability, off-spec stream, pressure drop, reboiler/condenser limitation            | Column performance, ΔP, temperature profile, reflux, heat duty, fouling                             |
+| Hydrogenation Reactor      | Hydrogen leak, catalyst deactivation, hot spot, pressure instability, product quality issue      | Hydrogen control, catalyst life, reactor temperature profile, pressure control, emergency isolation |
+| Hydrogenation Column       | Off-spec product, pressure instability, fouling, energy inefficiency                             | Reboiler duty, condenser duty, tray/packing condition, pressure and temperature profile             |
+| Flaker System              | Poor solidification, uneven flake thickness, scraper failure, product buildup, drive overload    | Cooling performance, drum/belt condition, scraper alignment, drive reliability, discharge stability |
+| Bagging System             | Filling inaccuracy, sealing failure, dust exposure, conveyor jam, product contamination          | Weighing accuracy, sealing quality, dust collection, conveyor reliability, housekeeping, ergonomics |
+
+#### Apa yang Harus Dilakukan Engineer
+
+Pada NPG Unit, engineer perlu melihat risiko dari hulu ke hilir: dari kualitas formaldehyde, kestabilan reaksi, performa distilasi, hydrogenation, sampai kemampuan flaker dan bagging menjaga produk tetap sesuai spesifikasi dan dapat dikirim.
+
+Beberapa pertanyaan praktis:
+
+- Apakah reactor memiliki kontrol temperatur yang stabil pada variasi beban?
+- Apakah column menunjukkan tren kenaikan pressure drop atau perubahan temperature profile?
+- Apakah reboiler dan condenser memiliki duty margin yang cukup?
+- Apakah hydrogenation reactor menunjukkan indikasi catalyst deactivation atau hot spot?
+- Apakah flaker mampu menghasilkan produk dengan ukuran, ketebalan, dan kadar pendinginan yang konsisten?
+- Apakah scraper/knife, drive, bearing, dan cooling surface pada flaker menjadi bad actor?
+- Apakah bagging system menyebabkan bottleneck dispatch, off-weight bag, sealing failure, atau dust exposure?
+- Apakah dust collector, ventilation, dan housekeeping cukup untuk mengendalikan risiko operasional dan keselamatan kerja?
+
+Contoh RRP NPG:
+
+> Bila flaker sering menyebabkan product buildup dan trip drive, tindakan RRP tidak boleh langsung berupa penggantian drive motor. Engineer perlu mengevaluasi cooling performance, karakteristik produk, drum atau belt surface condition, scraper alignment, knife wear, discharge chute, bearing condition, serta interlock overload. Penggantian motor hanya tepat apabila terbukti kapasitas drive tidak memadai atau terjadi degradation yang tidak dapat dipulihkan.
+
+Contoh lain:
+
+> Bila column pada FA atau Aldol menunjukkan pressure drop meningkat dan kualitas produk tidak stabil, RRP perlu memeriksa tray/packing fouling, reboiler duty, condenser performance, reflux control, feed composition, serta control valve performance sebelum memutuskan cleaning, internal inspection, atau modification.
+
+---
+
+### 4.4 CO₂ Plant
 
 CO₂ Plant merupakan sistem yang sensitif terhadap performance cooling, heat transfer, pressure control, rotating equipment, dan kestabilan liquefaction. Gangguan kecil pada satu subsystem dapat berkembang menjadi derating atau loss production.
 
@@ -702,7 +757,9 @@ Karena itu, RRP tidak boleh langsung memilih satu solusi. Engineer perlu memisah
 5. opsi permanen;
 6. bukti keberhasilan setelah eksekusi.
 
-### 4.4 Utility Unit
+---
+
+### 4.5 Utility Unit
 
 Utility Unit adalah **reliability backbone** plant. Banyak kegagalan utility tidak hanya mengganggu satu equipment, tetapi dapat menjadi _common-cause failure_ bagi beberapa unit proses sekaligus.
 
@@ -738,18 +795,20 @@ Contoh RRP Utility:
 
 > Jika instrument air pressure drop sering terjadi, tindakan tidak cukup berhenti pada overhaul compressor yang bermasalah. RRP perlu mengevaluasi compressor redundancy, dryer, receiver capacity, header restriction, auto-changeover logic, dew point, leak management, emergency air, dan critical consumer priority.
 
-### 4.5 Mengelola Batas Antar-Unit
+---
+
+### 4.6 Mengelola Batas Antar-Unit
 
 Engineer perlu berhati-hati dalam menentukan ownership RRP item yang melewati batas unit.
 
-Contoh:
-
-| Kasus                                                    | Risiko Salah Pendekatan                                      | Pendekatan RRP yang Benar                                                      |
-| -------------------------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------------------------ |
-| CO₂ Plant mengalami derating akibat cooling-water issue  | CO₂ Plant menyelesaikan sendiri tanpa melihat utility source | Bentuk RRP lintas CO₂ Plant–Utility dengan system boundary yang jelas          |
-| Hydrogen compressor sering trip karena kualitas listrik  | Fokus hanya pada mechanical compressor                       | Review bersama Electrical, Control, dan Operation                              |
-| Reactor instability karena control valve response lambat | Hanya melakukan PID tuning                                   | Validasi valve sizing, stiction, actuator, positioner, dan process interaction |
-| Boiler trip memengaruhi beberapa unit                    | Setiap unit membuat tindakan sendiri                         | Utility RRP sebagai common-cause risk dengan prioritas plant-wide              |
+| Kasus                                                    | Risiko Salah Pendekatan                                      | Pendekatan RRP yang Benar                                                                                  |
+| -------------------------------------------------------- | ------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------- |
+| CO₂ Plant mengalami derating akibat cooling-water issue  | CO₂ Plant menyelesaikan sendiri tanpa melihat utility source | Bentuk RRP lintas CO₂ Plant–Utility dengan system boundary yang jelas                                      |
+| Hydrogen compressor sering trip karena kualitas listrik  | Fokus hanya pada mechanical compressor                       | Review bersama Electrical, Control, dan Operation                                                          |
+| Reactor instability karena control valve response lambat | Hanya melakukan PID tuning                                   | Validasi valve sizing, stiction, actuator, positioner, dan process interaction                             |
+| Boiler trip memengaruhi beberapa unit                    | Setiap unit membuat tindakan sendiri                         | Utility RRP sebagai common-cause risk dengan prioritas plant-wide                                          |
+| Bagging system menjadi bottleneck produk akhir NPG       | Fokus hanya pada mechanical conveyor atau sealer             | Evaluasi integrasi flaker, product cooling, weighing, sealing, dust handling, dan dispatch requirement     |
+| FA atau Aldol column tidak stabil                        | Hanya mengubah operating parameter                           | Evaluasi column internals, reboiler/condenser duty, feed composition, control valve, dan fouling mechanism |
 
 RRP yang efektif tidak hanya menurunkan risiko lokal. RRP harus mampu melihat risiko sistemik dan menutup gap pada titik yang memberikan manfaat terbesar bagi plant secara keseluruhan.
 
